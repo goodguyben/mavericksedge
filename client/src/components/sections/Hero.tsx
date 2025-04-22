@@ -43,7 +43,7 @@ export default function Hero() {
           <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
             <Link
               href="/services"
-              className="bg-maverick-orange hover:bg-opacity-80 text-white px-8 py-3 rounded-full font-medium text-center transition duration-300"
+              className="bg-maverick-brown hover:bg-maverick-dark-brown text-white px-8 py-3 rounded-full font-medium text-center transition duration-300"
             >
               Explore services
             </Link>
