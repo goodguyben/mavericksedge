@@ -1,8 +1,8 @@
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
-import { Link } from "wouter";
 import { ChevronDown } from "lucide-react";
 import { scrollToSection } from "@/lib/scroll";
+import { Button } from "@/components/ui/custom-button";
 
 export default function Hero() {
   const [scrolled, setScrolled] = useState(false);
@@ -32,33 +32,33 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.2 }}
         >
           
-          <h1 className="text-5xl md:text-7xl font-heading font-bold leading-tight">
+          <h1 className="text-5xl md:text-7xl font-heading font-bold leading-tight text-maverick-cream">
             Digital solutions that{" "}
             <span className="text-maverick-orange">elevate</span> your business
           </h1>
-          <p className="text-xl md:text-2xl text-maverick-brown mt-6 mb-10 max-w-2xl">
+          <p className="text-xl md:text-2xl text-maverick-cream/80 mt-6 mb-10 max-w-2xl">
             Web development, marketing, and AI integration services tailored for
             SMBs and nonprofits
           </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Link
-                  href="/services"
-                  className="bg-[#8C54FF] hover:bg-opacity-80 text-white py-3 rounded-full font-medium text-center transition duration-300"
-                >
+          <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+            <Button 
+              href="/services" 
+              variant="primary"
+            >
               Explore services
-            </Link>
-            <Link
-              href="/contact"
-              className="border border-maverick-orange hover:bg-maverick-orange hover:bg-opacity-10 text-maverick-brown px-8 py-3 rounded-full font-medium text-center transition duration-300"
+            </Button>
+            <Button 
+              href="/contact" 
+              variant="outline"
             >
               Get in touch
-            </Link>
+            </Button>
           </div>
         </motion.div>
       </div>
 
       <motion.div
-        className="scroll-indicator cursor-pointer"
+        className="scroll-indicator cursor-pointer absolute bottom-10 left-1/2 transform -translate-x-1/2"
         animate={{ 
           opacity: scrolled ? 0 : 1,
           y: scrolled ? 10 : 0 
@@ -66,7 +66,7 @@ export default function Hero() {
         transition={{ duration: 0.3 }}
         onClick={() => scrollToSection("services")}
       >
-        <ChevronDown className="h-6 w-6 animate-bounce" />
+        <ChevronDown className="h-6 w-6 animate-bounce text-maverick-orange" />
       </motion.div>
     </section>
   );

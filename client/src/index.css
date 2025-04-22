@@ -21,19 +21,19 @@
   --border: 25 30% 35%;      /* Subtle but visible border */
   --input: 25 20% 25%;       /* Dark input background */
   
-  --primary: 185 100% 38%;   /* Vibrant teal - brand primary */
+  --primary: 16 85% 55%;     /* Vibrant orange - brand primary */
   --primary-foreground: 0 0% 100%;  /* White text on primary */
   
-  --secondary: 175 90% 45%;   /* Bright cyan as secondary */
+  --secondary: 35 80% 65%;   /* Warm amber as secondary */
   --secondary-foreground: 20 15% 15%;  /* Dark text on secondary */
   
-  --accent: 195 100% 35%;     /* Deep blue-teal accent */
+  --accent: 26 75% 45%;      /* Rich brown accent */
   --accent-foreground: 0 0% 100%;  /* White text on accent */
   
   --destructive: 0 85% 50%;  /* Bright red for destructive actions */
   --destructive-foreground: 0 0% 100%;  /* White text on destructive */
   
-  --ring: 185 100% 38%;      /* Match primary for focus rings */
+  --ring: 16 85% 55%;        /* Match primary for focus rings */
   --radius: 0.5rem;
   
   /* Custom theme colors with better distinction */
@@ -41,7 +41,7 @@
   --darksecondary: 20 15% 25%;  /* Slightly lighter */
   --light: 30 25% 95%;       /* Same as foreground */
   --lightsecondary: 30 15% 85%;  /* Slightly darker than light */
-  --highlight: 185 100% 38%; /* Same as primary */
+  --highlight: 16 85% 55%;   /* Same as primary */
 }
 
 /* Explicitly not defining a separate light theme as per design requirements */
@@ -83,7 +83,7 @@
   }
   
   a:not(.btn) {
-    @apply text-maverick-teal hover:text-maverick-light-teal font-medium transition-colors duration-200;
+    @apply text-maverick-orange hover:text-maverick-light-orange font-medium transition-colors duration-200;
     text-underline-offset: 0.2em;
   }
   
@@ -94,12 +94,12 @@
   
   /* Bold text and highlights */
   strong, b {
-    @apply font-bold text-maverick-teal;
+    @apply font-bold text-maverick-orange;
   }
   
   /* Enhanced focused elements */
   :focus-visible {
-    @apply ring-2 ring-maverick-teal ring-offset-2 ring-offset-maverick-charcoal outline-none;
+    @apply ring-2 ring-maverick-orange ring-offset-2 ring-offset-maverick-charcoal outline-none;
   }
   
   /* List styling */
@@ -112,7 +112,7 @@
   }
   
   ::selection {
-    @apply bg-maverick-teal text-white;
+    @apply bg-maverick-orange text-white;
   }
 }
 
@@ -121,7 +121,7 @@
   position: fixed;
   width: 20px;
   height: 20px;
-  background-color: #00B2C2;
+  background-color: #FF5630;
   border-radius: 50%;
   transform: translate(-50%, -50%);
   pointer-events: none;
@@ -151,7 +151,7 @@
 
 .service-card:hover {
   transform: translateY(-10px);
-  @apply border-maverick-teal shadow-xl shadow-maverick-teal/20;
+  @apply border-maverick-orange shadow-xl shadow-maverick-orange/20;
 }
 
 .pricing-card {
@@ -161,26 +161,26 @@
 
 .pricing-card:hover {
   transform: translateY(-5px);
-  @apply border-maverick-teal shadow-lg shadow-maverick-teal/20;
+  @apply border-maverick-orange shadow-lg shadow-maverick-orange/20;
 }
 
 /* Button styles */
 .btn-primary {
-  @apply bg-maverick-teal text-white hover:bg-maverick-teal/90 px-6 py-3 rounded-full font-medium transition-colors duration-200;
+  @apply bg-maverick-orange text-white hover:bg-maverick-orange/90 px-6 py-3 rounded-full font-medium transition-colors duration-200;
 }
 
 .btn-secondary {
-  @apply bg-transparent border border-maverick-teal text-maverick-teal hover:bg-maverick-teal/10 px-6 py-3 rounded-full font-medium transition-colors duration-200;
+  @apply bg-transparent border border-maverick-orange text-maverick-orange hover:bg-maverick-orange/10 px-6 py-3 rounded-full font-medium transition-colors duration-200;
 }
 
 .btn-accent {
-  @apply bg-maverick-cyan text-maverick-dark-teal hover:bg-maverick-cyan/90 px-6 py-3 rounded-full font-medium transition-colors duration-200;
+  @apply bg-maverick-amber text-maverick-dark-brown hover:bg-maverick-amber/90 px-6 py-3 rounded-full font-medium transition-colors duration-200;
 }
 
 /* Link hover effect */
 .hover-link {
   position: relative;
-  @apply text-maverick-light-teal;
+  @apply text-maverick-light-orange;
 }
 
 .hover-link::after {
@@ -190,7 +190,7 @@
   left: 0;
   width: 0;
   height: 2px;
-  @apply bg-maverick-teal;
+  @apply bg-maverick-orange;
   transition: width 0.3s ease;
 }
 

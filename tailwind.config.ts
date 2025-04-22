@@ -56,13 +56,12 @@ export default {
           "5": "hsl(var(--chart-5))",
         },
         maverick: {
-          "teal": "#00B2C2", // Vibrant teal replacing orange
-          "cyan": "#0CDED5", // Bright cyan for accents
-          "blue": "#0076B3", // Deep blue for emphasis
-          "light-teal": "#50E3C2", // Light teal replacing light-orange
-          "dark-teal": "#007D8A", // Dark teal for hover states
-          "yellow": "#FFD74B", // Keeping yellow
+          "yellow": "#FFD74B", // Bright yellow for dark backgrounds
+          "orange": "#FF5630", // Vibrant orange for dark backgrounds
+          "brown": "#AE6A4D", // Lighter brown for better visibility on dark
+          "light-orange": "#FF8A50", // Brighter light orange
           "dark-brown": "#272114", // Very dark brown for backgrounds
+          "amber": "#FFC43D", // Bright amber
           "charcoal": "#1E1A18", // Dark background
           "slate": "#252B32", // Alternative dark background
           "cream": "#FFFAF0", // Very light warm white
