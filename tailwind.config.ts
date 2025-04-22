@@ -61,6 +61,7 @@ export default {
           "brown": "#8E6142",
           "light-orange": "#F5A25D",
           "dark-brown": "#5E3A28",
+          "amber": "#F5A25D",
         },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",

@@ -21,8 +21,8 @@ export default function Hero() {
     <section className="relative h-screen flex items-center bg-[#121212] overflow-hidden">
       {/* Background gradients */}
       <div className="absolute w-full h-full top-0 left-0 opacity-20 pointer-events-none">
-        <div className="absolute w-96 h-96 rounded-full bg-[#8C54FF] opacity-30 blur-3xl -top-20 -left-20"></div>
-        <div className="absolute w-80 h-80 rounded-full bg-purple-500 opacity-20 blur-3xl bottom-20 right-20"></div>
+        <div className="absolute w-96 h-96 rounded-full bg-maverick-orange opacity-30 blur-3xl -top-20 -left-20"></div>
+        <div className="absolute w-80 h-80 rounded-full bg-maverick-amber opacity-20 blur-3xl bottom-20 right-20"></div>
       </div>
 
       <div className="container mx-auto px-5 md:px-10 z-10">
