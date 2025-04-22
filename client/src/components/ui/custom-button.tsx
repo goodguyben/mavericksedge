@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "wouter";
-import { cn } from "@/lib/utils";
 
 type ButtonVariant = "primary" | "secondary" | "outline" | "ghost" | "link";
 
@@ -23,30 +22,15 @@ export function Button({
   disabled = false,
   type = "button",
 }: ButtonProps) {
-  // Base styles that all buttons share
-  const baseStyles = "inline-flex items-center justify-center px-8 py-3 rounded-full font-medium text-center transition-colors duration-200 cursor-pointer";
-  
-  // Variant-specific styles
-  const variantStyles = {
-    primary: "bg-maverick-orange text-white hover:bg-maverick-orange/90 shadow-lg shadow-maverick-orange/20",
-    secondary: "bg-maverick-slate border border-maverick-slate text-maverick-cream hover:bg-maverick-slate/90 shadow-md",
-    outline: "bg-transparent border border-maverick-orange text-maverick-orange hover:bg-maverick-orange/10",
-    ghost: "bg-transparent text-maverick-orange hover:bg-maverick-orange/10 hover:text-maverick-orange",
-    link: "bg-transparent text-maverick-orange hover:underline p-0 shadow-none"
-  };
-  
-  // Disabled styles
-  const disabledStyles = "opacity-50 cursor-not-allowed pointer-events-none";
-  
-  // Combine classes
-  const buttonClasses = cn(
-    baseStyles,
-    variantStyles[variant],
-    disabled && disabledStyles,
+  // Build the class names based on the variant
+  const buttonClasses = [
+    'maverick-button',
+    `maverick-button-${variant}`,
+    disabled ? 'maverick-button-disabled' : '',
     className
-  );
+  ].filter(Boolean).join(' ');
   
-  // If href is provided, render a Link
+  // If href is provided, render a Link with our CSS classes
   if (href) {
     return (
       <Link href={href} className={buttonClasses}>
@@ -55,7 +39,7 @@ export function Button({
     );
   }
   
-  // Otherwise render a button
+  // Otherwise render a button with our CSS classes
   return (
     <button
       type={type}
