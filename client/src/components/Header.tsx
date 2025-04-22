@@ -109,12 +109,13 @@ export default function Header() {
               <Link href="/about" className="hover-link py-2">
                 About
               </Link>
-              <Link
+              <Button
                 href="/contact"
-                className="bg-maverick-orange text-white px-5 py-2 rounded-full mt-4 transition duration-300 hover:bg-opacity-80"
+                variant="primary"
+                className="px-5 py-2 mt-4"
               >
                 Contact
-              </Link>
+              </Button>
             </motion.div>
           </motion.div>
         )}
