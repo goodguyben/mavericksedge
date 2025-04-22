@@ -1,5 +1,5 @@
+import { Link } from "wouter";
 import { Check } from "lucide-react";
-import { Button } from "@/components/ui/custom-button";
 
 interface PricingCardProps {
   plan: {
@@ -37,13 +37,12 @@ export default function PricingCard({ plan }: PricingCardProps) {
           </li>
         ))}
       </ul>
-      <Button 
-        href="/contact" 
-        variant="primary"
-        className="w-full"
+      <Link
+        href="/contact"
+        className="text-center bg-maverick-orange hover:bg-opacity-80 text-white px-6 py-3 rounded-full font-medium transition duration-300"
       >
         Get started
-      </Button>
+      </Link>
     </div>
   );
 }
