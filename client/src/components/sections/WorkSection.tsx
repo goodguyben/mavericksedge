@@ -77,8 +77,7 @@ export default function WorkSection({ fullPage = false }: WorkSectionProps) {
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.3 }}
         >
-          <Link href="/contact"           
-            <Link href="/contact" className="inline-block bg-[#8C54FF] hover:bg-opacity-80 text-white px-8 py-3 rounded-full font-medium transition duration-300">>
+          <Link href="/contact" className="inline-block bg-[#8C54FF] hover:bg-opacity-80 text-white px-8 py-3 rounded-full font-medium transition duration-300">
             Start your project
           </Link>
         </motion.div>

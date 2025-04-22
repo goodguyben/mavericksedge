@@ -166,7 +166,7 @@
 
 /* Button styles */
 .btn-primary {
-  @apply bg-maverick-orange hover:bg-maverick-orange/90 px-6 py-3 rounded-full font-medium transition-colors duration-200;
+  @apply bg-maverick-orange text-white hover:bg-maverick-orange/90 px-6 py-3 rounded-full font-medium transition-colors duration-200;
 }
 
 .btn-secondary {
