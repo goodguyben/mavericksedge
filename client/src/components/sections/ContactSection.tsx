@@ -16,7 +16,8 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Button } from "@/components/ui/button";
+import { Button as ShadcnButton } from "@/components/ui/button";
+import { Button } from "@/components/ui/custom-button";
 import { 
   Select,
   SelectContent,
@@ -180,7 +181,8 @@ export default function ContactSection({ fullPage = false }: ContactSectionProps
 
                 <Button
                   type="submit"
-                  className="w-full bg-[#8C54FF] hover:bg-opacity-80 text-white py-3 rounded-full font-medium transition duration-300"
+                  variant="primary"
+                  className="w-full"
                   disabled={mutation.isPending}
                 >
                   {mutation.isPending ? "Sending..." : "Send Message"}

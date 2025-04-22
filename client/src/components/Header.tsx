@@ -3,6 +3,7 @@ import { Link, useLocation } from "wouter";
 import { AnimatePresence, motion } from "framer-motion";
 import { X, Menu } from "lucide-react";
 import Logo from "./Logo";
+import { Button } from "@/components/ui/custom-button";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -62,12 +63,13 @@ export default function Header() {
           <Link href="/about" className="hover-link">
             About
           </Link>
-          <Link
+          <Button
             href="/contact"
-            className="bg-maverick-orange text-white px-5 py-2 rounded-full transition duration-300 hover:bg-opacity-80"
+            variant="primary"
+            className="px-5 py-2"
           >
             Contact
-          </Link>
+          </Button>
         </nav>
       </div>
 
