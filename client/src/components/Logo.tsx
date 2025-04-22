@@ -19,7 +19,7 @@ export default function Logo({ size = "medium", showText = true, noLink = false 
     <>
       {showText && (
         <span className={`font-heading font-bold text-maverick-orange ${size === 'large' ? 'text-2xl' : 'text-xl'}`}>
-          Mavericks Edge
+          
         </span>
       )}
     </>
