@@ -16,12 +16,12 @@ export default function ProcessCard({ step }: ProcessCardProps) {
   return (
     <div className="bg-[#121212] p-8 rounded-xl min-w-[280px] md:min-w-[350px] flex-shrink-0 border border-gray-800">
       <div className="flex justify-between items-start mb-6">
-        <div className="p-3 bg-[#8C54FF] bg-opacity-10 rounded-lg">
+        <div className="p-3 bg-maverick-orange bg-opacity-10 rounded-lg">
           {step.icon}
         </div>
-        <span className="text-5xl font-bold text-[#8C54FF] opacity-30">{stepFormatted}</span>
+        <span className="text-5xl font-bold text-maverick-orange opacity-30">{stepFormatted}</span>
       </div>
-      <h3 className="text-xl font-semibold mb-3">{step.title}</h3>
+      <h3 className="text-xl font-semibold mb-3 font-heading">{step.title}</h3>
       <p className="text-[#AAAAAA]">{step.description}</p>
     </div>
   );

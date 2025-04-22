@@ -8,21 +8,21 @@ const processSteps = [
     step: 1,
     title: "Discovery",
     description: "We start by understanding your business goals, audience, and challenges to develop a comprehensive strategy.",
-    icon: <Search className="h-6 w-6 text-[#8C54FF]" />
+    icon: <Search className="h-6 w-6 text-maverick-orange" />
   },
   {
     id: "strategy",
     step: 2,
     title: "Strategy",
     description: "Based on our findings, we create a tailored strategy and roadmap to achieve your specific objectives.",
-    icon: <Settings className="h-6 w-6 text-[#8C54FF]" />
+    icon: <Settings className="h-6 w-6 text-maverick-orange" />
   },
   {
     id: "design",
     step: 3,
     title: "Design",
     description: "Our creative team designs visually appealing and user-friendly solutions that align with your brand identity.",
-    icon: <Paintbrush className="h-6 w-6 text-[#8C54FF]" />
+    icon: <Paintbrush className="h-6 w-6 text-maverick-orange" />
   },
   {
     id: "development",

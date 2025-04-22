@@ -14,19 +14,17 @@ export default function Logo({ size = "medium", showText = true }: LogoProps) {
   };
 
   return (
-    <Link href="/">
-      <a className="flex items-center">
-        <img 
-          src="/attached_assets/logo_dyn-thumb2x.png" 
-          alt="Mavericks Edge Logo" 
-          className={`${sizeClasses[size]} ${showText ? 'mr-2' : ''}`}
-        />
-        {showText && (
-          <span className={`font-heading font-bold text-maverick-brown ${size === 'large' ? 'text-2xl' : 'text-xl'}`}>
-            Mavericks Edge
-          </span>
-        )}
-      </a>
+    <Link href="/" className="flex items-center cursor-pointer">
+      <img 
+        src="/attached_assets/logo_dyn-thumb2x.png" 
+        alt="Mavericks Edge Logo" 
+        className={`${sizeClasses[size]} ${showText ? 'mr-2' : ''}`}
+      />
+      {showText && (
+        <span className={`font-heading font-bold text-maverick-orange ${size === 'large' ? 'text-2xl' : 'text-xl'}`}>
+          Mavericks Edge
+        </span>
+      )}
     </Link>
   );
 }
