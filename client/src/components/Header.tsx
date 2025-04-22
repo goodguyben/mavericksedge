@@ -34,7 +34,9 @@ export default function Header() {
   return (
     <header className={headerClasses}>
       <div className="container mx-auto flex justify-between items-center">
-        <Logo size="medium"/>
+        <Link href="/">
+          <Logo size="medium" noLink={true}/>
+        </Link>
 
         {/* Mobile Menu Button */}
         <button

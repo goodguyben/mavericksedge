@@ -5,17 +5,18 @@ import logoPath from "@assets/logo_dyn-thumb2x.png";
 interface LogoProps {
   size?: "small" | "medium" | "large";
   showText?: boolean;
+  noLink?: boolean;
 }
 
-export default function Logo({ size = "medium", showText = true }: LogoProps) {
+export default function Logo({ size = "medium", showText = true, noLink = false }: LogoProps) {
   const sizeClasses = {
     small: "w-8 h-8",
     medium: "w-10 h-10",
     large: "w-16 h-16"
   };
 
-  return (
-    <Link href="/" className="flex items-center cursor-pointer">
+  const LogoContent = () => (
+    <>
       <img 
         src={logoPath}
         alt="Mavericks Edge Logo" 
@@ -26,6 +27,20 @@ export default function Logo({ size = "medium", showText = true }: LogoProps) {
           Mavericks Edge
         </span>
       )}
+    </>
+  );
+
+  if (noLink) {
+    return (
+      <div className="flex items-center cursor-pointer">
+        <LogoContent />
+      </div>
+    );
+  }
+
+  return (
+    <Link href="/" className="flex items-center cursor-pointer">
+      <LogoContent />
     </Link>
   );
 }
