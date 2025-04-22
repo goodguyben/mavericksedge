@@ -56,12 +56,15 @@ export default {
           "5": "hsl(var(--chart-5))",
         },
         maverick: {
-          "yellow": "#F6C866",
-          "orange": "#F27B50",
-          "brown": "#8E6142",
-          "light-orange": "#F5A25D",
-          "dark-brown": "#5E3A28",
-          "amber": "#F5A25D",
+          "yellow": "#FFD74B", // Bright yellow for dark backgrounds
+          "orange": "#FF5630", // Vibrant orange for dark backgrounds
+          "brown": "#AE6A4D", // Lighter brown for better visibility on dark
+          "light-orange": "#FF8A50", // Brighter light orange
+          "dark-brown": "#272114", // Very dark brown for backgrounds
+          "amber": "#FFC43D", // Bright amber
+          "charcoal": "#1E1A18", // Dark background
+          "slate": "#252B32", // Alternative dark background
+          "cream": "#FFFAF0", // Very light warm white
         },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",

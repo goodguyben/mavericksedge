@@ -1,54 +1,47 @@
 /* Import fonts */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@font-face {
-  font-family: 'Gotham';
-  src: url('https://db.onlinewebfonts.com/t/0b7a32090acf81fc5171fd617831021e.woff2') format('woff2');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Gotham';
-  src: url('https://db.onlinewebfonts.com/t/3a47f5f06b7848b1c82e5b67a2735fde.woff2') format('woff2');
-  font-weight: bold;
-  font-style: normal;
-  font-display: swap;
-}
-
 :root {
-  /* Updated colors to match the logo palette */
-  --background: 45 77% 97%;
-  --foreground: 26 45% 25%;
-  --muted: 26 20% 90%;
-  --muted-foreground: 26 30% 40%;
-  --popover: 45 77% 97%;
-  --popover-foreground: 26 45% 25%;
-  --card: 0 0% 100%;
-  --card-foreground: 26 45% 25%;
-  --border: 30 69% 59%;
-  --input: 38 80% 86%; 
-  --primary: 16 87% 63%;
-  --primary-foreground: 0 0% 100%;
-  --secondary: 26 40% 41%;
-  --secondary-foreground: 0 0% 100%;
-  --accent: 35 80% 68%;
-  --accent-foreground: 26 40% 20%;
-  --destructive: 0 62.8% 30.6%;
-  --destructive-foreground: 0 0% 98%;
-  --ring: 16 87% 63%;
+  /* Complete color palette remix with improved contrast */
+  --background: 20 15% 15%;  /* Dark charcoal background for better contrast */
+  --foreground: 30 25% 95%;  /* Very light warm white for maximum readability */
+  --muted: 25 10% 25%;       /* Dark muted background */
+  --muted-foreground: 30 15% 80%;  /* Light but not blinding muted text */
+  
+  --popover: 20 15% 18%;     /* Slightly lighter than background for depth */
+  --popover-foreground: 30 25% 95%;  /* Consistent readable text */
+  
+  --card: 22 12% 20%;        /* Dark card background with slight warmth */
+  --card-foreground: 30 25% 95%;  /* Consistent readable text */
+  
+  --border: 25 30% 35%;      /* Subtle but visible border */
+  --input: 25 20% 25%;       /* Dark input background */
+  
+  --primary: 16 85% 55%;     /* Vibrant orange - brand primary */
+  --primary-foreground: 0 0% 100%;  /* White text on primary */
+  
+  --secondary: 35 80% 65%;   /* Warm amber as secondary */
+  --secondary-foreground: 20 15% 15%;  /* Dark text on secondary */
+  
+  --accent: 26 75% 45%;      /* Rich brown accent */
+  --accent-foreground: 0 0% 100%;  /* White text on accent */
+  
+  --destructive: 0 85% 50%;  /* Bright red for destructive actions */
+  --destructive-foreground: 0 0% 100%;  /* White text on destructive */
+  
+  --ring: 16 85% 55%;        /* Match primary for focus rings */
   --radius: 0.5rem;
   
-  /* Custom theme based on logo */
-  --dark: 26 40% 30%;
-  --darksecondary: 26 35% 41%;
-  --light: 45 77% 85%;
-  --lightsecondary: 38 85% 75%; 
-  --highlight: 16 87% 63%;
+  /* Custom theme colors with better distinction */
+  --dark: 20 15% 15%;        /* Same as background */
+  --darksecondary: 20 15% 25%;  /* Slightly lighter */
+  --light: 30 25% 95%;       /* Same as foreground */
+  --lightsecondary: 30 15% 85%;  /* Slightly darker than light */
+  --highlight: 16 85% 55%;   /* Same as primary */
 }
 
 /* Explicitly not defining a separate light theme as per design requirements */
@@ -59,15 +52,67 @@
   }
 
   body {
-    @apply font-sans antialiased bg-background text-foreground overflow-x-hidden;
+    @apply font-sans antialiased bg-maverick-charcoal text-maverick-cream overflow-x-hidden;
+    letter-spacing: -0.01em;
   }
   
   h1, h2, h3, h4, h5, h6 {
-    @apply font-heading font-bold;
+    @apply font-heading font-bold tracking-tight text-maverick-cream;
+    letter-spacing: -0.02em;
+  }
+  
+  h1 {
+    @apply text-4xl md:text-5xl lg:text-6xl mb-6 leading-tight;
+  }
+  
+  h2 {
+    @apply text-3xl md:text-4xl lg:text-5xl mb-5 leading-tight;
+  }
+  
+  h3 {
+    @apply text-2xl md:text-3xl mb-4 leading-snug;
+  }
+  
+  h4 {
+    @apply text-xl md:text-2xl mb-3;
+  }
+  
+  p {
+    @apply leading-relaxed mb-4 text-base md:text-lg;
+    font-weight: 450;
+  }
+  
+  a:not(.btn) {
+    @apply text-maverick-orange hover:text-maverick-light-orange font-medium transition-colors duration-200;
+    text-underline-offset: 0.2em;
+  }
+  
+  /* Improve readability on dark backgrounds */
+  .dark-section p, section[class*="bg-[#"] p, .dark-bg p {
+    @apply text-maverick-cream/95 font-medium;
+  }
+  
+  /* Bold text and highlights */
+  strong, b {
+    @apply font-bold text-maverick-orange;
+  }
+  
+  /* Enhanced focused elements */
+  :focus-visible {
+    @apply ring-2 ring-maverick-orange ring-offset-2 ring-offset-maverick-charcoal outline-none;
+  }
+  
+  /* List styling */
+  ul, ol {
+    @apply pl-5 mb-4;
+  }
+  
+  li {
+    @apply mb-2;
   }
   
   ::selection {
-    @apply bg-accent/30 text-white;
+    @apply bg-maverick-orange text-white;
   }
 }
 
@@ -76,7 +121,7 @@
   position: fixed;
   width: 20px;
   height: 20px;
-  background-color: hsl(var(--accent));
+  background-color: #FF5630;
   border-radius: 50%;
   transform: translate(-50%, -50%);
   pointer-events: none;
@@ -92,7 +137,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: hsl(var(--background));
+  background-color: #1E1A18;
   z-index: 9998;
   transform: translateY(100%);
   transition: transform 0.6s cubic-bezier(0.76, 0, 0.24, 1);
@@ -100,26 +145,42 @@
 
 /* Card animations */
 .service-card {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  @apply bg-maverick-slate border border-maverick-slate/50 shadow-lg;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
 .service-card:hover {
   transform: translateY(-10px);
-  box-shadow: 0 10px 30px rgba(242, 123, 80, 0.2);
+  @apply border-maverick-orange shadow-xl shadow-maverick-orange/20;
 }
 
 .pricing-card {
-  transition: transform 0.3s ease, border-color 0.3s ease;
+  @apply bg-maverick-slate border border-maverick-slate/80 shadow-md;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .pricing-card:hover {
   transform: translateY(-5px);
-  border-color: hsl(var(--accent));
+  @apply border-maverick-orange shadow-lg shadow-maverick-orange/20;
+}
+
+/* Button styles */
+.btn-primary {
+  @apply bg-maverick-orange text-white hover:bg-maverick-orange/90 px-6 py-3 rounded-full font-medium transition-colors duration-200;
+}
+
+.btn-secondary {
+  @apply bg-transparent border border-maverick-orange text-maverick-orange hover:bg-maverick-orange/10 px-6 py-3 rounded-full font-medium transition-colors duration-200;
+}
+
+.btn-accent {
+  @apply bg-maverick-amber text-maverick-dark-brown hover:bg-maverick-amber/90 px-6 py-3 rounded-full font-medium transition-colors duration-200;
 }
 
 /* Link hover effect */
 .hover-link {
   position: relative;
+  @apply text-maverick-light-orange;
 }
 
 .hover-link::after {
@@ -128,8 +189,8 @@
   bottom: -2px;
   left: 0;
   width: 0;
-  height: 1px;
-  background-color: hsl(var(--accent));
+  height: 2px;
+  @apply bg-maverick-orange;
   transition: width 0.3s ease;
 }
 
