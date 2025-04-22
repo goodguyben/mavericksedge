@@ -5,8 +5,8 @@ export default {
   content: ["./client/index.html", "./client/src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     fontFamily: {
-      sans: ['Manrope', 'sans-serif'],
-      heading: ['Manrope', 'sans-serif'],
+      sans: ['Inter', 'sans-serif'],
+      heading: ['Gotham', 'Inter', 'sans-serif'],
     },
     extend: {
       borderRadius: {
@@ -56,12 +56,12 @@ export default {
           "5": "hsl(var(--chart-5))",
         },
         maverick: {
-          "yellow": "#F4BB48", // Deeper yellow for better contrast
-          "orange": "#E85F30", // Deeper orange for better contrast
-          "brown": "#7D4E38", // Darker brown for better contrast
-          "light-orange": "#E48940", // Deeper light orange
-          "dark-brown": "#4A2C1E", // Darker for better contrast
-          "amber": "#E48940", // Deeper amber
+          "yellow": "#F6C866",
+          "orange": "#F27B50",
+          "brown": "#8E6142",
+          "light-orange": "#F5A25D",
+          "dark-brown": "#5E3A28",
+          "amber": "#F5A25D",
         },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
