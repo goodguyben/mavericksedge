@@ -11,7 +11,7 @@ const services = [
     id: "web",
     title: "Web & Digital Solutions",
     description: "Custom websites, web applications, and digital platforms tailored to your unique business needs",
-    icon: <Monitor className="h-8 w-8 text-[#8C54FF]" />,
+    icon: <Monitor className="h-8 w-8 text-maverick-orange" />,
     features: [
       "Responsive web design",
       "E-commerce development",
@@ -24,7 +24,7 @@ const services = [
     id: "marketing",
     title: "Marketing & Creative Services",
     description: "Strategic marketing solutions to boost your brand visibility and drive engagement",
-    icon: <PieChart className="h-8 w-8 text-[#8C54FF]" />,
+    icon: <PieChart className="h-8 w-8 text-maverick-orange" />,
     features: [
       "Brand identity development",
       "Content marketing strategy",
@@ -37,7 +37,7 @@ const services = [
     id: "ai",
     title: "AI Integration & Automation",
     description: "Harness the power of artificial intelligence to streamline operations and enhance customer experiences",
-    icon: <Zap className="h-8 w-8 text-[#8C54FF]" />,
+    icon: <Zap className="h-8 w-8 text-maverick-orange" />,
     features: [
       "AI readiness assessment",
       "Custom API integrations",

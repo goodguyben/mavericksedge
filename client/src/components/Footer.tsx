@@ -1,18 +1,27 @@
 import { Link } from "wouter";
 
+// Placeholder Logo component
+const Logo = ({ size }) => (
+  <img
+    src="/logo.svg" // Replace with actual logo path
+    alt="Mavericks Edge Logo"
+    className={`h-${size === "medium" ? "8" : "6"} w-${size === "medium" ? "auto" : "auto"}`}
+  />
+);
+
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="py-12 px-5 md:px-10 bg-[#1E1E1E] border-t border-gray-800">
+    <footer className="bg-maverick-brown text-white py-16 border-t border-maverick-light-orange"> {/* Assumed Tailwind classes */}
       <div className="container mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
           <div>
-            <h4 className="text-xl font-semibold mb-4">Mavericks Edge</h4>
-            <p className="text-[#AAAAAA] mb-4">
+            <Logo size="medium" /> {/* Using the Logo component */}
+            <p className="text-maverick-light-orange mb-4"> {/* Assumed Tailwind class */}
               Digital solutions that elevate your business
             </p>
-            <p className="text-[#AAAAAA]">
+            <p className="text-maverick-light-orange"> {/* Assumed Tailwind class */}
               © {currentYear} Mavericks Edge. All rights reserved.
             </p>
           </div>
@@ -23,7 +32,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/pricing#web-pricing"
-                  className="text-[#AAAAAA] hover:text-white transition duration-300"
+                  className="text-maverick-light-orange hover:text-maverick-dark-orange transition duration-300" {/* Assumed Tailwind classes */}
                 >
                   Web Development
                 </Link>
@@ -31,7 +40,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/pricing#marketing-pricing"
-                  className="text-[#AAAAAA] hover:text-white transition duration-300"
+                  className="text-maverick-light-orange hover:text-maverick-dark-orange transition duration-300" {/* Assumed Tailwind classes */}
                 >
                   Marketing Services
                 </Link>
@@ -39,7 +48,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/pricing#ai-pricing"
-                  className="text-[#AAAAAA] hover:text-white transition duration-300"
+                  className="text-maverick-light-orange hover:text-maverick-dark-orange transition duration-300" {/* Assumed Tailwind classes */}
                 >
                   AI Integration
                 </Link>
@@ -47,7 +56,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/contact"
-                  className="text-[#AAAAAA] hover:text-white transition duration-300"
+                  className="text-maverick-light-orange hover:text-maverick-dark-orange transition duration-300" {/* Assumed Tailwind classes */}
                 >
                   Custom Solutions
                 </Link>
@@ -61,7 +70,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="#"
-                  className="text-[#AAAAAA] hover:text-white transition duration-300"
+                  className="text-maverick-light-orange hover:text-maverick-dark-orange transition duration-300" {/* Assumed Tailwind classes */}
                 >
                   Blog
                 </Link>
@@ -69,7 +78,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/work"
-                  className="text-[#AAAAAA] hover:text-white transition duration-300"
+                  className="text-maverick-light-orange hover:text-maverick-dark-orange transition duration-300" {/* Assumed Tailwind classes */}
                 >
                   Case Studies
                 </Link>
@@ -77,7 +86,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="#"
-                  className="text-[#AAAAAA] hover:text-white transition duration-300"
+                  className="text-maverick-light-orange hover:text-maverick-dark-orange transition duration-300" {/* Assumed Tailwind classes */}
                 >
                   FAQ
                 </Link>
@@ -85,7 +94,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="#"
-                  className="text-[#AAAAAA] hover:text-white transition duration-300"
+                  className="text-maverick-light-orange hover:text-maverick-dark-orange transition duration-300" {/* Assumed Tailwind classes */}
                 >
                   Careers
                 </Link>
@@ -99,7 +108,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="#"
-                  className="text-[#AAAAAA] hover:text-white transition duration-300"
+                  className="text-maverick-light-orange hover:text-maverick-dark-orange transition duration-300" {/* Assumed Tailwind classes */}
                 >
                   Privacy Policy
                 </Link>
@@ -107,7 +116,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="#"
-                  className="text-[#AAAAAA] hover:text-white transition duration-300"
+                  className="text-maverick-light-orange hover:text-maverick-dark-orange transition duration-300" {/* Assumed Tailwind classes */}
                 >
                   Terms of Service
                 </Link>
@@ -115,7 +124,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="#"
-                  className="text-[#AAAAAA] hover:text-white transition duration-300"
+                  className="text-maverick-light-orange hover:text-maverick-dark-orange transition duration-300" {/* Assumed Tailwind classes */}
                 >
                   Cookie Policy
                 </Link>
@@ -124,7 +133,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="pt-8 border-t border-gray-800 text-center text-[#AAAAAA]">
+        <div className="pt-8 border-t border-maverick-light-orange text-center text-maverick-light-orange"> {/* Assumed Tailwind classes */}
           <p>Designed with passion by the Mavericks Edge team</p>
         </div>
       </div>

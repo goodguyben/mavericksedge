@@ -4,6 +4,10 @@ export default {
   darkMode: ["class"],
   content: ["./client/index.html", "./client/src/**/*.{js,jsx,ts,tsx}"],
   theme: {
+    fontFamily: {
+      sans: ['Inter', 'sans-serif'],
+      heading: ['Gotham', 'Inter', 'sans-serif'],
+    },
     extend: {
       borderRadius: {
         lg: "var(--radius)",
@@ -50,6 +54,13 @@ export default {
           "3": "hsl(var(--chart-3))",
           "4": "hsl(var(--chart-4))",
           "5": "hsl(var(--chart-5))",
+        },
+        maverick: {
+          "yellow": "#F6C866",
+          "orange": "#F27B50",
+          "brown": "#8E6142",
+          "light-orange": "#F5A25D",
+          "dark-brown": "#5E3A28",
         },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",

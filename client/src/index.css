@@ -3,33 +3,50 @@
 @tailwind utilities;
 
 :root {
-  --background: 240 10% 3.9%;
-  --foreground: 0 0% 98%;
-  --muted: 240 3.7% 15.9%;
-  --muted-foreground: 240 5% 64.9%;
-  --popover: 240 10% 3.9%;
-  --popover-foreground: 0 0% 98%;
-  --card: 240 10% 3.9%;
-  --card-foreground: 0 0% 98%;
-  --border: 240 3.7% 15.9%;
-  --input: 240 3.7% 15.9%;
-  --primary: 271 76% 67%;
-  --primary-foreground: 211 100% 99%;
-  --secondary: 240 3.7% 15.9%;
-  --secondary-foreground: 0 0% 98%;
-  --accent: 271 76% 67%;
-  --accent-foreground: 0 0% 98%;
+  --background: 38 90% 93%;
+  --foreground: 20 40% 27%;
+  --muted: 20 20% 90%;
+  --muted-foreground: 20 30% 40%;
+  --popover: 38 90% 93%;
+  --popover-foreground: 20 40% 27%;
+  --card: 0 0% 100%;
+  --card-foreground: 20 40% 27%;
+  --border: 21 69% 63%;
+  --input: 37 80% 86%;
+  --primary: 21 87% 63%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 20 40% 41%;
+  --secondary-foreground: 0 0% 100%;
+  --accent: 37 80% 68%;
+  --accent-foreground: 20 40% 20%;
   --destructive: 0 62.8% 30.6%;
   --destructive-foreground: 0 0% 98%;
-  --ring: 240 4.9% 83.9%;
+  --ring: 21 87% 63%;
   --radius: 0.5rem;
   
-  /* Added for custom theme */
-  --dark: 240 10% 3.9%;
-  --darksecondary: 240 6% 10%;
-  --light: 0 0% 100%;
-  --lightsecondary: 0 0% 67%;
-  --highlight: 0 0% 94.1%;
+  /* Added for custom theme based on logo */
+  --dark: 20 40% 27%;
+  --darksecondary: 20 40% 41%;
+  --light: 38 90% 93%;
+  --lightsecondary: 37 80% 68%; 
+  --highlight: 21 87% 63%;
+}
+
+/* Import fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@font-face {
+  font-family: 'Gotham';
+  src: url('https://db.onlinewebfonts.com/t/0b7a32090acf81fc5171fd617831021e.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Gotham';
+  src: url('https://db.onlinewebfonts.com/t/3a47f5f06b7848b1c82e5b67a2735fde.woff2') format('woff2');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
 }
 
 /* Explicitly not defining a separate light theme as per design requirements */
@@ -40,7 +57,11 @@
   }
 
   body {
-    @apply font-sans antialiased bg-[#121212] text-[#FFFFFF] overflow-x-hidden;
+    @apply font-sans antialiased bg-background text-foreground overflow-x-hidden;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading font-bold;
   }
   
   ::selection {

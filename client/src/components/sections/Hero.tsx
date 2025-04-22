@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { Link } from "wouter";
+import Logo from "@/components/Logo";
 import { ChevronDown } from "lucide-react";
 import { scrollToSection } from "@/lib/scroll";
 
@@ -31,24 +32,27 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          <h1 className="text-5xl md:text-7xl font-bold leading-tight">
+          <div className="mb-8">
+            <Logo size="large" />
+          </div>
+          <h1 className="text-5xl md:text-7xl font-heading font-bold leading-tight">
             Digital solutions that{" "}
-            <span className="text-[#8C54FF]">elevate</span> your business
+            <span className="text-maverick-orange">elevate</span> your business
           </h1>
-          <p className="text-xl md:text-2xl text-[#AAAAAA] mt-6 mb-10 max-w-2xl">
+          <p className="text-xl md:text-2xl text-maverick-brown mt-6 mb-10 max-w-2xl">
             Web development, marketing, and AI integration services tailored for
             SMBs and nonprofits
           </p>
           <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
             <Link
               href="/services"
-              className="bg-[#8C54FF] hover:bg-opacity-80 text-white px-8 py-3 rounded-full font-medium text-center transition duration-300"
+              className="bg-maverick-orange hover:bg-opacity-80 text-white px-8 py-3 rounded-full font-medium text-center transition duration-300"
             >
               Explore services
             </Link>
             <Link
               href="/contact"
-              className="border border-[#8C54FF] hover:bg-[#8C54FF] hover:bg-opacity-10 text-white px-8 py-3 rounded-full font-medium text-center transition duration-300"
+              className="border border-maverick-orange hover:bg-maverick-orange hover:bg-opacity-10 text-maverick-brown px-8 py-3 rounded-full font-medium text-center transition duration-300"
             >
               Get in touch
             </Link>
