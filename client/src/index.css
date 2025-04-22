@@ -165,10 +165,9 @@
 }
 
 /* Button styles */
-  .btn-primary {
-    @apply bg-maverick-orange text-white hover:bg-maverick-orange/90 px-6 py-3 rounded-full font-medium transition-colors duration-200;
-    /* Added 'text-white' here */
-  }
+.btn-primary {
+  @apply bg-maverick-orange text-white hover:bg-maverick-orange/90 px-6 py-3 rounded-full font-medium transition-colors duration-200;
+}
 
 .btn-secondary {
   @apply bg-transparent border border-maverick-orange text-maverick-orange hover:bg-maverick-orange/10 px-6 py-3 rounded-full font-medium transition-colors duration-200;
