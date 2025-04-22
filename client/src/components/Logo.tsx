@@ -1,6 +1,6 @@
 
 import { Link } from "wouter";
-import logoPath from "@assets/new_logo.png";
+import logoPath from "@assets/logo_dyn-transparent-thumb2x.png";
 
 interface LogoProps {
   size?: "small" | "medium" | "large";
