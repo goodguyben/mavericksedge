@@ -2,20 +2,7 @@ import { useState, useEffect } from "react";
 import { Link, useLocation } from "wouter";
 import { AnimatePresence, motion } from "framer-motion";
 import { X, Menu } from "lucide-react";
-// Assuming Logo component is defined elsewhere and handles image and styling.
-//If Logo component is not defined, this code will be broken.
-function Logo(props) {
-  return (
-    <Link href="/" className="flex items-center">
-      <img
-        src="/attached_assets/logo_dyn-thumb2x.png"
-        alt="Mavericks Edge Logo"
-        className={`w-10 h-10 mr-2 ${props.size === 'medium' ? 'w-12 h-12' : ''}`}
-      />
-      <span className="text-2xl font-heading font-bold text-maverick-brown">Mavericks Edge</span>
-    </Link>
-  );
-}
+import Logo from "./Logo";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -74,7 +61,7 @@ export default function Header() {
           </Link>
           <Link
             href="/contact"
-            className="bg-[#8C54FF] text-white px-5 py-2 rounded-full transition duration-300 hover:bg-opacity-80"
+            className="bg-maverick-orange text-white px-5 py-2 rounded-full transition duration-300 hover:bg-opacity-80"
           >
             Contact
           </Link>
@@ -119,7 +106,7 @@ export default function Header() {
               </Link>
               <Link
                 href="/contact"
-                className="bg-[#8C54FF] text-white px-5 py-2 rounded-full mt-4 transition duration-300 hover:bg-opacity-80"
+                className="bg-maverick-orange text-white px-5 py-2 rounded-full mt-4 transition duration-300 hover:bg-opacity-80"
               >
                 Contact
               </Link>

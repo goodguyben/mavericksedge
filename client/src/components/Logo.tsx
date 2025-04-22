@@ -1,5 +1,6 @@
 
 import { Link } from "wouter";
+import logoPath from "@assets/logo_dyn-thumb2x.png";
 
 interface LogoProps {
   size?: "small" | "medium" | "large";
@@ -16,7 +17,7 @@ export default function Logo({ size = "medium", showText = true }: LogoProps) {
   return (
     <Link href="/" className="flex items-center cursor-pointer">
       <img 
-        src="/attached_assets/logo_dyn-thumb2x.png" 
+        src={logoPath}
         alt="Mavericks Edge Logo" 
         className={`${sizeClasses[size]} ${showText ? 'mr-2' : ''}`}
       />
