@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
-import { Link } from "wouter";
 import { Check } from "lucide-react";
+import { Button } from "@/components/ui/custom-button";
 
 interface ServiceCardProps {
   service: {
@@ -30,9 +30,14 @@ export default function ServiceCard({ service }: ServiceCardProps) {
           </li>
         ))}
       </ul>
-      <Link href={service.linkHref} className="hover-link text-maverick-orange font-medium">
-        {service.linkText} →
-      </Link>
+      <Button 
+        href={service.linkHref} 
+        variant="link" 
+        className="hover:no-underline p-0 flex items-center"
+      >
+        <span>{service.linkText}</span>
+        <span className="ml-1">→</span>
+      </Button>
     </div>
   );
 }

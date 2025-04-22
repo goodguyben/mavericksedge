@@ -23,8 +23,13 @@ export function Button({
   disabled = false,
   type = "button",
 }: ButtonProps) {
-  // Base styles that all buttons share
-  const baseStyles = "inline-flex items-center justify-center px-8 py-3 rounded-full font-medium text-center transition-colors duration-200 cursor-pointer";
+  // Determine if this is a link-style button
+  const isLinkStyle = variant === "link";
+  
+  // Base styles - different for regular buttons vs link-style buttons
+  const baseStyles = isLinkStyle 
+    ? "inline-flex items-center justify-center font-medium text-center transition-colors duration-200 cursor-pointer" 
+    : "inline-flex items-center justify-center px-8 py-3 rounded-full font-medium text-center transition-colors duration-200 cursor-pointer";
   
   // Variant-specific styles
   const variantStyles = {
