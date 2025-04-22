@@ -42,6 +42,7 @@ export default function Hero() {
           </p>
           <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
             <Button 
+              className="w-full bg-[#8C54FF] hover:bg-opacity-80 text-white py-3 rounded-full font-medium transition duration-300"
               href="/services" 
               variant="primary"
             >
