@@ -17,11 +17,12 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="relative h-screen flex items-center bg-[#121212] overflow-hidden">
+    <section className="relative h-screen flex items-center bg-maverick-charcoal overflow-hidden">
       {/* Background gradients */}
-      <div className="absolute w-full h-full top-0 left-0 opacity-20 pointer-events-none">
-        <div className="absolute w-96 h-96 rounded-full bg-maverick-orange opacity-30 blur-3xl -top-20 -left-20"></div>
-        <div className="absolute w-80 h-80 rounded-full bg-maverick-amber opacity-20 blur-3xl bottom-20 right-20"></div>
+      <div className="absolute w-full h-full top-0 left-0 opacity-30 pointer-events-none">
+        <div className="absolute w-96 h-96 rounded-full bg-maverick-orange opacity-40 blur-3xl -top-20 -left-20"></div>
+        <div className="absolute w-80 h-80 rounded-full bg-maverick-amber opacity-30 blur-3xl bottom-20 right-20"></div>
+        <div className="absolute w-64 h-64 rounded-full bg-maverick-brown opacity-20 blur-2xl top-1/2 left-1/3"></div>
       </div>
 
       <div className="container mx-auto px-5 md:px-10 z-10">
@@ -36,20 +37,20 @@ export default function Hero() {
             Digital solutions that{" "}
             <span className="text-maverick-orange">elevate</span> your business
           </h1>
-          <p className="text-xl md:text-2xl text-maverick-brown mt-6 mb-10 max-w-2xl">
+          <p className="text-xl md:text-2xl text-maverick-cream/90 mt-6 mb-10 max-w-2xl">
             Web development, marketing, and AI integration services tailored for
             SMBs and nonprofits
           </p>
           <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
             <Link
               href="/services"
-              className="bg-maverick-orange hover:bg-opacity-80 text-white px-8 py-3 rounded-full font-medium text-center transition duration-300"
+              className="btn-primary"
             >
               Explore services
             </Link>
             <Link
               href="/contact"
-              className="border border-maverick-orange hover:bg-maverick-orange hover:bg-opacity-10 text-maverick-brown px-8 py-3 rounded-full font-medium text-center transition duration-300"
+              className="btn-secondary"
             >
               Get in touch
             </Link>
