@@ -34,8 +34,9 @@ export default function Header() {
   return (
     <header className={headerClasses}>
       <div className="container mx-auto flex justify-between items-center">
-        <Link href="/">
-          <Logo size="medium" noLink={true}/>
+        <Link href="/" className="flex items-center">
+          <Logo size="medium" noLink={true} showText={false}/>
+          <span className="font-heading font-bold text-xl text-maverick-orange ml-2">Mavericks Edge</span>
         </Link>
 
         {/* Mobile Menu Button */}

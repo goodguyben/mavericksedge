@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { Link } from "wouter";
-import Logo from "@/components/Logo";
 import { ChevronDown } from "lucide-react";
 import { scrollToSection } from "@/lib/scroll";
 
@@ -33,7 +32,11 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.2 }}
         >
           <div className="mb-8">
-            <Logo size="large" />
+            <img 
+              src="/attached_assets/logo_dyn-transparent-thumb2x.png"
+              alt="Mavericks Edge Logo" 
+              className="w-28 h-28"
+            />
           </div>
           <h1 className="text-5xl md:text-7xl font-heading font-bold leading-tight">
             Digital solutions that{" "}
