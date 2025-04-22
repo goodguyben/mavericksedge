@@ -18,7 +18,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
           <div>
             <Logo size="medium" />
-            <p className="text-maverick-orange mb-4 mt-4 font-medium">
+            <p className="text-maverick-teal mb-4 mt-4 font-medium">
               Digital solutions that elevate your business
             </p>
             <p className="text-maverick-cream/80">
@@ -27,12 +27,12 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="text-lg font-semibold mb-4 text-maverick-orange">Services</h4>
+            <h4 className="text-lg font-semibold mb-4 text-maverick-teal">Services</h4>
             <ul className="space-y-2">
               <li>
                 <Link
                   href="/pricing#web-pricing"
-                  className="text-maverick-cream/80 hover:text-maverick-orange transition duration-300"
+                  className="text-maverick-cream/80 hover:text-maverick-cyan transition duration-300"
                 >
                   Web Development
                 </Link>
@@ -40,7 +40,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/pricing#marketing-pricing"
-                  className="text-maverick-cream/80 hover:text-maverick-orange transition duration-300"
+                  className="text-maverick-cream/80 hover:text-maverick-cyan transition duration-300"
                 >
                   Marketing Services
                 </Link>
@@ -48,7 +48,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/pricing#ai-pricing"
-                  className="text-maverick-cream/80 hover:text-maverick-orange transition duration-300"
+                  className="text-maverick-cream/80 hover:text-maverick-cyan transition duration-300"
                 >
                   AI Integration
                 </Link>
@@ -56,7 +56,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/contact"
-                  className="text-maverick-cream/80 hover:text-maverick-orange transition duration-300"
+                  className="text-maverick-cream/80 hover:text-maverick-cyan transition duration-300"
                 >
                   Custom Solutions
                 </Link>
@@ -65,12 +65,12 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="text-lg font-semibold mb-4 text-maverick-orange">Resources</h4>
+            <h4 className="text-lg font-semibold mb-4 text-maverick-teal">Resources</h4>
             <ul className="space-y-2">
               <li>
                 <Link
                   href="#"
-                  className="text-maverick-cream/80 hover:text-maverick-orange transition duration-300"
+                  className="text-maverick-cream/80 hover:text-maverick-cyan transition duration-300"
                 >
                   Blog
                 </Link>
@@ -78,7 +78,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/work"
-                  className="text-maverick-cream/80 hover:text-maverick-orange transition duration-300"
+                  className="text-maverick-cream/80 hover:text-maverick-cyan transition duration-300"
                 >
                   Case Studies
                 </Link>
@@ -86,7 +86,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="#"
-                  className="text-maverick-cream/80 hover:text-maverick-orange transition duration-300"
+                  className="text-maverick-cream/80 hover:text-maverick-cyan transition duration-300"
                 >
                   FAQ
                 </Link>
@@ -94,7 +94,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="#"
-                  className="text-maverick-cream/80 hover:text-maverick-orange transition duration-300"
+                  className="text-maverick-cream/80 hover:text-maverick-cyan transition duration-300"
                 >
                   Careers
                 </Link>
@@ -103,12 +103,12 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="text-lg font-semibold mb-4 text-maverick-orange">Legal</h4>
+            <h4 className="text-lg font-semibold mb-4 text-maverick-teal">Legal</h4>
             <ul className="space-y-2">
               <li>
                 <Link
                   href="#"
-                  className="text-maverick-cream/80 hover:text-maverick-orange transition duration-300"
+                  className="text-maverick-cream/80 hover:text-maverick-cyan transition duration-300"
                 >
                   Privacy Policy
                 </Link>
@@ -116,7 +116,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="#"
-                  className="text-maverick-cream/80 hover:text-maverick-orange transition duration-300"
+                  className="text-maverick-cream/80 hover:text-maverick-cyan transition duration-300"
                 >
                   Terms of Service
                 </Link>
@@ -124,7 +124,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="#"
-                  className="text-maverick-cream/80 hover:text-maverick-orange transition duration-300"
+                  className="text-maverick-cream/80 hover:text-maverick-cyan transition duration-300"
                 >
                   Cookie Policy
                 </Link>
@@ -133,7 +133,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="pt-8 border-t border-maverick-orange/20 text-center">
+        <div className="pt-8 border-t border-maverick-teal/20 text-center">
           <p className="text-maverick-cream/70 text-sm">Designed with passion by the Mavericks Edge team</p>
         </div>
       </div>

@@ -40,11 +40,11 @@ export default function Hero() {
             Web development, marketing, and AI integration services tailored for
             SMBs and nonprofits
           </p>
-          <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
-            <Link
-              href="/services"
-              className="bg-maverick-orange hover:bg-opacity-80 text-white px-8 py-3 rounded-full font-medium text-center transition duration-300"
-            >
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Link
+                  href="/services"
+                  className="bg-[#8C54FF] hover:bg-opacity-80 text-white py-3 rounded-full font-medium text-center transition duration-300"
+                >
               Explore services
             </Link>
             <Link

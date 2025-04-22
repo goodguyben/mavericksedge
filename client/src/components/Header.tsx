@@ -36,7 +36,7 @@ export default function Header() {
       <div className="container mx-auto flex justify-between items-center">
         <Link href="/" className="flex items-center">
           <Logo size="medium" noLink={true} showText={false}/>
-          <span className="font-heading font-bold text-xl text-maverick-orange ml-2">Mavericks Edge</span>
+          <span className="font-heading font-bold text-xl text-maverick-teal ml-2">Mavericks Edge</span>
         </Link>
 
         {/* Mobile Menu Button */}
@@ -64,7 +64,7 @@ export default function Header() {
           </Link>
           <Link
             href="/contact"
-            className="bg-maverick-orange text-white px-5 py-2 rounded-full transition duration-300 hover:bg-opacity-80"
+            className="bg-maverick-teal text-white px-5 py-2 rounded-full transition duration-300 hover:bg-opacity-80"
           >
             Contact
           </Link>
@@ -109,7 +109,7 @@ export default function Header() {
               </Link>
               <Link
                 href="/contact"
-                className="bg-maverick-orange text-white px-5 py-2 rounded-full mt-4 transition duration-300 hover:bg-opacity-80"
+                className="bg-maverick-teal text-white px-5 py-2 rounded-full mt-4 transition duration-300 hover:bg-opacity-80"
               >
                 Contact
               </Link>
