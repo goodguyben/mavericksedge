@@ -31,15 +31,7 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          <div className="mb-8 flex justify-start">
-            <div className="w-28 h-28 relative">
-              <img 
-                src="/attached_assets/logo_dyn-transparent-thumb2x.png"
-                alt="Mavericks Edge Logo" 
-                className="w-full h-full object-contain"
-              />
-            </div>
-          </div>
+          
           <h1 className="text-5xl md:text-7xl font-heading font-bold leading-tight">
             Digital solutions that{" "}
             <span className="text-maverick-orange">elevate</span> your business
