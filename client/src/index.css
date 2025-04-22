@@ -1,39 +1,10 @@
+/* Import fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: 38 90% 93%;
-  --foreground: 20 40% 27%;
-  --muted: 20 20% 90%;
-  --muted-foreground: 20 30% 40%;
-  --popover: 38 90% 93%;
-  --popover-foreground: 20 40% 27%;
-  --card: 0 0% 100%;
-  --card-foreground: 20 40% 27%;
-  --border: 21 69% 63%;
-  --input: 37 80% 86%;
-  --primary: 21 87% 63%;
-  --primary-foreground: 0 0% 100%;
-  --secondary: 20 40% 41%;
-  --secondary-foreground: 0 0% 100%;
-  --accent: 37 80% 68%;
-  --accent-foreground: 20 40% 20%;
-  --destructive: 0 62.8% 30.6%;
-  --destructive-foreground: 0 0% 98%;
-  --ring: 21 87% 63%;
-  --radius: 0.5rem;
-  
-  /* Added for custom theme based on logo */
-  --dark: 20 40% 27%;
-  --darksecondary: 20 40% 41%;
-  --light: 38 90% 93%;
-  --lightsecondary: 37 80% 68%; 
-  --highlight: 21 87% 63%;
-}
-
-/* Import fonts */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 @font-face {
   font-family: 'Gotham';
   src: url('https://db.onlinewebfonts.com/t/0b7a32090acf81fc5171fd617831021e.woff2') format('woff2');
@@ -47,6 +18,37 @@
   font-weight: bold;
   font-style: normal;
   font-display: swap;
+}
+
+:root {
+  /* Updated colors to match the logo palette */
+  --background: 45 77% 97%;
+  --foreground: 26 45% 25%;
+  --muted: 26 20% 90%;
+  --muted-foreground: 26 30% 40%;
+  --popover: 45 77% 97%;
+  --popover-foreground: 26 45% 25%;
+  --card: 0 0% 100%;
+  --card-foreground: 26 45% 25%;
+  --border: 30 69% 59%;
+  --input: 38 80% 86%; 
+  --primary: 16 87% 63%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 26 40% 41%;
+  --secondary-foreground: 0 0% 100%;
+  --accent: 35 80% 68%;
+  --accent-foreground: 26 40% 20%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 0 0% 98%;
+  --ring: 16 87% 63%;
+  --radius: 0.5rem;
+  
+  /* Custom theme based on logo */
+  --dark: 26 40% 30%;
+  --darksecondary: 26 35% 41%;
+  --light: 45 77% 85%;
+  --lightsecondary: 38 85% 75%; 
+  --highlight: 16 87% 63%;
 }
 
 /* Explicitly not defining a separate light theme as per design requirements */
@@ -103,7 +105,7 @@
 
 .service-card:hover {
   transform: translateY(-10px);
-  box-shadow: 0 10px 30px rgba(140, 84, 255, 0.2);
+  box-shadow: 0 10px 30px rgba(242, 123, 80, 0.2);
 }
 
 .pricing-card {
