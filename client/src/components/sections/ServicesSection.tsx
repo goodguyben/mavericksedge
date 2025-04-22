@@ -60,7 +60,7 @@ export default function ServicesSection({ fullPage = false }: ServicesSectionPro
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">Our Services</h2>
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 font-heading">Our Services</h2>
             <p className="text-[#AAAAAA] text-xl max-w-2xl mx-auto">
               Comprehensive digital solutions designed to help your business thrive in the digital landscape
             </p>

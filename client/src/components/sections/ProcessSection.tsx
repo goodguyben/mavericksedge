@@ -29,14 +29,14 @@ const processSteps = [
     step: 4,
     title: "Development",
     description: "We build robust, scalable, and secure digital solutions using the latest technologies and best practices.",
-    icon: <Code className="h-6 w-6 text-[#8C54FF]" />
+    icon: <Code className="h-6 w-6 text-maverick-orange" />
   },
   {
     id: "launch",
     step: 5,
     title: "Launch & Support",
     description: "We deploy your solution and provide ongoing support to ensure optimal performance and user satisfaction.",
-    icon: <Shield className="h-6 w-6 text-[#8C54FF]" />
+    icon: <Shield className="h-6 w-6 text-maverick-orange" />
   }
 ];
 
@@ -51,7 +51,7 @@ export default function ProcessSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">Our Process</h2>
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 font-heading">Our Process</h2>
           <p className="text-[#AAAAAA] text-xl max-w-2xl mx-auto">
             A collaborative approach to delivering exceptional results for your business
           </p>

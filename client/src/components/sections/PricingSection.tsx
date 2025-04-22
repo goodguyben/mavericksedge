@@ -167,7 +167,7 @@ export default function PricingSection({ fullPage = false }: PricingSectionProps
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">Pricing</h2>
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 font-heading">Pricing</h2>
             <p className="text-[#AAAAAA] text-xl max-w-2xl mx-auto">
               Transparent pricing tailored for SMBs and nonprofits
             </p>
@@ -177,7 +177,7 @@ export default function PricingSection({ fullPage = false }: PricingSectionProps
         {/* Web Pricing Section */}
         <div id="web-pricing" className="mb-20">
           <motion.h3 
-            className="text-3xl font-semibold mb-8 text-center"
+            className="text-3xl font-semibold mb-8 text-center font-heading"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -203,7 +203,7 @@ export default function PricingSection({ fullPage = false }: PricingSectionProps
         {/* Marketing Pricing Section */}
         <div id="marketing-pricing" className="mb-20">
           <motion.h3 
-            className="text-3xl font-semibold mb-8 text-center"
+            className="text-3xl font-semibold mb-8 text-center font-heading"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -229,7 +229,7 @@ export default function PricingSection({ fullPage = false }: PricingSectionProps
         {/* AI Pricing Section */}
         <div id="ai-pricing">
           <motion.h3 
-            className="text-3xl font-semibold mb-8 text-center"
+            className="text-3xl font-semibold mb-8 text-center font-heading"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
