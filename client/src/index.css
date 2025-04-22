@@ -1,54 +1,39 @@
 /* Import fonts */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@font-face {
-  font-family: 'Gotham';
-  src: url('https://db.onlinewebfonts.com/t/0b7a32090acf81fc5171fd617831021e.woff2') format('woff2');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Gotham';
-  src: url('https://db.onlinewebfonts.com/t/3a47f5f06b7848b1c82e5b67a2735fde.woff2') format('woff2');
-  font-weight: bold;
-  font-style: normal;
-  font-display: swap;
-}
-
 :root {
-  /* Updated colors to match the logo palette */
+  /* Updated colors with improved contrast */
   --background: 45 77% 97%;
-  --foreground: 26 45% 25%;
+  --foreground: 26 45% 20%;  /* Darker for better contrast */
   --muted: 26 20% 90%;
-  --muted-foreground: 26 30% 40%;
+  --muted-foreground: 26 30% 30%;  /* Darker for better contrast */
   --popover: 45 77% 97%;
-  --popover-foreground: 26 45% 25%;
+  --popover-foreground: 26 45% 20%;  /* Darker for better contrast */
   --card: 0 0% 100%;
-  --card-foreground: 26 45% 25%;
+  --card-foreground: 26 45% 20%;  /* Darker for better contrast */
   --border: 30 69% 59%;
   --input: 38 80% 86%; 
-  --primary: 16 87% 63%;
+  --primary: 16 87% 58%;  /* Deeper orange for better contrast */
   --primary-foreground: 0 0% 100%;
-  --secondary: 26 40% 41%;
+  --secondary: 26 40% 35%;  /* Darker brown for better contrast */
   --secondary-foreground: 0 0% 100%;
-  --accent: 35 80% 68%;
-  --accent-foreground: 26 40% 20%;
-  --destructive: 0 62.8% 30.6%;
+  --accent: 35 85% 65%;  /* More saturated amber for better contrast */
+  --accent-foreground: 26 40% 15%;  /* Darker for better contrast */
+  --destructive: 0 70% 30.6%;
   --destructive-foreground: 0 0% 98%;
-  --ring: 16 87% 63%;
+  --ring: 16 87% 58%;
   --radius: 0.5rem;
   
-  /* Custom theme based on logo */
-  --dark: 26 40% 30%;
-  --darksecondary: 26 35% 41%;
+  /* Custom theme based on logo with improved contrast */
+  --dark: 26 45% 25%;  /* Darker for better contrast */
+  --darksecondary: 26 40% 30%;  /* Darker for better contrast */
   --light: 45 77% 85%;
   --lightsecondary: 38 85% 75%; 
-  --highlight: 16 87% 63%;
+  --highlight: 16 87% 58%;  /* Deeper orange for better contrast */
 }
 
 /* Explicitly not defining a separate light theme as per design requirements */
@@ -60,14 +45,44 @@
 
   body {
     @apply font-sans antialiased bg-background text-foreground overflow-x-hidden;
+    letter-spacing: -0.01em; /* Slight negative tracking for Manrope */
   }
   
   h1, h2, h3, h4, h5, h6 {
     @apply font-heading font-bold;
+    letter-spacing: -0.02em; /* More negative tracking for headings */
+  }
+  
+  h1 {
+    @apply text-4xl md:text-5xl lg:text-6xl leading-tight;
+  }
+  
+  h2 {
+    @apply text-3xl md:text-4xl lg:text-5xl leading-tight;
+  }
+  
+  h3 {
+    @apply text-2xl md:text-3xl leading-snug;
+  }
+  
+  p {
+    @apply leading-relaxed;
+    font-weight: 450; /* Slightly heavier for better readability */
+  }
+  
+  /* Improve contrast for links */
+  a:not(.btn) {
+    @apply text-maverick-orange font-medium;
+    text-underline-offset: 0.2em;
+  }
+  
+  /* Improve readability for paragraphs on dark backgrounds */
+  .dark-bg p, .bg-[#121212] p, .dark-section p {
+    @apply text-white/90 font-medium;
   }
   
   ::selection {
-    @apply bg-accent/30 text-white;
+    @apply bg-maverick-orange text-white;
   }
 }
 
