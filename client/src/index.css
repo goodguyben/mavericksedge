@@ -8,42 +8,42 @@
 @tailwind utilities;
 
 :root {
-  /* Updated color palette with cream background */
-  --background: 37 100% 97%;  /* #FFF3E0 cream background */
-  --foreground: 20 15% 15%;   /* Dark text for contrast on light background */
-  --muted: 36 30% 92%;        /* Light muted background */
-  --muted-foreground: 20 15% 30%;  /* Dark but not black muted text */
+  /* Complete color palette remix with improved contrast */
+  --background: 20 15% 15%;  /* Dark charcoal background for better contrast */
+  --foreground: 30 25% 95%;  /* Very light warm white for maximum readability */
+  --muted: 25 10% 25%;       /* Dark muted background */
+  --muted-foreground: 30 15% 80%;  /* Light but not blinding muted text */
   
-  --popover: 37 100% 99%;     /* Slightly lighter than background for depth */
-  --popover-foreground: 20 15% 15%;  /* Consistent readable text */
+  --popover: 20 15% 18%;     /* Slightly lighter than background for depth */
+  --popover-foreground: 30 25% 95%;  /* Consistent readable text */
   
-  --card: 37 100% 99%;        /* Light card background */
-  --card-foreground: 20 15% 15%;  /* Dark text for contrast */
+  --card: 22 12% 20%;        /* Dark card background with slight warmth */
+  --card-foreground: 30 25% 95%;  /* Consistent readable text */
   
-  --border: 25 30% 80%;       /* Subtle but visible border */
-  --input: 37 30% 95%;        /* Light input background */
+  --border: 25 30% 35%;      /* Subtle but visible border */
+  --input: 25 20% 25%;       /* Dark input background */
   
-  --primary: 16 85% 55%;      /* Keeping vibrant orange as brand primary */
+  --primary: 16 85% 55%;     /* Vibrant orange - brand primary */
   --primary-foreground: 0 0% 100%;  /* White text on primary */
   
-  --secondary: 35 80% 65%;    /* Warm amber as secondary */
+  --secondary: 35 80% 65%;   /* Warm amber as secondary */
   --secondary-foreground: 20 15% 15%;  /* Dark text on secondary */
   
-  --accent: 26 75% 45%;       /* Rich brown accent */
+  --accent: 26 75% 45%;      /* Rich brown accent */
   --accent-foreground: 0 0% 100%;  /* White text on accent */
   
-  --destructive: 0 85% 50%;   /* Bright red for destructive actions */
+  --destructive: 0 85% 50%;  /* Bright red for destructive actions */
   --destructive-foreground: 0 0% 100%;  /* White text on destructive */
   
-  --ring: 16 85% 55%;         /* Match primary for focus rings */
+  --ring: 16 85% 55%;        /* Match primary for focus rings */
   --radius: 0.5rem;
   
   /* Custom theme colors with better distinction */
-  --dark: 20 15% 15%;         /* Dark color for contrast elements */
-  --darksecondary: 20 15% 25%;  /* Slightly lighter dark */
-  --light: 37 100% 97%;       /* Light cream color (#FFF3E0) */
-  --lightsecondary: 36 30% 92%;  /* Slightly darker than light */
-  --highlight: 16 85% 55%;    /* Same as primary */
+  --dark: 20 15% 15%;        /* Same as background */
+  --darksecondary: 20 15% 25%;  /* Slightly lighter */
+  --light: 30 25% 95%;       /* Same as foreground */
+  --lightsecondary: 30 15% 85%;  /* Slightly darker than light */
+  --highlight: 16 85% 55%;   /* Same as primary */
 }
 
 /* Explicitly not defining a separate light theme as per design requirements */
@@ -54,12 +54,12 @@
   }
 
   body {
-    @apply font-sans antialiased bg-maverick-light-bg text-maverick-dark-brown overflow-x-hidden;
+    @apply font-sans antialiased bg-maverick-charcoal text-maverick-cream overflow-x-hidden;
     letter-spacing: -0.01em;
   }
   
   h1, h2, h3, h4, h5, h6 {
-    @apply font-heading font-bold tracking-tight text-maverick-dark-brown;
+    @apply font-heading font-bold tracking-tight text-maverick-cream;
     letter-spacing: -0.02em;
   }
   
@@ -147,7 +147,7 @@
 
 /* Card animations */
 .service-card {
-  @apply bg-white border border-gray-200 shadow-lg;
+  @apply bg-maverick-slate border border-maverick-slate/50 shadow-lg;
   transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
@@ -157,7 +157,7 @@
 }
 
 .pricing-card {
-  @apply bg-white border border-gray-200 shadow-md;
+  @apply bg-maverick-slate border border-maverick-slate/80 shadow-md;
   transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
