@@ -51,7 +51,7 @@ export default function WorkSection({ fullPage = false }: WorkSectionProps) {
             transition={{ duration: 0.5 }}
           >
             <h2 className="text-4xl md:text-5xl font-bold mb-4">Our Work</h2>
-            <p className="text-[#AAAAAA] text-xl max-w-2xl mx-auto">
+            <p className="text-maverick-dark-brown text-xl max-w-2xl mx-auto">
               Explore our portfolio of innovative digital solutions that have helped businesses achieve their goals
             </p>
           </motion.div>

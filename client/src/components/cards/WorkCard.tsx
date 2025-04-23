@@ -21,14 +21,14 @@ export default function WorkCard({ item }: WorkCardProps) {
       onMouseLeave={() => setIsHovered(false)}
     >
       <motion.div
-        className="absolute inset-0 bg-gradient-to-t from-[#121212] via-[#121212]/50 to-transparent z-10 flex items-end"
+        className="absolute inset-0 bg-gradient-to-t from-maverick-orange via-maverick-orange/50 to-transparent z-10 flex items-end"
         initial={{ opacity: 0 }}
         animate={{ opacity: isHovered ? 1 : 0 }}
         transition={{ duration: 0.3 }}
       >
         <div className="p-6">
-          <h3 className="text-xl font-semibold">{item.title}</h3>
-          <p className="text-[#AAAAAA] mt-2">{item.category}</p>
+          <h3 className="text-xl font-semibold text-white">{item.title}</h3>
+          <p className="text-white/80 mt-2">{item.category}</p>
         </div>
       </motion.div>
       <motion.img
