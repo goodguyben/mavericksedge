@@ -5,8 +5,8 @@ export default {
   content: ["./client/index.html", "./client/src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     fontFamily: {
-      sans: ['Inter', 'sans-serif'],
-      heading: ['Gotham', 'Inter', 'sans-serif'],
+      sans: ['Manrope', 'sans-serif'],
+      heading: ['Manrope', 'sans-serif'],
     },
     extend: {
       borderRadius: {
@@ -61,10 +61,12 @@ export default {
           "brown": "#AE6A4D", // Lighter brown for better visibility on dark
           "light-orange": "#FF8A50", // Brighter light orange
           "dark-brown": "#272114", // Very dark brown for backgrounds
+          "dark": "#272114", // Dark text color for light backgrounds
           "amber": "#FFC43D", // Bright amber
           "charcoal": "#1E1A18", // Dark background
           "slate": "#252B32", // Alternative dark background
           "cream": "#FFFAF0", // Very light warm white
+          "light-bg": "#FFF3E0", // Light cream background color
         },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",

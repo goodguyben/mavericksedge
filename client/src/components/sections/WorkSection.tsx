@@ -40,7 +40,7 @@ const workItems = [
 
 export default function WorkSection({ fullPage = false }: WorkSectionProps) {
   return (
-    <section id="work" className="py-24 px-5 md:px-10 bg-[#121212]">
+    <section id="work" className="py-24 px-5 md:px-10 bg-maverick-light-bg">
       <div className="container mx-auto">
         {!fullPage && (
           <motion.div 
