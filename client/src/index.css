@@ -1,7 +1,9 @@
-/* Import fonts */
-@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap');
-/* Using Raleway for logo and headlines */
-@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700;800&display=swap');
+/* Import modern tech-forward fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+/* Using Outfit for logo and headlines - modern tech-forward font */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap');
+/* Using Space Grotesk for body text - modern, geometric font */
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
 /* Import custom CSS files */
 @import url('./styles/buttons.css');
 
@@ -62,7 +64,19 @@
   
   h1, h2, h3, h4, h5, h6 {
     @apply font-heading font-bold tracking-tight text-maverick-cream;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.03em;
+  }
+  
+  /* Modern tech styling for headings */
+  h1 {
+    @apply text-4xl md:text-5xl lg:text-6xl mb-6 leading-tight;
+    font-weight: 800;
+  }
+  
+  /* Tech forward button styling */
+  .btn-primary, .btn-secondary, .btn-accent {
+    @apply font-heading font-medium;
+    letter-spacing: 0.02em;
   }
   
   h1 {

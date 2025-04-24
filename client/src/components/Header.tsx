@@ -54,9 +54,7 @@ export default function Header() {
           <Link href="/services" className="hover-link">
             Services
           </Link>
-          <Link href="/work" className="hover-link">
-            Work
-          </Link>
+          {/* Work tab removed */}
           <Link href="/pricing" className="hover-link">
             Pricing
           </Link>
@@ -100,9 +98,7 @@ export default function Header() {
               <Link href="/services" className="hover-link py-2">
                 Services
               </Link>
-              <Link href="/work" className="hover-link py-2">
-                Work
-              </Link>
+              {/* Work tab removed */}
               <Link href="/pricing" className="hover-link py-2">
                 Pricing
               </Link>

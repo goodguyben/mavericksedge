@@ -209,8 +209,39 @@ export default function ProcessCard({ step }: ProcessCardProps) {
       <div className="flex justify-between items-start mb-6">
         <motion.div 
           className="p-4 bg-maverick-orange bg-opacity-10 rounded-lg"
-          animate={animationState ? currentAnimation.animate : {}}
-          transition={currentAnimation.transition}
+          whileHover={{ scale: 1.1 }}
+          animate={
+            step.id === "discovery" ? {
+              rotate: [0, 5, 0, -5, 0],
+              scale: [1, 1.1, 1],
+            } : step.id === "strategy" ? {
+              y: [0, -5, 0],
+              x: [0, 3, 0, -3, 0],
+            } : step.id === "design" ? {
+              borderRadius: ["20%", "50%", "20%"],
+              scale: [1, 1.08, 1],
+            } : step.id === "development" ? {
+              rotateY: [0, 180, 360],
+              transition: { duration: 2, repeat: Infinity, repeatDelay: 5 }
+            } : step.id === "launch" ? {
+              scale: [1, 1.2, 1],
+              boxShadow: [
+                "0 0 0 rgba(255, 86, 48, 0)",
+                "0 0 20px rgba(255, 86, 48, 0.4)",
+                "0 0 0 rgba(255, 86, 48, 0)"
+              ]
+            } : {
+              // Fallback animations based on step number
+              rotate: step.step % 2 === 0 ? [0, 10, 0, -10, 0] : [0, -10, 0, 10, 0],
+              scale: [1, 1.1, 0.95, 1.1, 1],
+            }
+          }
+          transition={{ 
+            duration: 3, 
+            repeat: Infinity, 
+            repeatType: "reverse", 
+            ease: "easeInOut" 
+          }}
         >
           {step.icon}
         </motion.div>
@@ -242,24 +273,8 @@ export default function ProcessCard({ step }: ProcessCardProps) {
         {step.description}
       </motion.p>
       
-      {/* Animated gradient border */}
-      <motion.div 
-        className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100"
-        animate={{
-          background: [
-            "linear-gradient(90deg, rgba(255,86,48,0) 0%, rgba(255,86,48,0.3) 50%, rgba(255,86,48,0) 100%)",
-            "linear-gradient(180deg, rgba(255,86,48,0) 0%, rgba(255,86,48,0.3) 50%, rgba(255,86,48,0) 100%)",
-            "linear-gradient(270deg, rgba(255,86,48,0) 0%, rgba(255,86,48,0.3) 50%, rgba(255,86,48,0) 100%)",
-            "linear-gradient(0deg, rgba(255,86,48,0) 0%, rgba(255,86,48,0.3) 50%, rgba(255,86,48,0) 100%)",
-          ],
-        }}
-        transition={{ 
-          duration: 4,
-          repeat: Infinity,
-          repeatType: "loop"
-        }}
-        style={{ zIndex: -1 }}
-      />
+      {/* Simple hover border effect instead of animation */}
+      <div className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 border-2 border-maverick-orange transition-opacity duration-300" style={{ zIndex: -1 }} />
     </motion.div>
   );
 }

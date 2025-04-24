@@ -5,8 +5,8 @@ export default {
   content: ["./client/index.html", "./client/src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     fontFamily: {
-      sans: ['EB Garamond', 'serif'],
-      heading: ['Raleway', 'sans-serif'],
+      sans: ['Space Grotesk', 'system-ui', 'sans-serif'],
+      heading: ['Outfit', 'system-ui', 'sans-serif'],
     },
     extend: {
       borderRadius: {

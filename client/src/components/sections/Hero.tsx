@@ -32,11 +32,19 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.2 }}
         >
           
-          <h1 className="text-5xl md:text-7xl font-heading font-bold leading-tight text-maverick-cream">
+          <h1 className="text-5xl md:text-7xl font-heading font-extrabold leading-tight text-maverick-cream tracking-tighter">
             Digital solutions that{" "}
-            <span className="text-maverick-orange">elevate</span> your business
+            <span className="text-maverick-orange relative">
+              <span>elevate</span>
+              <motion.span 
+                className="absolute -bottom-1 left-0 h-1 bg-maverick-orange"
+                initial={{ width: 0 }}
+                animate={{ width: "100%" }}
+                transition={{ delay: 0.5, duration: 0.8 }}
+              />
+            </span> your business
           </h1>
-          <p className="text-xl md:text-2xl text-maverick-cream/80 mt-6 mb-10 max-w-2xl">
+          <p className="text-xl md:text-2xl text-maverick-cream/80 mt-6 mb-10 max-w-2xl font-sans leading-relaxed">
             Web development, marketing, and AI integration services tailored for
             SMBs and nonprofits
           </p>

@@ -8,7 +8,7 @@ import Layout from "@/components/Layout";
 import Home from "@/pages/Home";
 import Services from "@/pages/Services";
 import Pricing from "@/pages/Pricing";
-import Work from "@/pages/Work";
+// Work page removed
 import About from "@/pages/About";
 import Contact from "@/pages/Contact";
 import { useState, useEffect } from "react";
@@ -20,7 +20,7 @@ function Router() {
       <Route path="/" component={Home} />
       <Route path="/services" component={Services} />
       <Route path="/pricing" component={Pricing} />
-      <Route path="/work" component={Work} />
+      {/* <Route path="/work" component={Work} /> */}
       <Route path="/about" component={About} />
       <Route path="/contact" component={Contact} />
       {/* Fallback to 404 */}
