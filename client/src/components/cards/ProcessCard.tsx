@@ -25,8 +25,8 @@ export default function ProcessCard({ step }: ProcessCardProps) {
     return () => clearTimeout(timeout);
   }, [step.step]);
   
-  // Define unique animations for each process step
-  const animationVariants: Record<string, any> = {
+  // Define unique animations for each process step's icon
+  const iconAnimationVariants: Record<string, any> = {
     discovery: {
       animate: {
         rotate: [0, 15, 0, -15, 0],
@@ -93,7 +93,7 @@ export default function ProcessCard({ step }: ProcessCardProps) {
   };
   
   // Fallback animations for different step numbers
-  const fallbackAnimations: Record<number, any> = {
+  const fallbackIconAnimations: Record<number, any> = {
     1: {
       animate: {
         rotate: [0, 360],
@@ -141,9 +141,9 @@ export default function ProcessCard({ step }: ProcessCardProps) {
   };
   
   // Get the animation based on the step id OR step number
-  const currentAnimation = 
-    animationVariants[step.id] || 
-    fallbackAnimations[step.step] || 
+  const currentIconAnimation = 
+    iconAnimationVariants[step.id] || 
+    fallbackIconAnimations[step.step] || 
     { 
       animate: { scale: [1, 1.1, 1] }, 
       transition: { duration: step.step + 1.5, repeat: Infinity } 
@@ -161,8 +161,8 @@ export default function ProcessCard({ step }: ProcessCardProps) {
       <div className="flex justify-between items-start mb-6">
         <motion.div 
           className="p-4 bg-maverick-orange bg-opacity-10 rounded-lg"
-          animate={animationState ? currentAnimation.animate : {}}
-          transition={currentAnimation.transition}
+          animate={animationState ? currentIconAnimation.animate : {}}
+          transition={currentIconAnimation.transition}
         >
           {step.icon}
         </motion.div>
@@ -193,25 +193,6 @@ export default function ProcessCard({ step }: ProcessCardProps) {
       >
         {step.description}
       </motion.p>
-      
-      {/* Animated gradient border */}
-      <motion.div 
-        className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100"
-        animate={{
-          background: [
-            "linear-gradient(90deg, rgba(255,86,48,0) 0%, rgba(255,86,48,0.3) 50%, rgba(255,86,48,0) 100%)",
-            "linear-gradient(180deg, rgba(255,86,48,0) 0%, rgba(255,86,48,0.3) 50%, rgba(255,86,48,0) 100%)",
-            "linear-gradient(270deg, rgba(255,86,48,0) 0%, rgba(255,86,48,0.3) 50%, rgba(255,86,48,0) 100%)",
-            "linear-gradient(0deg, rgba(255,86,48,0) 0%, rgba(255,86,48,0.3) 50%, rgba(255,86,48,0) 100%)",
-          ],
-        }}
-        transition={{ 
-          duration: 4,
-          repeat: Infinity,
-          repeatType: "loop"
-        }}
-        style={{ zIndex: -1 }}
-      />
     </motion.div>
   );
 }
