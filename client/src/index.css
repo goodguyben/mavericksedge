@@ -1,27 +1,4 @@
 /* Import fonts */
-
-/* Import New Zen font */
-@font-face {
-  font-family: 'New Zen';
-  src: url('/New Zen Regular.otf') format('opentype');
-  font-weight: 400;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'New Zen';
-  src: url('/New Zen Light.otf') format('opentype');
-  font-weight: 300;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'New Zen';
-  src: url('/New Zen Thin.otf') format('opentype');
-  font-weight: 200;
-  font-style: normal;
-}
-
 @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap');
 /* Using Raleway for logo and headlines */
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700;800&display=swap');

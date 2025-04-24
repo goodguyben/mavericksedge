@@ -9,7 +9,7 @@
   text-align: center;
   transition: all 0.2s ease-in-out;
   cursor: pointer;
-  font-family: inherit;
+  font-family: 'Manrope', sans-serif;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
