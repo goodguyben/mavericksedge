@@ -22,9 +22,10 @@
   font-style: normal;
 }
 
+/* Modern, cutting-edge fonts */
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap');
-/* Using Raleway for logo and headlines */
-@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700;800&display=swap');
 /* Import custom CSS files */
 @import url('./styles/buttons.css');
 
@@ -253,6 +254,24 @@
 .mask-image {
   -webkit-mask-image: linear-gradient(to right, transparent, black 20%, black 80%, transparent);
   mask-image: linear-gradient(to right, transparent, black 20%, black 80%, transparent);
+}
+
+/* Cutting-edge typography enhancements */
+h1, h2, h3 {
+  letter-spacing: -0.03em;
+}
+
+.section-title {
+  font-family: 'Space Grotesk', sans-serif;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.logo-text {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  letter-spacing: 0.02em;
 }
 
 /* Horizontal scroll container */

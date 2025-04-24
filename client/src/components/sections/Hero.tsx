@@ -32,9 +32,12 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.2 }}
         >
           
-          <h1 className="text-5xl md:text-7xl font-heading font-bold leading-tight text-maverick-cream">
+          <h1 className="text-5xl md:text-7xl font-heading font-bold leading-tight text-maverick-cream tracking-tight uppercase">
             Digital solutions that{" "}
-            <span className="text-maverick-orange">elevate</span> your business
+            <span className="text-maverick-orange relative inline-block">
+              <span className="relative z-10">elevate</span>
+              <span className="absolute -bottom-2 left-0 w-full h-1 bg-maverick-orange opacity-70"></span>
+            </span> your business
           </h1>
           <p className="text-xl md:text-2xl text-maverick-cream/80 mt-6 mb-10 max-w-2xl">
             Web development, marketing, and AI integration services tailored for
