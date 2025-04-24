@@ -1,3 +1,4 @@
+
 import { ReactNode, useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
@@ -24,61 +25,129 @@ export default function ProcessCard({ step }: ProcessCardProps) {
     return () => clearTimeout(timeout);
   }, [step.step]);
   
-  // Define DISTINCT animation variants for each process step
-  const animationByStepId: Record<string, any> = {
+  // Define unique animations for each process step
+  const animationVariants: Record<string, any> = {
     discovery: {
-      rotate: [0, 360],
-      transition: { duration: 3, repeat: Infinity, ease: "linear" }
-    },
-    strategy: {
-      rotate: [0, 10, 0, -10, 0],
+      animate: {
+        rotate: [0, 15, 0, -15, 0],
+        scale: [1, 1.1, 1, 1.1, 1],
+        boxShadow: [
+          "0 0 0 rgba(255, 86, 48, 0)",
+          "0 0 20px rgba(255, 86, 48, 0.7)",
+          "0 0 0 rgba(255, 86, 48, 0)",
+          "0 0 20px rgba(255, 86, 48, 0.7)",
+          "0 0 0 rgba(255, 86, 48, 0)"
+        ]
+      },
       transition: { duration: 4, repeat: Infinity, ease: "easeInOut" }
     },
-    design: {
-      scale: [1, 1.1, 1],
-      transition: { duration: 2, repeat: Infinity }
-    },
-    development: {
-      y: [0, -5, 0, 5, 0],
-      transition: { duration: 2.5, repeat: Infinity }
-    },
-    launch: {
-      opacity: [0.7, 1, 0.7],
-      scale: [1, 1.05, 1],
-      transition: { duration: 3, repeat: Infinity }
-    }
-  };
-  
-  // Fallback animations for different step NUMBERS to ensure each has a unique animation
-  const animationByStepNumber: Record<number, any> = {
-    1: {
-      rotate: [0, 360],
-      transition: { duration: 3, repeat: Infinity, ease: "linear" }
-    },
-    2: {
-      rotate: [0, 15, 0, -15, 0],
+    strategy: {
+      animate: {
+        x: [0, 10, 0, -10, 0],
+        y: [0, -5, 0, 5, 0],
+        filter: [
+          "drop-shadow(0 0 0 rgba(255, 86, 48, 0))",
+          "drop-shadow(0 0 8px rgba(255, 86, 48, 0.8))",
+          "drop-shadow(0 0 0 rgba(255, 86, 48, 0))"
+        ]
+      },
       transition: { duration: 3.5, repeat: Infinity, ease: "easeInOut" }
     },
-    3: {
-      scale: [1, 1.2, 1],
-      transition: { duration: 2.2, repeat: Infinity }
+    design: {
+      animate: {
+        borderRadius: ["20%", "50%", "20%", "40%", "20%"],
+        background: [
+          "rgba(255, 86, 48, 0.1)",
+          "rgba(255, 86, 48, 0.3)",
+          "rgba(255, 86, 48, 0.1)",
+          "rgba(255, 86, 48, 0.2)",
+          "rgba(255, 86, 48, 0.1)"
+        ]
+      },
+      transition: { duration: 5, repeat: Infinity, ease: "easeInOut" }
     },
-    4: {
-      y: [0, -7, 0, 7, 0],
-      transition: { duration: 2.8, repeat: Infinity, ease: "easeOut" }
+    development: {
+      animate: {
+        rotateY: [0, 180, 360],
+        scale: [1, 1.2, 1],
+        background: [
+          "rgba(255, 86, 48, 0.1)",
+          "rgba(255, 140, 48, 0.2)",
+          "rgba(255, 86, 48, 0.1)"
+        ]
+      },
+      transition: { duration: 4, repeat: Infinity, ease: "easeInOut" }
     },
-    5: {
-      opacity: [0.6, 1, 0.6],
-      scale: [0.95, 1.05, 0.95],
-      transition: { duration: 3.2, repeat: Infinity }
+    launch: {
+      animate: {
+        y: [0, -15, 0],
+        scale: [1, 1.1, 1],
+        boxShadow: [
+          "0 0 0 rgba(255, 86, 48, 0)",
+          "0 10px 20px rgba(255, 86, 48, 0.4)",
+          "0 0 0 rgba(255, 86, 48, 0)"
+        ]
+      },
+      transition: { duration: 2.5, repeat: Infinity, ease: "easeInOut" }
     }
   };
   
-  // Select the animation based on the step id OR step number to ensure uniqueness
+  // Fallback animations for different step numbers
+  const fallbackAnimations: Record<number, any> = {
+    1: {
+      animate: {
+        rotate: [0, 360],
+        scale: [1, 1.1, 1],
+        background: [
+          "rgba(255, 86, 48, 0.1)",
+          "rgba(255, 120, 48, 0.3)",
+          "rgba(255, 86, 48, 0.1)"
+        ]
+      },
+      transition: { duration: 6, repeat: Infinity, ease: "linear" }
+    },
+    2: {
+      animate: {
+        scale: [1, 1.2, 0.9, 1.1, 1],
+        borderRadius: ["20%", "30%", "20%", "40%", "20%"]
+      },
+      transition: { duration: 4, repeat: Infinity, ease: "easeOut" }
+    },
+    3: {
+      animate: {
+        rotate: [0, 10, 0, -10, 0],
+        background: [
+          "rgba(255, 86, 48, 0.1)",
+          "rgba(255, 180, 48, 0.2)",
+          "rgba(255, 86, 48, 0.1)"
+        ]
+      },
+      transition: { duration: 3, repeat: Infinity, ease: "easeInOut" }
+    },
+    4: {
+      animate: {
+        scale: [1, 0.9, 1.1, 0.9, 1],
+        x: [0, 5, 0, -5, 0]
+      },
+      transition: { duration: 5, repeat: Infinity, ease: "easeInOut" }
+    },
+    5: {
+      animate: {
+        y: [0, -10, 0, 10, 0],
+        rotate: [0, 5, 0, -5, 0]
+      },
+      transition: { duration: 4.5, repeat: Infinity, ease: "easeInOut" }
+    }
+  };
+  
+  // Get the animation based on the step id OR step number
   const currentAnimation = 
-    animationByStepId[step.id] || 
-    animationByStepNumber[step.step] || 
-    { scale: [1, 1.1, 1], transition: { duration: step.step + 1.5, repeat: Infinity } };
+    animationVariants[step.id] || 
+    fallbackAnimations[step.step] || 
+    { 
+      animate: { scale: [1, 1.1, 1] }, 
+      transition: { duration: step.step + 1.5, repeat: Infinity } 
+    };
   
   return (
     <motion.div 
@@ -92,7 +161,8 @@ export default function ProcessCard({ step }: ProcessCardProps) {
       <div className="flex justify-between items-start mb-6">
         <motion.div 
           className="p-4 bg-maverick-orange bg-opacity-10 rounded-lg"
-          animate={animationState ? currentAnimation : {}}
+          animate={animationState ? currentAnimation.animate : {}}
+          transition={currentAnimation.transition}
         >
           {step.icon}
         </motion.div>
