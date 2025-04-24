@@ -5,8 +5,8 @@ export default {
   content: ["./client/index.html", "./client/src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     fontFamily: {
-      sans: ['Inter', 'sans-serif'],
-      heading: ['Gotham', 'Inter', 'sans-serif'],
+      sans: ['EB Garamond', 'serif'],
+      heading: ['Poppins', 'sans-serif'], // Using Poppins as a stand-in for Futura
     },
     extend: {
       borderRadius: {
