@@ -106,7 +106,7 @@ export default function ContactSection({ fullPage = false }: ContactSectionProps
                       <FormControl>
                         <Input
                           placeholder="Your name"
-                          className="w-full p-3 bg-[#1E1E1E] border border-gray-700 rounded-lg focus:outline-none focus:border-[#8C54FF] transition duration-300"
+                          className="w-full p-3 bg-[#1E1E1E] border border-gray-700 rounded-lg focus:outline-none focus:border-maverick-orange transition duration-300"
                           {...field}
                         />
                       </FormControl>
@@ -125,7 +125,7 @@ export default function ContactSection({ fullPage = false }: ContactSectionProps
                         <Input
                           type="email"
                           placeholder="your.email@example.com"
-                          className="w-full p-3 bg-[#1E1E1E] border border-gray-700 rounded-lg focus:outline-none focus:border-[#8C54FF] transition duration-300"
+                          className="w-full p-3 bg-[#1E1E1E] border border-gray-700 rounded-lg focus:outline-none focus:border-maverick-orange transition duration-300"
                           {...field}
                         />
                       </FormControl>
@@ -145,7 +145,7 @@ export default function ContactSection({ fullPage = false }: ContactSectionProps
                         defaultValue={field.value}
                       >
                         <FormControl>
-                          <SelectTrigger className="w-full p-3 bg-[#1E1E1E] border border-gray-700 rounded-lg focus:outline-none focus:border-[#8C54FF] transition duration-300">
+                          <SelectTrigger className="w-full p-3 bg-[#1E1E1E] border border-gray-700 rounded-lg focus:outline-none focus:border-maverick-orange transition duration-300">
                             <SelectValue placeholder="Select a service" />
                           </SelectTrigger>
                         </FormControl>
@@ -170,7 +170,7 @@ export default function ContactSection({ fullPage = false }: ContactSectionProps
                       <FormControl>
                         <Textarea
                           placeholder="Tell us about your project"
-                          className="w-full p-3 bg-[#1E1E1E] border border-gray-700 rounded-lg focus:outline-none focus:border-[#8C54FF] transition duration-300 min-h-[120px]"
+                          className="w-full p-3 bg-[#1E1E1E] border border-gray-700 rounded-lg focus:outline-none focus:border-maverick-orange transition duration-300 min-h-[120px]"
                           {...field}
                         />
                       </FormControl>
@@ -202,8 +202,8 @@ export default function ContactSection({ fullPage = false }: ContactSectionProps
 
             <div className="space-y-4 mb-8">
               <div className="flex items-start">
-                <div className="p-2 bg-[#8C54FF] bg-opacity-10 rounded-lg mr-4">
-                  <Phone className="h-5 w-5 text-[#8C54FF]" />
+                <div className="p-2 bg-maverick-orange bg-opacity-10 rounded-lg mr-4">
+                  <Phone className="h-5 w-5 text-maverick-orange" />
                 </div>
                 <div>
                   <p className="text-sm text-[#AAAAAA]">Phone</p>

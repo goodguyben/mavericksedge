@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import Hero from "@/components/sections/Hero";
-import WorkSection from "@/components/sections/WorkSection";
 import ProcessSection from "@/components/sections/ProcessSection";
 import ContactSection from "@/components/sections/ContactSection";
 import WhyChooseUsSection from "@/components/sections/WhyChooseUsSection";
@@ -18,7 +17,6 @@ export default function Home() {
       <WhyChooseUsSection />
       <WhatWeDoSection />
       <ProcessSection />
-      <WorkSection />
       <ContactSection />
     </motion.div>
   );

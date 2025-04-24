@@ -24,8 +24,8 @@ export default function ProcessCard({ step }: ProcessCardProps) {
     return () => clearTimeout(timeout);
   }, [step.step]);
   
-  // Animation variants for different elements
-  const iconAnimations = {
+  // Define DISTINCT animation variants for each process step
+  const animationByStepId: Record<string, any> = {
     discovery: {
       rotate: [0, 360],
       transition: { duration: 3, repeat: Infinity, ease: "linear" }
@@ -49,8 +49,36 @@ export default function ProcessCard({ step }: ProcessCardProps) {
     }
   };
   
-  // Select the animation based on the step id
-  const currentAnimation = iconAnimations[step.id as keyof typeof iconAnimations] || iconAnimations.discovery;
+  // Fallback animations for different step NUMBERS to ensure each has a unique animation
+  const animationByStepNumber: Record<number, any> = {
+    1: {
+      rotate: [0, 360],
+      transition: { duration: 3, repeat: Infinity, ease: "linear" }
+    },
+    2: {
+      rotate: [0, 15, 0, -15, 0],
+      transition: { duration: 3.5, repeat: Infinity, ease: "easeInOut" }
+    },
+    3: {
+      scale: [1, 1.2, 1],
+      transition: { duration: 2.2, repeat: Infinity }
+    },
+    4: {
+      y: [0, -7, 0, 7, 0],
+      transition: { duration: 2.8, repeat: Infinity, ease: "easeOut" }
+    },
+    5: {
+      opacity: [0.6, 1, 0.6],
+      scale: [0.95, 1.05, 0.95],
+      transition: { duration: 3.2, repeat: Infinity }
+    }
+  };
+  
+  // Select the animation based on the step id OR step number to ensure uniqueness
+  const currentAnimation = 
+    animationByStepId[step.id] || 
+    animationByStepNumber[step.step] || 
+    { scale: [1, 1.1, 1], transition: { duration: step.step + 1.5, repeat: Infinity } };
   
   return (
     <motion.div 

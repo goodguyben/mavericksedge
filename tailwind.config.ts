@@ -6,7 +6,7 @@ export default {
   theme: {
     fontFamily: {
       sans: ['EB Garamond', 'serif'],
-      heading: ['Poppins', 'sans-serif'], // Using Poppins as a stand-in for Futura
+      heading: ['Raleway', 'sans-serif'],
     },
     extend: {
       borderRadius: {
