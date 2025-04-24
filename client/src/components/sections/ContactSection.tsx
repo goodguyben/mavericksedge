@@ -212,8 +212,8 @@ export default function ContactSection({ fullPage = false }: ContactSectionProps
               </div>
 
               <div className="flex items-start">
-                <div className="p-2 bg-[#8C54FF] bg-opacity-10 rounded-lg mr-4">
-                  <Mail className="h-5 w-5 text-[#8C54FF]" />
+                <div className="p-2 bg-maverick-orange bg-opacity-10 rounded-lg mr-4">
+                  <Mail className="h-5 w-5 text-maverick-orange" />
                 </div>
                 <div>
                   <p className="text-sm text-[#AAAAAA]">Email</p>
@@ -222,8 +222,8 @@ export default function ContactSection({ fullPage = false }: ContactSectionProps
               </div>
 
               <div className="flex items-start">
-                <div className="p-2 bg-[#8C54FF] bg-opacity-10 rounded-lg mr-4">
-                  <MapPin className="h-5 w-5 text-[#8C54FF]" />
+                <div className="p-2 bg-maverick-orange bg-opacity-10 rounded-lg mr-4">
+                  <MapPin className="h-5 w-5 text-maverick-orange" />
                 </div>
                 <div>
                   <p className="text-sm text-[#AAAAAA]">Address</p>
@@ -237,28 +237,28 @@ export default function ContactSection({ fullPage = false }: ContactSectionProps
             <div className="flex space-x-4">
               <a
                 href="#"
-                className="p-2 bg-[#8C54FF] bg-opacity-10 rounded-lg text-[#8C54FF] hover:bg-opacity-20 transition duration-300"
+                className="p-2 bg-maverick-orange bg-opacity-10 rounded-lg text-maverick-orange hover:bg-opacity-20 transition duration-300"
                 aria-label="Facebook"
               >
                 <Facebook className="h-5 w-5" />
               </a>
               <a
                 href="#"
-                className="p-2 bg-[#8C54FF] bg-opacity-10 rounded-lg text-[#8C54FF] hover:bg-opacity-20 transition duration-300"
+                className="p-2 bg-maverick-orange bg-opacity-10 rounded-lg text-maverick-orange hover:bg-opacity-20 transition duration-300"
                 aria-label="Instagram"
               >
                 <Instagram className="h-5 w-5" />
               </a>
               <a
                 href="#"
-                className="p-2 bg-[#8C54FF] bg-opacity-10 rounded-lg text-[#8C54FF] hover:bg-opacity-20 transition duration-300"
+                className="p-2 bg-maverick-orange bg-opacity-10 rounded-lg text-maverick-orange hover:bg-opacity-20 transition duration-300"
                 aria-label="LinkedIn"
               >
                 <Linkedin className="h-5 w-5" />
               </a>
               <a
                 href="#"
-                className="p-2 bg-[#8C54FF] bg-opacity-10 rounded-lg text-[#8C54FF] hover:bg-opacity-20 transition duration-300"
+                className="p-2 bg-maverick-orange bg-opacity-10 rounded-lg text-maverick-orange hover:bg-opacity-20 transition duration-300"
                 aria-label="Twitter"
               >
                 <Twitter className="h-5 w-5" />
