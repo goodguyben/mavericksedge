@@ -28,115 +28,185 @@ export default function ProcessCard({ step }: ProcessCardProps) {
   // Define unique animations for each process step
   const animationVariants: Record<string, any> = {
     discovery: {
+      // Pulsating radar effect with orange/amber gradients
       animate: {
-        rotate: [0, 15, 0, -15, 0],
-        scale: [1, 1.1, 1, 1.1, 1],
         boxShadow: [
           "0 0 0 rgba(255, 86, 48, 0)",
-          "0 0 20px rgba(255, 86, 48, 0.7)",
-          "0 0 0 rgba(255, 86, 48, 0)",
-          "0 0 20px rgba(255, 86, 48, 0.7)",
+          "0 0 30px rgba(255, 140, 48, 0.7)",
+          "0 0 5px rgba(255, 200, 48, 0.3)",
+          "0 0 20px rgba(255, 86, 48, 0.6)",
           "0 0 0 rgba(255, 86, 48, 0)"
-        ]
-      },
-      transition: { duration: 4, repeat: Infinity, ease: "easeInOut" }
-    },
-    strategy: {
-      animate: {
-        x: [0, 10, 0, -10, 0],
-        y: [0, -5, 0, 5, 0],
-        filter: [
-          "drop-shadow(0 0 0 rgba(255, 86, 48, 0))",
-          "drop-shadow(0 0 8px rgba(255, 86, 48, 0.8))",
-          "drop-shadow(0 0 0 rgba(255, 86, 48, 0))"
-        ]
-      },
-      transition: { duration: 3.5, repeat: Infinity, ease: "easeInOut" }
-    },
-    design: {
-      animate: {
-        borderRadius: ["20%", "50%", "20%", "40%", "20%"],
+        ],
+        scale: [1, 1.15, 1.05, 1.1, 1],
+        borderRadius: ["20%", "50%", "30%", "40%", "20%"],
         background: [
-          "rgba(255, 86, 48, 0.1)",
-          "rgba(255, 86, 48, 0.3)",
-          "rgba(255, 86, 48, 0.1)",
-          "rgba(255, 86, 48, 0.2)",
-          "rgba(255, 86, 48, 0.1)"
+          "radial-gradient(circle, rgba(255,86,48,0.2) 0%, rgba(255,86,48,0.1) 70%)",
+          "radial-gradient(circle, rgba(255,150,48,0.3) 0%, rgba(255,86,48,0.1) 70%)",
+          "radial-gradient(circle, rgba(255,86,48,0.2) 0%, rgba(255,86,48,0.1) 70%)"
         ]
       },
       transition: { duration: 5, repeat: Infinity, ease: "easeInOut" }
     },
-    development: {
+    strategy: {
+      // Floating geometric shapes with grid pattern
       animate: {
-        rotateY: [0, 180, 360],
-        scale: [1, 1.2, 1],
         background: [
-          "rgba(255, 86, 48, 0.1)",
-          "rgba(255, 140, 48, 0.2)",
-          "rgba(255, 86, 48, 0.1)"
+          "linear-gradient(135deg, rgba(255,86,48,0.1) 0%, rgba(255,86,48,0) 70%), repeating-linear-gradient(45deg, rgba(255,86,48,0.1) 0px, rgba(255,86,48,0.1) 2px, transparent 2px, transparent 10px)",
+          "linear-gradient(135deg, rgba(255,140,48,0.2) 0%, rgba(255,86,48,0) 70%), repeating-linear-gradient(45deg, rgba(255,140,48,0.1) 0px, rgba(255,140,48,0.1) 2px, transparent 2px, transparent 10px)",
+          "linear-gradient(135deg, rgba(255,86,48,0.1) 0%, rgba(255,86,48,0) 70%), repeating-linear-gradient(45deg, rgba(255,86,48,0.1) 0px, rgba(255,86,48,0.1) 2px, transparent 2px, transparent 10px)"
+        ],
+        x: [0, 8, -5, 3, 0],
+        y: [0, -5, 2, -3, 0],
+        rotate: [0, 5, -3, 2, 0],
+        boxShadow: [
+          "0 0 0 rgba(255,86,48,0)",
+          "0 5px 15px rgba(255,140,48,0.3)",
+          "0 0 0 rgba(255,86,48,0)"
         ]
       },
-      transition: { duration: 4, repeat: Infinity, ease: "easeInOut" }
+      transition: { duration: 6, repeat: Infinity, ease: "easeInOut" }
+    },
+    design: {
+      // Color palette blending with brush-like movement
+      animate: {
+        background: [
+          "linear-gradient(45deg, rgba(255,86,48,0.1) 0%, rgba(255,170,80,0.2) 50%, rgba(255,86,48,0.1) 100%)",
+          "linear-gradient(135deg, rgba(255,170,80,0.2) 0%, rgba(255,86,48,0.1) 50%, rgba(255,170,80,0.2) 100%)",
+          "linear-gradient(225deg, rgba(255,86,48,0.1) 0%, rgba(255,170,80,0.2) 50%, rgba(255,86,48,0.1) 100%)",
+          "linear-gradient(315deg, rgba(255,170,80,0.2) 0%, rgba(255,86,48,0.1) 50%, rgba(255,170,80,0.2) 100%)"
+        ],
+        borderRadius: ["20% 50% 30% 40%", "50% 30% 40% 20%", "30% 40% 20% 50%", "40% 20% 50% 30%"],
+        filter: [
+          "blur(0px)",
+          "blur(1px)",
+          "blur(0px)"
+        ],
+        rotate: [0, 3, -2, 1, 0]
+      },
+      transition: { duration: 8, repeat: Infinity, ease: "easeInOut" }
+    },
+    development: {
+      // Code-like pattern with animated typing effect
+      animate: {
+        backgroundImage: [
+          "linear-gradient(90deg, rgba(255,86,48,0.1) 25%, rgba(255,86,48,0) 25%, rgba(255,86,48,0) 50%, rgba(255,86,48,0.1) 50%, rgba(255,86,48,0.1) 75%, rgba(255,86,48,0) 75%)",
+          "linear-gradient(90deg, rgba(255,86,48,0) 25%, rgba(255,86,48,0.1) 25%, rgba(255,86,48,0.1) 50%, rgba(255,86,48,0) 50%, rgba(255,86,48,0) 75%, rgba(255,86,48,0.1) 75%)"
+        ],
+        backgroundSize: ["20px 20px", "20px 20px"],
+        backgroundPosition: ["0px 0px", "20px 0px"],
+        boxShadow: [
+          "inset 0 0 0 2px rgba(255,86,48,0.1)",
+          "inset 0 0 0 2px rgba(255,140,48,0.2)",
+          "inset 0 0 0 2px rgba(255,86,48,0.1)"
+        ],
+        scale: [1, 1.02, 0.98, 1]
+      },
+      transition: { duration: 4, repeat: Infinity, ease: "linear" }
     },
     launch: {
+      // Rocket launch with pulsating energy
       animate: {
-        y: [0, -15, 0],
-        scale: [1, 1.1, 1],
+        y: [0, -8, 0],
+        backgroundImage: [
+          "radial-gradient(circle at 50% 100%, rgba(255,86,48,0.3) 0%, rgba(255,86,48,0) 50%)",
+          "radial-gradient(circle at 50% 100%, rgba(255,140,48,0.4) 0%, rgba(255,86,48,0) 60%)",
+          "radial-gradient(circle at 50% 100%, rgba(255,86,48,0.3) 0%, rgba(255,86,48,0) 50%)"
+        ],
         boxShadow: [
-          "0 0 0 rgba(255, 86, 48, 0)",
-          "0 10px 20px rgba(255, 86, 48, 0.4)",
-          "0 0 0 rgba(255, 86, 48, 0)"
-        ]
-      },
-      transition: { duration: 2.5, repeat: Infinity, ease: "easeInOut" }
-    }
-  };
-  
-  // Fallback animations for different step numbers
-  const fallbackAnimations: Record<number, any> = {
-    1: {
-      animate: {
-        rotate: [0, 360],
-        scale: [1, 1.1, 1],
-        background: [
-          "rgba(255, 86, 48, 0.1)",
-          "rgba(255, 120, 48, 0.3)",
-          "rgba(255, 86, 48, 0.1)"
-        ]
-      },
-      transition: { duration: 6, repeat: Infinity, ease: "linear" }
-    },
-    2: {
-      animate: {
-        scale: [1, 1.2, 0.9, 1.1, 1],
-        borderRadius: ["20%", "30%", "20%", "40%", "20%"]
-      },
-      transition: { duration: 4, repeat: Infinity, ease: "easeOut" }
-    },
-    3: {
-      animate: {
-        rotate: [0, 10, 0, -10, 0],
-        background: [
-          "rgba(255, 86, 48, 0.1)",
-          "rgba(255, 180, 48, 0.2)",
-          "rgba(255, 86, 48, 0.1)"
+          "0 5px 15px -5px rgba(255,86,48,0.3)",
+          "0 15px 25px -5px rgba(255,140,48,0.5)",
+          "0 5px 15px -5px rgba(255,86,48,0.3)"
+        ],
+        filter: [
+          "brightness(1)",
+          "brightness(1.2)",
+          "brightness(1)"
         ]
       },
       transition: { duration: 3, repeat: Infinity, ease: "easeInOut" }
-    },
-    4: {
+    }
+  };
+  
+  // Fallback animations with advanced graphics consistent with theme
+  const fallbackAnimations: Record<number, any> = {
+    1: {
+      // Exploratory pulse animation
       animate: {
-        scale: [1, 0.9, 1.1, 0.9, 1],
-        x: [0, 5, 0, -5, 0]
+        background: [
+          "radial-gradient(circle, rgba(255,86,48,0.15) 0%, rgba(30,26,24,0) 70%)",
+          "radial-gradient(circle, rgba(255,140,48,0.25) 0%, rgba(30,26,24,0) 70%)",
+          "radial-gradient(circle, rgba(255,86,48,0.15) 0%, rgba(30,26,24,0) 70%)"
+        ],
+        boxShadow: [
+          "0 0 0 2px rgba(255,86,48,0.1)",
+          "0 0 0 2px rgba(255,140,48,0.2)",
+          "0 0 0 2px rgba(255,86,48,0.1)"
+        ],
+        scale: [1, 1.05, 1],
+        rotate: [0, 5, 0]
       },
       transition: { duration: 5, repeat: Infinity, ease: "easeInOut" }
     },
-    5: {
+    2: {
+      // Strategic network pattern
       animate: {
-        y: [0, -10, 0, 10, 0],
-        rotate: [0, 5, 0, -5, 0]
+        background: [
+          "radial-gradient(circle at top left, rgba(255,86,48,0.1) 0%, transparent 30%), radial-gradient(circle at bottom right, rgba(255,196,61,0.1) 0%, transparent 30%)",
+          "radial-gradient(circle at top right, rgba(255,86,48,0.1) 0%, transparent 30%), radial-gradient(circle at bottom left, rgba(255,196,61,0.1) 0%, transparent 30%)"
+        ],
+        scale: [1, 1.03, 0.98, 1],
+        rotate: [0, 2, -1, 0]
       },
-      transition: { duration: 4.5, repeat: Infinity, ease: "easeInOut" }
+      transition: { duration: 7, repeat: Infinity, ease: "easeInOut" }
+    },
+    3: {
+      // Creative wave pattern
+      animate: {
+        background: [
+          "linear-gradient(135deg, rgba(255,86,48,0.1) 0%, rgba(30,26,24,0) 70%), repeating-linear-gradient(45deg, rgba(255,86,48,0.05) 0px, rgba(255,86,48,0.05) 5px, transparent 5px, transparent 10px)",
+          "linear-gradient(135deg, rgba(255,140,48,0.15) 0%, rgba(30,26,24,0) 70%), repeating-linear-gradient(45deg, rgba(255,140,48,0.05) 0px, rgba(255,140,48,0.05) 5px, transparent 5px, transparent 10px)",
+          "linear-gradient(135deg, rgba(255,86,48,0.1) 0%, rgba(30,26,24,0) 70%), repeating-linear-gradient(45deg, rgba(255,86,48,0.05) 0px, rgba(255,86,48,0.05) 5px, transparent 5px, transparent 10px)"
+        ],
+        borderRadius: ["30% 70% 70% 30% / 30% 30% 70% 70%", "70% 30% 30% 70% / 70% 70% 30% 30%", "30% 70% 70% 30% / 30% 30% 70% 70%"],
+        rotate: [0, 3, 0]
+      },
+      transition: { duration: 6, repeat: Infinity, ease: "easeInOut" }
+    },
+    4: {
+      // Technical circuit pattern
+      animate: {
+        background: [
+          "linear-gradient(90deg, rgba(255,86,48,0) 0%, rgba(255,86,48,0.1) 50%, rgba(255,86,48,0) 100%), linear-gradient(0deg, rgba(255,86,48,0) 0%, rgba(255,86,48,0.1) 50%, rgba(255,86,48,0) 100%)",
+          "linear-gradient(90deg, rgba(255,140,48,0) 0%, rgba(255,140,48,0.15) 50%, rgba(255,140,48,0) 100%), linear-gradient(0deg, rgba(255,140,48,0) 0%, rgba(255,140,48,0.15) 50%, rgba(255,140,48,0) 100%)",
+          "linear-gradient(90deg, rgba(255,86,48,0) 0%, rgba(255,86,48,0.1) 50%, rgba(255,86,48,0) 100%), linear-gradient(0deg, rgba(255,86,48,0) 0%, rgba(255,86,48,0.1) 50%, rgba(255,86,48,0) 100%)"
+        ],
+        boxShadow: [
+          "inset 0 0 15px rgba(255,86,48,0.1)",
+          "inset 0 0 15px rgba(255,140,48,0.2)",
+          "inset 0 0 15px rgba(255,86,48,0.1)"
+        ],
+        x: [0, 3, -2, 0],
+        y: [0, -2, 3, 0]
+      },
+      transition: { duration: 8, repeat: Infinity, ease: "easeInOut" }
+    },
+    5: {
+      // Support orbit animation
+      animate: {
+        background: [
+          "radial-gradient(ellipse at center, rgba(255,86,48,0.15) 0%, rgba(30,26,24,0) 70%)",
+          "radial-gradient(ellipse at center, rgba(255,140,48,0.25) 0%, rgba(30,26,24,0) 70%)",
+          "radial-gradient(ellipse at center, rgba(255,86,48,0.15) 0%, rgba(30,26,24,0) 70%)"
+        ],
+        boxShadow: [
+          "0 0 0 4px rgba(255,86,48,0.05), 0 0 20px rgba(255,86,48,0.1)",
+          "0 0 0 4px rgba(255,140,48,0.1), 0 0 25px rgba(255,140,48,0.2)",
+          "0 0 0 4px rgba(255,86,48,0.05), 0 0 20px rgba(255,86,48,0.1)"
+        ],
+        y: [0, -5, 0],
+        rotate: [0, 2, -1, 0]
+      },
+      transition: { duration: 5, repeat: Infinity, ease: "easeInOut" }
     }
   };
   
@@ -145,8 +215,15 @@ export default function ProcessCard({ step }: ProcessCardProps) {
     animationVariants[step.id] || 
     fallbackAnimations[step.step] || 
     { 
-      animate: { scale: [1, 1.1, 1] }, 
-      transition: { duration: step.step + 1.5, repeat: Infinity } 
+      animate: { 
+        scale: [1, 1.1, 1],
+        background: [
+          "radial-gradient(circle, rgba(255,86,48,0.15) 0%, rgba(30,26,24,0) 70%)",
+          "radial-gradient(circle, rgba(255,140,48,0.25) 0%, rgba(30,26,24,0) 70%)",
+          "radial-gradient(circle, rgba(255,86,48,0.15) 0%, rgba(30,26,24,0) 70%)"
+        ]
+      }, 
+      transition: { duration: step.step + 2.5, repeat: Infinity, ease: "easeInOut" } 
     };
   
   return (

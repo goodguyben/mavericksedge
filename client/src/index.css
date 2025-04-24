@@ -1,7 +1,7 @@
 /* Import fonts */
 @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap');
-/* Using Raleway for logo and headlines */
-@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700;800&display=swap');
+/* Using Zen Kaku Gothic New for logo and headlines */
+@import url('https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@300;400;500;700;900&display=swap');
 /* Import custom CSS files */
 @import url('./styles/buttons.css');
 

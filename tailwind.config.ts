@@ -6,7 +6,7 @@ export default {
   theme: {
     fontFamily: {
       sans: ['EB Garamond', 'serif'],
-      heading: ['Raleway', 'sans-serif'],
+      heading: ['Zen Kaku Gothic New', 'sans-serif'],
     },
     extend: {
       borderRadius: {
