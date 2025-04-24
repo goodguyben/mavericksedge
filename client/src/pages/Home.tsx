@@ -1,11 +1,10 @@
 import { motion } from "framer-motion";
 import Hero from "@/components/sections/Hero";
-import ServicesSection from "@/components/sections/ServicesSection";
 import WorkSection from "@/components/sections/WorkSection";
 import ProcessSection from "@/components/sections/ProcessSection";
-import PricingSection from "@/components/sections/PricingSection";
-import TeamSection from "@/components/sections/TeamSection";
 import ContactSection from "@/components/sections/ContactSection";
+import WhyChooseUsSection from "@/components/sections/WhyChooseUsSection";
+import WhatWeDoSection from "@/components/sections/WhatWeDoSection";
 
 export default function Home() {
   return (
@@ -16,11 +15,10 @@ export default function Home() {
       transition={{ duration: 0.5 }}
     >
       <Hero />
-      <ServicesSection />
-      <WorkSection />
+      <WhyChooseUsSection />
+      <WhatWeDoSection />
       <ProcessSection />
-      <PricingSection />
-      <TeamSection />
+      <WorkSection />
       <ContactSection />
     </motion.div>
   );
