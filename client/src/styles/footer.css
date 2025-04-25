@@ -29,6 +29,7 @@
 .footer-right {
   display: flex;
   justify-content: flex-end;
+  gap: 2rem;
 }
 
 .footer-logo-section {

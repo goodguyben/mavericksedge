@@ -43,9 +43,12 @@ export default function FooterWrapper() {
                 <li className="footer-link"><a href="/services">SEO Optimization</a></li>
               </ul>
             </div>
-
+          </div>
+          
+          {/* Right side with Resources and Legal Links */}
+          <div className="footer-right">
             {/* Resources Links */}
-            <div className="footer-nav">
+            <div className="footer-nav mr-10">
               <h3 className="footer-heading">Resources</h3>
               <ul className="footer-links">
                 <li className="footer-link"><a href="/blog">Blog</a></li>
@@ -55,10 +58,7 @@ export default function FooterWrapper() {
                 <li className="footer-link"><a href="/support">Support</a></li>
               </ul>
             </div>
-          </div>
-          
-          {/* Right side with Legal Links */}
-          <div className="footer-right">
+            
             <div className="footer-nav">
               <h3 className="footer-heading">Legal</h3>
               <ul className="footer-links">
