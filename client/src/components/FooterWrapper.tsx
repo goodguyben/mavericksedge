@@ -67,7 +67,7 @@ export default function FooterWrapper() {
             {/* Direct React rendering of logo */}
             <div className="logo-wrapper">
               <img 
-                src="/attached_assets/logo_dyn-transparent-thumb2x.png" 
+                src="/logo_dyn-transparent-thumb2x.png" 
                 alt="Mavericks Edge Logo" 
                 style={{ width: '80px', height: 'auto', display: 'block' }} 
               />
