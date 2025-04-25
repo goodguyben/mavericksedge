@@ -86,32 +86,28 @@ export default function FooterWrapper() {
             </ul>
           </div>
 
-          {/* Company Links */}
+          {/* Resources Links */}
           <div className="footer-nav">
-            <h3 className="footer-heading">Company</h3>
+            <h3 className="footer-heading">Resources</h3>
             <ul className="footer-links">
-              <li className="footer-link"><a href="/about">About Us</a></li>
-              <li className="footer-link"><a href="/work">Our Work</a></li>
-              <li className="footer-link"><a href="/pricing">Pricing</a></li>
-              <li className="footer-link"><a href="/contact">Contact</a></li>
+              <li className="footer-link"><a href="/blog">Blog</a></li>
+              <li className="footer-link"><a href="/case-studies">Case Studies</a></li>
+              <li className="footer-link"><a href="/guides">Guides</a></li>
+              <li className="footer-link"><a href="/faq">FAQ</a></li>
+              <li className="footer-link"><a href="/support">Support</a></li>
             </ul>
           </div>
 
-          {/* Contact Info */}
-          <div className="footer-contact">
-            <h3 className="footer-heading">Contact Us</h3>
-            <div className="footer-contact-info">
-              <span className="icon">📍</span>
-              <span>123 Innovation Ave, San Francisco, CA 94103</span>
-            </div>
-            <div className="footer-contact-info">
-              <span className="icon">📱</span>
-              <a href="tel:+14155550123">(415) 555-0123</a>
-            </div>
-            <div className="footer-contact-info">
-              <span className="icon">✉️</span>
-              <a href="mailto:hello@mavericksedge.com">hello@mavericksedge.com</a>
-            </div>
+          {/* Legal Links */}
+          <div className="footer-nav">
+            <h3 className="footer-heading">Legal</h3>
+            <ul className="footer-links">
+              <li className="footer-link"><a href="/privacy">Privacy Policy</a></li>
+              <li className="footer-link"><a href="/terms">Terms of Service</a></li>
+              <li className="footer-link"><a href="/cookies">Cookie Policy</a></li>
+              <li className="footer-link"><a href="/gdpr">GDPR Compliance</a></li>
+              <li className="footer-link"><a href="/accessibility">Accessibility</a></li>
+            </ul>
           </div>
         </div>
 
