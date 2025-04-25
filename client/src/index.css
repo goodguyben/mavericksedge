@@ -1,9 +1,11 @@
 /* Import modern tech-forward fonts */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
-/* Using Outfit for logo and headlines - modern tech-forward font */
+/* Using Outfit for headlines - modern tech-forward font */
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap');
 /* Using Space Grotesk for body text - modern, geometric font */
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+/* Using Audiowide for logo - futuristic, technological font */
+@import url('https://fonts.googleapis.com/css2?family=Audiowide&display=swap');
 /* Import custom CSS files */
 @import url('./styles/buttons.css');
 

@@ -17,14 +17,14 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="relative h-screen flex items-center bg-[#121212] overflow-hidden">
+    <section className="relative h-screen flex items-center bg-[#121212] overflow-hidden pt-24 md:pt-32">
       {/* Background gradients */}
       <div className="absolute w-full h-full top-0 left-0 opacity-20 pointer-events-none">
         <div className="absolute w-96 h-96 rounded-full bg-maverick-orange opacity-30 blur-3xl -top-20 -left-20"></div>
         <div className="absolute w-80 h-80 rounded-full bg-maverick-amber opacity-20 blur-3xl bottom-20 right-20"></div>
       </div>
 
-      <div className="container mx-auto px-5 md:px-10 z-10">
+      <div className="container mx-auto px-4 md:px-10 z-10">
         <motion.div
           className="max-w-4xl"
           initial={{ opacity: 0, y: 20 }}

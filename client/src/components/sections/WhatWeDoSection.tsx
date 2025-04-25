@@ -56,7 +56,7 @@ export default function WhatWeDoSection() {
   return (
     <section className="py-24 px-5 md:px-10 bg-[#121212]">
       <div className="container mx-auto">
-        <motion.div 
+        <motion.div
           className="text-center mb-16"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -69,7 +69,7 @@ export default function WhatWeDoSection() {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-12"> {/* Increased gap for mobile */}
           {services.map((service, index) => (
             <motion.div
               key={service.id}
@@ -88,18 +88,15 @@ export default function WhatWeDoSection() {
                   <div>
                     <h3 className="text-2xl font-semibold mb-2">{service.title}</h3>
                     <p className="text-[#AAAAAA] mb-4">{service.description}</p>
-                    <ul className="space-y-2">
+                    <div className="space-y-3">
                       {service.details.map((detail, idx) => (
-                        <li key={idx} className="flex items-center">
-                          <span className="w-2 h-2 bg-maverick-orange rounded-full mr-3"></span>
-                          <span>{detail}</span>
-                        </li>
+                        <p key={idx} className="text-[#DDDDDD]">{detail}</p>
                       ))}
-                    </ul>
+                    </div>
                   </div>
                 </div>
               </div>
-              
+
               {/* Animated border glow effect on hover */}
               <motion.div
                 className="absolute -inset-0.5 rounded-lg opacity-0 group-hover:opacity-100 bg-gradient-to-r from-maverick-orange via-maverick-amber to-maverick-orange blur-sm group-hover:blur"
