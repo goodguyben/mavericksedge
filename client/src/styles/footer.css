@@ -20,24 +20,6 @@
   margin-bottom: 2.5rem;
 }
 
-.centered-footer {
-  max-width: 700px;
-  margin: 0 auto;
-  text-align: center;
-  justify-content: center;
-}
-
-.centered-footer .footer-nav {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.centered-footer .footer-heading,
-.centered-footer .footer-links {
-  text-align: center;
-}
-
 .footer-logo-section {
   display: flex;
   flex-direction: column;

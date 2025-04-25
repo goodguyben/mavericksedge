@@ -1,8 +1,13 @@
 import { useEffect, useRef } from 'react';
 import '../styles/footer.css';
-import Logo from './Logo';
 
-// Define a simple Footer component that uses the same Logo component as the header
+// Declare for TypeScript
+declare global {
+  interface Window {
+    initFooter?: () => void;
+  }
+}
+
 export default function FooterWrapper() {
   const footerRef = useRef<HTMLDivElement>(null);
 
@@ -13,8 +18,45 @@ export default function FooterWrapper() {
       if (currentYearElement) {
         currentYearElement.textContent = new Date().getFullYear().toString();
       }
+      
+      console.log('Footer initialized from FooterWrapper');
     }
   }, []);
+  
+  // Create logo function directly in component
+  const createLogo = (container: HTMLElement) => {
+    // Create wrapper with flex display for logo and text
+    const wrapper = document.createElement('div');
+    wrapper.className = 'logo-wrapper';
+    wrapper.style.display = 'flex';
+    wrapper.style.alignItems = 'center';
+    wrapper.style.justifyContent = 'center';
+    wrapper.style.gap = '1rem';
+    
+    // Create logo image with correct path
+    const img = document.createElement('img');
+    img.src = '/attached_assets/logo_dyn-transparent-thumb2x.png';
+    img.alt = 'Mavericks Edge Logo';
+    img.style.width = '80px';
+    img.style.height = 'auto';
+    // Set explicit display to ensure visibility
+    img.style.display = 'block';
+    // Log for debugging
+    console.log('Logo image created with src:', img.src);
+    
+    // Create logo text with Sansation font to match main site
+    const text = document.createElement('span');
+    text.innerText = 'Mavericks Edge';
+    text.style.fontFamily = 'Sansation, sans-serif';
+    text.style.fontSize = '1.75rem';
+    text.style.fontWeight = '700';
+    text.style.color = '#FF5630'; // Maverick orange
+    
+    // Append elements
+    wrapper.appendChild(img);
+    wrapper.appendChild(text);
+    container.appendChild(wrapper);
+  };
 
   return (
     <footer ref={footerRef} className="footer-container">
@@ -41,8 +83,10 @@ export default function FooterWrapper() {
             </div>
           </div>
         </div>
+        
+        <div className="footer-top">
+          {/* Services Section (now as first item in the grid) */}
 
-        <div className="footer-top centered-footer">
           {/* Services Links */}
           <div className="footer-nav">
             <h3 className="footer-heading">Services</h3>
@@ -55,14 +99,27 @@ export default function FooterWrapper() {
             </ul>
           </div>
 
-          {/* Company Links */}
+          {/* Resources Links */}
           <div className="footer-nav">
-            <h3 className="footer-heading">Company</h3>
+            <h3 className="footer-heading">Resources</h3>
             <ul className="footer-links">
-              <li className="footer-link"><a href="/about">About Us</a></li>
-              <li className="footer-link"><a href="/work">Our Work</a></li>
-              <li className="footer-link"><a href="/pricing">Pricing</a></li>
-              <li className="footer-link"><a href="/contact">Contact</a></li>
+              <li className="footer-link"><a href="/blog">Blog</a></li>
+              <li className="footer-link"><a href="/case-studies">Case Studies</a></li>
+              <li className="footer-link"><a href="/guides">Guides</a></li>
+              <li className="footer-link"><a href="/faq">FAQ</a></li>
+              <li className="footer-link"><a href="/support">Support</a></li>
+            </ul>
+          </div>
+
+          {/* Legal Links */}
+          <div className="footer-nav">
+            <h3 className="footer-heading">Legal</h3>
+            <ul className="footer-links">
+              <li className="footer-link"><a href="/privacy">Privacy Policy</a></li>
+              <li className="footer-link"><a href="/terms">Terms of Service</a></li>
+              <li className="footer-link"><a href="/cookies">Cookie Policy</a></li>
+              <li className="footer-link"><a href="/gdpr">GDPR Compliance</a></li>
+              <li className="footer-link"><a href="/accessibility">Accessibility</a></li>
             </ul>
           </div>
         </div>
