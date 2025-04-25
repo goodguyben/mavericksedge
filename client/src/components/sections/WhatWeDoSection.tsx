@@ -1,3 +1,4 @@
+
 import { motion } from "framer-motion";
 import { Code, PenTool, Lightbulb, Database } from "lucide-react";
 
@@ -69,7 +70,7 @@ export default function WhatWeDoSection() {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-12"> {/* Increased gap for mobile */}
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-12">
           {services.map((service, index) => (
             <motion.div
               key={service.id}
@@ -88,11 +89,14 @@ export default function WhatWeDoSection() {
                   <div>
                     <h3 className="text-2xl font-semibold mb-2">{service.title}</h3>
                     <p className="text-[#AAAAAA] mb-4">{service.description}</p>
-                    <div className="space-y-3">
+                    <ul className="space-y-3">
                       {service.details.map((detail, idx) => (
-                        <p key={idx} className="text-[#DDDDDD]">{detail}</p>
+                        <li key={idx} className="text-[#DDDDDD] flex items-center">
+                          <span className="h-1.5 w-1.5 rounded-full bg-maverick-orange mr-2"></span>
+                          {detail}
+                        </li>
                       ))}
-                    </div>
+                    </ul>
                   </div>
                 </div>
               </div>
