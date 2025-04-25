@@ -1,9 +1,10 @@
 import { useEffect, useRef } from 'react';
 import '../styles/footer.css';
+import Logo from './Logo';
 
 const currentYear = new Date().getFullYear();
 
-// Define a simple Footer component that doesn't rely on dynamic loading
+// Define a simple Footer component that uses the same Logo component as the header
 export default function FooterWrapper() {
   return (
     <footer className="footer-container bg-maverick-charcoal text-maverick-cream py-16">
@@ -12,28 +13,7 @@ export default function FooterWrapper() {
         {/* Logo and Company Name - Centered at the top */}
         <div className="flex justify-center mb-12">
           <div className="flex items-center">
-            {/* Embedded SVG logo for reliable display */}
-            <svg 
-              width="60" 
-              height="60" 
-              viewBox="0 0 512 512" 
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <g>
-                <circle cx="128" cy="256" r="128" fill="#FF5630" />
-                <circle cx="384" cy="256" r="128" fill="#A05C2C" />
-                <circle cx="256" cy="128" r="128" fill="#FF8B33" />
-                <circle cx="256" cy="384" r="128" fill="#D37D35" />
-                <path d="M256 128 L384 256 L256 384 L128 256 Z" fill="#FFB84D" />
-                <path d="M270 170 L342 242 L270 314 L198 242 Z" fill="#D37D35" />
-                <path d="M198 178 C198 178 198 306 198 306 C198 306 240 350 240 350 C240 350 240 222 240 222 C240 222 198 178 198 178 Z" fill="#EEBB62" />
-                <path d="M314 178 C314 178 314 306 314 306 C314 306 272 350 272 350 C272 350 272 222 272 222 C272 222 314 178 314 178 Z" fill="#FFA033" />
-              </g>
-            </svg>
-            
-            <span className="ml-4 text-3xl font-bold text-maverick-orange" style={{fontFamily: 'Sansation, sans-serif'}}>
-              Mavericks Edge
-            </span>
+            <Logo size="medium" noLink={true} showText={true} />
           </div>
         </div>
         
