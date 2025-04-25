@@ -20,7 +20,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-3xl mx-auto mt-8">
           <div className="flex flex-col">
             <h3 className="text-xl font-semibold mb-4">Navigation</h3>
-            <ul className="space-y-3 text-left">
+            <ul className="space-y-3">
               <li><Link href="/" className="text-[#AAAAAA] hover:text-maverick-orange transition-colors">Home</Link></li>
               <li><Link href="/about" className="text-[#AAAAAA] hover:text-maverick-orange transition-colors">About</Link></li>
               <li><Link href="/services" className="text-[#AAAAAA] hover:text-maverick-orange transition-colors">Services</Link></li>
@@ -30,7 +30,7 @@ export default function Footer() {
           
           <div className="flex flex-col">
             <h3 className="text-xl font-semibold mb-4">Legal</h3>
-            <ul className="space-y-3 text-left">
+            <ul className="space-y-3">
               <li><Link href="/privacy" className="text-[#AAAAAA] hover:text-maverick-orange transition-colors">Privacy Policy</Link></li>
               <li><Link href="/terms" className="text-[#AAAAAA] hover:text-maverick-orange transition-colors">Terms of Service</Link></li>
             </ul>
