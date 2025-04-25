@@ -7,7 +7,7 @@ export default {
     fontFamily: {
       sans: ['Space Grotesk', 'system-ui', 'sans-serif'],
       heading: ['Outfit', 'system-ui', 'sans-serif'],
-      logo: ["Audiowide", 'system-ui', 'sans-serif'],
+      logo: ["'Clash Display'", 'system-ui', 'sans-serif'],
     },
     extend: {
       borderRadius: {

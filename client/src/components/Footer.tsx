@@ -12,7 +12,7 @@ export default function Footer() {
         <div className="text-center mb-8">
           <div className="mb-4 flex justify-center">
             <Logo size="large" showText={false} noLink={true} />
-            <span className="font-['Audiowide'] text-2xl text-maverick-orange ml-1 self-center">Mavericks Edge</span>
+            <span className="font-logo font-bold text-2xl text-maverick-orange ml-1 self-center">Mavericks Edge</span>
           </div>
           <div className="h-px w-32 bg-maverick-orange mx-auto opacity-30"></div>
         </div>
