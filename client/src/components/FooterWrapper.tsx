@@ -35,9 +35,9 @@ export default function FooterWrapper() {
     
     // Create logo image with correct path
     const img = document.createElement('img');
-    img.src = '/attached_assets/logo_dyn-transparent-thumb2x.png';
+    img.src = '/logo-transparent-thumb4x.png';
     img.alt = 'Mavericks Edge Logo';
-    img.style.width = '80px';
+    img.style.width = '60px';
     img.style.height = 'auto';
     // Set explicit display to ensure visibility
     img.style.display = 'block';
@@ -67,9 +67,9 @@ export default function FooterWrapper() {
             {/* Direct React rendering of logo */}
             <div className="logo-wrapper">
               <img 
-                src="/logo_dyn-transparent-thumb2x.png" 
+                src="/logo-transparent-thumb4x.png" 
                 alt="Mavericks Edge Logo" 
-                style={{ width: '80px', height: 'auto', display: 'block' }} 
+                style={{ width: '60px', height: 'auto', display: 'block' }} 
               />
               <span style={{ 
                 fontFamily: 'Sansation, sans-serif', 
