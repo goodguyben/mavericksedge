@@ -51,8 +51,8 @@ export default function Header() {
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-8">
-          <Link href="/solutions" className="hover-link">
-            Solutions
+          <Link href="/services" className="hover-link">
+            Services
           </Link>
           {/* Work tab removed */}
           <Link href="/pricing" className="hover-link">
@@ -95,8 +95,8 @@ export default function Header() {
               transition={{ staggerChildren: 0.1, delayChildren: 0.2 }}
               className="flex flex-col items-center space-y-6 text-xl"
             >
-              <Link href="/solutions" className="hover-link py-2">
-                Solutions
+              <Link href="/services" className="hover-link py-2">
+                Services
               </Link>
               {/* Work tab removed */}
               <Link href="/pricing" className="hover-link py-2">
