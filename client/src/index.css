@@ -15,28 +15,28 @@
 @tailwind utilities;
 
 :root {
-  /* Complete color palette remix with improved contrast */
-  --background: 20 15% 15%;  /* Dark charcoal background for better contrast */
-  --foreground: 30 25% 95%;  /* Very light warm white for maximum readability */
-  --muted: 25 10% 25%;       /* Dark muted background */
-  --muted-foreground: 30 15% 80%;  /* Light but not blinding muted text */
+  /* Light theme color palette with brand consistency */
+  --background: 30 25% 98%;  /* Very light cream background */
+  --foreground: 20 15% 20%;  /* Dark charcoal text for readability */
+  --muted: 30 15% 90%;       /* Light muted background */
+  --muted-foreground: 20 10% 40%;  /* Dark muted text */
   
-  --popover: 20 15% 18%;     /* Slightly lighter than background for depth */
-  --popover-foreground: 30 25% 95%;  /* Consistent readable text */
+  --popover: 30 25% 100%;    /* Pure white popover for contrast */
+  --popover-foreground: 20 15% 20%;  /* Dark readable text */
   
-  --card: 22 12% 20%;        /* Dark card background with slight warmth */
-  --card-foreground: 30 25% 95%;  /* Consistent readable text */
+  --card: 30 25% 98%;        /* Light card background with slight warmth */
+  --card-foreground: 20 15% 20%;  /* Dark text for readability */
   
-  --border: 25 30% 35%;      /* Subtle but visible border */
-  --input: 25 20% 25%;       /* Dark input background */
+  --border: 25 15% 80%;      /* Subtle but visible border */
+  --input: 30 15% 95%;       /* Light input background */
   
-  --primary: 16 85% 55%;     /* Vibrant orange - brand primary */
+  --primary: 16 85% 55%;     /* Keeping the vibrant orange - brand primary */
   --primary-foreground: 0 0% 100%;  /* White text on primary */
   
-  --secondary: 35 80% 65%;   /* Warm amber as secondary */
+  --secondary: 35 80% 65%;   /* Keeping warm amber as secondary */
   --secondary-foreground: 20 15% 15%;  /* Dark text on secondary */
   
-  --accent: 26 75% 45%;      /* Rich brown accent */
+  --accent: 26 75% 45%;      /* Keeping rich brown accent */
   --accent-foreground: 0 0% 100%;  /* White text on accent */
   
   --destructive: 0 85% 50%;  /* Bright red for destructive actions */
@@ -45,15 +45,13 @@
   --ring: 16 85% 55%;        /* Match primary for focus rings */
   --radius: 0.5rem;
   
-  /* Custom theme colors with better distinction */
-  --dark: 20 15% 15%;        /* Same as background */
+  /* Custom theme colors for light theme */
+  --dark: 20 15% 15%;        /* Dark charcoal for strong contrast elements */
   --darksecondary: 20 15% 25%;  /* Slightly lighter */
-  --light: 30 25% 95%;       /* Same as foreground */
-  --lightsecondary: 30 15% 85%;  /* Slightly darker than light */
+  --light: 30 25% 98%;       /* Light background */
+  --lightsecondary: 30 15% 90%;  /* Slightly darker than light */
   --highlight: 16 85% 55%;   /* Same as primary */
 }
-
-/* Explicitly not defining a separate light theme as per design requirements */
 
 @layer base {
   * {
@@ -61,12 +59,12 @@
   }
 
   body {
-    @apply font-sans antialiased bg-maverick-charcoal text-maverick-cream overflow-x-hidden;
+    @apply font-sans antialiased bg-white text-maverick-dark-brown overflow-x-hidden;
     letter-spacing: -0.01em;
   }
   
   h1, h2, h3, h4, h5, h6 {
-    @apply font-heading font-bold tracking-tight text-maverick-cream;
+    @apply font-heading font-bold tracking-tight text-maverick-dark-brown;
     letter-spacing: -0.03em;
   }
   
@@ -120,7 +118,7 @@
   
   /* Enhanced focused elements */
   :focus-visible {
-    @apply ring-2 ring-maverick-orange ring-offset-2 ring-offset-maverick-charcoal outline-none;
+    @apply ring-2 ring-maverick-orange ring-offset-2 ring-offset-white outline-none;
   }
   
   /* List styling */
@@ -158,7 +156,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: #1E1A18;
+  background-color: #FFFFFF;
   z-index: 9998;
   transform: translateY(100%);
   transition: transform 0.6s cubic-bezier(0.76, 0, 0.24, 1);
@@ -166,7 +164,7 @@
 
 /* Card animations */
 .service-card {
-  @apply bg-maverick-slate border border-maverick-slate/50 shadow-lg;
+  @apply bg-white border border-gray-200 shadow-lg;
   transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
@@ -176,7 +174,7 @@
 }
 
 .pricing-card {
-  @apply bg-maverick-slate border border-maverick-slate/80 shadow-md;
+  @apply bg-white border border-gray-200/80 shadow-md;
   transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -265,7 +263,7 @@
 /* Background grid pattern */
 .bg-grid-pattern {
   background-image: 
-    linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    linear-gradient(rgba(0, 0, 0, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
   background-size: 20px 20px;
 }
