@@ -20,55 +20,51 @@ export default function FooterWrapper() {
     <footer ref={footerRef} className="footer-container">
       <div className="footer-wrapper">
         <div className="footer-top">
-          <div className="footer-left">
-            {/* Logo & About Section */}
-            <div className="footer-logo-section">
-              <div className="footer-logo flex items-center gap-3">
-                {/* Use the Logo component from the header */}
-                <Logo size="medium" noLink={true} showText={false} />
-                <h2 className="company-name font-logo font-bold text-2xl text-maverick-orange">
-                  Mavericks Edge
-                </h2>
-              </div>
+          {/* Logo & About Section */}
+          <div className="footer-logo-section">
+            <div className="footer-logo">
+              {/* Use the Logo component from the header */}
+              <Logo size="medium" noLink={true} showText={false} />
             </div>
+            <p className="footer-tagline">
+              Creative solutions for ambitious brands. Web development, marketing, and AI services designed for growth.
+            </p>
           </div>
-          
-          {/* Right side with Services, Resources and Legal Links */}
-          <div className="footer-right">
-            {/* Services Links */}
-            <div className="footer-nav mr-10">
-              <h3 className="footer-heading">Services</h3>
-              <ul className="footer-links">
-                <li className="footer-link"><a href="/services">Web Development</a></li>
-                <li className="footer-link"><a href="/services">Digital Marketing</a></li>
-                <li className="footer-link"><a href="/services">AI Integration</a></li>
-                <li className="footer-link"><a href="/services">Content Creation</a></li>
-                <li className="footer-link"><a href="/services">SEO Optimization</a></li>
-              </ul>
-            </div>
-            
-            {/* Resources Links */}
-            <div className="footer-nav mr-10">
-              <h3 className="footer-heading">Resources</h3>
-              <ul className="footer-links">
-                <li className="footer-link"><a href="/blog">Blog</a></li>
-                <li className="footer-link"><a href="/case-studies">Case Studies</a></li>
-                <li className="footer-link"><a href="/guides">Guides</a></li>
-                <li className="footer-link"><a href="/faq">FAQ</a></li>
-                <li className="footer-link"><a href="/support">Support</a></li>
-              </ul>
-            </div>
-            
-            <div className="footer-nav">
-              <h3 className="footer-heading">Legal</h3>
-              <ul className="footer-links">
-                <li className="footer-link"><a href="/privacy">Privacy Policy</a></li>
-                <li className="footer-link"><a href="/terms">Terms of Service</a></li>
-                <li className="footer-link"><a href="/cookies">Cookie Policy</a></li>
-                <li className="footer-link"><a href="/gdpr">GDPR Compliance</a></li>
-                <li className="footer-link"><a href="/accessibility">Accessibility</a></li>
-              </ul>
-            </div>
+
+          {/* Services Links */}
+          <div className="footer-nav">
+            <h3 className="footer-heading">Services</h3>
+            <ul className="footer-links">
+              <li className="footer-link"><a href="/services">Web Development</a></li>
+              <li className="footer-link"><a href="/services">Digital Marketing</a></li>
+              <li className="footer-link"><a href="/services">AI Integration</a></li>
+              <li className="footer-link"><a href="/services">Content Creation</a></li>
+              <li className="footer-link"><a href="/services">SEO Optimization</a></li>
+            </ul>
+          </div>
+
+          {/* Resources Links */}
+          <div className="footer-nav">
+            <h3 className="footer-heading">Resources</h3>
+            <ul className="footer-links">
+              <li className="footer-link"><a href="/blog">Blog</a></li>
+              <li className="footer-link"><a href="/case-studies">Case Studies</a></li>
+              <li className="footer-link"><a href="/guides">Guides</a></li>
+              <li className="footer-link"><a href="/faq">FAQ</a></li>
+              <li className="footer-link"><a href="/support">Support</a></li>
+            </ul>
+          </div>
+
+          {/* Legal Links */}
+          <div className="footer-nav">
+            <h3 className="footer-heading">Legal</h3>
+            <ul className="footer-links">
+              <li className="footer-link"><a href="/privacy">Privacy Policy</a></li>
+              <li className="footer-link"><a href="/terms">Terms of Service</a></li>
+              <li className="footer-link"><a href="/cookies">Cookie Policy</a></li>
+              <li className="footer-link"><a href="/gdpr">GDPR Compliance</a></li>
+              <li className="footer-link"><a href="/accessibility">Accessibility</a></li>
+            </ul>
           </div>
         </div>
 

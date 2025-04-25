@@ -1,8 +1,8 @@
 /* Footer Styles */
 
 .footer-container {
-  background-color: #F8F9FA; /* Light gray background */
-  color: #272114; /* Dark brown text */
+  background-color: #1E1A18; /* Dark charcoal background */
+  color: #F5F0EC; /* Light cream text */
   padding: 4rem 0 2rem;
   width: 100%;
 }
@@ -14,22 +14,10 @@
 }
 
 .footer-top {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 2rem;
   margin-bottom: 2.5rem;
-}
-
-.footer-left {
-  display: flex;
-  gap: 2rem;
-  flex: 1;
-}
-
-.footer-right {
-  display: flex;
-  justify-content: flex-end;
-  gap: 2rem;
 }
 
 .footer-logo-section {
@@ -59,7 +47,7 @@
   font-family: 'Garamond', serif;
   font-size: 1.1rem;
   line-height: 1.5;
-  color: #272114; /* Dark brown text */
+  color: #F5F0EC;
   margin-bottom: 1.5rem;
   max-width: 350px;
 }
@@ -84,7 +72,7 @@
 }
 
 .footer-link a {
-  color: #272114; /* Dark brown text */
+  color: #F5F0EC;
   text-decoration: none;
   transition: color 0.3s ease;
   font-family: 'Space Grotesk', sans-serif;
@@ -126,7 +114,7 @@
 }
 
 .footer-contact-info a {
-  color: #272114; /* Dark brown text */
+  color: #F5F0EC;
   text-decoration: none;
   transition: color 0.3s ease;
   font-family: 'Garamond', serif;
@@ -138,7 +126,7 @@
 
 .footer-divider {
   height: 1px;
-  background-color: rgba(39, 33, 20, 0.15); /* Dark brown with transparency */
+  background-color: rgba(245, 240, 236, 0.2); /* Light cream with transparency */
   margin: 2rem 0;
 }
 
@@ -153,7 +141,7 @@
 .footer-copyright {
   font-family: 'Space Grotesk', sans-serif;
   font-size: 0.95rem;
-  color: rgba(39, 33, 20, 0.7); /* Dark brown with transparency */
+  color: rgba(245, 240, 236, 0.7); /* Light cream with transparency */
   font-weight: 400;
 }
 
@@ -163,7 +151,7 @@
 }
 
 .social-icon {
-  color: #272114; /* Dark brown */
+  color: #F5F0EC;
   font-size: 1.5rem;
   transition: color 0.3s ease, transform 0.3s ease;
 }
@@ -176,15 +164,7 @@
 /* Responsive adjustments */
 @media screen and (max-width: 768px) {
   .footer-top {
-    flex-direction: column;
-  }
-  
-  .footer-left {
-    flex-direction: column;
-  }
-  
-  .footer-right {
-    justify-content: flex-start;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   }
   
   .footer-bottom {

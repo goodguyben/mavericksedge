@@ -28,7 +28,7 @@ export default function Header() {
 
   const headerClasses = `fixed top-0 left-0 w-full py-6 px-5 md:px-10 z-50 transition-all duration-300 ${
     isScrolled
-      ? "bg-white bg-opacity-90 backdrop-blur-md shadow-md"
+      ? "bg-[#121212] bg-opacity-80 backdrop-blur-md shadow-md"
       : "bg-transparent"
   }`;
 
@@ -79,7 +79,7 @@ export default function Header() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 bg-white bg-opacity-98 z-50 flex flex-col items-center justify-center"
+            className="fixed inset-0 bg-[#121212] bg-opacity-95 z-50 flex flex-col items-center justify-center"
           >
             <button
               onClick={toggleMenu}
