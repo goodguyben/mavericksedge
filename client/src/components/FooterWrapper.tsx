@@ -22,13 +22,13 @@ export default function FooterWrapper() {
         <div className="footer-top">
           {/* Logo & About Section */}
           <div className="footer-logo-section">
-            <div className="footer-logo">
+            <div className="footer-logo flex items-center gap-3">
               {/* Use the Logo component from the header */}
               <Logo size="medium" noLink={true} showText={false} />
+              <h2 className="company-name font-logo font-bold text-2xl text-maverick-orange">
+                Mavericks Edge
+              </h2>
             </div>
-            <h2 className="company-name text-center font-logo font-bold text-2xl text-maverick-orange">
-              Mavericks Edge
-            </h2>
           </div>
 
           {/* Services Links */}
