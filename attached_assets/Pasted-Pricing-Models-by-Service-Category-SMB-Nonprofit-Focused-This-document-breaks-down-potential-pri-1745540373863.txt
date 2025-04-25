@@ -1,0 +1,117 @@
+Pricing Models by Service Category (SMB & Nonprofit Focused)
+This document breaks down potential pricing models for each of Mavericks Edge's core service areas, keeping Small-to-Medium Businesses (SMBs) and Nonprofits in mind. Note: Mavericks Edge may offer discounted rates for registered charities – please inquire.
+1. Web & Digital Solutions Pricing
+This area typically involves initial builds/redesigns and ongoing upkeep.
+Structures (CAD):
+Project-Based Services & Packages:
+Launch Pad - $750 CAD (One-Time)
+Perfect for Startups, small businesses, or early-stage orgs needing a clean online presence fast.
+Includes: Up to 5 core pages, Basic contact form, Mobile-responsive design, Basic SEO setup & Schema Markup implementation, Security essentials, Google Analytics 4 setup, Accessibility basics check, Performance check & report.
+Business Growth Builder - $1650 CAD (One-Time)
+Great for Product/service-based businesses or teams ready to scale.
+Includes: Everything in Launch Pad, Up to 10 pages total, Booking System & advanced contact forms, various basic integrations (e.g., email marketing), Enhanced SEO strategy & setup, Resource Hub / Learning Center Setup, Blog Setup, Google Analytics 4 w/ Goal Tracking Setup, Enhanced Security Setup.
+Professional / E-commerce Site - Starting at $3,350+ CAD
+For Established businesses or online stores requiring advanced functionality and performance.
+Includes: Everything in Business Growth Builder, E-commerce functionality (Shopify, WooCommerce), Advanced integrations (e.g., accounting software, ERP/Inventory management system sync), Advanced membership & subscription management features, AI-Powered Product Recommendations setup, Advanced AI Chatbot Integration (sales/support focused), Customer Data Platform (CDP) Integration readiness/setup.
+Custom Web Application Development - Starting at $4,500+ CAD
+For Business requiring unique features or workflows not met by off-the-shelf solutions.
+Includes:
+In-depth discovery
+Custom UX/UI design
+Bespoke backend & frontend development
+Database architecture
+Testing, Deployment
+Pricing is highly variable and requires detailed custom quoting.
+Website Enhancement Package - Project-based quote / starting at $200 CAD
+For Organizations with an existing website needing targeted improvements.
+Includes:
+Performance audit & optimization
+Design refresh consultation
+Content review
+Basic technical SEO check
+Accessibility review
+Call-to-action improvements
+Scope tailored during consultation.
+(Payment plans often available for larger projects)
+Website Care Plan Retainers (Monthly):
+Essentials Care Plan: $75/mo
+Core CMS, Plugin & Theme Updates
+Up to 1 Hr/Month Dedicated Support Time
+Regular Security Monitoring
+Daily Cloud Backups
+Uptime Monitoring (24/7)
+Database Optimization Check
+(Focus: Foundational security & upkeep for peace of mind)
+Business Growth Plan: $145/mo
+All Essentials Care Plan features, PLUS:
+Up to 2 Hrs/Month Dedicated Support Time
+Covers: Minor edits, content updates, basic troubleshooting
+Priority Support Queue
+Basic SEO Rank Tracking (Up to 10 keywords)
+Monthly Website Health Report Summary
+(Focus: Maintaining site health + dedicated support time for growth)
+Performance Pro Plan: $400+/mo
+All Business Growth Plan features, PLUS:
+Increased Support Time of up to 6 Hrs/Month
+Covers: Edits, design work, content updates, troubleshooting, performance tweaks, critical HTML/CSS/JS optimizations
+Proactive Performance Checks (e.g., speed tests, image optimization review, caching review)
+Enhanced Security Monitoring
+Staging Site Access (for testing updates)
+Monthly Performance & Strategy Review Call (2 hours)
+(Focus: Proactive optimization, enhanced support & strategic oversight)
+Hourly Rate:
+$75-$90/hr (for web development, design, technical support).
+2. Marketing, Creative & Event Services Pricing
+This diverse area requires a flexible mix of pricing models.
+Structures (CAD):
+Strategy & Creative Packages:
+Marketing Foundation Package - Starting at $1,400+ CAD: Comprehensive launchpad for digital marketing. Includes: Strategy Workshop (goals, audience, initial positioning), Digital Presence Audit (web, SEO, social), Competitor Snapshot, Setup & Optimization of 2-3 Key Channels (Google Business Profile, core social platform), Basic Conversion Tracking Setup (e.g., GA4 Goals), Mini AI Marketing Opportunity Scan, 45-Day Action Plan.
+Brand Identity Package - Starting at $900+ CAD: Full brand foundation. Includes: Discovery, competitor review & brand strategy session; 2-3 initial brand concepts w/ revisions; Final logo suite; Comprehensive style guide (visuals, voice, tone); Key collateral design concepts (e.g., stationery, social kit).
+Strategic Content Engine Package - Starting at $1,600+ CAD: Develops & executes data-driven, multi-format content to build authority. Includes: Content strategy session, audience/keyword research, AI-assisted topic ideation & drafting, creation of core content pieces (e.g., blog posts, graphics, video scripts, lead magnets), multi-channel repurposing plan, basic content performance tracking setup & reporting. Quoted based on scope & deliverables.
+Graphic Design Support Blocks - 4 hours for $240 CAD: Pre-paid package providing flexible access to graphic design time for various needs like social media graphics, marketing collateral updates, presentation visuals, or web graphics.
+Focused Marketing Starter Plans (Monthly):
+Digital Presence Starter Plan (Starting at $400/mo):
+Focus: Establishing a core online presence and improving digital visibility across key channels.
+Includes: Google Business Profile optimization & management, Local citation management (consistency checks & core directories), Monthly performance report & check-in call, Core Social Media Profile Management (1 platform selected by client):
+Profile optimization (bio, links, imagery)
+Basic content posting (approx. 8-12 posts/month, focus on micro-content ideas & basic graphics)
+Engagement monitoring (comments, mentions)
+Integrated Content & Community Plan (Starting at $1,100/mo):
+Focus: Building an engaged community and establishing a content rhythm using integrated social media and content marketing tactics.
+Includes:
+Up to 4 Hours Unified Monthly Content & Social Strategy Session
+Audience/Keyword Research for Social & Content Topics
+Content Calendar Planning
+Creation of up to 4-6 Core SEO-Optimized Content Pieces/Month (e.g., blog posts, articles) with supporting basic graphics
+Social Media Management (up to 4 platforms)
+Creation & Scheduling of Social Posts (approx. 40-50 posts/month, using core content + curation)
+Integrated Monthly Performance Report (Social & Content)
+Custom Solutions: Don't see the perfect fit? We can tailor a custom monthly plan or project package incorporating services to meet your specific marketing goals. Contact us for a consultation.
+Hourly Rate:
+$65 - $125/hr (for marketing strategy, creative work, consulting).
+3. AI Integration & Automation Services Pricing
+Pricing reflects the specialized expertise required.
+Structures (CAD):
+Project Examples:
+AI Readiness Assessment: ($600 - $1,200+) - Audit systems/data, identify opportunities, basic roadmap. (Good starting point for SMBs/Nonprofits).
+Custom API Integration Project: (e.g., Connecting CRM to OpenAI): Quoted based on complexity (likely $3,500+ minimum).
+AI-Powered Workflow Automation Setup: (e.g., Automating invoicing): Quoted per project based on scope/tools used.
+AI Feature Development: Quoted based on complexity/integration effort.
+AI Support & Governance Retainers (Monthly):
+Basic AI Monitoring: ($250 - $400+/mo) - Ensure integrated tools are running, basic updates, usage reporting.
+Proactive AI Support: ($600 - $1,200+/mo) - Includes Monitoring + dedicated hours for troubleshooting, minor optimization, governance checks, user support.
+Consulting Rate:
+$140 - $220+/hr (Premium rate reflecting specialization). Packaged consulting days available.
+SMB/Nonprofit Focus (Overall):
+Position the AI Readiness Assessment as an accessible first step for AI services.
+Frame AI projects around tangible benefits (efficiency, cost savings, improved service/donor engagement).
+Offer foundational monitoring retainers for implemented AI solutions.
+Be transparent about the investment required for AI projects.
+Clearly define event pricing structures and offer consultation packages.
+Promote starter packages and focused monthly plans for marketing needs.
+Highlight affordable Website Care Plans (especially Essentials).
+Offer payment plans for larger projects where feasible.
+Mention potential nonprofit discounts.
+Conclusion:
+These models provide frameworks for pricing services within each category. In practice, many clients will benefit from a combination of services. A comprehensive proposal for a client needing a new website, ongoing marketing, and perhaps an AI chatbot would draw pricing elements from all three areas, likely combining project fees with ongoing retainers. Always start with a clear understanding of the client's needs and budget to propose the most suitable and valuable solution.
+
