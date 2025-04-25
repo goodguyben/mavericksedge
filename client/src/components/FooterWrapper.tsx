@@ -1,6 +1,13 @@
 import { useEffect, useRef } from 'react';
 import '../styles/footer.css';
 
+// Declare global interface for window
+declare global {
+  interface Window {
+    initFooter?: () => void;
+  }
+}
+
 export default function FooterWrapper() {
   const footerRef = useRef<HTMLDivElement>(null);
 
@@ -20,8 +27,8 @@ export default function FooterWrapper() {
           script.type = 'module';
           script.onload = () => {
             // If global function is available, call it
-            if (typeof window['initFooter'] === 'function') {
-              window['initFooter']();
+            if (typeof window.initFooter === 'function') {
+              window.initFooter();
             }
           };
           document.body.appendChild(script);
