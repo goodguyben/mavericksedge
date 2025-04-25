@@ -15,7 +15,7 @@
 
 .footer-top {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: 1fr 2fr; /* Adjusted for new layout */
   gap: 2rem;
   margin-bottom: 2.5rem;
 }
@@ -164,9 +164,8 @@
 /* Responsive adjustments */
 @media screen and (max-width: 768px) {
   .footer-top {
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: 1fr; /* Stack columns vertically on smaller screens */
   }
-  
   .footer-bottom {
     flex-direction: column;
     align-items: center;
@@ -178,11 +177,11 @@
   .footer-container {
     padding: 3rem 0 1.5rem;
   }
-  
+
   .footer-logo {
     margin-bottom: 1rem;
   }
-  
+
   .footer-heading {
     margin-bottom: 1rem;
   }
