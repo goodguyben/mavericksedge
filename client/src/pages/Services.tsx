@@ -12,7 +12,7 @@ export default function Services() {
       transition={{ duration: 0.5 }}
     >
       <div className="pt-36 md:pt-40 pb-16 px-5 md:px-10 bg-[#121212]">
-        <div className="container mx-auto">
+        <div className="container mx-auto pl-0 md:pl-8">
           <h1 className="text-5xl md:text-7xl font-bold mb-6">Our Solutions</h1>
           <p className="text-xl text-[#AAAAAA] max-w-3xl">
             Comprehensive digital solutions designed to help your business thrive in the digital landscape.
