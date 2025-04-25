@@ -46,12 +46,12 @@ export default function FooterWrapper() {
     img.style.width = '80px';
     img.style.height = 'auto';
     
-    // Create logo text with Raleway font
+    // Create logo text with Sansation font to match main site
     const text = document.createElement('span');
     text.innerText = 'Mavericks Edge';
-    text.style.fontFamily = 'Raleway, sans-serif';
-    text.style.fontSize = '1.5rem';
-    text.style.fontWeight = 'bold';
+    text.style.fontFamily = 'Sansation, sans-serif';
+    text.style.fontSize = '1.75rem';
+    text.style.fontWeight = '700';
     text.style.color = '#FF5630'; // Maverick orange
     
     // Append elements
