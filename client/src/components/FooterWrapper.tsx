@@ -26,9 +26,9 @@ export default function FooterWrapper() {
               {/* Use the Logo component from the header */}
               <Logo size="medium" noLink={true} showText={false} />
             </div>
-            <p className="footer-tagline">
-              Creative solutions for ambitious brands. Web development, marketing, and AI services designed for growth.
-            </p>
+            <h2 className="company-name text-center font-semibold text-xl text-maverick-orange">
+              Mavericks Edge
+            </h2>
           </div>
 
           {/* Services Links */}
