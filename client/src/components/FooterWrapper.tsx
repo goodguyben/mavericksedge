@@ -69,9 +69,6 @@ export default function FooterWrapper() {
             <div className="footer-logo">
               {/* Logo will be inserted by JavaScript */}
             </div>
-            <p className="footer-tagline">
-              Creative solutions for ambitious brands. Web development, marketing, and AI services designed for growth.
-            </p>
           </div>
 
           {/* Services Links */}
