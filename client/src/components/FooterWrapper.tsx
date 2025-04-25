@@ -19,12 +19,6 @@ export default function FooterWrapper() {
         currentYearElement.textContent = new Date().getFullYear().toString();
       }
       
-      // Create the logo in footer
-      const logoContainer = footerRef.current.querySelector('.footer-logo');
-      if (logoContainer) {
-        createLogo(logoContainer as HTMLElement);
-      }
-      
       console.log('Footer initialized from FooterWrapper');
     }
   }, []);
@@ -39,12 +33,16 @@ export default function FooterWrapper() {
     wrapper.style.justifyContent = 'center';
     wrapper.style.gap = '1rem';
     
-    // Create logo image
+    // Create logo image with correct path
     const img = document.createElement('img');
     img.src = '/attached_assets/logo_dyn-transparent-thumb2x.png';
     img.alt = 'Mavericks Edge Logo';
     img.style.width = '80px';
     img.style.height = 'auto';
+    // Set explicit display to ensure visibility
+    img.style.display = 'block';
+    // Log for debugging
+    console.log('Logo image created with src:', img.src);
     
     // Create logo text with Sansation font to match main site
     const text = document.createElement('span');
@@ -66,7 +64,23 @@ export default function FooterWrapper() {
         {/* Centered Logo Section */}
         <div className="text-center mb-10">
           <div className="footer-logo mx-auto flex justify-center">
-            {/* Logo will be inserted by JavaScript */}
+            {/* Direct React rendering of logo */}
+            <div className="logo-wrapper">
+              <img 
+                src="/attached_assets/logo_dyn-transparent-thumb2x.png" 
+                alt="Mavericks Edge Logo" 
+                style={{ width: '80px', height: 'auto', display: 'block' }} 
+              />
+              <span style={{ 
+                fontFamily: 'Sansation, sans-serif', 
+                fontSize: '1.75rem', 
+                fontWeight: '700', 
+                color: '#FF5630',
+                marginLeft: '1rem' 
+              }}>
+                Mavericks Edge
+              </span>
+            </div>
           </div>
         </div>
         
