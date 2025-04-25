@@ -63,13 +63,15 @@ export default function FooterWrapper() {
   return (
     <footer ref={footerRef} className="footer-container">
       <div className="footer-wrapper">
-        <div className="footer-top">
-          {/* Logo & About Section */}
-          <div className="footer-logo-section">
-            <div className="footer-logo">
-              {/* Logo will be inserted by JavaScript */}
-            </div>
+        {/* Centered Logo Section */}
+        <div className="text-center mb-10">
+          <div className="footer-logo mx-auto flex justify-center">
+            {/* Logo will be inserted by JavaScript */}
           </div>
+        </div>
+        
+        <div className="footer-top">
+          {/* Services Section (now as first item in the grid) */}
 
           {/* Services Links */}
           <div className="footer-nav">
