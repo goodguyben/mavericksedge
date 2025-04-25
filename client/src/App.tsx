@@ -6,8 +6,11 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/not-found";
 import Layout from "@/components/Layout";
 import Home from "@/pages/Home";
-import Services from "@/pages/Services";
+import Services from "@/pages/Services"; // Renamed to Solutions later
 import Pricing from "@/pages/Pricing";
+import WebPricing from "@/pages/WebPricing";
+import MarketingPricing from "@/pages/MarketingPricing";
+import AIPricing from "@/pages/AIPricing";
 // Work page removed
 import About from "@/pages/About";
 import Contact from "@/pages/Contact";
@@ -18,9 +21,11 @@ function Router() {
   return (
     <Switch>
       <Route path="/" component={Home} />
-      <Route path="/services" component={Services} />
+      <Route path="/services" component={Services} /> {/* Renamed to Solutions later */}
       <Route path="/pricing" component={Pricing} />
-      {/* <Route path="/work" component={Work} /> */}
+      <Route path="/pricing/web" component={WebPricing} />
+      <Route path="/pricing/marketing" component={MarketingPricing} />
+      <Route path="/pricing/ai" component={AIPricing} />
       <Route path="/about" component={About} />
       <Route path="/contact" component={Contact} />
       {/* Fallback to 404 */}
