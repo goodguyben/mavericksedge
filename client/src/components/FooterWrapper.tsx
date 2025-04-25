@@ -19,18 +19,30 @@ export default function FooterWrapper() {
   return (
     <footer ref={footerRef} className="footer-container">
       <div className="footer-wrapper">
-        <div className="footer-top">
-          {/* Logo & About Section */}
-          <div className="footer-logo-section">
-            <div className="footer-logo">
-              {/* Use the Logo component from the header */}
-              <Logo size="medium" noLink={true} showText={false} />
+        {/* Centered Logo Section */}
+        <div className="text-center mb-10">
+          <div className="footer-logo mx-auto flex justify-center">
+            {/* Direct React rendering of logo */}
+            <div className="logo-wrapper">
+              <img 
+                src="/attached_assets/logo_dyn-transparent-thumb2x.png" 
+                alt="Mavericks Edge Logo" 
+                style={{ width: '80px', height: 'auto', display: 'block' }} 
+              />
+              <span style={{ 
+                fontFamily: 'Sansation, sans-serif', 
+                fontSize: '1.75rem', 
+                fontWeight: '700', 
+                color: '#FF5630',
+                marginLeft: '1rem' 
+              }}>
+                Mavericks Edge
+              </span>
             </div>
-            <p className="footer-tagline">
-              Creative solutions for ambitious brands. Web development, marketing, and AI services designed for growth.
-            </p>
           </div>
+        </div>
 
+        <div className="footer-top centered-footer">
           {/* Services Links */}
           <div className="footer-nav">
             <h3 className="footer-heading">Services</h3>
@@ -52,23 +64,6 @@ export default function FooterWrapper() {
               <li className="footer-link"><a href="/pricing">Pricing</a></li>
               <li className="footer-link"><a href="/contact">Contact</a></li>
             </ul>
-          </div>
-
-          {/* Contact Info */}
-          <div className="footer-contact">
-            <h3 className="footer-heading">Contact Us</h3>
-            <div className="footer-contact-info">
-              <span className="icon">📍</span>
-              <span>123 Innovation Ave, San Francisco, CA 94103</span>
-            </div>
-            <div className="footer-contact-info">
-              <span className="icon">📱</span>
-              <a href="tel:+14155550123">(415) 555-0123</a>
-            </div>
-            <div className="footer-contact-info">
-              <span className="icon">✉️</span>
-              <a href="mailto:hello@mavericksedge.com">hello@mavericksedge.com</a>
-            </div>
           </div>
         </div>
 
