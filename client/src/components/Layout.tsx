@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import Header from "./Header";
-import Footer from "./Footer";
+import FooterWrapper from "./FooterWrapper";
 import PageTransition from "./PageTransition";
 import { useLocation } from "wouter";
 import { useEffect } from "react";
@@ -22,7 +22,7 @@ export default function Layout({ children }: LayoutProps) {
       <PageTransition />
       <Header />
       <main className="flex-grow">{children}</main>
-      <Footer />
+      <FooterWrapper />
     </div>
   );
 }
