@@ -64,7 +64,7 @@ export default function WhatWeDoSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">What We Do</h2>
+          <h2 className="text-4xl md:text-5xl font-bold mb-4">What We <span className="text-maverick-orange">Do</span></h2>
           <p className="text-[#AAAAAA] text-xl max-w-2xl mx-auto">
             We offer comprehensive digital solutions to help your business thrive in the digital landscape
           </p>

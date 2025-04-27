@@ -44,7 +44,7 @@ export default function WhyChooseUsSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">Why Choose Us</h2>
+          <h2 className="text-4xl md:text-5xl font-bold mb-4">Why Choose <span className="text-maverick-orange">Mavericks Edge</span></h2>
           <p className="text-[#BBBBBB] text-xl max-w-2xl mx-auto">
             We bring your digital vision to life with precision, creativity, and technical excellence
           </p>
