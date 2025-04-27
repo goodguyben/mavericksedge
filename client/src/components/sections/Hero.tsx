@@ -10,11 +10,18 @@ import backgroundVideo from "@assets/3129977-uhd_3840_2160_30fps.mp4";
 export default function Hero() {
   const [scrolled, setScrolled] = useState(false);
   const [videoLoaded, setVideoLoaded] = useState(false);
+  const [heroOpacity, setHeroOpacity] = useState(1); // Added state for hero opacity
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
+      // Calculate heroOpacity based on scroll position
+      const scrollY = window.scrollY;
+      const heroHeight = document.querySelector('.max-w-4xl')?.offsetHeight || 0; // Get hero section height
+      const opacityThreshold = 0.7; // Adjust as needed.  0 = fully transparent at the top, 1 at the bottom
+      const opacity = Math.max(0, 1 - (scrollY / (heroHeight * opacityThreshold)));
+      setHeroOpacity(opacity);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -27,12 +34,12 @@ export default function Hero() {
       videoRef.current.addEventListener('loadeddata', () => {
         setVideoLoaded(true);
       });
-      
+
       // Fallback in case video doesn't load in 3 seconds
       const timeout = setTimeout(() => {
         if (!videoLoaded) setVideoLoaded(true);
       }, 3000);
-      
+
       return () => clearTimeout(timeout);
     }
   }, [videoLoaded]);
@@ -43,7 +50,7 @@ export default function Hero() {
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
         {/* Dark overlay for better text readability */}
         <div className="absolute inset-0 bg-black/65 z-10"></div>
-        
+
         {/* Video element */}
         <video 
           ref={videoRef}
@@ -55,7 +62,7 @@ export default function Hero() {
         >
           <source src={backgroundVideo} type="video/mp4" />
         </video>
-        
+
         {/* Fallback gradient background (shows while video loads or if video fails) */}
         <div className={`absolute inset-0 bg-gradient-to-br from-[#0D0D0D] via-[#1A1A1A] to-[#0D0D0D] bg-gradient-animate animate-gradient-slow z-0 transition-opacity duration-1000 ${videoLoaded ? 'opacity-0' : 'opacity-100'}`}></div>
       </div>
@@ -69,9 +76,9 @@ export default function Hero() {
       <div className="container mx-auto px-4 md:px-10 z-20">
         <motion.div
           className="max-w-4xl"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
+          initial={{ opacity: 1, y: 0 }} // Start fully opaque
+          animate={{ opacity: heroOpacity, y: 0 }} // Animate opacity based on scroll
+          transition={{ duration: 0.3 }}
         >
           <h1 className="text-5xl md:text-7xl font-heading font-extrabold tracking-wide leading-normal text-maverick-cream">
             <div className="mb-3">Building{" "}
