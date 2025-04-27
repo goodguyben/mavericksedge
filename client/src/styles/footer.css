@@ -220,5 +220,8 @@
     text-align: center;
     margin-top: 1.5rem; /* Increase top margin for mobile view */
     margin-left: 0; /* Remove left margin completely */
+    letter-spacing: -0.02em;
+    text-shadow: 0 2px 4px rgba(255, 86, 48, 0.3);
+    transform: scale(1.05);
   }
 }
