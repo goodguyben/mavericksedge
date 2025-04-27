@@ -211,9 +211,13 @@
     justify-content: center;
     text-align: center;
     width: 100%;
+    align-items: center;
+    flex-wrap: wrap;
   }
-  
-  .footer-logo > div {
-    justify-content: center;
+
+  .footer-logo h2 {
+    text-align: center;
+    margin-top: 0.75rem; /* Increase top margin in phone view */
+    margin-left: 0; /* Remove left margin completely */
   }
 }
