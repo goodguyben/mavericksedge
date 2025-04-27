@@ -74,7 +74,7 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.2 }}
         >
           <h1 className="text-5xl md:text-7xl font-heading font-extrabold tracking-wide leading-normal text-maverick-cream">
-            <div className="mb-3">building{" "}
+            <div className="mb-3">Building{" "}
             <span className="text-maverick-orange relative inline-block">
               <span>resilience</span>
               <motion.span 
