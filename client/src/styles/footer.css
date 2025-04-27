@@ -15,8 +15,8 @@
 
 .footer-top {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Adjusted minmax and added repeat for better responsiveness */
+  gap: 1rem; /* Reduced gap for closer spacing */
   margin-bottom: 2.5rem;
 }
 
@@ -189,4 +189,18 @@
   .footer-heading {
     margin-bottom: 1rem;
   }
+}
+
+.footer-nav-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  flex: 1;
+}
+
+.footer-nav {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex: 1;
 }

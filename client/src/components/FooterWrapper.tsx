@@ -31,40 +31,43 @@ export default function FooterWrapper() {
             </div>
           </div>
 
-          {/* Services Links */}
-          <div className="footer-nav">
-            <h3 className="footer-heading">Services</h3>
-            <ul className="footer-links">
-              <li className="footer-link"><a href="/services">Web Development</a></li>
-              <li className="footer-link"><a href="/services">Digital Marketing</a></li>
-              <li className="footer-link"><a href="/services">AI Integration</a></li>
-              <li className="footer-link"><a href="/services">Content Creation</a></li>
-              <li className="footer-link"><a href="/services">SEO Optimization</a></li>
-            </ul>
-          </div>
+          {/* Navigation Links Container - wraps the three nav sections */}
+          <div className="footer-nav-container">
+            {/* Services Links */}
+            <div className="footer-nav">
+              <h3 className="footer-heading">Services</h3>
+              <ul className="footer-links">
+                <li className="footer-link"><a href="/services">Web Development</a></li>
+                <li className="footer-link"><a href="/services">Digital Marketing</a></li>
+                <li className="footer-link"><a href="/services">AI Integration</a></li>
+                <li className="footer-link"><a href="/services">Content Creation</a></li>
+                <li className="footer-link"><a href="/services">SEO Optimization</a></li>
+              </ul>
+            </div>
 
-          {/* Resources Links */}
-          <div className="footer-nav">
-            <h3 className="footer-heading">Resources</h3>
-            <ul className="footer-links">
-              <li className="footer-link"><a href="/blog">Blog</a></li>
-              <li className="footer-link"><a href="/case-studies">Case Studies</a></li>
-              <li className="footer-link"><a href="/guides">Guides</a></li>
-              <li className="footer-link"><a href="/faq">FAQ</a></li>
-              <li className="footer-link"><a href="/support">Support</a></li>
-            </ul>
-          </div>
+            {/* Resources Links */}
+            <div className="footer-nav">
+              <h3 className="footer-heading">Resources</h3>
+              <ul className="footer-links">
+                <li className="footer-link"><a href="/blog">Blog</a></li>
+                <li className="footer-link"><a href="/case-studies">Case Studies</a></li>
+                <li className="footer-link"><a href="/guides">Guides</a></li>
+                <li className="footer-link"><a href="/faq">FAQ</a></li>
+                <li className="footer-link"><a href="/support">Support</a></li>
+              </ul>
+            </div>
 
-          {/* Legal Links */}
-          <div className="footer-nav">
-            <h3 className="footer-heading">Legal</h3>
-            <ul className="footer-links">
-              <li className="footer-link"><a href="/privacy">Privacy Policy</a></li>
-              <li className="footer-link"><a href="/terms">Terms of Service</a></li>
-              <li className="footer-link"><a href="/cookies">Cookie Policy</a></li>
-              <li className="footer-link"><a href="/gdpr">GDPR Compliance</a></li>
-              <li className="footer-link"><a href="/accessibility">Accessibility</a></li>
-            </ul>
+            {/* Legal Links */}
+            <div className="footer-nav">
+              <h3 className="footer-heading">Legal</h3>
+              <ul className="footer-links">
+                <li className="footer-link"><a href="/privacy">Privacy Policy</a></li>
+                <li className="footer-link"><a href="/terms">Terms of Service</a></li>
+                <li className="footer-link"><a href="/cookies">Cookie Policy</a></li>
+                <li className="footer-link"><a href="/gdpr">GDPR Compliance</a></li>
+                <li className="footer-link"><a href="/accessibility">Accessibility</a></li>
+              </ul>
+            </div>
           </div>
         </div>
 
