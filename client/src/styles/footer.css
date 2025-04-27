@@ -211,11 +211,13 @@
     justify-content: center;
     text-align: center;
     width: 100%;
+    align-items: center;
+    flex-wrap: wrap;
   }
 
   .footer-logo h2 {
     text-align: center;
-    margin-top: 0.5rem; /* Increase top margin in phone view */
-    margin-left: 0.25rem; /* Decrease left margin to bring closer to logo */
+    margin-top: 0.75rem; /* Increase top margin in phone view */
+    margin-left: 0; /* Remove left margin completely */
   }
 }
