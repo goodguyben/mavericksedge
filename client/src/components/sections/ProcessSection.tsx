@@ -66,11 +66,9 @@ export default function ProcessSection() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="hover-card-wrapper relative group"
+              className="hover-card-wrapper"
               >
-                <div className="relative z-10">
-                  <ProcessCard step={step} />
-                </div>
+                <ProcessCard step={step} />
               </motion.div>
             ))}
           </div>
