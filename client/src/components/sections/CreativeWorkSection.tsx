@@ -148,21 +148,7 @@ export default function CreativeWorkSection() {
           <div className="absolute top-0 right-0 h-full w-24 bg-gradient-to-l from-[#0D0D0D] to-transparent z-10"></div>
         </div>
         
-        {/* CTA button */}
-        <motion.div 
-          className="text-center mt-12"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-        >
-          <a 
-            href="/work" 
-            className="inline-block px-8 py-4 bg-maverick-orange text-white font-bold rounded-md hover:bg-maverick-orange/90 transition-colors duration-300"
-          >
-            View All Projects
-          </a>
-        </motion.div>
+        {/* Button removed */}
       </div>
     </section>
   );
