@@ -4,8 +4,8 @@ import { ChevronDown } from "lucide-react";
 import { scrollToSection } from "@/lib/scroll";
 import { Button } from "@/components/ui/custom-button";
 
-// Video background path
-const BACKGROUND_VIDEO_URL = "/videos/background.mp4";
+// Import video directly using Vite's asset handling
+import backgroundVideo from "@assets/3129977-uhd_3840_2160_30fps.mp4";
 
 export default function Hero() {
   const [scrolled, setScrolled] = useState(false);
@@ -53,7 +53,7 @@ export default function Hero() {
           playsInline
           className={`absolute top-0 left-0 min-w-full min-h-full object-cover transition-opacity duration-1000 ${videoLoaded ? 'opacity-100' : 'opacity-0'}`}
         >
-          <source src={BACKGROUND_VIDEO_URL} type="video/mp4" />
+          <source src={backgroundVideo} type="video/mp4" />
         </video>
         
         {/* Fallback gradient background (shows while video loads or if video fails) */}
