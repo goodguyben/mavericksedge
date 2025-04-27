@@ -9,6 +9,7 @@
 /* Import custom CSS files */
 @import url('./styles/buttons.css');
 @import url('./styles/footer.css');
+@import url('./styles/cards.css');
 
 @tailwind base;
 @tailwind components;

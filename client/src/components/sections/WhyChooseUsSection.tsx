@@ -58,7 +58,7 @@ export default function WhyChooseUsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-[#1A1A1A] p-8 rounded-lg border border-gray-800 h-full hover:border-maverick-orange transition-all duration-300"
+              className="bg-[#1A1A1A] p-8 rounded-lg border border-gray-800 h-full hover:border-maverick-orange transition-all duration-300 hover-card relative"
             >
               <div className="mb-5 bg-maverick-orange bg-opacity-10 p-4 rounded-full inline-block">
                 {reason.icon}

@@ -51,7 +51,7 @@ export default function ProcessSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 font-heading">Our Process</h2>
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 font-heading">Our <span className="text-maverick-orange">Process</span></h2>
           <p className="text-[#AAAAAA] text-xl max-w-2xl mx-auto">
             A collaborative approach to delivering exceptional results for your business
           </p>

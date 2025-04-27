@@ -1,4 +1,3 @@
-
 import { motion } from "framer-motion";
 import { Code, PenTool, Lightbulb, Database } from "lucide-react";
 
@@ -81,7 +80,7 @@ export default function WhatWeDoSection() {
               className="relative group"
             >
               {/* Service Card */}
-              <div className="bg-[#1A1A1A] p-8 rounded-lg border border-gray-800 hover:border-maverick-orange transition-all duration-300 h-full">
+              <div className="bg-[#1A1A1A] p-8 rounded-lg border border-gray-800 hover:border-maverick-orange transition-all duration-300 hover-card relative h-full">
                 <div className="flex items-start gap-6">
                   <div className="p-4 bg-maverick-orange bg-opacity-10 rounded-lg">
                     {service.icon}
