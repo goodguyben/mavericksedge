@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Zap, Heart, Flask, Clock, SmileIcon, Users } from "lucide-react";
+import { Zap, Heart, FlaskConical, Clock, SmileIcon, Users } from "lucide-react";
 
 export default function WhyChooseUsSection() {
   const reasons = [
@@ -19,7 +19,7 @@ export default function WhyChooseUsSection() {
       id: "innovation",
       title: "Innovation",
       description: "We stay at the forefront of technology trends to provide cutting-edge solutions that give you a competitive edge.",
-      icon: <Flask className="w-10 h-10 text-maverick-orange" />
+      icon: <FlaskConical className="w-10 h-10 text-maverick-orange" />
     },
     {
       id: "timeliness",
