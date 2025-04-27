@@ -73,9 +73,9 @@ export default function Hero() {
         <div className="absolute w-80 h-80 rounded-full bg-maverick-amber opacity-20 blur-3xl bottom-20 right-20"></div>
       </div>
 
-      <div className="container mx-auto px-4 md:px-10 z-20 flex justify-center">
+      <div className="container mx-auto px-4 md:px-10 z-20">
         <motion.div
-          className="max-w-4xl text-center"
+          className="max-w-4xl"
           initial={{ opacity: 1, y: 0 }} // Start fully opaque
           animate={{ opacity: heroOpacity, y: 0 }} // Animate opacity based on scroll
           transition={{ duration: 0.3 }}
