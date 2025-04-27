@@ -20,11 +20,12 @@ export async function sendEmail(
   try {
     // Send the email
     const { data, error } = await resend.emails.send({
-      from: 'website@mavericks-edge.replit.app', // Default sender email
+      from: 'onboarding@resend.dev', // Resend sandbox domain (automatically verified)
       to,
       subject,
       text,
       html: html || text,
+      replyTo: 'info@mavericksedge.ca' // Reply-to address for recipient responses
     });
 
     if (error) {
