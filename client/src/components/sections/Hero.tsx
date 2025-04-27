@@ -4,9 +4,13 @@ import { ChevronDown } from "lucide-react";
 import { scrollToSection } from "@/lib/scroll";
 import { Button } from "@/components/ui/custom-button";
 
-// Let's use an embedded base64 video background gradient animation instead
+// Video background path
+const BACKGROUND_VIDEO_URL = "/videos/background.mp4";
+
 export default function Hero() {
   const [scrolled, setScrolled] = useState(false);
+  const [videoLoaded, setVideoLoaded] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -17,36 +21,43 @@ export default function Hero() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Handle video loading
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.addEventListener('loadeddata', () => {
+        setVideoLoaded(true);
+      });
+      
+      // Fallback in case video doesn't load in 3 seconds
+      const timeout = setTimeout(() => {
+        if (!videoLoaded) setVideoLoaded(true);
+      }, 3000);
+      
+      return () => clearTimeout(timeout);
+    }
+  }, [videoLoaded]);
+
   return (
     <section className="relative h-screen flex items-center overflow-hidden pt-24 md:pt-32">
-      {/* Animated background */}
+      {/* Video background */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
-        {/* Dark overlay */}
-        <div className="absolute inset-0 bg-black/70 z-10"></div>
+        {/* Dark overlay for better text readability */}
+        <div className="absolute inset-0 bg-black/65 z-10"></div>
         
-        {/* Animated gradient background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[#0D0D0D] via-[#1A1A1A] to-[#0D0D0D] bg-gradient-animate animate-gradient-slow z-0"></div>
+        {/* Video element */}
+        <video 
+          ref={videoRef}
+          autoPlay 
+          muted 
+          loop 
+          playsInline
+          className={`absolute top-0 left-0 min-w-full min-h-full object-cover transition-opacity duration-1000 ${videoLoaded ? 'opacity-100' : 'opacity-0'}`}
+        >
+          <source src={BACKGROUND_VIDEO_URL} type="video/mp4" />
+        </video>
         
-        {/* Animated particles */}
-        <div className="absolute inset-0 z-5">
-          <div className="absolute w-full h-full">
-            {[...Array(20)].map((_, i) => (
-              <div
-                key={i}
-                className="absolute rounded-full bg-maverick-orange/20"
-                style={{
-                  width: `${Math.random() * 10 + 5}px`,
-                  height: `${Math.random() * 10 + 5}px`,
-                  top: `${Math.random() * 100}%`,
-                  left: `${Math.random() * 100}%`,
-                  animation: `float ${Math.random() * 10 + 15}s linear infinite`,
-                  animationDelay: `${Math.random() * 5}s`,
-                  opacity: Math.random() * 0.5 + 0.2,
-                }}
-              />
-            ))}
-          </div>
-        </div>
+        {/* Fallback gradient background (shows while video loads or if video fails) */}
+        <div className={`absolute inset-0 bg-gradient-to-br from-[#0D0D0D] via-[#1A1A1A] to-[#0D0D0D] bg-gradient-animate animate-gradient-slow z-0 transition-opacity duration-1000 ${videoLoaded ? 'opacity-0' : 'opacity-100'}`}></div>
       </div>
 
       {/* Gradient overlays for added depth - subtle gradients over the video */}
