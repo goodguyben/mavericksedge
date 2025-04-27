@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import '../styles/footer.css';
-import Logo from './Logo';
+import logoPath from "@assets/logo_dyn-transparent-thumb2x.png";
 
 // Define a simple Footer component that uses the same Logo component as the header
 export default function FooterWrapper() {
@@ -22,14 +22,16 @@ export default function FooterWrapper() {
         <div className="footer-top">
           {/* Logo & About Section */}
           <div className="footer-logo-section">
-            <div className="footer-logo">
-              {/* Use the Logo component from the header */}
-              <div className="flex items-center">
-                <Logo size="medium" noLink={true} showText={false} />
-                <h2 className="font-heading font-bold text-2xl text-maverick-orange ml-2 mt-0">
-                  Mavericks Edge
-                </h2>
-              </div>
+            <div className="footer-logo flex justify-center sm:justify-start">
+              {/* Simple logo and text side by side */}
+              <img 
+                src={logoPath}
+                alt="Mavericks Edge Logo" 
+                className="w-14 h-14 mr-3"
+              />
+              <h2 className="font-heading font-bold text-2xl text-maverick-orange self-center">
+                Mavericks Edge
+              </h2>
             </div>
           </div>
 
