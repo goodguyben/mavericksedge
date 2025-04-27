@@ -92,8 +92,7 @@ export default function Hero() {
               />
             </span>
             </div>
-            <div>with thoughtful</div>
-            <div>innovation and heart</div>
+            <div>with innovation and heart</div>
           </h1>
           <p className="text-xl md:text-2xl text-maverick-cream/80 mt-6 mb-10 max-w-2xl font-sans leading-relaxed">
             Web development, marketing, and AI integration services tailored for
