@@ -80,25 +80,26 @@ export default function Hero() {
           animate={{ opacity: heroOpacity, y: 0 }} // Animate opacity based on scroll
           transition={{ duration: 0.3 }}
         >
-          <h1 className="text-5xl md:text-7xl font-heading font-extrabold tracking-wide leading-normal text-maverick-cream">
-            <div className="mb-3">Building{" "}
-            <span className="text-maverick-orange relative inline-block">
-              <span>resilience</span>
-              <motion.span 
-                className="absolute -bottom-1 left-0 h-1 bg-maverick-orange"
-                initial={{ width: 0 }}
-                animate={{ width: "100%" }}
-                transition={{ delay: 0.5, duration: 0.8 }}
-              />
-            </span>
+          <h1 className="text-5xl md:text-7xl font-heading font-extrabold tracking-wide leading-normal text-maverick-cream text-center">
+            <div className="inline-block">
+              Building{" "}
+              <span className="text-maverick-orange relative inline-block">
+                <span>resilience</span>
+                <motion.span 
+                  className="absolute -bottom-1 left-0 h-1 bg-maverick-orange"
+                  initial={{ width: 0 }}
+                  animate={{ width: "100%" }}
+                  transition={{ delay: 0.5, duration: 0.8 }}
+                />
+              </span>
+              {" "}with innovation and heart
             </div>
-            <div>with innovation and heart</div>
           </h1>
-          <p className="text-xl md:text-2xl text-maverick-cream/80 mt-6 mb-10 max-w-2xl font-sans leading-relaxed">
+          <p className="text-xl md:text-2xl text-maverick-cream/80 mt-6 mb-10 max-w-2xl font-sans leading-relaxed mx-auto text-center">
             Web development, marketing, and AI integration services tailored for
             SMBs and nonprofits
           </p>
-          <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+          <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 justify-center">
             <Button 
               href="/services" 
               variant="primary"
