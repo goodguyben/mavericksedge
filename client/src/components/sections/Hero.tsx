@@ -60,7 +60,7 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          <h1 className="text-5xl md:text-7xl font-heading font-extrabold leading-relaxed text-maverick-cream tracking-tighter">
+          <h1 className="text-5xl md:text-7xl font-heading font-extrabold leading-loose text-maverick-cream tracking-tighter">
             Building{" "}
             <span className="text-maverick-orange relative">
               <span>resilience</span>
