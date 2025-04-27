@@ -37,8 +37,9 @@
   margin-left: 0.75rem; /* Added spacing between logo and name */
   font-family: 'Outfit', sans-serif; /* Added font consistency */
   font-weight: 700;
-  font-size: 1.25rem;
+  font-size: 1.5rem; /* Increased base font size */
   color: #FF5630; /* Maverick orange */
+  line-height: 1.2; /* Improve line height for larger text */
 }
 
 .logo-wrapper {
@@ -213,15 +214,24 @@
     width: 100%;
     align-items: center;
     flex-wrap: wrap;
-    margin-top: -2rem; /* Move the logo section up */
+    margin-top: -1rem; /* Move the logo section up */
   }
 
   .footer-logo h2 {
+    display: block; /* Change to block for better control */
+    width: 100%; /* Full width */
     text-align: center;
-    margin-top: 1.5rem; /* Increase top margin for mobile view */
+    margin-top: 0.75rem; /* Improved spacing for mobile view */
     margin-left: 0; /* Remove left margin completely */
+    margin-bottom: 1rem; /* Add some bottom margin */
     letter-spacing: -0.02em;
     text-shadow: 0 2px 4px rgba(255, 86, 48, 0.3);
     transform: scale(1.05);
+  }
+  
+  /* Adjust logo size on mobile */
+  .footer-logo img {
+    width: auto;
+    height: 50px; /* Slightly smaller on mobile */
   }
 }

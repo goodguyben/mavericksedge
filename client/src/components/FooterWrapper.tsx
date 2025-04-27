@@ -25,7 +25,7 @@ export default function FooterWrapper() {
             <div className="footer-logo">
               {/* Use the Logo component from the header */}
               <Logo size="large" noLink={true} showText={false} />
-              <h2 className="font-heading font-bold text-6xl md:text-[10rem] text-maverick-orange ml-0 mt-6 sm:mt-6 sm:ml-0">
+              <h2 className="font-heading font-bold text-4xl md:text-5xl lg:text-6xl text-maverick-orange ml-0 mt-2 sm:mt-3 sm:ml-0">
                 Mavericks Edge
               </h2>
             </div>
