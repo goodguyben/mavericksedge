@@ -217,7 +217,7 @@ export default function ContactSection({ fullPage = false }: ContactSectionProps
                 </div>
                 <div>
                   <p className="text-sm text-[#AAAAAA]">Email</p>
-                  <p>info@mavericksedge.ca</p>
+                  <p>info@mavericksedge.com</p>
                 </div>
               </div>
 
