@@ -25,10 +25,10 @@ export default function FooterWrapper() {
             <div className="footer-logo">
               {/* Use the Logo component from the header */}
               <Logo size="medium" noLink={true} showText={false} />
+              <h2 className="font-heading font-bold text-2xl text-maverick-orange ml-2">
+                Mavericks Edge
+              </h2>
             </div>
-            <p className="footer-tagline">
-              Creative solutions for ambitious brands. Web development, marketing, and AI services designed for growth.
-            </p>
           </div>
 
           {/* Services Links */}
