@@ -4,13 +4,9 @@ import { ChevronDown } from "lucide-react";
 import { scrollToSection } from "@/lib/scroll";
 import { Button } from "@/components/ui/custom-button";
 
-// Video background URL - using a royalty-free video from Pixabay
-const BACKGROUND_VIDEO_URL = "https://cdn.pixabay.com/vimeo/750351709/team-153989.mp4?width=1280&hash=9e6c063f6d02ef36d01a4c64c21c33b65b7abb70";
-
+// Let's use an embedded base64 video background gradient animation instead
 export default function Hero() {
   const [scrolled, setScrolled] = useState(false);
-  const [videoLoaded, setVideoLoaded] = useState(false);
-  const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -21,30 +17,36 @@ export default function Hero() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Handle video loading
-  useEffect(() => {
-    if (videoRef.current) {
-      videoRef.current.addEventListener('loadeddata', () => {
-        setVideoLoaded(true);
-      });
-    }
-  }, []);
-
   return (
     <section className="relative h-screen flex items-center overflow-hidden pt-24 md:pt-32">
-      {/* Background video */}
+      {/* Animated background */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
-        <div className="absolute inset-0 bg-black/60 z-10"></div>
-        <video 
-          ref={videoRef}
-          autoPlay 
-          muted 
-          loop 
-          playsInline
-          className={`absolute top-0 left-0 min-w-full min-h-full object-cover transition-opacity duration-1000 ${videoLoaded ? 'opacity-100' : 'opacity-0'}`}
-        >
-          <source src={BACKGROUND_VIDEO_URL} type="video/mp4" />
-        </video>
+        {/* Dark overlay */}
+        <div className="absolute inset-0 bg-black/70 z-10"></div>
+        
+        {/* Animated gradient background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-[#0D0D0D] via-[#1A1A1A] to-[#0D0D0D] bg-gradient-animate animate-gradient-slow z-0"></div>
+        
+        {/* Animated particles */}
+        <div className="absolute inset-0 z-5">
+          <div className="absolute w-full h-full">
+            {[...Array(20)].map((_, i) => (
+              <div
+                key={i}
+                className="absolute rounded-full bg-maverick-orange/20"
+                style={{
+                  width: `${Math.random() * 10 + 5}px`,
+                  height: `${Math.random() * 10 + 5}px`,
+                  top: `${Math.random() * 100}%`,
+                  left: `${Math.random() * 100}%`,
+                  animation: `float ${Math.random() * 10 + 15}s linear infinite`,
+                  animationDelay: `${Math.random() * 5}s`,
+                  opacity: Math.random() * 0.5 + 0.2,
+                }}
+              />
+            ))}
+          </div>
+        </div>
       </div>
 
       {/* Gradient overlays for added depth - subtle gradients over the video */}
@@ -60,8 +62,8 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          <h1 className="text-5xl md:text-7xl font-heading font-extrabold tracking-wide leading-[2.2] text-maverick-cream">
-            Building{" "}
+          <h1 className="text-5xl md:text-7xl font-heading font-extrabold tracking-wide leading-tight text-maverick-cream">
+            building{" "}
             <span className="text-maverick-orange relative">
               <span>resilience</span>
               <motion.span 
