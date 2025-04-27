@@ -273,8 +273,8 @@ export default function ProcessCard({ step }: ProcessCardProps) {
         {step.description}
       </motion.p>
       
-      {/* Simple hover border effect instead of animation */}
-      <div className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 border-2 border-maverick-orange transition-opacity duration-300" style={{ zIndex: -1 }} />
+      {/* Simple hover border effect instead of animation - thinner border */}
+      <div className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 border border-maverick-orange transition-opacity duration-300" style={{ zIndex: -1 }} />
     </motion.div>
   );
 }
