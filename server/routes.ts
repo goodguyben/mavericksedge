@@ -6,6 +6,7 @@ import { z } from "zod";
 import express from "express";
 import path from "path";
 import { sendEmail, formatContactEmail } from "./email";
+import { sendEmailWithNodemailer } from "./nodemailer";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // Serve static files from the public directory
@@ -48,18 +49,36 @@ export async function registerRoutes(app: Express): Promise<Server> {
       );
       
       try {
-        // Send email to the provided email address
-        await sendEmail(
-          'info@mavericksedge.ca', // Send to this address
-          'New Contact Form Submission - Mavericks Edge Website',
-          text,
-          html
-        );
-        
-        console.log('Email sent successfully to info@mavericksedge.ca');
+        // First try with Resend
+        try {
+          await sendEmail(
+            'bezal.john@gmail.com', // Must send to the account owner's email in sandbox mode
+            'New Contact Form Submission - Mavericks Edge Website',
+            text,
+            html
+          );
+          
+          console.log('Email sent with Resend to bezal.john@gmail.com');
+        } catch (resendError) {
+          console.log('Resend failed, trying Nodemailer instead:', resendError.message);
+          
+          // Fallback to Nodemailer if Resend fails
+          const result = await sendEmailWithNodemailer(
+            'info@mavericksedge.ca', // This will create a test message viewable at preview URL
+            'New Contact Form Submission - Mavericks Edge Website',
+            text,
+            html
+          );
+          
+          // If successful, log the preview URL
+          if (result.previewURL) {
+            console.log('Nodemailer test email sent! View it here:', result.previewURL);
+            console.log('IMPORTANT: This is a test email with a preview link. In production, emails should be sent directly to info@mavericksedge.ca');
+          }
+        }
       } catch (emailError) {
         // Log the error but don't fail the request
-        console.error('Failed to send email notification:', emailError);
+        console.error('Failed to send email notification with all methods:', emailError);
         // We'll still return success to the user as their submission was saved
       }
       

@@ -18,6 +18,15 @@ export async function sendEmail(
   html?: string
 ) {
   try {
+    console.log('Attempting to send email with Resend API...');
+    console.log('API Key present:', !!process.env.RESEND_API_KEY);
+    console.log('Email details:', { 
+      to, 
+      subject,
+      textLength: text?.length || 0,
+      htmlLength: html?.length || 0
+    });
+    
     // Send the email
     const { data, error } = await resend.emails.send({
       from: 'onboarding@resend.dev', // Resend sandbox domain (automatically verified)
@@ -28,10 +37,14 @@ export async function sendEmail(
       replyTo: 'info@mavericksedge.ca' // Reply-to address for recipient responses
     });
 
+    console.log('Resend API response:', { data, error });
+
     if (error) {
       console.error('Email sending error:', error);
       throw new Error(error.message);
     }
+    
+    console.log('Email sent successfully!', { messageId: data?.id });
 
     return { success: true, messageId: data?.id };
   } catch (error) {
