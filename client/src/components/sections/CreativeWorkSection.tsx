@@ -72,22 +72,28 @@ export default function CreativeWorkSection() {
     
     doubleItems();
     
-    // Automatic scrolling animation
-    const autoScroll = () => {
-      if (scrollContainer) {
-        // If we've scrolled to the end of the original items, reset to start
-        if (scrollContainer.scrollLeft >= (scrollContainer.scrollWidth / 2)) {
-          scrollContainer.scrollLeft = 0;
-        } else {
-          scrollContainer.scrollLeft += 1; // Slow scrolling speed
-        }
-      }
-    };
+    // Check if it's not a mobile device before setting up auto-scroll
+    const isMobile = window.innerWidth < 768;
+    let scrollInterval: NodeJS.Timeout | null = null;
     
-    const scrollInterval = setInterval(autoScroll, 20); // Adjust timing for scroll speed
+    if (!isMobile) {
+      // Automatic scrolling animation for desktop only
+      const autoScroll = () => {
+        if (scrollContainer) {
+          // If we've scrolled to the end of the original items, reset to start
+          if (scrollContainer.scrollLeft >= (scrollContainer.scrollWidth / 2)) {
+            scrollContainer.scrollLeft = 0;
+          } else {
+            scrollContainer.scrollLeft += 1; // Slow scrolling speed
+          }
+        }
+      };
+      
+      scrollInterval = setInterval(autoScroll, 20); // Adjust timing for scroll speed
+    }
     
     return () => {
-      clearInterval(scrollInterval);
+      if (scrollInterval) clearInterval(scrollInterval);
     };
   }, []);
 
@@ -116,8 +122,8 @@ export default function CreativeWorkSection() {
         <div className="relative w-full overflow-hidden">
           <div 
             ref={scrollRef}
-            className="flex space-x-6 overflow-x-auto scrollbar-hide py-8"
-            style={{ scrollBehavior: 'smooth' }}
+            className="flex space-x-6 overflow-x-auto scrollbar-hide py-8 touch-pan-x"
+            style={{ scrollBehavior: 'smooth', WebkitOverflowScrolling: 'touch' }}
           >
             {portfolioItems.map((item) => (
               <motion.div
@@ -146,6 +152,11 @@ export default function CreativeWorkSection() {
           {/* Overlay gradients for scroll effect */}
           <div className="absolute top-0 left-0 h-full w-24 bg-gradient-to-r from-[#0D0D0D] to-transparent z-10"></div>
           <div className="absolute top-0 right-0 h-full w-24 bg-gradient-to-l from-[#0D0D0D] to-transparent z-10"></div>
+          
+          {/* Mobile scroll indicator */}
+          <div className="md:hidden text-center mt-4 text-maverick-orange text-sm">
+            <span>← Swipe to explore →</span>
+          </div>
         </div>
         
         {/* Button removed */}

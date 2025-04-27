@@ -29,3 +29,33 @@
 .hover-card:hover::after {
   opacity: 1;
 }
+
+/* Process cards hover effect */
+.hover-card-wrapper {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+}
+
+.hover-card-wrapper:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 25px -5px rgba(255, 86, 48, 0.2);
+}
+
+.hover-card-wrapper::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0;
+  border-radius: inherit;
+  box-shadow: 0 0 25px 3px rgba(255, 86, 48, 0.3);
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.hover-card-wrapper:hover::after {
+  opacity: 1;
+}
