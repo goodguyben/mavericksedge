@@ -213,12 +213,12 @@
     width: 100%;
     align-items: center;
     flex-wrap: wrap;
+    margin-top: -2rem; /* Move the logo section up */
   }
 
   .footer-logo h2 {
     text-align: center;
     margin-top: 0.25rem; /* Reduce top margin to bring closer to logo */
     margin-left: 0; /* Remove left margin completely */
-    font-size: 2.25rem; /* Further increase font size in mobile view */
   }
 }
