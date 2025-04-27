@@ -4,6 +4,7 @@ import ProcessSection from "@/components/sections/ProcessSection";
 import ContactSection from "@/components/sections/ContactSection";
 import WhyChooseUsSection from "@/components/sections/WhyChooseUsSection";
 import WhatWeDoSection from "@/components/sections/WhatWeDoSection";
+import CreativeWorkSection from "@/components/sections/CreativeWorkSection";
 
 export default function Home() {
   return (
@@ -15,6 +16,7 @@ export default function Home() {
     >
       <Hero />
       <WhyChooseUsSection />
+      <CreativeWorkSection />
       <WhatWeDoSection />
       <ProcessSection />
       <ContactSection />

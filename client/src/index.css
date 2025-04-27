@@ -250,7 +250,8 @@
 }
 
 /* Horizontal scroll container */
-.horizontal-scroll-container {
+.horizontal-scroll-container,
+.scrollbar-hide {
   overflow-x: auto;
   overflow-y: hidden;
   white-space: nowrap;
@@ -258,7 +259,8 @@
   scrollbar-width: none;
 }
 
-.horizontal-scroll-container::-webkit-scrollbar {
+.horizontal-scroll-container::-webkit-scrollbar,
+.scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
 
