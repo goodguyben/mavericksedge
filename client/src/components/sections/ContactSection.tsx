@@ -232,7 +232,7 @@ export default function ContactSection({ fullPage = false }: ContactSectionProps
                 </div>
                 <div>
                   <p className="text-sm text-[#AAAAAA]">Phone</p>
-                  <p>+1 (123) 456-7890</p>
+                  <p>+1 (250) 883-8849</p>
                 </div>
               </div>
 
@@ -252,8 +252,8 @@ export default function ContactSection({ fullPage = false }: ContactSectionProps
                 </div>
                 <div>
                   <p className="text-sm text-[#AAAAAA]">Address</p>
-                  <p>123 Innovation Drive, Suite 200</p>
-                  <p>Vancouver, BC, Canada</p>
+                  <p>6908 100 Avenue NW, Suite B</p>
+                  <p>Edmonton, AB T6A 0G2, Canada</p>
                 </div>
               </div>
             </div>
