@@ -1,31 +1,43 @@
 import { motion } from "framer-motion";
-import { Award, Zap, Globe, Shield } from "lucide-react";
+import { Zap, Heart, Flask, Clock, SmileIcon, Users } from "lucide-react";
 
 export default function WhyChooseUsSection() {
   const reasons = [
     {
-      id: "expertise",
-      title: "Unparalleled Expertise",
-      description: "Our team brings decades of combined experience across design, development, and marketing disciplines.",
-      icon: <Award className="w-10 h-10 text-maverick-orange" />
-    },
-    {
-      id: "innovation",
-      title: "Cutting-Edge Innovation",
-      description: "We stay ahead of emerging technologies and trends to deliver solutions that are both current and future-proof.",
+      id: "efficiency",
+      title: "Efficiency",
+      description: "We optimize processes and leverage cutting-edge technology to deliver results faster and more cost-effectively.",
       icon: <Zap className="w-10 h-10 text-maverick-orange" />
     },
     {
-      id: "global",
-      title: "Global Perspective",
-      description: "Working with clients worldwide has given us insights into diverse markets and international best practices.",
-      icon: <Globe className="w-10 h-10 text-maverick-orange" />
+      id: "transparency",
+      title: "Transparency",
+      description: "We believe in open communication and keeping you informed throughout every step of the process.",
+      icon: <Heart className="w-10 h-10 text-maverick-orange" />
     },
     {
-      id: "security",
-      title: "Robust Security",
-      description: "We build with security in mind from the ground up, protecting your business and customer data.",
-      icon: <Shield className="w-10 h-10 text-maverick-orange" />
+      id: "innovation",
+      title: "Innovation",
+      description: "We stay at the forefront of technology trends to provide cutting-edge solutions that give you a competitive edge.",
+      icon: <Flask className="w-10 h-10 text-maverick-orange" />
+    },
+    {
+      id: "timeliness",
+      title: "Timeliness",
+      description: "We respect your time and deliver projects on schedule without compromising on quality or attention to detail.",
+      icon: <Clock className="w-10 h-10 text-maverick-orange" />
+    },
+    {
+      id: "empathy",
+      title: "Empathy",
+      description: "We understand the challenges you face and design solutions with your specific needs and constraints in mind.",
+      icon: <SmileIcon className="w-10 h-10 text-maverick-orange" />
+    },
+    {
+      id: "partnership",
+      title: "Partnership",
+      description: "We see ourselves as an extension of your team, working collaboratively to achieve your business goals.",
+      icon: <Users className="w-10 h-10 text-maverick-orange" />
     }
   ];
 
@@ -50,7 +62,7 @@ export default function WhyChooseUsSection() {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {reasons.map((reason, index) => (
             <motion.div
               key={reason.id}
