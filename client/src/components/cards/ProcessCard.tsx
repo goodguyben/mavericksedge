@@ -273,9 +273,9 @@ export default function ProcessCard({ step }: ProcessCardProps) {
         {step.description}
       </motion.p>
       
-      {/* Animated border glow effect on hover - matched to What We Do section */}
+      {/* Animated border glow effect on hover - adjusted to be behind content */}
       <motion.div
-        className="absolute -inset-0.5 rounded-xl opacity-0 group-hover:opacity-100 bg-gradient-to-r from-maverick-orange via-maverick-amber to-maverick-orange blur-sm group-hover:blur"
+        className="absolute -inset-0.5 rounded-xl opacity-0 group-hover:opacity-100 bg-gradient-to-r from-maverick-orange via-maverick-amber to-maverick-orange blur-sm"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 0 }}
         whileHover={{ opacity: 0.5 }}
