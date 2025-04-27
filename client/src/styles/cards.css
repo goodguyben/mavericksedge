@@ -38,7 +38,7 @@
 
 .hover-card-wrapper:hover {
   transform: translateY(-8px);
-  box-shadow: 0 8px 20px -5px rgba(255, 86, 48, 0.15);
+  box-shadow: 0 10px 25px -5px rgba(255, 86, 48, 0.25);
 }
 
 .hover-card-wrapper::after {
@@ -50,7 +50,7 @@
   bottom: 0;
   opacity: 0;
   border-radius: inherit;
-  box-shadow: 0 0 20px 2px rgba(255, 86, 48, 0.2);
+  box-shadow: 0 0 25px 3px rgba(255, 86, 48, 0.3);
   transition: opacity 0.3s ease;
   pointer-events: none;
   z-index: -1;

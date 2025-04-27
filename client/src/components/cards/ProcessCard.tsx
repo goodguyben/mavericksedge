@@ -1,4 +1,3 @@
-
 import { ReactNode, useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
@@ -15,16 +14,16 @@ interface ProcessCardProps {
 export default function ProcessCard({ step }: ProcessCardProps) {
   const stepFormatted = step.step.toString().padStart(2, '0');
   const [animationState, setAnimationState] = useState(false);
-  
+
   // Start animation after a delay based on the step number
   useEffect(() => {
     const timeout = setTimeout(() => {
       setAnimationState(true);
     }, 500 + step.step * 200);
-    
+
     return () => clearTimeout(timeout);
   }, [step.step]);
-  
+
   // Define unique animations for each process step
   const animationVariants: Record<string, any> = {
     discovery: {
@@ -113,7 +112,7 @@ export default function ProcessCard({ step }: ProcessCardProps) {
       transition: { duration: 5, repeat: Infinity, ease: "easeInOut" }
     }
   };
-  
+
   // Fallback animations for different step numbers
   const fallbackAnimations: Record<number, any> = {
     1: {
@@ -187,7 +186,7 @@ export default function ProcessCard({ step }: ProcessCardProps) {
       transition: { duration: 8, repeat: Infinity, ease: "easeInOut" }
     }
   };
-  
+
   // Get the animation based on the step id OR step number
   const currentAnimation = 
     animationVariants[step.id] || 
@@ -196,13 +195,13 @@ export default function ProcessCard({ step }: ProcessCardProps) {
       animate: { scale: [1, 1.1, 1] }, 
       transition: { duration: step.step + 1.5, repeat: Infinity } 
     };
-  
+
   return (
     <motion.div 
       className="bg-[#121212] p-8 rounded-xl min-w-[280px] md:min-w-[350px] flex-shrink-0 border border-gray-800 relative group hover:border-maverick-orange transition-colors duration-300"
       whileHover={{ 
         y: -10,
-        boxShadow: "0 10px 30px -15px rgba(255, 86, 48, 0.3)",
+        boxShadow: "0 10px 20px rgba(0, 0, 0, 0.1)", // Assumed shadow style from "What We Do" section
         transition: { duration: 0.3 }
       }}
     >
@@ -254,7 +253,7 @@ export default function ProcessCard({ step }: ProcessCardProps) {
           {stepFormatted}
         </motion.span>
       </div>
-      
+
       <motion.h3 
         className="text-xl font-semibold mb-3 font-heading"
         initial={{ opacity: 0, y: 10 }}
@@ -263,7 +262,7 @@ export default function ProcessCard({ step }: ProcessCardProps) {
       >
         {step.title}
       </motion.h3>
-      
+
       <motion.p 
         className="text-[#AAAAAA]"
         initial={{ opacity: 0 }}
@@ -272,7 +271,7 @@ export default function ProcessCard({ step }: ProcessCardProps) {
       >
         {step.description}
       </motion.p>
-      
+
       {/* Simple hover border effect instead of animation - thinner border */}
       <div className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 border border-maverick-orange transition-opacity duration-300" style={{ zIndex: -1 }} />
     </motion.div>
