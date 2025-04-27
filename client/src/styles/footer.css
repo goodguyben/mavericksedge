@@ -229,9 +229,11 @@
     transform: scale(1.05);
   }
   
-  /* Adjust logo size on mobile */
+  /* Ensure logo display for mobile */
   .footer-logo img {
-    width: auto;
-    height: 50px; /* Slightly smaller on mobile */
+    width: auto !important; /* Override any other width settings */
+    height: auto !important; /* Allow natural height */
+    max-width: 100%; /* Ensure it doesn't overflow */
+    max-height: 80px; /* Cap the height */
   }
 }
