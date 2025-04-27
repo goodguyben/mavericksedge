@@ -58,7 +58,7 @@
 .footer-heading {
   font-family: 'Outfit', sans-serif;
   font-weight: 700;
-  font-size: 1.25rem;
+  font-size: 1.125rem;
   margin-bottom: 1.25rem;
   color: #FF5630; /* Maverick orange */
   letter-spacing: -0.03em;
@@ -79,7 +79,7 @@
   text-decoration: none;
   transition: color 0.3s ease;
   font-family: 'Space Grotesk', sans-serif;
-  font-size: 1rem;
+  font-size: 0.925rem;
   position: relative;
   display: inline-block;
   font-weight: 450;
@@ -143,7 +143,7 @@
 
 .footer-copyright {
   font-family: 'Space Grotesk', sans-serif;
-  font-size: 0.95rem;
+  font-size: 0.875rem;
   color: rgba(245, 240, 236, 0.7); /* Light cream with transparency */
   font-weight: 400;
 }
@@ -219,6 +219,6 @@
     text-align: center;
     margin-top: 1.25rem; /* Further increase top margin in phone view */
     margin-left: 0; /* Remove left margin completely */
-    font-size: 1.875rem; /* Increase font size in mobile view */
+    font-size: 2rem; /* Increase font size in mobile view */
   }
 }
