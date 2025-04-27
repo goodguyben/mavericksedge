@@ -41,16 +41,21 @@ export default function ContactSection({ fullPage = false }: ContactSectionProps
     defaultValues: {
       name: "",
       email: "",
+      phone: "",
       service: "",
       message: ""
     }
   });
 
   const mutation = useMutation({
-    mutationFn: (values: ContactFormValues) =>
-      apiRequest("POST", "/api/contact", values),
+    mutationFn: (values: ContactFormValues) => {
+      console.log("Submitting form with values:", values);
+      return apiRequest("POST", "/api/contact", values);
+    },
     onSuccess: async (response) => {
+      console.log("Form submission successful:", response);
       const data = await response.json();
+      console.log("Response data:", data);
       toast({
         title: "Success!",
         description: data.message,
@@ -58,6 +63,7 @@ export default function ContactSection({ fullPage = false }: ContactSectionProps
       form.reset();
     },
     onError: (error: Error) => {
+      console.error("Form submission error:", error);
       toast({
         title: "Error",
         description: error.message || "Something went wrong. Please try again.",

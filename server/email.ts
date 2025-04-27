@@ -65,7 +65,8 @@ export function formatContactEmail(
   name: string,
   email: string,
   service: string,
-  message: string
+  message: string,
+  phone?: string
 ) {
   const serviceMap: { [key: string]: string } = {
     'web-development': 'Web Development',
@@ -82,7 +83,7 @@ New Contact Form Submission
 
 Name: ${name}
 Email: ${email}
-Service: ${serviceName}
+${phone ? `Phone: ${phone}\n` : ''}Service: ${serviceName}
 Message:
 ${message}
 
@@ -117,6 +118,11 @@ This message was sent from the Mavericks Edge website contact form.
       <div class="field">
         <span class="label">Email:</span> <a href="mailto:${email}">${email}</a>
       </div>
+      ${phone ? `
+      <div class="field">
+        <span class="label">Phone:</span> ${phone}
+      </div>
+      ` : ''}
       <div class="field">
         <span class="label">Service:</span> ${serviceName}
       </div>

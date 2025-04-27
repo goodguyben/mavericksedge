@@ -36,6 +36,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const submission = await storage.createContactSubmission({
         name: validatedData.name,
         email: validatedData.email,
+        phone: validatedData.phone || "",
         service: validatedData.service,
         message: validatedData.message
       });
@@ -45,7 +46,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
         validatedData.name,
         validatedData.email,
         validatedData.service,
-        validatedData.message
+        validatedData.message,
+        validatedData.phone
       );
       
       try {
@@ -59,8 +61,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
           );
           
           console.log('Email sent with Resend to bezal.john@gmail.com');
-        } catch (resendError) {
-          console.log('Resend failed, trying Nodemailer instead:', resendError.message);
+        } catch (error: any) {
+          console.log('Resend failed, trying Nodemailer instead:', error?.message || 'Unknown error');
           
           // Fallback to Nodemailer if Resend fails
           const result = await sendEmailWithNodemailer(
