@@ -217,7 +217,8 @@
 
   .footer-logo h2 {
     text-align: center;
-    margin-top: 0.75rem; /* Increase top margin in phone view */
+    margin-top: 1rem; /* Further increase top margin in phone view */
     margin-left: 0; /* Remove left margin completely */
+    font-size: 1.75rem; /* Increase font size in mobile view */
   }
 }
