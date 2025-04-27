@@ -5,6 +5,7 @@ import { contactSubmissionSchema } from "@shared/schema";
 import { z } from "zod";
 import express from "express";
 import path from "path";
+import { sendEmail, formatContactEmail } from "./email";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // Serve static files from the public directory
@@ -37,6 +38,30 @@ export async function registerRoutes(app: Express): Promise<Server> {
         service: validatedData.service,
         message: validatedData.message
       });
+      
+      // Format the email content
+      const { text, html } = formatContactEmail(
+        validatedData.name,
+        validatedData.email,
+        validatedData.service,
+        validatedData.message
+      );
+      
+      try {
+        // Send email to the provided email address
+        await sendEmail(
+          'info@mavericksedge.ca', // Send to this address
+          'New Contact Form Submission - Mavericks Edge Website',
+          text,
+          html
+        );
+        
+        console.log('Email sent successfully to info@mavericksedge.ca');
+      } catch (emailError) {
+        // Log the error but don't fail the request
+        console.error('Failed to send email notification:', emailError);
+        // We'll still return success to the user as their submission was saved
+      }
       
       res.status(201).json({ success: true, message: "Thank you for your message! We will get back to you soon." });
     } catch (error) {
