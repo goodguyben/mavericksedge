@@ -35,7 +35,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
         name: validatedData.name,
         email: validatedData.email,
         service: validatedData.service,
-        message: validatedData.message
+        message: validatedData.message,
+        contactEmail: "info@mavericksedge.ca" // Set the contact email
       });
       
       res.status(201).json({ success: true, message: "Thank you for your message! We will get back to you soon." });
