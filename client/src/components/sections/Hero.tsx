@@ -18,13 +18,31 @@ export default function Hero() {
 
   return (
     <section className="relative h-screen flex items-center bg-[#121212] overflow-hidden pt-24 md:pt-32">
-      {/* Background gradients */}
-      <div className="absolute w-full h-full top-0 left-0 opacity-20 pointer-events-none">
+      {/* Background Video */}
+      <div className="absolute w-full h-full top-0 left-0 overflow-hidden">
+        <div className="absolute inset-0 bg-black/60 z-10"></div>
+        <video
+          className="absolute h-full w-full object-cover"
+          autoPlay
+          muted
+          loop
+          playsInline
+        >
+          <source 
+            src="https://static.videezy.com/system/resources/previews/000/046/101/original/4K_53.mp4" 
+            type="video/mp4"
+          />
+          Your browser does not support the video tag.
+        </video>
+      </div>
+      
+      {/* Background gradients for added effect */}
+      <div className="absolute w-full h-full top-0 left-0 opacity-20 pointer-events-none z-20">
         <div className="absolute w-96 h-96 rounded-full bg-maverick-orange opacity-30 blur-3xl -top-20 -left-20"></div>
         <div className="absolute w-80 h-80 rounded-full bg-maverick-amber opacity-20 blur-3xl bottom-20 right-20"></div>
       </div>
 
-      <div className="container mx-auto px-4 md:px-10 z-10">
+      <div className="container mx-auto px-4 md:px-10 z-30 relative">
         <motion.div
           className="max-w-4xl"
           initial={{ opacity: 0, y: 20 }}
@@ -66,7 +84,7 @@ export default function Hero() {
       </div>
 
       <motion.div
-        className="scroll-indicator cursor-pointer absolute bottom-10 left-1/2 transform -translate-x-1/2"
+        className="scroll-indicator cursor-pointer absolute bottom-10 left-1/2 transform -translate-x-1/2 z-40"
         animate={{ 
           opacity: scrolled ? 0 : 1,
           y: scrolled ? 10 : 0 
