@@ -40,9 +40,17 @@ export default function Header() {
       <div className="container mx-auto flex justify-between items-center">
         <Link href="/" className="flex items-center">
           <Logo size={isMobile ? "small" : "large"} noLink={true} showText={false}/>
-          <span className="font-heading font-bold text-2xl sm:text-3xl md:text-4xl text-maverick-orange ml-1 truncate">
-            {isMobile ? "Mavericks" : "Mavericks Edge"}
-          </span>
+          <div className="flex flex-col ml-1">
+            <span className="font-heading font-bold text-2xl sm:text-3xl md:text-4xl text-maverick-orange leading-tight">
+              Mavericks
+            </span>
+            <span className="font-heading font-bold text-xl sm:text-2xl md:text-3xl text-maverick-orange leading-none ml-6 sm:ml-8 -mt-1 relative">
+              <span className="relative z-10 inline-block">
+                Edge
+                <span className="absolute -bottom-1 left-0 w-full h-[3px] bg-maverick-orange/70 rounded-full transform -skew-x-6"></span>
+              </span>
+            </span>
+          </div>
         </Link>
 
         {/* Mobile Menu Button */}
