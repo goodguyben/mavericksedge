@@ -204,3 +204,16 @@
   margin: 0;
   flex: 1;
 }
+
+/* Phone view centering for logo and company name */
+@media (max-width: 639px) {
+  .footer-logo {
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+  }
+
+  .footer-logo h2 {
+    text-align: center;
+  }
+}
