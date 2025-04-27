@@ -58,8 +58,8 @@ export default function CustomCursor() {
     left: `${position.x}px`,
     top: `${position.y}px`,
     opacity: isVisible ? (isHovering ? "0.4" : "0.7") : "0",
-    width: isHovering ? "40px" : "20px",
-    height: isHovering ? "40px" : "20px",
+    width: isHovering ? "30px" : "20px",
+    height: isHovering ? "30px" : "20px",
     transform: `translate(-50%, -50%) ${isClicking ? "scale(0.5)" : "scale(1)"}`,
   };
 
