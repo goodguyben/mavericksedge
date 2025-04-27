@@ -22,10 +22,10 @@ export default function FooterWrapper() {
         <div className="footer-top">
           {/* Logo & About Section */}
           <div className="footer-logo-section">
-            <div className="footer-logo">
+            <div className="footer-logo flex flex-col sm:flex-row items-center sm:items-start justify-center sm:justify-start w-full text-center sm:text-left">
               {/* Use the Logo component from the header */}
               <Logo size="medium" noLink={true} showText={false} />
-              <h2 className="font-heading font-bold text-2xl text-maverick-orange ml-2">
+              <h2 className="font-heading font-bold text-2xl text-maverick-orange mt-2 sm:mt-0 sm:ml-2">
                 Mavericks Edge
               </h2>
             </div>
@@ -34,7 +34,7 @@ export default function FooterWrapper() {
           {/* Navigation Links Container - wraps the three nav sections */}
           <div className="footer-nav-container">
             {/* Services Links */}
-            <div className="footer-nav">
+            <div className="footer-nav text-center sm:text-left">
               <h3 className="footer-heading">Services</h3>
               <ul className="footer-links">
                 <li className="footer-link"><a href="/services">Web Development</a></li>
@@ -46,7 +46,7 @@ export default function FooterWrapper() {
             </div>
 
             {/* Resources Links */}
-            <div className="footer-nav">
+            <div className="footer-nav text-center sm:text-left">
               <h3 className="footer-heading">Resources</h3>
               <ul className="footer-links">
                 <li className="footer-link"><a href="/blog">Blog</a></li>
@@ -58,7 +58,7 @@ export default function FooterWrapper() {
             </div>
 
             {/* Legal Links */}
-            <div className="footer-nav">
+            <div className="footer-nav text-center sm:text-left">
               <h3 className="footer-heading">Legal</h3>
               <ul className="footer-links">
                 <li className="footer-link"><a href="/privacy">Privacy Policy</a></li>
@@ -75,11 +75,11 @@ export default function FooterWrapper() {
         <div className="footer-divider"></div>
 
         {/* Footer Bottom */}
-        <div className="footer-bottom">
-          <div className="footer-copyright">
+        <div className="footer-bottom flex-col sm:flex-row items-center">
+          <div className="footer-copyright text-center sm:text-left w-full sm:w-auto mb-4 sm:mb-0">
             &copy; <span id="currentYear">2025</span> Mavericks Edge. All rights reserved.
           </div>
-          <div className="footer-social">
+          <div className="footer-social justify-center sm:justify-start">
             <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="social-icon">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path>
