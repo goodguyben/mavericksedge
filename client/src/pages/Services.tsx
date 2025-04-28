@@ -61,13 +61,11 @@ export default function Services() {
       exit={{ opacity: 0 }}
       transition={{ duration: 0.5 }}
     >
-      <div className="pt-44 md:pt-48 pb-24 px-5 md:px-10 bg-[#121212] relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-1/3 h-full bg-maverick-orange opacity-5 blur-[150px] rounded-full transform translate-x-1/2"></div>
-        <div className="absolute bottom-0 left-0 w-1/4 h-1/2 bg-maverick-orange opacity-5 blur-[120px] rounded-full transform -translate-x-1/3"></div>
-        <div className="container mx-auto relative z-10">
+      <div className="pt-44 md:pt-48 pb-16 px-5 md:px-10 bg-[#121212]">
+        <div className="container mx-auto">
           <div className="max-w-3xl">
-            <h1 className="text-5xl md:text-7xl font-bold mb-8 font-heading bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-300">Our Services</h1>
-            <p className="text-xl text-[#BBBBBB] max-w-3xl leading-relaxed">
+            <h1 className="text-5xl md:text-7xl font-bold mb-6 font-heading">Our Services</h1>
+            <p className="text-xl text-[#AAAAAA] max-w-3xl">
               Comprehensive digital solutions designed to help your business thrive in the digital landscape.
               From web development to marketing and AI integration, we've got you covered.
             </p>

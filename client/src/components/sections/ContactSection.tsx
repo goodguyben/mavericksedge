@@ -77,20 +77,18 @@ export default function ContactSection({ fullPage = false }: ContactSectionProps
   };
 
   return (
-    <section id="contact" className="py-32 px-5 md:px-10 bg-[#121212] relative overflow-hidden">
-      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-maverick-orange/30 to-transparent"></div>
-      <div className="absolute bottom-0 right-0 w-1/3 h-1/2 bg-maverick-orange opacity-5 blur-[100px] rounded-full"></div>
-      <div className="container mx-auto relative z-10">
+    <section id="contact" className="py-24 px-5 md:px-10 bg-[#121212]">
+      <div className="container mx-auto">
         {!fullPage && (
           <motion.div 
-            className="text-center mb-20"
+            className="text-center mb-16"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-300">Get in Touch</h2>
-            <p className="text-[#BBBBBB] text-xl max-w-2xl mx-auto leading-relaxed">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">Get in Touch</h2>
+            <p className="text-[#AAAAAA] text-xl max-w-2xl mx-auto">
               Ready to take your business to the next level? Contact us today to discuss your project
             </p>
           </motion.div>
@@ -114,7 +112,7 @@ export default function ContactSection({ fullPage = false }: ContactSectionProps
                       <FormControl>
                         <Input
                           placeholder="Your name"
-                          className="w-full p-4 bg-[#1E1E1E] border border-gray-700 rounded-lg focus:outline-none focus:border-maverick-orange transition duration-300 shadow-inner shadow-black/20 backdrop-blur-sm"
+                          className="w-full p-3 bg-[#1E1E1E] border border-gray-700 rounded-lg focus:outline-none focus:border-maverick-orange transition duration-300"
                           {...field}
                         />
                       </FormControl>
@@ -133,7 +131,7 @@ export default function ContactSection({ fullPage = false }: ContactSectionProps
                         <Input
                           type="email"
                           placeholder="your.email@example.com"
-                          className="w-full p-4 bg-[#1E1E1E] border border-gray-700 rounded-lg focus:outline-none focus:border-maverick-orange transition duration-300 shadow-inner shadow-black/20 backdrop-blur-sm"
+                          className="w-full p-3 bg-[#1E1E1E] border border-gray-700 rounded-lg focus:outline-none focus:border-maverick-orange transition duration-300"
                           {...field}
                         />
                       </FormControl>
@@ -152,7 +150,7 @@ export default function ContactSection({ fullPage = false }: ContactSectionProps
                         <Input
                           type="tel"
                           placeholder="(123) 456-7890"
-                          className="w-full p-4 bg-[#1E1E1E] border border-gray-700 rounded-lg focus:outline-none focus:border-maverick-orange transition duration-300 shadow-inner shadow-black/20 backdrop-blur-sm"
+                          className="w-full p-3 bg-[#1E1E1E] border border-gray-700 rounded-lg focus:outline-none focus:border-maverick-orange transition duration-300"
                           {...field}
                         />
                       </FormControl>
@@ -172,7 +170,7 @@ export default function ContactSection({ fullPage = false }: ContactSectionProps
                         defaultValue={field.value}
                       >
                         <FormControl>
-                          <SelectTrigger className="w-full p-4 bg-[#1E1E1E] border border-gray-700 rounded-lg focus:outline-none focus:border-maverick-orange transition duration-300 shadow-inner shadow-black/20 backdrop-blur-sm">
+                          <SelectTrigger className="w-full p-3 bg-[#1E1E1E] border border-gray-700 rounded-lg focus:outline-none focus:border-maverick-orange transition duration-300">
                             <SelectValue placeholder="Select a service" />
                           </SelectTrigger>
                         </FormControl>
@@ -197,7 +195,7 @@ export default function ContactSection({ fullPage = false }: ContactSectionProps
                       <FormControl>
                         <Textarea
                           placeholder="Tell us about your project"
-                          className="w-full p-4 bg-[#1E1E1E] border border-gray-700 rounded-lg focus:outline-none focus:border-maverick-orange transition duration-300 min-h-[150px] shadow-inner shadow-black/20 backdrop-blur-sm"
+                          className="w-full p-3 bg-[#1E1E1E] border border-gray-700 rounded-lg focus:outline-none focus:border-maverick-orange transition duration-300 min-h-[120px]"
                           {...field}
                         />
                       </FormControl>
@@ -222,7 +220,7 @@ export default function ContactSection({ fullPage = false }: ContactSectionProps
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="bg-[#1E1E1E] p-10 rounded-xl border border-gray-800/40 shadow-xl backdrop-blur-sm"
+            className="bg-[#1E1E1E] p-8 rounded-xl"
           >
             <h3 className="text-2xl font-semibold mb-6">Contact Information</h3>
 
