@@ -18,13 +18,18 @@
   background-color: #F15A29;
   color: #FFFFFF !important; /* Force white text */
   border: none;
-  border-radius: 0.5rem;
+  border-radius: 9999px; /* Full rounded like non-orange buttons */
   display: inline-flex;
   align-items: center;
   justify-content: center;
   transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 300ms;
+}
+
+/* Subscribe button specific class to keep it with different corner radius */
+.subscribe-button {
+  border-radius: 0.5rem !important; /* Override the rounded corners */
 }
 
 .maverick-button-primary:hover {
