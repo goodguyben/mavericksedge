@@ -78,11 +78,11 @@ export default function Header() {
                 : 'text-white hover:text-maverick-orange'
             }`}>
               Services
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1 transform transition-transform duration-300 group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
               </svg>
             </Link>
-            <div className="absolute left-0 mt-2 w-56 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+            <div className="absolute left-0 mt-2 w-56 opacity-0 invisible group-hover:opacity-100 group-hover:visible transform group-hover:translate-y-0 translate-y-[-10px] transition-all duration-300 ease-in-out z-50">
               <div className="py-1 bg-[#1A1A1A] border border-gray-800 rounded-md shadow-lg">
                 <Link href="/services/web" className={`block px-4 py-2 text-base ${isCurrentPath('/services/web') ? 'text-maverick-orange' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'}`}>
                   Web & Digital Solutions
@@ -134,20 +134,23 @@ export default function Header() {
                     onClick={(e) => {
                       e.preventDefault();
                       const dropdown = document.getElementById('mobile-services-dropdown');
+                      const chevron = document.getElementById('mobile-services-chevron');
                       if (dropdown) {
-                        dropdown.classList.toggle('hidden');
+                        dropdown.classList.toggle('max-h-0');
+                        dropdown.classList.toggle('max-h-48');
+                        dropdown.classList.toggle('opacity-0');
+                        dropdown.classList.toggle('opacity-100');
+                        if (chevron) {
+                          chevron.classList.toggle('rotate-180');
+                        }
                       }
                     }}
-                    className={`cursor-pointer inline-flex items-center justify-center text-lg ${
-                      isCurrentPath('/services') || isCurrentPath('/services/web') || isCurrentPath('/services/marketing') || isCurrentPath('/services/ai') 
-                        ? 'text-maverick-orange' 
-                        : 'text-white hover:text-maverick-orange'
-                    }`}
+                    className="cursor-pointer inline-flex items-center justify-center text-lg text-maverick-orange"
                   >
                     Services
-                    <ChevronDown className="ml-1 h-4 w-4" />
+                    <ChevronDown id="mobile-services-chevron" className="ml-1 h-4 w-4 transition-transform duration-300" />
                   </div>
-                  <div id="mobile-services-dropdown" className="hidden mt-2 w-full">
+                  <div id="mobile-services-dropdown" className="max-h-0 mt-2 w-full overflow-hidden opacity-0 transition-all duration-300 ease-in-out">
                     <Link href="/services/web" className={`block py-2 text-center text-base font-medium ${isCurrentPath('/services/web') ? 'text-maverick-orange' : 'text-white hover:text-maverick-orange'}`} onClick={closeMenu}>
                       Web & Digital Solutions
                     </Link>
