@@ -124,26 +124,40 @@ export default function Header() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.2 }}
-                className="flex flex-col items-center space-y-8 text-xl w-full px-5"
+                className="flex flex-col items-center space-y-8 text-xl w-full px-5 text-center"
               >
                 <Link href="/" className={`hover-link py-3 w-full text-center border-b border-maverick-slate/20 text-lg ${isCurrentPath('/') ? 'text-maverick-orange' : 'text-white hover:text-maverick-orange'}`} onClick={closeMenu}>
                   Home
                 </Link>
-                <Link href="/services" className={`hover-link py-3 w-full text-center border-b border-maverick-slate/20 text-lg ${isCurrentPath('/services') ? 'text-maverick-orange' : 'text-white hover:text-maverick-orange'}`} onClick={closeMenu}>
-                  Services
-                </Link>
-
-                {/* Service sub-links */}
-                <div className="pl-4 border-l border-gray-800 ml-3 space-y-1">
-                  <Link href="/services/web" className={`block px-3 py-2 rounded-md text-base font-medium ${isCurrentPath('/services/web') ? 'text-maverick-orange' : 'text-white hover:text-maverick-orange'}`} onClick={closeMenu}>
-                    Web & Digital Solutions
-                  </Link>
-                  <Link href="/services/marketing" className={`block px-3 py-2 rounded-md text-base font-medium ${isCurrentPath('/services/marketing') ? 'text-maverick-orange' : 'text-white hover:text-maverick-orange'}`} onClick={closeMenu}>
-                    Marketing & Creative
-                  </Link>
-                  <Link href="/services/ai" className={`block px-3 py-2 rounded-md text-base font-medium ${isCurrentPath('/services/ai') ? 'text-maverick-orange' : 'text-white hover:text-maverick-orange'}`} onClick={closeMenu}>
-                    AI Integration & Automation
-                  </Link>
+                <div className="w-full text-center border-b border-maverick-slate/20 py-3">
+                  <div 
+                    onClick={(e) => {
+                      e.preventDefault();
+                      const dropdown = document.getElementById('mobile-services-dropdown');
+                      if (dropdown) {
+                        dropdown.classList.toggle('hidden');
+                      }
+                    }}
+                    className={`cursor-pointer inline-flex items-center justify-center text-lg ${
+                      isCurrentPath('/services') || isCurrentPath('/services/web') || isCurrentPath('/services/marketing') || isCurrentPath('/services/ai') 
+                        ? 'text-maverick-orange' 
+                        : 'text-white hover:text-maverick-orange'
+                    }`}
+                  >
+                    Services
+                    <ChevronDown className="ml-1 h-4 w-4" />
+                  </div>
+                  <div id="mobile-services-dropdown" className="hidden mt-2 w-full">
+                    <Link href="/services/web" className={`block py-2 text-center text-base font-medium ${isCurrentPath('/services/web') ? 'text-maverick-orange' : 'text-white hover:text-maverick-orange'}`} onClick={closeMenu}>
+                      Web & Digital Solutions
+                    </Link>
+                    <Link href="/services/marketing" className={`block py-2 text-center text-base font-medium ${isCurrentPath('/services/marketing') ? 'text-maverick-orange' : 'text-white hover:text-maverick-orange'}`} onClick={closeMenu}>
+                      Marketing & Creative
+                    </Link>
+                    <Link href="/services/ai" className={`block py-2 text-center text-base font-medium ${isCurrentPath('/services/ai') ? 'text-maverick-orange' : 'text-white hover:text-maverick-orange'}`} onClick={closeMenu}>
+                      AI Integration & Automation
+                    </Link>
+                  </div>
                 </div>
 
                 <Link href="/pricing" className={`hover-link py-3 w-full text-center border-b border-maverick-slate/20 text-lg ${isCurrentPath('/pricing') ? 'text-maverick-orange' : 'text-white hover:text-maverick-orange'}`} onClick={closeMenu}>
@@ -152,14 +166,16 @@ export default function Header() {
                 <Link href="/about" className={`hover-link py-3 w-full text-center border-b border-maverick-slate/20 text-lg ${isCurrentPath('/about') ? 'text-maverick-orange' : 'text-white hover:text-maverick-orange'}`} onClick={closeMenu}>
                   About
                 </Link>
-                <Button
-                  href="/contact"
-                  variant="primary"
-                  className="px-5 py-3 mt-4 w-full"
-                  onClick={closeMenu}
-                >
-                  Contact
-                </Button>
+                <div className="w-full text-center">
+                  <Button
+                    href="/contact"
+                    variant="primary"
+                    className="px-5 py-3 mt-4 mx-auto"
+                    onClick={closeMenu}
+                  >
+                    Contact
+                  </Button>
+                </div>
               </motion.nav>
             </div>
           </motion.div>
