@@ -105,7 +105,7 @@ export default function Services() {
                     </li>
                   ))}
                 </ul>
-                <Link href={category.linkHref} className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-maverick-orange hover:bg-maverick-orange/90 maverick-button-primary">
+                <Link href={category.linkHref} className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-maverick-orange hover:bg-maverick-orange/90 transition-all duration-200">
                   Learn more about {category.title}
                 </Link>
               </div>
