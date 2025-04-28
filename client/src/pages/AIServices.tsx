@@ -74,8 +74,10 @@ export default function AIServices() {
               <p className="text-xl text-[#AAAAAA] max-w-3xl mb-8">
                 Harness the transformative power of artificial intelligence to streamline operations, enhance decision-making, and create exceptional customer experiences.
               </p>
-              <Link href="/contact" className="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-maverick-orange hover:bg-maverick-orange/90 md:py-4 md:text-lg md:px-10 transition-all duration-200">
-                Get a free consultation
+              <Link href="/contact">
+                <a className="maverick-button maverick-button-primary inline-flex items-center justify-center px-8 py-3 text-base font-medium rounded-md md:py-4 md:text-lg md:px-10">
+                  Get a free consultation
+                </a>
               </Link>
             </div>
             <div className="relative">
@@ -328,8 +330,10 @@ export default function AIServices() {
           </div>
           
           <div className="mt-12 text-center">
-            <Link href="/work" className="inline-flex items-center justify-center px-6 py-2 border border-maverick-orange text-base font-medium rounded-md text-maverick-orange hover:bg-maverick-orange hover:text-white md:py-3 md:text-lg md:px-8 transition-all duration-200">
-              View all case studies
+            <Link href="/work">
+              <a className="maverick-button maverick-button-outline inline-flex items-center justify-center px-6 py-2 text-base font-medium rounded-md md:py-3 md:text-lg md:px-8">
+                View all case studies
+              </a>
             </Link>
           </div>
         </div>
