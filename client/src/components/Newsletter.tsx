@@ -1,6 +1,6 @@
 import { FormEvent, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Send } from 'lucide-react';
+import { Send, Mail, ArrowRight, Bell } from 'lucide-react';
 
 const Newsletter = () => {
   const [email, setEmail] = useState('');
@@ -25,11 +25,11 @@ const Newsletter = () => {
       setIsSubmitting(false);
       setIsSubscribed(true);
       
-      // Reset form after 5 seconds for demo purposes
+      // Reset form after 6 seconds for demo purposes
       setTimeout(() => {
         setIsSubscribed(false);
         setEmail('');
-      }, 5000);
+      }, 6000);
     }, 1500);
   };
 
@@ -41,23 +41,45 @@ const Newsletter = () => {
         transition={{ duration: 0.5 }}
         className="newsletter-content"
       >
-        <motion.h3 
-          className="text-2xl font-bold text-maverick-orange mb-2"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.2, duration: 0.5 }}
+        <motion.div 
+          className="flex items-center mb-2 gap-2"
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 0.1, duration: 0.5 }}
         >
-          Stay Ahead of the Curve
-        </motion.h3>
+          <motion.div
+            animate={{ 
+              rotateZ: [0, 10, 0, -10, 0],
+              scale: [1, 1.1, 1]
+            }}
+            transition={{ 
+              duration: 1.5, 
+              repeat: Infinity, 
+              repeatDelay: 3
+            }}
+            className="bg-maverick-orange bg-opacity-20 rounded-full p-2"
+          >
+            <Bell size={22} className="text-maverick-orange" />
+          </motion.div>
+          <motion.h3 
+            className="text-2xl md:text-3xl font-bold text-maverick-orange"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.2, duration: 0.5 }}
+          >
+            Stay Ahead of the Curve
+          </motion.h3>
+        </motion.div>
         
         <motion.p 
-          className="text-gray-300 mb-4 max-w-md"
+          className="text-gray-300 mb-5 max-w-lg font-serif"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.3, duration: 0.5 }}
         >
           Subscribe to our newsletter for the latest industry trends, technological innovations, 
-          and exclusive deals tailored to empower your digital journey.
+          and exclusive deals to empower your digital journey. Be the first to receive insights 
+          about emerging technologies and special promotions.
         </motion.p>
         
         <AnimatePresence mode="wait">
@@ -70,14 +92,17 @@ const Newsletter = () => {
               exit={{ opacity: 0, y: -20 }}
               transition={{ delay: 0.4, duration: 0.4 }}
             >
-              <div className="flex flex-col sm:flex-row gap-2 w-full max-w-md">
+              <div className="flex flex-col sm:flex-row gap-3 w-full max-w-md">
                 <div className="relative flex-grow">
+                  <div className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400">
+                    <Mail size={18} />
+                  </div>
                   <input
                     type="email"
                     placeholder="Your email address"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="px-4 py-3 w-full bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-maverick-orange transition-all duration-300 text-white"
+                    className="pl-10 pr-4 py-3 w-full bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-maverick-orange focus:ring-2 focus:ring-maverick-orange/20 transition-all duration-300 text-white"
                     disabled={isSubmitting}
                   />
                   {error && (
@@ -90,9 +115,11 @@ const Newsletter = () => {
                     </motion.p>
                   )}
                 </div>
-                <button
+                <motion.button
                   type="submit"
                   disabled={isSubmitting}
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.98 }}
                   className={`px-6 py-3 bg-maverick-orange text-white rounded-lg flex items-center justify-center transition-all duration-300 hover:bg-opacity-90 whitespace-nowrap ${
                     isSubmitting ? 'bg-opacity-70 cursor-not-allowed' : ''
                   }`}
@@ -105,10 +132,10 @@ const Newsletter = () => {
                     />
                   ) : (
                     <>
-                      Subscribe <Send className="ml-2 h-4 w-4" />
+                      Subscribe <ArrowRight className="ml-2 h-4 w-4" />
                     </>
                   )}
-                </button>
+                </motion.button>
               </div>
             </motion.form>
           ) : (
@@ -121,15 +148,23 @@ const Newsletter = () => {
               <div className="flex items-center">
                 <motion.div
                   initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 10 }}
+                  animate={{ 
+                    scale: [0, 1.2, 1],
+                    rotate: [0, 20, 0]
+                  }}
+                  transition={{ 
+                    type: "spring", 
+                    stiffness: 300, 
+                    damping: 10,
+                    times: [0, 0.6, 1] 
+                  }}
                   className="bg-green-500 rounded-full p-1 mr-3"
                 >
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="text-white">
                     <polyline points="20 6 9 17 4 12"></polyline>
                   </svg>
                 </motion.div>
-                <p>Thanks for subscribing! We'll keep you posted.</p>
+                <p>Thanks for subscribing! We'll keep you updated with our latest insights.</p>
               </div>
             </motion.div>
           )}
@@ -142,9 +177,10 @@ const Newsletter = () => {
           transition={{ delay: 0.5, duration: 0.5 }}
         >
           <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-2 text-maverick-orange">
-            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
           </svg>
-          We respect your privacy and will never share your information.
+          <span className="font-serif">We respect your privacy and will never share your information.</span>
         </motion.div>
       </motion.div>
     </div>

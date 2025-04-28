@@ -4,12 +4,28 @@
 .newsletter-container {
   width: 100%;
   margin-bottom: 2rem;
+  position: relative;
+}
+
+.newsletter-container:before {
+  content: '';
+  position: absolute;
+  top: -20px;
+  left: -30px;
+  width: 150px;
+  height: 150px;
+  background: radial-gradient(circle, rgba(255, 86, 48, 0.10) 0%, rgba(30, 26, 24, 0) 70%);
+  z-index: -1;
+  border-radius: 50%;
+  pointer-events: none;
 }
 
 .newsletter-content {
   display: flex;
   flex-direction: column;
   width: 100%;
+  position: relative;
+  z-index: 1;
 }
 
 .newsletter-form {
@@ -32,10 +48,54 @@
   animation: pulse-border 2s infinite;
 }
 
+/* Animated flowing background for newsletter section */
+@keyframes flow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.newsletter-form button {
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.newsletter-form button:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 100%;
+  background: linear-gradient(90deg, #FF5630, #FF7A50, #FF5630);
+  background-size: 200% 100%;
+  z-index: -1;
+  transition: all 0.3s ease;
+  animation: flow 3s linear infinite;
+}
+
+.newsletter-form button:hover:before {
+  transform: translateX(-25%);
+}
+
 /* Newsletter responsive adjustments */
 @media (max-width: 640px) {
   .newsletter-container {
-    padding: 0 1rem;
+    padding: 0 0.5rem;
+  }
+  
+  .newsletter-container:before {
+    left: 0;
+    top: -10px;
+    width: 100px;
+    height: 100px;
   }
 }
 
