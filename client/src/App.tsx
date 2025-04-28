@@ -1,57 +1,53 @@
-import { Switch, Route } from "wouter";
-import { queryClient } from "./lib/queryClient";
+
+import { lazy, Suspense, useEffect } from "react";
+import { Route, Switch, useLocation } from "wouter";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import NotFound from "@/pages/not-found";
+import { queryClient } from "@/lib/queryClient";
 import Layout from "@/components/Layout";
-import Home from "@/pages/Home";
-import Services from "@/pages/Services";
-import Pricing from "@/pages/Pricing";
-// Work page removed
-import About from "@/pages/About";
-import Contact from "@/pages/Contact";
-import { useState, useEffect } from "react";
+import PageTransition from "@/components/PageTransition";
 import CustomCursor from "@/components/cursor/CustomCursor";
 
-function Router() {
-  return (
-    <Switch>
-      <Route path="/" component={Home} />
-      <Route path="/services" component={Services} />
-      <Route path="/pricing" component={Pricing} />
-      {/* <Route path="/work" component={Work} /> */}
-      <Route path="/about" component={About} />
-      <Route path="/contact" component={Contact} />
-      {/* Fallback to 404 */}
-      <Route component={NotFound} />
-    </Switch>
-  );
-}
+// Lazy load pages
+const Home = lazy(() => import("@/pages/Home"));
+const Services = lazy(() => import("@/pages/Services"));
+const WebServices = lazy(() => import("@/pages/WebServices"));
+const MarketingServices = lazy(() => import("@/pages/MarketingServices"));
+const AIServices = lazy(() => import("@/pages/AIServices"));
+const Pricing = lazy(() => import("@/pages/Pricing"));
+const Work = lazy(() => import("@/pages/Work"));
+const About = lazy(() => import("@/pages/About"));
+const Contact = lazy(() => import("@/pages/Contact"));
+const NotFound = lazy(() => import("@/pages/not-found"));
 
-function App() {
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+export default function App() {
+  const [location] = useLocation();
 
   useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
+    window.scrollTo(0, 0);
+  }, [location]);
 
   return (
     <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <Toaster />
-        {!isMobile && <CustomCursor />}
-        <Layout>
-          <Router />
-        </Layout>
-      </TooltipProvider>
+      <CustomCursor />
+      <PageTransition />
+      <Layout>
+        <Suspense fallback={<div className="h-screen w-full bg-[#121212] flex items-center justify-center">Loading...</div>}>
+          <Switch>
+            <Route path="/" component={Home} />
+            <Route path="/services" component={Services} />
+            <Route path="/services/web" component={WebServices} />
+            <Route path="/services/marketing" component={MarketingServices} />
+            <Route path="/services/ai" component={AIServices} />
+            <Route path="/pricing" component={Pricing} />
+            <Route path="/work" component={Work} />
+            <Route path="/about" component={About} />
+            <Route path="/contact" component={Contact} />
+            <Route component={NotFound} />
+          </Switch>
+        </Suspense>
+      </Layout>
+      <Toaster />
     </QueryClientProvider>
   );
 }
-
-export default App;

@@ -1,6 +1,8 @@
+
 import { motion } from "framer-motion";
 import ServiceCard from "@/components/cards/ServiceCard";
-import { Monitor, PieChart, Zap } from "lucide-react";
+import { Monitor, PieChart, Zap, Layout, Globe, ShieldCheck, BarChart2, PenTool, Calendar, Brain, Database, Workflow } from "lucide-react";
+import { Link } from "wouter";
 
 interface ServicesSectionProps {
   fullPage?: boolean;
@@ -13,12 +15,13 @@ const services = [
     description: "Custom websites, web applications, and digital platforms tailored to your unique business needs",
     icon: <Monitor className="h-8 w-8 text-maverick-orange" />,
     features: [
-      "Responsive web design",
-      "E-commerce development",
-      "Custom web applications"
+      "Custom website design & development",
+      "E-commerce solutions",
+      "Web application development",
+      "Website maintenance & support"
     ],
-    linkText: "View pricing",
-    linkHref: "#web-pricing"
+    linkText: "Learn more",
+    linkHref: "/services/web"
   },
   {
     id: "marketing",
@@ -26,12 +29,13 @@ const services = [
     description: "Strategic marketing solutions to boost your brand visibility and drive engagement",
     icon: <PieChart className="h-8 w-8 text-maverick-orange" />,
     features: [
+      "Digital marketing strategy",
       "Brand identity development",
-      "Content marketing strategy",
-      "Event management"
+      "Social media management",
+      "Event planning & management"
     ],
-    linkText: "View pricing",
-    linkHref: "#marketing-pricing"
+    linkText: "Learn more",
+    linkHref: "/services/marketing"
   },
   {
     id: "ai",
@@ -41,10 +45,11 @@ const services = [
     features: [
       "AI readiness assessment",
       "Custom API integrations",
-      "Workflow automation setup"
+      "Workflow automation",
+      "AI training & implementation"
     ],
-    linkText: "View pricing",
-    linkHref: "#ai-pricing"
+    linkText: "Learn more",
+    linkHref: "/services/ai"
   }
 ];
 
@@ -80,6 +85,14 @@ export default function ServicesSection({ fullPage = false }: ServicesSectionPro
             </motion.div>
           ))}
         </div>
+        
+        {fullPage && (
+          <div className="mt-16 text-center">
+            <Link href="/contact" className="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-maverick-orange hover:bg-maverick-orange/90 md:py-4 md:text-lg md:px-10 transition-all duration-200">
+              Let's discuss your project
+            </Link>
+          </div>
+        )}
       </div>
     </section>
   );
