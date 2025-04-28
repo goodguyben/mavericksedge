@@ -22,9 +22,6 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  transition-property: all;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 300ms;
 }
 
 /* Subscribe button specific class to keep it with different corner radius */
@@ -34,7 +31,6 @@
 
 .maverick-button-primary:hover {
   background-color: rgba(241, 90, 41, 0.9);
-  box-shadow: 0 6px 8px rgba(241, 90, 41, 0.2);
 }
 
 /* Outline button */
