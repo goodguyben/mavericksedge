@@ -18,6 +18,13 @@
   background-color: #F15A29;
   color: #FFFFFF !important; /* Force white text */
   border: none;
+  border-radius: 0.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
 }
 
 .maverick-button-primary:hover {
