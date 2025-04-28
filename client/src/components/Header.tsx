@@ -145,19 +145,19 @@ export default function Header() {
                         }
                       }
                     }}
-                    className="cursor-pointer inline-flex items-center justify-center text-lg text-maverick-orange"
+                    className="cursor-pointer inline-flex items-center justify-center text-lg text-maverick-orange hover:text-maverick-orange"
                   >
                     Services
                     <ChevronDown id="mobile-services-chevron" className="ml-1 h-4 w-4 transition-transform duration-300" />
                   </div>
                   <div id="mobile-services-dropdown" className="max-h-0 mt-2 w-full overflow-hidden opacity-0 transition-all duration-300 ease-in-out">
-                    <Link href="/services/web" className={`block py-2 text-center text-base font-medium ${isCurrentPath('/services/web') ? 'text-maverick-orange' : 'text-white hover:text-maverick-orange'}`} onClick={closeMenu}>
+                    <Link href="/services/web" className={`block py-2 text-center text-lg ${isCurrentPath('/services/web') ? 'text-maverick-orange' : 'text-white hover:text-maverick-orange'}`} onClick={closeMenu}>
                       Web & Digital Solutions
                     </Link>
-                    <Link href="/services/marketing" className={`block py-2 text-center text-base font-medium ${isCurrentPath('/services/marketing') ? 'text-maverick-orange' : 'text-white hover:text-maverick-orange'}`} onClick={closeMenu}>
+                    <Link href="/services/marketing" className={`block py-2 text-center text-lg ${isCurrentPath('/services/marketing') ? 'text-maverick-orange' : 'text-white hover:text-maverick-orange'}`} onClick={closeMenu}>
                       Marketing & Creative
                     </Link>
-                    <Link href="/services/ai" className={`block py-2 text-center text-base font-medium ${isCurrentPath('/services/ai') ? 'text-maverick-orange' : 'text-white hover:text-maverick-orange'}`} onClick={closeMenu}>
+                    <Link href="/services/ai" className={`block py-2 text-center text-lg ${isCurrentPath('/services/ai') ? 'text-maverick-orange' : 'text-white hover:text-maverick-orange'}`} onClick={closeMenu}>
                       AI Integration & Automation
                     </Link>
                   </div>
