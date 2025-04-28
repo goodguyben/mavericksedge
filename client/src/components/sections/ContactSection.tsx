@@ -206,7 +206,7 @@ export default function ContactSection({ fullPage = false }: ContactSectionProps
 
                 <button 
                   type="submit" 
-                  className="maverick-button-primary px-6 py-3 rounded-full w-full md:w-auto" 
+                  className="maverick-button-primary px-6 py-3 rounded-full w-full" 
                   disabled={mutation.isPending}
                 >
                   {mutation.isPending ? "Sending..." : "Send Message"}
