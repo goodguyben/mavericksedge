@@ -20,7 +20,9 @@ export default function Footer() {
         {/* Logo Section - Stays Centered */}
         <div className="text-center mb-10">
           <div className="mb-4 flex justify-center items-center">
-            <Logo size={isMobile ? "small" : "large"} showText={false} noLink={true} />
+            <div className="w-40 h-40">
+              <Logo size={isMobile ? "small" : "large"} showText={false} noLink={true} />
+            </div>
             <span className="font-logo font-bold text-xl sm:text-2xl text-maverick-orange ml-2">
               Mavericks Edge
             </span>
