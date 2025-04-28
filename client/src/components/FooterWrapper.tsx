@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import '../styles/footer.css';
-import Logo from './Logo';
+import Newsletter from './Newsletter';
 
 // Define a simple Footer component that uses the same Logo component as the header
 export default function FooterWrapper() {
@@ -20,15 +20,9 @@ export default function FooterWrapper() {
     <footer ref={footerRef} className="footer-container">
       <div className="footer-wrapper">
         <div className="footer-top">
-          {/* Logo & About Section */}
+          {/* Newsletter Subscription Section */}
           <div className="footer-logo-section">
-            <div className="footer-logo">
-              {/* Use the Logo component from the header */}
-              <Logo size="large" noLink={true} showText={false} />
-              <h2 className="font-heading font-bold text-4xl md:text-5xl lg:text-6xl text-maverick-orange ml-0 mt-2 sm:mt-3 sm:ml-0">
-                Mavericks Edge
-              </h2>
-            </div>
+            <Newsletter />
           </div>
 
           {/* Navigation Links Container - wraps the three nav sections */}
