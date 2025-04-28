@@ -40,7 +40,7 @@ export default function Header() {
       <div className="container mx-auto flex justify-between items-center">
         <Link href="/" className="flex items-center">
           <Logo size={isMobile ? "small" : "large"} noLink={true} showText={false}/>
-          <span className="font-heading font-bold text-2xl sm:text-3xl md:text-4xl text-maverick-orange ml-3 whitespace-nowrap">
+          <span className="font-heading font-bold text-2xl sm:text-3xl md:text-4xl text-maverick-orange ml-1 whitespace-nowrap">
             Mavericks Edge
           </span>
         </Link>
