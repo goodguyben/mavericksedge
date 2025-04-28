@@ -49,8 +49,8 @@ export default function Header() {
     <header className={headerClasses}>
       <div className="container mx-auto flex justify-between items-center">
         <Link href="/" className="flex items-center">
-          <Logo size={isMobile ? "small" : "large"} noLink={true} showText={false}/>
-          <span className="font-heading font-bold text-2xl sm:text-3xl md:text-4xl text-maverick-orange ml-1 whitespace-nowrap">
+          <Logo size={isMobile ? "medium" : "large"} noLink={true} showText={false}/>
+          <span className="font-heading font-bold text-3xl sm:text-4xl md:text-4xl text-maverick-orange ml-2 whitespace-nowrap">
             Mavericks Edge
           </span>
         </Link>
@@ -58,10 +58,10 @@ export default function Header() {
         {/* Mobile Menu Button */}
         <button
           onClick={toggleMenu}
-          className="block md:hidden focus:outline-none z-50 bg-maverick-charcoal/50 p-2 rounded-full backdrop-blur-sm"
+          className="block md:hidden focus:outline-none z-50 bg-maverick-charcoal/50 p-3 rounded-full backdrop-blur-sm"
           aria-label="Toggle menu"
         >
-          {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
         </button>
 
         {/* Desktop Navigation */}
