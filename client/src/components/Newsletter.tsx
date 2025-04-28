@@ -120,8 +120,8 @@ const Newsletter = () => {
                   disabled={isSubmitting}
                   whileHover={{ scale: 1.03 }}
                   whileTap={{ scale: 0.98 }}
-                  className={`px-6 py-3 bg-maverick-orange text-white rounded-lg flex items-center justify-center transition-all duration-300 hover:bg-opacity-90 whitespace-nowrap ${
-                    isSubmitting ? 'bg-opacity-70 cursor-not-allowed' : ''
+                  className={`px-6 py-3 bg-maverick-orange text-white rounded-lg flex items-center justify-center transition-all duration-300 hover:bg-maverick-orange/90 whitespace-nowrap ${
+                    isSubmitting ? 'opacity-70 cursor-not-allowed' : ''
                   }`}
                 >
                   {isSubmitting ? (
