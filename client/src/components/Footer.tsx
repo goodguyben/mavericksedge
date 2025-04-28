@@ -17,17 +17,8 @@ export default function Footer() {
   return (
     <footer className="bg-[#0D0D0D] text-white py-12 sm:py-16 px-5 md:px-10">
       <div className="container mx-auto">
-        {/* Logo Section - Stays Centered */}
-        <div className="text-center mb-10">
-          <div className="mb-4 flex justify-center items-center">
-            <div className="w-40 h-40">
-              <Logo size={isMobile ? "small" : "large"} showText={false} noLink={true} />
-            </div>
-            <span className="font-logo font-bold text-xl sm:text-2xl text-maverick-orange ml-2">
-              Mavericks Edge
-            </span>
-          </div>
-        </div>
+        {/* Footer spacer - replacing logo section */}
+        <div className="pt-6"></div>
 
         {/* Mobile Accordion Navigation */}
         {isMobile ? (
