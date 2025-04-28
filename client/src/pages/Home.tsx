@@ -16,8 +16,8 @@ export default function Home() {
     >
       <Hero />
       <WhyChooseUsSection />
-      <CreativeWorkSection />
       <WhatWeDoSection />
+      <CreativeWorkSection />
       <ProcessSection />
       <ContactSection />
     </motion.div>
