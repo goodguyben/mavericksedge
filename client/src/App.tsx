@@ -13,12 +13,11 @@ const Services = lazy(() => import("@/pages/Services"));
 const WebServices = lazy(() => import("@/pages/WebServices"));
 const MarketingServices = lazy(() => import("@/pages/MarketingServices"));
 const AIServices = lazy(() => import("@/pages/AIServices"));
-const Pricing = lazy(() => import("@/pages/Pricing"));
 const Work = lazy(() => import("@/pages/Work"));
 const About = lazy(() => import("@/pages/About"));
 const Contact = lazy(() => import("@/pages/Contact"));
 const NotFound = lazy(() => import("@/pages/not-found"));
-const PaymentConfirmed = lazy(() => import("@/pages/PaymentConfirmed")); // Added import
+const PaymentConfirmed = lazy(() => import("@/pages/PaymentConfirmed"));
 
 
 export default function App() {
@@ -40,12 +39,11 @@ export default function App() {
             <Route path="/services/web" component={WebServices} />
             <Route path="/services/marketing" component={MarketingServices} />
             <Route path="/services/ai" component={AIServices} />
-            <Route path="/pricing" component={Pricing} />
             <Route path="/work" component={Work} />
             <Route path="/about" component={About} />
             <Route path="/contact" component={Contact} />
             {/* Private route without header/footer */}
-            <Route path="/payment-confirmed" component={PaymentConfirmed} /> {/* Added route */}
+            <Route path="/payment-confirmed" component={PaymentConfirmed} />
             <Route component={NotFound} />
           </Switch>
         </Suspense>

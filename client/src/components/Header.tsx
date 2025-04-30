@@ -97,9 +97,6 @@ export default function Header() {
             </div>
           </div>
 
-          <Link href="/pricing" className={`px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 ${isCurrentPath('/pricing') ? 'text-maverick-orange' : 'text-white hover:text-maverick-orange'}`}>
-            Pricing
-          </Link>
           <Link href="/about" className={`px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 ${isCurrentPath('/about') ? 'text-maverick-orange' : 'text-white hover:text-maverick-orange'}`}>
             About
           </Link>
@@ -163,9 +160,6 @@ export default function Header() {
                   </div>
                 </div>
 
-                <Link href="/pricing" className={`hover-link py-3 w-full text-center border-b border-maverick-slate/20 text-lg ${isCurrentPath('/pricing') ? 'text-maverick-orange' : 'text-white hover:text-maverick-orange'}`} onClick={closeMenu}>
-                  Pricing
-                </Link>
                 <Link href="/about" className={`hover-link py-3 w-full text-center border-b border-maverick-slate/20 text-lg ${isCurrentPath('/about') ? 'text-maverick-orange' : 'text-white hover:text-maverick-orange'}`} onClick={closeMenu}>
                   About
                 </Link>

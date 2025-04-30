@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Link } from "wouter";
 import Logo from "@/components/Logo";
@@ -44,7 +43,7 @@ export default function Footer() {
                 </div>
               )}
             </div>
-            
+
             {/* Legal Section */}
             <div className="border-b border-maverick-slate/20">
               <button 
