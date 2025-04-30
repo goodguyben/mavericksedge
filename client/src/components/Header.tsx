@@ -84,6 +84,9 @@ export default function Header() {
             </Link>
             <div className="absolute left-0 mt-2 w-56 opacity-0 invisible group-hover:opacity-100 group-hover:visible transform group-hover:translate-y-0 translate-y-[-10px] transition-all duration-300 ease-in-out z-50">
               <div className="py-1 bg-[#1A1A1A] border border-gray-800 rounded-md shadow-lg">
+                <Link href="/service-details" className={`block px-4 py-2 text-base ${isCurrentPath('/service-details') ? 'text-maverick-orange' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'}`}>
+                  All Services
+                </Link>
                 <Link href="/services/web" className={`block px-4 py-2 text-base ${isCurrentPath('/services/web') ? 'text-maverick-orange' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'}`}>
                   Web & Digital Solutions
                 </Link>
@@ -99,6 +102,9 @@ export default function Header() {
 
           <Link href="/pricing" className={`px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 ${isCurrentPath('/pricing') ? 'text-maverick-orange' : 'text-white hover:text-maverick-orange'}`}>
             Pricing
+          </Link>
+          <Link href="/pricing-comparison" className={`px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 ${isCurrentPath('/pricing-comparison') ? 'text-maverick-orange' : 'text-white hover:text-maverick-orange'}`}>
+            Packages
           </Link>
           <Link href="/about" className={`px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 ${isCurrentPath('/about') ? 'text-maverick-orange' : 'text-white hover:text-maverick-orange'}`}>
             About
@@ -151,6 +157,9 @@ export default function Header() {
                     <ChevronDown id="mobile-services-chevron" className="ml-1 h-4 w-4 transition-transform duration-300" />
                   </div>
                   <div id="mobile-services-dropdown" className="max-h-0 mt-2 w-full overflow-hidden opacity-0 transition-all duration-300 ease-in-out">
+                    <Link href="/service-details" className={`block py-2 text-center text-lg ${isCurrentPath('/service-details') ? 'text-maverick-orange' : 'text-white hover:text-maverick-orange'}`} onClick={closeMenu}>
+                      All Services
+                    </Link>
                     <Link href="/services/web" className={`block py-2 text-center text-lg ${isCurrentPath('/services/web') ? 'text-maverick-orange' : 'text-white hover:text-maverick-orange'}`} onClick={closeMenu}>
                       Web & Digital Solutions
                     </Link>
@@ -165,6 +174,9 @@ export default function Header() {
 
                 <Link href="/pricing" className={`hover-link py-3 w-full text-center border-b border-maverick-slate/20 text-lg ${isCurrentPath('/pricing') ? 'text-maverick-orange' : 'text-white hover:text-maverick-orange'}`} onClick={closeMenu}>
                   Pricing
+                </Link>
+                <Link href="/pricing-comparison" className={`hover-link py-3 w-full text-center border-b border-maverick-slate/20 text-lg ${isCurrentPath('/pricing-comparison') ? 'text-maverick-orange' : 'text-white hover:text-maverick-orange'}`} onClick={closeMenu}>
+                  Packages
                 </Link>
                 <Link href="/about" className={`hover-link py-3 w-full text-center border-b border-maverick-slate/20 text-lg ${isCurrentPath('/about') ? 'text-maverick-orange' : 'text-white hover:text-maverick-orange'}`} onClick={closeMenu}>
                   About
