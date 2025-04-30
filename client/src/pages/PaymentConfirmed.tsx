@@ -1,6 +1,6 @@
 
 import { motion } from "framer-motion";
-import { CheckCircle, Download, Mail, Calendar } from "lucide-react";
+import { CheckCircle, Download, Mail, Calendar, Heart } from "lucide-react";
 import { useEffect, useState } from "react";
 
 export default function PaymentConfirmed() {
@@ -55,7 +55,16 @@ export default function PaymentConfirmed() {
                 repeatType: "reverse"
               }}
             />
-            <CheckCircle className="h-24 w-24 text-maverick-orange relative z-10" />
+            <div className="relative z-10 flex">
+              <CheckCircle className="h-24 w-24 text-maverick-orange" />
+              <motion.div
+                initial={{ scale: 0, x: -15 }}
+                animate={{ scale: 1, x: -15 }}
+                transition={{ delay: 0.5, type: "spring", stiffness: 200 }}
+              >
+                <Heart className="h-8 w-8 text-maverick-orange absolute top-0 right-0" fill="#FF5630" />
+              </motion.div>
+            </div>
           </div>
         </motion.div>
         
@@ -87,7 +96,7 @@ export default function PaymentConfirmed() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.4 }}
             >
-              Payment <span className="text-maverick-orange">Confirmed</span>
+              Woohoo! <span className="text-maverick-orange">You're All Set!</span>
             </motion.h1>
             
             <motion.div
@@ -97,7 +106,7 @@ export default function PaymentConfirmed() {
               transition={{ duration: 0.5, delay: 0.5 }}
             >
               <p className="text-xl text-maverick-cream">
-                Thank you for your business! Your payment has been successfully processed.
+                Thank you SO much for trusting us with your business! We're absolutely thrilled to work with you and can't wait to get started on your journey! ✨
               </p>
             </motion.div>
             
@@ -107,7 +116,7 @@ export default function PaymentConfirmed() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.6 }}
             >
-              <h2 className="text-2xl font-semibold mb-4">Order Summary</h2>
+              <h2 className="text-2xl font-semibold mb-4">Your Awesome Order</h2>
               <div className="flex justify-between items-center mb-3 pb-3 border-b border-gray-700">
                 <span className="text-[#AAAAAA]">Order Number:</span>
                 <span className="font-medium">{orderNumber}</span>
@@ -118,7 +127,7 @@ export default function PaymentConfirmed() {
               </div>
               <div className="flex justify-between items-center">
                 <span className="text-[#AAAAAA]">Payment Status:</span>
-                <span className="text-maverick-orange font-medium">Confirmed</span>
+                <span className="text-maverick-orange font-medium">Confirmed & Ready to Rock!</span>
               </div>
             </motion.div>
             
@@ -129,7 +138,7 @@ export default function PaymentConfirmed() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.7 }}
             >
-              <h2 className="text-2xl font-semibold mb-6">Next Steps</h2>
+              <h2 className="text-2xl font-semibold mb-6">What's Next? Let's Get This Party Started!</h2>
               
               <div className="grid md:grid-cols-3 gap-6">
                 <motion.div 
@@ -138,8 +147,8 @@ export default function PaymentConfirmed() {
                   transition={{ duration: 0.3 }}
                 >
                   <Mail className="h-10 w-10 text-maverick-orange mb-4" />
-                  <h3 className="text-lg font-medium mb-2">Check Your Email</h3>
-                  <p className="text-[#AAAAAA] text-sm">A receipt has been sent to your email address</p>
+                  <h3 className="text-lg font-medium mb-2">Check Your Inbox</h3>
+                  <p className="text-[#AAAAAA] text-sm">We've sent a special welcome pack to your email - it's filled with goodies!</p>
                 </motion.div>
                 
                 <motion.div 
@@ -148,8 +157,8 @@ export default function PaymentConfirmed() {
                   transition={{ duration: 0.3 }}
                 >
                   <Calendar className="h-10 w-10 text-maverick-orange mb-4" />
-                  <h3 className="text-lg font-medium mb-2">Schedule Meeting</h3>
-                  <p className="text-[#AAAAAA] text-sm">Our team will contact you soon to schedule your first meeting</p>
+                  <h3 className="text-lg font-medium mb-2">Let's Meet Soon!</h3>
+                  <p className="text-[#AAAAAA] text-sm">Our amazing team will reach out within 24 hours to schedule our first adventure together!</p>
                 </motion.div>
                 
                 <motion.div 
@@ -158,9 +167,28 @@ export default function PaymentConfirmed() {
                   transition={{ duration: 0.3 }}
                 >
                   <Download className="h-10 w-10 text-maverick-orange mb-4" />
-                  <h3 className="text-lg font-medium mb-2">Download Resources</h3>
-                  <p className="text-[#AAAAAA] text-sm">Access to relevant materials and resources</p>
+                  <h3 className="text-lg font-medium mb-2">Exclusive Resources</h3>
+                  <p className="text-[#AAAAAA] text-sm">Unlock your special client materials - we've prepared everything just for you!</p>
                 </motion.div>
+              </div>
+            </motion.div>
+            
+            {/* Testimonial/Personal Touch */}
+            <motion.div 
+              className="bg-[#252525] p-6 rounded-xl mb-10 border border-gray-700 relative overflow-hidden"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.8 }}
+            >
+              <div className="absolute top-3 right-4 opacity-30">
+                <Heart className="h-20 w-20 text-maverick-orange" fill="#FF5630" />
+              </div>
+              <div className="relative z-10">
+                <h3 className="text-xl font-medium mb-3">A Personal Note From Our Team</h3>
+                <p className="text-[#DDDDDD] italic">
+                  "We're beyond excited to welcome you to the Mavericks Edge family! Your trust means the world to us, and we promise to pour our hearts into creating something truly special for you. This is the beginning of an amazing journey together!"
+                </p>
+                <p className="text-maverick-orange font-medium mt-4">— The Entire Mavericks Edge Team</p>
               </div>
             </motion.div>
             
@@ -169,29 +197,32 @@ export default function PaymentConfirmed() {
               className="flex justify-center"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.8 }}
+              transition={{ duration: 0.5, delay: 0.9 }}
             >
               <motion.a 
                 href="/"
-                className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-maverick-orange hover:bg-maverick-orange/90 transition-all duration-200"
+                className="inline-flex items-center justify-center px-8 py-4 border border-transparent text-base font-medium rounded-md text-white bg-maverick-orange hover:bg-maverick-orange/90 transition-all duration-200"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                Return to Home
+                Back to Home (But We'll Be In Touch Soon!)
               </motion.a>
             </motion.div>
           </div>
         </motion.div>
         
-        {/* Legal disclaimer */}
+        {/* Legal disclaimer with heart */}
         <motion.div 
           className="text-center mt-8 text-[#777777] text-sm"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.5, delay: 0.9 }}
+          transition={{ duration: 0.5, delay: 1 }}
         >
-          <p>This is a secure transaction. Your payment details are protected.</p>
-          <p className="mt-2">© {new Date().getFullYear()} Mavericks Edge. All rights reserved.</p>
+          <p className="flex items-center justify-center gap-2">
+            This is a secure transaction. Your payment details are protected with 
+            <Heart className="h-3 w-3 text-maverick-orange" fill="#FF5630" />
+          </p>
+          <p className="mt-2">© {new Date().getFullYear()} Mavericks Edge. All rights reserved. Made with 💖 for our amazing clients!</p>
         </motion.div>
       </div>
     </motion.div>
