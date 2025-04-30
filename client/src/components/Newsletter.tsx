@@ -10,21 +10,21 @@ const Newsletter = () => {
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-
+    
     // Basic email validation
     if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       setError('Please enter a valid email address');
       return;
     }
-
+    
     setError('');
     setIsSubmitting(true);
-
+    
     // Simulate API call with timeout
     setTimeout(() => {
       setIsSubmitting(false);
       setIsSubscribed(true);
-
+      
       // Reset form after 6 seconds for demo purposes
       setTimeout(() => {
         setIsSubscribed(false);
@@ -62,7 +62,7 @@ const Newsletter = () => {
             <Bell size={22} className="text-maverick-orange" />
           </motion.div>
           <motion.h3 
-            className="text-2xl md:text-3xl font-bold text-maverick-orange mt-4"
+            className="text-2xl md:text-3xl font-bold text-maverick-orange"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2, duration: 0.5 }}
@@ -70,7 +70,7 @@ const Newsletter = () => {
             Stay Ahead of the Curve
           </motion.h3>
         </motion.div>
-
+        
         <motion.p 
           className="text-gray-300 mb-5 max-w-lg font-serif"
           initial={{ opacity: 0 }}
@@ -81,7 +81,7 @@ const Newsletter = () => {
           and exclusive deals to empower your digital journey. Be the first to receive insights 
           about emerging technologies and special promotions.
         </motion.p>
-
+        
         <AnimatePresence mode="wait">
           {!isSubscribed ? (
             <motion.form 
@@ -115,11 +115,13 @@ const Newsletter = () => {
                     </motion.p>
                   )}
                 </div>
-                <button
+                <motion.button
                   type="submit"
                   disabled={isSubmitting}
-                  className={`px-6 py-3 bg-maverick-orange text-white rounded-lg flex items-center justify-center transition-all duration-300 hover:bg-maverick-orange/90 whitespace-nowrap maverick-button-primary ${
-                    isSubmitting ? 'opacity-70 cursor-not-allowed' : ''
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.98 }}
+                  className={`px-6 py-3 bg-maverick-orange text-white rounded-lg flex items-center justify-center transition-all duration-300 hover:bg-opacity-90 whitespace-nowrap ${
+                    isSubmitting ? 'bg-opacity-70 cursor-not-allowed' : ''
                   }`}
                 >
                   {isSubmitting ? (
@@ -133,7 +135,7 @@ const Newsletter = () => {
                       Subscribe <ArrowRight className="ml-2 h-4 w-4" />
                     </>
                   )}
-                </button>
+                </motion.button>
               </div>
             </motion.form>
           ) : (
@@ -167,7 +169,7 @@ const Newsletter = () => {
             </motion.div>
           )}
         </AnimatePresence>
-
+        
         <motion.div 
           className="mt-4 flex items-center text-sm text-gray-400"
           initial={{ opacity: 0 }}

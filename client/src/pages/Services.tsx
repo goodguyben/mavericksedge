@@ -72,7 +72,7 @@ export default function Services() {
           </div>
         </div>
       </div>
-
+      
       {/* Main Services Overview */}
       <section className="py-16 px-5 md:px-10 bg-[#1E1E1E]">
         <div className="container mx-auto">
@@ -105,9 +105,9 @@ export default function Services() {
                     </li>
                   ))}
                 </ul>
-                <a href={category.linkHref} className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-maverick-orange hover:bg-maverick-orange/90 transition-all duration-200">
+                <Link href={category.linkHref} className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-maverick-orange hover:bg-maverick-orange/90 transition-all duration-200">
                   Learn more about {category.title}
-                </a>
+                </Link>
               </div>
               <div className={`relative ${index % 2 === 1 ? 'order-2 lg:order-1' : ''}`}>
                 <div className="bg-[#121212] p-1 rounded-lg border border-gray-800">
@@ -130,9 +130,9 @@ export default function Services() {
           ))}
         </div>
       </section>
-
+      
       <ProcessSection />
-
+      
       {/* Industries Section */}
       <section className="py-24 px-5 md:px-10 bg-[#1E1E1E]">
         <div className="container mx-auto">
@@ -174,7 +174,7 @@ export default function Services() {
           </div>
         </div>
       </section>
-
+      
       <ContactSection />
     </motion.div>
   );

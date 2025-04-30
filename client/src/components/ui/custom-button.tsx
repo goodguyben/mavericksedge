@@ -1,11 +1,13 @@
-
 import React from "react";
+import { Link } from "wouter";
+
+type ButtonVariant = "primary" | "secondary" | "outline" | "ghost" | "link";
 
 interface ButtonProps {
   children: React.ReactNode;
   href?: string;
   onClick?: () => void;
-  variant?: "primary" | "secondary" | "outline" | "ghost" | "link";
+  variant?: ButtonVariant;
   className?: string;
   disabled?: boolean;
   type?: "button" | "submit" | "reset";
@@ -28,12 +30,12 @@ export function Button({
     className
   ].filter(Boolean).join(' ');
   
-  // If href is provided, render a link with our CSS classes
+  // If href is provided, render a Link with our CSS classes
   if (href) {
     return (
-      <a href={href} className={buttonClasses}>
+      <Link href={href} className={buttonClasses}>
         {children}
-      </a>
+      </Link>
     );
   }
   

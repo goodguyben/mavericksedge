@@ -18,17 +18,17 @@ const processSteps = [
     icon: <Settings className="h-6 w-6 text-maverick-orange" />
   },
   {
-    id: "planning",
+    id: "design",
     step: 3,
-    title: "Planning",
-    description: "We develop detailed project plans with timelines, milestones, and resource allocation to ensure efficient execution.",
+    title: "Design",
+    description: "Our creative team designs visually appealing and user-friendly solutions that align with your brand identity.",
     icon: <Paintbrush className="h-6 w-6 text-maverick-orange" />
   },
   {
-    id: "design-development",
+    id: "development",
     step: 4,
-    title: "Design & Development",
-    description: "Our team creates visually appealing designs and builds robust, scalable solutions using the latest technologies.",
+    title: "Development",
+    description: "We build robust, scalable, and secure digital solutions using the latest technologies and best practices.",
     icon: <Code className="h-6 w-6 text-maverick-orange" />
   },
   {
