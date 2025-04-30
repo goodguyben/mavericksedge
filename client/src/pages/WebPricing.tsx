@@ -2,9 +2,10 @@ import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'wouter';
 import { 
-  ChevronDown, Check, ArrowRight, Zap, Shield, Clock, Tool, Rocket, 
+  ChevronDown, Check, ArrowRight, Zap, Shield, Clock, Rocket, 
   Laptop, Award, Code, Globe, Database, Server, Monitor, HeartHandshake,
-  RefreshCcw, LineChart, Calendar, HelpCircle, Compass, Star, BarChartBig
+  RefreshCcw, LineChart, Calendar, HelpCircle, Compass, Star, BarChartBig,
+  Settings, Wrench
 } from 'lucide-react';
 import ContactSection from '@/components/sections/ContactSection';
 import { cn } from '@/lib/utils';
@@ -805,7 +806,7 @@ export default function WebPricing() {
                 description: "Built-in search engine optimization helps your site rank better and attract more organic traffic from day one."
               },
               {
-                icon: <Tool className="h-8 w-8 text-maverick-orange" />,
+                icon: <Wrench className="h-8 w-8 text-maverick-orange" />,
                 title: "Easy Content Management",
                 description: "User-friendly admin interfaces make it simple for you to update content without technical expertise or additional costs."
               }

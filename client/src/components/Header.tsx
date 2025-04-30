@@ -88,7 +88,7 @@ export default function Header() {
             <div className="absolute left-0 mt-2 w-56 opacity-0 invisible group-hover:opacity-100 group-hover:visible transform group-hover:translate-y-0 translate-y-[-10px] transition-all duration-300 ease-in-out z-50">
               <div className="py-1 bg-[#1A1A1A] border border-gray-800 rounded-md shadow-lg">
                 <Link href="/services/web" className={`block px-4 py-2 text-base ${isCurrentPath('/services/web') ? 'text-maverick-orange' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'}`}>
-                  Web & Digital Solutions
+                  Web Design & Development
                 </Link>
                 <Link href="/services/marketing" className={`block px-4 py-2 text-base ${isCurrentPath('/services/marketing') ? 'text-maverick-orange' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'}`}>
                   Marketing & Creative
@@ -115,7 +115,7 @@ export default function Header() {
             <div className="absolute left-0 mt-2 w-56 opacity-0 invisible group-hover:opacity-100 group-hover:visible transform group-hover:translate-y-0 translate-y-[-10px] transition-all duration-300 ease-in-out z-50">
               <div className="py-1 bg-[#1A1A1A] border border-gray-800 rounded-md shadow-lg">
                 <Link href="/pricing/web" className={`block px-4 py-2 text-base ${isCurrentPath('/pricing/web') ? 'text-maverick-orange' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'}`}>
-                  Web & Digital Solutions
+                  Web Design & Development
                 </Link>
                 <Link href="/pricing/marketing" className={`block px-4 py-2 text-base ${isCurrentPath('/pricing/marketing') ? 'text-maverick-orange' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'}`}>
                   Marketing & Creative
@@ -179,7 +179,7 @@ export default function Header() {
                   </div>
                   <div id="mobile-services-dropdown" className="max-h-0 mt-2 w-full overflow-hidden opacity-0 transition-all duration-300 ease-in-out">
                     <Link href="/services/web" className={`block py-2 text-center text-lg ${isCurrentPath('/services/web') ? 'text-maverick-orange' : 'text-white hover:text-maverick-orange'}`} onClick={closeMenu}>
-                      Web & Digital Solutions
+                      Web Design & Development
                     </Link>
                     <Link href="/services/marketing" className={`block py-2 text-center text-lg ${isCurrentPath('/services/marketing') ? 'text-maverick-orange' : 'text-white hover:text-maverick-orange'}`} onClick={closeMenu}>
                       Marketing & Creative
@@ -214,7 +214,7 @@ export default function Header() {
                   </div>
                   <div id="mobile-pricing-dropdown" className="max-h-0 mt-2 w-full overflow-hidden opacity-0 transition-all duration-300 ease-in-out">
                     <Link href="/pricing/web" className={`block py-2 text-center text-lg ${isCurrentPath('/pricing/web') ? 'text-maverick-orange' : 'text-white hover:text-maverick-orange'}`} onClick={closeMenu}>
-                      Web & Digital Solutions
+                      Web Design & Development
                     </Link>
                     <Link href="/pricing/marketing" className={`block py-2 text-center text-lg ${isCurrentPath('/pricing/marketing') ? 'text-maverick-orange' : 'text-white hover:text-maverick-orange'}`} onClick={closeMenu}>
                       Marketing & Creative
