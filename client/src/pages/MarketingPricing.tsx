@@ -32,6 +32,7 @@ interface PricingPackage {
   focus: string;
   price: string;
   priceRange?: string;
+  period?: string;
   oneTime: boolean;
   popular: boolean;
   features: string[];
