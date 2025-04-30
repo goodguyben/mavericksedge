@@ -145,7 +145,7 @@ export default function Header() {
                         }
                       }
                     }}
-                    className="cursor-pointer inline-flex items-center justify-center text-lg text-maverick-orange hover:text-maverick-orange"
+                    className="cursor-pointer inline-flex items-center justify-center hover-link py-3 w-full text-center text-lg text-maverick-orange hover:text-maverick-orange pl-4"
                   >
                     Services
                     <ChevronDown id="mobile-services-chevron" className="ml-1 h-4 w-4 transition-transform duration-300" />
