@@ -38,6 +38,9 @@ export default function Header() {
     if (path === '/services' && (location === '/services/web' || location === '/services/marketing' || location === '/services/ai')) {
       return false;
     }
+    if (path === '/pricing' && (location === '/pricing/web' || location === '/pricing/marketing' || location === '/pricing/ai')) {
+      return false;
+    }
     return location === path || location.startsWith(`${path}/`);
   };
 
@@ -91,6 +94,33 @@ export default function Header() {
                   Marketing & Creative
                 </Link>
                 <Link href="/services/ai" className={`block px-4 py-2 text-base ${isCurrentPath('/services/ai') ? 'text-maverick-orange' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'}`}>
+                  AI Integration & Automation
+                </Link>
+              </div>
+            </div>
+          </div>
+
+          {/* Pricing dropdown */}
+          <div className="relative group">
+            <Link href="/pricing" className={`px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 inline-flex items-center ${
+              isCurrentPath('/pricing') || isCurrentPath('/pricing/web') || isCurrentPath('/pricing/marketing') || isCurrentPath('/pricing/ai') 
+                ? 'text-maverick-orange' 
+                : 'text-white hover:text-maverick-orange'
+            }`}>
+              Pricing
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1 transform transition-transform duration-300 group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </Link>
+            <div className="absolute left-0 mt-2 w-56 opacity-0 invisible group-hover:opacity-100 group-hover:visible transform group-hover:translate-y-0 translate-y-[-10px] transition-all duration-300 ease-in-out z-50">
+              <div className="py-1 bg-[#1A1A1A] border border-gray-800 rounded-md shadow-lg">
+                <Link href="/pricing/web" className={`block px-4 py-2 text-base ${isCurrentPath('/pricing/web') ? 'text-maverick-orange' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'}`}>
+                  Web & Digital Solutions
+                </Link>
+                <Link href="/pricing/marketing" className={`block px-4 py-2 text-base ${isCurrentPath('/pricing/marketing') ? 'text-maverick-orange' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'}`}>
+                  Marketing & Creative
+                </Link>
+                <Link href="/pricing/ai" className={`block px-4 py-2 text-base ${isCurrentPath('/pricing/ai') ? 'text-maverick-orange' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'}`}>
                   AI Integration & Automation
                 </Link>
               </div>
@@ -155,6 +185,41 @@ export default function Header() {
                       Marketing & Creative
                     </Link>
                     <Link href="/services/ai" className={`block py-2 text-center text-lg ${isCurrentPath('/services/ai') ? 'text-maverick-orange' : 'text-white hover:text-maverick-orange'}`} onClick={closeMenu}>
+                      AI Integration & Automation
+                    </Link>
+                  </div>
+                </div>
+                
+                {/* Mobile Pricing dropdown */}
+                <div className="w-full text-center border-b border-maverick-slate/20 py-3">
+                  <div 
+                    onClick={(e) => {
+                      e.preventDefault();
+                      const dropdown = document.getElementById('mobile-pricing-dropdown');
+                      const chevron = document.getElementById('mobile-pricing-chevron');
+                      if (dropdown) {
+                        dropdown.classList.toggle('max-h-0');
+                        dropdown.classList.toggle('max-h-48');
+                        dropdown.classList.toggle('opacity-0');
+                        dropdown.classList.toggle('opacity-100');
+                        if (chevron) {
+                          chevron.classList.toggle('rotate-180');
+                        }
+                      }
+                    }}
+                    className="cursor-pointer inline-flex items-center justify-center hover-link py-3 w-full text-center text-lg text-maverick-orange hover:text-maverick-orange pl-4"
+                  >
+                    Pricing
+                    <ChevronDown id="mobile-pricing-chevron" className="ml-1 h-4 w-4 transition-transform duration-300" />
+                  </div>
+                  <div id="mobile-pricing-dropdown" className="max-h-0 mt-2 w-full overflow-hidden opacity-0 transition-all duration-300 ease-in-out">
+                    <Link href="/pricing/web" className={`block py-2 text-center text-lg ${isCurrentPath('/pricing/web') ? 'text-maverick-orange' : 'text-white hover:text-maverick-orange'}`} onClick={closeMenu}>
+                      Web & Digital Solutions
+                    </Link>
+                    <Link href="/pricing/marketing" className={`block py-2 text-center text-lg ${isCurrentPath('/pricing/marketing') ? 'text-maverick-orange' : 'text-white hover:text-maverick-orange'}`} onClick={closeMenu}>
+                      Marketing & Creative
+                    </Link>
+                    <Link href="/pricing/ai" className={`block py-2 text-center text-lg ${isCurrentPath('/pricing/ai') ? 'text-maverick-orange' : 'text-white hover:text-maverick-orange'}`} onClick={closeMenu}>
                       AI Integration & Automation
                     </Link>
                   </div>
