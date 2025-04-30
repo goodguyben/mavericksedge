@@ -1,3 +1,4 @@
+
 import { lazy, Suspense, useEffect } from "react";
 import { Route, Switch, useLocation } from "wouter";
 import { QueryClientProvider } from "@tanstack/react-query";
@@ -18,8 +19,6 @@ const Work = lazy(() => import("@/pages/Work"));
 const About = lazy(() => import("@/pages/About"));
 const Contact = lazy(() => import("@/pages/Contact"));
 const NotFound = lazy(() => import("@/pages/not-found"));
-const PricingComparison = lazy(() => import("@/pages/PricingComparison"));
-const ServiceDetails = lazy(() => import("@/pages/ServiceDetails"));
 
 export default function App() {
   const [location] = useLocation();
@@ -41,8 +40,6 @@ export default function App() {
             <Route path="/services/marketing" component={MarketingServices} />
             <Route path="/services/ai" component={AIServices} />
             <Route path="/pricing" component={Pricing} />
-            <Route path="/pricing-comparison" component={PricingComparison} />
-            <Route path="/service-details" component={ServiceDetails} />
             <Route path="/work" component={Work} />
             <Route path="/about" component={About} />
             <Route path="/contact" component={Contact} />
