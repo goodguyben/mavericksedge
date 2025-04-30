@@ -18,10 +18,6 @@ const About = lazy(() => import("@/pages/About"));
 const Contact = lazy(() => import("@/pages/Contact"));
 const NotFound = lazy(() => import("@/pages/not-found"));
 const PaymentConfirmed = lazy(() => import("@/pages/PaymentConfirmed"));
-const WebPricing = lazy(() => import("@/pages/WebPricing"));
-const MarketingPricing = lazy(() => import("@/pages/MarketingPricing"));
-const AIPricing = lazy(() => import("@/pages/AIPricing"));
-const PricingComparison = lazy(() => import("@/pages/PricingComparison"));
 
 
 export default function App() {
@@ -43,10 +39,6 @@ export default function App() {
             <Route path="/services/web" component={WebServices} />
             <Route path="/services/marketing" component={MarketingServices} />
             <Route path="/services/ai" component={AIServices} />
-            <Route path="/web-pricing" component={WebPricing} />
-            <Route path="/marketing-pricing" component={MarketingPricing} />
-            <Route path="/ai-pricing" component={AIPricing} />
-            <Route path="/pricing-comparison" component={PricingComparison} />
             <Route path="/work" component={Work} />
             <Route path="/about" component={About} />
             <Route path="/contact" component={Contact} />

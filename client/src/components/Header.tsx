@@ -1,133 +1,197 @@
-
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "wouter";
-import { Menu, X } from "lucide-react";
+import { AnimatePresence, motion } from "framer-motion";
+import { X, Menu, ChevronDown } from "lucide-react";
 import Logo from "./Logo";
-import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/custom-button";
+import { useIsMobile } from "@/hooks/use-mobile";
 
-export function Header() {
+export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [location] = useLocation();
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrollTop = window.scrollY;
-      setIsScrolled(scrollTop > 20);
+      setIsScrolled(window.scrollY > 20);
     };
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Close mobile menu when location changes
   useEffect(() => {
     setIsOpen(false);
   }, [location]);
 
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
-    if (!isOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "auto";
+  const toggleMenu = () => setIsOpen(!isOpen);
+
+  const headerClasses = `fixed top-0 left-0 w-full py-4 sm:py-6 px-4 sm:px-5 md:px-10 z-50 transition-all duration-300 ${
+    isScrolled
+      ? "bg-[#121212] bg-opacity-80 backdrop-blur-md shadow-md"
+      : "bg-transparent"
+  }`;
+
+  const isCurrentPath = (path: string) => {
+    if (path === '/services' && (location === '/services/web' || location === '/services/marketing' || location === '/services/ai')) {
+      return false;
     }
+    return location === path || location.startsWith(`${path}/`);
   };
 
+  const closeMenu = () => {
+    setIsOpen(false);
+  }
+
   return (
-    <header 
-      className={cn(
-        "fixed top-0 left-0 w-full z-50 transition-all duration-300 py-4 sm:py-5",
-        isScrolled || isOpen ? "bg-maverick-charcoal shadow-lg" : "bg-transparent",
-      )}
-    >
-      <div className="container mx-auto px-4 flex justify-between items-center">
-        <Link href="/" className="z-10">
-          <Logo className="h-14 w-auto" />
+    <header className={headerClasses}>
+      <div className="container mx-auto flex justify-between items-center">
+        <Link href="/" className="flex items-center">
+          <Logo size={isMobile ? "small" : "large"} noLink={true} showText={false}/>
+          <span className="font-heading font-bold text-2xl sm:text-3xl md:text-4xl text-maverick-orange ml-1 whitespace-nowrap">
+            Mavericks Edge
+          </span>
         </Link>
 
-        {/* Mobile Menu Toggle */}
-        <button 
-          className="md:hidden z-10 focus:outline-none"
+        {/* Mobile Menu Button */}
+        <button
           onClick={toggleMenu}
+          className="block md:hidden focus:outline-none z-50 bg-maverick-charcoal/50 p-2 rounded-full backdrop-blur-sm"
           aria-label="Toggle menu"
         >
-          {isOpen ? (
-            <X className="h-8 w-8 text-maverick-cream" />
-          ) : (
-            <Menu className="h-8 w-8 text-maverick-cream" />
-          )}
+          {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
         </button>
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-8">
-          <NavLink href="/services">Services</NavLink>
-          <NavLink href="/work">Our Work</NavLink>
-          <NavLink href="/pricing-comparison">Pricing</NavLink>
-          <NavLink href="/about">About</NavLink>
-          <Link href="/contact">
-            <a className="maverick-button maverick-button-primary">
-              Contact Us
-            </a>
+          <Link href="/" className={`px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 ${isCurrentPath('/') ? 'text-maverick-orange' : 'text-white hover:text-maverick-orange'}`}>
+            Home
+          </Link>
+
+          {/* Services dropdown */}
+          <div className="relative group">
+            <Link href="/services" className={`px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 inline-flex items-center ${
+              isCurrentPath('/services') || isCurrentPath('/services/web') || isCurrentPath('/services/marketing') || isCurrentPath('/services/ai') 
+                ? 'text-maverick-orange' 
+                : 'text-white hover:text-maverick-orange'
+            }`}>
+              Services
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1 transform transition-transform duration-300 group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </Link>
+            <div className="absolute left-0 mt-2 w-56 opacity-0 invisible group-hover:opacity-100 group-hover:visible transform group-hover:translate-y-0 translate-y-[-10px] transition-all duration-300 ease-in-out z-50">
+              <div className="py-1 bg-[#1A1A1A] border border-gray-800 rounded-md shadow-lg">
+                <Link href="/services/web" className={`block px-4 py-2 text-base ${isCurrentPath('/services/web') ? 'text-maverick-orange' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'}`}>
+                  Web & Digital Solutions
+                </Link>
+                <Link href="/services/marketing" className={`block px-4 py-2 text-base ${isCurrentPath('/services/marketing') ? 'text-maverick-orange' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'}`}>
+                  Marketing & Creative
+                </Link>
+                <Link href="/services/ai" className={`block px-4 py-2 text-base ${isCurrentPath('/services/ai') ? 'text-maverick-orange' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'}`}>
+                  AI Integration & Automation
+                </Link>
+              </div>
+            </div>
+          </div>
+
+          <Link href="/about" className={`px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 ${isCurrentPath('/about') ? 'text-maverick-orange' : 'text-white hover:text-maverick-orange'}`}>
+            About
+          </Link>
+          <Link href="/contact" className={`px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 ${isCurrentPath('/contact') ? 'text-maverick-orange' : 'text-white hover:text-maverick-orange'}`}>
+            Contact
           </Link>
         </nav>
-
-        {/* Mobile Navigation */}
-        <div
-          className={`fixed inset-0 flex flex-col items-center justify-center bg-maverick-charcoal transform transition-transform ease-in-out duration-300 ${
-            isOpen ? "translate-x-0" : "translate-x-full"
-          } md:hidden z-5`}
-        >
-          <div className="flex flex-col items-center space-y-8">
-            <MobileNavLink href="/services">Services</MobileNavLink>
-            <MobileNavLink href="/work">Our Work</MobileNavLink>
-            <MobileNavLink href="/pricing-comparison">Pricing</MobileNavLink>
-            <MobileNavLink href="/about">About</MobileNavLink>
-            <Link href="/contact">
-              <a className="maverick-button maverick-button-primary text-xl">
-                Contact Us
-              </a>
-            </Link>
-          </div>
-        </div>
       </div>
+
+      {/* Mobile Navigation - Slide in from right */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ x: "100%" }}
+            animate={{ x: 0 }}
+            exit={{ x: "100%" }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            className="fixed inset-y-0 right-0 w-[70%] max-w-xs bg-maverick-charcoal border-l border-maverick-slate/20 z-40 flex flex-col"
+          >
+            <div className="flex flex-col items-center justify-center h-full">
+              <motion.nav
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.2 }}
+                className="flex flex-col items-center space-y-8 text-xl w-full px-5 text-center"
+              >
+                <Link href="/" className={`hover-link py-3 w-full text-center border-b border-maverick-slate/20 text-lg ${isCurrentPath('/') ? 'text-maverick-orange' : 'text-white hover:text-maverick-orange'}`} onClick={closeMenu}>
+                  Home
+                </Link>
+                <div className="w-full text-center border-b border-maverick-slate/20 py-3">
+                  <div 
+                    onClick={(e) => {
+                      e.preventDefault();
+                      const dropdown = document.getElementById('mobile-services-dropdown');
+                      const chevron = document.getElementById('mobile-services-chevron');
+                      if (dropdown) {
+                        dropdown.classList.toggle('max-h-0');
+                        dropdown.classList.toggle('max-h-48');
+                        dropdown.classList.toggle('opacity-0');
+                        dropdown.classList.toggle('opacity-100');
+                        if (chevron) {
+                          chevron.classList.toggle('rotate-180');
+                        }
+                      }
+                    }}
+                    className="cursor-pointer inline-flex items-center justify-center hover-link py-3 w-full text-center text-lg text-maverick-orange hover:text-maverick-orange pl-4"
+                  >
+                    Services
+                    <ChevronDown id="mobile-services-chevron" className="ml-1 h-4 w-4 transition-transform duration-300" />
+                  </div>
+                  <div id="mobile-services-dropdown" className="max-h-0 mt-2 w-full overflow-hidden opacity-0 transition-all duration-300 ease-in-out">
+                    <Link href="/services/web" className={`block py-2 text-center text-lg ${isCurrentPath('/services/web') ? 'text-maverick-orange' : 'text-white hover:text-maverick-orange'}`} onClick={closeMenu}>
+                      Web & Digital Solutions
+                    </Link>
+                    <Link href="/services/marketing" className={`block py-2 text-center text-lg ${isCurrentPath('/services/marketing') ? 'text-maverick-orange' : 'text-white hover:text-maverick-orange'}`} onClick={closeMenu}>
+                      Marketing & Creative
+                    </Link>
+                    <Link href="/services/ai" className={`block py-2 text-center text-lg ${isCurrentPath('/services/ai') ? 'text-maverick-orange' : 'text-white hover:text-maverick-orange'}`} onClick={closeMenu}>
+                      AI Integration & Automation
+                    </Link>
+                  </div>
+                </div>
+
+                <Link href="/about" className={`hover-link py-3 w-full text-center border-b border-maverick-slate/20 text-lg ${isCurrentPath('/about') ? 'text-maverick-orange' : 'text-white hover:text-maverick-orange'}`} onClick={closeMenu}>
+                  About
+                </Link>
+                <div className="w-full text-center">
+                  <Button
+                    href="/contact"
+                    variant="primary"
+                    className="px-5 py-3 mt-4 mx-auto"
+                    onClick={closeMenu}
+                  >
+                    Contact
+                  </Button>
+                </div>
+              </motion.nav>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Backdrop for mobile menu */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 bg-black/50 backdrop-blur-sm z-30"
+            onClick={toggleMenu}
+          />
+        )}
+      </AnimatePresence>
     </header>
   );
 }
-
-const NavLink = ({ href, children }: { href: string; children: React.ReactNode }) => {
-  const [location] = useLocation();
-  const isActive = location === href || (href !== '/' && location.startsWith(href));
-
-  return (
-    <Link href={href}>
-      <a className={cn(
-        "text-maverick-cream font-medium hover:text-maverick-orange transition-colors relative",
-        isActive && "text-maverick-orange"
-      )}>
-        {children}
-        {isActive && (
-          <div className="absolute h-1 w-full bg-maverick-orange bottom-[-5px] rounded-full" />
-        )}
-      </a>
-    </Link>
-  );
-};
-
-const MobileNavLink = ({ href, children }: { href: string; children: React.ReactNode }) => {
-  const [location] = useLocation();
-  const isActive = location === href || (href !== '/' && location.startsWith(href));
-
-  return (
-    <Link href={href}>
-      <a className={cn(
-        "text-2xl font-medium",
-        isActive ? "text-maverick-orange" : "text-maverick-cream"
-      )}>
-        {children}
-      </a>
-    </Link>
-  );
-};
-
-// Add default export
-export default Header;
