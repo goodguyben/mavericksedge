@@ -1,0 +1,832 @@
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ChevronDown, Check, ArrowRight, ChevronRight, Brain, Database, Workflow, Bot, HelpCircle, Gauge, ShieldCheck, Zap, Cpu, Users } from 'lucide-react';
+import { Link } from 'wouter';
+import ContactSection from '@/components/sections/ContactSection';
+
+// Animation variants
+const fadeInUp = {
+  hidden: { opacity: 0, y: 20 },
+  visible: (delay = 0) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay,
+      duration: 0.5,
+      ease: "easeOut"
+    }
+  })
+};
+
+// Pricing data
+const pricingTiers = [
+  {
+    id: "ai-readiness",
+    name: "AI Readiness Assessment",
+    description: "A comprehensive evaluation of your current systems, data, and workflows to identify AI opportunities.",
+    price: "$600 - $1,200+",
+    oneTime: true,
+    popular: false,
+    idealFor: "Starting your AI journey with a strategic roadmap",
+    features: [
+      "Full tech stack, workflow, and data audit",
+      "AI opportunity identification and prioritization",
+      "Basic integration roadmap development",
+      "Implementation plan and timeline",
+      "Preliminary budget estimation",
+      "Data readiness assessment",
+      "Security and compliance considerations"
+    ],
+    icon: <Brain size={24} />
+  },
+  {
+    id: "edgeautomate",
+    name: "EdgeAutomate Kickstart",
+    description: "For SMBs just starting their AI journey — this foundational project identifies, validates, and initiates the most valuable automation opportunities.",
+    price: "Starting at $2,200",
+    oneTime: true,
+    popular: true,
+    idealFor: "Implementing your first AI-powered automation",
+    features: [
+      "Process mapping and automation opportunity assessment",
+      "Selection of one high-value automation candidate",
+      "AI tool/platform selection and setup",
+      "Custom workflow design and implementation",
+      "Connection to your existing business systems",
+      "Staff training on the new AI-powered workflow",
+      "30-day post-implementation support",
+      "ROI measurement framework"
+    ],
+    icon: <Workflow size={24} />
+  },
+  {
+    id: "custom-integration",
+    name: "Custom API Integration",
+    description: "Connect your existing systems to powerful AI models through custom API integrations tailored to your specific needs.",
+    price: "Starting at $3,500+",
+    oneTime: true,
+    popular: false,
+    idealFor: "Creating advanced AI integrations for your business",
+    features: [
+      "OpenAI, Claude, or Gemini API integration",
+      "Custom development for your unique requirements",
+      "Connection to your CRM, ERP, or other systems",
+      "Secure authentication implementation",
+      "Data formatting and preprocessing",
+      "Testing and performance optimization",
+      "Documentation and knowledge transfer",
+      "Deployment and configuration support"
+    ],
+    icon: <Cpu size={24} />
+  }
+];
+
+const supportPlans = [
+  {
+    id: "basic-ai-monitoring",
+    name: "Basic AI Monitoring",
+    description: "Essential monitoring to ensure your AI solutions remain operational and effective.",
+    price: "$250 - $400+",
+    period: "per month",
+    features: [
+      "Regular AI tool status monitoring",
+      "Basic updates and maintenance",
+      "Usage and cost tracking",
+      "Performance monitoring",
+      "Simple troubleshooting",
+      "Monthly status reporting",
+      "Response within 48 hours"
+    ],
+    icon: <Gauge size={24} />
+  },
+  {
+    id: "proactive-ai-support",
+    name: "Proactive AI Support",
+    description: "Comprehensive support with dedicated hours for optimization and enhancement of your AI implementations.",
+    price: "$600 - $1,200+",
+    period: "per month",
+    features: [
+      "All Basic Monitoring features",
+      "Dedicated support hours (4-10 hours/month)",
+      "Proactive issue detection",
+      "Ongoing AI model fine-tuning",
+      "Optimization of AI workflows",
+      "Usage pattern analysis",
+      "Governance and compliance checks",
+      "Knowledge base maintenance",
+      "Response within 24 hours",
+      "Quarterly strategy review"
+    ],
+    icon: <ShieldCheck size={24} />
+  }
+];
+
+// AI implementation examples
+const implementationExamples = [
+  {
+    title: "Customer Service AI Assistant",
+    description: "An AI-powered chatbot that handles common customer inquiries, reducing response time by 80% and allowing staff to focus on complex issues.",
+    price: "$4,500 - $8,000",
+    results: [
+      "24/7 customer support coverage",
+      "80% reduction in response time",
+      "40% decrease in support tickets",
+      "Improved customer satisfaction scores"
+    ]
+  },
+  {
+    title: "Content Generation System",
+    description: "A custom AI solution that generates industry-specific content, product descriptions, and marketing copy while maintaining your brand voice.",
+    price: "$3,800 - $7,500",
+    results: [
+      "70% faster content production",
+      "Consistent brand messaging",
+      "Ability to scale content across channels",
+      "Frees creative staff for strategic work"
+    ]
+  },
+  {
+    title: "Intelligent Document Processing",
+    description: "AI-powered document processing that extracts data from invoices, contracts, and forms to automate data entry and improve accuracy.",
+    price: "$5,200 - $9,500",
+    results: [
+      "95% reduction in manual data entry",
+      "99.5% data extraction accuracy",
+      "60% faster document processing",
+      "Significant cost savings on admin work"
+    ]
+  }
+];
+
+// FAQ data
+const faqs = [
+  {
+    question: "What exactly is included in the AI Readiness Assessment?",
+    answer: "Our AI Readiness Assessment is a comprehensive evaluation that includes a full audit of your current technology stack, workflows, and data infrastructure to identify AI opportunities. We examine your existing systems and processes, evaluate data quality and accessibility, identify potential automation opportunities, and assess technical and organizational readiness for AI adoption. The deliverable is a detailed report with prioritized AI use cases, a basic integration roadmap, implementation timelines, preliminary budget estimates, and recommendations for addressing any data or infrastructure gaps."
+  },
+  {
+    question: "How long does it typically take to implement an AI solution?",
+    answer: "Implementation timelines vary based on the complexity of the solution and your organization's technical readiness. Simple automations through the EdgeAutomate Kickstart package can be implemented in 3-6 weeks. More complex custom API integrations typically require 6-12 weeks from discovery to deployment. Enterprise-wide AI transformations may span several months. During the initial assessment or consultation, we'll provide a detailed timeline specific to your project scope and requirements."
+  },
+  {
+    question: "Do we need a large amount of data to start using AI?",
+    answer: "Not necessarily. While having quality data is important for certain AI applications, many solutions can be implemented with relatively modest data requirements. Modern AI platforms like OpenAI, Claude, and Gemini come pre-trained with vast knowledge that can be applied to your specific needs. During our AI Readiness Assessment, we'll evaluate your current data assets and recommend approaches that align with your data availability. For some applications, we can start with smaller datasets and expand capabilities as you collect more data over time."
+  },
+  {
+    question: "How do you ensure AI implementations are secure and compliant?",
+    answer: "Security and compliance are central to our AI implementation approach. We conduct thorough evaluations of data handling practices, implement strong encryption and access controls, and design solutions that adhere to relevant regulations like PIPEDA, GDPR, or industry-specific requirements. We work closely with your team to establish appropriate governance frameworks, develop clear policies for AI usage, and implement monitoring systems to ensure ongoing compliance. Our implementations include documentation of security measures and privacy considerations, and we can provide guidance on regular security audits."
+  },
+  {
+    question: "What ongoing support do you provide after implementing an AI solution?",
+    answer: "After implementation, we offer two levels of ongoing support: Basic AI Monitoring ($250-$400+/month) which includes regular status monitoring, basic updates, and usage tracking; and Proactive AI Support ($600-$1,200+/month) which adds dedicated support hours, proactive optimization, governance checks, and strategic guidance. All implementations include a minimum 30-day post-launch support period. We can also create custom support arrangements based on your specific needs and internal capabilities."
+  },
+  {
+    question: "Do you offer discounts for nonprofit organizations?",
+    answer: "Yes, we offer special pricing for registered nonprofit organizations and charities. We believe in supporting organizations that make a positive social impact, and our nonprofit discounts reflect this commitment. Please mention your nonprofit status during our initial consultation, and we'll be happy to discuss the special rates available for your AI implementation needs."
+  }
+];
+
+export default function AIPricing() {
+  const [selectedFaq, setSelectedFaq] = useState<number | null>(null);
+  const [showAllExamples, setShowAllExamples] = useState(false);
+
+  const toggleFaq = (index: number) => {
+    setSelectedFaq(selectedFaq === index ? null : index);
+  };
+
+  const displayedExamples = showAllExamples ? implementationExamples : implementationExamples.slice(0, 2);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.5 }}
+      className="bg-[#121212]"
+    >
+      {/* Hero Section */}
+      <section className="pt-44 md:pt-48 pb-20 px-5 md:px-10">
+        <motion.div 
+          className="container mx-auto"
+          variants={fadeInUp}
+          initial="hidden"
+          animate="visible"
+          custom={0.2}
+        >
+          <div className="max-w-3xl mx-auto text-center">
+            <motion.div 
+              className="inline-flex items-center justify-center p-3 rounded-full bg-maverick-orange bg-opacity-10 mb-5"
+              variants={fadeInUp}
+              initial="hidden"
+              animate="visible"
+              custom={0.3}
+            >
+              <Brain className="h-6 w-6 text-maverick-orange" />
+            </motion.div>
+            
+            <motion.h1 
+              className="text-5xl md:text-7xl font-bold mb-6 font-heading"
+              variants={fadeInUp}
+              initial="hidden"
+              animate="visible"
+              custom={0.4}
+            >
+              AI Integration <span className="text-maverick-orange">Pricing</span>
+            </motion.h1>
+            
+            <motion.p 
+              className="text-xl text-[#AAAAAA] mb-10 max-w-3xl mx-auto"
+              variants={fadeInUp}
+              initial="hidden"
+              animate="visible"
+              custom={0.5}
+            >
+              Strategic AI implementation solutions designed for SMBs and nonprofits that deliver measurable business impact without enterprise-level budgets.
+            </motion.p>
+            
+            <motion.div
+              variants={fadeInUp}
+              initial="hidden"
+              animate="visible"
+              custom={0.6}
+            >
+              <a href="#pricing-tiers" className="inline-flex items-center justify-center px-6 py-3 rounded-lg bg-maverick-orange bg-opacity-10 border border-maverick-orange border-opacity-30 hover:bg-opacity-20 transition-all duration-300">
+                <span className="mr-2">View Pricing Options</span>
+                <ChevronDown className="h-4 w-4" />
+              </a>
+            </motion.div>
+          </div>
+        </motion.div>
+      </section>
+
+      {/* Value Proposition Section */}
+      <section className="py-16 px-5 md:px-10 bg-[#151515]">
+        <div className="container mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              {
+                title: "Strategic Implementation",
+                description: "We focus on the AI solutions with the highest ROI potential for your specific business challenges.",
+                icon: <Zap className="h-8 w-8 text-maverick-orange" />,
+                delay: 0.3
+              },
+              {
+                title: "No Technical Debt",
+                description: "Our implementations are built for long-term value with clean architecture and proper documentation.",
+                icon: <ShieldCheck className="h-8 w-8 text-maverick-orange" />,
+                delay: 0.4
+              },
+              {
+                title: "Practical AI Adoption",
+                description: "We emphasize staff training and change management to ensure your team actually uses the AI tools.",
+                icon: <Users className="h-8 w-8 text-maverick-orange" />,
+                delay: 0.5
+              }
+            ].map((item, index) => (
+              <motion.div
+                key={index}
+                variants={fadeInUp}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                custom={item.delay}
+                className="p-6 rounded-xl border border-gray-800 bg-[#1A1A1A]"
+              >
+                <div className="p-3 bg-maverick-orange bg-opacity-10 rounded-lg inline-block mb-4">
+                  {item.icon}
+                </div>
+                <h3 className="text-xl font-bold mb-3">{item.title}</h3>
+                <p className="text-[#AAAAAA]">{item.description}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Pricing Tiers Section */}
+      <section id="pricing-tiers" className="py-20 px-5 md:px-10 bg-[#121212]">
+        <div className="container mx-auto">
+          <motion.div 
+            className="text-center mb-16"
+            variants={fadeInUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            custom={0.2}
+          >
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 font-heading">AI Implementation Pricing</h2>
+            <p className="text-xl text-[#AAAAAA] max-w-2xl mx-auto">
+              Transparent pricing for organizations looking to harness the power of AI with clear deliverables and value
+            </p>
+          </motion.div>
+          
+          {/* Pricing Cards */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
+            {pricingTiers.map((tier, index) => (
+              <motion.div
+                key={tier.id}
+                variants={fadeInUp}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                custom={0.2 + index * 0.1}
+                className={`relative overflow-hidden rounded-2xl ${
+                  tier.popular 
+                    ? 'ring-2 ring-maverick-orange' 
+                    : 'border border-gray-800'
+                }`}
+              >
+                {/* Top Gradient Bar */}
+                <div className={`h-2 w-full ${
+                  tier.popular 
+                    ? 'bg-gradient-to-r from-maverick-orange to-yellow-600' 
+                    : 'bg-gradient-to-r from-gray-700 to-gray-800'
+                }`}></div>
+                
+                {/* Header */}
+                <div className="p-8 bg-[#1A1A1A]">
+                  {tier.popular && (
+                    <div className="absolute top-4 right-8 bg-maverick-orange/90 text-white text-xs font-bold px-3 py-1 rounded-full">
+                      Most Popular
+                    </div>
+                  )}
+                  
+                  <div className="flex items-center gap-4 mb-4">
+                    <div className={`w-12 h-12 rounded-full flex items-center justify-center ${
+                      tier.popular 
+                        ? 'bg-maverick-orange text-white' 
+                        : 'bg-maverick-orange/20 text-maverick-orange'
+                    }`}>
+                      {tier.icon}
+                    </div>
+                    <h3 className="text-2xl font-bold">{tier.name}</h3>
+                  </div>
+                  
+                  <p className="text-[#AAAAAA] mb-6 min-h-[60px]">{tier.description}</p>
+                  
+                  <div className="mb-3">
+                    <span className="text-3xl font-bold">{tier.price}</span>
+                    {tier.oneTime && <span className="text-[#AAAAAA] ml-2">one-time</span>}
+                  </div>
+                  
+                  <div className="flex items-center gap-2 mb-6">
+                    <div className="p-1 rounded-full bg-green-500/20">
+                      <Check className="h-4 w-4 text-green-500" />
+                    </div>
+                    <p className="text-sm text-green-400 font-medium">
+                      {tier.idealFor}
+                    </p>
+                  </div>
+                </div>
+                
+                {/* Features */}
+                <div className="p-8 bg-[#161616]">
+                  <h4 className="font-medium mb-4">What's included:</h4>
+                  <ul className="space-y-3 mb-8">
+                    {tier.features.map((feature, idx) => (
+                      <motion.li 
+                        key={idx}
+                        initial={{ opacity: 0, x: -10 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        transition={{ delay: 0.1 * idx, duration: 0.3 }}
+                        viewport={{ once: true }}
+                        className="flex items-start"
+                      >
+                        <Check className="h-5 w-5 text-maverick-orange shrink-0 mt-0.5 mr-3" />
+                        <span className="text-[#DDDDDD]">{feature}</span>
+                      </motion.li>
+                    ))}
+                  </ul>
+                  
+                  <Link href="/contact">
+                    <a className={`block text-center w-full py-3 px-6 rounded-lg font-medium transition-all duration-300 ${
+                      tier.popular 
+                        ? 'bg-maverick-orange hover:bg-opacity-90 text-white' 
+                        : 'border border-maverick-orange text-maverick-orange hover:bg-maverick-orange hover:bg-opacity-10'
+                    }`}>
+                      Get Started
+                    </a>
+                  </Link>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+          
+          {/* Consulting Rate */}
+          <motion.div
+            variants={fadeInUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            custom={0.4}
+            className="bg-[#1A1A1A] rounded-xl p-8 border border-gray-800"
+          >
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
+              <div>
+                <h3 className="text-2xl font-bold mb-3">AI Strategy Consulting</h3>
+                <p className="text-[#AAAAAA] max-w-xl">
+                  Need expert guidance on your AI strategy or technical approach? Our experienced consultants can help with planning sessions, architecture reviews, or implementation oversight.
+                </p>
+              </div>
+              <div className="min-w-[200px] flex flex-col gap-3">
+                <div className="bg-[#121212] p-4 rounded-lg border border-gray-800">
+                  <span className="text-[#AAAAAA] text-sm">Hourly Rate</span>
+                  <p className="text-2xl font-bold">$140-$220<span className="text-sm text-[#AAAAAA] font-normal">+/hour</span></p>
+                </div>
+                <Link href="/contact">
+                  <a className="text-center py-3 px-6 rounded-lg font-medium bg-transparent border border-maverick-orange text-maverick-orange hover:bg-maverick-orange hover:bg-opacity-10 transition-all duration-300">
+                    Book a Consultation
+                  </a>
+                </Link>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Implementation Examples */}
+      <section className="py-24 px-5 md:px-10 bg-gradient-to-b from-[#161616] to-[#121212]">
+        <div className="container mx-auto">
+          <motion.div 
+            className="text-center mb-16"
+            variants={fadeInUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            custom={0.2}
+          >
+            <h2 className="text-4xl font-bold mb-6 font-heading">Real AI Implementation Examples</h2>
+            <p className="text-xl text-[#AAAAAA] max-w-2xl mx-auto">
+              See how organizations like yours are harnessing AI to solve real business challenges
+            </p>
+          </motion.div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
+            {displayedExamples.map((example, index) => (
+              <motion.div
+                key={index}
+                variants={fadeInUp}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                custom={0.3 + index * 0.1}
+                className="bg-[#1A1A1A] rounded-xl overflow-hidden border border-gray-800"
+              >
+                <div className="p-8">
+                  <div className="flex items-center gap-3 mb-5">
+                    <div className="w-12 h-12 rounded-full bg-maverick-orange bg-opacity-10 flex items-center justify-center text-maverick-orange">
+                      <Bot size={24} />
+                    </div>
+                    <h3 className="text-xl font-bold">{example.title}</h3>
+                  </div>
+                  
+                  <p className="text-[#AAAAAA] mb-5">{example.description}</p>
+                  
+                  <div className="flex items-center justify-between mb-6">
+                    <div>
+                      <span className="text-sm text-[#AAAAAA]">Implementation Cost</span>
+                      <p className="text-2xl font-bold">{example.price}</p>
+                    </div>
+                  </div>
+                  
+                  <h4 className="font-medium mb-3">Business Impact:</h4>
+                  <ul className="space-y-2">
+                    {example.results.map((result, idx) => (
+                      <li key={idx} className="flex items-start">
+                        <div className="h-5 w-5 rounded-full bg-green-500/10 flex items-center justify-center mr-3 mt-0.5">
+                          <div className="h-2 w-2 rounded-full bg-green-500"></div>
+                        </div>
+                        <span className="text-[#DDDDDD]">{result}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+          
+          <AnimatePresence>
+            {!showAllExamples && implementationExamples.length > 2 && (
+              <motion.div 
+                initial={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className="text-center"
+              >
+                <button
+                  onClick={() => setShowAllExamples(true)}
+                  className="inline-flex items-center justify-center px-6 py-3 rounded-lg bg-maverick-orange/10 hover:bg-maverick-orange/20 border border-maverick-orange/30 transition-all duration-300"
+                >
+                  <span className="mr-2">View More Examples</span>
+                  <ChevronDown className="h-4 w-4" />
+                </button>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+      </section>
+
+      {/* Support Plans Section */}
+      <section className="py-24 px-5 md:px-10 bg-[#121212]">
+        <div className="container mx-auto">
+          <motion.div 
+            className="text-center mb-16"
+            variants={fadeInUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            custom={0.2}
+          >
+            <h2 className="text-4xl font-bold mb-6 font-heading">AI Support & Governance Plans</h2>
+            <p className="text-xl text-[#AAAAAA] max-w-2xl mx-auto">
+              Ensure your AI implementations remain effective, secure, and up-to-date with our ongoing support plans
+            </p>
+          </motion.div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+            {supportPlans.map((plan, index) => (
+              <motion.div
+                key={plan.id}
+                variants={fadeInUp}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                custom={0.3 + index * 0.1}
+                className="bg-gradient-to-br from-[#1A1A1A] to-[#1E1E1E] rounded-xl overflow-hidden border border-gray-800"
+              >
+                <div className="p-8">
+                  <div className="flex items-center gap-4 mb-4">
+                    <div className="w-12 h-12 rounded-full bg-maverick-orange bg-opacity-10 flex items-center justify-center text-maverick-orange">
+                      {plan.icon}
+                    </div>
+                    <h3 className="text-2xl font-bold">{plan.name}</h3>
+                  </div>
+                  
+                  <p className="text-[#AAAAAA] mb-6">{plan.description}</p>
+                  
+                  <div className="mb-8">
+                    <span className="text-3xl font-bold">{plan.price}</span>
+                    <span className="text-[#AAAAAA] ml-2">{plan.period}</span>
+                  </div>
+                  
+                  <div className="space-y-3 mb-8">
+                    {plan.features.map((feature, idx) => (
+                      <motion.div
+                        key={idx}
+                        initial={{ opacity: 0, x: -10 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        transition={{ delay: 0.05 * idx, duration: 0.3 }}
+                        viewport={{ once: true }}
+                        className="flex items-start"
+                      >
+                        <Check className="h-5 w-5 text-maverick-orange shrink-0 mt-0.5 mr-3" />
+                        <span className="text-[#DDDDDD]">{feature}</span>
+                      </motion.div>
+                    ))}
+                  </div>
+                  
+                  <Link href="/contact">
+                    <a className="block text-center w-full py-3 px-6 rounded-lg font-medium transition-all duration-300 border border-maverick-orange text-maverick-orange hover:bg-maverick-orange hover:bg-opacity-10">
+                      Get Started
+                    </a>
+                  </Link>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+          
+          {/* Custom Support */}
+          <motion.div
+            variants={fadeInUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            custom={0.4}
+            className="text-center"
+          >
+            <div className="inline-flex items-center justify-center px-6 py-3 rounded-lg bg-maverick-orange bg-opacity-10 border border-maverick-orange border-opacity-30 mb-3">
+              <Database className="h-5 w-5 text-maverick-orange mr-2" />
+              <span>Need a custom support plan?</span>
+            </div>
+            <h3 className="text-2xl font-bold mb-3">Tailored Support Solutions</h3>
+            <p className="text-[#AAAAAA] max-w-2xl mx-auto mb-6">
+              We can customize a support and governance plan specific to your organization's AI implementation complexity and in-house capabilities.
+            </p>
+            <Link href="/contact">
+              <a className="inline-flex items-center justify-center py-3 px-8 rounded-lg font-medium bg-transparent border border-maverick-orange text-maverick-orange hover:bg-maverick-orange hover:bg-opacity-10 transition-all duration-300">
+                Request Custom Support Plan
+              </a>
+            </Link>
+          </motion.div>
+        </div>
+      </section>
+      
+      {/* Process Section */}
+      <section className="py-20 px-5 md:px-10 bg-[#1A1A1A]">
+        <div className="container mx-auto">
+          <motion.div 
+            className="text-center mb-16"
+            variants={fadeInUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            custom={0.2}
+          >
+            <h2 className="text-4xl font-bold mb-6 font-heading">Our AI Implementation Process</h2>
+            <p className="text-[#AAAAAA] max-w-2xl mx-auto">
+              A systematic approach that ensures successful AI adoption for your organization
+            </p>
+          </motion.div>
+          
+          <div className="max-w-4xl mx-auto">
+            {[
+              {
+                number: "01",
+                title: "Discovery & Assessment",
+                description: "We start by understanding your business goals, evaluating your current systems, and identifying the highest-value AI opportunities."
+              },
+              {
+                number: "02",
+                title: "Solution Design",
+                description: "Our team designs a tailored AI solution that integrates seamlessly with your existing workflows and systems."
+              },
+              {
+                number: "03",
+                title: "Development & Testing",
+                description: "We build and rigorously test your AI implementation to ensure it performs reliably and securely."
+              },
+              {
+                number: "04",
+                title: "Training & Change Management",
+                description: "We prepare your team with comprehensive training and support the transition to new AI-enhanced workflows."
+              },
+              {
+                number: "05",
+                title: "Deployment & Optimization",
+                description: "After successful testing, we deploy your AI solution and fine-tune it based on real-world performance data."
+              },
+              {
+                number: "06",
+                title: "Ongoing Support & Evolution",
+                description: "We provide continued support and help your AI solution evolve as your business needs change."
+              }
+            ].map((step, index) => (
+              <motion.div
+                key={index}
+                variants={fadeInUp}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                custom={0.3 + index * 0.1}
+                className="relative mb-12 last:mb-0 pl-16"
+              >
+                <div className="flex items-start">
+                  <div className="absolute left-0 w-10 h-10 rounded-full bg-maverick-orange bg-opacity-20 flex items-center justify-center text-maverick-orange">
+                    <span className="font-bold">{step.number}</span>
+                  </div>
+                  
+                  <div>
+                    <h3 className="text-xl font-bold mb-2">{step.title}</h3>
+                    <p className="text-[#AAAAAA]">{step.description}</p>
+                  </div>
+                </div>
+                
+                {index < 5 && (
+                  <div className="absolute left-5 top-12 h-full w-0.5 bg-gradient-to-b from-maverick-orange/30 to-transparent"></div>
+                )}
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="py-24 px-5 md:px-10 bg-[#121212]">
+        <div className="container mx-auto">
+          <motion.div 
+            className="text-center mb-16"
+            variants={fadeInUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            custom={0.2}
+          >
+            <div className="inline-flex items-center justify-center p-2 rounded-full bg-maverick-orange bg-opacity-10 mb-4">
+              <HelpCircle className="h-5 w-5 text-maverick-orange" />
+            </div>
+            <h2 className="text-4xl font-bold mb-4 font-heading">Frequently Asked Questions</h2>
+            <p className="text-[#AAAAAA] max-w-2xl mx-auto">
+              Find answers to common questions about our AI implementation services
+            </p>
+          </motion.div>
+          
+          <div className="max-w-3xl mx-auto">
+            {faqs.map((faq, index) => (
+              <motion.div
+                key={index}
+                variants={fadeInUp}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                custom={0.3 + index * 0.05}
+                className={`border-b border-gray-800 py-6 ${index === faqs.length - 1 ? 'mb-0 border-b-0' : 'mb-2'}`}
+              >
+                <button
+                  onClick={() => toggleFaq(index)}
+                  className="flex justify-between items-center w-full text-left"
+                >
+                  <h3 className="text-xl font-medium pr-8">{faq.question}</h3>
+                  <div className={`transition-transform duration-300 ${selectedFaq === index ? 'rotate-180' : ''}`}>
+                    <ChevronDown className="h-5 w-5 text-maverick-orange" />
+                  </div>
+                </button>
+                <AnimatePresence>
+                  {selectedFaq === index && (
+                    <motion.div
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: 'auto' }}
+                      exit={{ opacity: 0, height: 0 }}
+                      transition={{ duration: 0.3 }}
+                      className="overflow-hidden"
+                    >
+                      <p className="pt-4 text-[#AAAAAA]">{faq.answer}</p>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Nonprofit Section */}
+      <section className="py-16 px-5 md:px-10 bg-[#1A1A1A]">
+        <div className="container mx-auto">
+          <motion.div
+            variants={fadeInUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            custom={0.3}
+            className="bg-gradient-to-r from-[#1E1E1E] to-[#262626] rounded-2xl overflow-hidden border border-gray-800"
+          >
+            <div className="p-8 md:p-12">
+              <div className="flex flex-col md:flex-row items-center gap-8">
+                <div className="w-16 h-16 rounded-full bg-maverick-orange bg-opacity-20 flex items-center justify-center text-maverick-orange">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M3 7V5c0-1.1.9-2 2-2h2"></path>
+                    <path d="M17 3h2c1.1 0 2 .9 2 2v2"></path>
+                    <path d="M21 17v2c0 1.1-.9 2-2 2h-2"></path>
+                    <path d="M7 21H5c-1.1 0-2-.9-2-2v-2"></path>
+                    <rect x="7" y="7" width="10" height="10" rx="1"></rect>
+                    <path d="m16 11-4 4-2-2"></path>
+                  </svg>
+                </div>
+                <div className="flex-grow">
+                  <h3 className="text-2xl md:text-3xl font-bold mb-3 font-heading">Special Pricing for Nonprofits</h3>
+                  <p className="text-[#AAAAAA] mb-6 max-w-2xl">
+                    We're committed to helping mission-driven organizations leverage AI to maximize their impact. Registered nonprofits and charities qualify for special pricing on all our AI services.
+                  </p>
+                  <Link href="/contact">
+                    <a className="inline-flex items-center text-maverick-orange hover:underline">
+                      Contact us to learn more <ArrowRight className="ml-2 h-4 w-4" />
+                    </a>
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-20 px-5 md:px-10 bg-gradient-to-b from-[#1A1A1A] to-[#121212] relative overflow-hidden">
+        <div className="container mx-auto relative z-10">
+          <motion.div 
+            className="text-center"
+            variants={fadeInUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            custom={0.3}
+          >
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 font-heading">
+              Ready to <span className="text-maverick-orange">Transform</span> Your Business with AI?
+            </h2>
+            <p className="text-xl text-[#AAAAAA] max-w-2xl mx-auto mb-10">
+              Schedule a free consultation to discuss your AI goals and discover how we can help your organization leverage artificial intelligence for meaningful results.
+            </p>
+            <Link href="/contact">
+              <a className="inline-flex items-center justify-center py-4 px-8 rounded-lg text-lg font-medium bg-maverick-orange hover:bg-opacity-90 text-white transition-all duration-300">
+                Start Your AI Journey
+              </a>
+            </Link>
+          </motion.div>
+        </div>
+        <div className="absolute -bottom-10 right-0 w-96 h-96 bg-maverick-orange rounded-full filter blur-[180px] opacity-5"></div>
+        <div className="absolute top-20 left-0 w-72 h-72 bg-maverick-orange rounded-full filter blur-[150px] opacity-5"></div>
+      </section>
+
+      <ContactSection />
+    </motion.div>
+  );
+}
