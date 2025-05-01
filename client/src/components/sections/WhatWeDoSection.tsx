@@ -9,31 +9,31 @@ export default function WhatWeDoSection() {
   const services = [
     {
       id: "web-development",
-      title: "Web & Digital Solutions",
-      description: "Transform your online presence with custom digital experiences that captivate your audience and drive conversions.",
+      title: "Web Design & Development",
+      description: "Transform your online presence with custom digital experiences that engage your audience and drive results.",
       icon: <Code className="w-12 h-12 text-maverick-orange" />,
-      details: "From stunning responsive websites to powerful e-commerce platforms, we craft digital solutions that align perfectly with your business goals. Our development approach ensures your digital presence isn't just visually impressive but also delivers measurable business outcomes through optimized user journeys, seamless functionality, and strategic architecture that scales with your growth."
+      details: "From responsive websites to powerful e-commerce platforms, we build solutions aligned with your goals. Our development ensures a visually stunning, high-performing digital presence with optimized user journeys, seamless functionality, and scalable architecture to support your growth."
     },
     {
       id: "creative-design",
-      title: "Marketing & Creative Services",
+      title: "Marketing & Creative",
       description: "Elevate your brand with strategic marketing that connects with your target audience and delivers measurable ROI.",
       icon: <PenTool className="w-12 h-12 text-maverick-orange" />,
-      details: "We don't just create marketing—we craft compelling brand stories that resonate with your audience across all touchpoints. Our integrated approach combines powerful visual design, targeted content strategies, and data-driven campaigns to build meaningful connections with your customers, increasing engagement and creating lasting brand loyalty while delivering quantifiable business results."
+      details: "We don’t just market—we craft compelling brand stories that connect across every touchpoint. Through visual design, targeted content, and data-driven campaigns, we build strong customer relationships, boost engagement, and drive lasting brand loyalty with clear, quantifiable results."
     },
     {
       id: "digital-strategy",
       title: "AI Integration & Automation",
-      description: "Harness the transformative power of AI to unlock hidden insights, automate workflows, and create competitive advantages.",
+      description: "Harness the power of AI to unlock insights, automate workflows, and gain a competitive edge.",
       icon: <Brain className="w-12 h-12 text-maverick-orange" />,
-      details: "We make AI accessible and practical for your business, turning complex technologies into tangible advantages. Our solutions help you reduce operational costs, uncover valuable data insights, and create intelligent customer experiences that set you apart. We focus on responsible AI implementation that enhances human capabilities rather than replacing them, with clear ROI and change management support."
+      details: "We make AI practical and accessible, turning complex tech into real results. Our solutions reduce costs, surface valuable data, and enhance customer experiences. With a focus on responsible implementation, we boost human potential—not replace it—backed by clear ROI and change management support."
     },
     {
       id: "client-services",
       title: "Ongoing Support & Optimization",
-      description: "Ensure your digital investments continue to perform at their peak with proactive maintenance and continuous improvement.",
+      description: "Ensure your digital investments perform at their best with proactive maintenance and ongoing optimization.",
       icon: <Database className="w-12 h-12 text-maverick-orange" />,
-      details: "Digital success requires ongoing attention, not just initial implementation. Our support services provide peace of mind through proactive monitoring, regular updates, and performance optimization that keeps your digital assets secure and effective. We become an extension of your team, providing the technical expertise to adapt to changing market conditions and technology landscapes while you focus on your core business."
+      details: "Digital success doesn’t stop at launch—our support services offer peace of mind through monitoring, updates, and performance tuning. As an extension of your team, we provide the technical expertise to adapt to evolving market and tech landscapes, so you can stay focused on your core business."
     }
   ];
 
