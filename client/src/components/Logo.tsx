@@ -1,6 +1,6 @@
 
 import { Link } from "wouter";
-import logoPath from "@assets/new_logo.png";
+import logoPath from "@assets/logo_dyn-transparent-thumb2x.png";
 
 interface LogoProps {
   size?: "small" | "medium" | "large";
@@ -10,9 +10,9 @@ interface LogoProps {
 
 export default function Logo({ size = "medium", showText = true, noLink = false }: LogoProps) {
   const sizeClasses = {
-    small: "w-10 h-10", 
-    medium: "w-16 h-16",
-    large: "w-20 h-20"
+    small: "w-20 h-20", 
+    medium: "w-24 h-24",
+    large: "w-32 h-32"
   };
 
   const LogoContent = () => (
