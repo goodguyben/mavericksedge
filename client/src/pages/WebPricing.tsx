@@ -240,29 +240,29 @@ export default function WebPricing() {
   const [activeTab, setActiveTab] = useState("projects");
   const projectsRef = useRef<HTMLDivElement>(null);
   const careRef = useRef<HTMLDivElement>(null);
-  
+
   const toggleFaq = (index: number) => {
     setSelectedFaq(selectedFaq === index ? null : index);
   };
-  
+
   const scrollToSection = (section: string) => {
     setActiveTab(section);
-    
+
     if (section === "projects" && projectsRef.current) {
       projectsRef.current.scrollIntoView({ behavior: "smooth" });
     } else if (section === "care" && careRef.current) {
       careRef.current.scrollIntoView({ behavior: "smooth" });
     }
   };
-  
+
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY + window.innerHeight / 2;
-      
+
       if (projectsRef.current && careRef.current) {
         const projectsPosition = projectsRef.current.offsetTop;
         const carePosition = careRef.current.offsetTop;
-        
+
         if (scrollPosition >= carePosition) {
           setActiveTab("care");
         } else if (scrollPosition >= projectsPosition) {
@@ -270,11 +270,11 @@ export default function WebPricing() {
         }
       }
     };
-    
+
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-  
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -295,7 +295,7 @@ export default function WebPricing() {
             >
               <Globe className="h-6 w-6 text-maverick-orange" />
             </motion.div>
-            
+
             <motion.h1 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -304,16 +304,16 @@ export default function WebPricing() {
             >
               Web Solutions <span className="text-maverick-orange">Pricing</span>
             </motion.h1>
-            
+
             <motion.p 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.5 }}
-              className="text-xl text-[#AAAAAA] mb-10 max-w-3xl mx-auto"
+              className="text-xl text-[#DDDDDD] mb-10 max-w-3xl mx-auto"
             >
               Transparent, value-driven pricing for websites and digital solutions that help your organization thrive online. From simple brochure sites to custom web applications, we've got you covered.
             </motion.p>
-            
+
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -330,7 +330,7 @@ export default function WebPricing() {
               >
                 Project-Based Packages
               </button>
-              
+
               <button
                 onClick={() => scrollToSection("care")}
                 className={`px-6 py-3 rounded-lg text-white font-medium transition-all duration-300 ${
@@ -344,12 +344,12 @@ export default function WebPricing() {
             </motion.div>
           </div>
         </div>
-        
+
         {/* Background elements */}
         <div className="absolute -top-40 right-0 w-96 h-96 bg-maverick-orange rounded-full filter blur-[180px] opacity-10"></div>
         <div className="absolute bottom-0 left-0 w-96 h-96 bg-purple-600 rounded-full filter blur-[180px] opacity-5"></div>
       </section>
-      
+
       {/* Project-Based Packages */}
       <section 
         ref={projectsRef} 
@@ -368,11 +368,11 @@ export default function WebPricing() {
               <Laptop className="h-5 w-5 text-maverick-orange" />
             </div>
             <h2 className="text-4xl md:text-5xl font-bold mb-6 font-heading">Project-Based Packages</h2>
-            <p className="text-xl text-[#AAAAAA] max-w-2xl mx-auto">
+            <p className="text-xl text-[#DDDDDD] max-w-2xl mx-auto">
               One-time website design and development solutions tailored to your organization's size, goals, and growth stage.
             </p>
           </motion.div>
-          
+
           {/* Packages Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
             {projectPackages.map((pkg, index) => (
@@ -388,12 +388,8 @@ export default function WebPricing() {
                 )}
               >
                 <div className="p-6 border-b border-gray-800">
-                  {pkg.popular && (
-                    <div className="bg-maverick-orange text-[#121212] text-xs font-bold uppercase tracking-wider rounded-full px-3 py-1 inline-block mb-4">
-                      Most Popular
-                    </div>
-                  )}
-                  
+                  {/* Removed "Most Popular" */}
+
                   <div className="flex items-center mb-4">
                     <div className={`w-12 h-12 rounded-full flex items-center justify-center ${
                       pkg.popular ? 'bg-maverick-orange' : 'bg-maverick-orange bg-opacity-10'
@@ -402,17 +398,17 @@ export default function WebPricing() {
                     </div>
                     <h3 className="text-2xl font-bold ml-4">{pkg.name}</h3>
                   </div>
-                  
+
                   <div className="mb-4">
                     <span className="text-3xl font-bold">{pkg.price}</span>
-                    {pkg.oneTime && <span className="text-[#AAAAAA] ml-2">one-time</span>}
+                    {pkg.oneTime && <span className="text-[#DDDDDD] ml-2">one-time</span>}
                   </div>
-                  
+
                   <p className="text-[#DDDDDD] font-medium mb-4">
                     {pkg.focusStatement}
                   </p>
                 </div>
-                
+
                 <div className="p-6">
                   <h4 className="font-medium mb-4">What's included:</h4>
                   <ul className="space-y-3 mb-8">
@@ -430,13 +426,9 @@ export default function WebPricing() {
                       </motion.li>
                     ))}
                   </ul>
-                  
+
                   <Link href="/contact">
-                    <a className={`inline-flex items-center justify-center w-full py-3 px-6 rounded-lg font-medium transition-all duration-300 ${
-                      pkg.popular 
-                        ? 'bg-maverick-orange hover:bg-opacity-90 text-white' 
-                        : 'border border-maverick-orange text-maverick-orange hover:bg-maverick-orange hover:bg-opacity-10'
-                    }`}>
+                    <a className={`inline-flex items-center justify-center w-full py-3 px-6 rounded-lg font-medium transition-all duration-300 bg-maverick-orange hover:bg-opacity-90 text-white`}>
                       Get Started
                     </a>
                   </Link>
@@ -444,7 +436,7 @@ export default function WebPricing() {
               </motion.div>
             ))}
           </div>
-          
+
           {/* Compare Packages Section */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -455,9 +447,9 @@ export default function WebPricing() {
           >
             <div className="p-8 border-b border-gray-800">
               <h3 className="text-2xl font-bold mb-2">Compare Project Packages</h3>
-              <p className="text-[#AAAAAA]">A side-by-side comparison of our website project packages to help you choose the right fit.</p>
+              <p className="text-[#DDDDDD]">A side-by-side comparison of our website project packages to help you choose the right fit.</p>
             </div>
-            
+
             <div className="overflow-x-auto">
               <table className="w-full min-w-[768px] border-collapse">
                 <thead>
@@ -470,25 +462,25 @@ export default function WebPricing() {
                 </thead>
                 <tbody>
                   <tr>
-                    <td className="p-4 border-b border-gray-800 text-[#AAAAAA]">Price</td>
+                    <td className="p-4 border-b border-gray-800 text-[#DDDDDD]">Price</td>
                     <td className="p-4 text-center border-b border-gray-800">$850</td>
                     <td className="p-4 text-center border-b border-gray-800">$1,850</td>
                     <td className="p-4 text-center border-b border-gray-800">From $3,750+</td>
                   </tr>
                   <tr>
-                    <td className="p-4 border-b border-gray-800 text-[#AAAAAA]">Pages</td>
+                    <td className="p-4 border-b border-gray-800 text-[#DDDDDD]">Pages</td>
                     <td className="p-4 text-center border-b border-gray-800">Up to 6</td>
                     <td className="p-4 text-center border-b border-gray-800">Up to 20</td>
                     <td className="p-4 text-center border-b border-gray-800">Custom</td>
                   </tr>
                   <tr>
-                    <td className="p-4 border-b border-gray-800 text-[#AAAAAA]">Design Complexity</td>
+                    <td className="p-4 border-b border-gray-800 text-[#DDDDDD]">Design Complexity</td>
                     <td className="p-4 text-center border-b border-gray-800">Basic</td>
                     <td className="p-4 text-center border-b border-gray-800">Advanced</td>
                     <td className="p-4 text-center border-b border-gray-800">Premium</td>
                   </tr>
                   <tr>
-                    <td className="p-4 border-b border-gray-800 text-[#AAAAAA]">E-commerce</td>
+                    <td className="p-4 border-b border-gray-800 text-[#DDDDDD]">E-commerce</td>
                     <td className="p-4 text-center border-b border-gray-800">
                       <div className="inline-flex items-center justify-center h-5 w-5 bg-red-500/10 rounded-full">
                         <span className="block h-2 w-2 bg-red-500 rounded-full"></span>
@@ -498,7 +490,7 @@ export default function WebPricing() {
                     <td className="p-4 text-center border-b border-gray-800">Full-featured</td>
                   </tr>
                   <tr>
-                    <td className="p-4 border-b border-gray-800 text-[#AAAAAA]">User Accounts</td>
+                    <td className="p-4 border-b border-gray-800 text-[#DDDDDD]">User Accounts</td>
                     <td className="p-4 text-center border-b border-gray-800">
                       <div className="inline-flex items-center justify-center h-5 w-5 bg-red-500/10 rounded-full">
                         <span className="block h-2 w-2 bg-red-500 rounded-full"></span>
@@ -508,7 +500,7 @@ export default function WebPricing() {
                     <td className="p-4 text-center border-b border-gray-800">Advanced</td>
                   </tr>
                   <tr>
-                    <td className="p-4 border-b border-gray-800 text-[#AAAAAA]">Custom Functionality</td>
+                    <td className="p-4 border-b border-gray-800 text-[#DDDDDD]">Custom Functionality</td>
                     <td className="p-4 text-center border-b border-gray-800">
                       <div className="inline-flex items-center justify-center h-5 w-5 bg-red-500/10 rounded-full">
                         <span className="block h-2 w-2 bg-red-500 rounded-full"></span>
@@ -518,19 +510,19 @@ export default function WebPricing() {
                     <td className="p-4 text-center border-b border-gray-800">Advanced</td>
                   </tr>
                   <tr>
-                    <td className="p-4 border-b border-gray-800 text-[#AAAAAA]">SEO Implementation</td>
+                    <td className="p-4 border-b border-gray-800 text-[#DDDDDD]">SEO Implementation</td>
                     <td className="p-4 text-center border-b border-gray-800">Basic</td>
                     <td className="p-4 text-center border-b border-gray-800">Advanced</td>
                     <td className="p-4 text-center border-b border-gray-800">Comprehensive</td>
                   </tr>
                   <tr>
-                    <td className="p-4 border-b border-gray-800 text-[#AAAAAA]">Timeline</td>
+                    <td className="p-4 border-b border-gray-800 text-[#DDDDDD]">Timeline</td>
                     <td className="p-4 text-center border-b border-gray-800">2-3 weeks</td>
                     <td className="p-4 text-center border-b border-gray-800">4-6 weeks</td>
                     <td className="p-4 text-center border-b border-gray-800">8-12+ weeks</td>
                   </tr>
                   <tr>
-                    <td className="p-4 border-b border-gray-800 text-[#AAAAAA]">Ideal For</td>
+                    <td className="p-4 border-b border-gray-800 text-[#DDDDDD]">Ideal For</td>
                     <td className="p-4 text-center border-b border-gray-800">Small businesses, startups, solo entrepreneurs</td>
                     <td className="p-4 text-center border-b border-gray-800">Growing SMBs, nonprofits, established organizations</td>
                     <td className="p-4 text-center border-b border-gray-800">E-commerce, membership sites, custom applications</td>
@@ -541,7 +533,7 @@ export default function WebPricing() {
           </motion.div>
         </div>
       </section>
-      
+
       {/* Website Care Plans */}
       <section 
         ref={careRef}
@@ -560,11 +552,11 @@ export default function WebPricing() {
               <HeartHandshake className="h-5 w-5 text-maverick-orange" />
             </div>
             <h2 className="text-4xl md:text-5xl font-bold mb-6 font-heading">Website Care Plans</h2>
-            <p className="text-xl text-[#AAAAAA] max-w-2xl mx-auto">
+            <p className="text-xl text-[#DDDDDD] max-w-2xl mx-auto">
               Ongoing support and maintenance to keep your website secure, up-to-date, and continually improving.
             </p>
           </motion.div>
-          
+
           {/* Care Plans Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
             {carePackages.map((plan, index) => (
@@ -580,12 +572,8 @@ export default function WebPricing() {
                 )}
               >
                 <div className="p-6 border-b border-gray-800">
-                  {plan.popular && (
-                    <div className="bg-maverick-orange text-[#121212] text-xs font-bold uppercase tracking-wider rounded-full px-3 py-1 inline-block mb-4">
-                      Most Popular
-                    </div>
-                  )}
-                  
+                  {/* Removed "Most Popular" */}
+
                   <div className="flex items-center mb-4">
                     <div className={`w-12 h-12 rounded-full flex items-center justify-center ${
                       plan.popular ? 'bg-maverick-orange' : 'bg-maverick-orange bg-opacity-10'
@@ -594,23 +582,23 @@ export default function WebPricing() {
                     </div>
                     <h3 className="text-2xl font-bold ml-4">{plan.name}</h3>
                   </div>
-                  
+
                   <div className="mb-4">
                     <span className="text-3xl font-bold">{plan.price}</span>
-                    <span className="text-[#AAAAAA] ml-2">{plan.period}</span>
-                    
+                    <span className="text-[#DDDDDD] ml-2">{plan.period}</span>
+
                     {plan.extras && (
                       <div className="mt-2 bg-[#232323] rounded-md p-3 inline-block">
                         <span className="text-sm font-medium">{plan.extras.title}: {plan.extras.description}</span>
                       </div>
                     )}
                   </div>
-                  
+
                   <p className="text-[#DDDDDD] font-medium mb-4">
                     {plan.focusStatement}
                   </p>
                 </div>
-                
+
                 <div className="p-6">
                   <h4 className="font-medium mb-4">What's included:</h4>
                   <ul className="space-y-3 mb-8">
@@ -628,13 +616,9 @@ export default function WebPricing() {
                       </motion.li>
                     ))}
                   </ul>
-                  
+
                   <Link href="/contact">
-                    <a className={`inline-flex items-center justify-center w-full py-3 px-6 rounded-lg font-medium transition-all duration-300 ${
-                      plan.popular 
-                        ? 'bg-maverick-orange hover:bg-opacity-90 text-white' 
-                        : 'border border-maverick-orange text-maverick-orange hover:bg-maverick-orange hover:bg-opacity-10'
-                    }`}>
+                    <a className={`inline-flex items-center justify-center w-full py-3 px-6 rounded-lg font-medium transition-all duration-300 bg-maverick-orange hover:bg-opacity-90 text-white`}>
                       Get Started
                     </a>
                   </Link>
@@ -642,7 +626,7 @@ export default function WebPricing() {
               </motion.div>
             ))}
           </div>
-          
+
           {/* Compare Care Plans */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -653,9 +637,9 @@ export default function WebPricing() {
           >
             <div className="p-8 border-b border-gray-800">
               <h3 className="text-2xl font-bold mb-2">Compare Care Plans</h3>
-              <p className="text-[#AAAAAA]">See how our website care plans stack up to find your perfect support solution.</p>
+              <p className="text-[#DDDDDD]">See how our website care plans stack up to find your perfect support solution.</p>
             </div>
-            
+
             <div className="overflow-x-auto">
               <table className="w-full min-w-[768px] border-collapse">
                 <thead>
@@ -668,25 +652,25 @@ export default function WebPricing() {
                 </thead>
                 <tbody>
                   <tr>
-                    <td className="p-4 border-b border-gray-800 text-[#AAAAAA]">Monthly Price</td>
+                    <td className="p-4 border-b border-gray-800 text-[#DDDDDD]">Monthly Price</td>
                     <td className="p-4 text-center border-b border-gray-800">$75</td>
                     <td className="p-4 text-center border-b border-gray-800">$175</td>
                     <td className="p-4 text-center border-b border-gray-800">From $400+</td>
                   </tr>
                   <tr>
-                    <td className="p-4 border-b border-gray-800 text-[#AAAAAA]">Support Hours</td>
+                    <td className="p-4 border-b border-gray-800 text-[#DDDDDD]">Support Hours</td>
                     <td className="p-4 text-center border-b border-gray-800">1 hour</td>
                     <td className="p-4 text-center border-b border-gray-800">3 hours</td>
                     <td className="p-4 text-center border-b border-gray-800">Up to 10 hours</td>
                   </tr>
                   <tr>
-                    <td className="p-4 border-b border-gray-800 text-[#AAAAAA]">Response Time</td>
+                    <td className="p-4 border-b border-gray-800 text-[#DDDDDD]">Response Time</td>
                     <td className="p-4 text-center border-b border-gray-800">48 hours</td>
                     <td className="p-4 text-center border-b border-gray-800">24 hours</td>
                     <td className="p-4 text-center border-b border-gray-800">Same day</td>
                   </tr>
                   <tr>
-                    <td className="p-4 border-b border-gray-800 text-[#AAAAAA]">Core Software Updates</td>
+                    <td className="p-4 border-b border-gray-800 text-[#DDDDDD]">Core Software Updates</td>
                     <td className="p-4 text-center border-b border-gray-800">
                       <Check className="h-5 w-5 text-green-500 mx-auto" />
                     </td>
@@ -698,7 +682,7 @@ export default function WebPricing() {
                     </td>
                   </tr>
                   <tr>
-                    <td className="p-4 border-b border-gray-800 text-[#AAAAAA]">Security Monitoring</td>
+                    <td className="p-4 border-b border-gray-800 text-[#DDDDDD]">Security Monitoring</td>
                     <td className="p-4 text-center border-b border-gray-800">
                       <Check className="h-5 w-5 text-green-500 mx-auto" />
                     </td>
@@ -710,7 +694,7 @@ export default function WebPricing() {
                     </td>
                   </tr>
                   <tr>
-                    <td className="p-4 border-b border-gray-800 text-[#AAAAAA]">Daily Backups</td>
+                    <td className="p-4 border-b border-gray-800 text-[#DDDDDD]">Daily Backups</td>
                     <td className="p-4 text-center border-b border-gray-800">
                       <Check className="h-5 w-5 text-green-500 mx-auto" />
                     </td>
@@ -722,7 +706,7 @@ export default function WebPricing() {
                     </td>
                   </tr>
                   <tr>
-                    <td className="p-4 border-b border-gray-800 text-[#AAAAAA]">SEO Optimization</td>
+                    <td className="p-4 border-b border-gray-800 text-[#DDDDDD]">SEO Optimization</td>
                     <td className="p-4 text-center border-b border-gray-800">
                       <div className="inline-flex items-center justify-center h-5 w-5 bg-red-500/10 rounded-full">
                         <span className="block h-2 w-2 bg-red-500 rounded-full"></span>
@@ -736,7 +720,7 @@ export default function WebPricing() {
                     </td>
                   </tr>
                   <tr>
-                    <td className="p-4 border-b border-gray-800 text-[#AAAAAA]">Analytics Reports</td>
+                    <td className="p-4 border-b border-gray-800 text-[#DDDDDD]">Analytics Reports</td>
                     <td className="p-4 text-center border-b border-gray-800">
                       <div className="inline-flex items-center justify-center h-5 w-5 bg-red-500/10 rounded-full">
                         <span className="block h-2 w-2 bg-red-500 rounded-full"></span>
@@ -746,7 +730,7 @@ export default function WebPricing() {
                     <td className="p-4 text-center border-b border-gray-800">Monthly + Quarterly</td>
                   </tr>
                   <tr>
-                    <td className="p-4 border-b border-gray-800 text-[#AAAAAA]">Strategy Sessions</td>
+                    <td className="p-4 border-b border-gray-800 text-[#DDDDDD]">Strategy Sessions</td>
                     <td className="p-4 text-center border-b border-gray-800">
                       <div className="inline-flex items-center justify-center h-5 w-5 bg-red-500/10 rounded-full">
                         <span className="block h-2 w-2 bg-red-500 rounded-full"></span>
@@ -761,7 +745,7 @@ export default function WebPricing() {
           </motion.div>
         </div>
       </section>
-      
+
       {/* Benefits Section */}
       <section className="py-24 px-5 md:px-10 bg-[#121212]">
         <div className="container mx-auto">
@@ -773,11 +757,11 @@ export default function WebPricing() {
             className="text-center mb-16"
           >
             <h2 className="text-4xl md:text-5xl font-bold mb-6 font-heading">Why Choose Our Web Solutions?</h2>
-            <p className="text-xl text-[#AAAAAA] max-w-2xl mx-auto">
+            <p className="text-xl text-[#DDDDDD] max-w-2xl mx-auto">
               We build websites that work as hard as you do, driving real business results through thoughtful design and strategic functionality.
             </p>
           </motion.div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               {
@@ -823,13 +807,13 @@ export default function WebPricing() {
                   {benefit.icon}
                 </div>
                 <h3 className="text-xl font-bold mb-3">{benefit.title}</h3>
-                <p className="text-[#AAAAAA]">{benefit.description}</p>
+                <p className="text-[#DDDDDD]">{benefit.description}</p>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
-      
+
       {/* Process Section */}
       <section className="py-24 px-5 md:px-10 bg-[#151515]">
         <div className="container mx-auto">
@@ -841,11 +825,11 @@ export default function WebPricing() {
             className="text-center mb-16"
           >
             <h2 className="text-4xl md:text-5xl font-bold mb-6 font-heading">Our Web Development Process</h2>
-            <p className="text-xl text-[#AAAAAA] max-w-2xl mx-auto">
+            <p className="text-xl text-[#DDDDDD] max-w-2xl mx-auto">
               From concept to launch, our collaborative process ensures your website exceeds expectations and achieves your goals.
             </p>
           </motion.div>
-          
+
           <div className="max-w-4xl mx-auto">
             {[
               {
@@ -891,13 +875,13 @@ export default function WebPricing() {
                   <div className="absolute left-0 w-10 h-10 rounded-full bg-maverick-orange bg-opacity-20 flex items-center justify-center text-maverick-orange">
                     <span className="font-bold">{step.number}</span>
                   </div>
-                  
+
                   <div>
                     <h3 className="text-xl font-bold mb-2">{step.title}</h3>
-                    <p className="text-[#AAAAAA]">{step.description}</p>
+                    <p className="text-[#DDDDDD]">{step.description}</p>
                   </div>
                 </div>
-                
+
                 {index < 5 && (
                   <div className="absolute left-5 top-12 h-full w-0.5 bg-gradient-to-b from-maverick-orange/30 to-transparent"></div>
                 )}
@@ -906,7 +890,7 @@ export default function WebPricing() {
           </div>
         </div>
       </section>
-      
+
       {/* FAQ Section */}
       <section className="py-24 px-5 md:px-10 bg-[#121212]">
         <div className="container mx-auto">
@@ -921,11 +905,11 @@ export default function WebPricing() {
               <HelpCircle className="h-5 w-5 text-maverick-orange" />
             </div>
             <h2 className="text-4xl md:text-5xl font-bold mb-6 font-heading">Frequently Asked Questions</h2>
-            <p className="text-xl text-[#AAAAAA] max-w-2xl mx-auto">
+            <p className="text-xl text-[#DDDDDD] max-w-2xl mx-auto">
               Find answers to common questions about our web development services and process.
             </p>
           </motion.div>
-          
+
           <div className="max-w-3xl mx-auto">
             {faqs.map((faq, index) => (
               <motion.div
@@ -949,7 +933,7 @@ export default function WebPricing() {
                     <ChevronDown className="h-5 w-5 text-maverick-orange" />
                   </div>
                 </button>
-                
+
                 <AnimatePresence>
                   {selectedFaq === index && (
                     <motion.div
@@ -959,7 +943,7 @@ export default function WebPricing() {
                       transition={{ duration: 0.3 }}
                       className="overflow-hidden"
                     >
-                      <p className="pt-4 text-[#AAAAAA]">{faq.answer}</p>
+                      <p className="pt-4 text-[#DDDDDD]">{faq.answer}</p>
                     </motion.div>
                   )}
                 </AnimatePresence>
@@ -968,7 +952,7 @@ export default function WebPricing() {
           </div>
         </div>
       </section>
-      
+
       {/* Nonprofit Section */}
       <section className="py-16 px-5 md:px-10 bg-[#151515]">
         <div className="container mx-auto">
@@ -988,7 +972,7 @@ export default function WebPricing() {
                 </div>
                 <div className="flex-grow">
                   <h3 className="text-2xl md:text-3xl font-bold mb-3 font-heading">Special Pricing for Nonprofits</h3>
-                  <p className="text-[#AAAAAA] mb-6 max-w-2xl">
+                  <p className="text-[#DDDDDD] mb-6 max-w-2xl">
                     We're proud to support organizations making positive impacts in our communities. Registered nonprofits and charities qualify for special discounted rates on our services – typically 15% off our standard pricing for both project work and care plans.
                   </p>
                   <Link href="/contact">
@@ -1002,7 +986,7 @@ export default function WebPricing() {
           </motion.div>
         </div>
       </section>
-      
+
       {/* CTA Section */}
       <section className="py-20 px-5 md:px-10 bg-gradient-to-b from-[#151515] to-[#121212]">
         <div className="container mx-auto">
@@ -1016,7 +1000,7 @@ export default function WebPricing() {
             <h2 className="text-3xl md:text-5xl font-bold mb-6 font-heading">
               Ready to Build Your <span className="text-maverick-orange">Dream Website?</span>
             </h2>
-            <p className="text-xl text-[#AAAAAA] mb-10">
+            <p className="text-xl text-[#DDDDDD] mb-10">
               Let's create a website that works as hard as you do. Schedule a free consultation to discuss your project and find the perfect solution for your needs.
             </p>
             <Link href="/contact">
@@ -1027,7 +1011,7 @@ export default function WebPricing() {
           </motion.div>
         </div>
       </section>
-      
+
       <ContactSection />
     </motion.div>
   );

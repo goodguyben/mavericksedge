@@ -18,11 +18,7 @@ interface PricingCardProps {
 export default function PricingCard({ plan }: PricingCardProps) {
   return (
     <div className={`pricing-card bg-[#1E1E1E] rounded-xl p-8 border ${plan.popular ? 'border-maverick-orange border-opacity-50' : 'border-gray-700'} flex flex-col relative`}>
-      {plan.popular && (
-        <div className="absolute top-0 right-0 bg-maverick-orange text-white px-4 py-1 text-sm font-medium rounded-bl-lg rounded-tr-lg">
-          Popular
-        </div>
-      )}
+      {/* Most popular label removed */}
       <h4 className="text-2xl font-semibold mb-2 font-heading">{plan.title}</h4>
       <p className="text-[#AAAAAA] mb-6">{plan.subtitle}</p>
       <div className="mb-6">

@@ -434,11 +434,7 @@ export default function AIPricing() {
                 
                 {/* Header */}
                 <div className="p-8 bg-[#1A1A1A]">
-                  {tier.popular && (
-                    <div className="absolute top-4 right-8 bg-maverick-orange/90 text-white text-xs font-bold px-3 py-1 rounded-full">
-                      Most Popular
-                    </div>
-                  )}
+                  {/* Most popular mention removed */}
                   
                   <div className="flex items-center gap-4 mb-4">
                     <div className={`w-12 h-12 rounded-full flex items-center justify-center ${

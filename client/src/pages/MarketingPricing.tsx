@@ -361,11 +361,7 @@ export default function MarketingPricing() {
                   pkg.popular ? 'border-maverick-orange' : 'border-gray-800'
                 }`}
               >
-                {pkg.popular && (
-                  <div className="absolute right-6 top-6 bg-maverick-orange text-[#121212] text-xs font-bold px-3 py-1 rounded-full">
-                    Most Popular
-                  </div>
-                )}
+                {/* Most popular mention removed */}
                 
                 <div className="p-8 border-b border-gray-800">
                   <div className="flex items-center mb-4">
@@ -591,11 +587,7 @@ export default function MarketingPricing() {
                   plan.popular ? 'border-maverick-orange' : 'border-gray-800'
                 }`}
               >
-                {plan.popular && (
-                  <div className="absolute right-6 top-6 bg-maverick-orange text-[#121212] text-xs font-bold px-3 py-1 rounded-full">
-                    Most Popular
-                  </div>
-                )}
+                {/* Most popular mention removed */}
                 
                 <div className="p-8 border-b border-gray-800">
                   <div className="flex items-center mb-4">
