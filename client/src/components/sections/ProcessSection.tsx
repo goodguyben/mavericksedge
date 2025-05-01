@@ -11,10 +11,10 @@ const processSteps = [
     icon: <Search className="h-6 w-6 text-maverick-orange" />
   },
   {
-    id: "strategy",
+    id: "research",
     step: 2,
-    title: "Strategy",
-    description: "Based on our findings, we create a tailored strategy and roadmap to achieve your specific objectives.",
+    title: "Research",
+    description: "We conduct in-depth market research and competitor analysis to identify opportunities and inform our approach.",
     icon: <Settings className="h-6 w-6 text-maverick-orange" />
   },
   {
@@ -28,7 +28,7 @@ const processSteps = [
     id: "design-development",
     step: 4,
     title: "Design & Development",
-    description: "Our team creates visually appealing designs and builds robust, scalable solutions using the latest technologies.",
+    description: "Our team creates visually appealing designs and builds robust, scalable solutions using the latest technologies and AI/ML integrations.",
     icon: <Code className="h-6 w-6 text-maverick-orange" />
   },
   {
