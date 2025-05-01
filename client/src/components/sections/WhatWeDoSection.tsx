@@ -64,16 +64,29 @@ export default function WhatWeDoSection() {
             >
               {/* Service Card */}
               <div className="bg-[#1A1A1A] p-8 rounded-lg border border-gray-800 hover:border-maverick-orange transition-all duration-300 hover-card relative h-full">
-                <div className="flex items-start gap-6">
-                  <div className="p-4 bg-maverick-orange bg-opacity-10 rounded-lg">
-                    {service.icon}
-                  </div>
-                  <div>
-                    <h3 className="text-2xl font-semibold mb-2">{service.title}</h3>
+                {isMobile ? (
+                  <>
+                    <div className="flex items-center gap-4 mb-4">
+                      <div className="p-3 bg-maverick-orange bg-opacity-10 rounded-lg flex-shrink-0">
+                        {service.icon}
+                      </div>
+                      <h3 className="text-xl font-semibold">{service.title}</h3>
+                    </div>
                     <p className="text-[#AAAAAA] mb-4">{service.description}</p>
                     <p className="text-[#DDDDDD] leading-relaxed">{service.details}</p>
+                  </>
+                ) : (
+                  <div className="flex items-start gap-6">
+                    <div className="p-4 bg-maverick-orange bg-opacity-10 rounded-lg">
+                      {service.icon}
+                    </div>
+                    <div>
+                      <h3 className="text-2xl font-semibold mb-2">{service.title}</h3>
+                      <p className="text-[#AAAAAA] mb-4">{service.description}</p>
+                      <p className="text-[#DDDDDD] leading-relaxed">{service.details}</p>
+                    </div>
                   </div>
-                </div>
+                )}
               </div>
 
               {/* Animated border glow effect on hover */}
