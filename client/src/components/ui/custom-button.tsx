@@ -1,4 +1,3 @@
-
 import React from "react";
 
 interface ButtonProps {
@@ -27,7 +26,7 @@ export function Button({
     disabled ? 'maverick-button-disabled' : '',
     className
   ].filter(Boolean).join(' ');
-  
+
   // If href is provided, render a link with our CSS classes
   if (href) {
     return (
@@ -36,7 +35,7 @@ export function Button({
       </a>
     );
   }
-  
+
   // Otherwise render a button with our CSS classes
   return (
     <button

@@ -428,7 +428,7 @@ export default function WebPricing() {
                   </ul>
 
                   <Link href="/contact">
-                    <a className={`inline-flex items-center justify-center w-full py-3 px-6 rounded-lg font-medium transition-all duration-300 bg-maverick-orange hover:bg-opacity-90 text-white`}>
+                    <a className="inline-flex items-center justify-center w-full py-3 px-6 rounded-lg font-medium transition-all duration-300 border border-maverick-orange text-maverick-orange hover:bg-maverick-orange hover:bg-opacity-10">
                       Get Started
                     </a>
                   </Link>
@@ -618,7 +618,7 @@ export default function WebPricing() {
                   </ul>
 
                   <Link href="/contact">
-                    <a className={`inline-flex items-center justify-center w-full py-3 px-6 rounded-lg font-medium transition-all duration-300 bg-maverick-orange hover:bg-opacity-90 text-white`}>
+                    <a className="inline-flex items-center justify-center w-full py-3 px-6 rounded-lg font-medium transition-all duration-300 border border-maverick-orange text-maverick-orange hover:bg-maverick-orange hover:bg-opacity-10">
                       Get Started
                     </a>
                   </Link>
@@ -641,7 +641,7 @@ export default function WebPricing() {
             </div>
 
             <div className="overflow-x-auto">
-              <table className="w-full min-w-[768px] border-collapse">
+              <table              <table className="w-full min-w-[768px] border-collapse">
                 <thead>
                   <tr className="bg-[#161616]">
                     <th className="p-4 text-left border-b border-gray-800">Feature</th>
