@@ -10,6 +10,8 @@
 @import url('./styles/buttons.css');
 @import url('./styles/footer.css');
 @import url('./styles/cards.css');
+@import url('./styles/shadows.css');
+@import url('./styles/responsive.css');
 
 @tailwind base;
 @tailwind components;

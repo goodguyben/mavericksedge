@@ -113,8 +113,10 @@ export default function ContactSection({ fullPage = false }: ContactSectionProps
                       <FormControl>
                         <Input
                           placeholder="Your name"
-                          className="w-full p-3 bg-[#1E1E1E] border border-gray-700 rounded-lg focus:outline-none focus:border-maverick-orange transition duration-300"
+                          className="w-full p-3 bg-[#1E1E1E] border border-gray-700 rounded-lg focus:outline-none focus:border-maverick-orange transition duration-300 shadow-inset"
                           {...field}
+                          aria-required="true"
+                          aria-label="Your Name"
                         />
                       </FormControl>
                       <FormMessage />
@@ -132,15 +134,17 @@ export default function ContactSection({ fullPage = false }: ContactSectionProps
                         <Input
                           type="email"
                           placeholder="your.email@example.com"
-                          className="w-full p-3 bg-[#1E1E1E] border border-gray-700 rounded-lg focus:outline-none focus:border-maverick-orange transition duration-300"
+                          className="w-full p-3 bg-[#1E1E1E] border border-gray-700 rounded-lg focus:outline-none focus:border-maverick-orange transition duration-300 shadow-inset"
                           {...field}
+                          aria-required="true"
+                          aria-label="Your Email"
                         />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
                   )}
                 />
-                
+
                 <FormField
                   control={form.control}
                   name="phone"
@@ -151,8 +155,9 @@ export default function ContactSection({ fullPage = false }: ContactSectionProps
                         <Input
                           type="tel"
                           placeholder="(123) 456-7890"
-                          className="w-full p-3 bg-[#1E1E1E] border border-gray-700 rounded-lg focus:outline-none focus:border-maverick-orange transition duration-300"
+                          className="w-full p-3 bg-[#1E1E1E] border border-gray-700 rounded-lg focus:outline-none focus:border-maverick-orange transition duration-300 shadow-inset"
                           {...field}
+                          aria-label="Your Phone Number"
                         />
                       </FormControl>
                       <FormMessage />
@@ -169,6 +174,7 @@ export default function ContactSection({ fullPage = false }: ContactSectionProps
                       <Select
                         onValueChange={field.onChange}
                         defaultValue={field.value}
+                        className="shadow-inset"
                       >
                         <FormControl>
                           <SelectTrigger className="w-full p-3 bg-[#1E1E1E] border border-gray-700 rounded-lg focus:outline-none focus:border-maverick-orange transition duration-300">
@@ -196,8 +202,10 @@ export default function ContactSection({ fullPage = false }: ContactSectionProps
                       <FormControl>
                         <Textarea
                           placeholder="Tell us about your project"
-                          className="w-full p-3 bg-[#1E1E1E] border border-gray-700 rounded-lg focus:outline-none focus:border-maverick-orange transition duration-300 min-h-[120px]"
+                          className="w-full p-3 bg-[#1E1E1E] border border-gray-700 rounded-lg focus:outline-none focus:border-maverick-orange transition duration-300 min-h-[120px] shadow-inset"
                           {...field}
+                          aria-required="true"
+                          aria-label="Your Message"
                         />
                       </FormControl>
                       <FormMessage />
@@ -208,7 +216,7 @@ export default function ContactSection({ fullPage = false }: ContactSectionProps
                 <div className="flex flex-col sm:flex-row gap-4 w-full">
                   <TechButton 
                     type="submit" 
-                    className="w-full"
+                    className="w-full shadow-raised"
                     disabled={mutation.isPending}
                     techTheme="html"
                   >
@@ -217,7 +225,7 @@ export default function ContactSection({ fullPage = false }: ContactSectionProps
 
                   <TechButton 
                     type="submit" 
-                    className="w-full"
+                    className="w-full shadow-raised"
                     disabled={mutation.isPending}
                     techTheme="css"
                   >
@@ -226,7 +234,7 @@ export default function ContactSection({ fullPage = false }: ContactSectionProps
 
                   <TechButton 
                     type="submit" 
-                    className="w-full"
+                    className="w-full shadow-raised"
                     disabled={mutation.isPending}
                     techTheme="js"
                   >
