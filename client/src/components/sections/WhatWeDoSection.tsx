@@ -6,30 +6,30 @@ export default function WhatWeDoSection() {
     {
       id: "web-development",
       title: "Web & Digital Solutions",
-      description: "We create responsive, high-performance websites and web applications tailored to your specific business needs.",
+      description: "Transform your online presence with custom websites that convert visitors into customers and reduce operational costs.",
       icon: <Code className="w-12 h-12 text-maverick-orange" />,
-      details: "Our web development services include custom website design and development, CMS customization, e-commerce platform integration, web application development, UX/UI design, and third-party API integrations. We also provide website operations support with hosting, maintenance, performance optimization, security audits, and accessibility compliance."
+      details: "Elevate your business with responsive websites that load in under 2 seconds, improving SEO rankings and customer retention. Our accessible, secure platforms integrate seamlessly with your existing systems, enabling 24/7 online sales and reducing customer support inquiries by up to 35%. Experience faster time-to-market with our streamlined development process, getting your digital products to customers before your competitors."
     },
     {
       id: "creative-design",
       title: "Marketing & Creative Services",
-      description: "Our marketing team delivers comprehensive digital strategies and creative solutions to enhance your brand presence.",
+      description: "Amplify your brand voice and reach new audiences with data-driven marketing strategies that deliver measurable ROI.",
       icon: <PenTool className="w-12 h-12 text-maverick-orange" />,
-      details: "We offer strategic marketing solutions including digital marketing strategy development, brand identity creation, graphic design for web and print, SEO optimization, PPC advertising management, social media strategy, email marketing campaigns, and conversion rate optimization. Our data-driven approach ensures measurable results and ROI."
+      details: "Break through digital noise with distinctive brand messaging that resonates with your target audience. Our comprehensive marketing approach combines SEO, content, and paid advertising to create multiple touchpoints with potential customers, increasing conversion rates by up to 40%. Track campaign performance in real-time with our analytics dashboard, allowing for agile strategy adjustments that maximize your marketing budget and generate qualified leads."
     },
     {
       id: "digital-strategy",
       title: "AI Integration & Automation",
-      description: "We help you leverage cutting-edge AI technologies to streamline operations and gain valuable insights from your data.",
+      description: "Unleash productivity and uncover insights with AI solutions that automate repetitive tasks and enhance decision-making.",
       icon: <Brain className="w-12 h-12 text-maverick-orange" />,
-      details: "Our AI integration services include AI readiness assessment, custom AI roadmap development, platform selection, workflow automation, chatbot implementation, custom API integration with leading AI platforms, and private knowledge assistants using vector databases. We ensure secure, privacy-first AI deployment with proper governance and staff training."
+      details: "Reclaim valuable staff time by automating routine processes, allowing your team to focus on creative and strategic initiatives. Gain competitive advantage through AI-powered data analysis that identifies patterns humans might miss, enabling more informed business decisions. Enhance customer experience with personalized interactions through chatbots and recommendation engines, increasing satisfaction and loyalty while reducing operational costs."
     },
     {
       id: "client-services",
       title: "Ongoing Support & Optimization",
-      description: "We provide continuous support to ensure your digital solutions remain effective, secure, and up-to-date.",
+      description: "Future-proof your digital investments with proactive maintenance that enhances performance and adapts to evolving needs.",
       icon: <Database className="w-12 h-12 text-maverick-orange" />,
-      details: "Our ongoing services include website maintenance, content updates, performance monitoring, security patches, analytics reporting, SEO refinement, and regular consultations. We offer flexible support plans tailored to your needs, ensuring your digital presence continues to deliver results and adapt to changing technologies."
+      details: "Sleep soundly knowing your digital assets are monitored 24/7 with rapid response to security threats and performance issues before they impact your business. Continuously improve conversion rates through regular A/B testing and optimization based on user behavior analytics. Scale your digital solutions confidently as your business grows, with regular technology audits ensuring you stay ahead of industry trends and customer expectations."
     }
   ];
 
@@ -45,7 +45,7 @@ export default function WhatWeDoSection() {
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-4">What We <span className="text-maverick-orange">Do</span></h2>
           <p className="text-[#AAAAAA] text-xl max-w-2xl mx-auto">
-            We offer comprehensive digital solutions to help your business thrive in the digital landscape
+            We deliver transformative digital solutions that drive growth, increase efficiency, and create meaningful customer experiences
           </p>
         </motion.div>
 

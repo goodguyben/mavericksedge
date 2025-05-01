@@ -1,12 +1,12 @@
 import { motion } from "framer-motion";
-import { Zap, Heart, FlaskConical, Clock, SmileIcon, Users } from "lucide-react";
+import { Zap, Heart, FlaskConical, BookOpen, SmileIcon, Users } from "lucide-react";
 
 export default function WhyChooseUsSection() {
   const reasons = [
     {
       id: "efficiency",
       title: "Efficiency",
-      description: "We optimize processes and leverage cutting-edge technology to deliver results faster and more cost-effectively.",
+      description: "We optimize processes and leverage AI/ML technologies to automate tasks, analyze data, and deliver results faster and more cost-effectively.",
       icon: <Zap className="w-10 h-10 text-maverick-orange" />
     },
     {
@@ -22,10 +22,10 @@ export default function WhyChooseUsSection() {
       icon: <FlaskConical className="w-10 h-10 text-maverick-orange" />
     },
     {
-      id: "timeliness",
-      title: "Timeliness",
-      description: "We respect your time and deliver projects on schedule without compromising on quality or attention to detail.",
-      icon: <Clock className="w-10 h-10 text-maverick-orange" />
+      id: "research",
+      title: "Research",
+      description: "We conduct thorough research to understand your market, audience, and competitors to create informed strategies and solutions.",
+      icon: <BookOpen className="w-10 h-10 text-maverick-orange" />
     },
     {
       id: "empathy",
