@@ -1,55 +1,35 @@
 import { motion } from "framer-motion";
-import { Code, PenTool, Lightbulb, Database } from "lucide-react";
+import { Code, PenTool, Brain, Database } from "lucide-react";
 
 export default function WhatWeDoSection() {
   const services = [
     {
       id: "web-development",
-      title: "Web Development",
+      title: "Web & Digital Solutions",
       description: "We create responsive, high-performance websites and web applications tailored to your specific business needs.",
       icon: <Code className="w-12 h-12 text-maverick-orange" />,
-      details: [
-        "Custom front-end development",
-        "Responsive design",
-        "E-commerce solutions",
-        "Progressive web apps"
-      ]
+      details: "Our web development services include custom website design and development, CMS customization, e-commerce platform integration, web application development, UX/UI design, and third-party API integrations. We also provide website operations support with hosting, maintenance, performance optimization, security audits, and accessibility compliance."
     },
     {
       id: "creative-design",
-      title: "Creative Design",
-      description: "Our design team delivers stunning visuals that enhance your brand and create memorable user experiences.",
+      title: "Marketing & Creative Services",
+      description: "Our marketing team delivers comprehensive digital strategies and creative solutions to enhance your brand presence.",
       icon: <PenTool className="w-12 h-12 text-maverick-orange" />,
-      details: [
-        "UI/UX design",
-        "Brand identity",
-        "Motion graphics",
-        "Illustration"
-      ]
+      details: "We offer strategic marketing solutions including digital marketing strategy development, brand identity creation, graphic design for web and print, SEO optimization, PPC advertising management, social media strategy, email marketing campaigns, and conversion rate optimization. Our data-driven approach ensures measurable results and ROI."
     },
     {
       id: "digital-strategy",
-      title: "Digital Strategy",
-      description: "We help you develop comprehensive digital strategies that drive growth and enhance your online presence.",
-      icon: <Lightbulb className="w-12 h-12 text-maverick-orange" />,
-      details: [
-        "Market research",
-        "Competitive analysis",
-        "SEO optimization",
-        "Content strategy"
-      ]
+      title: "AI Integration & Automation",
+      description: "We help you leverage cutting-edge AI technologies to streamline operations and gain valuable insights from your data.",
+      icon: <Brain className="w-12 h-12 text-maverick-orange" />,
+      details: "Our AI integration services include AI readiness assessment, custom AI roadmap development, platform selection, workflow automation, chatbot implementation, custom API integration with leading AI platforms, and private knowledge assistants using vector databases. We ensure secure, privacy-first AI deployment with proper governance and staff training."
     },
     {
-      id: "ai-integration",
-      title: "AI Integration",
-      description: "Leverage the power of artificial intelligence to automate processes and gain valuable insights from your data.",
+      id: "client-services",
+      title: "Ongoing Support & Optimization",
+      description: "We provide continuous support to ensure your digital solutions remain effective, secure, and up-to-date.",
       icon: <Database className="w-12 h-12 text-maverick-orange" />,
-      details: [
-        "Machine learning implementation",
-        "Chatbots & virtual assistants",
-        "Data analysis & visualization",
-        "Process automation"
-      ]
+      details: "Our ongoing services include website maintenance, content updates, performance monitoring, security patches, analytics reporting, SEO refinement, and regular consultations. We offer flexible support plans tailored to your needs, ensuring your digital presence continues to deliver results and adapt to changing technologies."
     }
   ];
 
@@ -88,14 +68,7 @@ export default function WhatWeDoSection() {
                   <div>
                     <h3 className="text-2xl font-semibold mb-2">{service.title}</h3>
                     <p className="text-[#AAAAAA] mb-4">{service.description}</p>
-                    <ul className="space-y-3">
-                      {service.details.map((detail, idx) => (
-                        <li key={idx} className="text-[#DDDDDD] flex items-center">
-                          <span className="h-1.5 w-1.5 rounded-full bg-maverick-orange mr-2"></span>
-                          {detail}
-                        </li>
-                      ))}
-                    </ul>
+                    <p className="text-[#DDDDDD] leading-relaxed">{service.details}</p>
                   </div>
                 </div>
               </div>
