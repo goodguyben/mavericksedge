@@ -49,7 +49,7 @@ export default function Hero() {
       {/* Video background */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
         {/* Dark overlay for better text readability */}
-        <div className="absolute inset-0 bg-black/65 z-10"></div>
+        <div className="absolute inset-0 bg-black/50 z-10"></div>
 
         {/* Video element */}
         <video 
