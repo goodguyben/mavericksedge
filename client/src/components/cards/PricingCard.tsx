@@ -36,9 +36,9 @@ export default function PricingCard({ plan }: PricingCardProps) {
       <Button
         href="/contact"
         variant="primary"
-        className="inline-flex items-center justify-center w-full py-3 px-6 rounded-lg font-medium transition-all duration-300 bg-maverick-orange hover:bg-opacity-90 text-white"
+        className="text-center w-full"
       >
-        Get Started
+        Get started
       </Button>
     </div>
   );

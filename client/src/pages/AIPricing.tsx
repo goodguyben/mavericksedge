@@ -484,7 +484,11 @@ export default function AIPricing() {
                   </ul>
                   
                   <Link href="/contact">
-                    <a className="inline-flex items-center justify-center w-full py-3 px-6 rounded-lg font-medium transition-all duration-300 bg-maverick-orange hover:bg-opacity-90 text-white">
+                    <a className={`block text-center w-full py-3 px-6 rounded-lg font-medium transition-all duration-300 ${
+                      tier.popular 
+                        ? 'bg-maverick-orange hover:bg-opacity-90 text-white' 
+                        : 'border border-maverick-orange text-maverick-orange hover:bg-maverick-orange hover:bg-opacity-10'
+                    }`}>
                       Get Started
                     </a>
                   </Link>
@@ -679,7 +683,7 @@ export default function AIPricing() {
                   </div>
                   
                   <Link href="/contact">
-                    <a className="inline-flex items-center justify-center w-full py-3 px-6 rounded-lg font-medium transition-all duration-300 bg-maverick-orange hover:bg-opacity-90 text-white">
+                    <a className="block text-center w-full py-3 px-6 rounded-lg font-medium transition-all duration-300 border border-maverick-orange text-maverick-orange hover:bg-maverick-orange hover:bg-opacity-10">
                       Get Started
                     </a>
                   </Link>
