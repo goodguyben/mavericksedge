@@ -45,7 +45,7 @@ const strategicPackages: PricingPackage[] = [
     focus: "Perfect for organizations needing a complete marketing foundation to build upon",
     price: "$1,800+",
     oneTime: true,
-    popular: false,
+    popular: true,
     features: [
       "Strategy and positioning workshop",
       "Audience persona development",
@@ -152,7 +152,7 @@ const ongoingPlans: PricingPackage[] = [
     price: "$1,850",
     period: "per month",
     oneTime: false,
-    popular: false,
+    popular: true,
     features: [
       "Up to 4 Hours Unified Monthly Content & Social Strategy Session",
       "Audience/Keyword Research for Social & Content Topics",
@@ -243,11 +243,11 @@ export default function MarketingPricing() {
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY + window.innerHeight / 2;
-
+      
       if (strategicRef.current && ongoingRef.current) {
         const strategicPosition = strategicRef.current.offsetTop;
         const ongoingPosition = ongoingRef.current.offsetTop;
-
+        
         if (scrollPosition >= ongoingPosition) {
           setActiveTab("ongoing");
         } else if (scrollPosition >= strategicPosition) {
@@ -285,15 +285,15 @@ export default function MarketingPricing() {
             <div className="inline-flex items-center justify-center p-3 rounded-full bg-maverick-orange bg-opacity-10 mb-6">
               <Megaphone className="h-6 w-6 text-maverick-orange" />
             </div>
-
+            
             <h1 className="text-5xl md:text-7xl font-bold mb-6 font-heading">
               Marketing <span className="text-maverick-orange">Pricing</span>
             </h1>
-
+            
             <p className="text-xl text-[#AAAAAA] mb-10 max-w-3xl mx-auto">
               Transparent, value-driven marketing solutions designed to help your organization build brand awareness, connect with your audience, and drive meaningful growth.
             </p>
-
+            
             <div className="flex flex-wrap justify-center gap-5">
               <button
                 onClick={() => scrollToSection("strategic")}
@@ -305,7 +305,7 @@ export default function MarketingPricing() {
               >
                 Strategic Packages
               </button>
-
+              
               <button
                 onClick={() => scrollToSection("ongoing")}
                 className={`px-6 py-3 rounded-lg text-base font-medium transition-all duration-300 ${
@@ -319,7 +319,7 @@ export default function MarketingPricing() {
             </div>
           </motion.div>
         </div>
-
+        
         {/* Decorative elements */}
         <div className="absolute top-0 right-0 w-96 h-96 bg-maverick-orange rounded-full filter blur-[180px] opacity-10"></div>
         <div className="absolute -bottom-20 left-0 w-80 h-80 bg-purple-600 rounded-full filter blur-[180px] opacity-5"></div>
@@ -347,7 +347,7 @@ export default function MarketingPricing() {
               One-time marketing foundations and brand-building initiatives to get your organization's marketing off the ground.
             </p>
           </motion.div>
-
+          
           {/* Package Cards */}
           <div className="grid grid-cols-1 xl:grid-cols-3 gap-8 mb-16">
             {strategicPackages.map((pkg, index) => (
@@ -361,6 +361,12 @@ export default function MarketingPricing() {
                   pkg.popular ? 'border-maverick-orange' : 'border-gray-800'
                 }`}
               >
+                {pkg.popular && (
+                  <div className="absolute right-6 top-6 bg-maverick-orange text-[#121212] text-xs font-bold px-3 py-1 rounded-full">
+                    Most Popular
+                  </div>
+                )}
+                
                 <div className="p-8 border-b border-gray-800">
                   <div className="flex items-center mb-4">
                     <div className={`p-3 rounded-lg ${
@@ -372,19 +378,19 @@ export default function MarketingPricing() {
                     </div>
                     <h3 className="text-2xl font-bold ml-4">{pkg.name}</h3>
                   </div>
-
+                  
                   <div className="mb-4">
                     <span className="text-3xl font-bold">{pkg.price}</span>
                     {pkg.oneTime && <span className="text-[#AAAAAA] ml-2">one-time</span>}
                   </div>
-
+                  
                   <p className="text-[#AAAAAA] mb-4">{pkg.description}</p>
-
+                  
                   <div className="bg-[#121212] p-3 rounded-lg text-sm">
                     <span className="italic text-white">{pkg.focus}</span>
                   </div>
                 </div>
-
+                
                 <div className="p-8">
                   <ul className="space-y-3 mb-6">
                     {pkg.features.map((feature, idx) => (
@@ -401,7 +407,7 @@ export default function MarketingPricing() {
                       </motion.li>
                     ))}
                   </ul>
-
+                  
                   {pkg.highlightFeatures && (
                     <div className="mb-6 space-y-2">
                       <p className="text-sm font-medium text-maverick-orange">Key Benefits:</p>
@@ -417,7 +423,7 @@ export default function MarketingPricing() {
                       </div>
                     </div>
                   )}
-
+                  
                   <Link href="/contact">
                     <a className={`block text-center w-full py-3 px-6 rounded-lg font-medium transition-all duration-300 ${
                       pkg.popular 
@@ -431,7 +437,7 @@ export default function MarketingPricing() {
               </motion.div>
             ))}
           </div>
-
+          
           {/* Compare Packages Table */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -444,7 +450,7 @@ export default function MarketingPricing() {
               <h3 className="text-2xl font-bold mb-2">Compare Strategic Packages</h3>
               <p className="text-[#AAAAAA]">A side-by-side comparison to help you choose the right marketing foundation.</p>
             </div>
-
+            
             <div className="overflow-x-auto">
               <table className="w-full min-w-[768px]">
                 <thead>
@@ -571,7 +577,7 @@ export default function MarketingPricing() {
               Consistent marketing support to maintain momentum, build audience relationships, and drive sustainable growth.
             </p>
           </motion.div>
-
+          
           {/* Ongoing Plans Cards */}
           <div className="grid grid-cols-1 xl:grid-cols-3 gap-8 mb-16">
             {ongoingPlans.map((plan, index) => (
@@ -585,6 +591,12 @@ export default function MarketingPricing() {
                   plan.popular ? 'border-maverick-orange' : 'border-gray-800'
                 }`}
               >
+                {plan.popular && (
+                  <div className="absolute right-6 top-6 bg-maverick-orange text-[#121212] text-xs font-bold px-3 py-1 rounded-full">
+                    Most Popular
+                  </div>
+                )}
+                
                 <div className="p-8 border-b border-gray-800">
                   <div className="flex items-center mb-4">
                     <div className={`p-3 rounded-lg ${
@@ -596,19 +608,19 @@ export default function MarketingPricing() {
                     </div>
                     <h3 className="text-2xl font-bold ml-4">{plan.name}</h3>
                   </div>
-
+                  
                   <div className="mb-4">
                     <span className="text-3xl font-bold">{plan.price}</span>
                     <span className="text-[#AAAAAA] ml-2">{plan.period}</span>
                   </div>
-
+                  
                   <p className="text-[#AAAAAA] mb-4">{plan.description}</p>
-
+                  
                   <div className="bg-[#121212] p-3 rounded-lg text-sm">
                     <span className="italic text-white">{plan.focus}</span>
                   </div>
                 </div>
-
+                
                 <div className="p-8">
                   <ul className="space-y-3 mb-8">
                     {plan.features.map((feature, idx) => (
@@ -625,7 +637,7 @@ export default function MarketingPricing() {
                       </motion.li>
                     ))}
                   </ul>
-
+                  
                   <Link href="/contact">
                     <a className={`block text-center w-full py-3 px-6 rounded-lg font-medium transition-all duration-300 ${
                       plan.popular 
@@ -639,7 +651,7 @@ export default function MarketingPricing() {
               </motion.div>
             ))}
           </div>
-
+          
           {/* Customization Box */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -653,16 +665,16 @@ export default function MarketingPricing() {
                 <div className="w-16 h-16 bg-maverick-orange bg-opacity-10 rounded-xl flex items-center justify-center text-maverick-orange">
                   <Sparkles className="h-8 w-8" />
                 </div>
-
+                
                 <div>
                   <h3 className="text-2xl font-bold mb-3">Custom Marketing Solutions</h3>
                   <p className="text-[#AAAAAA] mb-6 max-w-2xl">
                     Don't see the perfect fit? We can tailor a custom monthly plan or project package incorporating services from multiple categories to meet your specific marketing goals and budget.
                   </p>
-
+                  
                   <Link href="/contact">
                     <a className="inline-flex items-center text-maverick-orange hover:underline">
-                      Contact us for a custom marketing solution <ArrowRight className="ml-2 h-4 w-4" />a />
+                      Contact us for a custom marketing solution <ArrowRight className="ml-2 h-4 w-4" />
                     </a>
                   </Link>
                 </div>
@@ -687,7 +699,7 @@ export default function MarketingPricing() {
               We believe in marketing that feels genuine, builds authentic connections, and drives real business results.
             </p>
           </motion.div>
-
+          
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               {
@@ -758,7 +770,7 @@ export default function MarketingPricing() {
               Find answers to common questions about our marketing services and approach.
             </p>
           </motion.div>
-
+          
           <div className="max-w-3xl mx-auto">
             {faqs.map((faq, index) => (
               <motion.div
@@ -782,7 +794,7 @@ export default function MarketingPricing() {
                     <ChevronDown className="h-5 w-5 text-maverick-orange" />
                   </div>
                 </button>
-
+                
                 <AnimatePresence>
                   {selectedFaq === index && (
                     <motion.div
@@ -801,7 +813,7 @@ export default function MarketingPricing() {
           </div>
         </div>
       </section>
-
+      
       {/* Nonprofit Section */}
       <section className="py-16 px-5 md:px-10 bg-[#121212]">
         <div className="container mx-auto">
@@ -833,7 +845,7 @@ export default function MarketingPricing() {
           </motion.div>
         </div>
       </section>
-
+      
       {/* CTA Section */}
       <section className="py-20 px-5 md:px-10 bg-gradient-to-b from-[#121212] to-[#151515]">
         <div className="container mx-auto">
@@ -858,7 +870,7 @@ export default function MarketingPricing() {
           </motion.div>
         </div>
       </section>
-
+      
       <ContactSection />
     </motion.div>
   );
