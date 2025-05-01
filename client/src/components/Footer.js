@@ -1,5 +1,5 @@
 // Import necessary assets
-import logoPath from '@assets/logo_dyn-transparent-thumb2x.png';
+import logoPath from '@assets/logo-transparent-thumb4x.png';
 import '../styles/footer.css';
 
 /**
