@@ -84,12 +84,12 @@ export default function CreativeWorkSection() {
           if (scrollContainer.scrollLeft >= (scrollContainer.scrollWidth / 2)) {
             scrollContainer.scrollLeft = 0;
           } else {
-            scrollContainer.scrollLeft += 1; // Slow scrolling speed
+            scrollContainer.scrollLeft += 3; // Increased scrolling speed
           }
         }
       };
       
-      scrollInterval = setInterval(autoScroll, 20); // Adjust timing for scroll speed
+      scrollInterval = setInterval(autoScroll, 10); // Decreased interval for faster scrolling
     }
     
     return () => {
