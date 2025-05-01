@@ -47,24 +47,6 @@ export default function ProcessCard({ step }: ProcessCardProps) {
       },
       transition: { duration: 8, repeat: Infinity, ease: "easeInOut" }
     },
-    research: {
-      animate: {
-        background: [
-          "linear-gradient(45deg, rgba(255, 86, 48, 0.05) 0%, rgba(255, 86, 48, 0) 70%)",
-          "linear-gradient(135deg, rgba(255, 86, 48, 0.2) 0%, rgba(255, 86, 48, 0) 70%)",
-          "linear-gradient(225deg, rgba(255, 86, 48, 0.15) 0%, rgba(255, 86, 48, 0) 70%)",
-          "linear-gradient(315deg, rgba(255, 86, 48, 0.1) 0%, rgba(255, 86, 48, 0) 70%)"
-        ],
-        rotate: [0, 1, 0, -1, 0],
-        scale: [1, 1.03, 1, 0.98, 1],
-        filter: [
-          "blur(0px) brightness(1)",
-          "blur(0.3px) brightness(1.05)",
-          "blur(0px) brightness(1)"
-        ]
-      },
-      transition: { duration: 6, repeat: Infinity, ease: "easeInOut" }
-    },
     strategy: {
       animate: {
         background: [
@@ -231,20 +213,15 @@ export default function ProcessCard({ step }: ProcessCardProps) {
             step.id === "discovery" ? {
               rotate: [0, 5, 0, -5, 0],
               scale: [1, 1.1, 1],
-            } : step.id === "research" ? {
+            } : step.id === "strategy" ? {
               y: [0, -5, 0],
               x: [0, 3, 0, -3, 0],
-              filter: ["brightness(1)", "brightness(1.1)", "brightness(1)"],
-            } : step.id === "design-development" ? {
+            } : step.id === "design" ? {
               borderRadius: ["20%", "50%", "20%"],
               scale: [1, 1.08, 1],
-            } : step.id === "planning" ? {
-              rotateY: [0, 5, 0, -5, 0],
-              boxShadow: [
-                "0 0 0 rgba(255, 86, 48, 0)",
-                "0 0 10px rgba(255, 86, 48, 0.3)",
-                "0 0 0 rgba(255, 86, 48, 0)"
-              ]
+            } : step.id === "development" ? {
+              rotateY: [0, 180, 360],
+              transition: { duration: 2, repeat: Infinity, repeatDelay: 5 }
             } : step.id === "launch" ? {
               scale: [1, 1.2, 1],
               boxShadow: [
