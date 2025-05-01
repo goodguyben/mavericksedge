@@ -46,6 +46,52 @@
   position: absolute;
   top: 0;
   left: 0;
+
+/* Colored pricing card glow effects */
+.pricing-card.border-emerald-500:hover::after {
+  box-shadow: 0 0 25px 3px rgba(16, 185, 129, 0.3);
+}
+
+.pricing-card.border-blue-500:hover::after {
+  box-shadow: 0 0 25px 3px rgba(59, 130, 246, 0.3);
+}
+
+.pricing-card.border-purple-500:hover::after {
+  box-shadow: 0 0 25px 3px rgba(168, 85, 247, 0.3);
+}
+
+.pricing-card.border-pink-500:hover::after {
+  box-shadow: 0 0 25px 3px rgba(236, 72, 153, 0.3);
+}
+
+.pricing-card.border-cyan-500:hover::after {
+  box-shadow: 0 0 25px 3px rgba(34, 211, 238, 0.3);
+}
+
+.pricing-card.border-amber-500:hover::after {
+  box-shadow: 0 0 25px 3px rgba(245, 158, 11, 0.3);
+}
+
+.pricing-card.border-teal-500:hover::after {
+  box-shadow: 0 0 25px 3px rgba(20, 184, 166, 0.3);
+}
+
+.pricing-card.border-indigo-500:hover::after {
+  box-shadow: 0 0 25px 3px rgba(99, 102, 241, 0.3);
+}
+
+.pricing-card.border-rose-500:hover::after {
+  box-shadow: 0 0 25px 3px rgba(244, 63, 94, 0.3);
+}
+
+.pricing-card.border-blue-400:hover::after {
+  box-shadow: 0 0 25px 3px rgba(96, 165, 250, 0.3);
+}
+
+.pricing-card.border-violet-500:hover::after {
+  box-shadow: 0 0 25px 3px rgba(139, 92, 246, 0.3);
+}
+
   right: 0;
   bottom: 0;
   opacity: 0;

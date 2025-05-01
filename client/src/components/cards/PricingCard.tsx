@@ -27,19 +27,35 @@ export default function PricingCard({ plan }: PricingCardProps) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5 }}
-      className={`pricing-card bg-[#1A1A1A] rounded-xl overflow-hidden border ${
+      className={`pricing-card bg-[#1A1A1A] rounded-xl overflow-hidden border-2 ${
         plan.popular ? 'border-maverick-orange' : 
-        plan.id.includes('launch') || plan.id.includes('foundation') || plan.id.includes('readiness') ? 'border-maverick-yellow' : 
-        plan.id.includes('business') || plan.id.includes('digital') || plan.id.includes('monitoring') ? 'border-maverick-amber' : 
-        plan.id.includes('professional') || plan.id.includes('content') || plan.id.includes('support') ? 'border-maverick-light-orange' : 
+        plan.id.includes('launch') ? 'border-emerald-500' : 
+        plan.id.includes('business') ? 'border-blue-500' : 
+        plan.id.includes('professional') ? 'border-purple-500' : 
+        plan.id.includes('foundation') ? 'border-pink-500' : 
+        plan.id.includes('digital') ? 'border-cyan-500' : 
+        plan.id.includes('content') ? 'border-amber-500' : 
+        plan.id.includes('readiness') ? 'border-teal-500' : 
+        plan.id.includes('monitoring') ? 'border-indigo-500' : 
+        plan.id.includes('support') ? 'border-rose-500' : 
+        plan.id.includes('edgeautomate') ? 'border-blue-400' : 
+        plan.id.includes('custom-integration') ? 'border-violet-500' : 
         plan.color || 'border-gray-800'
       } flex flex-col h-full`}
       whileHover={{ 
         y: -8, 
         boxShadow: plan.popular ? '0 10px 25px -5px rgba(255, 86, 48, 0.25)' : 
-                  plan.id.includes('launch') || plan.id.includes('foundation') || plan.id.includes('readiness') ? '0 10px 25px -5px rgba(255, 215, 75, 0.2)' : 
-                  plan.id.includes('business') || plan.id.includes('digital') || plan.id.includes('monitoring') ? '0 10px 25px -5px rgba(255, 196, 61, 0.2)' :
-                  plan.id.includes('professional') || plan.id.includes('content') || plan.id.includes('support') ? '0 10px 25px -5px rgba(255, 138, 80, 0.2)' :
+                  plan.id.includes('launch') ? '0 10px 25px -5px rgba(16, 185, 129, 0.25)' : 
+                  plan.id.includes('business') ? '0 10px 25px -5px rgba(59, 130, 246, 0.25)' : 
+                  plan.id.includes('professional') ? '0 10px 25px -5px rgba(168, 85, 247, 0.25)' : 
+                  plan.id.includes('foundation') ? '0 10px 25px -5px rgba(236, 72, 153, 0.25)' : 
+                  plan.id.includes('digital') ? '0 10px 25px -5px rgba(34, 211, 238, 0.25)' : 
+                  plan.id.includes('content') ? '0 10px 25px -5px rgba(245, 158, 11, 0.25)' : 
+                  plan.id.includes('readiness') ? '0 10px 25px -5px rgba(20, 184, 166, 0.25)' : 
+                  plan.id.includes('monitoring') ? '0 10px 25px -5px rgba(99, 102, 241, 0.25)' : 
+                  plan.id.includes('support') ? '0 10px 25px -5px rgba(244, 63, 94, 0.25)' : 
+                  plan.id.includes('edgeautomate') ? '0 10px 25px -5px rgba(96, 165, 250, 0.25)' : 
+                  plan.id.includes('custom-integration') ? '0 10px 25px -5px rgba(139, 92, 246, 0.25)' : 
                   '0 10px 25px -5px rgba(255, 86, 48, 0.25)',
         transition: { duration: 0.3 } 
       }}
