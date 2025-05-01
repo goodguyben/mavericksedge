@@ -1,36 +1,39 @@
-import { motion } from "framer-motion";
+
+import React from "react";
 import { Code, PenTool, Brain, Database } from "lucide-react";
+import { motion } from "framer-motion";
+import { useMobile } from "@/hooks/use-mobile";
 
 export default function WhatWeDoSection() {
+  const isMobile = useMobile();
   const services = [
     {
       id: "web-development",
       title: "Web & Digital Solutions",
-      description: "Reliable and scalable websites designed to support your business goals, transform your online presence and built to perform now and into the future.",
+      description: "Transform your online presence with custom digital experiences that captivate your audience and drive conversions.",
       icon: <Code className="w-12 h-12 text-maverick-orange" />,
-      details: "Our web design and development services go beyond aesthetics. We deliver scalable, secure, and accessible digital platforms that align with your unique business needs. Whether you’re launching an e-commerce store, streamlining internal workflows with custom web apps, or simply need reliable support and hosting, we ensure your site is optimized, compliant, and built to grow with you."
+      details: "From stunning responsive websites to powerful e-commerce platforms, we craft digital solutions that align perfectly with your business goals. Our development approach ensures your digital presence isn't just visually impressive but also delivers measurable business outcomes through optimized user journeys, seamless functionality, and strategic architecture that scales with your growth."
     },
     {
       id: "creative-design",
       title: "Marketing & Creative Services",
-      description: "Elevate your brand with strategic execution that drives results and reach new audiences with data-driven marketing strategies that deliver measurable ROI.",
+      description: "Elevate your brand with strategic marketing that connects with your target audience and delivers measurable ROI.",
       icon: <PenTool className="w-12 h-12 text-maverick-orange" />,
-      details: "We enhance your online presence with tailored SEO strategies, from local to technical, and manage impactful PPC campaigns across Google Ads and social media. Our social media strategies foster meaningful connections, while email marketing and automation keep your brand at the forefront of your audience’s mind. Through Conversion Rate Optimization (CRO), we fine-tune every interaction to maximize engagement and ROI. With real-time data insights, we continuously optimize your marketing efforts to ensure maximum impact and efficiency.
-"
+      details: "We don't just create marketing—we craft compelling brand stories that resonate with your audience across all touchpoints. Our integrated approach combines powerful visual design, targeted content strategies, and data-driven campaigns to build meaningful connections with your customers, increasing engagement and creating lasting brand loyalty while delivering quantifiable business results."
     },
     {
       id: "digital-strategy",
       title: "AI Integration & Automation",
-      description: "Reclaim valuable time by automating routine tasks, allowing your team to focus on strategy, creativity, and growth.",
+      description: "Harness the transformative power of AI to unlock hidden insights, automate workflows, and create competitive advantages.",
       icon: <Brain className="w-12 h-12 text-maverick-orange" />,
-      details: "Our AI strategy and integration services provide a custom roadmap, tool selection, and seamless implementation, from agent-powered workflow automation to personalized chatbots and recommendation engines. We empower smarter business decisions with AI-driven insights and ensure secure, privacy-first deployment. With comprehensive staff training and ongoing support, we guide your team through every step, ensuring smooth adoption, efficiency, and long-term success."
+      details: "We make AI accessible and practical for your business, turning complex technologies into tangible advantages. Our solutions help you reduce operational costs, uncover valuable data insights, and create intelligent customer experiences that set you apart. We focus on responsible AI implementation that enhances human capabilities rather than replacing them, with clear ROI and change management support."
     },
     {
       id: "client-services",
       title: "Ongoing Support & Optimization",
-      description: "Future-proof your digital investments with proactive maintenance that enhances performance and adapts to evolving needs.",
+      description: "Ensure your digital investments continue to perform at their peak with proactive maintenance and continuous improvement.",
       icon: <Database className="w-12 h-12 text-maverick-orange" />,
-      details: "Sleep soundly knowing your digital assets are monitored 24/7 with rapid response to security threats and performance issues before they impact your business. Continuously improve conversion rates through regular A/B testing and optimization based on user behavior analytics. Scale your digital solutions confidently as your business grows, with regular technology audits ensuring you stay ahead of industry trends and customer expectations."
+      details: "Digital success requires ongoing attention, not just initial implementation. Our support services provide peace of mind through proactive monitoring, regular updates, and performance optimization that keeps your digital assets secure and effective. We become an extension of your team, providing the technical expertise to adapt to changing market conditions and technology landscapes while you focus on your core business."
     }
   ];
 

@@ -16,7 +16,7 @@ localPort = 5000
 externalPort = 80
 
 [workflows]
-runButton = "Fix Dev Server"
+runButton = "Dev Server Fixed"
 
 [[workflows.workflow]]
 name = "Project"
@@ -67,3 +67,21 @@ args = "npm install"
 [[workflows.workflow.tasks]]
 task = "shell.exec"
 args = "npm run dev -- --host 0.0.0.0"
+
+[[workflows.workflow]]
+name = "Dev Server Fixed"
+author = 40248203
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "cd client && npm install && npm run dev -- --host 0.0.0.0"
+
+[[workflows.workflow]]
+name = "Server"
+author = 40248203
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "cd server && npm install && NODE_ENV=development tsx server/index.ts"
