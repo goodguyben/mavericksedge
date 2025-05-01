@@ -1,5 +1,7 @@
+
 import { Check } from "lucide-react";
-import { Button } from "@/components/ui/custom-button";
+import { Link } from "wouter";
+import { motion } from "framer-motion";
 
 interface PricingCardProps {
   plan: {
@@ -8,38 +10,77 @@ interface PricingCardProps {
     subtitle: string;
     price: string;
     priceRange?: string;
-    currency: string;
+    period?: string;
+    currency?: string;
     oneTime: boolean;
     popular: boolean;
     features: string[];
+    icon?: React.ReactNode;
+    focusStatement?: string;
+    color?: string;
   };
 }
 
 export default function PricingCard({ plan }: PricingCardProps) {
   return (
-    <div className={`pricing-card bg-[#1E1E1E] rounded-xl p-8 border ${plan.popular ? 'border-maverick-orange border-opacity-50' : 'border-gray-700'} flex flex-col relative`}>
-      {/* Most popular label removed */}
-      <h4 className="text-2xl font-semibold mb-2 font-heading">{plan.title}</h4>
-      <p className="text-[#AAAAAA] mb-6">{plan.subtitle}</p>
-      <div className="mb-6">
-        <span className="text-4xl font-bold font-heading">{plan.price}</span>
-        <span className="text-[#AAAAAA] ml-2">{plan.priceRange || ""} {plan.currency}</span>
+    <motion.div 
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5 }}
+      className={`pricing-card bg-[#1A1A1A] rounded-xl overflow-hidden border ${
+        plan.popular ? 'border-maverick-orange' : plan.color || 'border-gray-800'
+      } flex flex-col h-full`}
+      whileHover={{ y: -8, transition: { duration: 0.3 } }}
+    >
+      <div className="p-6 border-b border-gray-800">
+        {plan.icon && (
+          <div className="flex items-center mb-4">
+            <div className={`w-12 h-12 rounded-full flex items-center justify-center ${
+              plan.popular ? 'bg-maverick-orange' : 'bg-maverick-orange bg-opacity-10'
+            }`}>
+              {plan.icon}
+            </div>
+            <h3 className="text-2xl font-bold ml-4">{plan.title}</h3>
+          </div>
+        )}
+        
+        {!plan.icon && <h3 className="text-2xl font-bold mb-2 font-heading">{plan.title}</h3>}
+        
+        <p className="text-[#AAAAAA] mb-4">{plan.subtitle || plan.focusStatement}</p>
+        
+        <div className="mb-4">
+          <span className="text-3xl font-bold">{plan.price}</span>
+          {plan.priceRange && <span className="text-2xl font-bold">{plan.priceRange}</span>}
+          {plan.period && <span className="text-[#AAAAAA] ml-2">{plan.period}</span>}
+          {plan.oneTime && !plan.period && <span className="text-[#AAAAAA] ml-2">one-time</span>}
+          {plan.currency && <span className="text-[#AAAAAA] ml-2">{plan.currency}</span>}
+        </div>
       </div>
-      <ul className="mb-8 space-y-3 flex-grow">
-        {plan.features.map((feature, index) => (
-          <li key={index} className="flex items-start">
-            <Check className="h-5 w-5 text-maverick-orange mt-0.5 mr-2" />
-            <span>{feature}</span>
-          </li>
-        ))}
-      </ul>
-      <Button
-        href="/contact"
-        variant="primary"
-        className="text-center w-full"
-      >
-        Get started
-      </Button>
-    </div>
+      
+      <div className="p-6 flex-grow flex flex-col">
+        <ul className="mb-6 space-y-3 flex-grow">
+          {plan.features.map((feature, index) => (
+            <motion.li 
+              key={index}
+              initial={{ opacity: 0, x: -10 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 + (index * 0.05), duration: 0.3 }}
+              className="flex items-start"
+            >
+              <Check className="h-5 w-5 text-maverick-orange shrink-0 mt-0.5 mr-3" />
+              <span className="text-[#DDDDDD]">{feature}</span>
+            </motion.li>
+          ))}
+        </ul>
+        
+        <Link href="/contact">
+          <a className="inline-flex items-center justify-center w-full py-3 px-6 rounded-lg font-medium transition-all duration-300 border border-maverick-orange text-maverick-orange hover:bg-maverick-orange hover:bg-opacity-10">
+            Get Started
+          </a>
+        </Link>
+      </div>
+    </motion.div>
   );
 }

@@ -8,6 +8,7 @@ import {
   Settings, Wrench
 } from 'lucide-react';
 import ContactSection from '@/components/sections/ContactSection';
+import PricingCard from '@/components/cards/PricingCard';
 import { cn } from '@/lib/utils';
 
 // Animation variants
@@ -24,15 +25,25 @@ const fadeInUp = {
   })
 };
 
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1
+    }
+  }
+};
+
 // Package data from the document
 const projectPackages = [
   {
     id: "edgestart",
-    name: "EdgeStart Package",
+    title: "EdgeStart Package",
+    subtitle: "Perfect for startups and small businesses that need a clean online presence fast",
     price: "$850",
     oneTime: true,
     popular: false,
-    focusStatement: "Perfect for startups, small businesses, solo entrepreneurs or small nonprofits/charities that need a clean online presence fast.",
     features: [
       "Up to 6 core pages",
       "Basic contact form",
@@ -44,16 +55,16 @@ const projectPackages = [
       "Accessibility basics (WCAG 2.1 Level AA)",
       "Performance check & report"
     ],
-    icon: <Rocket size={24} className="text-maverick-orange" />,
+    icon: <Rocket size={24} className={`text-maverick-orange`} />,
     color: "border-maverick-orange"
   },
   {
     id: "edgegrow",
-    name: "EdgeGrow Package",
+    title: "EdgeGrow Package",
+    subtitle: "For established organizations that need a strategic, scalable digital platform",
     price: "$1,850",
     oneTime: true,
     popular: true,
-    focusStatement: "Perfect for growing SMBs, professional service providers, nonprofits/charities, or established organizations that need a strategic, scalable, and high-performance digital platform.",
     features: [
       "Up to 20 custom-designed pages",
       "Advanced multi-step/contact forms with calendar and file upload options",
@@ -73,11 +84,11 @@ const projectPackages = [
   },
   {
     id: "edgelead",
-    name: "EdgeLead Package",
+    title: "EdgeLead Package",
+    subtitle: "Custom web apps & e-commerce solutions with advanced functionality",
     price: "Starting at $3,750+",
     oneTime: true,
     popular: false,
-    focusStatement: "Perfect for funded startups, growing e-commerce brands, membership-based organizations, educational platforms, SaaS providers, or any business needing a scalable, high-functionality website or custom web app.",
     features: [
       "Full-featured web application or e-commerce build",
       "Authentication & file uploads",
@@ -97,11 +108,11 @@ const projectPackages = [
   },
   {
     id: "edgeboost",
-    name: "EdgeBoost Package",
+    title: "EdgeBoost Package",
+    subtitle: "Targeted improvements for existing websites without a full rebuild",
     price: "Starting at $300+",
     oneTime: true,
     popular: false,
-    focusStatement: "Perfect for organizations with an existing website that need targeted improvements without a full rebuild.",
     features: [
       "Website performance audit & speed optimization",
       "Design refresh (layout, spacing, and visual hierarchy)",
@@ -120,11 +131,11 @@ const projectPackages = [
 const carePackages = [
   {
     id: "edgecare",
-    name: "EdgeCare Plan",
+    title: "EdgeCare Plan",
+    subtitle: "Foundational security & upkeep for peace of mind",
     price: "$75",
     period: "per month",
     popular: false,
-    focusStatement: "Foundational security & upkeep for peace of mind",
     features: [
       "Core Software Updates",
       "1 hour of content updates per month",
@@ -140,11 +151,11 @@ const carePackages = [
   },
   {
     id: "edgeadvance",
-    name: "EdgeAdvance Plan",
+    title: "EdgeAdvance Plan",
+    subtitle: "Maintaining site health + dedicated support time for growth",
     price: "$175",
     period: "per month",
     popular: true,
-    focusStatement: "Maintaining site health + dedicated support time for growth",
     features: [
       "All Essentials Care Plan features",
       "Additional 2 hours of dedicated support (total 3 hours)",
@@ -161,11 +172,11 @@ const carePackages = [
   },
   {
     id: "edgepro",
-    name: "EdgePro Plan",
+    title: "EdgePro Plan",
+    subtitle: "Proactive optimization, enhanced support & strategic oversight",
     price: "$400+",
     period: "per month",
     popular: false,
-    focusStatement: "Proactive optimization, enhanced support & strategic oversight",
     features: [
       "All Business Growth Plan features",
       "Up to 10 hours/month of development, design, or consulting",
@@ -180,7 +191,8 @@ const carePackages = [
   },
   {
     id: "consultation",
-    name: "Consultation Rate",
+    title: "Consultation Rate",
+    subtitle: "For web development, design, technical support",
     price: "$85",
     period: "per hour",
     popular: false,
@@ -188,7 +200,6 @@ const carePackages = [
       title: "Support Block",
       description: "4 hours for $300"
     },
-    focusStatement: "For web development, design, technical support.",
     features: [
       "Expert assistance when you need it",
       "Web development and technical solutions",
@@ -374,68 +385,20 @@ export default function WebPricing() {
           </motion.div>
 
           {/* Packages Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
+          <motion.div 
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16"
+          >
             {projectPackages.map((pkg, index) => (
-              <motion.div
-                key={pkg.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1, duration: 0.5 }}
-                className={cn(
-                  "rounded-xl border bg-[#1A1A1A] overflow-hidden",
-                  pkg.popular ? "border-maverick-orange ring-1 ring-maverick-orange" : `${pkg.color} border-opacity-50`
-                )}
-              >
-                <div className="p-6 border-b border-gray-800">
-                  {/* Removed "Most Popular" */}
-
-                  <div className="flex items-center mb-4">
-                    <div className={`w-12 h-12 rounded-full flex items-center justify-center ${
-                      pkg.popular ? 'bg-maverick-orange' : 'bg-maverick-orange bg-opacity-10'
-                    }`}>
-                      {pkg.icon}
-                    </div>
-                    <h3 className="text-2xl font-bold ml-4">{pkg.name}</h3>
-                  </div>
-
-                  <div className="mb-4">
-                    <span className="text-3xl font-bold">{pkg.price}</span>
-                    {pkg.oneTime && <span className="text-[#DDDDDD] ml-2">one-time</span>}
-                  </div>
-
-                  <p className="text-[#DDDDDD] font-medium mb-4">
-                    {pkg.focusStatement}
-                  </p>
-                </div>
-
-                <div className="p-6">
-                  <h4 className="font-medium mb-4">What's included:</h4>
-                  <ul className="space-y-3 mb-8">
-                    {pkg.features.map((feature, i) => (
-                      <motion.li 
-                        key={i}
-                        initial={{ opacity: 0, x: -10 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.1 + (i * 0.05), duration: 0.3 }}
-                        className="flex items-start"
-                      >
-                        <Check className="h-5 w-5 text-maverick-orange shrink-0 mt-0.5 mr-3" />
-                        <span className="text-[#DDDDDD]">{feature}</span>
-                      </motion.li>
-                    ))}
-                  </ul>
-
-                  <Link href="/contact">
-                    <a className="inline-flex items-center justify-center w-full py-3 px-6 rounded-lg font-medium transition-all duration-300 border border-maverick-orange text-maverick-orange hover:bg-maverick-orange hover:bg-opacity-10">
-                      Get Started
-                    </a>
-                  </Link>
-                </div>
-              </motion.div>
+              <PricingCard 
+                key={pkg.id} 
+                plan={pkg} 
+              />
             ))}
-          </div>
+          </motion.div>
 
           {/* Compare Packages Section */}
           <motion.div
@@ -558,74 +521,23 @@ export default function WebPricing() {
           </motion.div>
 
           {/* Care Plans Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
+          <motion.div 
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16"
+          >
             {carePackages.map((plan, index) => (
-              <motion.div
-                key={plan.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1, duration: 0.5 }}
-                className={cn(
-                  "rounded-xl border bg-[#1A1A1A] overflow-hidden",
-                  plan.popular ? "border-maverick-orange ring-1 ring-maverick-orange" : `${plan.color} border-opacity-50`
-                )}
-              >
-                <div className="p-6 border-b border-gray-800">
-                  {/* Removed "Most Popular" */}
-
-                  <div className="flex items-center mb-4">
-                    <div className={`w-12 h-12 rounded-full flex items-center justify-center ${
-                      plan.popular ? 'bg-maverick-orange' : 'bg-maverick-orange bg-opacity-10'
-                    }`}>
-                      {plan.icon}
-                    </div>
-                    <h3 className="text-2xl font-bold ml-4">{plan.name}</h3>
-                  </div>
-
-                  <div className="mb-4">
-                    <span className="text-3xl font-bold">{plan.price}</span>
-                    <span className="text-[#DDDDDD] ml-2">{plan.period}</span>
-
-                    {plan.extras && (
-                      <div className="mt-2 bg-[#232323] rounded-md p-3 inline-block">
-                        <span className="text-sm font-medium">{plan.extras.title}: {plan.extras.description}</span>
-                      </div>
-                    )}
-                  </div>
-
-                  <p className="text-[#DDDDDD] font-medium mb-4">
-                    {plan.focusStatement}
-                  </p>
-                </div>
-
-                <div className="p-6">
-                  <h4 className="font-medium mb-4">What's included:</h4>
-                  <ul className="space-y-3 mb-8">
-                    {plan.features.map((feature, i) => (
-                      <motion.li 
-                        key={i}
-                        initial={{ opacity: 0, x: -10 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.1 + (i * 0.05), duration: 0.3 }}
-                        className="flex items-start"
-                      >
-                        <Check className="h-5 w-5 text-maverick-orange shrink-0 mt-0.5 mr-3" />
-                        <span className="text-[#DDDDDD]">{feature}</span>
-                      </motion.li>
-                    ))}
-                  </ul>
-
-                  <Link href="/contact">
-                    <a className="inline-flex items-center justify-center w-full py-3 px-6 rounded-lg font-medium transition-all duration-300 border border-maverick-orange text-maverick-orange hover:bg-maverick-orange hover:bg-opacity-10">
-                      Get Started
-                    </a>
-                  </Link>
-                </div>
-              </motion.div>
+              <PricingCard 
+                key={plan.id} 
+                plan={{
+                  ...plan,
+                  extras: plan.extras ? `${plan.extras.title}: ${plan.extras.description}` : undefined
+                }} 
+              />
             ))}
-          </div>
+          </motion.div>
 
           {/* Compare Care Plans */}
           <motion.div

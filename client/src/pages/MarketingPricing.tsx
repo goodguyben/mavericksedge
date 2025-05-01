@@ -22,6 +22,17 @@ const fadeInUp = {
   })
 };
 
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+};
+
+
 interface PricingPackage {
   id: string;
   name: string;
@@ -220,6 +231,90 @@ const faqs = [
   }
 ];
 
+const PricingCard = ({ plan }: { plan: PricingPackage }) => {
+  return (
+    <motion.div
+      key={plan.id}
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5 }}
+      className={`relative bg-[#1A1A1A] rounded-xl overflow-hidden border ${
+        plan.popular ? 'border-maverick-orange' : 'border-gray-800'
+      }`}
+    >
+      <div className="p-8 border-b border-gray-800">
+        <div className="flex items-center mb-4">
+          <div className={`p-3 rounded-lg ${
+            plan.popular ? 'bg-maverick-orange' : 'bg-maverick-orange bg-opacity-10'
+          }`}>
+            <div className={plan.popular ? 'text-white' : 'text-maverick-orange'}>
+              {plan.icon}
+            </div>
+          </div>
+          <h3 className="text-2xl font-bold ml-4">{plan.name}</h3>
+        </div>
+
+        <div className="mb-4">
+          <span className="text-3xl font-bold">{plan.price}</span>
+          {plan.oneTime && <span className="text-[#AAAAAA] ml-2">one-time</span>}
+        </div>
+
+        <p className="text-[#AAAAAA] mb-4">{plan.description}</p>
+
+        <div className="bg-[#121212] p-3 rounded-lg text-sm">
+          <span className="italic text-white">{plan.focus}</span>
+        </div>
+      </div>
+
+      <div className="p-8">
+        <ul className="space-y-3 mb-6">
+          {plan.features.map((feature, idx) => (
+            <motion.li 
+              key={idx}
+              initial={{ opacity: 0, x: -10 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 + (idx * 0.05), duration: 0.3 }}
+              className="flex items-start"
+            >
+              <Check className="h-5 w-5 text-maverick-orange shrink-0 mt-0.5 mr-3" />
+              <span className="text-[#DDDDDD]">{feature}</span>
+            </motion.li>
+          ))}
+        </ul>
+
+        {plan.highlightFeatures && (
+          <div className="mb-6 space-y-2">
+            <p className="text-sm font-medium text-maverick-orange">Key Benefits:</p>
+            <div className="flex flex-wrap gap-2">
+              {plan.highlightFeatures.map((highlight, idx) => (
+                <span 
+                  key={idx}
+                  className="inline-block px-3 py-1 bg-maverick-orange bg-opacity-10 text-maverick-orange text-xs font-medium rounded-full"
+                >
+                  {highlight}
+                </span>
+              ))}
+            </div>
+          </div>
+        )}
+
+        <Link href="/contact">
+          <a className={`inline-flex items-center justify-center w-full py-3 px-6 rounded-lg font-medium transition-all duration-300 ${
+            plan.popular 
+              ? 'bg-maverick-orange hover:bg-opacity-90 text-white' 
+              : 'border border-maverick-orange text-maverick-orange hover:bg-maverick-orange hover:bg-opacity-10'
+          }`}>
+            Get Started
+          </a>
+        </Link>
+      </div>
+    </motion.div>
+  );
+};
+
+
 export default function MarketingPricing() {
   const [selectedFaq, setSelectedFaq] = useState<number | null>(null);
   const [activeTab, setActiveTab] = useState("strategic");
@@ -243,11 +338,11 @@ export default function MarketingPricing() {
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY + window.innerHeight / 2;
-      
+
       if (strategicRef.current && ongoingRef.current) {
         const strategicPosition = strategicRef.current.offsetTop;
         const ongoingPosition = ongoingRef.current.offsetTop;
-        
+
         if (scrollPosition >= ongoingPosition) {
           setActiveTab("ongoing");
         } else if (scrollPosition >= strategicPosition) {
@@ -285,15 +380,15 @@ export default function MarketingPricing() {
             <div className="inline-flex items-center justify-center p-3 rounded-full bg-maverick-orange bg-opacity-10 mb-6">
               <Megaphone className="h-6 w-6 text-maverick-orange" />
             </div>
-            
+
             <h1 className="text-5xl md:text-7xl font-bold mb-6 font-heading">
               Marketing <span className="text-maverick-orange">Pricing</span>
             </h1>
-            
+
             <p className="text-xl text-[#AAAAAA] mb-10 max-w-3xl mx-auto">
               Transparent, value-driven marketing solutions designed to help your organization build brand awareness, connect with your audience, and drive meaningful growth.
             </p>
-            
+
             <div className="flex flex-wrap justify-center gap-5">
               <button
                 onClick={() => scrollToSection("strategic")}
@@ -305,7 +400,7 @@ export default function MarketingPricing() {
               >
                 Strategic Packages
               </button>
-              
+
               <button
                 onClick={() => scrollToSection("ongoing")}
                 className={`px-6 py-3 rounded-lg text-base font-medium transition-all duration-300 ${
@@ -319,7 +414,7 @@ export default function MarketingPricing() {
             </div>
           </motion.div>
         </div>
-        
+
         {/* Decorative elements */}
         <div className="absolute top-0 right-0 w-96 h-96 bg-maverick-orange rounded-full filter blur-[180px] opacity-10"></div>
         <div className="absolute -bottom-20 left-0 w-80 h-80 bg-purple-600 rounded-full filter blur-[180px] opacity-5"></div>
@@ -347,93 +442,23 @@ export default function MarketingPricing() {
               One-time marketing foundations and brand-building initiatives to get your organization's marketing off the ground.
             </p>
           </motion.div>
-          
+
           {/* Package Cards */}
-          <div className="grid grid-cols-1 xl:grid-cols-3 gap-8 mb-16">
-            {strategicPackages.map((pkg, index) => (
-              <motion.div
+          <motion.div 
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="grid grid-cols-1 xl:grid-cols-3 gap-8 mb-16"
+          >
+            {strategicPackages.map((pkg) => (
+              <PricingCard
                 key={pkg.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1, duration: 0.5 }}
-                className={`relative bg-[#1A1A1A] rounded-xl overflow-hidden border ${
-                  pkg.popular ? 'border-maverick-orange' : 'border-gray-800'
-                }`}
-              >
-                {/* Most popular mention removed */}
-                
-                <div className="p-8 border-b border-gray-800">
-                  <div className="flex items-center mb-4">
-                    <div className={`p-3 rounded-lg ${
-                      pkg.popular ? 'bg-maverick-orange' : 'bg-maverick-orange bg-opacity-10'
-                    }`}>
-                      <div className={pkg.popular ? 'text-white' : 'text-maverick-orange'}>
-                        {pkg.icon}
-                      </div>
-                    </div>
-                    <h3 className="text-2xl font-bold ml-4">{pkg.name}</h3>
-                  </div>
-                  
-                  <div className="mb-4">
-                    <span className="text-3xl font-bold">{pkg.price}</span>
-                    {pkg.oneTime && <span className="text-[#AAAAAA] ml-2">one-time</span>}
-                  </div>
-                  
-                  <p className="text-[#AAAAAA] mb-4">{pkg.description}</p>
-                  
-                  <div className="bg-[#121212] p-3 rounded-lg text-sm">
-                    <span className="italic text-white">{pkg.focus}</span>
-                  </div>
-                </div>
-                
-                <div className="p-8">
-                  <ul className="space-y-3 mb-6">
-                    {pkg.features.map((feature, idx) => (
-                      <motion.li 
-                        key={idx}
-                        initial={{ opacity: 0, x: -10 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.1 + (idx * 0.05), duration: 0.3 }}
-                        className="flex items-start"
-                      >
-                        <Check className="h-5 w-5 text-maverick-orange shrink-0 mt-0.5 mr-3" />
-                        <span className="text-[#DDDDDD]">{feature}</span>
-                      </motion.li>
-                    ))}
-                  </ul>
-                  
-                  {pkg.highlightFeatures && (
-                    <div className="mb-6 space-y-2">
-                      <p className="text-sm font-medium text-maverick-orange">Key Benefits:</p>
-                      <div className="flex flex-wrap gap-2">
-                        {pkg.highlightFeatures.map((highlight, idx) => (
-                          <span 
-                            key={idx}
-                            className="inline-block px-3 py-1 bg-maverick-orange bg-opacity-10 text-maverick-orange text-xs font-medium rounded-full"
-                          >
-                            {highlight}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-                  
-                  <Link href="/contact">
-                    <a className={`block text-center w-full py-3 px-6 rounded-lg font-medium transition-all duration-300 ${
-                      pkg.popular 
-                        ? 'bg-maverick-orange hover:bg-opacity-90 text-white' 
-                        : 'border border-maverick-orange text-maverick-orange hover:bg-maverick-orange hover:bg-opacity-10'
-                    }`}>
-                      Get Started
-                    </a>
-                  </Link>
-                </div>
-              </motion.div>
+                plan={pkg}
+              />
             ))}
-          </div>
-          
+          </motion.div>
+
           {/* Compare Packages Table */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -446,7 +471,7 @@ export default function MarketingPricing() {
               <h3 className="text-2xl font-bold mb-2">Compare Strategic Packages</h3>
               <p className="text-[#AAAAAA]">A side-by-side comparison to help you choose the right marketing foundation.</p>
             </div>
-            
+
             <div className="overflow-x-auto">
               <table className="w-full min-w-[768px]">
                 <thead>
@@ -573,7 +598,7 @@ export default function MarketingPricing() {
               Consistent marketing support to maintain momentum, build audience relationships, and drive sustainable growth.
             </p>
           </motion.div>
-          
+
           {/* Ongoing Plans Cards */}
           <div className="grid grid-cols-1 xl:grid-cols-3 gap-8 mb-16">
             {ongoingPlans.map((plan, index) => (
@@ -588,7 +613,7 @@ export default function MarketingPricing() {
                 }`}
               >
                 {/* Most popular mention removed */}
-                
+
                 <div className="p-8 border-b border-gray-800">
                   <div className="flex items-center mb-4">
                     <div className={`p-3 rounded-lg ${
@@ -600,19 +625,19 @@ export default function MarketingPricing() {
                     </div>
                     <h3 className="text-2xl font-bold ml-4">{plan.name}</h3>
                   </div>
-                  
+
                   <div className="mb-4">
                     <span className="text-3xl font-bold">{plan.price}</span>
                     <span className="text-[#AAAAAA] ml-2">{plan.period}</span>
                   </div>
-                  
+
                   <p className="text-[#AAAAAA] mb-4">{plan.description}</p>
-                  
+
                   <div className="bg-[#121212] p-3 rounded-lg text-sm">
                     <span className="italic text-white">{plan.focus}</span>
                   </div>
                 </div>
-                
+
                 <div className="p-8">
                   <ul className="space-y-3 mb-8">
                     {plan.features.map((feature, idx) => (
@@ -629,7 +654,7 @@ export default function MarketingPricing() {
                       </motion.li>
                     ))}
                   </ul>
-                  
+
                   <Link href="/contact">
                     <a className={`block text-center w-full py-3 px-6 rounded-lg font-medium transition-all duration-300 ${
                       plan.popular 
@@ -643,7 +668,7 @@ export default function MarketingPricing() {
               </motion.div>
             ))}
           </div>
-          
+
           {/* Customization Box */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -657,13 +682,13 @@ export default function MarketingPricing() {
                 <div className="w-16 h-16 bg-maverick-orange bg-opacity-10 rounded-xl flex items-center justify-center text-maverick-orange">
                   <Sparkles className="h-8 w-8" />
                 </div>
-                
+
                 <div>
                   <h3 className="text-2xl font-bold mb-3">Custom Marketing Solutions</h3>
                   <p className="text-[#AAAAAA] mb-6 max-w-2xl">
                     Don't see the perfect fit? We can tailor a custom monthly plan or project package incorporating services from multiple categories to meet your specific marketing goals and budget.
                   </p>
-                  
+
                   <Link href="/contact">
                     <a className="inline-flex items-center text-maverick-orange hover:underline">
                       Contact us for a custom marketing solution <ArrowRight className="ml-2 h-4 w-4" />
@@ -691,7 +716,7 @@ export default function MarketingPricing() {
               We believe in marketing that feels genuine, builds authentic connections, and drives real business results.
             </p>
           </motion.div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               {
@@ -762,7 +787,7 @@ export default function MarketingPricing() {
               Find answers to common questions about our marketing services and approach.
             </p>
           </motion.div>
-          
+
           <div className="max-w-3xl mx-auto">
             {faqs.map((faq, index) => (
               <motion.div
@@ -786,7 +811,7 @@ export default function MarketingPricing() {
                     <ChevronDown className="h-5 w-5 text-maverick-orange" />
                   </div>
                 </button>
-                
+
                 <AnimatePresence>
                   {selectedFaq === index && (
                     <motion.div
@@ -805,7 +830,7 @@ export default function MarketingPricing() {
           </div>
         </div>
       </section>
-      
+
       {/* Nonprofit Section */}
       <section className="py-16 px-5 md:px-10 bg-[#121212]">
         <div className="container mx-auto">
@@ -837,7 +862,7 @@ export default function MarketingPricing() {
           </motion.div>
         </div>
       </section>
-      
+
       {/* CTA Section */}
       <section className="py-20 px-5 md:px-10 bg-gradient-to-b from-[#121212] to-[#151515]">
         <div className="container mx-auto">
@@ -862,7 +887,7 @@ export default function MarketingPricing() {
           </motion.div>
         </div>
       </section>
-      
+
       <ContactSection />
     </motion.div>
   );

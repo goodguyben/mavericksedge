@@ -7,6 +7,7 @@ import {
   Sparkles, Fingerprint, LineChart
 } from 'lucide-react';
 import ContactSection from '@/components/sections/ContactSection';
+import PricingCard from '@/components/cards/PricingCard';
 
 // Animation variants
 const fadeInUp = {
@@ -48,12 +49,11 @@ const staggerContainer = {
 const pricingTiers = [
   {
     id: "ai-readiness",
-    name: "AI Readiness Assessment",
-    description: "A comprehensive evaluation of your current systems, data, and workflows to identify AI opportunities.",
+    title: "AI Readiness Assessment",
+    subtitle: "Comprehensive evaluation of your systems to identify AI opportunities",
     price: "$600 - $1,200+",
     oneTime: true,
     popular: false,
-    idealFor: "Starting your AI journey with a strategic roadmap",
     features: [
       "Full tech stack, workflow, and data audit",
       "AI opportunity identification and prioritization",
@@ -63,16 +63,16 @@ const pricingTiers = [
       "Data readiness assessment",
       "Security and compliance considerations"
     ],
-    icon: <Brain size={24} />
+    icon: <Brain size={24} className="text-maverick-orange" />,
+    color: "border-maverick-orange"
   },
   {
     id: "edgeautomate",
-    name: "EdgeAutomate Kickstart",
-    description: "For SMBs just starting their AI journey — this foundational project identifies, validates, and initiates the most valuable automation opportunities.",
+    title: "EdgeAutomate Kickstart",
+    subtitle: "Foundation to identify and implement your most valuable AI automations",
     price: "Starting at $2,200",
     oneTime: true,
     popular: true,
-    idealFor: "Implementing your first AI-powered automation",
     features: [
       "Process mapping and automation opportunity assessment",
       "Selection of one high-value automation candidate",
@@ -83,16 +83,16 @@ const pricingTiers = [
       "30-day post-implementation support",
       "ROI measurement framework"
     ],
-    icon: <Workflow size={24} />
+    icon: <Workflow size={24} className="text-white" />,
+    color: "border-blue-500"
   },
   {
     id: "custom-integration",
-    name: "Custom API Integration",
-    description: "Connect your existing systems to powerful AI models through custom API integrations tailored to your specific needs.",
+    title: "Custom API Integration",
+    subtitle: "Connect your systems to powerful AI models with tailored API integrations",
     price: "Starting at $3,500+",
     oneTime: true,
     popular: false,
-    idealFor: "Creating advanced AI integrations for your business",
     features: [
       "OpenAI, Claude, or Gemini API integration",
       "Custom development for your unique requirements",
@@ -103,17 +103,20 @@ const pricingTiers = [
       "Documentation and knowledge transfer",
       "Deployment and configuration support"
     ],
-    icon: <Cpu size={24} />
+    icon: <Cpu size={24} className="text-white" />,
+    color: "border-green-400"
   }
 ];
 
 const supportPlans = [
   {
     id: "basic-ai-monitoring",
-    name: "Basic AI Monitoring",
-    description: "Essential monitoring to ensure your AI solutions remain operational and effective.",
+    title: "Basic AI Monitoring",
+    subtitle: "Essential monitoring to ensure AI solutions remain operational and effective",
     price: "$250 - $400+",
     period: "per month",
+    oneTime: false,
+    popular: false,
     features: [
       "Regular AI tool status monitoring",
       "Basic updates and maintenance",
@@ -123,14 +126,17 @@ const supportPlans = [
       "Monthly status reporting",
       "Response within 48 hours"
     ],
-    icon: <Gauge size={24} />
+    icon: <Gauge size={24} className="text-maverick-orange" />,
+    color: "border-maverick-orange"
   },
   {
     id: "proactive-ai-support",
-    name: "Proactive AI Support",
-    description: "Comprehensive support with dedicated hours for optimization and enhancement of your AI implementations.",
+    title: "Proactive AI Support",
+    subtitle: "Comprehensive support with dedicated hours for optimization and enhancement",
     price: "$600 - $1,200+",
     period: "per month",
+    oneTime: false,
+    popular: true,
     features: [
       "All Basic Monitoring features",
       "Dedicated support hours (4-10 hours/month)",
@@ -143,7 +149,8 @@ const supportPlans = [
       "Response within 24 hours",
       "Quarterly strategy review"
     ],
-    icon: <ShieldCheck size={24} />
+    icon: <ShieldCheck size={24} className="text-white" />,
+    color: "border-blue-500"
   }
 ];
 
@@ -410,92 +417,20 @@ export default function AIPricing() {
           </motion.div>
           
           {/* Pricing Cards */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
-            {pricingTiers.map((tier, index) => (
-              <motion.div
+          <motion.div 
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16"
+          >
+            {pricingTiers.map((tier) => (
+              <PricingCard
                 key={tier.id}
-                variants={fadeInUp}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                custom={0.2 + index * 0.1}
-                className={`relative overflow-hidden rounded-2xl ${
-                  tier.popular 
-                    ? 'ring-2 ring-maverick-orange border border-maverick-orange/30' 
-                    : 'border border-gray-800'
-                }`}
-              >
-                {/* Top Gradient Bar */}
-                <div className={`h-2 w-full ${
-                  tier.popular 
-                    ? 'bg-gradient-to-r from-maverick-orange to-yellow-600' 
-                    : 'bg-gradient-to-r from-gray-700 to-gray-800'
-                }`}></div>
-                
-                {/* Header */}
-                <div className="p-8 bg-[#1A1A1A]">
-                  {/* Most popular mention removed */}
-                  
-                  <div className="flex items-center gap-4 mb-4">
-                    <div className={`w-12 h-12 rounded-full flex items-center justify-center ${
-                      tier.popular 
-                        ? 'bg-maverick-orange text-white' 
-                        : 'bg-maverick-orange/20 text-maverick-orange'
-                    }`}>
-                      {tier.icon}
-                    </div>
-                    <h3 className="text-2xl font-bold">{tier.name}</h3>
-                  </div>
-                  
-                  <p className="text-[#AAAAAA] mb-6 min-h-[60px]">{tier.description}</p>
-                  
-                  <div className="mb-3">
-                    <span className="text-3xl font-bold">{tier.price}</span>
-                    {tier.oneTime && <span className="text-[#AAAAAA] ml-2">one-time</span>}
-                  </div>
-                  
-                  <div className="flex items-center gap-2 mb-6">
-                    <div className="p-1 rounded-full bg-green-500/20">
-                      <Check className="h-4 w-4 text-green-500" />
-                    </div>
-                    <p className="text-sm text-green-400 font-medium">
-                      {tier.idealFor}
-                    </p>
-                  </div>
-                </div>
-                
-                {/* Features */}
-                <div className="p-8 bg-[#161616]">
-                  <h4 className="font-medium mb-4">What's included:</h4>
-                  <ul className="space-y-3 mb-8">
-                    {tier.features.map((feature, idx) => (
-                      <motion.li 
-                        key={idx}
-                        initial={{ opacity: 0, x: -10 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        transition={{ delay: 0.1 * idx, duration: 0.3 }}
-                        viewport={{ once: true }}
-                        className="flex items-start"
-                      >
-                        <Check className="h-5 w-5 text-maverick-orange shrink-0 mt-0.5 mr-3" />
-                        <span className="text-[#DDDDDD]">{feature}</span>
-                      </motion.li>
-                    ))}
-                  </ul>
-                  
-                  <Link href="/contact">
-                    <a className={`block text-center w-full py-3 px-6 rounded-lg font-medium transition-all duration-300 ${
-                      tier.popular 
-                        ? 'bg-maverick-orange hover:bg-opacity-90 text-white' 
-                        : 'border border-maverick-orange text-maverick-orange hover:bg-maverick-orange hover:bg-opacity-10'
-                    }`}>
-                      Get Started
-                    </a>
-                  </Link>
-                </div>
-              </motion.div>
+                plan={tier}
+              />
             ))}
-          </div>
+          </motion.div>
           
           {/* Consulting Rate */}
           <motion.div
@@ -638,57 +573,11 @@ export default function AIPricing() {
             viewport={{ once: true }}
             className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16"
           >
-            {supportPlans.map((plan, index) => (
-              <motion.div
+            {supportPlans.map((plan) => (
+              <PricingCard
                 key={plan.id}
-                variants={scaleIn}
-                custom={0.3 + index * 0.1}
-                className="bg-gradient-to-br from-[#1A1A1A] to-[#1E1E1E] rounded-xl overflow-hidden border border-gray-800 relative"
-              >
-                {/* Subtle animated background pattern */}
-                <div className="absolute inset-0 opacity-10">
-                  <div className="absolute top-0 right-0 w-40 h-40 bg-maverick-orange rounded-full filter blur-[100px]"></div>
-                  <div className="absolute bottom-0 left-0 w-40 h-40 bg-blue-600 rounded-full filter blur-[100px]"></div>
-                </div>
-                
-                <div className="p-8 relative z-10">
-                  <div className="flex items-center gap-4 mb-4">
-                    <div className="w-12 h-12 rounded-full bg-maverick-orange bg-opacity-10 flex items-center justify-center text-maverick-orange">
-                      {plan.icon}
-                    </div>
-                    <h3 className="text-2xl font-bold">{plan.name}</h3>
-                  </div>
-                  
-                  <p className="text-[#AAAAAA] mb-6">{plan.description}</p>
-                  
-                  <div className="mb-8">
-                    <span className="text-3xl font-bold">{plan.price}</span>
-                    <span className="text-[#AAAAAA] ml-2">{plan.period}</span>
-                  </div>
-                  
-                  <div className="space-y-3 mb-8">
-                    {plan.features.map((feature, idx) => (
-                      <motion.div
-                        key={idx}
-                        initial={{ opacity: 0, x: -10 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        transition={{ delay: 0.05 * idx, duration: 0.3 }}
-                        viewport={{ once: true }}
-                        className="flex items-start"
-                      >
-                        <Check className="h-5 w-5 text-maverick-orange shrink-0 mt-0.5 mr-3" />
-                        <span className="text-[#DDDDDD]">{feature}</span>
-                      </motion.div>
-                    ))}
-                  </div>
-                  
-                  <Link href="/contact">
-                    <a className="block text-center w-full py-3 px-6 rounded-lg font-medium transition-all duration-300 border border-maverick-orange text-maverick-orange hover:bg-maverick-orange hover:bg-opacity-10">
-                      Get Started
-                    </a>
-                  </Link>
-                </div>
-              </motion.div>
+                plan={plan}
+              />
             ))}
           </motion.div>
           

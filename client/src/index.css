@@ -186,12 +186,52 @@
 
 .pricing-card {
   @apply bg-maverick-slate border border-maverick-slate/80 shadow-md;
-  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+              border-color 0.3s ease, 
+              box-shadow 0.4s ease;
 }
 
 .pricing-card:hover {
-  transform: translateY(-5px);
-  @apply border-maverick-orange shadow-lg shadow-maverick-orange/20;
+  transform: translateY(-8px);
+  @apply border-maverick-orange shadow-xl shadow-maverick-orange/20;
+}
+
+/* Enhanced animations for pricing elements */
+@keyframes pulse-gentle {
+  0% { opacity: 0.8; }
+  50% { opacity: 1; }
+  100% { opacity: 0.8; }
+}
+
+@keyframes float-in {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scale-in {
+  0% { transform: scale(0.9); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes color-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Apply these animations to pricing elements */
+.pricing-card .icon-container {
+  animation: scale-in 0.5s forwards;
+}
+
+.pricing-card:hover .check-icon {
+  animation: pulse-gentle 2s infinite;
+}
+
+.pricing-highlight {
+  background: linear-gradient(90deg, rgba(241, 90, 41, 0.2), rgba(241, 90, 41, 0.1), rgba(241, 90, 41, 0.2));
+  background-size: 200% 100%;
+  animation: color-shift 3s ease infinite;
 }
 
 /* Improved contrast for accessibility */
