@@ -641,7 +641,7 @@ export default function WebPricing() {
             </div>
 
             <div className="overflow-x-auto">
-              <table              <table className="w-full min-w-[768px] border-collapse">
+              <table className="w-full min-w-[768px] border-collapse">
                 <thead>
                   <tr className="bg-[#161616]">
                     <th className="p-4 text-left border-b border-gray-800">Feature</th>
