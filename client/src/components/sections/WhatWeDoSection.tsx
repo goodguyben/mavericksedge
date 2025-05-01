@@ -2,10 +2,10 @@
 import React from "react";
 import { Code, PenTool, Brain, Database } from "lucide-react";
 import { motion } from "framer-motion";
-import { useMobile } from "@/hooks/use-mobile";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 export default function WhatWeDoSection() {
-  const isMobile = useMobile();
+  const isMobile = useIsMobile();
   const services = [
     {
       id: "web-development",
