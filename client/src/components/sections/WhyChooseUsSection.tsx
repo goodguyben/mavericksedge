@@ -6,37 +6,37 @@ export default function WhyChooseUsSection() {
     {
       id: "efficiency",
       title: "Efficiency",
-      description: "We optimize processes and leverage AI/ML technologies to automate tasks, analyze data, and deliver results faster and more cost-effectively.",
+      description: "We help you focus on what matters most by simplifying your workflows and letting AI take care of the rest, so you can save time, reduce costs, and drive growth.",
       icon: <Zap className="w-10 h-10 text-maverick-orange" />
     },
     {
       id: "transparency",
       title: "Transparency",
-      description: "We believe in open communication and keeping you informed throughout every step of the process.",
+      description: "We believe in building strong relationships through open and honest communication, so you’ll always feel supported and in control at every stage of the process.",
       icon: <Heart className="w-10 h-10 text-maverick-orange" />
     },
     {
       id: "innovation",
       title: "Innovation",
-      description: "We stay at the forefront of technology trends to provide cutting-edge solutions that give you a competitive edge.",
+      description: "We’re passionate about staying ahead of the curve with the latest tech, so you can count on us to bring you innovative solutions that give you a real edge in a fast-moving world.",
       icon: <FlaskConical className="w-10 h-10 text-maverick-orange" />
     },
     {
       id: "research",
       title: "Research",
-      description: "We conduct thorough research to understand your market, audience, and competitors to create informed strategies and solutions.",
+      description: "We take the time to really understand your market, audience, and competitors. There’s no ‘one size fits all’ approach here. Our research allows us to develop strategies and tailored plans that are aligned with your needs.",
       icon: <BookOpen className="w-10 h-10 text-maverick-orange" />
     },
     {
       id: "empathy",
       title: "Empathy",
-      description: "We understand the challenges you face and design solutions with your specific needs and constraints in mind.",
+      description: "We get that things don’t always go as planned, and we’re here to make sure you’re never left in the dark. We take the time to truly understand your needs and limitations, designing solutions that fit within your scope and budget—without the surprise fees.",
       icon: <SmileIcon className="w-10 h-10 text-maverick-orange" />
     },
     {
       id: "partnership",
       title: "Partnership",
-      description: "We see ourselves as an extension of your team, working collaboratively to achieve your business goals.",
+      description: "We see ourselves as an extension of your team, working collaboratively to achieve your business goals with trust and shared commitment to your long-term success.",
       icon: <Users className="w-10 h-10 text-maverick-orange" />
     }
   ];
@@ -58,7 +58,7 @@ export default function WhyChooseUsSection() {
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-4">Why Choose <span className="text-maverick-orange">Mavericks Edge</span></h2>
           <p className="text-[#BBBBBB] text-xl max-w-2xl mx-auto">
-            We bring your digital vision to life with precision, creativity, and technical excellence
+            We partner with passionate people building meaningful work — SMBs, nonprofits, and early-stage teams doing a lot with a little. We get it: every dollar matters. That’s why our services are flexible, transparent, and built around long-term sustainability.
           </p>
         </motion.div>
 

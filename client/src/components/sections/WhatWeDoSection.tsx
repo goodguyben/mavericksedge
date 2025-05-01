@@ -6,23 +6,24 @@ export default function WhatWeDoSection() {
     {
       id: "web-development",
       title: "Web & Digital Solutions",
-      description: "Transform your online presence with custom websites that convert visitors into customers and reduce operational costs.",
+      description: "Reliable and scalable websites designed to support your business goals, transform your online presence and built to perform now and into the future.",
       icon: <Code className="w-12 h-12 text-maverick-orange" />,
-      details: "Elevate your business with responsive websites that load in under 2 seconds, improving SEO rankings and customer retention. Our accessible, secure platforms integrate seamlessly with your existing systems, enabling 24/7 online sales and reducing customer support inquiries by up to 35%. Experience faster time-to-market with our streamlined development process, getting your digital products to customers before your competitors."
+      details: "Our web design and development services go beyond aesthetics. We deliver scalable, secure, and accessible digital platforms that align with your unique business needs. Whether you’re launching an e-commerce store, streamlining internal workflows with custom web apps, or simply need reliable support and hosting, we ensure your site is optimized, compliant, and built to grow with you."
     },
     {
       id: "creative-design",
       title: "Marketing & Creative Services",
-      description: "Amplify your brand voice and reach new audiences with data-driven marketing strategies that deliver measurable ROI.",
+      description: "Elevate your brand with strategic execution that drives results and reach new audiences with data-driven marketing strategies that deliver measurable ROI.",
       icon: <PenTool className="w-12 h-12 text-maverick-orange" />,
-      details: "Break through digital noise with distinctive brand messaging that resonates with your target audience. Our comprehensive marketing approach combines SEO, content, and paid advertising to create multiple touchpoints with potential customers, increasing conversion rates by up to 40%. Track campaign performance in real-time with our analytics dashboard, allowing for agile strategy adjustments that maximize your marketing budget and generate qualified leads."
+      details: "We enhance your online presence with tailored SEO strategies, from local to technical, and manage impactful PPC campaigns across Google Ads and social media. Our social media strategies foster meaningful connections, while email marketing and automation keep your brand at the forefront of your audience’s mind. Through Conversion Rate Optimization (CRO), we fine-tune every interaction to maximize engagement and ROI. With real-time data insights, we continuously optimize your marketing efforts to ensure maximum impact and efficiency.
+"
     },
     {
       id: "digital-strategy",
       title: "AI Integration & Automation",
-      description: "Unleash productivity and uncover insights with AI solutions that automate repetitive tasks and enhance decision-making.",
+      description: "Reclaim valuable time by automating routine tasks, allowing your team to focus on strategy, creativity, and growth.",
       icon: <Brain className="w-12 h-12 text-maverick-orange" />,
-      details: "Reclaim valuable staff time by automating routine processes, allowing your team to focus on creative and strategic initiatives. Gain competitive advantage through AI-powered data analysis that identifies patterns humans might miss, enabling more informed business decisions. Enhance customer experience with personalized interactions through chatbots and recommendation engines, increasing satisfaction and loyalty while reducing operational costs."
+      details: "Our AI strategy and integration services provide a custom roadmap, tool selection, and seamless implementation, from agent-powered workflow automation to personalized chatbots and recommendation engines. We empower smarter business decisions with AI-driven insights and ensure secure, privacy-first deployment. With comprehensive staff training and ongoing support, we guide your team through every step, ensuring smooth adoption, efficiency, and long-term success."
     },
     {
       id: "client-services",
