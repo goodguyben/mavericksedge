@@ -205,7 +205,7 @@ export default function ContactSection({ fullPage = false }: ContactSectionProps
                   )}
                 />
 
-                <div className="flex flex-col sm:flex-row gap-4 w-full">
+                <div className="flex w-full">
                   <button 
                     type="submit" 
                     className="w-full px-6 py-3 bg-maverick-orange text-white rounded-lg font-medium transition-all duration-300 hover:bg-maverick-orange/90 flex items-center justify-center"
@@ -223,15 +223,6 @@ export default function ContactSection({ fullPage = false }: ContactSectionProps
                       "Send Message"
                     )}
                   </button>
-
-                  <TechButton 
-                    type="submit" 
-                    className="w-full"
-                    disabled={mutation.isPending}
-                    techTheme="js"
-                  >
-                    {mutation.isPending ? "Sending..." : "Send Message (JS)"}
-                  </TechButton>
                 </div>
               </form>
             </Form>
