@@ -80,7 +80,7 @@ export default function Hero() {
           animate={{ opacity: heroOpacity, y: 0 }} // Animate opacity based on scroll
           transition={{ duration: 0.3 }}
         >
-          <h1 className="text-5xl md:text-7xl font-heading font-extrabold tracking-wide leading-normal text-maverick-cream text-center">
+          <h1 className="text-4xl sm:text-5xl md:text-7xl font-heading font-extrabold tracking-wide leading-tight text-maverick-cream text-center">
             <div className="inline-block">
               Building{" "}
               <span className="text-maverick-orange relative inline-block">
@@ -95,7 +95,7 @@ export default function Hero() {
               {" "}with innovation and heart
             </div>
           </h1>
-          <p className="text-xl md:text-2xl text-maverick-cream/80 mt-6 mb-10 max-w-2xl font-sans leading-relaxed mx-auto text-center">
+          <p className="text-lg sm:text-xl md:text-2xl text-maverick-cream/80 mt-4 sm:mt-6 mb-8 sm:mb-10 max-w-2xl font-sans leading-relaxed mx-auto text-center">
             Web development, marketing, and AI integration services tailored for
             SMBs and nonprofits
           </p>
