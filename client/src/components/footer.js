@@ -44,7 +44,7 @@ function createLogo(container) {
   
   // Create logo image
   const img = document.createElement('img');
-  img.src = '/attached_assets/logo_dyn-transparent-thumb2x.png';
+  img.src = '/images/logo-transparent-thumb4x.png';
   img.alt = 'Mavericks Edge Logo';
   img.style.width = '80px';
   img.style.height = 'auto';
