@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Code, PenTool, Brain, Database } from "lucide-react";
 import { motion } from "framer-motion";
@@ -10,30 +9,30 @@ export default function WhatWeDoSection() {
     {
       id: "web-development",
       title: "Web Design & Development",
-      description: "Transform your online presence with custom digital experiences that engage your audience and drive results.",
+      description: "Custom digital experiences that engage audiences and drive results.",
       icon: <Code className="w-12 h-12 text-maverick-orange" />,
-      details: "From responsive websites to powerful e-commerce platforms, we build solutions aligned with your goals. Our development ensures a visually stunning, high-performing digital presence with optimized user journeys, seamless functionality, and scalable architecture to support your growth."
+      details: "We create responsive websites and e-commerce platforms aligned with your business goals. Our solutions deliver optimized user journeys, seamless functionality, and scalable architecture built for growth."
     },
     {
       id: "creative-design",
       title: "Marketing & Creative",
-      description: "Elevate your brand with strategic marketing that connects with your target audience and delivers measurable ROI.",
+      description: "Strategic marketing that connects with your audience and delivers measurable ROI.",
       icon: <PenTool className="w-12 h-12 text-maverick-orange" />,
-      details: "We don’t just market—we craft compelling brand stories that connect across every touchpoint. Through visual design, targeted content, and data-driven campaigns, we build strong customer relationships, boost engagement, and drive lasting brand loyalty with clear, quantifiable results."
+      details: "We craft compelling brand stories across all touchpoints using effective design, targeted content, and data-driven campaigns to build engagement and drive lasting brand loyalty."
     },
     {
       id: "digital-strategy",
       title: "AI Integration & Automation",
-      description: "Harness the power of AI to unlock insights, automate workflows, and gain a competitive edge.",
+      description: "Practical AI solutions that streamline operations and create competitive advantages.",
       icon: <Brain className="w-12 h-12 text-maverick-orange" />,
-      details: "We make AI practical and accessible, turning complex tech into real results. Our solutions reduce costs, surface valuable data, and enhance customer experiences. With a focus on responsible implementation, we boost human potential—not replace it—backed by clear ROI and change management support."
+      details: "We implement accessible AI that delivers real business results by reducing costs, uncovering data insights, and enhancing customer experiences with responsible implementation and clear ROI."
     },
     {
       id: "client-services",
       title: "Ongoing Support & Optimization",
-      description: "Ensure your digital investments perform at their best with proactive maintenance and ongoing optimization.",
+      description: "Proactive maintenance and optimization that keeps your digital assets performing at their best.",
       icon: <Database className="w-12 h-12 text-maverick-orange" />,
-      details: "Digital success doesn’t stop at launch—our support services offer peace of mind through monitoring, updates, and performance tuning. As an extension of your team, we provide the technical expertise to adapt to evolving market and tech landscapes, so you can stay focused on your core business."
+      details: "We provide continuous monitoring, updates, and performance tuning as an extension of your team, giving you the technical expertise to adapt to changing market conditions."
     }
   ];
 
