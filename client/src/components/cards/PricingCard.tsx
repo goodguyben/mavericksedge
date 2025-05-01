@@ -1,4 +1,3 @@
-
 import { Check } from "lucide-react";
 import { Link } from "wouter";
 import { motion } from "framer-motion";
@@ -29,9 +28,21 @@ export default function PricingCard({ plan }: PricingCardProps) {
       viewport={{ once: true }}
       transition={{ duration: 0.5 }}
       className={`pricing-card bg-[#1A1A1A] rounded-xl overflow-hidden border ${
-        plan.popular ? 'border-maverick-orange' : plan.color || 'border-gray-800'
+        plan.popular ? 'border-maverick-orange' : 
+        plan.id.includes('launch') || plan.id.includes('foundation') || plan.id.includes('readiness') ? 'border-maverick-yellow' : 
+        plan.id.includes('business') || plan.id.includes('digital') || plan.id.includes('monitoring') ? 'border-maverick-amber' : 
+        plan.id.includes('professional') || plan.id.includes('content') || plan.id.includes('support') ? 'border-maverick-light-orange' : 
+        plan.color || 'border-gray-800'
       } flex flex-col h-full`}
-      whileHover={{ y: -8, transition: { duration: 0.3 } }}
+      whileHover={{ 
+        y: -8, 
+        boxShadow: plan.popular ? '0 10px 25px -5px rgba(255, 86, 48, 0.25)' : 
+                  plan.id.includes('launch') || plan.id.includes('foundation') || plan.id.includes('readiness') ? '0 10px 25px -5px rgba(255, 215, 75, 0.2)' : 
+                  plan.id.includes('business') || plan.id.includes('digital') || plan.id.includes('monitoring') ? '0 10px 25px -5px rgba(255, 196, 61, 0.2)' :
+                  plan.id.includes('professional') || plan.id.includes('content') || plan.id.includes('support') ? '0 10px 25px -5px rgba(255, 138, 80, 0.2)' :
+                  '0 10px 25px -5px rgba(255, 86, 48, 0.25)',
+        transition: { duration: 0.3 } 
+      }}
     >
       <div className="p-6 border-b border-gray-800">
         {plan.icon && (
@@ -44,11 +55,11 @@ export default function PricingCard({ plan }: PricingCardProps) {
             <h3 className="text-2xl font-bold ml-4">{plan.title}</h3>
           </div>
         )}
-        
+
         {!plan.icon && <h3 className="text-2xl font-bold mb-2 font-heading">{plan.title}</h3>}
-        
+
         <p className="text-[#AAAAAA] mb-4">{plan.subtitle || plan.focusStatement}</p>
-        
+
         <div className="mb-4">
           <span className="text-3xl font-bold">{plan.price}</span>
           {plan.priceRange && <span className="text-2xl font-bold">{plan.priceRange}</span>}
@@ -57,7 +68,7 @@ export default function PricingCard({ plan }: PricingCardProps) {
           {plan.currency && <span className="text-[#AAAAAA] ml-2">{plan.currency}</span>}
         </div>
       </div>
-      
+
       <div className="p-6 flex-grow flex flex-col">
         <ul className="mb-6 space-y-3 flex-grow">
           {plan.features.map((feature, index) => (
@@ -74,7 +85,7 @@ export default function PricingCard({ plan }: PricingCardProps) {
             </motion.li>
           ))}
         </ul>
-        
+
         <Link href="/contact">
           <a className="inline-flex items-center justify-center w-full py-3 px-6 rounded-lg font-medium transition-all duration-300 border border-maverick-orange text-maverick-orange hover:bg-maverick-orange hover:bg-opacity-10">
             Get Started

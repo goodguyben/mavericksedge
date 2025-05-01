@@ -193,7 +193,22 @@
 
 .pricing-card:hover {
   transform: translateY(-8px);
-  @apply border-maverick-orange shadow-xl shadow-maverick-orange/20;
+}
+
+.pricing-card.border-maverick-orange:hover {
+  @apply shadow-xl shadow-maverick-orange/20;
+}
+
+.pricing-card.border-maverick-yellow:hover {
+  @apply shadow-xl shadow-maverick-yellow/20;
+}
+
+.pricing-card.border-maverick-amber:hover {
+  @apply shadow-xl shadow-maverick-amber/20;
+}
+
+.pricing-card.border-maverick-light-orange:hover {
+  @apply shadow-xl shadow-maverick-light-orange/20;
 }
 
 /* Enhanced animations for pricing elements */
