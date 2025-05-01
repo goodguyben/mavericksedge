@@ -15,6 +15,17 @@
 @tailwind components;
 @tailwind utilities;
 
+@keyframes ripple {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+.animate-ripple {
+  animation: ripple 0.6s linear;
+}
+
 :root {
   /* Complete color palette remix with improved contrast */
   --background: 20 15% 15%;  /* Dark charcoal background for better contrast */

@@ -18,6 +18,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button as ShadcnButton } from "@/components/ui/button";
 import { Button } from "@/components/ui/custom-button";
+import TechButton from "@/components/ui/tech-button";
 import { 
   Select,
   SelectContent,
@@ -204,13 +205,34 @@ export default function ContactSection({ fullPage = false }: ContactSectionProps
                   )}
                 />
 
-                <button 
-                  type="submit" 
-                  className="maverick-button-primary px-6 py-3 rounded-full w-full" 
-                  disabled={mutation.isPending}
-                >
-                  {mutation.isPending ? "Sending..." : "Send Message"}
-                </button>
+                <div className="flex flex-col sm:flex-row gap-4 w-full">
+                  <TechButton 
+                    type="submit" 
+                    className="w-full"
+                    disabled={mutation.isPending}
+                    techTheme="html"
+                  >
+                    {mutation.isPending ? "Sending..." : "Send Message (HTML)"}
+                  </TechButton>
+
+                  <TechButton 
+                    type="submit" 
+                    className="w-full"
+                    disabled={mutation.isPending}
+                    techTheme="css"
+                  >
+                    {mutation.isPending ? "Sending..." : "Send Message (CSS)"}
+                  </TechButton>
+
+                  <TechButton 
+                    type="submit" 
+                    className="w-full"
+                    disabled={mutation.isPending}
+                    techTheme="js"
+                  >
+                    {mutation.isPending ? "Sending..." : "Send Message (JS)"}
+                  </TechButton>
+                </div>
               </form>
             </Form>
           </motion.div>
