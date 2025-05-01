@@ -71,7 +71,7 @@ const pricingTiers = [
     description: "For SMBs just starting their AI journey — this foundational project identifies, validates, and initiates the most valuable automation opportunities.",
     price: "Starting at $2,200",
     oneTime: true,
-    popular: true,
+    popular: false,
     idealFor: "Implementing your first AI-powered automation",
     features: [
       "Process mapping and automation opportunity assessment",

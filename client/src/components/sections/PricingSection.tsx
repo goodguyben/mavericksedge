@@ -29,7 +29,7 @@ const webPricing = [
     price: "$1,650",
     currency: "CAD",
     oneTime: true,
-    popular: true,
+    popular: false,
     features: [
       "Up to 10 pages total",
       "Booking system & advanced forms",
@@ -94,7 +94,7 @@ const marketingPricing = [
     price: "$1,100",
     currency: "CAD/mo",
     oneTime: false,
-    popular: true,
+    popular: false,
     features: [
       "Monthly content & social strategy",
       "Audience/keyword research",
@@ -129,7 +129,7 @@ const aiPricing = [
     priceRange: "- $400+/mo",
     currency: "CAD",
     oneTime: false,
-    popular: true,
+    popular: false,
     features: [
       "AI tool monitoring",
       "Basic updates",
