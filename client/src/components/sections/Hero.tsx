@@ -49,7 +49,7 @@ export default function Hero() {
       {/* Video background */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
         {/* Dark overlay for better text readability */}
-        <div className="absolute inset-0 bg-black/65 z-10"></div>
+        <div className="absolute inset-0 bg-black/75 z-10"></div>
 
         {/* Video element */}
         <video 
@@ -58,7 +58,7 @@ export default function Hero() {
           muted 
           loop 
           playsInline
-          className={`absolute top-0 left-0 min-w-full min-h-full object-cover transition-opacity duration-1000 ${videoLoaded ? 'opacity-100' : 'opacity-0'}`}
+          className={`absolute top-0 left-0 min-w-full min-h-full object-cover transition-opacity duration-1000 ${videoLoaded ? 'opacity-70' : 'opacity-0'}`}
         >
           <source src={backgroundVideo} type="video/mp4" />
         </video>
