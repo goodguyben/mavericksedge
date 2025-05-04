@@ -17,10 +17,22 @@ export default function Footer() {
 
   return (
     <footer className="bg-[#0D0D0D] text-white py-12 sm:py-16 px-5 md:px-10 relative overflow-hidden">
-      {/* Laughing cat animation */}
+      {/* Laughing cat animation with attention-grabber */}
+      <motion.div
+        className="absolute bottom-16 right-16 w-20 h-20 rounded-full bg-maverick-orange/20"
+        animate={{
+          scale: [1, 1.5, 1],
+          opacity: [0.2, 0.5, 0.2]
+        }}
+        transition={{
+          duration: 2,
+          repeat: Infinity,
+          repeatType: "reverse"
+        }}
+      />
       <motion.div 
-        className="absolute bottom-4 right-4 z-10 cursor-pointer"
-        whileHover={{ scale: 1.1 }}
+        className="absolute bottom-8 right-8 z-10 cursor-pointer"
+        whileHover={{ scale: 1.2 }}
         animate={isHovered ? {
           rotate: [0, 5, -5, 5, 0],
           y: [0, -5, 0, -5, 0]
@@ -29,15 +41,18 @@ export default function Footer() {
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
-        <svg width="50" height="50" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
+        <svg width="100" height="100" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
           <motion.path 
             fill="#FF5630" 
             d="M18 0C8.059 0 0 8.059 0 18s8.059 18 18 18 18-8.059 18-18S27.941 0 18 0zm0 34c-8.837 0-16-7.163-16-16S9.163 2 18 2s16 7.163 16 16-7.163 16-16 16z"
             animate={{ 
-              scale: isHovered ? [1, 1.05, 1] : 1,
-              fillOpacity: isHovered ? [0.8, 1, 0.8] : 0.8
+              scale: isHovered ? [1, 1.05, 1] : [1, 1.02, 1],
+              fillOpacity: isHovered ? [0.8, 1, 0.8] : [0.8, 0.9, 0.8]
             }}
-            transition={{ repeat: isHovered ? Infinity : 0, duration: 1 }}
+            style={{
+              filter: "drop-shadow(0 0 8px rgba(255, 86, 48, 0.8))"
+            }}
+            transition={{ repeat: Infinity, duration: isHovered ? 1 : 2 }}
           />
           <motion.path 
             fill="#FF5630" 
