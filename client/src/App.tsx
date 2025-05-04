@@ -22,7 +22,6 @@ const About = lazy(() => import("@/pages/About"));
 const Contact = lazy(() => import("@/pages/Contact"));
 const NotFound = lazy(() => import("@/pages/not-found"));
 const PaymentConfirmed = lazy(() => import("@/pages/PaymentConfirmed"));
-const Portfolio = lazy(() => import("@/pages/Portfolio"));
 
 
 export default function App() {
@@ -51,7 +50,6 @@ export default function App() {
             <Route path="/work" component={Work} />
             <Route path="/about" component={About} />
             <Route path="/contact" component={Contact} />
-            <Route path="/portfolio" component={Portfolio} /> {/* Added Portfolio route */}
             {/* Private route without header/footer */}
             <Route path="/payment-confirmed" component={PaymentConfirmed} />
             <Route component={NotFound} />

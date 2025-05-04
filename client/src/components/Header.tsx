@@ -130,9 +130,6 @@ export default function Header() {
           <Link href="/about" className={`px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 ${isCurrentPath('/about') ? 'text-maverick-orange' : 'text-white hover:text-maverick-orange'}`}>
             About
           </Link>
-          <Link href="/portfolio" className={`px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 ${isCurrentPath('/portfolio') ? 'text-maverick-orange' : 'text-white hover:text-maverick-orange'}`}>
-            Portfolio
-          </Link>
           <Link href="/contact" className={`px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 ${isCurrentPath('/contact') ? 'text-maverick-orange' : 'text-white hover:text-maverick-orange'}`}>
             Contact
           </Link>
@@ -192,7 +189,7 @@ export default function Header() {
                     </Link>
                   </div>
                 </div>
-
+                
                 {/* Mobile Pricing dropdown */}
                 <div className="w-full text-center border-b border-maverick-slate/20 py-3">
                   <div 
@@ -230,9 +227,6 @@ export default function Header() {
 
                 <Link href="/about" className={`hover-link py-3 w-full text-center border-b border-maverick-slate/20 text-lg ${isCurrentPath('/about') ? 'text-maverick-orange' : 'text-white hover:text-maverick-orange'}`} onClick={closeMenu}>
                   About
-                </Link>
-                <Link href="/portfolio" className={`hover-link py-3 w-full text-center border-b border-maverick-slate/20 text-lg ${isCurrentPath('/portfolio') ? 'text-maverick-orange' : 'text-white hover:text-maverick-orange'}`} onClick={closeMenu}>
-                  Portfolio
                 </Link>
                 <div className="w-full text-center">
                   <Button
