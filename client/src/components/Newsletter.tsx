@@ -34,7 +34,7 @@ const Newsletter = () => {
   };
 
   return (
-    <div className="newsletter-container">
+    <section className="newsletter-container" aria-labelledby="newsletter-heading">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -58,17 +58,19 @@ const Newsletter = () => {
               repeatDelay: 3
             }}
             className="bg-maverick-orange bg-opacity-20 rounded-full p-2"
+            aria-hidden="true"
           >
             <Bell size={22} className="text-maverick-orange" />
           </motion.div>
-          <motion.h3 
+          <motion.h2 
+            id="newsletter-heading"
             className="text-2xl md:text-3xl font-bold text-maverick-orange mt-4"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2, duration: 0.5 }}
           >
             Stay Ahead of the Curve
-          </motion.h3>
+          </motion.h2>
         </motion.div>
 
         <motion.p 
@@ -91,25 +93,34 @@ const Newsletter = () => {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0, y: -20 }}
               transition={{ delay: 0.4, duration: 0.4 }}
+              aria-labelledby="newsletter-heading"
             >
               <div className="flex flex-col sm:flex-row gap-3 w-full max-w-md">
                 <div className="relative flex-grow">
-                  <div className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400">
+                  <label htmlFor="newsletter-email" className="sr-only">Email address</label>
+                  <div className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" aria-hidden="true">
                     <Mail size={18} />
                   </div>
                   <input
+                    id="newsletter-email"
+                    name="email"
                     type="email"
                     placeholder="Your email address"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     className="pl-10 pr-4 py-3 w-full bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-maverick-orange focus:ring-2 focus:ring-maverick-orange/20 transition-all duration-300 text-white"
                     disabled={isSubmitting}
+                    required
+                    aria-describedby={error ? "newsletter-error" : undefined}
+                    autoComplete="email"
                   />
                   {error && (
                     <motion.p 
+                      id="newsletter-error"
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       className="text-red-400 text-sm mt-1 absolute"
+                      role="alert"
                     >
                       {error}
                     </motion.p>
@@ -121,16 +132,18 @@ const Newsletter = () => {
                   className={`px-6 py-3 bg-maverick-orange text-white rounded-lg flex items-center justify-center transition-all duration-300 hover:bg-maverick-orange/90 whitespace-nowrap maverick-button-primary ${
                     isSubmitting ? 'opacity-70 cursor-not-allowed' : ''
                   }`}
+                  aria-label="Subscribe to newsletter"
                 >
                   {isSubmitting ? (
                     <motion.div 
                       className="h-5 w-5 border-2 border-t-transparent border-white rounded-full"
                       animate={{ rotate: 360 }}
                       transition={{ repeat: Infinity, duration: 0.8, ease: "linear" }}
+                      aria-hidden="true"
                     />
                   ) : (
                     <>
-                      Subscribe <ArrowRight className="ml-2 h-4 w-4" />
+                      Subscribe <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
                     </>
                   )}
                 </button>
@@ -142,6 +155,8 @@ const Newsletter = () => {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.8 }}
               className="bg-green-900/30 py-4 px-6 rounded-lg border border-green-700 text-green-300 max-w-md"
+              role="status"
+              aria-live="polite"
             >
               <div className="flex items-center">
                 <motion.div
@@ -157,8 +172,9 @@ const Newsletter = () => {
                     times: [0, 0.6, 1] 
                   }}
                   className="bg-green-500 rounded-full p-1 mr-3"
+                  aria-hidden="true"
                 >
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="text-white">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="text-white" aria-hidden="true">
                     <polyline points="20 6 9 17 4 12"></polyline>
                   </svg>
                 </motion.div>
@@ -174,14 +190,14 @@ const Newsletter = () => {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.5, duration: 0.5 }}
         >
-          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-2 text-maverick-orange">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-2 text-maverick-orange" aria-hidden="true">
             <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
             <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
           </svg>
           <span className="font-serif">We respect your privacy and will never share your information.</span>
         </motion.div>
       </motion.div>
-    </div>
+    </section>
   );
 };
 
