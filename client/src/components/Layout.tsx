@@ -20,8 +20,12 @@ export default function Layout({ children }: LayoutProps) {
   return (
     <div className="min-h-screen flex flex-col">
       <PageTransition />
+      {/* Skip to main content link for accessibility and SEO */}
+      <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:top-0 focus:left-0 focus:p-2 focus:bg-white focus:text-black focus:z-50">
+        Skip to main content
+      </a>
       <Header />
-      <main className="flex-grow">{children}</main>
+      <main id="main-content" className="flex-grow" role="main" aria-label="Main content">{children}</main>
       <FooterWrapper />
     </div>
   );
