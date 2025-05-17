@@ -253,5 +253,6 @@ export default function Services() {
 
       <ContactSection />
     </motion.div>
+    </>
   );
 }
