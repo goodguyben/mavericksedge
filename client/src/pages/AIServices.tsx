@@ -1,4 +1,3 @@
-
 import { motion } from "framer-motion";
 import { Helmet } from 'react-helmet';
 import { Brain, Database, Workflow, Shield, FileCode, Users, Gauge, Zap, Activity, LineChart } from "lucide-react";
@@ -65,8 +64,7 @@ export default function AIServices() {
   ];
 
   return (
-    <>
-      {/* SEO Optimization */}
+    <div>
       <Helmet>
         <title>AI Integration Services | Business Automation Solutions | Mavericks Edge</title>
         <meta name="description" content="Transform your business with AI integration and automation solutions. Streamline operations, enhance decision-making, and improve customer experiences with our tailored AI services." />
@@ -79,118 +77,6 @@ export default function AIServices() {
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://mavericksedge.com/services/ai" />
         <meta property="og:image" content="/images/logo-transparent-thumb4x.png" />
-        
-        {/* Structured data for Service */}
-        <script type="application/ld+json">
-          {`
-            {
-              "@context": "https://schema.org",
-              "@type": "Service",
-              "serviceType": "AI Integration",
-              "provider": {
-                "@type": "Organization",
-                "name": "Mavericks Edge",
-                "url": "https://mavericksedge.com"
-              },
-              "name": "AI Integration & Automation",
-              "description": "Harness the transformative power of artificial intelligence to streamline operations, enhance decision-making, and create exceptional customer experiences.",
-              "offers": {
-                "@type": "Offer",
-                "availability": "https://schema.org/InStock",
-                "url": "https://mavericksedge.com/pricing/ai"
-              },
-              "hasOfferCatalog": {
-                "@type": "OfferCatalog",
-                "name": "AI Services",
-                "itemListElement": [
-                  {
-                    "@type": "Offer",
-                    "itemOffered": {
-                      "@type": "Service",
-                      "name": "AI Readiness Assessment",
-                      "description": "Comprehensive evaluation of your current systems, workflows, and data to determine AI integration readiness."
-                    }
-                  },
-                  {
-                    "@type": "Offer",
-                    "itemOffered": {
-                      "@type": "Service",
-                      "name": "Custom AI Integration Roadmap",
-                      "description": "Tailored strategic roadmap for integrating AI into your business processes."
-                    }
-                  },
-                  {
-                    "@type": "Offer",
-                    "itemOffered": {
-                      "@type": "Service",
-                      "name": "Workflow & Process Automation",
-                      "description": "Implementation of AI-powered automation for business processes."
-                    }
-                  },
-                  {
-                    "@type": "Offer",
-                    "itemOffered": {
-                      "@type": "Service",
-                      "name": "AI Feature Development",
-                      "description": "Development of custom AI features and functionalities to enhance your existing software."
-                    }
-                  }
-                ]
-              }
-            }
-          `}
-        </script>
-
-        {/* Case Studies Structured Data */}
-        <script type="application/ld+json">
-          {`
-            {
-              "@context": "https://schema.org",
-              "@type": "ItemList",
-              "itemListElement": [
-                {
-                  "@type": "ListItem",
-                  "position": 1,
-                  "item": {
-                    "@type": "Article",
-                    "name": "Customer Service Automation",
-                    "about": {
-                      "@type": "Thing",
-                      "name": "Retail AI Implementation"
-                    },
-                    "description": "70% reduction in response time"
-                  }
-                },
-                {
-                  "@type": "ListItem",
-                  "position": 2,
-                  "item": {
-                    "@type": "Article",
-                    "name": "Predictive Maintenance",
-                    "about": {
-                      "@type": "Thing",
-                      "name": "Manufacturing AI Implementation"
-                    },
-                    "description": "40% decrease in downtime"
-                  }
-                },
-                {
-                  "@type": "ListItem",
-                  "position": 3,
-                  "item": {
-                    "@type": "Article",
-                    "name": "Donor Engagement Automation",
-                    "about": {
-                      "@type": "Thing",
-                      "name": "Nonprofit AI Implementation"
-                    },
-                    "description": "35% increase in donations"
-                  }
-                }
-              ]
-            }
-          `}
-        </script>
       </Helmet>
       
       <motion.div
@@ -341,57 +227,56 @@ export default function AIServices() {
             
             {[
               {
-                title: "Assessment & Discovery",
-                description: "We evaluate your current systems, data, and processes to identify opportunities for AI implementation.",
-                icon: <Gauge className="h-6 w-6 text-maverick-orange" />
+                title: "Discovery & Analysis",
+                description: "We begin by understanding your business goals, existing workflows, and data assets to identify potential AI integration opportunities.",
+                image: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
               },
               {
-                title: "Strategy Development",
-                description: "We create a customized AI integration roadmap aligned with your business objectives and priorities.",
-                icon: <Brain className="h-6 w-6 text-maverick-orange" />
+                title: "AI Readiness Assessment",
+                description: "We evaluate your technical infrastructure, data quality, and organizational readiness to identify any gaps that need to be addressed.",
+                image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
               },
               {
-                title: "Solution Design",
-                description: "We design AI solutions tailored to your specific needs, selecting the most appropriate tools and technologies.",
-                icon: <FileCode className="h-6 w-6 text-maverick-orange" />
+                title: "Strategy & Roadmap Development",
+                description: "We create a tailored AI implementation plan with prioritized initiatives, required resources, and expected outcomes.",
+                image: "https://images.unsplash.com/photo-1542626991-cbc4e32524cc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
               },
               {
-                title: "Implementation",
-                description: "We develop and integrate AI features into your existing systems with minimal disruption to your operations.",
-                icon: <Workflow className="h-6 w-6 text-maverick-orange" />
+                title: "Implementation & Integration",
+                description: "We develop and deploy AI solutions, integrating them seamlessly with your existing systems and workflows.",
+                image: "https://images.unsplash.com/photo-1571171637578-41bc2dd41cd2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
               },
               {
-                title: "Training & Adoption",
-                description: "We provide comprehensive training to ensure your team can effectively utilize the new AI capabilities.",
-                icon: <Users className="h-6 w-6 text-maverick-orange" />
+                title: "Training & Change Management",
+                description: "We provide comprehensive training to ensure your team can effectively utilize and manage the new AI tools.",
+                image: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
               },
               {
                 title: "Monitoring & Optimization",
-                description: "We continuously monitor performance and refine the AI solutions to maximize results and ROI.",
-                icon: <LineChart className="h-6 w-6 text-maverick-orange" />
+                description: "We continuously monitor performance and refine the AI solutions to ensure they deliver maximum value.",
+                image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
               }
             ].map((step, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="relative mb-12 last:mb-0"
+                className={`relative grid grid-cols-1 md:grid-cols-2 gap-6 mb-16 last:mb-0 ${
+                  index % 2 === 1 ? 'md:flex-row-reverse' : ''
+                }`}
               >
-                <div className={`flex items-start gap-8 md:gap-16 ${index % 2 === 1 ? 'md:flex-row-reverse' : ''}`}>
-                  <div className="hidden md:flex flex-shrink-0 items-center justify-center w-12 h-12 bg-[#121212] border-2 border-maverick-orange rounded-full z-10">
-                    {step.icon}
+                <div className={`md:text-${index % 2 === 1 ? 'left' : 'right'} p-6`}>
+                  <div className="bg-maverick-orange text-black text-xl font-bold h-10 w-10 rounded-full flex items-center justify-center absolute left-1/2 md:left-auto md:right-0 transform -translate-x-1/2 md:translate-x-1/2 -top-5 z-10">
+                    {index + 1}
                   </div>
-                  <div className={`bg-[#121212] p-6 rounded-lg border border-gray-800 md:w-[calc(50%-3rem)] w-full ${index % 2 === 1 ? 'text-right' : 'text-left'}`}>
-                    <div className="flex md:hidden items-center mb-4">
-                      <div className="flex-shrink-0 flex items-center justify-center w-10 h-10 bg-[#1A1A1A] border border-maverick-orange rounded-full mr-4">
-                        {step.icon}
-                      </div>
-                      <h3 className="text-xl font-semibold">{step.title}</h3>
-                    </div>
-                    <h3 className="hidden md:block text-xl font-semibold mb-3">{step.title}</h3>
-                    <p className="text-[#AAAAAA]">{step.description}</p>
+                  <h3 className="text-2xl font-semibold mb-3">{step.title}</h3>
+                  <p className="text-[#AAAAAA]">{step.description}</p>
+                </div>
+                <div className={`order-first ${index % 2 === 0 ? 'md:order-last' : ''}`}>
+                  <div className="bg-[#1A1A1A] p-1 rounded-lg border border-gray-800">
+                    <img src={step.image} alt={step.title} className="rounded-lg w-full h-auto" />
                   </div>
                 </div>
               </motion.div>
@@ -400,7 +285,7 @@ export default function AIServices() {
         </div>
       </section>
 
-      {/* Case Studies */}
+      {/* Case Studies Section */}
       <section className="py-24 px-5 md:px-10 bg-[#121212]">
         <div className="container mx-auto">
           <motion.div 
@@ -410,54 +295,54 @@ export default function AIServices() {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 font-heading">AI Success Stories</h2>
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 font-heading">Our AI Success Stories</h2>
             <p className="text-[#AAAAAA] text-xl max-w-2xl mx-auto">
-              See how our AI solutions have transformed businesses across industries
+              See how our AI integration services have transformed businesses
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {[
               {
-                image: "https://images.unsplash.com/photo-1563986768494-4dee2763ff3f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+                image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
                 title: "Customer Service Automation",
-                industry: "Retail",
-                result: "70% reduction in response time"
+                category: "Retail",
+                stats: "70% reduction in response time"
               },
               {
-                image: "https://images.unsplash.com/photo-1560264280-88b68371db39?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+                image: "https://images.unsplash.com/photo-1590674899484-13b5a8a9d0af?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
                 title: "Predictive Maintenance",
-                industry: "Manufacturing",
-                result: "40% decrease in downtime"
+                category: "Manufacturing",
+                stats: "40% decrease in downtime"
               },
               {
-                image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+                image: "https://images.unsplash.com/photo-1579621970795-87facc2f976d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
                 title: "Donor Engagement Automation",
-                industry: "Nonprofit",
-                result: "35% increase in donations"
+                category: "Nonprofit",
+                stats: "35% increase in donations"
               }
-            ].map((story, index) => (
+            ].map((casestudy, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="group cursor-pointer"
+                className="bg-[#1A1A1A] rounded-xl overflow-hidden border border-gray-800 hover:border-maverick-orange transition-all duration-300 group"
               >
-                <div className="relative overflow-hidden rounded-lg bg-[#1A1A1A] border border-gray-800 group-hover:border-maverick-orange transition-all duration-300">
-                  <div className="aspect-[4/3]">
-                    <img 
-                      src={story.image} 
-                      alt={story.title} 
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" 
-                    />
-                  </div>
-                  <div className="p-6">
-                    <div className="text-sm text-maverick-orange mb-2">{story.industry}</div>
-                    <h3 className="text-xl font-semibold mb-2">{story.title}</h3>
-                    <p className="text-[#AAAAAA]">{story.result}</p>
-                  </div>
+                <div className="aspect-video overflow-hidden">
+                  <img 
+                    src={casestudy.image} 
+                    alt={casestudy.title} 
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" 
+                  />
+                </div>
+                <div className="p-6">
+                  <div className="text-maverick-orange mb-1">{casestudy.category}</div>
+                  <h3 className="text-2xl font-semibold mb-3">{casestudy.title}</h3>
+                  <p className="text-[#AAAAAA] group-hover:text-[#DDDDDD] transition-all duration-300 font-bold">
+                    {casestudy.stats}
+                  </p>
                 </div>
               </motion.div>
             ))}
@@ -485,31 +370,31 @@ export default function AIServices() {
           >
             <h2 className="text-4xl md:text-5xl font-bold mb-4 font-heading">Frequently Asked Questions</h2>
             <p className="text-[#AAAAAA] text-xl max-w-2xl mx-auto">
-              Answers to common questions about our AI integration services
+              Find answers to common questions about our AI integration services
             </p>
           </motion.div>
 
           <div className="max-w-3xl mx-auto">
             {[
               {
-                question: "How can AI benefit my small business?",
-                answer: "AI can benefit small businesses in numerous ways, including automating routine tasks, providing valuable customer insights, enhancing customer service through chatbots, optimizing operations, and enabling more personalized marketing campaigns. These benefits can help small businesses save time, reduce costs, and compete more effectively in their markets."
+                question: "What is the minimum business size for AI integration?",
+                answer: "There is no minimum business size for AI integration. We work with businesses of all sizes, from startups to established enterprises. We tailor our solutions to your specific needs and scale, ensuring that even small businesses can benefit from AI technologies without excessive costs."
               },
               {
-                question: "What kind of data do I need for AI implementation?",
-                answer: "The type of data needed depends on your specific AI implementation goals. Generally, you'll need relevant, high-quality data related to the business process you're looking to enhance. This might include customer data, transaction records, operational metrics, or communication logs. Our AI readiness assessment helps identify what data you have available and what might need to be collected."
+                question: "Do I need a large amount of data to implement AI?",
+                answer: "While having quality data is important, you don't necessarily need massive amounts. We can work with the data you have and help you implement solutions that start small and grow as your data collection improves. Many AI implementations can begin with modest data sets and expand over time."
               },
               {
-                question: "How long does AI integration typically take?",
-                answer: "The timeline for AI integration varies based on the complexity of the solution and your organization's readiness. Simple implementations like chatbots might take 4-6 weeks, while more complex solutions could take 3-6 months. We provide detailed timelines during the strategy development phase after assessing your specific needs and existing infrastructure."
+                question: "How long does it take to implement AI solutions?",
+                answer: "Implementation timelines vary based on complexity and scope. Simple AI integrations might take 4-8 weeks, while more comprehensive solutions could take 3-6 months. We provide detailed timelines during the discovery phase and often implement in phases to deliver value quickly."
               },
               {
-                question: "Is my business too small for AI integration?",
-                answer: "No business is too small for AI integration. We specialize in right-sizing AI solutions for SMBs and nonprofits. There are AI implementations appropriate for organizations of all sizes, from simple automation tools to more sophisticated solutions. We focus on implementing AI that provides tangible ROI regardless of your organization's size."
+                question: "How do you ensure data privacy and security?",
+                answer: "We take data privacy and security very seriously. We implement robust security measures including encryption, access controls, and regular security audits. All our AI implementations comply with relevant data protection regulations like PIPEDA. We also provide clear documentation on data usage and security protocols."
               },
               {
-                question: "How do you ensure the security of our data?",
-                answer: "Data security is paramount in our AI implementations. We follow industry best practices for data protection, including encryption, access controls, and secure API connections. We also ensure compliance with relevant regulations like PIPEDA. Our AI solutions are designed with privacy and security considerations built in from the ground up."
+                question: "What kind of ROI can I expect from AI integration?",
+                answer: "ROI varies by implementation, but our clients typically see returns in the form of cost savings, increased efficiency, improved customer satisfaction, and new revenue opportunities. We work with you to establish clear KPIs and measurement frameworks to track the business impact of your AI investments."
               }
             ].map((faq, index) => (
               <motion.div
@@ -529,6 +414,7 @@ export default function AIServices() {
       </section>
 
       <ContactSection />
-    </motion.div>
+      </motion.div>
+    </div>
   );
 }
