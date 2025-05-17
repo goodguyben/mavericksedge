@@ -1,4 +1,3 @@
-
 import { motion } from "framer-motion";
 import { Helmet } from 'react-helmet';
 import { Code, Monitor, Database, Layout, ShoppingCart, Globe, Shield, Gauge, Bookmark, Users } from "lucide-react";
@@ -326,12 +325,12 @@ export default function WebServices() {
                 answer: "Yes, we offer comprehensive website maintenance services to ensure your website remains secure, up-to-date, and performing optimally. Our maintenance packages include regular updates, security monitoring, backups, and performance optimization."
               },
               {
-                question: "Can you help with existing website redesign?",
-                answer: "Absolutely! We specialize in redesigning existing websites to improve their aesthetics, functionality, user experience, and performance. We'll analyze your current website and recommend improvements based on best practices and your business goals."
+                question: "Can you redesign my existing website?",
+                answer: "Absolutely! We specialize in website redesigns that improve user experience, enhance brand presence, and drive better results. We'll analyze your current website and develop a strategy to modernize its design and functionality."
               },
               {
-                question: "What platforms do you use for website development?",
-                answer: "We work with various platforms including WordPress, Shopify, WooCommerce, and custom solutions depending on your specific needs. We'll recommend the best platform for your project based on your requirements, budget, and long-term goals."
+                question: "What technologies do you use for web development?",
+                answer: "We use modern, industry-standard technologies that ensure your website is fast, secure, and scalable. Depending on your needs, we may use HTML5, CSS3, JavaScript, React, Node.js, and various content management systems like WordPress or custom solutions."
               }
             ].map((faq, index) => (
               <motion.div
@@ -351,7 +350,7 @@ export default function WebServices() {
       </section>
 
       <ContactSection />
-    </motion.div>
-    </>
+      </motion.div>
+    </div>
   );
 }
