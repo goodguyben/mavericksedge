@@ -1,10 +1,16 @@
 
 import { motion } from "framer-motion";
+import { Helmet } from 'react-helmet';
 import { Code, Monitor, Database, Layout, ShoppingCart, Globe, Shield, Gauge, Bookmark, Users } from "lucide-react";
 import ContactSection from "@/components/sections/ContactSection";
 import { Link } from "wouter";
+import { useEffect } from "react";
 
 export default function WebServices() {
+  // Track page view for analytics
+  useEffect(() => {
+    console.log("Web Services page viewed");
+  }, []);
   const services = [
     {
       icon: <Layout className="h-10 w-10 text-maverick-orange" />,
@@ -59,12 +65,125 @@ export default function WebServices() {
   ];
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.5 }}
-    >
+    <>
+      {/* SEO Optimization */}
+      <Helmet>
+        <title>Web Development Services | Custom Website Design & Solutions | Mavericks Edge</title>
+        <meta name="description" content="Professional web design and development services for SMBs and nonprofits. Create responsive, user-friendly websites that drive results with our custom web solutions." />
+        <link rel="canonical" href="https://mavericksedge.com/services/web" />
+        <meta name="keywords" content="web design services, custom website development, CMS development, e-commerce solutions, web application development, UI/UX design, responsive website design" />
+        
+        {/* Open Graph data */}
+        <meta property="og:title" content="Web Development Services | Custom Website Design & Solutions | Mavericks Edge" />
+        <meta property="og:description" content="Professional web design and development services for SMBs and nonprofits. Create responsive, user-friendly websites that drive results with our custom web solutions." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://mavericksedge.com/services/web" />
+        <meta property="og:image" content="/images/logo-transparent-thumb4x.png" />
+        
+        {/* Structured data for Service */}
+        <script type="application/ld+json">
+          {`
+            {
+              "@context": "https://schema.org",
+              "@type": "Service",
+              "serviceType": "Web Development",
+              "provider": {
+                "@type": "Organization",
+                "name": "Mavericks Edge",
+                "url": "https://mavericksedge.com"
+              },
+              "name": "Web & Digital Solutions",
+              "description": "Elevate your online presence with our comprehensive web development and digital solutions tailored specifically for SMBs and nonprofits.",
+              "offers": {
+                "@type": "Offer",
+                "availability": "https://schema.org/InStock",
+                "url": "https://mavericksedge.com/pricing/web"
+              },
+              "hasOfferCatalog": {
+                "@type": "OfferCatalog",
+                "name": "Web Services",
+                "itemListElement": [
+                  {
+                    "@type": "Offer",
+                    "itemOffered": {
+                      "@type": "Service",
+                      "name": "Custom Website Design & Development",
+                      "description": "Tailored website solutions that align with your brand identity and business objectives."
+                    }
+                  },
+                  {
+                    "@type": "Offer",
+                    "itemOffered": {
+                      "@type": "Service",
+                      "name": "CMS Development & Customization",
+                      "description": "Custom Content Management System solutions that make it easy for you to update and manage your website content."
+                    }
+                  },
+                  {
+                    "@type": "Offer",
+                    "itemOffered": {
+                      "@type": "Service",
+                      "name": "E-commerce Platform Development",
+                      "description": "Full-featured online stores built on platforms like Shopify or WooCommerce."
+                    }
+                  },
+                  {
+                    "@type": "Offer",
+                    "itemOffered": {
+                      "@type": "Service",
+                      "name": "Custom Web Application Development",
+                      "description": "Bespoke web applications tailored to your specific business needs."
+                    }
+                  }
+                ]
+              }
+            }
+          `}
+        </script>
+
+        {/* FAQ Structured Data */}
+        <script type="application/ld+json">
+          {`
+            {
+              "@context": "https://schema.org",
+              "@type": "FAQPage",
+              "mainEntity": [
+                {
+                  "@type": "Question",
+                  "name": "How long does it take to develop a website?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "The timeline for website development varies depending on the complexity and scope of the project. A simple informational website might take 4-6 weeks, while a complex e-commerce platform could take 8-12 weeks or more. We'll provide a detailed timeline during our initial consultation."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "What is your web development process?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Our web development process includes discovery and planning, design and prototyping, development, testing and quality assurance, launch and deployment, and ongoing support and maintenance. We keep you involved at every step to ensure your vision is realized."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "Do you provide website maintenance services?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes, we offer comprehensive website maintenance services to ensure your website remains secure, up-to-date, and performing optimally. Our maintenance packages include regular updates, security monitoring, backups, and performance optimization."
+                  }
+                }
+              ]
+            }
+          `}
+        </script>
+      </Helmet>
+      
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.5 }}
+      >
       {/* Hero Section */}
       <div className="pt-44 md:pt-48 pb-16 px-5 md:px-10 bg-[#121212]">
         <div className="container mx-auto">
