@@ -1,6 +1,84 @@
 import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 
+// Custom hook for scroll animations
+const useScrollFade = () => {
+  const ref = useRef(null);
+  const [isVisible, setIsVisible] = React.useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsVisible(true);
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.2, // Adjust threshold as needed
+      }
+    );
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    return () => {
+      if (ref.current) {
+        observer.unobserve(ref.current);
+      }
+    };
+  }, []);
+
+  return { ref, isVisible };
+};
+
+// Animation wrapper component
+const AnimatedSection = ({
+  children,
+  fadeDirection = "up",
+  threshold = 0.2,
+  delay = 0,
+  distance = 20,
+  className = "",
+  whileHover,
+}) => {
+  const { ref, isVisible } = useScrollFade();
+
+  const variants = {
+    hidden: {
+      opacity: 0,
+      y: fadeDirection === "up" ? distance : fadeDirection === "down" ? -distance : 0,
+      x: fadeDirection === "left" ? distance : fadeDirection === "right" ? -distance : 0,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      x: 0,
+      transition: {
+        duration: 0.5,
+        delay: delay,
+        ease: "easeOut",
+      },
+    },
+  };
+
+  return (
+    <motion.div
+      className={className}
+      ref={ref}
+      variants={variants}
+      initial="hidden"
+      animate={isVisible ? "visible" : "hidden"}
+      whileHover={whileHover}
+    >
+      {children}
+    </motion.div>
+  );
+};
+
 // Sample portfolio items - in a real application, this would come from a CMS or API
 const portfolioItems = [
   {
@@ -55,12 +133,12 @@ const portfolioItems = [
 
 export default function CreativeWorkSection() {
   const scrollRef = useRef<HTMLDivElement>(null);
-  
+
   // Set up automatic scrolling
   useEffect(() => {
     const scrollContainer = scrollRef.current;
     if (!scrollContainer) return;
-    
+
     // Clone the items to create a seamless loop
     const doubleItems = () => {
       const items = scrollContainer.querySelectorAll('.portfolio-item');
@@ -69,13 +147,13 @@ export default function CreativeWorkSection() {
         scrollContainer.appendChild(clone);
       });
     };
-    
+
     doubleItems();
-    
+
     // Check if it's not a mobile device before setting up auto-scroll
     const isMobile = window.innerWidth < 768;
     let scrollInterval: NodeJS.Timeout | null = null;
-    
+
     if (!isMobile) {
       // Automatic scrolling animation for desktop only
       const autoScroll = () => {
@@ -88,10 +166,10 @@ export default function CreativeWorkSection() {
           }
         }
       };
-      
+
       scrollInterval = setInterval(autoScroll, 10); // Decreased interval for faster scrolling
     }
-    
+
     return () => {
       if (scrollInterval) clearInterval(scrollInterval);
     };
@@ -103,21 +181,52 @@ export default function CreativeWorkSection() {
       <div className="absolute inset-0 opacity-5">
         <div className="absolute inset-0 bg-grid-pattern"></div>
       </div>
-      
+
       <div className="container mx-auto relative z-10">
-        <motion.div 
+        <AnimatedSection
           className="text-center mb-16"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+          fadeDirection="up"
+          threshold={0.2}
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">Our <span className="text-maverick-orange">Creative Work</span></h2>
-          <p className="text-[#BBBBBB] text-xl max-w-3xl mx-auto">
+          <AnimatedSection
+            className="inline-block mb-4"
+            fadeDirection="up"
+            threshold={0.15}
+            delay={0.1}
+          >
+            <div className="px-4 py-2 bg-maverick-orange/10 rounded-full">
+              <span className="text-maverick-orange font-medium">Our work</span>
+            </div>
+          </AnimatedSection>
+
+          <AnimatedSection
+            className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6"
+            fadeDirection="up"
+            threshold={0.15}
+            delay={0.2}
+          >
+            Creative <span className="text-maverick-orange relative inline-block">
+              Showcase
+              <motion.span
+                className="absolute -bottom-2 left-0 w-full h-1 bg-maverick-orange"
+                initial={{ scaleX: 0, originX: 0 }}
+                whileInView={{ scaleX: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.5 }}
+              />
+            </span>
+          </AnimatedSection>
+
+          <AnimatedSection
+            className="text-[#BBBBBB] text-xl max-w-3xl mx-auto"
+            fadeDirection="up"
+            threshold={0.15}
+            delay={0.3}
+          >
             Explore our portfolio of innovative designs and digital experiences
-          </p>
-        </motion.div>
-        
+          </AnimatedSection>
+        </AnimatedSection>
+
         {/* Horizontal scrolling portfolio */}
         <div className="relative w-full overflow-hidden">
           <div 
@@ -126,13 +235,12 @@ export default function CreativeWorkSection() {
             style={{ scrollBehavior: 'smooth', WebkitOverflowScrolling: 'touch' }}
           >
             {portfolioItems.map((item) => (
-              <motion.div
+              <AnimatedSection
                 key={item.id}
+                fadeDirection="up"
+                threshold={0.1}
+                delay={0}
                 className="portfolio-item flex-shrink-0 w-80 h-96 rounded-lg overflow-hidden relative group cursor-pointer"
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5 }}
                 whileHover={{ y: -10 }}
               >
                 <img 
@@ -145,20 +253,20 @@ export default function CreativeWorkSection() {
                   <h3 className="text-2xl font-bold text-white mb-2">{item.title}</h3>
                   <p className="text-maverick-orange text-sm">{item.description}</p>
                 </div>
-              </motion.div>
+              </AnimatedSection>
             ))}
           </div>
-          
+
           {/* Overlay gradients for scroll effect */}
           <div className="absolute top-0 left-0 h-full w-24 bg-gradient-to-r from-[#0D0D0D] to-transparent z-10"></div>
           <div className="absolute top-0 right-0 h-full w-24 bg-gradient-to-l from-[#0D0D0D] to-transparent z-10"></div>
-          
+
           {/* Mobile scroll indicator */}
           <div className="md:hidden text-center mt-4 text-maverick-orange text-sm">
             <span>← Swipe to explore →</span>
           </div>
         </div>
-        
+
         {/* Button removed */}
       </div>
     </section>
