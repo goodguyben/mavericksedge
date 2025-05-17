@@ -1,10 +1,16 @@
 
 import { motion } from "framer-motion";
+import { Helmet } from 'react-helmet';
 import { BarChart2, TrendingUp, PenTool, Calendar, Target, Mail, Search, MessageSquare, PieChart, Award } from "lucide-react";
 import ContactSection from "@/components/sections/ContactSection";
 import { Link } from "wouter";
+import { useEffect } from "react";
 
 export default function MarketingServices() {
+  // Track page view for analytics
+  useEffect(() => {
+    console.log("Marketing Services page viewed");
+  }, []);
   const services = [
     {
       icon: <TrendingUp className="h-10 w-10 text-maverick-orange" />,
@@ -59,12 +65,143 @@ export default function MarketingServices() {
   ];
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.5 }}
-    >
+    <>
+      {/* SEO Optimization */}
+      <Helmet>
+        <title>Marketing Services | Brand & Digital Marketing Solutions | Mavericks Edge</title>
+        <meta name="description" content="Strategic marketing and creative solutions for SMBs and nonprofits. Boost brand visibility, engage your audience, and drive measurable growth with our tailored marketing services." />
+        <link rel="canonical" href="https://mavericksedge.com/services/marketing" />
+        <meta name="keywords" content="digital marketing strategy, brand development, SEO services, PPC management, social media marketing, email campaigns, event planning, marketing analytics" />
+        
+        {/* Open Graph data */}
+        <meta property="og:title" content="Marketing Services | Brand & Digital Marketing Solutions | Mavericks Edge" />
+        <meta property="og:description" content="Strategic marketing solutions to boost your brand visibility, engage your audience, and drive business growth for small businesses and nonprofits." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://mavericksedge.com/services/marketing" />
+        <meta property="og:image" content="/images/logo-transparent-thumb4x.png" />
+        
+        {/* Structured data for Service */}
+        <script type="application/ld+json">
+          {`
+            {
+              "@context": "https://schema.org",
+              "@type": "Service",
+              "serviceType": "Marketing Services",
+              "provider": {
+                "@type": "Organization",
+                "name": "Mavericks Edge",
+                "url": "https://mavericksedge.com"
+              },
+              "name": "Marketing & Creative Services",
+              "description": "Strategic marketing and creative solutions to boost your brand visibility, engage your audience, and drive business growth.",
+              "offers": {
+                "@type": "Offer",
+                "availability": "https://schema.org/InStock",
+                "url": "https://mavericksedge.com/pricing/marketing"
+              },
+              "hasOfferCatalog": {
+                "@type": "OfferCatalog",
+                "name": "Marketing Services",
+                "itemListElement": [
+                  {
+                    "@type": "Offer",
+                    "itemOffered": {
+                      "@type": "Service",
+                      "name": "Digital Marketing Strategy",
+                      "description": "Comprehensive digital marketing strategies tailored to your business goals."
+                    }
+                  },
+                  {
+                    "@type": "Offer",
+                    "itemOffered": {
+                      "@type": "Service",
+                      "name": "Brand & Identity Development",
+                      "description": "Professional branding services including logo design, style guides, and brand messaging."
+                    }
+                  },
+                  {
+                    "@type": "Offer",
+                    "itemOffered": {
+                      "@type": "Service",
+                      "name": "SEO & PPC Advertising",
+                      "description": "Search engine optimization and pay-per-click advertising to improve visibility and drive traffic."
+                    }
+                  },
+                  {
+                    "@type": "Offer",
+                    "itemOffered": {
+                      "@type": "Service",
+                      "name": "Social Media Strategy & Management",
+                      "description": "Effective social media strategies and daily management to build community."
+                    }
+                  }
+                ]
+              }
+            }
+          `}
+        </script>
+
+        {/* Case Studies Structured Data */}
+        <script type="application/ld+json">
+          {`
+            {
+              "@context": "https://schema.org",
+              "@type": "ItemList",
+              "itemListElement": [
+                {
+                  "@type": "ListItem",
+                  "position": 1,
+                  "item": {
+                    "@type": "Article",
+                    "name": "Brand Transformation",
+                    "about": {
+                      "@type": "Thing",
+                      "name": "Retail Marketing"
+                    },
+                    "description": "250% increase in social engagement",
+                    "image": "https://images.unsplash.com/photo-1563986768609-322da13575f3?ixlib=rb-4.0.3"
+                  }
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 2,
+                  "item": {
+                    "@type": "Article",
+                    "name": "Digital Campaign",
+                    "about": {
+                      "@type": "Thing",
+                      "name": "Healthcare Marketing"
+                    },
+                    "description": "320% ROI on PPC advertising",
+                    "image": "https://images.unsplash.com/photo-1556761175-b413da4baf72?ixlib=rb-4.0.3"
+                  }
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 3,
+                  "item": {
+                    "@type": "Article",
+                    "name": "Event Management",
+                    "about": {
+                      "@type": "Thing",
+                      "name": "Nonprofit Marketing"
+                    },
+                    "description": "Raised $2.5M in a single event",
+                    "image": "https://images.unsplash.com/photo-1491438590914-bc09fcaaf77a?ixlib=rb-4.0.3"
+                  }
+                }
+              ]
+            }
+          `}
+        </script>
+      </Helmet>
+      
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.5 }}
+      >
       {/* Hero Section */}
       <div className="pt-44 md:pt-48 pb-16 px-5 md:px-10 bg-[#121212]">
         <div className="container mx-auto">

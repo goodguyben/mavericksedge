@@ -1,10 +1,16 @@
 
 import { motion } from "framer-motion";
+import { Helmet } from 'react-helmet';
 import { Brain, Database, Workflow, Shield, FileCode, Users, Gauge, Zap, Activity, LineChart } from "lucide-react";
 import ContactSection from "@/components/sections/ContactSection";
 import { Link } from "wouter";
+import { useEffect } from "react";
 
 export default function AIServices() {
+  // Track page view for analytics
+  useEffect(() => {
+    console.log("AI Services page viewed");
+  }, []);
   const services = [
     {
       icon: <Gauge className="h-10 w-10 text-maverick-orange" />,
@@ -59,12 +65,140 @@ export default function AIServices() {
   ];
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.5 }}
-    >
+    <>
+      {/* SEO Optimization */}
+      <Helmet>
+        <title>AI Integration Services | Business Automation Solutions | Mavericks Edge</title>
+        <meta name="description" content="Transform your business with AI integration and automation solutions. Streamline operations, enhance decision-making, and improve customer experiences with our tailored AI services." />
+        <link rel="canonical" href="https://mavericksedge.com/services/ai" />
+        <meta name="keywords" content="AI integration, business automation, AI readiness assessment, workflow automation, AI implementation, custom API integration, AI data governance, small business AI solutions" />
+        
+        {/* Open Graph data */}
+        <meta property="og:title" content="AI Integration Services | Business Automation Solutions | Mavericks Edge" />
+        <meta property="og:description" content="Transform your business with AI integration and automation solutions. Streamline operations, enhance decision-making, and improve customer experiences." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://mavericksedge.com/services/ai" />
+        <meta property="og:image" content="/images/logo-transparent-thumb4x.png" />
+        
+        {/* Structured data for Service */}
+        <script type="application/ld+json">
+          {`
+            {
+              "@context": "https://schema.org",
+              "@type": "Service",
+              "serviceType": "AI Integration",
+              "provider": {
+                "@type": "Organization",
+                "name": "Mavericks Edge",
+                "url": "https://mavericksedge.com"
+              },
+              "name": "AI Integration & Automation",
+              "description": "Harness the transformative power of artificial intelligence to streamline operations, enhance decision-making, and create exceptional customer experiences.",
+              "offers": {
+                "@type": "Offer",
+                "availability": "https://schema.org/InStock",
+                "url": "https://mavericksedge.com/pricing/ai"
+              },
+              "hasOfferCatalog": {
+                "@type": "OfferCatalog",
+                "name": "AI Services",
+                "itemListElement": [
+                  {
+                    "@type": "Offer",
+                    "itemOffered": {
+                      "@type": "Service",
+                      "name": "AI Readiness Assessment",
+                      "description": "Comprehensive evaluation of your current systems, workflows, and data to determine AI integration readiness."
+                    }
+                  },
+                  {
+                    "@type": "Offer",
+                    "itemOffered": {
+                      "@type": "Service",
+                      "name": "Custom AI Integration Roadmap",
+                      "description": "Tailored strategic roadmap for integrating AI into your business processes."
+                    }
+                  },
+                  {
+                    "@type": "Offer",
+                    "itemOffered": {
+                      "@type": "Service",
+                      "name": "Workflow & Process Automation",
+                      "description": "Implementation of AI-powered automation for business processes."
+                    }
+                  },
+                  {
+                    "@type": "Offer",
+                    "itemOffered": {
+                      "@type": "Service",
+                      "name": "AI Feature Development",
+                      "description": "Development of custom AI features and functionalities to enhance your existing software."
+                    }
+                  }
+                ]
+              }
+            }
+          `}
+        </script>
+
+        {/* Case Studies Structured Data */}
+        <script type="application/ld+json">
+          {`
+            {
+              "@context": "https://schema.org",
+              "@type": "ItemList",
+              "itemListElement": [
+                {
+                  "@type": "ListItem",
+                  "position": 1,
+                  "item": {
+                    "@type": "Article",
+                    "name": "Customer Service Automation",
+                    "about": {
+                      "@type": "Thing",
+                      "name": "Retail AI Implementation"
+                    },
+                    "description": "70% reduction in response time"
+                  }
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 2,
+                  "item": {
+                    "@type": "Article",
+                    "name": "Predictive Maintenance",
+                    "about": {
+                      "@type": "Thing",
+                      "name": "Manufacturing AI Implementation"
+                    },
+                    "description": "40% decrease in downtime"
+                  }
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 3,
+                  "item": {
+                    "@type": "Article",
+                    "name": "Donor Engagement Automation",
+                    "about": {
+                      "@type": "Thing",
+                      "name": "Nonprofit AI Implementation"
+                    },
+                    "description": "35% increase in donations"
+                  }
+                }
+              ]
+            }
+          `}
+        </script>
+      </Helmet>
+      
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.5 }}
+      >
       {/* Hero Section */}
       <div className="pt-44 md:pt-48 pb-16 px-5 md:px-10 bg-[#121212]">
         <div className="container mx-auto">
