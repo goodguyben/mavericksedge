@@ -34,76 +34,6 @@ interface ContactSectionProps {
 
 type ContactFormValues = z.infer<typeof contactSubmissionSchema>;
 
-// Custom hook for scroll animations
-import { useInView } from 'react-intersection-observer';
-import { useEffect, useRef, useState } from 'react';
-
-const useScrollFade = (threshold = 0.2) => {
-  const [ref, inView] = useInView({
-    threshold: threshold,
-    triggerOnce: true,
-  });
-  const [hasAnimated, setHasAnimated] = useState(false);
-
-  useEffect(() => {
-    if (inView && !hasAnimated) {
-      setHasAnimated(true);
-    }
-  }, [inView, hasAnimated]);
-
-  return { ref, inView, hasAnimated };
-};
-
-// Wrapper component for scroll animations
-interface AnimatedSectionProps extends React.HTMLAttributes<HTMLDivElement> {
-  children: React.ReactNode;
-  fadeDirection?: 'up' | 'down' | 'left' | 'right';
-  distance?: number;
-  duration?: number;
-  delay?: number;
-  threshold?: number;
-}
-
-const AnimatedSection: React.FC<AnimatedSectionProps> = ({
-  children,
-  fadeDirection = 'up',
-  distance = 50,
-  duration = 0.5,
-  delay = 0,
-  threshold = 0.2,
-  ...props
-}) => {
-  const { ref, inView } = useScrollFade(threshold);
-
-  const initialStyles = {
-    opacity: 0,
-    y: fadeDirection === 'up' ? distance : fadeDirection === 'down' ? -distance : 0,
-    x: fadeDirection === 'left' ? distance : fadeDirection === 'right' ? -distance : 0,
-  };
-
-  const animateStyles = {
-    opacity: inView ? 1 : 0,
-    y: inView ? 0 : initialStyles.y,
-    x: inView ? 0 : initialStyles.x,
-    transition: {
-      duration: duration,
-      delay: delay,
-      ease: "easeInOut"
-    }
-  };
-
-  return (
-    <motion.div
-      ref={ref}
-      initial={initialStyles}
-      animate={animateStyles}
-      {...props}
-    >
-      {children}
-    </motion.div>
-  );
-};
-
 export default function ContactSection({ fullPage = false }: ContactSectionProps) {
   const { toast } = useToast();
 
@@ -166,10 +96,11 @@ export default function ContactSection({ fullPage = false }: ContactSectionProps
         )}
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          <AnimatedSection
-            fadeDirection="left"
-            threshold={0.1}
-            distance={50}
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
           >
             <Form {...form}>
               <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
@@ -209,7 +140,7 @@ export default function ContactSection({ fullPage = false }: ContactSectionProps
                     </FormItem>
                   )}
                 />
-
+                
                 <FormField
                   control={form.control}
                   name="phone"
@@ -295,13 +226,13 @@ export default function ContactSection({ fullPage = false }: ContactSectionProps
                 </div>
               </form>
             </Form>
-          </AnimatedSection>
+          </motion.div>
 
-          <AnimatedSection
-            fadeDirection="right"
-            threshold={0.1}
-            delay={0.2}
-            distance={50}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
             className="bg-[#1E1E1E] p-8 rounded-xl"
           >
             <h3 className="text-2xl font-semibold mb-6">Contact Information</h3>
@@ -370,7 +301,7 @@ export default function ContactSection({ fullPage = false }: ContactSectionProps
                 <Twitter className="h-5 w-5" />
               </a>
             </div>
-          </AnimatedSection>
+          </motion.div>
         </div>
       </div>
     </section>

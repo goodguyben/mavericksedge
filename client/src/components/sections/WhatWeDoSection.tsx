@@ -94,27 +94,31 @@ export default function WhatWeDoSection() {
       <div className="absolute inset-0 bg-[url('/images/noise.png')] opacity-[0.03] mix-blend-soft-light"></div>
 
       <div className="container mx-auto relative z-10">
-        <AnimatedSection
+        <motion.div
           className="text-center mb-20"
-          fadeDirection="up"
-          threshold={0.2}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
         >
-          <AnimatedSection
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
             className="inline-block mb-4"
-            fadeDirection="up"
-            threshold={0.15}
-            delay={0.1}
           >
             <div className="px-4 py-2 bg-maverick-orange/10 rounded-full">
               <span className="text-maverick-orange font-medium">Our services</span>
             </div>
-          </AnimatedSection>
+          </motion.div>
           
-          <AnimatedSection 
+          <motion.h2 
             className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6"
-            fadeDirection="up"
-            threshold={0.15}
-            delay={0.2}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
           >
             What We <span className="text-maverick-orange relative inline-block">
               Do
@@ -126,17 +130,18 @@ export default function WhatWeDoSection() {
                 transition={{ duration: 0.6, delay: 0.5 }}
               />
             </span>
-          </AnimatedSection>
+          </motion.h2>
           
-          <AnimatedSection 
+          <motion.p 
             className="text-[#AAAAAA] text-xl max-w-3xl mx-auto"
-            fadeDirection="up"
-            threshold={0.15}
-            delay={0.3}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.3 }}
           >
             We deliver transformative digital solutions that drive growth, increase efficiency, and create meaningful customer experiences
-          </AnimatedSection>
-        </AnimatedSection>
+          </motion.p>
+        </motion.div>
 
         {isMobile ? (
           // Mobile version - Interactive vertical scroll list
