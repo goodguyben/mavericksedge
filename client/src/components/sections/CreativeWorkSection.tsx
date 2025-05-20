@@ -4,7 +4,7 @@ import { Link } from "wouter";
 
 // Sample portfolio items - in a real application, this would come from a CMS or API
 // Each item now has multiple images that will flip through
-const portfolioItems = [
+const portfolioItems: PortfolioItem[] = [
   {
     id: "work1",
     title: "E-Commerce Platform",
