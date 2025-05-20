@@ -5,10 +5,9 @@ export default {
   content: ["./client/index.html", "./client/src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     fontFamily: {
-      sans: ['Poppins', 'system-ui', 'sans-serif'],
-      heading: ['Raleway', 'system-ui', 'sans-serif'],
-      body: ['EB Garamond', 'Georgia', 'serif'],
-      logo: ['Raleway', 'system-ui', 'sans-serif'],
+      sans: ['Space Grotesk', 'system-ui', 'sans-serif'],
+      heading: ['Outfit', 'system-ui', 'sans-serif'],
+      logo: ['Sansation', 'system-ui', 'sans-serif'],
     },
     extend: {
       borderRadius: {
@@ -64,20 +63,9 @@ export default {
           "light-orange": "#FF8A50", // Brighter light orange
           "dark-brown": "#272114", // Very dark brown for backgrounds
           "amber": "#FFC43D", // Bright amber
-          "charcoal": "#1A1D21", // Dark neumorphic background
+          "charcoal": "#1E1A18", // Dark background
           "slate": "#252B32", // Alternative dark background
           "cream": "#FFFAF0", // Very light warm white
-        },
-        neumorphic: {
-          "bg": "#1A1D21", // Dark neumorphic base color
-          "light": "rgba(255, 255, 255, 0.1)", // Light shadow
-          "dark": "rgba(0, 0, 0, 0.2)", // Dark shadow
-          "highlight": "rgba(255, 255, 255, 0.05)", // Subtle highlight
-          "depth": "rgba(0, 0, 0, 0.25)", // Depth shadow
-          "orange": "#FF5630", // Accent color
-          "orange-light": "rgba(255, 86, 48, 0.15)", // Light accent
-          "text": "#F9F9FB", // Light text
-          "text-secondary": "#ABABAB", // Secondary text
         },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
