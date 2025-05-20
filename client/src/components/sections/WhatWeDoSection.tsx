@@ -253,7 +253,7 @@ export default function WhatWeDoSection() {
             style={{ opacity, y }}
           >
             {/* Service Navigation */}
-            <div className="absolute top-0 left-0 w-full z-10">
+            <div className="absolute top-[-30px] left-0 w-full z-10">
               <motion.div
                 className="flex justify-center gap-3 md:gap-6 mb-16"
                 initial={{ opacity: 0, y: -20 }}
