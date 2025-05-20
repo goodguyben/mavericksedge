@@ -457,21 +457,25 @@ export default function WhatWeDoSection() {
                           {/* Web Development Animations */}
                           {service.animationElements === "code" && (
                             <>
-                              {/* Code editor visualization */}
-                              <div className="absolute top-6 left-6 right-6 h-24 rounded-lg bg-[#1E1E1E]/80 overflow-hidden border border-gray-700">
+                              {/* AI-powered code editor visualization */}
+                              <div className="absolute top-6 left-6 right-6 h-28 rounded-lg bg-[#1E1E1E]/80 overflow-hidden border border-gray-700">
                                 {/* Header bar of code editor */}
-                                <div className="h-6 bg-[#333]/80 flex items-center px-3">
+                                <div className="h-6 bg-[#333]/80 flex items-center px-3 justify-between">
                                   <div className="flex gap-1.5">
                                     <div className="w-2.5 h-2.5 rounded-full bg-red-500/70"></div>
                                     <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/70"></div>
                                     <div className="w-2.5 h-2.5 rounded-full bg-green-500/70"></div>
                                   </div>
-                                  <div className="text-xs text-gray-400 mx-auto">index.html</div>
+                                  <div className="text-xs text-gray-400">index.html</div>
+                                  <div className="text-xs text-maverick-orange bg-maverick-orange/20 px-2 py-0.5 rounded-sm flex items-center">
+                                    <Brain className="w-3 h-3 mr-1" />
+                                    AI Assistant
+                                  </div>
                                 </div>
                                 
-                                {/* Code lines */}
+                                {/* Code lines with AI suggestions */}
                                 <div className="p-3">
-                                  {[...Array(5)].map((_, i) => (
+                                  {[...Array(4)].map((_, i) => (
                                     <motion.div
                                       key={i}
                                       className="flex items-center gap-2 text-xs"
@@ -494,17 +498,38 @@ export default function WhatWeDoSection() {
                                       />
                                     </motion.div>
                                   ))}
+                                  
+                                  {/* AI-generated suggestion */}
+                                  <motion.div
+                                    className="mt-2 flex items-start gap-2 text-xs"
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    transition={{ delay: 1.2 }}
+                                  >
+                                    <span className="text-gray-500 w-4">5</span>
+                                    <div className="flex-1">
+                                      <div className="bg-maverick-orange/20 border-l-2 border-maverick-orange rounded px-2 py-1 text-[10px]">
+                                        <div className="flex items-center text-maverick-orange font-medium mb-1">
+                                          <Brain className="w-3 h-3 mr-1" />
+                                          AI Suggestion: Add SEO optimization 
+                                        </div>
+                                        <div className="text-gray-300">
+                                          <span className="text-green-400">+</span> Adding meta tags will improve search ranking by 45%
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </motion.div>
                                 </div>
                               </div>
                               
-                              {/* Browser preview */}
+                              {/* Browser preview with AI insights */}
                               <motion.div 
                                 className="absolute bottom-6 left-6 right-6 h-36 bg-white/10 rounded-lg overflow-hidden border border-gray-700"
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 1.2, duration: 0.5 }}
                               >
-                                {/* Browser header */}
+                                {/* Browser header with AI indicator */}
                                 <div className="h-6 bg-[#333]/80 flex items-center px-3">
                                   <div className="flex gap-2 w-full items-center">
                                     <div className="flex gap-1.5">
@@ -514,17 +539,33 @@ export default function WhatWeDoSection() {
                                     <div className="text-xs bg-[#222]/80 text-gray-400 px-2 py-0.5 rounded-sm flex-grow text-center">
                                       mavericksedge.com
                                     </div>
+                                    <div className="bg-green-500/20 rounded px-1.5 py-0.5 text-[9px] text-green-400 flex items-center">
+                                      <Zap className="w-2 h-2 mr-0.5" />
+                                      AI Enhanced
+                                    </div>
                                   </div>
                                 </div>
                                 
-                                {/* Responsive layout representation */}
+                                {/* Responsive layout with AI analytics overlay */}
                                 <div className="p-4 flex">
-                                  <motion.div 
-                                    className="h-12 w-1/3 bg-maverick-orange/20 rounded-md mr-2"
-                                    initial={{ opacity: 0, x: -10 }}
-                                    animate={{ opacity: 1, x: 0 }}
-                                    transition={{ delay: 1.4, duration: 0.3 }}
-                                  />
+                                  <div className="w-1/3 mr-2 relative">
+                                    <motion.div 
+                                      className="h-12 w-full bg-maverick-orange/20 rounded-md"
+                                      initial={{ opacity: 0, x: -10 }}
+                                      animate={{ opacity: 1, x: 0 }}
+                                      transition={{ delay: 1.4, duration: 0.3 }}
+                                    />
+                                    <motion.div
+                                      className="absolute -top-1 -right-1 bg-green-500/90 rounded-full px-1 text-[8px] text-white flex items-center"
+                                      initial={{ scale: 0 }}
+                                      animate={{ scale: 1 }}
+                                      transition={{ delay: 1.9, type: "spring" }}
+                                    >
+                                      <Zap className="w-1.5 h-1.5 mr-0.5" />
+                                      +82%
+                                    </motion.div>
+                                  </div>
+                                  
                                   <div className="flex-grow flex flex-col gap-2">
                                     <motion.div 
                                       className="h-3 w-full bg-gray-400/30 rounded-sm"
@@ -547,27 +588,30 @@ export default function WhatWeDoSection() {
                                   </div>
                                 </div>
                                 
-                                {/* Device responsive indicators */}
-                                <div className="absolute bottom-3 right-3 flex gap-2">
-                                  <motion.div 
-                                    className="w-6 h-6 flex items-center justify-center bg-maverick-orange/30 rounded-md"
-                                    whileHover={{ scale: 1.1 }}
-                                    initial={{ opacity: 0 }}
-                                    animate={{ opacity: 1 }}
-                                    transition={{ delay: 1.9 }}
-                                  >
-                                    <div className="w-3 h-4 border border-white/70 rounded-sm"></div>
-                                  </motion.div>
-                                  <motion.div 
-                                    className="w-6 h-6 flex items-center justify-center bg-maverick-orange/30 rounded-md"
-                                    whileHover={{ scale: 1.1 }}
-                                    initial={{ opacity: 0 }}
-                                    animate={{ opacity: 1 }}
-                                    transition={{ delay: 2.0 }}
-                                  >
-                                    <div className="w-4 h-3 border border-white/70 rounded-sm"></div>
-                                  </motion.div>
-                                </div>
+                                {/* AI insights dashboard */}
+                                <motion.div
+                                  className="absolute bottom-1 left-1 right-1 h-8 rounded bg-[#222]/80 border border-gray-700 flex items-center px-2 gap-3 text-[9px]"
+                                  initial={{ opacity: 0, y: 8 }}
+                                  animate={{ opacity: 1, y: 0 }}
+                                  transition={{ delay: 2.0 }}
+                                >
+                                  <div className="flex items-center text-green-400">
+                                    <Zap className="w-2 h-2 mr-0.5" />
+                                    <span>Page Speed: +65%</span>
+                                  </div>
+                                  <div className="flex items-center text-blue-400">
+                                    <Users className="w-2 h-2 mr-0.5" />
+                                    <span>User Engagement: +42%</span>
+                                  </div>
+                                  <div className="flex items-center text-purple-400">
+                                    <LineChart className="w-2 h-2 mr-0.5" />
+                                    <span>Conversion Rate: +38%</span>
+                                  </div>
+                                  <div className="ml-auto flex items-center text-maverick-orange">
+                                    <Brain className="w-2 h-2 mr-0.5" />
+                                    <span>AI Recommendations: 3</span>
+                                  </div>
+                                </motion.div>
                               </motion.div>
                             </>
                           )}
