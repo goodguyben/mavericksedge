@@ -11,10 +11,10 @@ export default function WhatWeDoSection() {
     target: sectionRef,
     offset: ["start end", "end start"]
   });
-  
+
   const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
   const y = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [100, 0, 0, -100]);
-  
+
   const services = [
     {
       id: "web-development",
@@ -90,13 +90,13 @@ export default function WhatWeDoSection() {
   // Auto-rotate services every 5 seconds
   useEffect(() => {
     if (isMobile) return; // Don't auto-rotate on mobile
-    
+
     const interval = setInterval(() => {
       const currentIndex = services.findIndex(service => service.id === activeService);
       const nextIndex = (currentIndex + 1) % services.length;
       setActiveService(services[nextIndex].id);
     }, 5000);
-    
+
     return () => clearInterval(interval);
   }, [activeService, isMobile, services]);
 
@@ -110,7 +110,7 @@ export default function WhatWeDoSection() {
           x: useTransform(scrollYProgress, [0, 0.5, 1], [-50, 50, -50]) 
         }}
       />
-      
+
       <motion.div 
         className="absolute bottom-1/3 right-10 w-96 h-96 rounded-full bg-gradient-to-bl from-maverick-amber/20 to-transparent opacity-20 blur-3xl"
         style={{ 
@@ -118,60 +118,173 @@ export default function WhatWeDoSection() {
           y: useTransform(scrollYProgress, [0, 0.5, 1], [50, -50, 50]) 
         }}
       />
-      
+
       <div className="absolute inset-0 bg-[url('/images/noise.png')] opacity-[0.03] mix-blend-soft-light"></div>
 
       <div className="container mx-auto relative z-10">
         <motion.div
-          className="text-center mb-20"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-        >
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="inline-block mb-4"
-          >
-            <div className="px-4 py-2 bg-maverick-orange/10 rounded-full">
-              <span className="text-maverick-orange font-medium">Our services</span>
-            </div>
-          </motion.div>
-          
-          <motion.h2 
-            className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6"
+            className="text-center relative mb-24"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
+            transition={{ duration: 0.5 }}
           >
-            What We <span className="text-maverick-orange relative inline-block">
-              Do
-              <motion.span 
-                className="absolute -bottom-2 left-0 w-full h-1 bg-maverick-orange"
-                initial={{ scaleX: 0, originX: 0 }}
-                whileInView={{ scaleX: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.5 }}
+            {/* Background decorative elements */}
+            <motion.div 
+              className="absolute -left-10 top-10 w-32 h-32 rounded-full bg-gradient-to-br from-maverick-orange/10 to-transparent opacity-60 blur-xl"
+              animate={{ 
+                scale: [1, 1.2, 1],
+                rotate: [0, 45, 0]
+              }}
+              transition={{ duration: 8, repeat: Infinity, repeatType: "reverse" }}
+            />
+
+            <motion.div 
+              className="absolute -right-10 bottom-0 w-40 h-40 rounded-full bg-gradient-to-tl from-maverick-amber/15 to-transparent opacity-50 blur-xl"
+              animate={{ 
+                scale: [1.2, 1, 1.2],
+                rotate: [0, -45, 0]
+              }}
+              transition={{ duration: 10, repeat: Infinity, repeatType: "reverse" }}
+            />
+
+            {/* Service indicator badge with animated glow */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="inline-block mb-4 relative"
+            >
+              <motion.div 
+                className="absolute inset-0 bg-maverick-orange/20 rounded-full blur-md"
+                animate={{ 
+                  scale: [1, 1.15, 1],
+                  opacity: [0.5, 0.8, 0.5] 
+                }}
+                transition={{ duration: 3, repeat: Infinity }}
               />
-            </span>
-          </motion.h2>
-          
-          <motion.p 
-            className="text-[#AAAAAA] text-xl max-w-3xl mx-auto"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-          >
-            We deliver transformative digital solutions that drive real business growth, 
-            increase operational efficiency, and create meaningful customer experiences that 
-            keep them coming back for more
-          </motion.p>
-        </motion.div>
+              <div className="px-6 py-2.5 bg-maverick-orange/10 backdrop-blur-sm rounded-full border border-maverick-orange/20 relative">
+                <span className="text-maverick-orange font-medium flex items-center">
+                  <Zap className="w-4 h-4 mr-2" />
+                  Our services
+                </span>
+              </div>
+            </motion.div>
+
+            {/* Creative title with animated elements */}
+            <div className="relative">
+              <motion.h2 
+                className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8 relative z-10"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+              >
+                What We 
+                <motion.div 
+                  className="inline-block relative ml-3"
+                  initial={{ perspective: 1000 }}
+                >
+                  <motion.span 
+                    className="text-maverick-orange inline-block"
+                    animate={{ rotateY: [0, 360] }}
+                    transition={{ duration: 5, repeat: Infinity, repeatDelay: 10 }}
+                  >
+                    Do
+                  </motion.span>
+                  <motion.span 
+                    className="absolute -bottom-2 left-0 w-full h-1.5 bg-gradient-to-r from-maverick-orange to-maverick-amber rounded-full"
+                    initial={{ scaleX: 0, originX: 0 }}
+                    whileInView={{ scaleX: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8, delay: 0.6 }}
+                  />
+                  <motion.span 
+                    className="absolute -bottom-2 left-0 w-full h-1.5 bg-maverick-orange/60 rounded-full blur-sm"
+                    initial={{ scaleX: 0, originX: 0 }}
+                    whileInView={{ scaleX: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 1, delay: 0.7 }}
+                  />
+                </motion.div>
+              </motion.h2>
+
+              {/* Decorative shapes behind text */}
+              <motion.div
+                className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-32 h-32 rounded-full border border-maverick-orange/20 z-0 opacity-20"
+                animate={{ scale: [1, 1.2, 1], rotate: [0, 90, 180, 270, 360] }}
+                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+              />
+
+              <motion.div
+                className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-48 h-48 rounded-full border border-maverick-amber/20 z-0 opacity-20"
+                animate={{ scale: [1.2, 1, 1.2], rotate: [360, 270, 180, 90, 0] }}
+                transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+              />
+            </div>
+
+            {/* Enhanced description with animated highlight */}
+            <motion.p 
+              className="text-[#AAAAAA] text-xl max-w-3xl mx-auto relative z-10"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+            >
+              We deliver 
+              <motion.span 
+                className="relative text-white px-1 mx-1"
+                whileInView={{ color: ['#FFFFFF', '#FF8C00', '#FFFFFF'] }}
+                viewport={{ once: false }}
+                transition={{ duration: 3, repeat: Infinity, repeatType: "reverse" }}
+              >
+                transformative
+                <motion.span 
+                  className="absolute inset-0 bg-maverick-orange/20 rounded-md -z-10"
+                  initial={{ width: 0 }}
+                  whileInView={{ width: '100%' }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 1, delay: 1.2 }}
+                />
+              </motion.span> 
+              digital solutions that drive 
+              <motion.span 
+                className="relative text-white px-1 mx-1"
+                whileInView={{ color: ['#FFFFFF', '#FF5A00', '#FFFFFF'] }}
+                viewport={{ once: false }}
+                transition={{ duration: 3, repeat: Infinity, repeatType: "reverse", delay: 0.5 }}
+              >
+                real business growth
+                <motion.span 
+                  className="absolute inset-0 bg-maverick-orange/20 rounded-md -z-10"
+                  initial={{ width: 0 }}
+                  whileInView={{ width: '100%' }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 1, delay: 1.4 }}
+                />
+              </motion.span>, 
+              increase operational efficiency, and create meaningful customer experiences that 
+              keep them coming back for more
+            </motion.p>
+
+            {/* Animated arrow indicator */}
+            <motion.div 
+              className="mt-8 flex justify-center"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 1 }}
+            >
+              <motion.div
+                className="p-2 rounded-full bg-maverick-orange/10 border border-maverick-orange/20"
+                animate={{ y: [0, 6, 0] }}
+                transition={{ duration: 2, repeat: Infinity }}
+              >
+                <ArrowRight className="h-5 w-5 text-maverick-orange" />
+              </motion.div>
+            </motion.div>
+          </motion.div>
 
         {isMobile ? (
           // Mobile version - Interactive vertical scroll list
@@ -204,7 +317,7 @@ export default function WhatWeDoSection() {
                       <ArrowRight className="w-5 h-5 text-maverick-orange" />
                     </motion.div>
                   </div>
-                  
+
                   <AnimatePresence>
                     {activeService === service.id && (
                       <motion.div
@@ -217,7 +330,7 @@ export default function WhatWeDoSection() {
                         <p className="text-maverick-orange text-sm italic mb-2">"{service.tagline}"</p>
                         <p className="text-[#AAAAAA] mb-3">{service.description}</p>
                         <p className="text-[#DDDDDD] leading-relaxed text-sm mb-3">{service.details}</p>
-                        
+
                         <div className="mb-2">
                           <h4 className="text-sm font-semibold mb-2 text-white">Key Benefits:</h4>
                           <ul className="space-y-1.5">
@@ -233,7 +346,7 @@ export default function WhatWeDoSection() {
                     )}
                   </AnimatePresence>
                 </motion.div>
-                
+
                 {/* Animated accent line */}
                 <motion.div 
                   className="absolute left-0 top-0 h-full w-1 rounded-l-lg"
@@ -299,7 +412,7 @@ export default function WhatWeDoSection() {
                         {service.title.split(' ')[0]}
                       </span>
                     </div>
-                    
+
                     {/* Active indicator line */}
                     {activeService === service.id && (
                       <motion.div 
@@ -344,7 +457,7 @@ export default function WhatWeDoSection() {
                             })}
                           </div>
                         </motion.div>
-                        
+
                         <motion.div
                           initial={{ opacity: 0 }}
                           animate={{ opacity: 1 }}
@@ -354,7 +467,7 @@ export default function WhatWeDoSection() {
                           <h3 className="text-3xl lg:text-4xl font-bold mb-2">{service.title}</h3>
                           <p className="text-maverick-orange text-lg italic mb-4">"{service.tagline}"</p>
                         </motion.div>
-                        
+
                         <motion.p 
                           className="text-[#AAAAAA] text-xl mb-6"
                           initial={{ opacity: 0 }}
@@ -363,7 +476,7 @@ export default function WhatWeDoSection() {
                         >
                           {service.description}
                         </motion.p>
-                        
+
                         <motion.p 
                           className="text-[#DDDDDD] leading-relaxed mb-6"
                           initial={{ opacity: 0 }}
@@ -395,7 +508,7 @@ export default function WhatWeDoSection() {
                             ))}
                           </ul>
                         </motion.div>
-                        
+
                         <motion.button
                           className="px-6 py-3 rounded-lg font-medium flex items-center gap-2 transition-all duration-300"
                           style={{ 
@@ -413,7 +526,7 @@ export default function WhatWeDoSection() {
                           Learn more <ArrowRight className="w-4 h-4" />
                         </motion.button>
                       </motion.div>
-                      
+
                       {/* Visual side */}
                       <motion.div
                         className="relative h-full min-h-[300px] lg:min-h-[400px] rounded-2xl overflow-hidden"
@@ -438,7 +551,7 @@ export default function WhatWeDoSection() {
                               repeatType: "reverse"
                             }}
                           />
-                          
+
                           <motion.div 
                             className="absolute bottom-10 left-10 w-20 h-20 rounded-full" 
                             style={{ background: `radial-gradient(circle, ${service.color}30 0%, transparent 70%)` }}
@@ -453,7 +566,7 @@ export default function WhatWeDoSection() {
                               repeatType: "reverse"
                             }}
                           />
-                          
+
                           {/* Web Development Animations */}
                           {service.animationElements === "code" && (
                             <>
@@ -472,7 +585,7 @@ export default function WhatWeDoSection() {
                                     AI Assistant
                                   </div>
                                 </div>
-                                
+
                                 {/* Code lines with AI suggestions */}
                                 <div className="p-3 font-mono">
                                   {[...Array(5)].map((_, i) => (
@@ -509,7 +622,7 @@ export default function WhatWeDoSection() {
                                       </motion.div>
                                     </motion.div>
                                   ))}
-                                  
+
                                   {/* AI-generated suggestions */}
                                   <motion.div
                                     className="mt-3 flex items-start gap-2 text-xs"
@@ -530,7 +643,7 @@ export default function WhatWeDoSection() {
                                       </div>
                                     </div>
                                   </motion.div>
-                                  
+
                                   <motion.div
                                     className="mt-2 flex items-start gap-2 text-xs"
                                     initial={{ opacity: 0 }}
@@ -552,7 +665,7 @@ export default function WhatWeDoSection() {
                                   </motion.div>
                                 </div>
                               </div>
-                              
+
                               {/* Browser preview with AI insights */}
                               <motion.div 
                                 className="absolute bottom-6 left-6 right-6 h-44 bg-white/10 rounded-lg overflow-hidden border border-gray-700 shadow-lg shadow-maverick-orange/10"
@@ -561,6 +674,7 @@ export default function WhatWeDoSection() {
                                 transition={{ delay: 1.2, duration: 0.5 }}
                               >
                                 {/* Browser header with AI indicator */}
+```text
                                 <div className="h-8 bg-[#333]/90 flex items-center px-3">
                                   <div className="flex gap-2 w-full items-center">
                                     <div className="flex gap-1.5">
@@ -576,7 +690,7 @@ export default function WhatWeDoSection() {
                                     </div>
                                   </div>
                                 </div>
-                                
+
                                 {/* Website preview with AI augmentation */}
                                 <div className="p-4 flex flex-col h-full">
                                   <div className="flex gap-3 mb-3">
@@ -605,7 +719,7 @@ export default function WhatWeDoSection() {
                                         +93% Engagement
                                       </motion.div>
                                     </div>
-                                    
+
                                     <div className="flex-grow flex flex-col gap-2">
                                       <motion.div 
                                         className="h-4 w-full bg-gray-400/30 rounded-sm"
@@ -627,7 +741,7 @@ export default function WhatWeDoSection() {
                                       />
                                     </div>
                                   </div>
-                                  
+
                                   {/* Personalization overlay */}
                                   <motion.div
                                     className="mt-1 bg-[#222]/80 rounded-md p-2 border border-maverick-orange/20"
@@ -657,7 +771,7 @@ export default function WhatWeDoSection() {
                                       </div>
                                     </div>
                                   </motion.div>
-                                  
+
                                   {/* AI insights dashboard */}
                                   <motion.div
                                     className="mt-auto bg-gradient-to-r from-[#222]/90 to-[#333]/90 rounded-md border border-gray-700 flex items-center px-2 py-1.5 gap-4 text-[9px]"
@@ -684,7 +798,7 @@ export default function WhatWeDoSection() {
                                   </motion.div>
                                 </div>
                               </motion.div>
-                              
+
                               {/* Value proposition badges */}
                               <motion.div
                                 className="absolute top-2 right-2 flex flex-col gap-2"
@@ -699,7 +813,7 @@ export default function WhatWeDoSection() {
                               </motion.div>
                             </>
                           )}
-                          
+
                           {/* Marketing & Creative Animations */}
                           {service.animationElements === "creative" && (
                             <>
@@ -721,7 +835,7 @@ export default function WhatWeDoSection() {
                                     </div>
                                   </div>
                                 </div>
-                                
+
                                 {/* Dashboard content */}
                                 <div className="p-4 grid grid-cols-3 gap-3">
                                   {/* Main analytics chart with AI insights */}
@@ -740,7 +854,7 @@ export default function WhatWeDoSection() {
                                         </div>
                                       </div>
                                     </div>
-                                    
+
                                     <div className="relative h-24">
                                       {/* Advanced graph with AI predictions */}
                                       <svg className="w-full h-full">
@@ -749,7 +863,7 @@ export default function WhatWeDoSection() {
                                         <line x1="0" y1="33%" x2="100%" y2="33%" stroke="#444" strokeWidth="1" strokeDasharray="4,4" />
                                         <line x1="0" y1="66%" x2="100%" y2="66%" stroke="#444" strokeWidth="1" strokeDasharray="4,4" />
                                         <line x1="0" y1="100%" x2="100%" y2="100%" stroke="#444" strokeWidth="1" />
-                                        
+
                                         {/* Performance line - Actual */}
                                         <motion.path
                                           d="M0,70 C20,65 40,60 60,40 L60,85 L0,85 Z"
@@ -760,7 +874,7 @@ export default function WhatWeDoSection() {
                                           animate={{ pathLength: 1 }}
                                           transition={{ delay: 0.5, duration: 1.5, ease: "easeInOut" }}
                                         />
-                                        
+
                                         {/* Dotted vertical line marking "now" */}
                                         <motion.line 
                                           x1="60%" 
@@ -774,7 +888,7 @@ export default function WhatWeDoSection() {
                                           animate={{ opacity: 1 }}
                                           transition={{ delay: 1.8 }}
                                         />
-                                        
+
                                         {/* Performance line - AI Prediction */}
                                         <motion.path
                                           d="M60,40 C70,30 85,25 100,20"
@@ -786,7 +900,7 @@ export default function WhatWeDoSection() {
                                           animate={{ pathLength: 1 }}
                                           transition={{ delay: 2.0, duration: 1.2, ease: "easeInOut" }}
                                         />
-                                        
+
                                         {/* AI insight markers */}
                                         <motion.circle
                                           cx="75%" 
@@ -797,7 +911,7 @@ export default function WhatWeDoSection() {
                                           animate={{ scale: 1 }}
                                           transition={{ delay: 2.3 }}
                                         />
-                                        
+
                                         <motion.circle
                                           cx="85%" 
                                           cy="24%" 
@@ -808,7 +922,7 @@ export default function WhatWeDoSection() {
                                           transition={{ delay: 2.5 }}
                                         />
                                       </svg>
-                                      
+
                                       {/* AI prediction tooltip */}
                                       <motion.div
                                         className="absolute top-6 right-4 bg-[#333]/90 text-[9px] p-1.5 rounded border border-maverick-amber/40 shadow-lg"
@@ -822,7 +936,7 @@ export default function WhatWeDoSection() {
                                         </div>
                                         <div className="text-white">+68% ROI with current strategy</div>
                                       </motion.div>
-                                      
+
                                       {/* Legend */}
                                       <div className="absolute bottom-0 left-0 flex items-center gap-3 text-[8px]">
                                         <div className="flex items-center">
@@ -836,7 +950,7 @@ export default function WhatWeDoSection() {
                                       </div>
                                     </div>
                                   </motion.div>
-                                  
+
                                   {/* AI-driven audience insights */}
                                   <motion.div
                                     className="col-span-3 bg-[#222]/80 rounded-md p-3 border border-gray-700/50"
@@ -848,7 +962,7 @@ export default function WhatWeDoSection() {
                                       <div className="text-xs text-gray-300 font-medium">AI Audience Insights</div>
                                       <div className="text-[9px] text-gray-400">Updated 12 min ago</div>
                                     </div>
-                                    
+
                                     <div className="grid grid-cols-5 gap-2">
                                       <motion.div
                                         className="col-span-2 bg-[#333]/70 rounded p-2"
@@ -864,7 +978,7 @@ export default function WhatWeDoSection() {
                                             <rect x="22%" y="0" width="15%" height="100%" fill="#775599" rx="2" />
                                             <rect x="39%" y="0" width="30%" height="100%" fill="#9966aa" rx="2" />
                                             <rect x="71%" y="0" width="28%" height="100%" fill="#bb77bb" rx="2" />
-                                            
+
                                             <motion.rect
                                               x="50%" 
                                               y="25%" 
@@ -879,7 +993,7 @@ export default function WhatWeDoSection() {
                                               transition={{ delay: 2.0 }}
                                             />
                                           </svg>
-                                          
+
                                           {/* AI insight */}
                                           <motion.div
                                             className="absolute bottom-0 right-0 text-[8px] bg-maverick-orange/20 rounded px-1 text-maverick-orange"
@@ -892,7 +1006,7 @@ export default function WhatWeDoSection() {
                                           </motion.div>
                                         </div>
                                       </motion.div>
-                                      
+
                                       <motion.div
                                         className="col-span-3 bg-[#333]/70 rounded p-2"
                                         initial={{ opacity: 0 }}
@@ -932,7 +1046,7 @@ export default function WhatWeDoSection() {
                                       </motion.div>
                                     </div>
                                   </motion.div>
-                                  
+
                                   {/* AI-enhanced KPI boxes */}
                                   {[
                                     { label: "AI-Enhanced Conversion", value: "+87%", subtext: "vs. +24% traditional", color: service.color, icon: <Brain className="w-3 h-3" /> },
@@ -959,7 +1073,7 @@ export default function WhatWeDoSection() {
                                     </motion.div>
                                   ))}
                                 </div>
-                                
+
                                 {/* AI Marketing Assistant popup */}
                                 <motion.div
                                   className="absolute bottom-4 right-4 bg-gradient-to-br from-[#222]/90 to-[#333]/90 rounded-lg p-3 w-48 border border-maverick-orange/30 shadow-lg"
@@ -981,7 +1095,7 @@ export default function WhatWeDoSection() {
                                     +28% ROI improvement
                                   </div>
                                 </motion.div>
-                                
+
                                 {/* Value proposition badge */}
                                 <motion.div
                                   className="absolute top-14 left-5 flex flex-col gap-2"
@@ -997,7 +1111,7 @@ export default function WhatWeDoSection() {
                               </div>
                             </>
                           )}
-                          
+
                           {/* AI Integration Animations */}
                           {service.animationElements === "ai" && (
                             <>
@@ -1016,7 +1130,7 @@ export default function WhatWeDoSection() {
                                     </div>
                                   </div>
                                 </div>
-                                
+
                                 <div className="grid grid-cols-5 gap-3 p-4 h-full">
                                   {/* Left side - Business processes */}
                                   <div className="col-span-2 h-full flex flex-col gap-3">
@@ -1027,7 +1141,7 @@ export default function WhatWeDoSection() {
                                       transition={{ delay: 0.3 }}
                                     >
                                       <div className="text-xs text-gray-300 font-medium mb-2">Business Processes</div>
-                                      
+
                                       {/* Process list with AI augmentation indicators */}
                                       <div className="space-y-2">
                                         {[
@@ -1055,7 +1169,7 @@ export default function WhatWeDoSection() {
                                                 {process.aiValue}
                                               </motion.div>
                                             </div>
-                                            
+
                                             {/* Progress bar showing AI optimization */}
                                             <motion.div
                                               className="absolute bottom-0 left-0 h-0.5"
@@ -1067,7 +1181,7 @@ export default function WhatWeDoSection() {
                                           </motion.div>
                                         ))}
                                       </div>
-                                      
+
                                       {/* AI integration value */}
                                       <motion.div
                                         className="mt-3 p-2 rounded bg-maverick-orange/20 border border-maverick-orange/30"
@@ -1084,7 +1198,7 @@ export default function WhatWeDoSection() {
                                         </div>
                                       </motion.div>
                                     </motion.div>
-                                    
+
                                     <motion.div
                                       className="bg-[#222]/80 rounded-lg p-3 border border-gray-700/50 h-28"
                                       initial={{ opacity: 0, x: -10 }}
@@ -1092,7 +1206,7 @@ export default function WhatWeDoSection() {
                                       transition={{ delay: 0.6 }}
                                     >
                                       <div className="text-xs text-gray-300 font-medium mb-2">ROI Metrics</div>
-                                      
+
                                       <div className="grid grid-cols-2 gap-2">
                                         {[
                                           { label: "Cost Savings", value: "62%", color: "#6ac47a" },
@@ -1110,7 +1224,7 @@ export default function WhatWeDoSection() {
                                           </motion.div>
                                         ))}
                                       </div>
-                                      
+
                                       <motion.div
                                         className="mt-2 bg-[#333]/60 rounded p-1 flex justify-between items-center"
                                         initial={{ opacity: 0 }}
@@ -1122,7 +1236,7 @@ export default function WhatWeDoSection() {
                                       </motion.div>
                                     </motion.div>
                                   </div>
-                                  
+
                                   {/* Center/Right - Neural network visualization */}
                                   <div className="col-span-3 relative flex flex-col gap-3 h-full">
                                     <motion.div
@@ -1132,7 +1246,7 @@ export default function WhatWeDoSection() {
                                       transition={{ delay: 0.4 }}
                                     >
                                       <div className="text-xs text-gray-300 font-medium mb-2">AI Integration Architecture</div>
-                                      
+
                                       {/* Enhanced neural network visualization */}
                                       <div className="relative w-full h-full flex items-center justify-center p-4">
                                         {/* Container for nodes and connections */}
@@ -1151,7 +1265,7 @@ export default function WhatWeDoSection() {
                                               <div>• Analytics</div>
                                             </div>
                                           </motion.div>
-                                          
+
                                           {/* Neural network layers */}
                                           <div className="absolute left-1/2 top-0 bottom-0 transform -translate-x-1/2 w-32 flex justify-center">
                                             {[0, 1, 2].map((layer) => (
@@ -1171,7 +1285,7 @@ export default function WhatWeDoSection() {
                                                 >
                                                   {layer === 0 ? "Input" : layer === 1 ? "Processing" : "Output"}
                                                 </motion.div>
-                                                
+
                                                 {/* Nodes in each layer */}
                                                 {[...Array(layer === 1 ? 5 : 3)].map((_, i) => (
                                                   <motion.div
@@ -1199,7 +1313,7 @@ export default function WhatWeDoSection() {
                                                 ))}
                                               </div>
                                             ))}
-                                            
+
                                             {/* Animated pulses along connections */}
                                             {[0, 1].map((layerFrom) => (
                                               [...Array(layerFrom === 0 ? 3 : 5)].map((_, nodeFrom) => (
@@ -1231,7 +1345,7 @@ export default function WhatWeDoSection() {
                                               ))
                                             ))}
                                           </div>
-                                          
+
                                           {/* Output results on the right */}
                                           <motion.div
                                             className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-[#333]/70 p-2 rounded border border-gray-700/50 w-24"
@@ -1269,7 +1383,7 @@ export default function WhatWeDoSection() {
                                         </motion.div>
                                       </div>
                                     </motion.div>
-                                    
+
                                     {/* AI Benefits Overview */}
                                     <motion.div
                                       className="h-28 bg-[#222]/80 rounded-lg p-3 border border-gray-700/50"
@@ -1278,7 +1392,7 @@ export default function WhatWeDoSection() {
                                       transition={{ delay: 0.7 }}
                                     >
                                       <div className="text-xs text-gray-300 font-medium mb-2">AI Augmented Workforce</div>
-                                      
+
                                       <div className="grid grid-cols-3 gap-2">
                                         {[
                                           { label: "Productivity Boost", value: "+143%", icon: <Zap className="w-3 h-3" />, color: service.color },
@@ -1308,7 +1422,7 @@ export default function WhatWeDoSection() {
                               </div>
                             </>
                           )}
-                          
+
                           {/* Support & Maintenance Animations */}
                           {service.animationElements === "support" && (
                             <>
@@ -1330,7 +1444,7 @@ export default function WhatWeDoSection() {
                                     </div>
                                   </div>
                                 </div>
-                                
+
                                 <div className="grid grid-cols-3 gap-3 p-4">
                                   {/* Left column - System metrics with AI enhancement */}
                                   <div className="col-span-1 flex flex-col gap-3">
@@ -1344,7 +1458,7 @@ export default function WhatWeDoSection() {
                                         <span>System Health</span>
                                         <span className="text-[9px] text-green-400 bg-green-500/10 rounded px-1">Excellent</span>
                                       </div>
-                                      
+
                                       <div className="space-y-2">
                                         {[
                                           { label: "Uptime", value: "99.99%", status: "optimal", aiValue: "+0.09%" },
@@ -1380,7 +1494,7 @@ export default function WhatWeDoSection() {
                                           </motion.div>
                                         ))}
                                       </div>
-                                      
+
                                       {/* AI Optimization badge */}
                                       <motion.div
                                         className="mt-2 text-[8px] bg-blue-500/10 text-blue-400 rounded p-1 flex items-center justify-center"
@@ -1393,7 +1507,7 @@ export default function WhatWeDoSection() {
                                       </motion.div>
                                     </motion.div>
                                   </div>
-                                  
+
                                   {/* Center column - Activity feed and AI insights */}
                                   <div className="col-span-1 flex flex-col gap-3">
                                     {/* Activity timeline with AI insights */}
@@ -1407,10 +1521,10 @@ export default function WhatWeDoSection() {
                                         <div className="text-xs text-gray-300 font-medium">AI-Enhanced Activity</div>
                                         <div className="text-[8px] text-gray-500">Auto-updated</div>
                                       </div>
-                                      
+
                                       <div className="space-y-2.5 relative">
                                         <div className="absolute left-[9px] top-1 bottom-1 w-[1px] bg-gray-700/70"></div>
-                                        
+
                                         {[
                                           { 
                                             time: "10:45", 
@@ -1452,11 +1566,11 @@ export default function WhatWeDoSection() {
                                               activity.status === 'success' ? 'bg-green-500' : 
                                               activity.status === 'warning' ? 'bg-yellow-500' : 'bg-red-500'
                                             }`}></span>
-                                            
+
                                             <div className="text-[10px] text-gray-300">{activity.action}</div>
                                             <div className="flex justify-between items-center">
                                               <span className="text-[8px] text-gray-500">{activity.time}</span>
-                                              
+
                                               {activity.ai && (
                                                 <motion.div
                                                   className="text-[8px] bg-maverick-orange/20 text-maverick-orange px-1 py-0.5 rounded flex items-center"
@@ -1473,7 +1587,7 @@ export default function WhatWeDoSection() {
                                         ))}
                                       </div>
                                     </motion.div>
-                                    
+
                                     {/* Predictive maintenance */}
                                     <motion.div
                                       className="bg-[#222]/80 rounded-lg p-3 border border-gray-700/50"
@@ -1485,7 +1599,7 @@ export default function WhatWeDoSection() {
                                         <Brain className="w-3 h-3 mr-1" />
                                         Predictive Maintenance
                                       </div>
-                                      
+
                                       <motion.div
                                         className="bg-blue-500/10 border border-blue-500/30 rounded p-2"
                                         initial={{ opacity: 0 }}
@@ -1499,7 +1613,7 @@ export default function WhatWeDoSection() {
                                       </motion.div>
                                     </motion.div>
                                   </div>
-                                  
+
                                   {/* Right column - Performance monitoring and AI recommendations */}
                                   <div className="col-span-1 flex flex-col gap-3">
                                     {/* Performance trends */}
@@ -1510,7 +1624,7 @@ export default function WhatWeDoSection() {
                                       transition={{ delay: 0.4 }}
                                     >
                                       <div className="text-xs text-gray-300 font-medium mb-2">Performance Trends</div>
-                                      
+
                                       <div className="h-20 relative">
                                         <svg className="w-full h-full">
                                           {/* Grid lines */}
@@ -1518,7 +1632,7 @@ export default function WhatWeDoSection() {
                                           <line x1="0" y1="33%" x2="100%" y2="33%" stroke="#444" strokeWidth="1" strokeDasharray="2,2" />
                                           <line x1="0" y1="66%" x2="100%" y2="66%" stroke="#444" strokeWidth="1" strokeDasharray="2,2" />
                                           <line x1="0" y1="100%" x2="100%" y2="100%" stroke="#444" strokeWidth="1" />
-                                          
+
                                           {/* Before AI optimization line */}
                                           <motion.path
                                             d="M0,60 C10,65 20,55 30,65 C40,75 50,60 60,50 L60,100 L0,100 Z"
@@ -1530,7 +1644,7 @@ export default function WhatWeDoSection() {
                                             animate={{ pathLength: 1 }}
                                             transition={{ delay: 0.9, duration: 1, ease: "easeInOut" }}
                                           />
-                                          
+
                                           {/* Vertical divider showing when AI was implemented */}
                                           <motion.line
                                             x1="60%" y1="0" x2="60%" y2="100%"
@@ -1541,7 +1655,7 @@ export default function WhatWeDoSection() {
                                             animate={{ opacity: 0.7 }}
                                             transition={{ delay: 1.2 }}
                                           />
-                                          
+
                                           <motion.text
                                             x="60%" y="10%"
                                             fontSize="8"
@@ -1553,7 +1667,7 @@ export default function WhatWeDoSection() {
                                           >
                                             AI Implemented
                                           </motion.text>
-                                          
+
                                           {/* After AI optimization line */}
                                           <motion.path
                                             d="M60,50 C70,35 80,25 90,20 C95,15 100,15 100,15 L100,100 L60,100 Z"
@@ -1565,7 +1679,7 @@ export default function WhatWeDoSection() {
                                             transition={{ delay: 1.5, duration: 1.5, ease: "easeInOut" }}
                                           />
                                         </svg>
-                                        
+
                                         {/* Performance improvement callout */}
                                         <motion.div
                                           className="absolute top-2 right-2 text-[8px] bg-[#333]/90 p-1 rounded border border-maverick-orange/30"
@@ -1577,13 +1691,13 @@ export default function WhatWeDoSection() {
                                           <div className="text-gray-300">with AI optimization</div>
                                         </motion.div>
                                       </div>
-                                      
+
                                       <div className="flex justify-between items-center text-[8px] text-gray-500 mt-1">
                                         <span>30 days ago</span>
                                         <span>Today</span>
                                       </div>
                                     </motion.div>
-                                    
+
                                     {/* Current optimization status */}
                                     <motion.div
                                       className="bg-[#222]/80 rounded-lg p-3 border border-gray-700/50"
@@ -1592,7 +1706,7 @@ export default function WhatWeDoSection() {
                                       transition={{ delay: 0.6 }}
                                     >
                                       <div className="text-xs text-gray-300 font-medium mb-2">AI Optimization Impact</div>
-                                      
+
                                       <div className="grid grid-cols-2 gap-2">
                                         {[
                                           { label: "Cost Savings", value: "48%", color: "#6ac47a" },
@@ -1610,7 +1724,7 @@ export default function WhatWeDoSection() {
                                           </motion.div>
                                         ))}
                                       </div>
-                                      
+
                                       {/* AI Assistant update notification */}
                                       <motion.div
                                         className="mt-3 bg-gradient-to-r from-maverick-orange/20 to-maverick-amber/20 border border-maverick-orange/40 rounded-md p-2"
@@ -1642,7 +1756,7 @@ export default function WhatWeDoSection() {
                                       </motion.div>
                                     </motion.div>
                                   </div>
-                                  
+
                                   {/* AI Value Proposition Badge */}
                                   <motion.div
                                     className="absolute top-12 left-4 bg-[#333]/90 border border-maverick-orange/30 shadow-lg px-2 py-1 rounded-md"
