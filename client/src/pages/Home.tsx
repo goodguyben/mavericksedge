@@ -47,10 +47,10 @@ export default function Home() {
           {/* Main hero section - H1 heading for SEO is inside this component */}
           <Hero />
           
-          {/* Main site sections */}
-          <WhyChooseUsSection />
+          {/* Main site sections - Reordered as requested */}
           <WhatWeDoSection />
           <CreativeWorkSection />
+          <WhyChooseUsSection />
           <ProcessSection />
           <ContactSection />
         </article>
