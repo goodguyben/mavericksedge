@@ -104,13 +104,13 @@ export default function Hero() {
               href="/services" 
               variant="primary"
             >
-              Explore services
+              Explore Services
             </Button>
             <Button 
               href="/contact" 
               variant="outline"
             >
-              Get in touch
+              Book Free Consultation
             </Button>
           </div>
         </motion.div>
