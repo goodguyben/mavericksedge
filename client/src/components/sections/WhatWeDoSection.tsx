@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Code, PenTool, Brain, Database, ArrowRight, Zap, Users, LineChart } from "lucide-react";
+import { Code, PenTool, Brain, Database, ArrowRight, Zap, Users, LineChart, Monitor, FileCode, Search, BarChart, GitBranch, Globe, LucideIcon } from "lucide-react";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { useIsMobile } from "@/hooks/use-mobile";
 

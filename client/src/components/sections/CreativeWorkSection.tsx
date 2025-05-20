@@ -1,7 +1,7 @@
 
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Link } from "@/components/ui/custom-button";
+import { Button } from "@/components/ui/custom-button";
 import { ArrowRight, Star, Eye, Heart, MessageSquare, Share2 } from "lucide-react";
 
 export default function CreativeWorkSection() {
@@ -241,8 +241,9 @@ export default function CreativeWorkSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.5 }}
         >
-          <Link 
+          <Button 
             href="/work" 
+            variant="custom"
             className="relative inline-flex items-center justify-center overflow-hidden px-8 py-4 bg-gradient-to-r from-maverick-orange/20 to-maverick-amber/20 rounded-xl text-white font-medium text-lg group"
           >
             <motion.span 
@@ -259,7 +260,7 @@ export default function CreativeWorkSection() {
                 <ArrowRight className="w-5 h-5" />
               </motion.span>
             </span>
-          </Link>
+          </Button>
         </motion.div>
       </div>
     </section>
