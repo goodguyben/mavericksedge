@@ -75,7 +75,7 @@ mode = "sequential"
 
 [[workflows.workflow.tasks]]
 task = "shell.exec"
-args = "cd client && npm install --legacy-peer-deps && npm run dev -- --host 0.0.0.0"
+args = "cd client && npm install && npm run dev -- --host 0.0.0.0"
 
 [[workflows.workflow]]
 name = "Server"
