@@ -11,7 +11,7 @@ import backgroundVideo from "@assets/3129977-uhd_3840_2160_30fps.mp4";
 export default function Hero() {
   const [scrolled, setScrolled] = useState(false);
   const [videoLoaded, setVideoLoaded] = useState(false);
-  const [heroOpacity, setHeroOpacity] = useState(1); // Added state for hero opacity
+  const [heroOpacity, setHeroOpacity] = useState(1);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
@@ -19,8 +19,8 @@ export default function Hero() {
       setScrolled(window.scrollY > 50);
       // Calculate heroOpacity based on scroll position
       const scrollY = window.scrollY;
-      const heroHeight = document.querySelector('.max-w-4xl')?.offsetHeight || 0; // Get hero section height
-      const opacityThreshold = 0.7; // Adjust as needed.  0 = fully transparent at the top, 1 at the bottom
+      const heroHeight = document.querySelector('.max-w-4xl')?.offsetHeight || 0;
+      const opacityThreshold = 0.7;
       const opacity = Math.max(0, 1 - (scrollY / (heroHeight * opacityThreshold)));
       setHeroOpacity(opacity);
     };
@@ -77,10 +77,10 @@ export default function Hero() {
       <div className="container mx-auto px-4 md:px-10 z-20 flex justify-center items-center w-full">
         <motion.div
           className="max-w-4xl text-center w-full"
-          initial={{ opacity: 1, y: 0 }} // Start fully opaque
-          animate={{ opacity: heroOpacity, y: 0 }} // Animate opacity based on scroll
+          initial={{ opacity: 1, y: 0 }}
+          animate={{ opacity: heroOpacity, y: 0 }}
           transition={{ duration: 0.3 }}
-          style={{ position: "relative" }} // Add position relative to fix scroll offset calculation
+          style={{ position: "relative" }}
         >
           <h1 className="text-5xl md:text-7xl font-heading font-extrabold tracking-wide leading-normal text-maverick-cream text-center">
             <div className="inline-block">
@@ -126,7 +126,7 @@ export default function Hero() {
         }}
         transition={{ duration: 0.3 }}
         onClick={() => scrollToSection("services")}
-        style={{ position: "relative" }} // Add position relative to fix scroll offset calculation
+        style={{ position: "relative" }}
       >
         <ChevronDown className="h-6 w-6 animate-bounce text-maverick-orange" />
       </motion.div>
