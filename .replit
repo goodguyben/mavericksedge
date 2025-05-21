@@ -16,7 +16,7 @@ localPort = 5000
 externalPort = 80
 
 [workflows]
-runButton = "Dev Server Fixed"
+runButton = "Client Dev Server"
 
 [[workflows.workflow]]
 name = "Project"
@@ -85,3 +85,21 @@ mode = "sequential"
 [[workflows.workflow.tasks]]
 task = "shell.exec"
 args = "cd server && npm install && NODE_ENV=development tsx server/index.ts"
+
+[[workflows.workflow]]
+name = "Client Dev Server"
+author = 40248203
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "cd client && npm install --legacy-peer-deps && npm run dev -- --host 0.0.0.0"
+
+[[workflows.workflow]]
+name = "Clean Install and Run"
+author = 40248203
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "cd client && rm -rf node_modules package-lock.json && npm install && npm run dev -- --host 0.0.0.0"
