@@ -111,26 +111,29 @@ export default function Hero() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.7, delay: 1.3 }}
-                className="inline-block"
+                className="inline-block mr-1"
               >
-                with{" "}
+                with
               </motion.span>
+              {" "}
               <motion.span 
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.7, delay: 1.8 }}
-                className="inline-block"
+                className="inline-block mr-1"
               >
-                innovation{" "}
+                innovation
               </motion.span>
+              {" "}
               <motion.span 
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.7, delay: 2.3 }}
-                className="inline-block"
+                className="inline-block mr-1"
               >
-                and{" "}
+                and
               </motion.span>
+              {" "}
               <motion.span 
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
