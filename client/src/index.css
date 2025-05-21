@@ -402,6 +402,16 @@
   }
 }
 
+/* Scroll fade animations */
+.scroll-fade-section {
+  will-change: opacity;
+  transition: opacity 0.3s ease-out;
+}
+
+.smooth-transition {
+  transition: all 0.3s ease-out;
+}
+
 /* Image masking */
 .mask-image {
   -webkit-mask-image: linear-gradient(to right, transparent, black 20%, black 80%, transparent);

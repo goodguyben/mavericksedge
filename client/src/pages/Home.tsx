@@ -7,6 +7,7 @@ import WhyChooseUsSection from "@/components/sections/WhyChooseUsSection";
 import WhatWeDoSection from "@/components/sections/WhatWeDoSection";
 import CreativeWorkSection from "@/components/sections/CreativeWorkSection";
 import { useEffect } from "react";
+import { ScrollFadeSection } from "@/components/ui/scroll-fade-section";
 
 export default function Home() {
   // Track page view for analytics purposes
@@ -47,12 +48,26 @@ export default function Home() {
           {/* Main hero section - H1 heading for SEO is inside this component */}
           <Hero />
           
-          {/* Main site sections - Reordered as requested */}
-          <WhatWeDoSection />
-          <CreativeWorkSection />
-          <WhyChooseUsSection />
-          <ProcessSection />
-          <ContactSection />
+          {/* Main site sections with scroll fade effect */}
+          <ScrollFadeSection id="services" fadeSpeed={0.6} fadeOffset={0.2}>
+            <WhatWeDoSection />
+          </ScrollFadeSection>
+          
+          <ScrollFadeSection fadeSpeed={0.6} fadeOffset={0.2}>
+            <CreativeWorkSection />
+          </ScrollFadeSection>
+          
+          <ScrollFadeSection fadeSpeed={0.6} fadeOffset={0.2}>
+            <WhyChooseUsSection />
+          </ScrollFadeSection>
+          
+          <ScrollFadeSection fadeSpeed={0.6} fadeOffset={0.2}>
+            <ProcessSection />
+          </ScrollFadeSection>
+          
+          <ScrollFadeSection fadeSpeed={0.6} fadeOffset={0.2}>
+            <ContactSection />
+          </ScrollFadeSection>
         </article>
       </motion.div>
     </>

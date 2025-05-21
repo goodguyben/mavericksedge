@@ -1,28 +1,20 @@
 import { ReactNode } from "react";
 import Header from "./Header";
-import FooterWrapper from "./FooterWrapper";
-import PageTransition from "./PageTransition";
-import { useLocation } from "wouter";
-import { useEffect } from "react";
+import Footer from "./Footer";
 
-interface LayoutProps {
-  children: ReactNode;
-}
-
-export default function Layout({ children }: LayoutProps) {
-  const [location] = useLocation();
-
+export default function Layout({ children }: { children: React.ReactNode }) {
   // Scroll to top on route change
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, [location]);
+  }, []);
 
   return (
-    <div className="min-h-screen flex flex-col">
-      <PageTransition />
+    <div className="min-h-screen flex flex-col bg-maverick-charcoal overflow-x-hidden">
       <Header />
-      <main id="main-content" className="flex-grow" role="main" aria-label="Main content">{children}</main>
-      <FooterWrapper />
+      <main className="flex-grow">
+        {children}
+      </main>
+      <Footer />
     </div>
   );
 }
