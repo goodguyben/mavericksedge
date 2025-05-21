@@ -1,36 +1,11 @@
 import { motion } from "framer-motion";
-import React, { useEffect, useState, useRef, Suspense } from "react";
+import { useEffect, useState, useRef } from "react";
 import { ChevronDown } from "lucide-react";
 import { scrollToSection } from "@/lib/scroll";
 import { Button } from "@/components/ui/custom-button";
-import { Canvas } from "@react-three/fiber";
-import { useGLTF, OrbitControls, Environment, Stage } from "@react-three/drei";
 
 // Import video directly using Vite's asset handling
 import backgroundVideo from "@assets/3129977-uhd_3840_2160_30fps.mp4";
-
-// 3D Model Component
-function RoboModel() {
-  const { scene } = useGLTF('/Robo_Companion_0521033517_texture.glb');
-  
-  // Error boundary to prevent crashes if model fails to load
-  const [modelError, setModelError] = useState(false);
-  
-  useEffect(() => {
-    if (!scene) {
-      setModelError(true);
-    }
-  }, [scene]);
-  
-  if (modelError) {
-    return null; // Return nothing if model fails to load
-  }
-  
-  return <primitive object={scene} scale={3} position={[0, -2, 0]} />;
-}
-
-// Preload the model
-useGLTF.preload('/Robo_Companion_0521033517_texture.glb');
 
 export default function Hero() {
   const [scrolled, setScrolled] = useState(false);
@@ -139,43 +114,6 @@ export default function Hero() {
             </Button>
           </div>
         </motion.div>
-        {/* 3D Model Canvas */}
-        <div style={{ width: '400px', height: '300px', position: 'relative' }} className="hidden md:block">
-          {/* Use try-catch in a conditional rendering to prevent rendering issues */}
-          {(() => {
-            try {
-              return (
-                <Canvas 
-                  dpr={[1, 1.5]} 
-                  shadows 
-                  camera={{ fov: 45, position: [0, 0, 5] }}
-                  gl={{ antialias: false, powerPreference: 'default' }}
-                  onCreated={({ gl }) => {
-                    gl.setClearColor(0x000000, 0);
-                  }}
-                >
-                  <Suspense fallback={null}>
-                    <Stage environment="apartment" intensity={0.5}>
-                      <RoboModel />
-                    </Stage>
-                    <OrbitControls 
-                      autoRotate 
-                      autoRotateSpeed={0.5} 
-                      minPolarAngle={Math.PI / 3} 
-                      maxPolarAngle={Math.PI / 3} 
-                      enableZoom={false}
-                      enablePan={false}
-                    />
-                  </Suspense>
-                  <Environment preset="city" background={false} />
-                </Canvas>
-              );
-            } catch (error) {
-              console.error("Error rendering 3D model:", error);
-              return <div className="w-full h-full flex items-center justify-center text-maverick-cream">Robot model loading failed</div>;
-            }
-          })()}
-        </div>
       </div>
 
       <motion.div
