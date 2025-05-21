@@ -20,7 +20,7 @@ localPort = 5173
 externalPort = 5173
 
 [workflows]
-runButton = "Client Dev Server"
+runButton = "Run Client"
 
 [[workflows.workflow]]
 name = "Project"
@@ -107,3 +107,12 @@ mode = "sequential"
 [[workflows.workflow.tasks]]
 task = "shell.exec"
 args = "cd client && rm -rf node_modules package-lock.json && npm install && npm run dev -- --host 0.0.0.0"
+
+[[workflows.workflow]]
+name = "Run Client"
+author = 40248203
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "cd client && npm install --legacy-peer-deps && npm run dev -- --host 0.0.0.0"
