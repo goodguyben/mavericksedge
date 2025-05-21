@@ -1,6 +1,6 @@
 
 import { Link } from "wouter";
-import logoPath from "@assets/logo-transparent-thumb4x.png";
+import logoPath from "../assets/logo-transparent-thumb4x.png";
 
 interface LogoProps {
   size?: "small" | "medium" | "large";

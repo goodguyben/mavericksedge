@@ -15,6 +15,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  .font-heading {
+    font-family: 'Outfit', 'system-ui', 'sans-serif';
+  }
+}
+
 @keyframes ripple {
   to {
     transform: scale(4);
