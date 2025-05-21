@@ -1,192 +1,74 @@
-import { useEffect, useState, useRef } from "react";
-import { motion } from "framer-motion";
-import { Link } from "wouter";
 
-// Sample portfolio items - in a real application, this would come from a CMS or API
-// Each item now has multiple images that will flip through
-const portfolioItems: PortfolioItem[] = [
-  {
-    id: "work1",
-    title: "E-Commerce Platform",
-    description: "Modern shopping experience with intuitive UX",
-    category: "Web Development",
-    images: [
-      "https://images.unsplash.com/photo-1472851294608-062f824d29cc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80",
-      "https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80",
-      "https://images.unsplash.com/photo-1581318597099-84bbeec0fa0d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80"
-    ],
-    size: "large" // large items span more cells
-  },
-  {
-    id: "work2",
-    title: "Financial Dashboard",
-    description: "Data-driven insights with elegant visualization",
-    category: "Web Application",
-    images: [
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80",
-      "https://images.unsplash.com/photo-1553408226-03e243a2fdd9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80",
-      "https://images.unsplash.com/photo-1608222351212-18fe0ec7b13b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80"
-    ],
-    size: "regular"
-  },
-  {
-    id: "work3",
-    title: "Health & Wellness App",
-    description: "Intuitive mobile experience for better living",
-    category: "Mobile App",
-    images: [
-      "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80",
-      "https://images.unsplash.com/photo-1559297434-fae8a1916a79?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80",
-      "https://images.unsplash.com/photo-1498509112969-1effd2d9b090?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80"
-    ],
-    size: "tall"
-  },
-  {
-    id: "work4",
-    title: "Real Estate Platform",
-    description: "Immersive property browsing experience",
-    category: "Web Platform",
-    images: [
-      "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80",
-      "https://images.unsplash.com/photo-1507086182422-97bd7ca2413b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80",
-      "https://images.unsplash.com/photo-1448630360428-65456885c650?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80"
-    ],
-    size: "regular"
-  },
-  {
-    id: "work5",
-    title: "Educational Portal",
-    description: "Interactive learning environment for students",
-    category: "Learning Platform",
-    images: [
-      "https://images.unsplash.com/photo-1620912189875-3471929162de?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80",
-      "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80",
-      "https://images.unsplash.com/photo-1501504905252-473c47e087f8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80"
-    ],
-    size: "wide"
-  },
-  {
-    id: "work6",
-    title: "SaaS Application",
-    description: "Cloud-based enterprise management solution",
-    category: "Enterprise Software",
-    images: [
-      "https://images.unsplash.com/photo-1522542550221-31fd19575a2d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80",
-      "https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1674&q=80",
-      "https://images.unsplash.com/photo-1551135049-8a33b5883817?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80"
-    ],
-    size: "regular"
-  },
-  {
-    id: "work7",
-    title: "Travel Booking Platform",
-    description: "Seamless booking experience for travelers",
-    category: "Travel & Leisure",
-    images: [
-      "https://images.unsplash.com/photo-1526498460520-4c246339dccb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80",
-      "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1742&q=80",
-      "https://images.unsplash.com/photo-1530521954074-e64f6810b32d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80"
-    ],
-    size: "large"
-  }
-];
-
-// Define the portfolio item type
-interface PortfolioItem {
-  id: string;
-  title: string;
-  description: string;
-  category: string;
-  images: string[];
-  size: "regular" | "large" | "tall" | "wide";
-}
-
-// Component for individual bento grid item with flip animation
-const BentoGridItem = ({ item }: { item: PortfolioItem }) => {
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [isFlipping, setIsFlipping] = useState(false);
-  
-  // Automatically flip through images every few seconds
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setIsFlipping(true);
-      setTimeout(() => {
-        setCurrentImageIndex((prevIndex) => 
-          prevIndex === item.images.length - 1 ? 0 : prevIndex + 1
-        );
-        setIsFlipping(false);
-      }, 500); // Half of the flip animation duration
-    }, 5000); // Change image every 5 seconds
-    
-    return () => clearInterval(interval);
-  }, [item.images.length]);
-  
-  // Define size classes for different grid items
-  const sizeClasses = {
-    regular: "col-span-1 row-span-1",
-    large: "col-span-2 row-span-2",
-    tall: "col-span-1 row-span-2",
-    wide: "col-span-2 row-span-1"
-  };
-  
-  // Height classes to ensure proper aspect ratios
-  const heightClasses = {
-    regular: "h-64 md:h-72",
-    large: "h-full min-h-[24rem]",
-    tall: "h-full min-h-[36rem]",
-    wide: "h-64 md:h-72"
-  };
-  
-  return (
-    <motion.div 
-      className={`relative overflow-hidden rounded-xl group ${sizeClasses[item.size]} ${heightClasses[item.size]}`}
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5 }}
-    >
-      <div 
-        className={`w-full h-full relative transition-transform duration-1000 transform ${
-          isFlipping ? 'scale-[1.05] blur-sm' : 'scale-100'
-        }`}
-      >
-        <img 
-          src={item.images[currentImageIndex]} 
-          alt={`${item.title} - Image ${currentImageIndex + 1}`}
-          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent opacity-80 transition-opacity duration-300 group-hover:opacity-90"></div>
-      </div>
-      
-      {/* Content Overlay */}
-      <div className="absolute bottom-0 left-0 right-0 p-6 z-10 transform transition-transform duration-300 group-hover:translate-y-0">
-        <div className="flex flex-col space-y-1">
-          <span className="text-maverick-orange font-medium text-sm">{item.category}</span>
-          <h3 className="text-xl md:text-2xl font-bold text-white">{item.title}</h3>
-          <p className="text-gray-300 text-sm mt-1 line-clamp-2">{item.description}</p>
-        </div>
-      </div>
-      
-      {/* Animation indicator dots */}
-      <div className="absolute bottom-3 right-3 flex space-x-1">
-        {item.images.map((_, idx: number) => (
-          <div 
-            key={idx} 
-            className={`w-1.5 h-1.5 rounded-full ${
-              idx === currentImageIndex 
-                ? 'bg-maverick-orange' 
-                : 'bg-white/30'
-            }`}
-          />
-        ))}
-      </div>
-    </motion.div>
-  );
-};
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Link } from "@/components/ui/custom-button";
+import { ArrowRight, Star, Eye, Heart, MessageSquare, Share2 } from "lucide-react";
 
 export default function CreativeWorkSection() {
+  const [hoveredItem, setHoveredItem] = useState<string | null>(null);
+  
+  // Sample portfolio items - you would replace these with your actual data
+  const portfolioItems = [
+    {
+      id: "web-design-1",
+      title: "Modern E-commerce Platform",
+      category: "Web Design",
+      image: "https://images.unsplash.com/photo-1552067175-c9e351c05ec9?q=80&w=1974&auto=format&fit=crop",
+      client: "Artisan Goods Co.",
+      description: "Fully responsive e-commerce platform with integrated AI product recommendations",
+      stats: { likes: 142, views: 3782, comments: 28 }
+    },
+    {
+      id: "marketing-1",
+      title: "Social Media Campaign",
+      category: "Digital Marketing",
+      image: "https://images.unsplash.com/photo-1552581245-c34f4d69025a?q=80&w=2070&auto=format&fit=crop",
+      client: "Eco Living Brand",
+      description: "Multi-channel campaign focusing on sustainable lifestyle products",
+      stats: { likes: 98, views: 2145, comments: 17 },
+      featured: true
+    },
+    {
+      id: "ai-integration-1",
+      title: "AI-Powered Customer Support",
+      category: "AI Integration",
+      image: "https://images.unsplash.com/photo-1599338572588-5cd00bcdf943?q=80&w=1974&auto=format&fit=crop",
+      client: "Tech Solutions Inc.",
+      description: "Advanced chatbot with natural language processing and customer history integration",
+      stats: { likes: 215, views: 4322, comments: 42 }
+    },
+    {
+      id: "web-app-1",
+      title: "Healthcare Patient Portal",
+      category: "Web Application",
+      image: "https://images.unsplash.com/photo-1601034913836-a1f43e143611?q=80&w=1964&auto=format&fit=crop",
+      client: "Metro Health Center",
+      description: "Secure, HIPAA-compliant portal for patient data management and telemedicine",
+      stats: { likes: 87, views: 1943, comments: 12 }
+    }
+  ];
+
   return (
     <section className="py-24 px-5 md:px-10 bg-[#0D0D0D] relative overflow-hidden">
+      {/* Animated background elements */}
+      <motion.div 
+        className="absolute top-40 left-10 w-64 h-64 rounded-full bg-gradient-to-tr from-maverick-orange/15 to-transparent opacity-30 blur-3xl"
+        animate={{ 
+          scale: [1, 1.2, 1],
+          x: [0, 50, 0] 
+        }}
+        transition={{ duration: 15, repeat: Infinity, repeatType: "reverse" }}
+      />
+
+      <motion.div 
+        className="absolute bottom-20 right-10 w-80 h-80 rounded-full bg-gradient-to-bl from-maverick-amber/15 to-transparent opacity-20 blur-3xl"
+        animate={{ 
+          scale: [1.2, 1, 1.2],
+          y: [0, -30, 0] 
+        }}
+        transition={{ duration: 18, repeat: Infinity, repeatType: "reverse" }}
+      />
+      
       {/* Background pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute inset-0 bg-grid-pattern"></div>
@@ -200,25 +82,185 @@ export default function CreativeWorkSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 font-heading">Our <span className="text-maverick-orange">Creative Work</span></h2>
-          <p className="text-[#BBBBBB] text-xl max-w-3xl mx-auto">
-            Explore our portfolio of innovative designs and digital experiences
-          </p>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="inline-block px-6 py-2 bg-maverick-orange/10 rounded-full border border-maverick-orange/20 mb-6"
+          >
+            <span className="text-maverick-orange font-medium flex items-center">
+              <Star className="w-4 h-4 mr-2" />
+              Portfolio showcase
+            </span>
+          </motion.div>
+
+          <motion.h2 
+            className="text-4xl md:text-5xl font-bold mb-4 font-heading relative inline-block"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
+            Our <span className="text-maverick-orange">Creative Work</span>
+            <motion.div 
+              className="absolute -bottom-2 left-0 h-1 bg-gradient-to-r from-maverick-orange to-maverick-amber"
+              initial={{ width: 0 }}
+              whileInView={{ width: "100%" }}
+              viewport={{ once: true }}
+              transition={{ duration: 1, delay: 0.5 }}
+            />
+          </motion.h2>
+          
+          <motion.p 
+            className="text-[#BBBBBB] text-xl max-w-3xl mx-auto"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+          >
+            Explore our portfolio of innovative designs and digital experiences that have transformed brands and driven measurable business results
+          </motion.p>
         </motion.div>
         
-        {/* Bento Grid Layout */}
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
-          {portfolioItems.map((item) => (
-            <BentoGridItem key={item.id} item={item} />
+        {/* Enhanced Portfolio Gallery */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+          {portfolioItems.map((item, index) => (
+            <motion.div
+              key={item.id}
+              className="group relative"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.15 }}
+              onMouseEnter={() => setHoveredItem(item.id)}
+              onMouseLeave={() => setHoveredItem(null)}
+            >
+              {/* Featured badge if applicable */}
+              {item.featured && (
+                <motion.div 
+                  className="absolute top-3 right-3 z-20 bg-maverick-orange text-white text-xs px-2 py-1 rounded-full flex items-center shadow-lg"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.2 + index * 0.1 }}
+                >
+                  <Star className="w-3 h-3 mr-1 fill-white" />
+                  Featured
+                </motion.div>
+              )}
+
+              {/* Image container with overlay */}
+              <div className="overflow-hidden rounded-xl aspect-[4/3] relative">
+                {/* Background image */}
+                <motion.img 
+                  src={item.image} 
+                  alt={item.title}
+                  className="object-cover w-full h-full transition-all duration-700"
+                  whileHover={{ scale: 1.08 }}
+                />
+                
+                {/* Hover overlay */}
+                <motion.div 
+                  className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent p-5 flex flex-col justify-end"
+                  initial={{ opacity: 0 }}
+                  whileHover={{ opacity: 1 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <motion.div 
+                    initial={{ y: 20, opacity: 0 }}
+                    whileHover={{ y: 0, opacity: 1 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <div className="text-maverick-orange text-sm mb-1">{item.category}</div>
+                    <h3 className="text-xl font-bold text-white mb-2">{item.title}</h3>
+                    <p className="text-gray-300 text-sm mb-4">{item.description}</p>
+                    
+                    {/* Stats row */}
+                    <div className="flex items-center justify-between text-xs text-gray-400 mb-3">
+                      <div className="flex items-center">
+                        <Heart className="w-3 h-3 mr-1 text-pink-500" />
+                        {item.stats.likes}
+                      </div>
+                      <div className="flex items-center">
+                        <Eye className="w-3 h-3 mr-1 text-blue-400" />
+                        {item.stats.views}
+                      </div>
+                      <div className="flex items-center">
+                        <MessageSquare className="w-3 h-3 mr-1 text-green-400" />
+                        {item.stats.comments}
+                      </div>
+                      <div className="flex items-center">
+                        <Share2 className="w-3 h-3 mr-1 text-purple-400" />
+                      </div>
+                    </div>
+                    
+                    <motion.button
+                      className="w-full py-2 px-4 bg-maverick-orange text-white rounded-lg flex items-center justify-center gap-2 text-sm font-medium"
+                      whileHover={{ scale: 1.03 }}
+                      whileTap={{ scale: 0.98 }}
+                    >
+                      View details <ArrowRight className="w-4 h-4" />
+                    </motion.button>
+                  </motion.div>
+                </motion.div>
+              </div>
+              
+              {/* Item details below image */}
+              <div className="mt-3">
+                <div className="flex justify-between items-start">
+                  <div>
+                    <h3 className="font-bold text-lg leading-tight group-hover:text-maverick-orange transition-colors">{item.title}</h3>
+                    <p className="text-sm text-[#888888]">Client: {item.client}</p>
+                  </div>
+                  <motion.div
+                    className="w-8 h-8 rounded-full bg-[#1A1A1A] flex items-center justify-center border border-gray-800"
+                    whileHover={{ backgroundColor: "#FF5A00", rotate: 90 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <ArrowRight className="w-4 h-4" />
+                  </motion.div>
+                </div>
+              </div>
+              
+              {/* Animated bottom border line */}
+              <motion.div 
+                className="h-0.5 bg-maverick-orange mt-2 rounded-full"
+                initial={{ width: 0 }}
+                whileInView={{ width: hoveredItem === item.id ? "100%" : "30%" }}
+                transition={{ duration: 0.5 }}
+              />
+            </motion.div>
           ))}
         </div>
         
         {/* View All Projects Button */}
-        <div className="mt-12 text-center">
-          <Link href="/work" className="maverick-button maverick-button-outline inline-flex items-center justify-center px-6 py-2 text-base font-medium rounded-md md:py-3 md:text-lg md:px-8">
-            View all projects
+        <motion.div 
+          className="mt-16 text-center"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.5 }}
+        >
+          <Link 
+            href="/work" 
+            className="relative inline-flex items-center justify-center overflow-hidden px-8 py-4 bg-gradient-to-r from-maverick-orange/20 to-maverick-amber/20 rounded-xl text-white font-medium text-lg group"
+          >
+            <motion.span 
+              className="absolute inset-0 bg-gradient-to-r from-maverick-orange to-maverick-amber opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+              whileHover={{ opacity: 1 }}
+            />
+            <span className="relative flex items-center">
+              View all projects
+              <motion.span
+                className="ml-2"
+                animate={{ x: [0, 5, 0] }}
+                transition={{ duration: 1.5, repeat: Infinity }}
+              >
+                <ArrowRight className="w-5 h-5" />
+              </motion.span>
+            </span>
           </Link>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
