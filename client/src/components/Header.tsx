@@ -52,19 +52,12 @@ export default function Header() {
     <motion.header 
       className={headerClasses} 
       role="banner"
-      initial={{ y: -100, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
       transition={{ 
-        duration: 2.2, 
-        delay: 4.2,
-        opacity: { duration: 2.5, ease: "easeInOut" },
-        y: { 
-          duration: 2.2, 
-          type: "spring", 
-          stiffness: 25, 
-          damping: 22,
-          mass: 1.2
-        }
+        duration: 2.5,
+        delay: 4.5,
+        ease: "easeInOut"
       }}
     >
       <div className="container mx-auto flex justify-between items-center">
