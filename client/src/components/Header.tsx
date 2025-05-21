@@ -49,7 +49,7 @@ export default function Header() {
   }
 
   return (
-    <motion.header className={headerClasses} role="banner">
+    <header className={headerClasses} role="banner">
       <div className="container mx-auto flex justify-between items-center">
         <Link href="/" className="flex items-center" aria-label="Mavericks Edge Home">
           <Logo size={isMobile ? "small" : "large"} noLink={true} showText={false}/>
@@ -184,7 +184,7 @@ export default function Header() {
                 >
                   Home
                 </Link>
-
+                
                 {/* Services dropdown */}
                 <div className="w-full text-center border-b border-maverick-slate/20 py-3">
                   <button 
@@ -257,7 +257,7 @@ export default function Header() {
                     </Link>
                   </div>
                 </div>
-
+                
                 {/* Mobile Pricing dropdown */}
                 <div className="w-full text-center border-b border-maverick-slate/20 py-3">
                   <button 
@@ -369,7 +369,6 @@ export default function Header() {
           />
         )}
       </AnimatePresence>
-    </div>
-    </motion.header>
+    </header>
   );
 }
