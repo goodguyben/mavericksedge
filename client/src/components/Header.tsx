@@ -54,12 +54,7 @@ export default function Header() {
       role="banner"
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      transition={{ 
-        duration: 1.8, 
-        delay: 4.2,
-        opacity: { duration: 2, ease: "easeInOut" },
-        y: { duration: 1.8, type: "spring", stiffness: 40, damping: 20 }
-      }}
+      transition={{ duration: 0.6, delay: 4.2 }}
     >
       <div className="container mx-auto flex justify-between items-center">
         <Link href="/" className="flex items-center" aria-label="Mavericks Edge Home">
