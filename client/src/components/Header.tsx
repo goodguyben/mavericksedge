@@ -54,7 +54,18 @@ export default function Header() {
       role="banner"
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.6, delay: 4.2 }}
+      transition={{ 
+        duration: 2.2, 
+        delay: 4.2,
+        opacity: { duration: 2.5, ease: "easeInOut" },
+        y: { 
+          duration: 2.2, 
+          type: "spring", 
+          stiffness: 25, 
+          damping: 22,
+          mass: 1.2
+        }
+      }}
     >
       <div className="container mx-auto flex justify-between items-center">
         <Link href="/" className="flex items-center" aria-label="Mavericks Edge Home">
@@ -190,7 +201,7 @@ export default function Header() {
                 >
                   Home
                 </Link>
-                
+
                 {/* Services dropdown */}
                 <div className="w-full text-center border-b border-maverick-slate/20 py-3">
                   <button 
@@ -263,7 +274,7 @@ export default function Header() {
                     </Link>
                   </div>
                 </div>
-                
+
                 {/* Mobile Pricing dropdown */}
                 <div className="w-full text-center border-b border-maverick-slate/20 py-3">
                   <button 
