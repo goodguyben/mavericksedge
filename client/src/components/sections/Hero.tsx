@@ -5,7 +5,7 @@ import { scrollToSection } from "@/lib/scroll";
 import { Button } from "@/components/ui/custom-button";
 
 // Import video directly using Vite's asset handling
-import backgroundVideo from "@assets/3129977-uhd_3840_2160_30fps.mp4";
+import backgroundVideo from "../../../assets/3129977-uhd_3840_2160_30fps.mp4";
 
 export default function Hero() {
   const [scrolled, setScrolled] = useState(false);
