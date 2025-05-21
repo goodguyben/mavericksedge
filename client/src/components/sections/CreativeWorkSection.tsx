@@ -1,6 +1,16 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "wouter";
+
+// Define the portfolio item type
+interface PortfolioItem {
+  id: string;
+  title: string;
+  description: string;
+  category: string;
+  images: string[];
+  size: "regular" | "large" | "tall" | "wide";
+}
 
 // Sample portfolio items - in a real application, this would come from a CMS or API
 // Each item now has multiple images that will flip through
@@ -15,7 +25,7 @@ const portfolioItems: PortfolioItem[] = [
       "https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80",
       "https://images.unsplash.com/photo-1581318597099-84bbeec0fa0d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80"
     ],
-    size: "large" // large items span more cells
+    size: "large"
   },
   {
     id: "work2",
@@ -91,16 +101,6 @@ const portfolioItems: PortfolioItem[] = [
   }
 ];
 
-// Define the portfolio item type
-interface PortfolioItem {
-  id: string;
-  title: string;
-  description: string;
-  category: string;
-  images: string[];
-  size: "regular" | "large" | "tall" | "wide";
-}
-
 // Component for individual bento grid item with flip animation
 const BentoGridItem = ({ item }: { item: PortfolioItem }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -122,7 +122,7 @@ const BentoGridItem = ({ item }: { item: PortfolioItem }) => {
   }, [item.images.length]);
   
   // Define size classes for different grid items
-  const sizeClasses = {
+  const sizeClasses: Record<string, string> = {
     regular: "col-span-1 row-span-1",
     large: "col-span-2 row-span-2",
     tall: "col-span-1 row-span-2",
@@ -130,7 +130,7 @@ const BentoGridItem = ({ item }: { item: PortfolioItem }) => {
   };
   
   // Height classes to ensure proper aspect ratios
-  const heightClasses = {
+  const heightClasses: Record<string, string> = {
     regular: "h-64 md:h-72",
     large: "h-full min-h-[24rem]",
     tall: "h-full min-h-[36rem]",
@@ -169,7 +169,7 @@ const BentoGridItem = ({ item }: { item: PortfolioItem }) => {
       
       {/* Animation indicator dots */}
       <div className="absolute bottom-3 right-3 flex space-x-1">
-        {item.images.map((_, idx: number) => (
+        {item.images.map((_: string, idx: number) => (
           <div 
             key={idx} 
             className={`w-1.5 h-1.5 rounded-full ${
