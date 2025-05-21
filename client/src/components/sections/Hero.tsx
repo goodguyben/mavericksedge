@@ -11,9 +11,26 @@ import backgroundVideo from "@assets/3129977-uhd_3840_2160_30fps.mp4";
 
 // 3D Model Component
 function RoboModel() {
-  const { scene } = useGLTF('/Robo_Companion_0521033517_texture.glb');
+  const { scene, nodes, materials } = useGLTF('/Robo_Companion_0521033517_texture.glb');
+  
+  // Error boundary to prevent crashes if model fails to load
+  const [modelError, setModelError] = React.useState(false);
+  
+  React.useEffect(() => {
+    if (!scene) {
+      setModelError(true);
+    }
+  }, [scene]);
+  
+  if (modelError) {
+    return null; // Return nothing if model fails to load
+  }
+  
   return <primitive object={scene} scale={3} position={[0, -2, 0]} />;
 }
+
+// Preload the model
+useGLTF.preload('/Robo_Companion_0521033517_texture.glb');
 
 export default function Hero() {
   const [scrolled, setScrolled] = useState(false);
@@ -123,15 +140,27 @@ export default function Hero() {
           </div>
         </motion.div>
         {/* 3D Model Canvas */}
-        <div style={{ width: '400px', height: '300px', position: 'relative' }}>
-          <Canvas dpr={[1, 2]} shadows camera={{ fov: 45, position: [0, 0, 5] }}>
+        <div style={{ width: '400px', height: '300px', position: 'relative' }} className="hidden md:block">
+          <Canvas 
+            dpr={[1, 1.5]} 
+            shadows 
+            camera={{ fov: 45, position: [0, 0, 5] }}
+            gl={{ antialias: false, powerPreference: 'high-performance' }}
+          >
             <Suspense fallback={null}>
-              <Stage environment="apartment">
+              <Stage environment="apartment" intensity={0.5}>
                 <RoboModel />
               </Stage>
-              <OrbitControls autoRotate autoRotateSpeed={0.5} minPolarAngle={Math.PI / 3} maxPolarAngle={Math.PI / 3} enableZoom={false} />
+              <OrbitControls 
+                autoRotate 
+                autoRotateSpeed={0.5} 
+                minPolarAngle={Math.PI / 3} 
+                maxPolarAngle={Math.PI / 3} 
+                enableZoom={false}
+                enablePan={false}
+              />
             </Suspense>
-            <Environment preset="city" background blur={0.5} />
+            <Environment preset="city" background={false} />
           </Canvas>
         </div>
       </div>
