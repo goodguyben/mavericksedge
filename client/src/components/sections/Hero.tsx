@@ -1,11 +1,19 @@
 import { motion } from "framer-motion";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, Suspense } from "react";
 import { ChevronDown } from "lucide-react";
 import { scrollToSection } from "@/lib/scroll";
 import { Button } from "@/components/ui/custom-button";
+import { Canvas } from "@react-three/fiber";
+import { useGLTF, OrbitControls, Environment, Stage } from "@react-three/drei";
 
 // Import video directly using Vite's asset handling
 import backgroundVideo from "@assets/3129977-uhd_3840_2160_30fps.mp4";
+
+// 3D Model Component
+function RoboModel() {
+  const { scene } = useGLTF('/Robo_Companion_0521033517_texture.glb');
+  return <primitive object={scene} scale={3} position={[0, -2, 0]} />;
+}
 
 export default function Hero() {
   const [scrolled, setScrolled] = useState(false);
@@ -114,6 +122,18 @@ export default function Hero() {
             </Button>
           </div>
         </motion.div>
+        {/* 3D Model Canvas */}
+        <div style={{ width: '400px', height: '300px' }}>
+          <Canvas dpr={[1, 2]} shadows camera={{ fov: 45, position: [0, 0, 5] }}>
+            <Suspense fallback={null}>
+              <Stage environment="apartment">
+                <RoboModel />
+              </Stage>
+              <OrbitControls autoRotate autoRotateSpeed={0.5} minPolarAngle={Math.PI / 3} maxPolarAngle={Math.PI / 3} enableZoom={false} />
+            </Suspense>
+            <Environment preset="city" background blur={0.5} />
+          </Canvas>
+        </div>
       </div>
 
       <motion.div
