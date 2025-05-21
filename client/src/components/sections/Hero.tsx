@@ -1,4 +1,3 @@
-
 import { motion } from "framer-motion";
 import { useEffect, useState, useRef } from "react";
 import { ChevronDown } from "lucide-react";
@@ -80,7 +79,6 @@ export default function Hero() {
           initial={{ opacity: 1, y: 0 }} // Start fully opaque
           animate={{ opacity: heroOpacity, y: 0 }} // Animate opacity based on scroll
           transition={{ duration: 0.3 }}
-          style={{ position: "relative" }} // Add position relative to fix scroll offset calculation
         >
           <h1 className="text-5xl md:text-7xl font-heading font-extrabold tracking-wide leading-normal text-maverick-cream text-center">
             <div className="inline-block">
@@ -126,7 +124,6 @@ export default function Hero() {
         }}
         transition={{ duration: 0.3 }}
         onClick={() => scrollToSection("services")}
-        style={{ position: "relative" }} // Add position relative to fix scroll offset calculation
       >
         <ChevronDown className="h-6 w-6 animate-bounce text-maverick-orange" />
       </motion.div>

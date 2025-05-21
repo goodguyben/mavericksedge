@@ -2,7 +2,7 @@ import type { Config } from "tailwindcss";
 
 export default {
   darkMode: ["class"],
-  content: ["./client/index.html", "./client/src/**/*.{js,jsx,ts,tsx}", "./index.html", "./client/src/index.css"],
+  content: ["./client/index.html", "./client/src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     fontFamily: {
       sans: ['Space Grotesk', 'system-ui', 'sans-serif'],

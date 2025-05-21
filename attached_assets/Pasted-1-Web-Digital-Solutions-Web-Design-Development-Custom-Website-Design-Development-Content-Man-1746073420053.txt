@@ -1,0 +1,43 @@
+1. Web & Digital Solutions
+Web Design & Development:
+Custom Website Design & Development
+Content Management System (CMS) Development & Customization (e.g., WordPress)
+E-commerce Platform Development & Integration (e.g., Shopify, WooCommerce)
+Custom Web Application Development
+User Experience (UX) & User Interface (UI) Design
+Third-Party API Integrations (Connecting your website to other software)
+Website Operations & Optimization:
+Website Hosting, Maintenance & Support Plans
+Website Performance & Speed Optimization
+Website Security Audits & Hardening
+Web Accessibility Compliance Auditing & Remediation (WCAG Standards)
+Website Analytics Setup & Configuration (e.g., Google Analytics 4)
+Client CMS Training & Documentation
+2. Marketing, Creative & Event Services
+Strategy, Brand & Creative:
+Comprehensive Digital Marketing Strategy
+Marketing Analytics, Reporting & Data Insights
+Branding & Identity Development (Logo, Style Guides)
+Graphic Design for Web & Print
+Digital Marketing Execution:
+Search Engine Optimization (SEO) - Local, National, Technical
+Pay-Per-Click (PPC) Advertising Management (Google Ads, Social Media Ads)
+Social Media Strategy & Management
+Email Marketing Campaigns & Automation
+Conversion Rate Optimization (CRO)
+3. AI Integration & Automation Services
+AI Strategy & Integration Planning
+Full tech stack, workflow, and data audit to assess AI readiness
+Custom AI roadmap development with industry-specific use cases
+AI tool and platform selection tailored to budget and scalability
+Governance strategy aligned with compliance (PIPEDA, GDPR, etc.)
+AI Implementation & Development
+AI-powered workflow automation, agents, and chatbots
+Custom API integration using OpenAI, Claude, and Gemini
+Private knowledge assistants using vector databases and RAG architecture
+Multimodal AI features: voice, text, image, and video integration
+AI Enablement & Governance
+Data structuring and cleansing to support AI applications
+Staff training, onboarding playbooks, and async modules
+Change management and phased departmental rollout support
+Secure, privacy-first AI deployment with audit and monitoring tools
