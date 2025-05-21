@@ -73,12 +73,12 @@
   }
 
   body {
-    @apply font-sans antialiased bg-maverick-charcoal text-maverick-cream overflow-x-hidden;
+    @apply font-sans antialiased bg-[#1E1A18] text-[#FFFAF0] overflow-x-hidden;
     letter-spacing: -0.01em;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-heading font-bold tracking-tight text-maverick-cream;
+    @apply font-heading font-bold tracking-tight text-[#FFFAF0];
     letter-spacing: -0.03em;
   }
 
@@ -113,23 +113,23 @@
 
   /* Improved contrast for links (4.5:1 ratio or better) */
   a:not(.btn) {
-    @apply text-maverick-orange hover:text-maverick-light-orange font-medium transition-colors duration-200;
+    @apply text-[#FF5630] hover:text-[#FF8A50] font-medium transition-colors duration-200;
     text-underline-offset: 0.2em;
   }
 
   /* Improve readability on dark backgrounds - with higher contrast */
   .dark-section p, section[class*="bg-[#"] p, .dark-bg p {
-    @apply text-maverick-cream font-medium;
+    @apply text-[#FFFAF0] font-medium;
   }
 
   /* Bold text and highlights with better contrast */
   strong, b {
-    @apply font-bold text-maverick-orange;
+    @apply font-bold text-[#FF5630];
   }
 
   /* Enhanced focused elements for accessibility */
   :focus-visible {
-    @apply ring-2 ring-maverick-orange ring-offset-2 ring-offset-maverick-charcoal outline-none;
+    @apply ring-2 ring-[#FF5630] ring-offset-2 ring-offset-[#1E1A18] outline-none;
   }
 
   /* List styling */
@@ -175,17 +175,17 @@
 
 /* Card animations */
 .service-card {
-  @apply bg-maverick-slate border border-maverick-slate/50 shadow-lg;
+  @apply bg-[#252B32] border border-[#252B32]/50 shadow-lg;
   transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
 .service-card:hover {
   transform: translateY(-10px);
-  @apply border-maverick-orange shadow-xl shadow-maverick-orange/20;
+  @apply border-[#FF5630] shadow-xl shadow-[#FF5630]/20;
 }
 
 .pricing-card {
-  @apply bg-maverick-slate border border-maverick-slate/80 shadow-md;
+  @apply bg-[#252B32] border border-[#252B32]/80 shadow-md;
   transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
               border-color 0.3s ease, 
               box-shadow 0.4s ease;
@@ -195,20 +195,20 @@
   transform: translateY(-8px);
 }
 
-.pricing-card.border-maverick-orange:hover {
-  @apply shadow-xl shadow-maverick-orange/20;
+.pricing-card.border-[#FF5630]:hover {
+  @apply shadow-xl shadow-[#FF5630]/20;
 }
 
-.pricing-card.border-maverick-yellow:hover {
-  @apply shadow-xl shadow-maverick-yellow/20;
+.pricing-card.border-[#FFD74B]:hover {
+  @apply shadow-xl shadow-[#FFD74B]/20;
 }
 
-.pricing-card.border-maverick-amber:hover {
-  @apply shadow-xl shadow-maverick-amber/20;
+.pricing-card.border-[#FFC43D]:hover {
+  @apply shadow-xl shadow-[#FFC43D]/20;
 }
 
-.pricing-card.border-maverick-light-orange:hover {
-  @apply shadow-xl shadow-maverick-light-orange/20;
+.pricing-card.border-[#FF8A50]:hover {
+  @apply shadow-xl shadow-[#FF8A50]/20;
 }
 
 /* Enhanced animations for pricing elements */
@@ -327,7 +327,7 @@
 /* Link hover effect */
 .hover-link {
   position: relative;
-  @apply text-maverick-light-orange;
+  @apply text-[#FF8A50];
 }
 
 .hover-link::after {
@@ -337,7 +337,7 @@
   left: 0;
   width: 0;
   height: 2px;
-  @apply bg-maverick-orange;
+  @apply bg-[#FF5630];
   transition: width 0.3s ease;
 }
 
