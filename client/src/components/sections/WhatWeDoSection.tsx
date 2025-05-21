@@ -109,7 +109,7 @@ export default function WhatWeDoSection() {
     return services.find((service) => service.id === id);
   };
 
-  // Auto-rotate services every 5 seconds
+  // Auto-rotate services every 8 seconds
   useEffect(() => {
     if (isMobile) return; // Don't auto-rotate on mobile
 
@@ -119,7 +119,7 @@ export default function WhatWeDoSection() {
       );
       const nextIndex = (currentIndex + 1) % services.length;
       setActiveService(services[nextIndex].id);
-    }, 5000);
+    }, 8000);
 
     return () => clearInterval(interval);
   }, [activeService, isMobile, services]);
@@ -359,8 +359,8 @@ export default function WhatWeDoSection() {
                         layoutId="activeServiceIndicator"
                         transition={{
                           type: "spring",
-                          stiffness: 300,
-                          damping: 30,
+                          stiffness: 200,
+                          damping: 25,
                         }}
                       />
                     )}
@@ -380,7 +380,7 @@ export default function WhatWeDoSection() {
                           initial={{ opacity: 0, y: 20 }}
                           animate={{ opacity: 1, y: 0 }}
                           exit={{ opacity: 0, y: -20 }}
-                          transition={{ duration: 0.35, ease: "easeOut" }}
+                          transition={{ duration: 0.5, ease: "easeOut" }}
                           className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center"
                         >
                         {/* Content side */}
