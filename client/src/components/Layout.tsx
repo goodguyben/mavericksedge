@@ -20,8 +20,8 @@ export default function Layout({ children }: LayoutProps) {
   return (
     <div className="min-h-screen flex flex-col">
       <PageTransition />
-      {/* Skip to main content link for accessibility and SEO */}
-      <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:top-0 focus:left-0 focus:p-2 focus:bg-white focus:text-black focus:z-50">
+      {/* Skip to main content link for accessibility */}
+      <a href="#main-content" className="absolute w-1 h-1 overflow-hidden opacity-0 focus:opacity-100 focus:fixed focus:top-4 focus:left-4 focus:w-auto focus:h-auto focus:p-3 focus:outline-none focus:bg-maverick-orange focus:text-white focus:rounded focus:z-50 focus:shadow-lg transition-opacity duration-200">
         Skip to main content
       </a>
       <Header />
