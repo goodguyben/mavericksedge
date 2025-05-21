@@ -20,7 +20,7 @@ export default function Logo({ size = "medium", showText = true, noLink = false 
       <img 
         src={logoPath}
         alt="Mavericks Edge Logo" 
-        className={`${sizeClasses[size]} ${showText ? 'mr-2' : ''}`}
+        className={`${sizeClasses[size]} ${showText ? 'mr-2' : ''} -mt-2`}
       />
       {showText && (
         <span className={`font-heading font-bold text-maverick-orange ${size === 'large' ? 'text-2xl' : 'text-xl'}`}>
