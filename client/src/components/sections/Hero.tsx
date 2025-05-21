@@ -87,15 +87,16 @@ export default function Hero() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.7, delay: 0.3 }}
-                className="inline-block"
+                className="inline-block mr-2"
               >
-                Building{" "}
+                Building
               </motion.span>
               <span className="text-maverick-orange relative inline-block">
                 <motion.span
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.7, delay: 0.8 }}
+                  className="mr-2"
                 >
                   resilience
                 </motion.span>
