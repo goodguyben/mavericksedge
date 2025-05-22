@@ -21,10 +21,10 @@ export function useScrollFade(
 ) {
   // Default values for options
   const {
-    fadeOutPoint = 0.3,     // Start fade out when element is 30% up the viewport
-    fadeInPoint = 0.9,      // Start fade in when element is 90% into viewport
-    fadeOutDuration = 1,    // Default fade out speed multiplier
-    fadeInDuration = 1.2,   // Default fade in speed multiplier
+    fadeOutPoint = 0.5,     // Start fade out when element is 50% up the viewport (more noticeable)
+    fadeInPoint = 0.6,      // Start fade in when element is 60% into viewport (sooner)
+    fadeOutDuration = 1.5,  // Default fade out speed multiplier (more pronounced)
+    fadeInDuration = 1,     // Default fade in speed multiplier
     initialOpacity = 0,     // Start invisible
     minOpacity = 0.05,      // Lowest opacity value
   } = options;

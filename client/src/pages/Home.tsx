@@ -51,49 +51,58 @@ export default function Home() {
           {/* Main site sections - Reordered and wrapped with scroll fade effect */}
           <ScrollFadeSection
             id="what-we-do"
-            fadeInPoint={0.8}
-            fadeOutPoint={0.4}
-            fadeInDuration={1.3}
+            fadeInPoint={0.5}
+            fadeOutPoint={0.6}
+            fadeInDuration={1}
+            fadeOutDuration={1.8}
             initialOpacity={0}
+            minOpacity={0.1}
           >
             <WhatWeDoSection />
           </ScrollFadeSection>
           
           <ScrollFadeSection
             id="creative-work"
-            fadeInPoint={0.8}
-            fadeOutPoint={0.3}
-            fadeInDuration={1.2}
+            fadeInPoint={0.55}
+            fadeOutPoint={0.65}
+            fadeInDuration={1}
+            fadeOutDuration={1.7}
             initialOpacity={0}
+            minOpacity={0.1}
           >
             <CreativeWorkSection />
           </ScrollFadeSection>
           
           <ScrollFadeSection
             id="why-choose-us"
-            fadeInPoint={0.85}
-            fadeOutPoint={0.35}
-            fadeInDuration={1.4}
+            fadeInPoint={0.5}
+            fadeOutPoint={0.6}
+            fadeInDuration={1}
+            fadeOutDuration={1.9}
             initialOpacity={0}
+            minOpacity={0.1}
           >
             <WhyChooseUsSection />
           </ScrollFadeSection>
           
           <ScrollFadeSection
             id="process"
-            fadeInPoint={0.9}
-            fadeOutPoint={0.25}
-            fadeInDuration={1.3}
+            fadeInPoint={0.5}
+            fadeOutPoint={0.65}
+            fadeInDuration={0.9}
+            fadeOutDuration={1.8}
             initialOpacity={0}
+            minOpacity={0.1}
           >
             <ProcessSection />
           </ScrollFadeSection>
           
           <ScrollFadeSection
             id="contact"
-            fadeInPoint={0.9}
-            fadeOutPoint={0.2}
-            fadeInDuration={1.2}
+            fadeInPoint={0.5}
+            fadeOutPoint={0.6}
+            fadeInDuration={0.9}
+            fadeOutDuration={1.6}
             initialOpacity={0}
             minOpacity={0.1}
           >
