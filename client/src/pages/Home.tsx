@@ -6,6 +6,7 @@ import ContactSection from "@/components/sections/ContactSection";
 import WhyChooseUsSection from "@/components/sections/WhyChooseUsSection";
 import WhatWeDoSection from "@/components/sections/WhatWeDoSection";
 import CreativeWorkSection from "@/components/sections/CreativeWorkSection";
+import ScrollFadeSection from "@/components/ui/scroll-fade-section";
 import { useEffect } from "react";
 
 export default function Home() {
