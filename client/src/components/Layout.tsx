@@ -1,7 +1,7 @@
 
 import { ReactNode, useEffect } from "react";
 import Header from "./Header";
-import Footer from "./Footer";
+import Footer from "./FooterWrapper"; // Using FooterWrapper instead of Footer
 
 export default function Layout({ children }: { children: ReactNode }) {
   // Scroll to top on route change
