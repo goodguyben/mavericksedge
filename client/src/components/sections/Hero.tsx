@@ -151,8 +151,7 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 3.3 }}
             className="text-xl md:text-2xl text-maverick-cream/80 mt-6 mb-10 max-w-2xl font-sans leading-relaxed mx-auto text-center"
           >
-            Web development, marketing, and AI integration services tailored for
-            SMBs and nonprofits
+            We’re Edmonton-based creators crafting designer websites, boosting business , and AI-powered tools to help you grow
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
