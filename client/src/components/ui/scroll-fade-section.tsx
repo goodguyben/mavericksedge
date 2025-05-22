@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { motion } from 'framer-motion';
-import { useScrollFade } from '@/hooks/use-scroll-fade';
+import { useScrollFade, ScrollFadeOptions } from '@/hooks/useScrollFade';
 
 interface ScrollFadeSectionProps {
   className?: string;

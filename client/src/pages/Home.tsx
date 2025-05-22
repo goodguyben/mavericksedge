@@ -6,7 +6,7 @@ import ContactSection from "@/components/sections/ContactSection";
 import WhyChooseUsSection from "@/components/sections/WhyChooseUsSection";
 import WhatWeDoSection from "@/components/sections/WhatWeDoSection";
 import CreativeWorkSection from "@/components/sections/CreativeWorkSection";
-import ScrollFadeSection from "@/components/ui/scroll-fade-section";
+import ScrollFadeSection from "@/components/ui/scroll-fade-section"; 
 import { useEffect } from "react";
 
 export default function Home() {
@@ -48,12 +48,57 @@ export default function Home() {
           {/* Main hero section - H1 heading for SEO is inside this component */}
           <Hero />
           
-          {/* Main site sections - Reordered as requested */}
-          <WhatWeDoSection />
-          <CreativeWorkSection />
-          <WhyChooseUsSection />
-          <ProcessSection />
-          <ContactSection />
+          {/* Main site sections - Reordered and wrapped with scroll fade effect */}
+          <ScrollFadeSection
+            id="what-we-do"
+            fadeInPoint={0.8}
+            fadeOutPoint={0.4}
+            fadeInDuration={1.3}
+            initialOpacity={0}
+          >
+            <WhatWeDoSection />
+          </ScrollFadeSection>
+          
+          <ScrollFadeSection
+            id="creative-work"
+            fadeInPoint={0.8}
+            fadeOutPoint={0.3}
+            fadeInDuration={1.2}
+            initialOpacity={0}
+          >
+            <CreativeWorkSection />
+          </ScrollFadeSection>
+          
+          <ScrollFadeSection
+            id="why-choose-us"
+            fadeInPoint={0.85}
+            fadeOutPoint={0.35}
+            fadeInDuration={1.4}
+            initialOpacity={0}
+          >
+            <WhyChooseUsSection />
+          </ScrollFadeSection>
+          
+          <ScrollFadeSection
+            id="process"
+            fadeInPoint={0.9}
+            fadeOutPoint={0.25}
+            fadeInDuration={1.3}
+            initialOpacity={0}
+          >
+            <ProcessSection />
+          </ScrollFadeSection>
+          
+          <ScrollFadeSection
+            id="contact"
+            fadeInPoint={0.9}
+            fadeOutPoint={0.2}
+            fadeInDuration={1.2}
+            initialOpacity={0}
+            minOpacity={0.1}
+          >
+            <ContactSection />
+          </ScrollFadeSection>
         </article>
       </motion.div>
     </>
