@@ -24,12 +24,10 @@ export const Footer = {
       const response = await fetch('/src/components/footer.html');
       const html = await response.text();
       
-      // Create a temporary div to hold the HTML
-      const temp = document.createElement('div');
-      temp.innerHTML = html;
-      
-      // Get the footer element from the template
-      const footer = temp.querySelector('footer');
+      // Parse HTML safely using DOMParser to prevent XSS
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(html, 'text/html');
+      const footer = doc.querySelector('footer');
       
       // Replace any existing footer or append to the end of the body
       const existingFooter = document.querySelector('footer');
