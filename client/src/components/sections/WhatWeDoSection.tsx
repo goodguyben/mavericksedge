@@ -475,11 +475,11 @@ export default function WhatWeDoSection() {
                           <motion.button
                             className="px-6 py-3 rounded-lg font-medium flex items-center gap-2 transition-all duration-300"
                             style={{
-                              background: `linear-gradient(90deg, ${service.color} 0%, ${service.hoverColor} 100%)`,
+                              background: `linear-gradient(90deg, #FF5A00 0%, #FFA200 100%)`,
                             }}
                             whileHover={{
                               scale: 1.05,
-                              boxShadow: `0 10px 25px -5px ${service.color}40`,
+                              boxShadow: `0 10px 25px -5px rgba(255, 90, 0, 0.4)`,
                             }}
                             whileTap={{ scale: 0.98 }}
                             initial={{ opacity: 0, y: 20 }}
