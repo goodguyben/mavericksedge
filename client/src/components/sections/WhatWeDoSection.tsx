@@ -254,9 +254,6 @@ export default function WhatWeDoSection() {
                         transition={{ duration: 0.3 }}
                         className="mt-4 overflow-hidden"
                       >
-                        <p className="text-maverick-orange text-sm italic mb-2">
-                          "{service.tagline}"
-                        </p>
                         <p className="text-[#AAAAAA] mb-3">
                           {service.description}
                         </p>
@@ -416,12 +413,9 @@ export default function WhatWeDoSection() {
                             transition={{ duration: 0.5, delay: 0.3 }}
                             className="mt-20" // Increased top margin to move content further down
                           >
-                            <h3 className="text-3xl lg:text-4xl font-bold mb-2">
+                            <h3 className="text-3xl lg:text-4xl font-bold mb-4">
                               {service.title}
                             </h3>
-                            <p className="text-maverick-orange text-lg italic mb-4">
-                              "{service.tagline}"
-                            </p>
                           </motion.div>
 
                           <motion.p
