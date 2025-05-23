@@ -8,6 +8,9 @@ import {
   Zap,
   Users,
   LineChart,
+  Shield,
+  FolderIcon,
+  FileIcon,
 } from "lucide-react";
 import {
   motion,
@@ -536,304 +539,365 @@ export default function WhatWeDoSection() {
                             {/* Web Development Animations */}
                             {service.animationElements === "code" && (
                               <>
-                                {/* AI-powered code editor visualization */}
-                                <div className="absolute top-6 left-6 right-6 h-40 rounded-lg bg-[#1E1E1E]/80 overflow-hidden border border-gray-700 shadow-lg shadow-maverick-orange/10">
-                                  {/* Header bar of code editor */}
-                                  <div className="h-8 bg-[#333]/90 flex items-center px-3 justify-between">
-                                    <div className="flex gap-1.5">
-                                      <div className="w-2.5 h-2.5 rounded-full bg-red-500/80"></div>
-                                      <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/80"></div>
-                                      <div className="w-2.5 h-2.5 rounded-full bg-green-500/80"></div>
+                                {/* Interactive design and code visualization */}
+                                <div className="absolute top-6 left-6 right-6 h-44 rounded-lg bg-gradient-to-br from-[#1E1E1E]/90 to-[#252530]/90 overflow-hidden border border-gray-700 shadow-lg shadow-purple-500/20">
+                                  {/* Creative design area */}
+                                  <div className="absolute inset-0">
+                                    {/* Design tool header */}
+                                    <div className="h-8 bg-gradient-to-r from-purple-900/80 via-indigo-800/80 to-blue-900/80 flex items-center px-3 justify-between">
+                                      <div className="flex gap-1.5">
+                                        <div className="w-2.5 h-2.5 rounded-full bg-red-500/80"></div>
+                                        <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/80"></div>
+                                        <div className="w-2.5 h-2.5 rounded-full bg-green-500/80"></div>
+                                      </div>
+                                      <div className="text-xs text-gray-300 font-medium">
+                                        Modern Design Canvas
+                                      </div>
+                                      <div className="text-[10px] text-cyan-300 bg-cyan-800/40 px-2 py-0.5 rounded-sm flex items-center backdrop-blur-sm">
+                                        <PenTool className="w-2.5 h-2.5 mr-1" />
+                                        Creative Mode
+                                      </div>
                                     </div>
-                                    <div className="text-xs text-gray-300 font-mono">
-                                      smart-website-builder.js
-                                    </div>
-                                    <div className="text-xs text-maverick-orange bg-maverick-orange/20 px-2 py-0.5 rounded-sm flex items-center backdrop-blur-sm">
-                                      <Brain className="w-3 h-3 mr-1" />
-                                      AI Assistant
-                                    </div>
-                                  </div>
 
-                                  {/* Code lines with AI suggestions */}
-                                  <div className="p-3 font-mono">
-                                    {[...Array(5)].map((_, i) => (
-                                      <motion.div
-                                        key={i}
-                                        className="flex items-center gap-2 text-xs"
+                                    {/* Design canvas with vibrant elements */}
+                                    <div className="p-3 relative h-full">
+                                      {/* Color palette */}
+                                      <motion.div 
+                                        className="absolute top-2 left-2 flex gap-1.5"
+                                        initial={{ opacity: 0, x: -10 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        transition={{ delay: 0.3, duration: 0.5 }}
                                       >
-                                        <span className="text-gray-500 w-4">
-                                          {i + 1}
-                                        </span>
+                                        {["#FF5A5F", "#3A86FF", "#8338EC", "#FFB830", "#06D6A0", "#FB5607"].map((color, i) => (
+                                          <motion.div
+                                            key={i}
+                                            className="w-5 h-5 rounded-full"
+                                            style={{ backgroundColor: color, boxShadow: `0 0 8px ${color}80` }}
+                                            initial={{ scale: 0 }}
+                                            animate={{ scale: 1 }}
+                                            transition={{ delay: 0.4 + i * 0.1 }}
+                                            whileHover={{ scale: 1.2 }}
+                                          />
+                                        ))}
+                                      </motion.div>
+
+                                      {/* Design layers panel */}
+                                      <motion.div
+                                        className="absolute top-2 right-2 bg-black/40 backdrop-blur-sm w-24 h-28 rounded border border-gray-700 p-1.5"
+                                        initial={{ opacity: 0, x: 10 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        transition={{ delay: 0.6 }}
+                                      >
+                                        <div className="text-[9px] text-gray-400 mb-1 flex items-center justify-between">
+                                          <span>Layers</span>
+                                          <span className="text-purple-400">4</span>
+                                        </div>
+                                        <div className="space-y-1">
+                                          {["Header", "Hero Section", "Features", "CTA"].map((layer, i) => (
+                                            <motion.div
+                                              key={i}
+                                              className="text-[8px] bg-gray-800/60 flex items-center justify-between p-1 rounded"
+                                              initial={{ opacity: 0, y: 5 }}
+                                              animate={{ opacity: 1, y: 0 }}
+                                              transition={{ delay: 0.7 + i * 0.1 }}
+                                            >
+                                              <span className="text-gray-300">{layer}</span>
+                                              <div className="w-2 h-2 rounded-full bg-green-500/80"></div>
+                                            </motion.div>
+                                          ))}
+                                        </div>
+                                      </motion.div>
+
+                                      {/* Website mock design */}
+                                      <motion.div
+                                        className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-48 h-28 bg-gradient-to-br from-gray-900/60 to-gray-800/60 rounded-lg overflow-hidden border border-gray-700/50"
+                                        initial={{ opacity: 0, scale: 0.8 }}
+                                        animate={{ opacity: 1, scale: 1 }}
+                                        transition={{ delay: 0.8 }}
+                                      >
+                                        {/* Header */}
                                         <motion.div
-                                          className="h-3 rounded-full flex items-center"
-                                          style={{
-                                            width: `${60 + Math.random() * 30}%`,
-                                            backgroundColor:
-                                              i % 3 === 0
-                                                ? `${service.color}40`
-                                                : i % 3 === 1
-                                                  ? "#5e9dd580"
-                                                  : "#99bbff40",
-                                          }}
-                                          initial={{ scaleX: 0, originX: 0 }}
-                                          animate={{ scaleX: 1 }}
-                                          transition={{
-                                            delay: 0.3 + i * 0.15,
-                                            duration: 0.8,
-                                            ease: "easeOut",
-                                          }}
+                                          className="h-3 w-full bg-gradient-to-r from-purple-600/80 to-indigo-600/80"
+                                          initial={{ width: 0 }}
+                                          animate={{ width: '100%' }}
+                                          transition={{ delay: 1.0, duration: 0.6 }}
+                                        />
+                                        
+                                        {/* Hero section with gradient */}
+                                        <motion.div
+                                          className="h-12 w-full relative overflow-hidden"
+                                          initial={{ opacity: 0 }}
+                                          animate={{ opacity: 1 }}
+                                          transition={{ delay: 1.2 }}
                                         >
-                                          {i === 2 && (
-                                            <motion.span
-                                              className="ml-2 text-green-300 whitespace-nowrap"
+                                          <div className="absolute inset-0 bg-gradient-to-br from-indigo-800/50 via-purple-700/50 to-pink-800/50" />
+                                          
+                                          {/* Hero content */}
+                                          <div className="relative z-10 flex flex-col items-center justify-center h-full p-1">
+                                            <motion.div 
+                                              className="w-20 h-1.5 bg-white/80 rounded-full mb-1"
+                                              initial={{ width: 0 }}
+                                              animate={{ width: '20px' }}
+                                              transition={{ delay: 1.3, duration: 0.5 }}
+                                            />
+                                            <motion.div 
+                                              className="w-16 h-1 bg-white/60 rounded-full"
+                                              initial={{ width: 0 }}
+                                              animate={{ width: '16px' }}
+                                              transition={{ delay: 1.4, duration: 0.5 }}
+                                            />
+                                            <motion.div 
+                                              className="flex gap-1 mt-1.5"
                                               initial={{ opacity: 0 }}
                                               animate={{ opacity: 1 }}
                                               transition={{ delay: 1.5 }}
                                             >
-                                              optimizeUserJourney(analytics_data)
-                                            </motion.span>
-                                          )}
+                                              <div className="w-4 h-1.5 rounded bg-cyan-500/80" />
+                                              <div className="w-4 h-1.5 rounded bg-purple-500/80" />
+                                            </motion.div>
+                                          </div>
                                         </motion.div>
+                                        
+                                        {/* Content blocks with vibrant colors */}
+                                        <div className="p-1 grid grid-cols-2 gap-1">
+                                          {[
+                                            { color: 'from-cyan-500/70 to-blue-600/70' },
+                                            { color: 'from-purple-500/70 to-pink-600/70' },
+                                            { color: 'from-amber-500/70 to-orange-600/70' },
+                                            { color: 'from-emerald-500/70 to-green-600/70' }
+                                          ].map((block, i) => (
+                                            <motion.div
+                                              key={i}
+                                              className={`h-5 rounded bg-gradient-to-br ${block.color}`}
+                                              initial={{ opacity: 0, scale: 0.8 }}
+                                              animate={{ opacity: 1, scale: 1 }}
+                                              transition={{ delay: 1.6 + i * 0.1 }}
+                                            />
+                                          ))}
+                                        </div>
+                                        
+                                        {/* Footer */}
+                                        <motion.div
+                                          className="h-2.5 mt-1 bg-gradient-to-r from-gray-800/80 to-gray-700/80"
+                                          initial={{ opacity: 0 }}
+                                          animate={{ opacity: 1 }}
+                                          transition={{ delay: 2.0 }}
+                                        />
                                       </motion.div>
-                                    ))}
-
-                                    {/* AI-generated suggestions */}
-                                    <motion.div
-                                      className="mt-3 flex items-start gap-2 text-xs"
-                                      initial={{ opacity: 0 }}
-                                      animate={{ opacity: 1 }}
-                                      transition={{ delay: 1.2 }}
-                                    >
-                                      <span className="text-gray-500 w-4">
-                                        6
-                                      </span>
-                                      <div className="flex-1">
-                                        <div className="bg-maverick-orange/20 border-l-2 border-maverick-orange rounded px-2 py-1 text-[10px]">
-                                          <div className="flex items-center text-maverick-orange font-medium mb-1">
-                                            <Brain className="w-3 h-3 mr-1" />
-                                            AI Suggestion: Personalize User
-                                            Experience
-                                          </div>
-                                          <div className="text-gray-300">
-                                            <span className="text-green-400">
-                                              +
-                                            </span>{" "}
-                                            Implementing AI-driven user behavior
-                                            analysis can increase conversions by
-                                            65%
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </motion.div>
-
-                                    <motion.div
-                                      className="mt-2 flex items-start gap-2 text-xs"
-                                      initial={{ opacity: 0 }}
-                                      animate={{ opacity: 1 }}
-                                      transition={{ delay: 1.6 }}
-                                    >
-                                      <span className="text-gray-500 w-4">
-                                        7
-                                      </span>
-                                      <div className="flex-1">
-                                        <div className="bg-blue-500/20 border-l-2 border-blue-500 rounded px-2 py-1 text-[10px]">
-                                          <div className="flex items-center text-blue-300 font-medium mb-1">
-                                            <Zap className="w-3 h-3 mr-1" />
-                                            Performance Boost: Implement Smart
-                                            Caching
-                                          </div>
-                                          <div className="text-gray-300">
-                                            <span className="text-blue-400">
-                                              →
-                                            </span>{" "}
-                                            Add predictive content loading for
-                                            78% faster page transitions
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </motion.div>
+                                    </div>
                                   </div>
                                 </div>
 
-                                {/* Browser preview with AI insights */}
+                                {/* Code and Development Visualization */}
                                 <motion.div
-                                  className="absolute bottom-6 left-6 right-6 h-44 bg-white/10 rounded-lg overflow-hidden border border-gray-700 shadow-lg shadow-maverick-orange/10"
+                                  className="absolute bottom-6 left-6 right-6 h-48 bg-gradient-to-br from-[#0D1117]/90 to-[#161B22]/90 rounded-lg overflow-hidden border border-gray-700 shadow-lg shadow-blue-500/20"
                                   initial={{ opacity: 0, y: 20 }}
                                   animate={{ opacity: 1, y: 0 }}
-                                  transition={{ delay: 1.2, duration: 0.5 }}
+                                  transition={{ delay: 0.8, duration: 0.5 }}
                                 >
-                                  {/* Browser header with AI indicator */}
-                                  <div className="h-8 bg-[#333]/90 flex items-center px-3">
+                                  {/* Code editor header */}
+                                  <div className="h-8 bg-gradient-to-r from-[#1F2937]/95 via-[#111827]/95 to-[#1F2937]/95 flex items-center px-3">
                                     <div className="flex gap-2 w-full items-center">
                                       <div className="flex gap-1.5">
-                                        <div className="w-2.5 h-2.5 rounded-full bg-gray-500/70"></div>
-                                        <div className="w-2.5 h-2.5 rounded-full bg-gray-500/70"></div>
+                                        <div className="w-2.5 h-2.5 rounded-full bg-red-500/80"></div>
+                                        <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/80"></div>
+                                        <div className="w-2.5 h-2.5 rounded-full bg-green-500/80"></div>
                                       </div>
-                                      <div className="text-xs bg-[#222]/90 text-gray-300 px-2 py-0.5 rounded-sm flex-grow text-center">
-                                        mavericksedge.com
+                                      <div className="text-xs bg-[#0D1117]/90 text-blue-300 px-2 py-0.5 rounded-sm flex-grow text-center font-mono">
+                                        index.tsx
                                       </div>
-                                      <div className="bg-green-500/30 rounded px-1.5 py-0.5 text-[9px] text-green-300 flex items-center">
-                                        <Zap className="w-2 h-2 mr-0.5" />
-                                        AI Enhanced
+                                      <div className="bg-blue-500/30 rounded px-1.5 py-0.5 text-[9px] text-blue-300 flex items-center">
+                                        <Code className="w-2 h-2 mr-0.5" />
+                                        React
                                       </div>
                                     </div>
                                   </div>
 
-                                  {/* Website preview with AI augmentation */}
-                                  <div className="p-4 flex flex-col h-full">
-                                    <div className="flex gap-3 mb-3">
-                                      <div className="w-1/3 relative">
-                                        <motion.div
-                                          className="h-16 w-full bg-gradient-to-br from-maverick-orange/40 to-maverick-amber/20 rounded-md flex items-center justify-center"
-                                          initial={{ opacity: 0, x: -10 }}
-                                          animate={{ opacity: 1, x: 0 }}
-                                          transition={{
-                                            delay: 1.4,
-                                            duration: 0.3,
-                                          }}
-                                        >
+                                  {/* Code editor content */}
+                                  <div className="grid grid-cols-5 h-[calc(100%-32px)]">
+                                    {/* File explorer */}
+                                    <motion.div 
+                                      className="col-span-1 bg-[#0D1117]/80 border-r border-gray-800 p-2"
+                                      initial={{ opacity: 0, x: -10 }}
+                                      animate={{ opacity: 1, x: 0 }}
+                                      transition={{ delay: 1.0 }}
+                                    >
+                                      <div className="text-[10px] text-gray-400 mb-1">Project Files</div>
+                                      
+                                      {/* File tree */}
+                                      <div className="space-y-1">
+                                        {[
+                                          { name: 'src', type: 'folder', color: 'text-blue-400' },
+                                          { name: 'components', type: 'subfolder', color: 'text-blue-400', indent: true },
+                                          { name: 'Hero.tsx', type: 'file', color: 'text-emerald-400', indent: true, active: true },
+                                          { name: 'Navbar.tsx', type: 'file', color: 'text-emerald-400', indent: true },
+                                          { name: 'Features.tsx', type: 'file', color: 'text-emerald-400', indent: true },
+                                          { name: 'styles', type: 'subfolder', color: 'text-blue-400', indent: true },
+                                          { name: 'global.css', type: 'file', color: 'text-purple-400', indent: true },
+                                          { name: 'public', type: 'folder', color: 'text-blue-400' },
+                                        ].map((file, i) => (
                                           <motion.div
-                                            className="w-10 h-10 bg-maverick-orange/30 rounded-full flex items-center justify-center"
-                                            animate={{ scale: [1, 1.1, 1] }}
-                                            transition={{
-                                              duration: 3,
-                                              repeat: Infinity,
-                                            }}
+                                            key={i}
+                                            className={`text-[8px] flex items-center ${file.active ? 'bg-blue-900/30' : 'bg-transparent'} rounded px-1 py-0.5`}
+                                            style={{ marginLeft: file.indent ? '8px' : '0' }}
+                                            initial={{ opacity: 0 }}
+                                            animate={{ opacity: 1 }}
+                                            transition={{ delay: 1.1 + i * 0.08 }}
                                           >
-                                            <Brain className="w-5 h-5 text-maverick-orange" />
+                                            {file.type === 'folder' && <FolderIcon className={`w-2 h-2 mr-1 ${file.color}`} />}
+                                            {file.type === 'subfolder' && <FolderIcon className={`w-2 h-2 mr-1 ${file.color}`} />}
+                                            {file.type === 'file' && <FileIcon className={`w-2 h-2 mr-1 ${file.color}`} />}
+                                            <span className={`${file.active ? 'text-white' : 'text-gray-400'}`}>{file.name}</span>
                                           </motion.div>
-                                        </motion.div>
-                                        <motion.div
-                                          className="absolute -top-2 -right-2 bg-green-500/90 rounded-full px-1.5 py-0.5 text-[8px] text-white flex items-center"
-                                          initial={{ scale: 0 }}
-                                          animate={{ scale: 1 }}
-                                          transition={{
-                                            delay: 1.9,
-                                            type: "spring",
-                                          }}
-                                        >
-                                          <Zap className="w-1.5 h-1.5 mr-0.5" />
-                                          +93% Engagement
-                                        </motion.div>
+                                        ))}
                                       </div>
-
-                                      <div className="flex-grow flex flex-col gap-2">
-                                        <motion.div
-                                          className="h-4 w-full bg-gray-400/30 rounded-sm"
-                                          initial={{ opacity: 0, width: 0 }}
-                                          animate={{
-                                            opacity: 1,
-                                            width: "100%",
-                                          }}
-                                          transition={{
-                                            delay: 1.5,
-                                            duration: 0.4,
-                                          }}
-                                        />
-                                        <motion.div
-                                          className="h-4 w-5/6 bg-gray-400/30 rounded-sm"
-                                          initial={{ opacity: 0, width: 0 }}
-                                          animate={{
-                                            opacity: 1,
-                                            width: "83.333%",
-                                          }}
-                                          transition={{
-                                            delay: 1.6,
-                                            duration: 0.4,
-                                          }}
-                                        />
-                                        <motion.div
-                                          className="h-4 w-4/6 bg-gray-400/30 rounded-sm"
-                                          initial={{ opacity: 0, width: 0 }}
-                                          animate={{
-                                            opacity: 1,
-                                            width: "66.666%",
-                                          }}
-                                          transition={{
-                                            delay: 1.7,
-                                            duration: 0.4,
-                                          }}
-                                        />
+                                    </motion.div>
+                                    
+                                    {/* Code editor main area */}
+                                    <div className="col-span-4 font-mono p-2 text-[9px] relative">
+                                      {/* Syntax highlighted code */}
+                                      <div className="space-y-0.5">
+                                        {[
+                                          { content: 'import React from "react";', color: 'text-gray-400' },
+                                          { content: 'import { motion } from "framer-motion";', color: 'text-gray-400' },
+                                          { content: 'import "./Hero.css";', color: 'text-gray-400' },
+                                          { content: '', color: 'text-white' },
+                                          { content: 'const Hero = () => {', color: 'text-pink-400' },
+                                          { content: '  return (', color: 'text-white' },
+                                          { content: '    <section className="hero-container">', color: 'text-blue-300' },
+                                          { content: '      <div className="hero-content">', color: 'text-blue-300' },
+                                          { content: '        <motion.h1', color: 'text-orange-400' },
+                                          { content: '          initial={{ opacity: 0, y: -20 }}', color: 'text-green-400' },
+                                          { content: '          animate={{ opacity: 1, y: 0 }}', color: 'text-green-400', highlight: true },
+                                          { content: '          className="hero-title"', color: 'text-purple-400' },
+                                          { content: '        >', color: 'text-orange-400' },
+                                          { content: '          Modern Web Solutions', color: 'text-amber-300' },
+                                          { content: '        </motion.h1>', color: 'text-orange-400' },
+                                        ].map((line, i) => (
+                                          <motion.div
+                                            key={i}
+                                            className={`flex items-start ${line.highlight ? 'bg-blue-900/30 -mx-2 px-2 rounded' : ''}`}
+                                            initial={{ opacity: 0, x: 5 }}
+                                            animate={{ opacity: 1, x: 0 }}
+                                            transition={{ delay: 1.2 + i * 0.05 }}
+                                          >
+                                            <span className="text-gray-600 w-4 mr-2">{i + 1}</span>
+                                            <span className={line.color}>{line.content}</span>
+                                          </motion.div>
+                                        ))}
                                       </div>
+                                      
+                                      {/* Color preview tooltip */}
+                                      <motion.div 
+                                        className="absolute top-24 right-6 bg-[#1F2937] shadow-lg rounded p-1.5 border border-gray-700"
+                                        initial={{ opacity: 0, scale: 0.9 }}
+                                        animate={{ opacity: 1, scale: 1 }}
+                                        transition={{ delay: 2.0 }}
+                                      >
+                                        <div className="text-[8px] text-gray-300 mb-1">Color Preview</div>
+                                        <div className="flex gap-1">
+                                          <div className="w-6 h-6 rounded bg-gradient-to-br from-purple-500 to-pink-500 border border-gray-600" />
+                                          <div className="w-6 h-6 rounded bg-gradient-to-br from-cyan-500 to-blue-500 border border-gray-600" />
+                                          <div className="w-6 h-6 rounded bg-gradient-to-br from-amber-500 to-orange-500 border border-gray-600" />
+                                        </div>
+                                      </motion.div>
+                                      
+                                      {/* Live preview badge */}
+                                      <motion.div
+                                        className="absolute bottom-2 right-2 bg-gradient-to-r from-emerald-600/90 to-green-600/90 text-[8px] px-2 py-1 rounded-full text-white flex items-center"
+                                        initial={{ opacity: 0 }}
+                                        animate={{ opacity: 1 }}
+                                        transition={{ delay: 2.2 }}
+                                      >
+                                        <div className="w-1.5 h-1.5 bg-emerald-300 rounded-full mr-1 animate-pulse" />
+                                        <span>Live Preview Active</span>
+                                      </motion.div>
                                     </div>
-
-                                    {/* Personalization overlay */}
-                                    <motion.div
-                                      className="mt-1 bg-[#222]/80 rounded-md p-2 border border-maverick-orange/20"
-                                      initial={{ opacity: 0, y: 10 }}
-                                      animate={{ opacity: 1, y: 0 }}
-                                      transition={{ delay: 2.0 }}
-                                    >
-                                      <div className="flex justify-between items-center mb-1">
-                                        <div className="text-[10px] text-maverick-orange font-medium flex items-center">
-                                          <Brain className="w-2.5```text
- h-2.5 mr-1" />
-                                          AI-Powered Personalization
-                                        </div>
-                                        <div className="text-[9px] text-gray-400">
-                                          Real-time adapting
-                                        </div>
-                                      </div>
-                                      <div className="grid grid-cols-3 gap-1">
-                                        <div className="text-[8px] bg-[#333]/80 p-1 rounded text-gray-300">
-                                          <span className="text-green-400 block">
-                                            +84%
-                                          </span>
-                                          Conversion Rate
-                                        </div>
-                                        <div className="text-[8px] bg-[#333]/80 p-1 rounded text-gray-300">
-                                          <span className="text-blue-400 block">
-                                            -35%
-                                          </span>
-                                          Bounce Rate
-                                        </div>
-                                        <div className="text-[8px] bg-[#333]/80 p-1 rounded text-gray-300">
-                                          <span className="text-purple-400 block">
-                                            +108%
-                                          </span>
-                                          Avg Time on Site
-                                        </div>
-                                      </div>
-                                    </motion.div>
-
-                                    {/* AI insights dashboard */}
-                                    <motion.div
-                                      className="mt-auto bg-gradient-to-r from-[#222]/90 to-[#333]/90 rounded-md border border-gray-700 flex items-center px-2 py-1.5 gap-4 text-[9px]"
-                                      initial={{ opacity: 0 }}
-                                      animate={{ opacity: 1 }}
-                                      transition={{ delay: 2.2 }}
-                                    >
-                                      <div className="flex items-center text-green-400">
-                                        <Zap className="w-2.5 h-2.5 mr-1" />
-                                        <span>Page Speed: +82%</span>
-                                      </div>
-                                      <div className="flex items-center text-blue-400">
-                                        <Users className="w-2.5 h-2.5 mr-1" />
-                                        <span>User Retention: +59%</span>
-                                      </div>
-                                      <div className="flex items-center text-purple-400">
-                                        <LineChart className="w-2.5 h-2.5 mr-1" />
-                                        <span>Revenue: +73%</span>
-                                      </div>
-                                      <div className="ml-auto flex items-center text-maverick-orange">
-                                        <Brain className="w-2.5 h-2.5 mr-1" />
-                                        <span>AI Optimizations: 14</span>
-                                      </div>
-                                    </motion.div>
                                   </div>
                                 </motion.div>
 
-                                {/* Value proposition badges */}
+                                {/* Floating tech stack badges */}
                                 <motion.div
-                                  className="absolute top-2 right-2 flex flex-col gap-2"
+                                  className="absolute top-3 right-3 flex flex-col gap-2"
                                   initial={{ opacity: 0, x: 20 }}
                                   animate={{ opacity: 1, x: 0 }}
-                                  transition={{ delay: 2.5, duration: 0.5 }}
+                                  transition={{ delay: 2.3, duration: 0.5 }}
                                 >
-                                  <div className="bg-[#222]/90 px-2 py-1 rounded-md border border-maverick-orange/30 text-[9px] text-white flex items-center">
-                                    <Zap className="w-2 h-2 mr-1 text-maverick-orange" />
-                                    <span>Self-optimizing websites</span>
+                                  {[
+                                    { icon: <Code className="w-2 h-2 mr-1" />, text: "Responsive Design", color: "from-blue-600 to-cyan-600" },
+                                    { icon: <Zap className="w-2 h-2 mr-1" />, text: "Performance Optimized", color: "from-amber-600 to-orange-600" },
+                                    { icon: <Shield className="w-2 h-2 mr-1" />, text: "Secure Development", color: "from-emerald-600 to-green-600" }
+                                  ].map((badge, i) => (
+                                    <motion.div
+                                      key={i}
+                                      className={`bg-gradient-to-r ${badge.color} px-2 py-1 rounded-md text-[8px] text-white flex items-center shadow-lg`}
+                                      initial={{ opacity: 0, y: 5 }}
+                                      animate={{ opacity: 1, y: 0 }}
+                                      transition={{ delay: 2.4 + i * 0.1 }}
+                                    >
+                                      {badge.icon}
+                                      <span>{badge.text}</span>
+                                    </motion.div>
+                                  ))}
+                                </motion.div>
+                                
+                                {/* Mobile preview */}
+                                <motion.div
+                                  className="absolute bottom-10 left-8 w-20 h-32 bg-black rounded-xl overflow-hidden border-4 border-gray-800 shadow-lg"
+                                  initial={{ opacity: 0, x: -20, rotate: -5 }}
+                                  animate={{ opacity: 1, x: 0, rotate: -5 }}
+                                  transition={{ delay: 2.6 }}
+                                >
+                                  {/* Mobile screen content */}
+                                  <div className="h-full w-full bg-gradient-to-b from-[#111] to-[#222] flex flex-col">
+                                    {/* Mobile header */}
+                                    <div className="h-1.5 bg-gradient-to-r from-purple-700 to-pink-700" />
+                                    
+                                    {/* Mobile hero */}
+                                    <div className="h-8 relative overflow-hidden">
+                                      <div className="absolute inset-0 bg-gradient-to-br from-blue-800/50 via-purple-800/50 to-pink-800/50" />
+                                      <div className="flex flex-col items-center justify-center h-full">
+                                        <div className="w-10 h-0.5 bg-white/70 rounded-full" />
+                                        <div className="w-6 h-0.5 bg-white/50 rounded-full mt-0.5" />
+                                      </div>
+                                    </div>
+                                    
+                                    {/* Mobile content */}
+                                    <div className="flex-1 p-1 grid grid-cols-2 gap-1">
+                                      <div className="h-4 bg-gradient-to-br from-cyan-600/70 to-blue-700/70 rounded" />
+                                      <div className="h-4 bg-gradient-to-br from-purple-600/70 to-pink-700/70 rounded" />
+                                      <div className="h-4 bg-gradient-to-br from-amber-600/70 to-orange-700/70 rounded" />
+                                      <div className="h-4 bg-gradient-to-br from-emerald-600/70 to-green-700/70 rounded" />
+                                    </div>
                                   </div>
+                                  
+                                  {/* Mobile device button */}
+                                  <div className="absolute bottom-1 left-1/2 transform -translate-x-1/2 w-4 h-0.5 bg-gray-700 rounded-full" />
+                                </motion.div>
+                                
+                                {/* Floating stats badges */}
+                                <motion.div
+                                  className="absolute left-auto right-10 bottom-28 flex gap-2"
+                                  initial={{ opacity: 0 }}
+                                  animate={{ opacity: 1 }}
+                                  transition={{ delay: 2.8 }}
+                                >
+                                  {[
+                                    { label: "Performance", value: "98%", color: "text-emerald-400" },
+                                    { label: "Accessibility", value: "100%", color: "text-blue-400" },
+                                    { label: "SEO Ready", value: "A+", color: "text-purple-400" }
+                                  ].map((stat, i) => (
+                                    <motion.div
+                                      key={i}
+                                      className="bg-black/50 backdrop-blur-sm rounded px-2 py-1 border border-gray-700"
+                                      initial={{ y: 10, opacity: 0 }}
+                                      animate={{ y: 0, opacity: 1 }}
+                                      transition={{ delay: 2.9 + i * 0.1 }}
+                                    >
+                                      <div className="text-[8px] text-gray-400">{stat.label}</div>
+                                      <div className={`text-xs font-bold ${stat.color}`}>{stat.value}</div>
+                                    </motion.div>
+                                  ))}
                                 </motion.div>
                               </>
                             )}
