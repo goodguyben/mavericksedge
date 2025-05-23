@@ -149,12 +149,9 @@ export default function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 3.3 }}
-            className="text-xl md:text-2xl text-maverick-cream/80 mt-6 mb-10 max-w-xl px-2 font-sans leading-relaxed mx-auto text-center flex flex-col"
+            className="text-xl md:text-2xl text-maverick-cream/80 mt-6 mb-10 max-w-xl px-2 font-sans leading-relaxed mx-auto text-center"
           >
-            <span>We're Edmonton-based creators who build beautiful, easy-to-manage websites,</span>
-            <span>improve your online visibility, and offer smart, AI-powered tools—</span>
-            <span>so you can focus on growing your business.</span>
-          </motion.p>
+            We're Edmonton-based creators who design beautiful websites, improve your online visibility, and offer smart, AI-powered tools so you can focus on growing your business          </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
