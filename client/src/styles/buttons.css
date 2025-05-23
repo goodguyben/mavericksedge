@@ -14,17 +14,19 @@
 
 /* Primary button */
 .maverick-button-primary {
-  background-color: #F15A29;
+  background: linear-gradient(90deg, #FF5A00 0%, #FFA200 100%);
   color: #FFFFFF !important; /* Force white text */
   border: none;
   border-radius: 9999px; /* Full rounded like non-orange buttons */
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  transition: all 0.3s ease;
 }
 
 .maverick-button-primary:hover {
-  background-color: rgba(241, 90, 41, 0.9);
+  box-shadow: 0 10px 25px -5px rgba(255, 90, 0, 0.4);
+  transform: scale(1.05);
 }
 
 /* Subscribe button specific class to keep it with different corner radius */

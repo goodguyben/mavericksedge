@@ -282,17 +282,19 @@
 
 /* Button styles */
 .btn-primary {
-  background-color: var(--primary);
+  background: linear-gradient(90deg, #FF5A00 0%, #FFA200 100%);
   color: white;
   padding: 0.75rem 1.5rem;
   border-radius: 9999px;
   font-weight: 500;
   display: inline-block;
   text-align: center;
+  transition: all 0.3s ease;
 }
 
 .btn-primary:hover {
-  background-color: rgba(241, 90, 41, 0.9);
+  box-shadow: 0 10px 25px -5px rgba(255, 90, 0, 0.4);
+  transform: scale(1.05);
 }
 
 .btn-secondary {
