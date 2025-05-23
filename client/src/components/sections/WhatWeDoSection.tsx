@@ -537,10 +537,23 @@ export default function WhatWeDoSection() {
                             />
 
                             {/* Web Development Animations */}
-                            {service.animationElements === "code" && (
-                              <>
-                                {/* Interactive design and code visualization */}
-                                <div className="absolute top-6 left-6 right-6 h-44 rounded-lg bg-gradient-to-br from-[#1E1E1E]/90 to-[#252530]/90 overflow-hidden border border-gray-700 shadow-lg shadow-purple-500/20">
+                                {service.animationElements === "code" && (
+                                  <>
+                                    {/* Interactive design and code visualization with 3D effects */}
+                                    <motion.div 
+                                      className="absolute top-6 left-6 right-6 h-44 rounded-lg bg-gradient-to-br from-[#1E1E1E]/90 to-[#252530]/90 overflow-hidden border border-gray-700 shadow-lg shadow-purple-500/20"
+                                      animate={{ 
+                                        rotateX: [0, 2, 0, -2, 0],
+                                        rotateY: [0, -2, 0, 2, 0],
+                                        translateZ: [0, 5, 0, -5, 0]
+                                      }}
+                                      transition={{ 
+                                        duration: 10, 
+                                        repeat: Infinity, 
+                                        ease: "easeInOut" 
+                                      }}
+                                      style={{ transformStyle: "preserve-3d", perspective: "1000px" }}
+                                    >
                                   {/* Creative design area */}
                                   <div className="absolute inset-0">
                                     {/* Design tool header */}
@@ -622,7 +635,7 @@ export default function WhatWeDoSection() {
                                           animate={{ width: '100%' }}
                                           transition={{ delay: 1.0, duration: 0.6 }}
                                         />
-                                        
+
                                         {/* Hero section with gradient */}
                                         <motion.div
                                           className="h-12 w-full relative overflow-hidden"
@@ -631,7 +644,7 @@ export default function WhatWeDoSection() {
                                           transition={{ delay: 1.2 }}
                                         >
                                           <div className="absolute inset-0 bg-gradient-to-br from-indigo-800/50 via-purple-700/50 to-pink-800/50" />
-                                          
+
                                           {/* Hero content */}
                                           <div className="relative z-10 flex flex-col items-center justify-center h-full p-1">
                                             <motion.div 
@@ -657,7 +670,7 @@ export default function WhatWeDoSection() {
                                             </motion.div>
                                           </div>
                                         </motion.div>
-                                        
+
                                         {/* Content blocks with vibrant colors */}
                                         <div className="p-1 grid grid-cols-2 gap-1">
                                           {[
@@ -675,7 +688,7 @@ export default function WhatWeDoSection() {
                                             />
                                           ))}
                                         </div>
-                                        
+
                                         {/* Footer */}
                                         <motion.div
                                           className="h-2.5 mt-1 bg-gradient-to-r from-gray-800/80 to-gray-700/80"
@@ -686,7 +699,7 @@ export default function WhatWeDoSection() {
                                       </motion.div>
                                     </div>
                                   </div>
-                                </div>
+                                </motion.div>
 
                                 {/* Code and Development Visualization */}
                                 <motion.div
@@ -703,7 +716,8 @@ export default function WhatWeDoSection() {
                                         <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/80"></div>
                                         <div className="w-2.5 h-2.5 rounded-full bg-green-500/80"></div>
                                       </div>
-                                      <div className="text-xs bg-[#0D1117]/90 text-blue-300 px-2 py-0.5 rounded-sm flex-grow text-center font-mono">
+                                      <div className="text-xs bg-[#0D1117]/90 text-blue-300 px-2 py-0.5 rounded-sm```python
+ flex-grow text-center font-mono">
                                         index.tsx
                                       </div>
                                       <div className="bg-blue-500/30 rounded px-1.5 py-0.5 text-[9px] text-blue-300 flex items-center">
@@ -723,7 +737,7 @@ export default function WhatWeDoSection() {
                                       transition={{ delay: 1.0 }}
                                     >
                                       <div className="text-[10px] text-gray-400 mb-1">Project Files</div>
-                                      
+
                                       {/* File tree */}
                                       <div className="space-y-1">
                                         {[
@@ -752,7 +766,7 @@ export default function WhatWeDoSection() {
                                         ))}
                                       </div>
                                     </motion.div>
-                                    
+
                                     {/* Code editor main area */}
                                     <div className="col-span-4 font-mono p-2 text-[9px] relative">
                                       {/* Syntax highlighted code */}
@@ -786,7 +800,7 @@ export default function WhatWeDoSection() {
                                           </motion.div>
                                         ))}
                                       </div>
-                                      
+
                                       {/* Color preview tooltip */}
                                       <motion.div 
                                         className="absolute top-24 right-6 bg-[#1F2937] shadow-lg rounded p-1.5 border border-gray-700"
@@ -801,7 +815,7 @@ export default function WhatWeDoSection() {
                                           <div className="w-6 h-6 rounded bg-gradient-to-br from-amber-500 to-orange-500 border border-gray-600" />
                                         </div>
                                       </motion.div>
-                                      
+
                                       {/* Live preview badge */}
                                       <motion.div
                                         className="absolute bottom-2 right-2 bg-gradient-to-r from-emerald-600/90 to-green-600/90 text-[8px] px-2 py-1 rounded-full text-white flex items-center"
@@ -840,7 +854,7 @@ export default function WhatWeDoSection() {
                                     </motion.div>
                                   ))}
                                 </motion.div>
-                                
+
                                 {/* Mobile preview */}
                                 <motion.div
                                   className="absolute bottom-10 left-8 w-20 h-32 bg-black rounded-xl overflow-hidden border-4 border-gray-800 shadow-lg"
@@ -852,7 +866,7 @@ export default function WhatWeDoSection() {
                                   <div className="h-full w-full bg-gradient-to-b from-[#111] to-[#222] flex flex-col">
                                     {/* Mobile header */}
                                     <div className="h-1.5 bg-gradient-to-r from-purple-700 to-pink-700" />
-                                    
+
                                     {/* Mobile hero */}
                                     <div className="h-8 relative overflow-hidden">
                                       <div className="absolute inset-0 bg-gradient-to-br from-blue-800/50 via-purple-800/50 to-pink-800/50" />
@@ -861,7 +875,7 @@ export default function WhatWeDoSection() {
                                         <div className="w-6 h-0.5 bg-white/50 rounded-full mt-0.5" />
                                       </div>
                                     </div>
-                                    
+
                                     {/* Mobile content */}
                                     <div className="flex-1 p-1 grid grid-cols-2 gap-1">
                                       <div className="h-4 bg-gradient-to-br from-cyan-600/70 to-blue-700/70 rounded" />
@@ -870,11 +884,11 @@ export default function WhatWeDoSection() {
                                       <div className="h-4 bg-gradient-to-br from-emerald-600/70 to-green-700/70 rounded" />
                                     </div>
                                   </div>
-                                  
+
                                   {/* Mobile device button */}
                                   <div className="absolute bottom-1 left-1/2 transform -translate-x-1/2 w-4 h-0.5 bg-gray-700 rounded-full" />
                                 </motion.div>
-                                
+
                                 {/* Floating stats badges */}
                                 <motion.div
                                   className="absolute left-auto right-10 bottom-28 flex gap-2"
@@ -1383,6 +1397,9 @@ export default function WhatWeDoSection() {
                                       </div>
                                       <div className="text-[10px] bg-maverick-orange/20 text-maverick-orange px-1.5 py-0.5 rounded-sm">
                                         Self-Optimizing
+                                      </previous_generation>
+```python
+
                                       </div>
                                     </div>
                                   </div>
@@ -2199,7 +2216,7 @@ export default function WhatWeDoSection() {
                                             <div className="text-maverick-orange font-medium">
                                               +74% Performance
                                             </div>
-                                            <div className="text-gray-300">
+                                            <div className="text-[8px] text-gray-300">
                                               with AI optimization
                                             </div>
                                           </motion.div>
