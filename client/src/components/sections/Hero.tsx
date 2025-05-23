@@ -148,15 +148,15 @@ export default function Hero() {
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 1.3 }}
+            transition={{ duration: 0.8, delay: 3.3 }}
             className="text-xl md:text-2xl text-maverick-cream/80 mt-6 mb-10 max-w-2xl font-sans leading-relaxed mx-auto text-center"
           >
-            We're Edmonton-based creators crafting designer websites, boosting business , and AI-powered tools to help you grow
+            We’re Edmonton-based creators crafting designer websites, boosting business , and AI-powered tools to help you grow
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 1.5 }}
+            transition={{ duration: 0.8, delay: 3.8 }}
             className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 justify-center"
           >
             <Button 
