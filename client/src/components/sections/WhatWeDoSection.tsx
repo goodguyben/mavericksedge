@@ -1397,9 +1397,6 @@ export default function WhatWeDoSection() {
                                       </div>
                                       <div className="text-[10px] bg-maverick-orange/20 text-maverick-orange px-1.5 py-0.5 rounded-sm">
                                         Self-Optimizing
-                                      </previous_generation>
-```python
-
                                       </div>
                                     </div>
                                   </div>
