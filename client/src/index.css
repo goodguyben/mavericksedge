@@ -282,7 +282,7 @@
 
 /* Button styles */
 .btn-primary {
-  background: linear-gradient(90deg, #FF5A00 0%, #FFA200 100%);
+  background: linear-gradient(90deg, #E04500 0%, #E57B00 100%);
   color: white;
   padding: 0.75rem 1.5rem;
   border-radius: 9999px;
@@ -293,7 +293,7 @@
 }
 
 .btn-primary:hover {
-  box-shadow: 0 10px 25px -5px rgba(255, 90, 0, 0.4);
+  box-shadow: 0 10px 25px -5px rgba(224, 69, 0, 0.4);
   transform: scale(1.05);
 }
 
