@@ -200,9 +200,7 @@ export default function WhatWeDoSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.3 }}
           >
-            We deliver transformative digital solutions that drive real business
-            growth, increase operational efficiency, and create meaningful
-            customer experiences that keep them coming back for more
+            Mavericks Edge is a full-service digital agency focused on helping businesses thrive in the digital age. We offer a range of services, from building and optimizing websites and e-commerce platforms to developing strategic marketing campaigns and integrating AI solutions for automation. Our goal is to provide customized, impactful solutions that drive results.
           </motion.p>
         </motion.div>
 
