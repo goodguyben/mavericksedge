@@ -2047,7 +2047,8 @@ export default function WhatWeDoSection() {
                                                             ? `${service.color}80`
                                                             : layer === 1
                                                               ? `${service.hoverColor}70`
-                                                              : `${service.color}60`,boxShadow: `0 0 10px ${service.color}40`,
+                                                              : `${service.color}60`,
+                                                        boxShadow: `0 0 10px ${service.color}40`,
                                                       }}
                                                       initial={{ scale: 0 }}
                                                       animate={{ scale: 1 }}
