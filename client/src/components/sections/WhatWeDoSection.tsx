@@ -1988,10 +1988,7 @@ export default function WhatWeDoSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
         >
-          <Link href="/services">
-            <a className="maverick-button maverick-button-primary inline-flex items-center justify-center px-8 py-3 text-base font-medium rounded-md md:py-4 md:text-lg md:px-10">
-              Explore All Services <ArrowRight className="ml-2 w-5 h-5" />
-            </a>
+            Explore All Services <ArrowRight className="ml-2 w-5 h-5" />
           </Link>
         </motion.div>
       </motion.div>
@@ -3334,10 +3331,7 @@ export default function WhatWeDoSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
         >
-          <Link href="/services">
-            <a className="maverick-button maverick-button-primary inline-flex items-center justify-center px-8 py-3 text-base font-medium rounded-md md:py-4 md:text-lg md:px-10">
-              Explore All Services <ArrowRight className="ml-2 w-5 h-5" />
-            </a>
+            Explore All Services <ArrowRight className="ml-2 w-5 h-5" />
           </Link>
         </motion.div>
       </motion.div>
