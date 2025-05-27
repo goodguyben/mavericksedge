@@ -2335,6 +2335,273 @@ export default function WhatWeDoSection() {
             </div>
           </motion.div>
         )}
+
+        {/* Core Services Cascading Section */}
+        <div className="mt-32 mb-20">
+          <motion.div
+            className="text-center mb-20"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            <h3 className="text-3xl lg:text-4xl font-bold text-white mb-4">
+              Our Core{" "}
+              <span className="bg-gradient-to-r from-maverick-orange to-yellow-400 bg-clip-text text-transparent">
+                Expertise
+              </span>
+            </h3>
+            <p className="text-lg text-gray-300 max-w-2xl mx-auto">
+              Discover how we transform your vision into reality through our specialized services
+            </p>
+          </motion.div>
+
+          {/* Web Design & Development Cascade */}
+          <div className="mb-24">
+            <motion.h4
+              className="text-2xl font-bold text-white mb-12 text-center"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              Web Design & Development
+            </motion.h4>
+            
+            {/* Step 1 - Left text, Right image */}
+            <motion.div
+              className="flex flex-col lg:flex-row items-center mb-16 gap-8 lg:gap-12"
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.1 }}
+            >
+              <div className="flex-1 lg:pr-8">
+                <h5 className="text-xl font-semibold text-white mb-4">Custom Web Solutions</h5>
+                <p className="text-gray-300 leading-relaxed">
+                  We craft bespoke websites tailored to your unique business needs and brand identity. 
+                  Our development process ensures scalable, secure, and lightning-fast performance that keeps your visitors engaged.
+                </p>
+              </div>
+              <div className="flex-1">
+                <div className="relative bg-gradient-to-br from-maverick-orange/20 to-yellow-500/20 rounded-2xl p-8 backdrop-blur-sm border border-maverick-orange/30">
+                  <Code className="w-16 h-16 text-maverick-orange mx-auto mb-4" />
+                  <div className="text-center text-gray-300">Custom Development</div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Step 2 - Right text, Left image */}
+            <motion.div
+              className="flex flex-col lg:flex-row-reverse items-center mb-16 gap-8 lg:gap-12"
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+            >
+              <div className="flex-1 lg:pl-8">
+                <h5 className="text-xl font-semibold text-white mb-4">E-commerce Excellence</h5>
+                <p className="text-gray-300 leading-relaxed">
+                  Transform your business with powerful e-commerce platforms that drive sales and enhance customer experience. 
+                  We integrate secure payment systems, inventory management, and analytics to maximize your online revenue.
+                </p>
+              </div>
+              <div className="flex-1">
+                <div className="relative bg-gradient-to-br from-yellow-500/20 to-orange-500/20 rounded-2xl p-8 backdrop-blur-sm border border-yellow-500/30">
+                  <Database className="w-16 h-16 text-yellow-500 mx-auto mb-4" />
+                  <div className="text-center text-gray-300">E-commerce Solutions</div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Step 3 - Left text, Right image */}
+            <motion.div
+              className="flex flex-col lg:flex-row items-center mb-16 gap-8 lg:gap-12"
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.5 }}
+            >
+              <div className="flex-1 lg:pr-8">
+                <h5 className="text-xl font-semibold text-white mb-4">Performance Optimization</h5>
+                <p className="text-gray-300 leading-relaxed">
+                  Speed matters in the digital world. We optimize your website for blazing-fast load times and superior user experience. 
+                  Our performance enhancements boost SEO rankings and increase conversion rates significantly.
+                </p>
+              </div>
+              <div className="flex-1">
+                <div className="relative bg-gradient-to-br from-orange-500/20 to-red-500/20 rounded-2xl p-8 backdrop-blur-sm border border-orange-500/30">
+                  <Zap className="w-16 h-16 text-orange-500 mx-auto mb-4" />
+                  <div className="text-center text-gray-300">Speed Optimization</div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Marketing & Creative Cascade */}
+          <div className="mb-24">
+            <motion.h4
+              className="text-2xl font-bold text-white mb-12 text-center"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              Marketing & Creative
+            </motion.h4>
+            
+            {/* Step 1 - Left text, Right image */}
+            <motion.div
+              className="flex flex-col lg:flex-row items-center mb-16 gap-8 lg:gap-12"
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.1 }}
+            >
+              <div className="flex-1 lg:pr-8">
+                <h5 className="text-xl font-semibold text-white mb-4">Brand Strategy & Design</h5>
+                <p className="text-gray-300 leading-relaxed">
+                  We create compelling brand identities that resonate with your target audience and stand out in competitive markets. 
+                  Our strategic approach combines visual design with market research to build memorable brand experiences.
+                </p>
+              </div>
+              <div className="flex-1">
+                <div className="relative bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-2xl p-8 backdrop-blur-sm border border-purple-500/30">
+                  <PenTool className="w-16 h-16 text-purple-400 mx-auto mb-4" />
+                  <div className="text-center text-gray-300">Brand Strategy</div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Step 2 - Right text, Left image */}
+            <motion.div
+              className="flex flex-col lg:flex-row-reverse items-center mb-16 gap-8 lg:gap-12"
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+            >
+              <div className="flex-1 lg:pl-8">
+                <h5 className="text-xl font-semibold text-white mb-4">Digital Marketing Campaigns</h5>
+                <p className="text-gray-300 leading-relaxed">
+                  Drive targeted traffic and maximize ROI with our data-driven marketing campaigns across all digital channels. 
+                  We leverage analytics and user behavior insights to create campaigns that convert prospects into loyal customers.
+                </p>
+              </div>
+              <div className="flex-1">
+                <div className="relative bg-gradient-to-br from-pink-500/20 to-red-500/20 rounded-2xl p-8 backdrop-blur-sm border border-pink-500/30">
+                  <LineChart className="w-16 h-16 text-pink-400 mx-auto mb-4" />
+                  <div className="text-center text-gray-300">Digital Campaigns</div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Step 3 - Left text, Right image */}
+            <motion.div
+              className="flex flex-col lg:flex-row items-center mb-16 gap-8 lg:gap-12"
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.5 }}
+            >
+              <div className="flex-1 lg:pr-8">
+                <h5 className="text-xl font-semibold text-white mb-4">Content Creation & SEO</h5>
+                <p className="text-gray-300 leading-relaxed">
+                  Engage your audience with high-quality content that ranks well in search engines and drives organic traffic. 
+                  Our content strategy combines storytelling with SEO best practices to build authority and trust in your industry.
+                </p>
+              </div>
+              <div className="flex-1">
+                <div className="relative bg-gradient-to-br from-red-500/20 to-maverick-orange/20 rounded-2xl p-8 backdrop-blur-sm border border-red-500/30">
+                  <FileIcon className="w-16 h-16 text-red-400 mx-auto mb-4" />
+                  <div className="text-center text-gray-300">Content & SEO</div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* AI Integration & Automation Cascade */}
+          <div className="mb-24">
+            <motion.h4
+              className="text-2xl font-bold text-white mb-12 text-center"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              AI Integration & Automation
+            </motion.h4>
+            
+            {/* Step 1 - Left text, Right image */}
+            <motion.div
+              className="flex flex-col lg:flex-row items-center mb-16 gap-8 lg:gap-12"
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.1 }}
+            >
+              <div className="flex-1 lg:pr-8">
+                <h5 className="text-xl font-semibold text-white mb-4">Smart Process Automation</h5>
+                <p className="text-gray-300 leading-relaxed">
+                  Streamline your operations with intelligent automation that reduces manual work and eliminates human error. 
+                  Our AI-powered solutions handle repetitive tasks, allowing your team to focus on strategic initiatives that drive growth.
+                </p>
+              </div>
+              <div className="flex-1">
+                <div className="relative bg-gradient-to-br from-emerald-500/20 to-teal-500/20 rounded-2xl p-8 backdrop-blur-sm border border-emerald-500/30">
+                  <Brain className="w-16 h-16 text-emerald-400 mx-auto mb-4" />
+                  <div className="text-center text-gray-300">Process Automation</div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Step 2 - Right text, Left image */}
+            <motion.div
+              className="flex flex-col lg:flex-row-reverse items-center mb-16 gap-8 lg:gap-12"
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+            >
+              <div className="flex-1 lg:pl-8">
+                <h5 className="text-xl font-semibold text-white mb-4">Machine Learning Integration</h5>
+                <p className="text-gray-300 leading-relaxed">
+                  Harness the power of machine learning to gain predictive insights and make data-driven decisions. 
+                  We implement custom ML models that learn from your data patterns to optimize performance and predict future trends.
+                </p>
+              </div>
+              <div className="flex-1">
+                <div className="relative bg-gradient-to-br from-teal-500/20 to-cyan-500/20 rounded-2xl p-8 backdrop-blur-sm border border-teal-500/30">
+                  <Shield className="w-16 h-16 text-teal-400 mx-auto mb-4" />
+                  <div className="text-center text-gray-300">Machine Learning</div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Step 3 - Left text, Right image */}
+            <motion.div
+              className="flex flex-col lg:flex-row items-center mb-16 gap-8 lg:gap-12"
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.5 }}
+            >
+              <div className="flex-1 lg:pr-8">
+                <h5 className="text-xl font-semibold text-white mb-4">Intelligent Analytics & Insights</h5>
+                <p className="text-gray-300 leading-relaxed">
+                  Transform raw data into actionable business intelligence with AI-powered analytics dashboards. 
+                  Our systems provide real-time insights and recommendations that help you stay ahead of market trends and customer needs.
+                </p>
+              </div>
+              <div className="flex-1">
+                <div className="relative bg-gradient-to-br from-cyan-500/20 to-blue-500/20 rounded-2xl p-8 backdrop-blur-sm border border-cyan-500/30">
+                  <LineChart className="w-16 h-16 text-cyan-400 mx-auto mb-4" />
+                  <div className="text-center text-gray-300">AI Analytics</div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
       </div>
     </section>
   );
