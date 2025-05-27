@@ -19,6 +19,7 @@ import {
   AnimatePresence,
 } from "framer-motion";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { Link } from "wouter";
 
 export default function WhatWeDoSection() {
   const isMobile = useIsMobile();
@@ -2049,6 +2050,181 @@ export default function WhatWeDoSection() {
                                                               ? `${service.hoverColor}70`
                                                               : `${service.color}60`,
                                                         boxShadow: `0 0 10px ${service.color}40`,
+                                                      }}
+                                                      initial={{ scale: 0 }}
+                                                      animate={{ scale: 1 }}
+                                                      transition={{
+                                                        delay:
+                                                          0.9 +
+                                                          layer * 0.2 +
+                                                          i * 0.1,
+                                                        duration: 0.5,
+                                                      }}
+                                                    >
+                                                      {layer === 1 &&
+                                                        i === 2 && (
+                                                          <Brain className="w-3 h-3 text-white" />
+                                                        )}
+                                                    </motion.div>
+                                                  ))}
+                                                </div>
+                                              ))}
+                                            </div>
+
+                                            {/* Output results on the right */}
+                                            <motion.div
+                                              className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-[#333]/70 p-2 rounded border border-gray-700/50 w-24"
+                                              initial={{ opacity: 0, x: 10 }}
+                                              animate={{ opacity: 1, x: 0 }}
+                                              transition={{ delay: 1.0 }}
+                                            >
+                                              <div className="text-[9px] text-green-400 mb-1">
+                                                AI-Optimized Results
+                                              </div>
+                                              <div className="space-y-1 text-[8px] text-gray-300">
+                                                <div className="flex justify-between items-center">
+                                                  <span>Automation</span>
+                                                  <span className="text-green-400">
+                                                    +89%
+                                                  </span>
+                                                </div>
+                                                <div className="flex justify-between items-center">
+                                                  <span>Accuracy</span>
+                                                  <span className="text-green-400">
+                                                    +76%
+                                                  </span>
+                                                </div>
+                                                <div className="flex justify-between items-center">
+                                                  <span>Speed</span>
+                                                  <span className="text-green-400">
+                                                    +94%
+                                                  </span>
+                                                </div>
+                                              </div>
+                                            </motion.div>
+                                          </div>
+                                        </div>
+                                      </motion.div>
+
+                                      {/* AI Benefits Overview */}
+                                      <motion.div
+                                        className="h-28 bg-[#222]/80 rounded-lg p-3 border border-gray-700/50"
+                                        initial={{ opacity: 0, x: 10 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        transition={{ delay: 0.7 }}
+                                      >
+                                        <div className="text-xs text-gray-300 font-medium mb-2">
+                                          AI Augmented Workforce
+                                        </div>
+
+                                        <div className="grid grid-cols-3 gap-2">
+                                          {[
+                                            {
+                                              label: "Productivity Boost",
+                                              value: "+143%",
+                                              icon: <Zap className="w-3 h-3" />,
+                                              color: service.color,
+                                            },
+                                            {
+                                              label: "Decision Quality",
+                                              value: "+87%",
+                                              icon: (
+                                                <Brain className="w-3 h-3" />
+                                              ),
+                                              color: "#5e9dd5",
+                                            },
+                                            {
+                                              label: "Employee Satisfaction",
+                                              value: "+62%",
+                                              icon: (
+                                                <Users className="w-3 h-3" />
+                                              ),
+                                              color: "#6ac47a",
+                                            },
+                                          ].map((benefit, idx) => (
+                                            <motion.div
+                                              key={idx}
+                                              className="bg-[#333]/60 rounded p-2"
+                                              initial={{ opacity: 0, y: 10 }}
+                                              animate={{ opacity: 1, y: 0 }}
+                                              transition={{
+                                                delay: 1.2 + idx * 0.2,
+                                              }}
+                                            >
+                                              <div className="flex justify-between items-center mb-1">
+                                                <div className="text-[8px] text-gray-400">
+                                                  {benefit.label}
+                                                </div>
+                                                <div
+                                                  className="w-4 h-4 rounded-full flex items-center justify-center"
+                                                  style={{
+                                                    backgroundColor: `${benefit.color}30`,
+                                                  }}
+                                                >
+                                                  {React.cloneElement(
+                                                    benefit.icon as React.ReactElement,
+                                                    {
+                                                      className: `text-${benefit.color}`,
+                                                    },
+                                                  )}
+                                                </div>
+                                              </div>
+                                              <div
+                                                className="text-sm font-medium"
+                                                style={{ color: benefit.color }}
+                                              >
+                                                {benefit.value}
+                                              </div>
+                                            </motion.div>
+                                          ))}
+                                        </div>
+                                      </motion.div>
+                                    </div>
+                                  </div>
+                                </div>
+
+                                            {/* Neural network layers */}
+                                            <div className="absolute left-1/2 top-0 bottom-0 transform -translate-x-1/2 w-32 flex justify-center">
+                                              {[0, 1, 2].map((layer) => (
+                                                <div
+                                                  key={layer}
+                                                  className="absolute top-0 bottom-0 flex flex-col justify-around"
+                                                  style={{
+                                                    left: `${20 + layer * 30}%`,
+                                                  }}
+                                                >
+                                                  {/* Layer label */}
+                                                  <motion.div
+                                                    className="absolute -top-5 left-1/2 transform -translate-x-1/2 text-[8px] text-gray-400"
+                                                    initial={{ opacity: 0 }}
+                                                    animate={{ opacity: 1 }}
+                                                    transition={{
+                                                      delay: 1.5 + layer * 0.2,
+                                                    }}
+                                                  >
+                                                    {layer === 0
+                                                      ? "Input"
+                                                      : layer === 1
+                                                        ? "Processing"
+                                                        : "Output"}
+                                                  </motion.div>
+
+                                                  {/* Nodes in each layer */}
+                                                  {[
+                                                    ...Array(
+                                                      layer === 1 ? 5 : 3,
+                                                    ),
+                                                  ].map((_, i) => (
+                                                    <motion.div
+                                                      key={i}
+                                                      className="w-5 h-5 rounded-full flex items-center justify-center"
+                                                      style={{
+                                                        backgroundColor:
+                                                          layer === 0
+                                                            ? `${service.color}80`
+                                                            : layer === 1
+                                                              ? `${service.hoverColor}70`
+                                                              : `${service.color}60`,boxShadow: `0 0 10px ${service.color}40`,
                                                       }}
                                                       initial={{ scale: 0 }}
                                                       animate={{ scale: 1 }}
