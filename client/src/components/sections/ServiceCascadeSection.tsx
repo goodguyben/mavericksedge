@@ -85,36 +85,33 @@ export default function ServiceCascadeSection() {
   const allItems = services.flatMap(service => service.items);
   const totalItems = allItems.length;
 
-  // Controlled scroll-based progression with throttling
+  // Controlled scroll-based progression with much stricter throttling
   useEffect(() => {
-    let animationFrame: number;
+    let lastChangeTime = 0;
+    const CHANGE_COOLDOWN = 800; // Minimum time between changes in ms
     
     const unsubscribe = scrollYProgress.on("change", (latest) => {
-      // Cancel previous animation frame to prevent rapid updates
-      if (animationFrame) {
-        cancelAnimationFrame(animationFrame);
-      }
+      const now = Date.now();
       
-      animationFrame = requestAnimationFrame(() => {
-        const now = Date.now();
+      // Very strict timing control
+      if (now - lastChangeTime < CHANGE_COOLDOWN) return;
+      
+      // Calculate which section we should be in based on large scroll chunks
+      const scrollChunk = 1 / totalItems;
+      const targetIndex = Math.floor(latest / scrollChunk);
+      const clampedIndex = Math.min(Math.max(targetIndex, 0), totalItems - 1);
+      
+      // Only change if we're definitely in a new section and enough time has passed
+      if (clampedIndex !== activeIndex) {
+        // Calculate how far into the section we are
+        const sectionProgress = (latest % scrollChunk) / scrollChunk;
         
-        // More aggressive throttling to prevent rapid changes
-        if (now - lastScrollTime.current < 200) return;
-        lastScrollTime.current = now;
-
-        // Calculate target index with smoother progression
-        // Use larger segments to prevent rapid switching
-        const segmentSize = 1 / totalItems;
-        const currentSegment = Math.floor(latest / segmentSize);
-        const targetIndex = Math.min(Math.max(currentSegment, 0), totalItems - 1);
+        // Require being well into the section before changing (40% threshold)
+        const requiredProgress = 0.4;
         
-        // Only change if we've crossed a significant threshold
-        const scrollThreshold = 0.15; // Require 15% scroll within segment to change
-        const segmentProgress = (latest % segmentSize) / segmentSize;
-        
-        // For forward scrolling, require crossing threshold
-        if (targetIndex > activeIndex && segmentProgress > scrollThreshold) {
-          setActiveIndex(targetIndex);
+        if (sectionProgress > requiredProgress || (clampedIndex < activeIndex && sectionProgress < (1 - requiredProgress))) {
+          lastChangeTime = now;
+          setActiveIndex(clampedIndex);
           setIsScrolling(true);
           
           if (scrollTimeout.current) {
@@ -123,37 +120,19 @@ export default function ServiceCascadeSection() {
           
           scrollTimeout.current = setTimeout(() => {
             setIsScrolling(false);
-          }, 500);
+          }, 600);
         }
-        // For backward scrolling, require crossing threshold from the other direction
-        else if (targetIndex < activeIndex && segmentProgress < (1 - scrollThreshold)) {
-          setActiveIndex(targetIndex);
-          setIsScrolling(true);
-          
-          if (scrollTimeout.current) {
-            clearTimeout(scrollTimeout.current);
-          }
-          
-          scrollTimeout.current = setTimeout(() => {
-            setIsScrolling(false);
-          }, 500);
-        }
-      });
+      }
     });
 
-    return () => {
-      unsubscribe();
-      if (animationFrame) {
-        cancelAnimationFrame(animationFrame);
-      }
-    };
+    return unsubscribe;
   }, [scrollYProgress, activeIndex, totalItems]);
 
   const getImageTransform = (index: number) => {
     const diff = index - activeIndex;
     
     if (diff === 0) {
-      // Active card - prominent and centered
+      // Active card - prominent and centered, fully opaque
       return {
         x: 0,
         y: 0,
@@ -166,7 +145,7 @@ export default function ServiceCascadeSection() {
         zIndex: 20
       };
     } else if (diff < 0) {
-      // Cards behind - stacked with dramatic depth
+      // Cards behind - stacked with dramatic depth, but fully opaque
       const distance = Math.abs(diff);
       return {
         x: -30 * distance,
@@ -175,12 +154,12 @@ export default function ServiceCascadeSection() {
         rotateY: -15 * distance,
         rotateX: 5 * distance,
         scale: Math.max(0.6, 1 - 0.15 * distance),
-        opacity: Math.max(0.1, 0.7 - 0.3 * distance),
-        filter: `blur(${distance * 3}px) brightness(${Math.max(0.3, 1 - 0.2 * distance)})`,
+        opacity: Math.max(0.4, 0.9 - 0.2 * distance), // Higher minimum opacity
+        filter: `blur(${distance * 2}px) brightness(1)`, // No brightness reduction
         zIndex: 20 - distance
       };
     } else {
-      // Cards ahead - partially visible with forward tilt
+      // Cards ahead - partially visible with forward tilt, but fully opaque
       const distance = diff;
       return {
         x: 40 * distance,
@@ -189,8 +168,8 @@ export default function ServiceCascadeSection() {
         rotateY: 12 * distance,
         rotateX: -3 * distance,
         scale: Math.max(0.5, 1 - 0.2 * distance),
-        opacity: Math.max(0.05, 0.5 - 0.25 * distance),
-        filter: `blur(${distance * 2}px) brightness(${Math.max(0.2, 0.8 - 0.3 * distance)})`,
+        opacity: Math.max(0.3, 0.8 - 0.2 * distance), // Higher minimum opacity
+        filter: `blur(${distance * 1.5}px) brightness(1)`, // No brightness reduction
         zIndex: 20 - distance
       };
     }
@@ -343,10 +322,7 @@ export default function ServiceCascadeSection() {
                         {index + 1}
                       </motion.div>
 
-                      {/* Inactive card overlay */}
-                      {index !== activeIndex && (
-                        <div className="absolute inset-0 bg-black/40 pointer-events-none" />
-                      )}
+                      {/* Removed inactive card overlay to prevent opacity issues */}
                     </div>
                   </motion.div>
                 );
