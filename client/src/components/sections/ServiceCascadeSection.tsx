@@ -54,14 +54,14 @@ export default function ServiceCascadeSection() {
         {
           id: "next-gen-ecommerce",
           title: "Next-Gen E-Commerce",
-          description: "Elevate your online business with cutting-edge e-commerce platforms designed for the modern consumer. We integrate AI-driven personalization, voice commerce capabilities, and immersive AR experiences to enhance customer engagement and drive sales. Our solutions also feature secure payment systems, real-time inventory management, and advanced analytics, ensuring a seamless and efficient shopping experience that maximizes your online revenue.",
+          description: "Launch and grow your online store with expertly crafted e-commerce sites on Shopify and WooCommerce. We build fast, secure storefronts with optimized checkout, seamless payment integration, inventory syncing, and built-in analytics to help you sell smarter. With AI-powered product recommendations built in, your customers discover what they want faster, boosting engagement and increasing sales.",
           image: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800&h=600&fit=crop&crop=entropy",
           gradient: "from-emerald-500/20 to-teal-500/20"
         },
         {
           id: "performance",
-          title: "Performance Optimization",
-          description: "Speed matters in the digital world. We optimize your website for blazing-fast load times and superior user experience. Our performance enhancements boost SEO rankings and increase conversion rates significantly.",
+          title: "Performance Optimization & Online Visibility",
+          description: "We enhance your website’s speed, mobile responsiveness, and Core Web Vitals to ensure a seamless user experience. Our strategies incorporate Generative Engine Optimization (GEO) to position your content in AI-generated responses across platforms like Google’s AI Overviews and ChatGPT. By focusing on structured data, semantic clarity, and user-centric design, we not only boost your search rankings but also increase visibility in AI-driven search results, driving higher engagement and conversions.",
           image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop&crop=entropy",
           gradient: "from-orange-500/20 to-red-500/20"
         }
