@@ -420,6 +420,30 @@
   scrollbar-width: none;
 }
 
+/* 3D perspective utilities */
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
+/* Vertical writing mode for scroll indicator */
+.writing-mode-vertical {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+}
+
+/* Card stack shadow effect */
+.card-stack-shadow {
+  box-shadow: 
+    0 0 0 1px rgba(255, 90, 0, 0.1),
+    0 4px 8px rgba(0, 0, 0, 0.1),
+    0 8px 16px rgba(0, 0, 0, 0.1),
+    0 16px 32px rgba(0, 0, 0, 0.1);
+}
+
 .horizontal-scroll-container::-webkit-scrollbar,
 .scrollbar-hide::-webkit-scrollbar {
   display: none;

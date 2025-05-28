@@ -123,29 +123,29 @@ export default function ServiceCascadeSection() {
         zIndex: 10
       };
     } else if (diff < 0) {
-      // Cards behind - less visible, stacked behind
+      // Cards behind - stacked behind with more obvious layering
       const distance = Math.abs(diff);
       return {
-        x: -30 * distance,
-        y: 15 * distance,
-        z: -80 * distance,
-        rotateY: -12 * distance,
-        scale: Math.max(0.6, 1 - 0.15 * distance),
-        opacity: distance === 1 ? 0.4 : 0.1,
-        filter: `blur(${distance * 3}px) brightness(${Math.max(0.3, 1 - 0.2 * distance)})`,
+        x: -20 * distance,
+        y: 20 * distance,
+        z: -60 * distance,
+        rotateY: -8 * distance,
+        scale: Math.max(0.7, 1 - 0.1 * distance),
+        opacity: distance === 1 ? 0.6 : Math.max(0.2, 0.6 - 0.2 * distance),
+        filter: `blur(${distance * 2}px) brightness(${Math.max(0.4, 1 - 0.15 * distance)})`,
         zIndex: 10 - distance
       };
     } else {
-      // Cards ahead - hidden or barely visible
+      // Cards ahead - more visible when close
       const distance = diff;
       return {
-        x: 40 * distance,
-        y: -20 * distance,
-        z: -60 * distance,
-        rotateY: 15 * distance,
-        scale: Math.max(0.5, 1 - 0.2 * distance),
-        opacity: distance === 1 ? 0.2 : 0.05,
-        filter: `blur(${distance * 4}px) brightness(${Math.max(0.2, 0.8 - 0.3 * distance)})`,
+        x: 25 * distance,
+        y: -15 * distance,
+        z: -40 * distance,
+        rotateY: 10 * distance,
+        scale: Math.max(0.6, 1 - 0.15 * distance),
+        opacity: distance === 1 ? 0.4 : Math.max(0.1, 0.4 - 0.15 * distance),
+        filter: `blur(${distance * 2}px) brightness(${Math.max(0.3, 0.9 - 0.2 * distance)})`,
         zIndex: 10 - distance
       };
     }
@@ -183,11 +183,50 @@ export default function ServiceCascadeSection() {
       </div>
 
       {/* Sticky content container */}
-      <div className="sticky top-0 h-screen flex items-center justify-center bg-black z-10 pt-20">
+      <div className="sticky top-24 h-screen flex items-center justify-center bg-black z-10">
         <div className="container mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           
           {/* 3D Image Stack */}
           <div className="relative h-96 lg:h-[500px] perspective-1000">
+            {/* Scroll indicator */}
+            <div className="absolute -left-8 top-1/2 transform -translate-y-1/2 z-20">
+              <motion.div
+                className="flex flex-col items-center space-y-2"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 1 }}
+              >
+                <motion.div
+                  className="w-1 h-12 bg-gradient-to-b from-transparent via-maverick-orange to-transparent rounded-full"
+                  animate={{
+                    scaleY: [1, 1.5, 1],
+                    opacity: [0.5, 1, 0.5]
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                />
+                <span className="text-xs text-gray-400 writing-mode-vertical transform rotate-180">
+                  Scroll to explore
+                </span>
+              </motion.div>
+            </div>
+
+            {/* Card counter */}
+            <div className="absolute top-4 right-4 z-20">
+              <motion.div
+                className="bg-black/50 backdrop-blur-sm rounded-full px-3 py-1 text-sm text-white border border-maverick-orange/30"
+                key={activeIndex}
+                initial={{ scale: 0.8, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ duration: 0.3 }}
+              >
+                {activeIndex + 1} / {totalItems}
+              </motion.div>
+            </div>
+
             <div className="relative w-full h-full preserve-3d">
               {allItems.map((item, index) => {
                 const transform = getImageTransform(index);
@@ -219,8 +258,13 @@ export default function ServiceCascadeSection() {
                       <img
                         src={item.image}
                         alt={item.title}
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                       />
+                      
+                      {/* Depth shadow for cards behind */}
+                      {index !== activeIndex && (
+                        <div className="absolute inset-0 bg-black/20 pointer-events-none" />
+                      )}
                       
                       {/* Active card gradient overlay */}
                       {index === activeIndex && (
@@ -235,16 +279,75 @@ export default function ServiceCascadeSection() {
                       {/* Decorative border for active card */}
                       {index === activeIndex && (
                         <motion.div
-                          className="absolute inset-0 border-2 border-maverick-orange/30 rounded-2xl"
+                          className="absolute inset-0 border-2 border-maverick-orange/50 rounded-2xl"
                           initial={{ opacity: 0, scale: 0.95 }}
                           animate={{ opacity: 1, scale: 1 }}
                           transition={{ duration: 0.6, delay: 0.2 }}
                         />
                       )}
+
+                      {/* Card title overlay for stacked cards */}
+                      {index !== activeIndex && (
+                        <div className="absolute bottom-4 left-4 right-4">
+                          <motion.div
+                            className="bg-black/70 backdrop-blur-sm rounded-lg p-2"
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ 
+                              opacity: transform.opacity > 0.1 ? 0.8 : 0, 
+                              y: transform.opacity > 0.1 ? 0 : 10 
+                            }}
+                            transition={{ duration: 0.3 }}
+                          >
+                            <h4 className="text-white text-sm font-medium truncate">
+                              {item.title}
+                            </h4>
+                          </motion.div>
+                        </div>
+                      )}
                     </div>
+
+                    {/* Card number indicator */}
+                    <motion.div
+                      className="absolute -top-3 -right-3 w-8 h-8 rounded-full bg-maverick-orange text-black text-sm font-bold flex items-center justify-center"
+                      initial={{ opacity: 0, scale: 0 }}
+                      animate={{ 
+                        opacity: index === activeIndex ? 1 : 0.3,
+                        scale: index === activeIndex ? 1 : 0.8,
+                      }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      {index + 1}
+                    </motion.div>
                   </motion.div>
                 );
               })}
+            </div>
+
+            {/* Directional arrows */}
+            <div className="absolute -bottom-12 left-1/2 transform -translate-x-1/2 flex items-center space-x-4">
+              <motion.button
+                className="p-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 hover:border-maverick-orange/50 transition-colors"
+                onClick={() => handleDotClick(Math.max(0, activeIndex - 1))}
+                disabled={activeIndex === 0}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+              >
+                <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                </svg>
+              </motion.button>
+              
+              <motion.button
+                className="p-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 hover:border-maverick-orange/50 transition-colors"
+                onClick={() => handleDotClick(Math.min(totalItems - 1, activeIndex + 1))}
+                disabled={activeIndex === totalItems - 1}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+              >
+                <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </motion.button>
             </div>
           </div>
 
