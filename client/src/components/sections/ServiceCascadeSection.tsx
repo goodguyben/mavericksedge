@@ -85,32 +85,43 @@ export default function ServiceCascadeSection() {
   const allItems = services.flatMap(service => service.items);
   const totalItems = allItems.length;
 
-  // Controlled scroll-based progression with much stricter throttling
+  // Controlled scroll-based progression with strict debouncing
   useEffect(() => {
-    let lastChangeTime = 0;
-    const CHANGE_COOLDOWN = 800; // Minimum time between changes in ms
+    let debounceTimer: NodeJS.Timeout;
+    let lastDirection = 0; // Track scroll direction
+    let lastScrollValue = 0;
     
     const unsubscribe = scrollYProgress.on("change", (latest) => {
-      const now = Date.now();
+      // Clear previous debounce timer
+      if (debounceTimer) {
+        clearTimeout(debounceTimer);
+      }
       
-      // Very strict timing control
-      if (now - lastChangeTime < CHANGE_COOLDOWN) return;
+      // Determine scroll direction
+      const currentDirection = latest > lastScrollValue ? 1 : -1;
+      lastScrollValue = latest;
       
-      // Calculate which section we should be in based on large scroll chunks
-      const scrollChunk = 1 / totalItems;
-      const targetIndex = Math.floor(latest / scrollChunk);
-      const clampedIndex = Math.min(Math.max(targetIndex, 0), totalItems - 1);
-      
-      // Only change if we're definitely in a new section and enough time has passed
-      if (clampedIndex !== activeIndex) {
-        // Calculate how far into the section we are
-        const sectionProgress = (latest % scrollChunk) / scrollChunk;
+      // Debounce scroll changes - only process after scrolling stops
+      debounceTimer = setTimeout(() => {
+        // Calculate target index with large segments to prevent rapid switching
+        const segment = 1 / totalItems;
+        const rawIndex = latest / segment;
         
-        // Require being well into the section before changing (40% threshold)
-        const requiredProgress = 0.4;
+        // Only change if we've scrolled significantly into the next/previous section
+        let targetIndex;
+        if (currentDirection > 0) {
+          // Scrolling down - require 60% into next section
+          targetIndex = Math.floor(rawIndex + 0.4);
+        } else {
+          // Scrolling up - require 60% into previous section  
+          targetIndex = Math.floor(rawIndex - 0.4);
+        }
         
-        if (sectionProgress > requiredProgress || (clampedIndex < activeIndex && sectionProgress < (1 - requiredProgress))) {
-          lastChangeTime = now;
+        // Clamp the index
+        const clampedIndex = Math.min(Math.max(targetIndex, 0), totalItems - 1);
+        
+        // Only update if index actually changes
+        if (clampedIndex !== activeIndex) {
           setActiveIndex(clampedIndex);
           setIsScrolling(true);
           
@@ -120,12 +131,17 @@ export default function ServiceCascadeSection() {
           
           scrollTimeout.current = setTimeout(() => {
             setIsScrolling(false);
-          }, 600);
+          }, 400);
         }
-      }
+      }, 150); // Wait 150ms after scroll stops
     });
 
-    return unsubscribe;
+    return () => {
+      unsubscribe();
+      if (debounceTimer) {
+        clearTimeout(debounceTimer);
+      }
+    };
   }, [scrollYProgress, activeIndex, totalItems]);
 
   const getImageTransform = (index: number) => {
@@ -145,7 +161,7 @@ export default function ServiceCascadeSection() {
         zIndex: 20
       };
     } else if (diff < 0) {
-      // Cards behind - stacked with dramatic depth, but fully opaque
+      // Cards behind - stacked with dramatic depth, but maintain high opacity
       const distance = Math.abs(diff);
       return {
         x: -30 * distance,
@@ -153,13 +169,13 @@ export default function ServiceCascadeSection() {
         z: -80 * distance,
         rotateY: -15 * distance,
         rotateX: 5 * distance,
-        scale: Math.max(0.6, 1 - 0.15 * distance),
-        opacity: Math.max(0.4, 0.9 - 0.2 * distance), // Higher minimum opacity
-        filter: `blur(${distance * 2}px) brightness(1)`, // No brightness reduction
+        scale: Math.max(0.7, 1 - 0.1 * distance),
+        opacity: Math.max(0.7, 1 - 0.1 * distance), // Much higher minimum opacity
+        filter: `blur(${distance * 1}px) brightness(1)`, // Reduced blur
         zIndex: 20 - distance
       };
     } else {
-      // Cards ahead - partially visible with forward tilt, but fully opaque
+      // Cards ahead - partially visible with forward tilt, maintain high opacity
       const distance = diff;
       return {
         x: 40 * distance,
@@ -167,9 +183,9 @@ export default function ServiceCascadeSection() {
         z: -60 * distance,
         rotateY: 12 * distance,
         rotateX: -3 * distance,
-        scale: Math.max(0.5, 1 - 0.2 * distance),
-        opacity: Math.max(0.3, 0.8 - 0.2 * distance), // Higher minimum opacity
-        filter: `blur(${distance * 1.5}px) brightness(1)`, // No brightness reduction
+        scale: Math.max(0.6, 1 - 0.15 * distance),
+        opacity: Math.max(0.6, 1 - 0.15 * distance), // Much higher minimum opacity
+        filter: `blur(${distance * 1}px) brightness(1)`, // Reduced blur
         zIndex: 20 - distance
       };
     }
