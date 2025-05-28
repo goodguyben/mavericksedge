@@ -153,68 +153,57 @@ export default function ServiceCascadeSection() {
     }
   }, [activeIndex, services]);
 
-  // One-card-at-a-time scroll progression
+  // One-card-at-a-time scroll progression with wheel events
   const [isScrolling, setIsScrolling] = useState(false);
   const scrollTimeoutRef = useRef<NodeJS.Timeout>();
 
   useEffect(() => {
-    let lastScrollY = 0;
-    let scrollDirection = 0;
+    const container = containerRef.current;
+    if (!container) return;
 
-    const handleScroll = () => {
-      if (isScrolling) return;
-
-      const currentScrollY = window.scrollY;
-      const container = containerRef.current;
-      if (!container) return;
-
-      const containerTop = container.offsetTop;
-      const containerHeight = container.offsetHeight;
-      const windowHeight = window.innerHeight;
-      
-      // Check if we're in the scroll zone
-      if (currentScrollY >= containerTop - windowHeight && 
-          currentScrollY <= containerTop + containerHeight - windowHeight) {
-        
-        // Determine scroll direction
-        if (currentScrollY > lastScrollY && scrollDirection !== 1) {
-          // Scrolling down
-          scrollDirection = 1;
-          if (activeIndex < totalItems - 1) {
-            setIsScrolling(true);
-            setActiveIndex(prev => prev + 1);
-            setIsAutoPlaying(false);
-            
-            // Reset scrolling state after animation
-            clearTimeout(scrollTimeoutRef.current);
-            scrollTimeoutRef.current = setTimeout(() => {
-              setIsScrolling(false);
-            }, 1000);
-          }
-        } else if (currentScrollY < lastScrollY && scrollDirection !== -1) {
-          // Scrolling up
-          scrollDirection = -1;
-          if (activeIndex > 0) {
-            setIsScrolling(true);
-            setActiveIndex(prev => prev - 1);
-            setIsAutoPlaying(false);
-            
-            // Reset scrolling state after animation
-            clearTimeout(scrollTimeoutRef.current);
-            scrollTimeoutRef.current = setTimeout(() => {
-              setIsScrolling(false);
-            }, 1000);
-          }
-        }
+    const handleWheel = (e: WheelEvent) => {
+      if (isScrolling) {
+        e.preventDefault();
+        return;
       }
 
-      lastScrollY = currentScrollY;
+      const containerRect = container.getBoundingClientRect();
+      const isInView = containerRect.top <= window.innerHeight && containerRect.bottom >= 0;
+      
+      if (!isInView) return;
+
+      // Prevent default scroll when we're handling card navigation
+      e.preventDefault();
+      
+      const direction = e.deltaY > 0 ? 1 : -1;
+      
+      if (direction > 0 && activeIndex < totalItems - 1) {
+        // Scroll down - next card
+        setIsScrolling(true);
+        setActiveIndex(prev => prev + 1);
+        setIsAutoPlaying(false);
+        
+        clearTimeout(scrollTimeoutRef.current);
+        scrollTimeoutRef.current = setTimeout(() => {
+          setIsScrolling(false);
+        }, 800);
+      } else if (direction < 0 && activeIndex > 0) {
+        // Scroll up - previous card
+        setIsScrolling(true);
+        setActiveIndex(prev => prev - 1);
+        setIsAutoPlaying(false);
+        
+        clearTimeout(scrollTimeoutRef.current);
+        scrollTimeoutRef.current = setTimeout(() => {
+          setIsScrolling(false);
+        }, 800);
+      }
     };
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
+    container.addEventListener('wheel', handleWheel, { passive: false });
     
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      container.removeEventListener('wheel', handleWheel);
       clearTimeout(scrollTimeoutRef.current);
     };
   }, [activeIndex, totalItems, isScrolling]);
