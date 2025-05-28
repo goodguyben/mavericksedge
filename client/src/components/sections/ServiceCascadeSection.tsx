@@ -153,31 +153,33 @@ export default function ServiceCascadeSection() {
     }
   }, [activeIndex, services]);
 
-  // Scroll-based card navigation with reduced sensitivity
+  // Scroll-based card navigation with much reduced sensitivity
   const scrollProgress = useTransform(scrollYProgress, [0.4, 0.9], [0, totalItems - 1]);
   const [lastScrollTime, setLastScrollTime] = useState(0);
-  const [scrollBuffer, setScrollBuffer] = useState(0);
+  const [lastTargetIndex, setLastTargetIndex] = useState(0);
 
   useEffect(() => {
     const unsubscribe = scrollProgress.on("change", (latest) => {
       const now = Date.now();
       
-      // Throttle scroll updates to reduce sensitivity
-      if (now - lastScrollTime < 100) return;
+      // Much stronger throttling to reduce sensitivity
+      if (now - lastScrollTime < 300) return;
       
       const targetIndex = Math.round(latest);
       const currentDiff = Math.abs(latest - activeIndex);
       
-      // Require more significant movement to change cards
-      if (currentDiff > 0.3 && targetIndex !== activeIndex && targetIndex >= 0 && targetIndex < totalItems) {
+      // Require much more significant movement to change cards
+      // Only change if we've moved at least 0.7 units and target is different
+      if (currentDiff > 0.7 && targetIndex !== activeIndex && targetIndex !== lastTargetIndex && targetIndex >= 0 && targetIndex < totalItems) {
         setActiveIndex(targetIndex);
         setIsAutoPlaying(false);
         setLastScrollTime(now);
+        setLastTargetIndex(targetIndex);
       }
     });
 
     return unsubscribe;
-  }, [scrollProgress, activeIndex, totalItems, lastScrollTime]);
+  }, [scrollProgress, activeIndex, totalItems, lastScrollTime, lastTargetIndex]);
 
   const getImageTransform = (index: number) => {
     const diff = index - activeIndex;
