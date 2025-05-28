@@ -118,117 +118,38 @@ export default function ServiceCascadeSection() {
             </motion.div>
 
             {/* Cascading Items */}
-            {service.id === "web-development" ? (
-              // Stacked layout for Web Design & Development
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
-                {/* Images Stack - Left Side */}
-                <div className="relative h-[600px] lg:sticky lg:top-20">
-                  {service.items.map((item, itemIndex) => {
-                    const { scrollYProgress: itemScrollProgress } = useScroll({
-                      target: sectionRef,
-                      offset: [`${itemIndex * 30}% end`, `${(itemIndex + 1) * 30}% start`],
-                    });
-                    
-                    const yOffset = useTransform(
-                      itemScrollProgress,
-                      [0, 1],
-                      [0, -100 * itemIndex]
-                    );
-                    
-                    const scale = useTransform(
-                      itemScrollProgress,
-                      [0, 0.5, 1],
-                      [0.9, 1, 0.95]
-                    );
+            <div className="space-y-24 md:space-y-32">
+              {service.items.map((item, itemIndex) => {
+                const isEven = itemIndex % 2 === 0;
+                const isLeft = isEven;
 
-                    return (
-                      <motion.div
-                        key={itemIndex}
-                        className="absolute inset-0 w-full"
-                        style={{
-                          y: yOffset,
-                          scale,
-                          zIndex: service.items.length - itemIndex,
-                        }}
-                        initial={{ opacity: 0, y: 60 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, margin: "-200px" }}
-                        transition={{
-                          duration: 0.8,
-                          delay: itemIndex * 0.2,
-                          ease: "easeOut"
-                        }}
-                      >
-                        <div className="relative overflow-hidden rounded-2xl h-full group bg-[#1a1a1a] shadow-2xl">
-                          <motion.img
-                            src={item.image}
-                            alt={item.title}
-                            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                            initial={{ scale: 1.1 }}
-                            whileInView={{ scale: 1 }}
-                            viewport={{ once: true }}
-                            transition={{
-                              duration: 1,
-                              delay: itemIndex * 0.2 + 0.4
-                            }}
-                          />
-                          
-                          {/* Card title overlay */}
-                          <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-6">
-                            <h4 className="text-xl font-bold text-white mb-2">
-                              {item.title}
-                            </h4>
-                          </div>
-                          
-                          {/* Decorative border */}
-                          <motion.div
-                            className="absolute inset-0 border-2 border-maverick-orange/30 rounded-2xl"
-                            initial={{ opacity: 0, scale: 0.95 }}
-                            whileInView={{ opacity: 1, scale: 1 }}
-                            viewport={{ once: true }}
-                            transition={{
-                              duration: 0.6,
-                              delay: itemIndex * 0.2 + 0.8
-                            }}
-                          />
-                        </div>
-                      </motion.div>
-                    );
-                  })}
-                </div>
-
-                {/* Content Stack - Right Side */}
-                <div className="space-y-32">
-                  {service.items.map((item, itemIndex) => (
+                return (
+                  <motion.div
+                    key={itemIndex}
+                    className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center"
+                    initial={{ opacity: 0, y: 60 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-150px" }}
+                    transition={{
+                      duration: 0.8,
+                      delay: itemIndex * 0.2,
+                      ease: "easeOut"
+                    }}
+                  >
+                    {/* Content Block */}
                     <motion.div
-                      key={itemIndex}
-                      className="space-y-6"
-                      initial={{ opacity: 0, x: 40 }}
+                      className={`${isLeft ? 'lg:order-1' : 'lg:order-2'} space-y-6`}
+                      initial={{ opacity: 0, x: isLeft ? -40 : 40 }}
                       whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true, margin: "-150px" }}
+                      viewport={{ once: true, margin: "-100px" }}
                       transition={{
                         duration: 0.7,
-                        delay: itemIndex * 0.3,
+                        delay: itemIndex * 0.2 + 0.3,
                         ease: "easeOut"
                       }}
                     >
                       <div className="space-y-4">
-                        <motion.div
-                          className="inline-block px-4 py-2 bg-maverick-orange/10 border border-maverick-orange/20 rounded-full"
-                          initial={{ opacity: 0, scale: 0.8 }}
-                          whileInView={{ opacity: 1, scale: 1 }}
-                          viewport={{ once: true }}
-                          transition={{
-                            duration: 0.5,
-                            delay: itemIndex * 0.3 + 0.2
-                          }}
-                        >
-                          <span className="text-maverick-orange text-sm font-medium">
-                            {String(itemIndex + 1).padStart(2, '0')}
-                          </span>
-                        </motion.div>
-                        
-                        <h4 className="text-3xl md:text-4xl font-bold text-white">
+                        <h4 className="text-2xl md:text-3xl font-bold text-white">
                           {item.title}
                         </h4>
                         <p className="text-[#AAAAAA] text-lg leading-relaxed">
@@ -238,120 +159,63 @@ export default function ServiceCascadeSection() {
 
                       {/* Decorative element */}
                       <motion.div
-                        className="w-20 h-1 bg-gradient-to-r from-maverick-orange to-maverick-amber rounded-full"
+                        className="w-16 h-1 bg-gradient-to-r from-maverick-orange to-maverick-amber rounded-full"
                         initial={{ scaleX: 0 }}
                         whileInView={{ scaleX: 1 }}
                         viewport={{ once: true }}
                         transition={{
                           duration: 0.8,
-                          delay: itemIndex * 0.3 + 0.6
+                          delay: itemIndex * 0.2 + 0.6
                         }}
                       />
                     </motion.div>
-                  ))}
-                </div>
-              </div>
-            ) : (
-              // Original alternating layout for other services
-              <div className="space-y-24 md:space-y-32">
-                {service.items.map((item, itemIndex) => {
-                  const isEven = itemIndex % 2 === 0;
-                  const isLeft = isEven;
 
-                  return (
+                    {/* Image Block */}
                     <motion.div
-                      key={itemIndex}
-                      className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center"
-                      initial={{ opacity: 0, y: 60 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true, margin: "-150px" }}
+                      className={`${isLeft ? 'lg:order-2' : 'lg:order-1'} relative`}
+                      initial={{ opacity: 0, x: isLeft ? 40 : -40 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true, margin: "-100px" }}
                       transition={{
-                        duration: 0.8,
-                        delay: itemIndex * 0.2,
+                        duration: 0.7,
+                        delay: itemIndex * 0.2 + 0.1,
                         ease: "easeOut"
                       }}
                     >
-                      {/* Content Block */}
-                      <motion.div
-                        className={`${isLeft ? 'lg:order-1' : 'lg:order-2'} space-y-6`}
-                        initial={{ opacity: 0, x: isLeft ? -40 : 40 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true, margin: "-100px" }}
-                        transition={{
-                          duration: 0.7,
-                          delay: itemIndex * 0.2 + 0.3,
-                          ease: "easeOut"
-                        }}
-                      >
-                        <div className="space-y-4">
-                          <h4 className="text-2xl md:text-3xl font-bold text-white">
-                            {item.title}
-                          </h4>
-                          <p className="text-[#AAAAAA] text-lg leading-relaxed">
-                            {item.description}
-                          </p>
-                        </div>
-
-                        {/* Decorative element */}
-                        <motion.div
-                          className="w-16 h-1 bg-gradient-to-r from-maverick-orange to-maverick-amber rounded-full"
-                          initial={{ scaleX: 0 }}
-                          whileInView={{ scaleX: 1 }}
+                      <div className="relative overflow-hidden rounded-2xl group">
+                        <motion.img
+                          src={item.image}
+                          alt={item.title}
+                          className="w-full h-80 md:h-96 object-cover transition-transform duration-500 group-hover:scale-105"
+                          initial={{ scale: 1.1 }}
+                          whileInView={{ scale: 1 }}
                           viewport={{ once: true }}
                           transition={{
-                            duration: 0.8,
-                            delay: itemIndex * 0.2 + 0.6
+                            duration: 1,
+                            delay: itemIndex * 0.2 + 0.4
                           }}
                         />
-                      </motion.div>
-
-                      {/* Image Block */}
-                      <motion.div
-                        className={`${isLeft ? 'lg:order-2' : 'lg:order-1'} relative`}
-                        initial={{ opacity: 0, x: isLeft ? 40 : -40 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true, margin: "-100px" }}
-                        transition={{
-                          duration: 0.7,
-                          delay: itemIndex * 0.2 + 0.1,
-                          ease: "easeOut"
-                        }}
-                      >
-                        <div className="relative overflow-hidden rounded-2xl group">
-                          <motion.img
-                            src={item.image}
-                            alt={item.title}
-                            className="w-full h-80 md:h-96 object-cover transition-transform duration-500 group-hover:scale-105"
-                            initial={{ scale: 1.1 }}
-                            whileInView={{ scale: 1 }}
-                            viewport={{ once: true }}
-                            transition={{
-                              duration: 1,
-                              delay: itemIndex * 0.2 + 0.4
-                            }}
-                          />
-                          
-                          {/* Overlay gradient */}
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                          
-                          {/* Decorative border */}
-                          <motion.div
-                            className="absolute inset-0 border-2 border-maverick-orange/20 rounded-2xl"
-                            initial={{ opacity: 0, scale: 0.95 }}
-                            whileInView={{ opacity: 1, scale: 1 }}
-                            viewport={{ once: true }}
-                            transition={{
-                              duration: 0.6,
-                              delay: itemIndex * 0.2 + 0.8
-                            }}
-                          />
-                        </div>
-                      </motion.div>
+                        
+                        {/* Overlay gradient */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                        
+                        {/* Decorative border */}
+                        <motion.div
+                          className="absolute inset-0 border-2 border-maverick-orange/20 rounded-2xl"
+                          initial={{ opacity: 0, scale: 0.95 }}
+                          whileInView={{ opacity: 1, scale: 1 }}
+                          viewport={{ once: true }}
+                          transition={{
+                            duration: 0.6,
+                            delay: itemIndex * 0.2 + 0.8
+                          }}
+                        />
+                      </div>
                     </motion.div>
-                  );
-                })}
-              </div>
-            )}
+                  </motion.div>
+                );
+              })}
+            </div>
           </div>
         ))}
       </div>
