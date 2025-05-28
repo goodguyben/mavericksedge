@@ -2,7 +2,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { Code, PenTool, Brain, ChevronRight, Play, Pause } from "lucide-react";
-import { TechButton } from "../ui/tech-button";
+import TechButton from "../ui/tech-button";
 
 interface CascadeItem {
   id: string;
