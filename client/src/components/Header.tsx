@@ -31,8 +31,8 @@ export default function Header() {
 
   const headerClasses = `fixed top-0 left-0 w-full py-4 sm:py-6 px-4 sm:px-5 md:px-10 z-50 transition-all duration-300 ${
     isScrolled
-      ? "bg-[#121212] bg-opacity-90 backdrop-blur-md shadow-md"
-      : "bg-[#121212] bg-opacity-50 backdrop-blur-sm"
+      ? "bg-[#121212] bg-opacity-95 backdrop-blur-md shadow-lg"
+      : "bg-[#121212] bg-opacity-80 backdrop-blur-sm"
   }`;
 
   const isCurrentPath = (path: string) => {
