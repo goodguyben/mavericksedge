@@ -153,20 +153,71 @@ export default function ServiceCascadeSection() {
     }
   }, [activeIndex, services]);
 
-  // Scroll-based progression - much slower transition
-  const scrollProgress = useTransform(scrollYProgress, [0.2, 0.95], [0, totalItems - 1]);
+  // One-card-at-a-time scroll progression
+  const [isScrolling, setIsScrolling] = useState(false);
+  const scrollTimeoutRef = useRef<NodeJS.Timeout>();
 
   useEffect(() => {
-    const unsubscribe = scrollProgress.on("change", (latest) => {
-      const newIndex = Math.round(latest);
-      if (newIndex !== activeIndex && newIndex >= 0 && newIndex < totalItems) {
-        setActiveIndex(newIndex);
-        setIsAutoPlaying(false);
-      }
-    });
+    let lastScrollY = 0;
+    let scrollDirection = 0;
 
-    return unsubscribe;
-  }, [scrollProgress, activeIndex, totalItems]);
+    const handleScroll = () => {
+      if (isScrolling) return;
+
+      const currentScrollY = window.scrollY;
+      const container = containerRef.current;
+      if (!container) return;
+
+      const containerTop = container.offsetTop;
+      const containerHeight = container.offsetHeight;
+      const windowHeight = window.innerHeight;
+      
+      // Check if we're in the scroll zone
+      if (currentScrollY >= containerTop - windowHeight && 
+          currentScrollY <= containerTop + containerHeight - windowHeight) {
+        
+        // Determine scroll direction
+        if (currentScrollY > lastScrollY && scrollDirection !== 1) {
+          // Scrolling down
+          scrollDirection = 1;
+          if (activeIndex < totalItems - 1) {
+            setIsScrolling(true);
+            setActiveIndex(prev => prev + 1);
+            setIsAutoPlaying(false);
+            
+            // Reset scrolling state after animation
+            clearTimeout(scrollTimeoutRef.current);
+            scrollTimeoutRef.current = setTimeout(() => {
+              setIsScrolling(false);
+            }, 1000);
+          }
+        } else if (currentScrollY < lastScrollY && scrollDirection !== -1) {
+          // Scrolling up
+          scrollDirection = -1;
+          if (activeIndex > 0) {
+            setIsScrolling(true);
+            setActiveIndex(prev => prev - 1);
+            setIsAutoPlaying(false);
+            
+            // Reset scrolling state after animation
+            clearTimeout(scrollTimeoutRef.current);
+            scrollTimeoutRef.current = setTimeout(() => {
+              setIsScrolling(false);
+            }, 1000);
+          }
+        }
+      }
+
+      lastScrollY = currentScrollY;
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      clearTimeout(scrollTimeoutRef.current);
+    };
+  }, [activeIndex, totalItems, isScrolling]);
 
   const getImageTransform = (index: number) => {
     const diff = index - activeIndex;
