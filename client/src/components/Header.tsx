@@ -11,6 +11,7 @@ export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [location] = useLocation();
   const isMobile = useIsMobile();
+  const isHomePage = location === '/';
 
   useEffect(() => {
     const handleScroll = () => {
@@ -56,7 +57,7 @@ export default function Header() {
       animate={{ opacity: 1 }}
       transition={{ 
         duration: 0.6,
-        delay: 4.0,
+        delay: isHomePage ? 4.0 : 0,
         ease: "easeInOut"
       }}
     >
