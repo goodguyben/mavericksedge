@@ -1,0 +1,62 @@
+The animation creates a cinematic storytelling experience where users scroll through 5 different content sections. As you scroll, images transition in a 3D stack while corresponding text content slides in from the right.
+The 3D Image Stack Animation
+Visual Appearance:
+
+Images are arranged like a deck of cards in 3D space
+The active (current) image sits front and center, fully visible and slightly zoomed
+Behind it, previous images stack with progressive depth, rotation, and scaling
+Ahead of it, future images are positioned with different angles and positions
+
+Stack Behavior:
+
+Active card: Full size, no rotation, bright and sharp with enhanced contrast
+Cards behind: Rotate backward (-8° Y-axis), sink deeper (-60px Z-axis), shrink (90-70% size), and fade (80-30% opacity)
+Cards ahead: Rotate forward (+12° Y-axis), positioned higher and to the right, more dramatically scaled down (85-60% size)
+
+Visual Effects:
+
+Depth of field: Inactive cards have subtle blur and reduced brightness
+Gradient overlays: Active cards get a subtle light gradient for premium feel
+Smooth transitions: All movements use sophisticated easing curves (0.8s duration)
+
+Content Animation System
+Text Entrance:
+
+Content slides in from the right (50px offset) as images transition
+Staggered timing: Title appears first, then paragraph, then button (0.1s delays between each)
+Each element has its own upward slide motion (20px) with opacity fade-in
+
+Button Interactions:
+
+Shimmer effect: Light sweep animation on hover
+Lift and scale: Rises 5px and grows 5% larger on hover
+Enhanced shadows: Drop shadow intensifies with interaction
+
+Scroll-Triggered Progression
+Activation Method:
+
+Scroll-based: As you scroll through a tall container (500vh), progress is calculated
+Automatic advancement: Also auto-advances every 4 seconds (pauses on user interaction)
+Direct navigation: Click progress dots to jump to any section
+
+Smooth Transitions:
+
+Uses cubic-bezier(0.25, 0.46, 0.45, 0.94) easing for natural, organic motion
+0.8-second transition duration for substantial but not sluggish movement
+
+Interactive Elements
+Progress Indicators:
+
+Ripple effects: Active dots expand with animated shadow rings
+Hover animations: Background circles expand on mouse-over
+Visual feedback: Active dot glows with colored shadow and 1.5x scale
+
+Ambient Details:
+
+Floating particles: Subtle animated dots drift upward throughout
+Gradient backgrounds: Dynamic color transitions
+Responsive design: Stacks vertically on mobile with adjusted timing
+
+The Overall Experience
+The animation feels like flipping through an interactive magazine or browsing a premium product showcase. Each scroll reveals a new story with cinematic transitions - images don't just change, they physically move through 3D space while content elegantly appears alongside them.
+The effect is immersive and engaging without being overwhelming, perfect for portfolios, product demonstrations, or storytelling websites where you want users to pause and absorb each section's content.
