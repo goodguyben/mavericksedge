@@ -50,9 +50,8 @@ export default function TechButton({
   // Base classes - matching WhatWeDoSection Learn more button
   const baseClasses = `
     px-6 py-3 rounded-lg font-medium flex items-center gap-2 transition-all duration-300
-    bg-gradient-to-r from-maverick-orange to-maverick-amber hover:scale-105 hover:shadow-lg
     text-white ${className}
-  `.replace(/bg-gradient-to-r.*?text-white/, 'bg-gradient-to-r from-[#E04500] to-[#E57B00] text-white');
+  `;
 
   // Create ripple effect on click
   const handleRippleEffect = (event: React.MouseEvent<HTMLButtonElement | HTMLAnchorElement>) => {
@@ -99,9 +98,9 @@ export default function TechButton({
 
   // Button content - simplified to match WhatWeDoSection
   const buttonContent = (
-    <>
+    <span className="text-white relative z-10">
       {children}
-    </>
+    </span>
   );
 
   if (href) {
