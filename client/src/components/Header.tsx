@@ -92,7 +92,7 @@ export default function Header() {
               className={`px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 inline-flex items-center ${
                 isCurrentPath('/services') || isCurrentPath('/services/web') || isCurrentPath('/services/marketing') || isCurrentPath('/services/ai') 
                   ? 'text-maverick-orange' 
-                  : 'text-white hover:text-maverick-orange'
+                  : 'text-maverick-orange hover:text-maverick-orange'
               }`}
               onClick={() => {}}  // Dropdown handled by hover
             >
@@ -128,7 +128,7 @@ export default function Header() {
               className={`px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 inline-flex items-center ${
                 isCurrentPath('/pricing') || isCurrentPath('/pricing/web') || isCurrentPath('/pricing/marketing') || isCurrentPath('/pricing/ai') 
                   ? 'text-maverick-orange' 
-                  : 'text-white hover:text-maverick-orange'
+                  : 'text-maverick-orange hover:text-maverick-orange'
               }`}
               onClick={() => {}}  // Dropdown handled by hover
             >
