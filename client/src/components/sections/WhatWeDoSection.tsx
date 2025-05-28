@@ -1581,6 +1581,423 @@ export default function WhatWeDoSection() {
                                             >
                                               <div className="text-[9px] text-maverick-orange mb-1">
                                                 Business Systems
+
+      </div>
+      
+      {/* Cascading Service Showcase */}
+      <motion.div 
+        className="mt-24 pt-8"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+      >
+        <div className="text-center mb-16">
+          <motion.h3
+            className="text-3xl md:text-4xl font-bold mb-4"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            Our Core Service Offerings
+          </motion.h3>
+          <motion.p
+            className="text-[#AAAAAA] text-lg max-w-2xl mx-auto"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
+            Scroll to explore our comprehensive range of services that drive digital success
+          </motion.p>
+        </div>
+        
+        {/* Web Design & Development Cascade */}
+        <div className="mb-24">
+          <motion.div
+            className="mb-4 flex justify-center"
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.5 }}
+          >
+            <div className="px-5 py-2 bg-maverick-orange/10 rounded-full">
+              <span className="text-maverick-orange font-medium">Web Design & Development</span>
+            </div>
+          </motion.div>
+          
+          {/* First item - Left text, Right image */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center mb-20">
+            <motion.div
+              className="order-2 md:order-1"
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.7 }}
+            >
+              <h4 className="text-2xl font-semibold mb-3">Responsive Website Design</h4>
+              <p className="text-[#AAAAAA] leading-relaxed">
+                We create stunning, mobile-optimized websites that adapt seamlessly to any device, ensuring an exceptional user experience regardless of screen size. Our designs are not only visually appealing but strategically crafted to convert visitors into customers through intuitive navigation and compelling calls-to-action.
+              </p>
+              <motion.div 
+                className="w-16 h-1 bg-maverick-orange mt-4"
+                initial={{ width: 0 }}
+                whileInView={{ width: 64 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.5 }}
+              />
+            </motion.div>
+            <motion.div
+              className="order-1 md:order-2 overflow-hidden rounded-lg border border-gray-800"
+              initial={{ opacity: 0, x: 50, scale: 0.9 }}
+              whileInView={{ opacity: 1, x: 0, scale: 1 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.7, delay: 0.2 }}
+            >
+              <img 
+                src="https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                alt="Responsive Web Design" 
+                className="w-full h-64 object-cover transition-transform duration-700 hover:scale-105"
+              />
+            </motion.div>
+          </div>
+          
+          {/* Second item - Right text, Left image */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center mb-20">
+            <motion.div
+              className="overflow-hidden rounded-lg border border-gray-800"
+              initial={{ opacity: 0, x: -50, scale: 0.9 }}
+              whileInView={{ opacity: 1, x: 0, scale: 1 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.7, delay: 0.2 }}
+            >
+              <img 
+                src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                alt="E-commerce Development" 
+                className="w-full h-64 object-cover transition-transform duration-700 hover:scale-105"
+              />
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.7 }}
+            >
+              <h4 className="text-2xl font-semibold mb-3">E-commerce Solutions</h4>
+              <p className="text-[#AAAAAA] leading-relaxed">
+                Our custom e-commerce platforms transform your products into compelling online shopping experiences that drive sales and customer loyalty. We integrate secure payment systems, inventory management, and customer analytics to create a seamless shopping journey from browse to purchase and beyond.
+              </p>
+              <motion.div 
+                className="w-16 h-1 bg-maverick-orange mt-4"
+                initial={{ width: 0 }}
+                whileInView={{ width: 64 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.5 }}
+              />
+            </motion.div>
+          </div>
+          
+          {/* Third item - Left text, Right image */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            <motion.div
+              className="order-2 md:order-1"
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.7 }}
+            >
+              <h4 className="text-2xl font-semibold mb-3">Web Application Development</h4>
+              <p className="text-[#AAAAAA] leading-relaxed">
+                We build powerful, custom web applications that automate processes, improve efficiency, and solve complex business challenges with elegant solutions. From customer portals to internal management dashboards, our applications are designed for maximum functionality, security, and scalability to grow with your business.
+              </p>
+              <motion.div 
+                className="w-16 h-1 bg-maverick-orange mt-4"
+                initial={{ width: 0 }}
+                whileInView={{ width: 64 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.5 }}
+              />
+            </motion.div>
+            <motion.div
+              className="order-1 md:order-2 overflow-hidden rounded-lg border border-gray-800"
+              initial={{ opacity: 0, x: 50, scale: 0.9 }}
+              whileInView={{ opacity: 1, x: 0, scale: 1 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.7, delay: 0.2 }}
+            >
+              <img 
+                src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                alt="Web Application Development" 
+                className="w-full h-64 object-cover transition-transform duration-700 hover:scale-105"
+              />
+            </motion.div>
+          </div>
+        </div>
+        
+        {/* Marketing & Creative Cascade */}
+        <div className="mb-24">
+          <motion.div
+            className="mb-4 flex justify-center"
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.5 }}
+          >
+            <div className="px-5 py-2 bg-maverick-orange/10 rounded-full">
+              <span className="text-maverick-orange font-medium">Marketing & Creative</span>
+            </div>
+          </motion.div>
+          
+          {/* First item - Left text, Right image */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center mb-20">
+            <motion.div
+              className="order-2 md:order-1"
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.7 }}
+            >
+              <h4 className="text-2xl font-semibold mb-3">Digital Marketing Strategy</h4>
+              <p className="text-[#AAAAAA] leading-relaxed">
+                We craft comprehensive digital marketing strategies that align with your business goals and target audience behaviors to maximize ROI. Our data-driven approach combines multiple channels into a cohesive plan that builds brand awareness, generates quality leads, and nurtures customer relationships throughout their journey.
+              </p>
+              <motion.div 
+                className="w-16 h-1 bg-maverick-orange mt-4"
+                initial={{ width: 0 }}
+                whileInView={{ width: 64 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.5 }}
+              />
+            </motion.div>
+            <motion.div
+              className="order-1 md:order-2 overflow-hidden rounded-lg border border-gray-800"
+              initial={{ opacity: 0, x: 50, scale: 0.9 }}
+              whileInView={{ opacity: 1, x: 0, scale: 1 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.7, delay: 0.2 }}
+            >
+              <img 
+                src="https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                alt="Digital Marketing Strategy" 
+                className="w-full h-64 object-cover transition-transform duration-700 hover:scale-105"
+              />
+            </motion.div>
+          </div>
+          
+          {/* Second item - Right text, Left image */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center mb-20">
+            <motion.div
+              className="overflow-hidden rounded-lg border border-gray-800"
+              initial={{ opacity: 0, x: -50, scale: 0.9 }}
+              whileInView={{ opacity: 1, x: 0, scale: 1 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.7, delay: 0.2 }}
+            >
+              <img 
+                src="https://images.unsplash.com/photo-1572025442646-866d16c84a54?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                alt="Content Marketing" 
+                className="w-full h-64 object-cover transition-transform duration-700 hover:scale-105"
+              />
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.7 }}
+            >
+              <h4 className="text-2xl font-semibold mb-3">Content Marketing</h4>
+              <p className="text-[#AAAAAA] leading-relaxed">
+                Our content marketing services focus on creating valuable, relevant material that attracts and engages your target audience while establishing your authority in your industry. From blog posts and case studies to videos and infographics, we develop multi-format content strategies that nurture prospects through the buyer's journey and drive meaningful conversions.
+              </p>
+              <motion.div 
+                className="w-16 h-1 bg-maverick-orange mt-4"
+                initial={{ width: 0 }}
+                whileInView={{ width: 64 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.5 }}
+              />
+            </motion.div>
+          </div>
+          
+          {/* Third item - Left text, Right image */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            <motion.div
+              className="order-2 md:order-1"
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.7 }}
+            >
+              <h4 className="text-2xl font-semibold mb-3">Search Engine Optimization</h4>
+              <p className="text-[#AAAAAA] leading-relaxed">
+                Our technical SEO services improve your website's visibility in search results through strategic keyword targeting, content optimization, and technical enhancements. We focus on sustainable, white-hat techniques that build long-term organic traffic growth while adapting to search engine algorithm changes to keep you ranking higher than competitors.
+              </p>
+              <motion.div 
+                className="w-16 h-1 bg-maverick-orange mt-4"
+                initial={{ width: 0 }}
+                whileInView={{ width: 64 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.5 }}
+              />
+            </motion.div>
+            <motion.div
+              className="order-1 md:order-2 overflow-hidden rounded-lg border border-gray-800"
+              initial={{ opacity: 0, x: 50, scale: 0.9 }}
+              whileInView={{ opacity: 1, x: 0, scale: 1 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.7, delay: 0.2 }}
+            >
+              <img 
+                src="https://images.unsplash.com/photo-1562577309-4932fdd64cd1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                alt="Search Engine Optimization" 
+                className="w-full h-64 object-cover transition-transform duration-700 hover:scale-105"
+              />
+            </motion.div>
+          </div>
+        </div>
+        
+        {/* AI Integration & Automation Cascade */}
+        <div className="mb-16">
+          <motion.div
+            className="mb-4 flex justify-center"
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.5 }}
+          >
+            <div className="px-5 py-2 bg-maverick-orange/10 rounded-full">
+              <span className="text-maverick-orange font-medium">AI Integration & Automation</span>
+            </div>
+          </motion.div>
+          
+          {/* First item - Left text, Right image */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center mb-20">
+            <motion.div
+              className="order-2 md:order-1"
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.7 }}
+            >
+              <h4 className="text-2xl font-semibold mb-3">AI-Powered Customer Experiences</h4>
+              <p className="text-[#AAAAAA] leading-relaxed">
+                We implement conversational AI solutions like chatbots and virtual assistants that provide instant, personalized customer support 24/7 while reducing operational costs. Our AI-enhanced customer interactions help qualify leads, answer common questions, and guide users through complex processes with natural language understanding and continuous learning capabilities.
+              </p>
+              <motion.div 
+                className="w-16 h-1 bg-maverick-orange mt-4"
+                initial={{ width: 0 }}
+                whileInView={{ width: 64 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.5 }}
+              />
+            </motion.div>
+            <motion.div
+              className="order-1 md:order-2 overflow-hidden rounded-lg border border-gray-800"
+              initial={{ opacity: 0, x: 50, scale: 0.9 }}
+              whileInView={{ opacity: 1, x: 0, scale: 1 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.7, delay: 0.2 }}
+            >
+              <img 
+                src="https://images.unsplash.com/photo-1535378917042-10a22c95931a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                alt="AI-Powered Customer Experiences" 
+                className="w-full h-64 object-cover transition-transform duration-700 hover:scale-105"
+              />
+            </motion.div>
+          </div>
+          
+          {/* Second item - Right text, Left image */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center mb-20">
+            <motion.div
+              className="overflow-hidden rounded-lg border border-gray-800"
+              initial={{ opacity: 0, x: -50, scale: 0.9 }}
+              whileInView={{ opacity: 1, x: 0, scale: 1 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.7, delay: 0.2 }}
+            >
+              <img 
+                src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                alt="Business Process Automation" 
+                className="w-full h-64 object-cover transition-transform duration-700 hover:scale-105"
+              />
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.7 }}
+            >
+              <h4 className="text-2xl font-semibold mb-3">Business Process Automation</h4>
+              <p className="text-[#AAAAAA] leading-relaxed">
+                Our custom automation solutions streamline repetitive tasks and complex workflows, freeing your team to focus on strategic initiatives and creative problem-solving. We identify key operational bottlenecks and implement AI-powered automation that reduces errors, accelerates processing time, and provides valuable data insights to drive continuous improvement.
+              </p>
+              <motion.div 
+                className="w-16 h-1 bg-maverick-orange mt-4"
+                initial={{ width: 0 }}
+                whileInView={{ width: 64 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.5 }}
+              />
+            </motion.div>
+          </div>
+          
+          {/* Third item - Left text, Right image */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            <motion.div
+              className="order-2 md:order-1"
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.7 }}
+            >
+              <h4 className="text-2xl font-semibold mb-3">Predictive Analytics & Insights</h4>
+              <p className="text-[#AAAAAA] leading-relaxed">
+                We implement AI-driven analytics systems that transform your business data into actionable intelligence and anticipate future trends with remarkable accuracy. Our predictive models help forecast customer behaviors, optimize inventory, identify emerging market opportunities, and enable data-driven decision making across all levels of your organization.
+              </p>
+              <motion.div 
+                className="w-16 h-1 bg-maverick-orange mt-4"
+                initial={{ width: 0 }}
+                whileInView={{ width: 64 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.5 }}
+              />
+            </motion.div>
+            <motion.div
+              className="order-1 md:order-2 overflow-hidden rounded-lg border border-gray-800"
+              initial={{ opacity: 0, x: 50, scale: 0.9 }}
+              whileInView={{ opacity: 1, x: 0, scale: 1 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.7, delay: 0.2 }}
+            >
+              <img 
+                src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                alt="Predictive Analytics" 
+                className="w-full h-64 object-cover transition-transform duration-700 hover:scale-105"
+              />
+            </motion.div>
+          </div>
+        </div>
+        
+        {/* Call to action */}
+        <motion.div 
+          className="mt-20 text-center"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+        >
+          <Link href="/services">
+            <a className="maverick-button maverick-button-primary inline-flex items-center justify-center px-8 py-3 text-base font-medium rounded-md md:py-4 md:text-lg md:px-10">
+              Explore All Services <ArrowRight className="ml-2 w-5 h-5" />
+            </a>
+          </Link>
+        </motion.div>
+      </motion.div>
+    </section>
+  );
+}
+
                                               </div>
                                               <div className="space-y-1 text-[8px] text-gray-300">
                                                 <div>• CRM</div>
@@ -1588,6 +2005,182 @@ export default function WhatWeDoSection() {
                                                 <div>• Analytics</div>
                                               </div>
                                             </motion.div>
+
+                                            {/* Neural network layers */}
+                                            <div className="absolute left-1/2 top-0 bottom-0 transform -translate-x-1/2 w-32 flex justify-center">
+                                              {[0, 1, 2].map((layer) => (
+                                                <div
+                                                  key={layer}
+                                                  className="absolute top-0 bottom-0 flex flex-col justify-around"
+                                                  style={{
+                                                    left: `${20 + layer * 30}%`,
+                                                  }}
+                                                >
+                                                  {/* Layer label */}
+                                                  <motion.div
+                                                    className="absolute -top-5 left-1/2 transform -translate-x-1/2 text-[8px] text-gray-400"
+                                                    initial={{ opacity: 0 }}
+                                                    animate={{ opacity: 1 }}
+                                                    transition={{
+                                                      delay: 1.5 + layer * 0.2,
+                                                    }}
+                                                  >
+                                                    {layer === 0
+                                                      ? "Input"
+                                                      : layer === 1
+                                                        ? "Processing"
+                                                        : "Output"}
+                                                  </motion.div>
+
+                                                  {/* Nodes in each layer */}
+                                                  {[
+                                                    ...Array(
+                                                      layer === 1 ? 5 : 3,
+                                                    ),
+                                                  ].map((_, i) => (
+                                                    <motion.div
+                                                      key={i}
+                                                      className="w-5 h-5 rounded-full flex items-center justify-center"
+                                                      style={{
+                                                        backgroundColor:
+                                                          layer === 0
+                                                            ? `${service.color}80`
+                                                            : layer === 1
+                                                              ? `${service.hoverColor}70`
+                                                              : `${service.color}60`,
+                                                        boxShadow: `0 0 10px ${service.color}40`,
+                                                      }}
+                                                      initial={{ scale: 0 }}
+                                                      animate={{ scale: 1 }}
+                                                      transition={{
+                                                        delay:
+                                                          0.9 +
+                                                          layer * 0.2 +
+                                                          i * 0.1,
+                                                        duration: 0.5,
+                                                      }}
+                                                    >
+                                                      {layer === 1 &&
+                                                        i === 2 && (
+                                                          <Brain className="w-3 h-3 text-white" />
+                                                        )}
+                                                    </motion.div>
+                                                  ))}
+                                                </div>
+                                              ))}
+                                            </div>
+
+                                            {/* Output results on the right */}
+                                            <motion.div
+                                              className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-[#333]/70 p-2 rounded border border-gray-700/50 w-24"
+                                              initial={{ opacity: 0, x: 10 }}
+                                              animate={{ opacity: 1, x: 0 }}
+                                              transition={{ delay: 1.0 }}
+                                            >
+                                              <div className="text-[9px] text-green-400 mb-1">
+                                                AI-Optimized Results
+                                              </div>
+                                              <div className="space-y-1 text-[8px] text-gray-300">
+                                                <div className="flex justify-between items-center">
+                                                  <span>Automation</span>
+                                                  <span className="text-green-400">
+                                                    +89%
+                                                  </span>
+                                                </div>
+                                                <div className="flex justify-between items-center">
+                                                  <span>Accuracy</span>
+                                                  <span className="text-green-400">
+                                                    +76%
+                                                  </span>
+                                                </div>
+                                                <div className="flex justify-between items-center">
+                                                  <span>Speed</span>
+                                                  <span className="text-green-400">
+                                                    +94%
+                                                  </span>
+                                                </div>
+                                              </div>
+                                            </motion.div>
+                                          </div>
+                                        </div>
+                                      </motion.div>
+
+                                      {/* AI Benefits Overview */}
+                                      <motion.div
+                                        className="h-28 bg-[#222]/80 rounded-lg p-3 border border-gray-700/50"
+                                        initial={{ opacity: 0, x: 10 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        transition={{ delay: 0.7 }}
+                                      >
+                                        <div className="text-xs text-gray-300 font-medium mb-2">
+                                          AI Augmented Workforce
+                                        </div>
+
+                                        <div className="grid grid-cols-3 gap-2">
+                                          {[
+                                            {
+                                              label: "Productivity Boost",
+                                              value: "+143%",
+                                              icon: <Zap className="w-3 h-3" />,
+                                              color: service.color,
+                                            },
+                                            {
+                                              label: "Decision Quality",
+                                              value: "+87%",
+                                              icon: (
+                                                <Brain className="w-3 h-3" />
+                                              ),
+                                              color: "#5e9dd5",
+                                            },
+                                            {
+                                              label: "Employee Satisfaction",
+                                              value: "+62%",
+                                              icon: (
+                                                <Users className="w-3 h-3" />
+                                              ),
+                                              color: "#6ac47a",
+                                            },
+                                          ].map((benefit, idx) => (
+                                            <motion.div
+                                              key={idx}
+                                              className="bg-[#333]/60 rounded p-2"
+                                              initial={{ opacity: 0, y: 10 }}
+                                              animate={{ opacity: 1, y: 0 }}
+                                              transition={{
+                                                delay: 1.2 + idx * 0.2,
+                                              }}
+                                            >
+                                              <div className="flex justify-between items-center mb-1">
+                                                <div className="text-[8px] text-gray-400">
+                                                  {benefit.label}
+                                                </div>
+                                                <div
+                                                  className="w-4 h-4 rounded-full flex items-center justify-center"
+                                                  style={{
+                                                    backgroundColor: `${benefit.color}30`,
+                                                  }}
+                                                >
+                                                  {React.cloneElement(
+                                                    benefit.icon as React.ReactElement,
+                                                    {
+                                                      className: `text-${benefit.color}`,
+                                                    },
+                                                  )}
+                                                </div>
+                                              </div>
+                                              <div
+                                                className="text-sm font-medium"
+                                                style={{ color: benefit.color }}
+                                              >
+                                                {benefit.value}
+                                              </div>
+                                            </motion.div>
+                                          ))}
+                                        </div>
+                                      </motion.div>
+                                    </div>
+                                  </div>
+                                </div>
 
                                             {/* Neural network layers */}
                                             <div className="absolute left-1/2 top-0 bottom-0 transform -translate-x-1/2 w-32 flex justify-center">
@@ -2336,6 +2929,417 @@ export default function WhatWeDoSection() {
           </motion.div>
         )}
       </div>
+      
+      {/* Cascading Service Showcase */}
+      <motion.div 
+        className="mt-24 pt-8"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+      >
+        <div className="text-center mb-16">
+          <motion.h3
+            className="text-3xl md:text-4xl font-bold mb-4"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            Our Core Service Offerings
+          </motion.h3>
+          <motion.p
+            className="text-[#AAAAAA] text-lg max-w-2xl mx-auto"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
+            Scroll to explore our comprehensive range of services that drive digital success
+          </motion.p>
+        </div>
+        
+        {/* Web Design & Development Cascade */}
+        <div className="mb-24">
+          <motion.div
+            className="mb-4 flex justify-center"
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.5 }}
+          >
+            <div className="px-5 py-2 bg-maverick-orange/10 rounded-full">
+              <span className="text-maverick-orange font-medium">Web Design & Development</span>
+            </div>
+          </motion.div>
+          
+          {/* First item - Left text, Right image */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center mb-20">
+            <motion.div
+              className="order-2 md:order-1"
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.7 }}
+            >
+              <h4 className="text-2xl font-semibold mb-3">Responsive Website Design</h4>
+              <p className="text-[#AAAAAA] leading-relaxed">
+                We create stunning, mobile-optimized websites that adapt seamlessly to any device, ensuring an exceptional user experience regardless of screen size. Our designs are not only visually appealing but strategically crafted to convert visitors into customers through intuitive navigation and compelling calls-to-action.
+              </p>
+              <motion.div 
+                className="w-16 h-1 bg-maverick-orange mt-4"
+                initial={{ width: 0 }}
+                whileInView={{ width: 64 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.5 }}
+              />
+            </motion.div>
+            <motion.div
+              className="order-1 md:order-2 overflow-hidden rounded-lg border border-gray-800"
+              initial={{ opacity: 0, x: 50, scale: 0.9 }}
+              whileInView={{ opacity: 1, x: 0, scale: 1 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.7, delay: 0.2 }}
+            >
+              <img 
+                src="https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                alt="Responsive Web Design" 
+                className="w-full h-64 object-cover transition-transform duration-700 hover:scale-105"
+              />
+            </motion.div>
+          </div>
+          
+          {/* Second item - Right text, Left image */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center mb-20">
+            <motion.div
+              className="overflow-hidden rounded-lg border border-gray-800"
+              initial={{ opacity: 0, x: -50, scale: 0.9 }}
+              whileInView={{ opacity: 1, x: 0, scale: 1 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.7, delay: 0.2 }}
+            >
+              <img 
+                src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                alt="E-commerce Development" 
+                className="w-full h-64 object-cover transition-transform duration-700 hover:scale-105"
+              />
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.7 }}
+            >
+              <h4 className="text-2xl font-semibold mb-3">E-commerce Solutions</h4>
+              <p className="text-[#AAAAAA] leading-relaxed">
+                Our custom e-commerce platforms transform your products into compelling online shopping experiences that drive sales and customer loyalty. We integrate secure payment systems, inventory management, and customer analytics to create a seamless shopping journey from browse to purchase and beyond.
+              </p>
+              <motion.div 
+                className="w-16 h-1 bg-maverick-orange mt-4"
+                initial={{ width: 0 }}
+                whileInView={{ width: 64 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.5 }}
+              />
+            </motion.div>
+          </div>
+          
+          {/* Third item - Left text, Right image */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            <motion.div
+              className="order-2 md:order-1"
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.7 }}
+            >
+              <h4 className="text-2xl font-semibold mb-3">Web Application Development</h4>
+              <p className="text-[#AAAAAA] leading-relaxed">
+                We build powerful, custom web applications that automate processes, improve efficiency, and solve complex business challenges with elegant solutions. From customer portals to internal management dashboards, our applications are designed for maximum functionality, security, and scalability to grow with your business.
+              </p>
+              <motion.div 
+                className="w-16 h-1 bg-maverick-orange mt-4"
+                initial={{ width: 0 }}
+                whileInView={{ width: 64 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.5 }}
+              />
+            </motion.div>
+            <motion.div
+              className="order-1 md:order-2 overflow-hidden rounded-lg border border-gray-800"
+              initial={{ opacity: 0, x: 50, scale: 0.9 }}
+              whileInView={{ opacity: 1, x: 0, scale: 1 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.7, delay: 0.2 }}
+            >
+              <img 
+                src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                alt="Web Application Development" 
+                className="w-full h-64 object-cover transition-transform duration-700 hover:scale-105"
+              />
+            </motion.div>
+          </div>
+        </div>
+        
+        {/* Marketing & Creative Cascade */}
+        <div className="mb-24">
+          <motion.div
+            className="mb-4 flex justify-center"
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.5 }}
+          >
+            <div className="px-5 py-2 bg-maverick-orange/10 rounded-full">
+              <span className="text-maverick-orange font-medium">Marketing & Creative</span>
+            </div>
+          </motion.div>
+          
+          {/* First item - Left text, Right image */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center mb-20">
+            <motion.div
+              className="order-2 md:order-1"
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.7 }}
+            >
+              <h4 className="text-2xl font-semibold mb-3">Digital Marketing Strategy</h4>
+              <p className="text-[#AAAAAA] leading-relaxed">
+                We craft comprehensive digital marketing strategies that align with your business goals and target audience behaviors to maximize ROI. Our data-driven approach combines multiple channels into a cohesive plan that builds brand awareness, generates quality leads, and nurtures customer relationships throughout their journey.
+              </p>
+              <motion.div 
+                className="w-16 h-1 bg-maverick-orange mt-4"
+                initial={{ width: 0 }}
+                whileInView={{ width: 64 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.5 }}
+              />
+            </motion.div>
+            <motion.div
+              className="order-1 md:order-2 overflow-hidden rounded-lg border border-gray-800"
+              initial={{ opacity: 0, x: 50, scale: 0.9 }}
+              whileInView={{ opacity: 1, x: 0, scale: 1 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.7, delay: 0.2 }}
+            >
+              <img 
+                src="https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                alt="Digital Marketing Strategy" 
+                className="w-full h-64 object-cover transition-transform duration-700 hover:scale-105"
+              />
+            </motion.div>
+          </div>
+          
+          {/* Second item - Right text, Left image */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center mb-20">
+            <motion.div
+              className="overflow-hidden rounded-lg border border-gray-800"
+              initial={{ opacity: 0, x: -50, scale: 0.9 }}
+              whileInView={{ opacity: 1, x: 0, scale: 1 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.7, delay: 0.2 }}
+            >
+              <img 
+                src="https://images.unsplash.com/photo-1572025442646-866d16c84a54?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                alt="Content Marketing" 
+                className="w-full h-64 object-cover transition-transform duration-700 hover:scale-105"
+              />
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.7 }}
+            >
+              <h4 className="text-2xl font-semibold mb-3">Content Marketing</h4>
+              <p className="text-[#AAAAAA] leading-relaxed">
+                Our content marketing services focus on creating valuable, relevant material that attracts and engages your target audience while establishing your authority in your industry. From blog posts and case studies to videos and infographics, we develop multi-format content strategies that nurture prospects through the buyer's journey and drive meaningful conversions.
+              </p>
+              <motion.div 
+                className="w-16 h-1 bg-maverick-orange mt-4"
+                initial={{ width: 0 }}
+                whileInView={{ width: 64 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.5 }}
+              />
+            </motion.div>
+          </div>
+          
+          {/* Third item - Left text, Right image */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            <motion.div
+              className="order-2 md:order-1"
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.7 }}
+            >
+              <h4 className="text-2xl font-semibold mb-3">Search Engine Optimization</h4>
+              <p className="text-[#AAAAAA] leading-relaxed">
+                Our technical SEO services improve your website's visibility in search results through strategic keyword targeting, content optimization, and technical enhancements. We focus on sustainable, white-hat techniques that build long-term organic traffic growth while adapting to search engine algorithm changes to keep you ranking higher than competitors.
+              </p>
+              <motion.div 
+                className="w-16 h-1 bg-maverick-orange mt-4"
+                initial={{ width: 0 }}
+                whileInView={{ width: 64 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.5 }}
+              />
+            </motion.div>
+            <motion.div
+              className="order-1 md:order-2 overflow-hidden rounded-lg border border-gray-800"
+              initial={{ opacity: 0, x: 50, scale: 0.9 }}
+              whileInView={{ opacity: 1, x: 0, scale: 1 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.7, delay: 0.2 }}
+            >
+              <img 
+                src="https://images.unsplash.com/photo-1562577309-4932fdd64cd1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                alt="Search Engine Optimization" 
+                className="w-full h-64 object-cover transition-transform duration-700 hover:scale-105"
+              />
+            </motion.div>
+          </div>
+        </div>
+        
+        {/* AI Integration & Automation Cascade */}
+        <div className="mb-16">
+          <motion.div
+            className="mb-4 flex justify-center"
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.5 }}
+          >
+            <div className="px-5 py-2 bg-maverick-orange/10 rounded-full">
+              <span className="text-maverick-orange font-medium">AI Integration & Automation</span>
+            </div>
+          </motion.div>
+          
+          {/* First item - Left text, Right image */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center mb-20">
+            <motion.div
+              className="order-2 md:order-1"
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.7 }}
+            >
+              <h4 className="text-2xl font-semibold mb-3">AI-Powered Customer Experiences</h4>
+              <p className="text-[#AAAAAA] leading-relaxed">
+                We implement conversational AI solutions like chatbots and virtual assistants that provide instant, personalized customer support 24/7 while reducing operational costs. Our AI-enhanced customer interactions help qualify leads, answer common questions, and guide users through complex processes with natural language understanding and continuous learning capabilities.
+              </p>
+              <motion.div 
+                className="w-16 h-1 bg-maverick-orange mt-4"
+                initial={{ width: 0 }}
+                whileInView={{ width: 64 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.5 }}
+              />
+            </motion.div>
+            <motion.div
+              className="order-1 md:order-2 overflow-hidden rounded-lg border border-gray-800"
+              initial={{ opacity: 0, x: 50, scale: 0.9 }}
+              whileInView={{ opacity: 1, x: 0, scale: 1 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.7, delay: 0.2 }}
+            >
+              <img 
+                src="https://images.unsplash.com/photo-1535378917042-10a22c95931a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                alt="AI-Powered Customer Experiences" 
+                className="w-full h-64 object-cover transition-transform duration-700 hover:scale-105"
+              />
+            </motion.div>
+          </div>
+          
+          {/* Second item - Right text, Left image */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center mb-20">
+            <motion.div
+              className="overflow-hidden rounded-lg border border-gray-800"
+              initial={{ opacity: 0, x: -50, scale: 0.9 }}
+              whileInView={{ opacity: 1, x: 0, scale: 1 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.7, delay: 0.2 }}
+            >
+              <img 
+                src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                alt="Business Process Automation" 
+                className="w-full h-64 object-cover transition-transform duration-700 hover:scale-105"
+              />
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.7 }}
+            >
+              <h4 className="text-2xl font-semibold mb-3">Business Process Automation</h4>
+              <p className="text-[#AAAAAA] leading-relaxed">
+                Our custom automation solutions streamline repetitive tasks and complex workflows, freeing your team to focus on strategic initiatives and creative problem-solving. We identify key operational bottlenecks and implement AI-powered automation that reduces errors, accelerates processing time, and provides valuable data insights to drive continuous improvement.
+              </p>
+              <motion.div 
+                className="w-16 h-1 bg-maverick-orange mt-4"
+                initial={{ width: 0 }}
+                whileInView={{ width: 64 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.5 }}
+              />
+            </motion.div>
+          </div>
+          
+          {/* Third item - Left text, Right image */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            <motion.div
+              className="order-2 md:order-1"
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.7 }}
+            >
+              <h4 className="text-2xl font-semibold mb-3">Predictive Analytics & Insights</h4>
+              <p className="text-[#AAAAAA] leading-relaxed">
+                We implement AI-driven analytics systems that transform your business data into actionable intelligence and anticipate future trends with remarkable accuracy. Our predictive models help forecast customer behaviors, optimize inventory, identify emerging market opportunities, and enable data-driven decision making across all levels of your organization.
+              </p>
+              <motion.div 
+                className="w-16 h-1 bg-maverick-orange mt-4"
+                initial={{ width: 0 }}
+                whileInView={{ width: 64 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.5 }}
+              />
+            </motion.div>
+            <motion.div
+              className="order-1 md:order-2 overflow-hidden rounded-lg border border-gray-800"
+              initial={{ opacity: 0, x: 50, scale: 0.9 }}
+              whileInView={{ opacity: 1, x: 0, scale: 1 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.7, delay: 0.2 }}
+            >
+              <img 
+                src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                alt="Predictive Analytics" 
+                className="w-full h-64 object-cover transition-transform duration-700 hover:scale-105"
+              />
+            </motion.div>
+          </div>
+        </div>
+        
+        {/* Call to action */}
+        <motion.div 
+          className="mt-20 text-center"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+        >
+          <Link href="/services">
+            <a className="maverick-button maverick-button-primary inline-flex items-center justify-center px-8 py-3 text-base font-medium rounded-md md:py-4 md:text-lg md:px-10">
+              Explore All Services <ArrowRight className="ml-2 w-5 h-5" />
+            </a>
+          </Link>
+        </motion.div>
+      </motion.div>
     </section>
   );
 }
