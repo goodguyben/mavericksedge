@@ -85,23 +85,21 @@ export default function ServiceCascadeSection() {
   const allItems = services.flatMap(service => service.items);
   const totalItems = allItems.length;
 
-  // Controlled scroll-based progression with one-item-at-a-time movement
+  // Controlled scroll-based progression with throttling
   useEffect(() => {
     const unsubscribe = scrollYProgress.on("change", (latest) => {
       const now = Date.now();
       
-      // More aggressive throttling to prevent rapid changes
-      if (now - lastScrollTime.current < 200) return;
+      // Throttle scroll events to prevent rapid changes
+      if (now - lastScrollTime.current < 100) return;
       lastScrollTime.current = now;
 
-      // Calculate scroll sections - each item gets equal scroll space
-      const scrollPerItem = 1 / totalItems;
-      const currentSection = Math.floor(latest / scrollPerItem);
-      const targetIndex = Math.min(Math.max(currentSection, 0), totalItems - 1);
+      // Calculate target index based on scroll progress
+      const targetIndex = Math.floor(latest * totalItems);
+      const clampedIndex = Math.min(Math.max(targetIndex, 0), totalItems - 1);
       
-      // Only change if we've crossed into a new section
-      if (targetIndex !== activeIndex && !isScrolling) {
-        setActiveIndex(targetIndex);
+      if (clampedIndex !== activeIndex) {
+        setActiveIndex(clampedIndex);
         setIsScrolling(true);
         
         // Clear existing timeout
@@ -112,12 +110,12 @@ export default function ServiceCascadeSection() {
         // Set scrolling to false after animation completes
         scrollTimeout.current = setTimeout(() => {
           setIsScrolling(false);
-        }, 600);
+        }, 300);
       }
     });
 
     return unsubscribe;
-  }, [scrollYProgress, activeIndex, totalItems, isScrolling]);
+  }, [scrollYProgress, activeIndex, totalItems]);
 
   const getImageTransform = (index: number) => {
     const diff = index - activeIndex;
@@ -174,12 +172,11 @@ export default function ServiceCascadeSection() {
 
   return (
     <div ref={containerRef} className="relative h-[300vh] bg-black">
-      {/* Enhanced floating graphics and effects */}
+      {/* Floating particles - reduced for performance */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        {/* Floating particles */}
-        {[...Array(12)].map((_, i) => (
+        {[...Array(8)].map((_, i) => (
           <motion.div
-            key={`particle-${i}`}
+            key={i}
             className="absolute w-1 h-1 bg-maverick-orange/40 rounded-full"
             style={{
               left: `${Math.random() * 100}%`,
@@ -193,82 +190,6 @@ export default function ServiceCascadeSection() {
               duration: 4 + Math.random() * 2,
               repeat: Infinity,
               delay: Math.random() * 3,
-              ease: "easeInOut",
-            }}
-          />
-        ))}
-        
-        {/* Geometric shapes */}
-        {[...Array(6)].map((_, i) => (
-          <motion.div
-            key={`shape-${i}`}
-            className="absolute border border-maverick-orange/20"
-            style={{
-              left: `${10 + Math.random() * 80}%`,
-              top: `${10 + Math.random() * 80}%`,
-              width: `${20 + Math.random() * 40}px`,
-              height: `${20 + Math.random() * 40}px`,
-              borderRadius: i % 2 === 0 ? '50%' : '0%',
-            }}
-            animate={{
-              rotate: [0, 360],
-              scale: [0.8, 1.2, 0.8],
-              opacity: [0.1, 0.3, 0.1],
-            }}
-            transition={{
-              duration: 8 + Math.random() * 4,
-              repeat: Infinity,
-              delay: Math.random() * 2,
-              ease: "easeInOut",
-            }}
-          />
-        ))}
-
-        {/* Floating code symbols */}
-        {['<>', '{}', '[]', '/>', '&&', '||'].map((symbol, i) => (
-          <motion.div
-            key={`symbol-${i}`}
-            className="absolute text-maverick-orange/20 font-mono text-lg font-bold"
-            style={{
-              left: `${15 + Math.random() * 70}%`,
-              top: `${20 + Math.random() * 60}%`,
-            }}
-            animate={{
-              y: [-20, -80],
-              x: [0, Math.random() * 40 - 20],
-              opacity: [0, 0.6, 0],
-              rotate: [0, Math.random() * 30 - 15],
-            }}
-            transition={{
-              duration: 6 + Math.random() * 2,
-              repeat: Infinity,
-              delay: Math.random() * 3,
-              ease: "easeInOut",
-            }}
-          >
-            {symbol}
-          </motion.div>
-        ))}
-
-        {/* Glowing orbs */}
-        {[...Array(4)].map((_, i) => (
-          <motion.div
-            key={`orb-${i}`}
-            className="absolute w-16 h-16 rounded-full bg-gradient-to-r from-maverick-orange/10 to-yellow-500/10 blur-md"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-            }}
-            animate={{
-              scale: [1, 1.5, 1],
-              opacity: [0.2, 0.5, 0.2],
-              x: [0, Math.random() * 100 - 50],
-              y: [0, Math.random() * 100 - 50],
-            }}
-            transition={{
-              duration: 10 + Math.random() * 5,
-              repeat: Infinity,
-              delay: Math.random() * 2,
               ease: "easeInOut",
             }}
           />
@@ -375,30 +296,20 @@ export default function ServiceCascadeSection() {
                             animate={{ opacity: 1, scale: 1 }}
                             transition={{ duration: 0.4, delay: 0.1 }}
                           />
-                          {/* Glowing effect */}
-                          <motion.div
-                            className="absolute inset-0 rounded-xl bg-gradient-to-r from-maverick-orange/20 to-yellow-500/20 blur-lg"
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: [0, 0.3, 0] }}
-                            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                          />
-                          {/* Corner accents */}
-                          <motion.div
-                            className="absolute top-2 left-2 w-6 h-6 border-l-2 border-t-2 border-maverick-orange/80 rounded-tl-lg"
-                            initial={{ opacity: 0, scale: 0 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            transition={{ duration: 0.4, delay: 0.2 }}
-                          />
-                          <motion.div
-                            className="absolute bottom-2 right-2 w-6 h-6 border-r-2 border-b-2 border-maverick-orange/80 rounded-br-lg"
-                            initial={{ opacity: 0, scale: 0 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            transition={{ duration: 0.4, delay: 0.2 }}
-                          />
                         </>
                       )}
 
-                      
+                      {/* Card number */}
+                      <motion.div
+                        className="absolute top-3 right-3 w-6 h-6 rounded-full bg-black/70 backdrop-blur-sm text-white text-xs font-bold flex items-center justify-center border border-maverick-orange/50"
+                        animate={{ 
+                          scale: index === activeIndex ? 1.1 : 0.9,
+                          backgroundColor: index === activeIndex ? "rgba(255, 90, 0, 0.9)" : "rgba(0, 0, 0, 0.7)"
+                        }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        {index + 1}
+                      </motion.div>
 
                       {/* Inactive card overlay */}
                       {index !== activeIndex && (
