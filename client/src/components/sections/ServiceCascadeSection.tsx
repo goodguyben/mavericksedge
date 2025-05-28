@@ -52,6 +52,13 @@ export default function ServiceCascadeSection() {
           gradient: "from-yellow-500/20 to-orange-500/20"
         },
         {
+          id: "next-gen-ecommerce",
+          title: "Next-Gen E-Commerce",
+          description: "Elevate your online business with cutting-edge e-commerce platforms designed for the modern consumer. We integrate AI-driven personalization, voice commerce capabilities, and immersive AR experiences to enhance customer engagement and drive sales. Our solutions also feature secure payment systems, real-time inventory management, and advanced analytics, ensuring a seamless and efficient shopping experience that maximizes your online revenue.",
+          image: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800&h=600&fit=crop&crop=entropy",
+          gradient: "from-emerald-500/20 to-teal-500/20"
+        },
+        {
           id: "performance",
           title: "Performance Optimization",
           description: "Speed matters in the digital world. We optimize your website for blazing-fast load times and superior user experience. Our performance enhancements boost SEO rankings and increase conversion rates significantly.",
