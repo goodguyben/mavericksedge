@@ -111,7 +111,7 @@ export default function ServiceCascadeSection() {
     const diff = index - activeIndex;
     
     if (diff === 0) {
-      // Active card
+      // Active card - fully visible and prominent
       return {
         x: 0,
         y: 0,
@@ -119,31 +119,34 @@ export default function ServiceCascadeSection() {
         rotateY: 0,
         scale: 1,
         opacity: 1,
-        filter: "blur(0px) brightness(1)"
+        filter: "blur(0px) brightness(1)",
+        zIndex: 10
       };
     } else if (diff < 0) {
-      // Cards behind
+      // Cards behind - less visible, stacked behind
       const distance = Math.abs(diff);
       return {
-        x: -20 * distance,
-        y: 10 * distance,
-        z: -60 * distance,
-        rotateY: -8 * distance,
-        scale: Math.max(0.7, 1 - 0.1 * distance),
-        opacity: Math.max(0.3, 1 - 0.2 * distance),
-        filter: `blur(${distance * 2}px) brightness(${Math.max(0.5, 1 - 0.1 * distance)})`
+        x: -30 * distance,
+        y: 15 * distance,
+        z: -80 * distance,
+        rotateY: -12 * distance,
+        scale: Math.max(0.6, 1 - 0.15 * distance),
+        opacity: distance === 1 ? 0.4 : 0.1, // Make non-active cards much less visible
+        filter: `blur(${distance * 3}px) brightness(${Math.max(0.3, 1 - 0.2 * distance)})`,
+        zIndex: 10 - distance
       };
     } else {
-      // Cards ahead
+      // Cards ahead - hidden or barely visible
       const distance = diff;
       return {
-        x: 30 * distance,
-        y: -15 * distance,
-        z: -40 * distance,
-        rotateY: 12 * distance,
-        scale: Math.max(0.6, 1 - 0.15 * distance),
-        opacity: Math.max(0.2, 0.8 - 0.2 * distance),
-        filter: `blur(${distance * 3}px) brightness(${Math.max(0.4, 0.9 - 0.15 * distance)})`
+        x: 40 * distance,
+        y: -20 * distance,
+        z: -60 * distance,
+        rotateY: 15 * distance,
+        scale: Math.max(0.5, 1 - 0.2 * distance),
+        opacity: distance === 1 ? 0.2 : 0.05, // Make future cards nearly invisible
+        filter: `blur(${distance * 4}px) brightness(${Math.max(0.2, 0.8 - 0.3 * distance)})`,
+        zIndex: 10 - distance
       };
     }
   };
@@ -198,6 +201,7 @@ export default function ServiceCascadeSection() {
                     className="absolute inset-0 cursor-pointer"
                     style={{
                       transformStyle: "preserve-3d",
+                      zIndex: transform.zIndex,
                     }}
                     animate={{
                       x: transform.x,
