@@ -183,7 +183,7 @@ export default function ServiceCascadeSection() {
       </div>
 
       {/* Sticky content container */}
-      <div className="sticky top-0 h-screen flex items-center justify-center bg-black z-10 pt-20">
+      <div className="sticky top-0 h-screen flex items-center justify-center bg-black z-10 pt-32">
         <div className="container mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           
           {/* 3D Image Stack */}
