@@ -153,8 +153,8 @@ export default function ServiceCascadeSection() {
     }
   }, [activeIndex, services]);
 
-  // Scroll-based progression - slower transition
-  const scrollProgress = useTransform(scrollYProgress, [0.4, 0.9], [0, totalItems - 1]);
+  // Scroll-based progression - much slower transition
+  const scrollProgress = useTransform(scrollYProgress, [0.2, 0.95], [0, totalItems - 1]);
 
   useEffect(() => {
     const unsubscribe = scrollProgress.on("change", (latest) => {
@@ -300,7 +300,7 @@ export default function ServiceCascadeSection() {
                         filter: transform.filter,
                       }}
                       transition={{
-                        duration: 0.8,
+                        duration: 1.5,
                         ease: [0.25, 0.46, 0.45, 0.94],
                       }}
                       onClick={() => handleDotClick(index)}
