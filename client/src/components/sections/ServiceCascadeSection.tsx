@@ -375,7 +375,6 @@ export default function ServiceCascadeSection() {
                       className="inline-flex items-center"
                     >
                       Learn More
-                      <ChevronRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
                     </TechButton>
                   </motion.div>
                 </motion.div>
