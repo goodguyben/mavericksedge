@@ -1,16 +1,17 @@
 
-import React, { useRef } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Code, PenTool, Brain } from "lucide-react";
 
 export default function ServiceCascadeSection() {
   const sectionRef = useRef<HTMLElement>(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start end", "end start"],
   });
 
-  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
+  const opacity = useTransform(scrollYProgress, [0, 0.1, 0.9, 1], [0, 1, 1, 0]);
 
   const services = [
     {
@@ -81,143 +82,210 @@ export default function ServiceCascadeSection() {
     }
   ];
 
+  // Handle scroll to update current index
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!sectionRef.current) return;
+      
+      const sectionTop = sectionRef.current.offsetTop;
+      const sectionHeight = sectionRef.current.offsetHeight;
+      const scrollTop = window.scrollY;
+      const progress = Math.max(0, Math.min(1, (scrollTop - sectionTop) / (sectionHeight - window.innerHeight)));
+      
+      // Calculate total items across all services
+      const totalItems = services.reduce((acc, service) => acc + service.items.length, 0);
+      const itemIndex = Math.floor(progress * totalItems);
+      const clampedIndex = Math.min(itemIndex, totalItems - 1);
+      
+      setCurrentIndex(clampedIndex);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [services]);
+
+  // Get current service and item based on index
+  const getCurrentServiceAndItem = (index: number) => {
+    let currentIndex = 0;
+    for (const service of services) {
+      if (index < currentIndex + service.items.length) {
+        return {
+          service,
+          item: service.items[index - currentIndex],
+          itemIndex: index - currentIndex
+        };
+      }
+      currentIndex += service.items.length;
+    }
+    return {
+      service: services[0],
+      item: services[0].items[0],
+      itemIndex: 0
+    };
+  };
+
+  const currentData = getCurrentServiceAndItem(currentIndex);
+
   return (
     <section
       ref={sectionRef}
-      className="py-20 md:py-28 px-5 md:px-10 bg-[#121212] relative overflow-hidden"
+      className="relative h-[500vh] bg-[#121212]"
       style={{ opacity }}
     >
-      {/* Background elements */}
-      <motion.div
-        className="absolute top-1/4 right-10 w-80 h-80 rounded-full bg-gradient-to-tr from-maverick-orange/10 to-transparent opacity-30 blur-3xl"
-        style={{
-          scale: useTransform(scrollYProgress, [0, 0.5, 1], [0.8, 1.2, 0.8]),
-          x: useTransform(scrollYProgress, [0, 0.5, 1], [50, -50, 50]),
-        }}
-      />
-
-      <div className="container mx-auto relative z-10">
-        {services.map((service, serviceIndex) => (
-          <div key={service.id} className="mb-32 last:mb-0">
-            {/* Service Header */}
-            <motion.div
-              className="text-center mb-20"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.6, delay: serviceIndex * 0.1 }}
-            >
-              <div className="flex justify-center mb-4">
-                <div className="p-4 bg-maverick-orange/10 rounded-full">
-                  {service.icon}
-                </div>
-              </div>
-              <h3 className="text-3xl md:text-4xl font-bold text-white">
-                {service.title}
-              </h3>
-            </motion.div>
-
-            {/* Cascading Items */}
-            <div className="space-y-24 md:space-y-32">
-              {service.items.map((item, itemIndex) => {
-                const isEven = itemIndex % 2 === 0;
-                const isLeft = isEven;
-
-                return (
-                  <motion.div
-                    key={itemIndex}
-                    className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center"
-                    initial={{ opacity: 0, y: 60 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-150px" }}
-                    transition={{
-                      duration: 0.8,
-                      delay: itemIndex * 0.2,
-                      ease: "easeOut"
-                    }}
-                  >
-                    {/* Content Block */}
-                    <motion.div
-                      className={`${isLeft ? 'lg:order-1' : 'lg:order-2'} space-y-6`}
-                      initial={{ opacity: 0, x: isLeft ? -40 : 40 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true, margin: "-100px" }}
-                      transition={{
-                        duration: 0.7,
-                        delay: itemIndex * 0.2 + 0.3,
-                        ease: "easeOut"
-                      }}
-                    >
-                      <div className="space-y-4">
-                        <h4 className="text-2xl md:text-3xl font-bold text-white">
-                          {item.title}
-                        </h4>
-                        <p className="text-[#AAAAAA] text-lg leading-relaxed">
-                          {item.description}
-                        </p>
-                      </div>
-
-                      {/* Decorative element */}
-                      <motion.div
-                        className="w-16 h-1 bg-gradient-to-r from-maverick-orange to-maverick-amber rounded-full"
-                        initial={{ scaleX: 0 }}
-                        whileInView={{ scaleX: 1 }}
-                        viewport={{ once: true }}
-                        transition={{
-                          duration: 0.8,
-                          delay: itemIndex * 0.2 + 0.6
-                        }}
-                      />
-                    </motion.div>
-
-                    {/* Image Block */}
-                    <motion.div
-                      className={`${isLeft ? 'lg:order-2' : 'lg:order-1'} relative`}
-                      initial={{ opacity: 0, x: isLeft ? 40 : -40 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true, margin: "-100px" }}
-                      transition={{
-                        duration: 0.7,
-                        delay: itemIndex * 0.2 + 0.1,
-                        ease: "easeOut"
-                      }}
-                    >
-                      <div className="relative overflow-hidden rounded-2xl group">
-                        <motion.img
-                          src={item.image}
-                          alt={item.title}
-                          className="w-full h-80 md:h-96 object-cover transition-transform duration-500 group-hover:scale-105"
-                          initial={{ scale: 1.1 }}
-                          whileInView={{ scale: 1 }}
-                          viewport={{ once: true }}
-                          transition={{
-                            duration: 1,
-                            delay: itemIndex * 0.2 + 0.4
-                          }}
-                        />
-                        
-                        {/* Overlay gradient */}
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                        
-                        {/* Decorative border */}
-                        <motion.div
-                          className="absolute inset-0 border-2 border-maverick-orange/20 rounded-2xl"
-                          initial={{ opacity: 0, scale: 0.95 }}
-                          whileInView={{ opacity: 1, scale: 1 }}
-                          viewport={{ once: true }}
-                          transition={{
-                            duration: 0.6,
-                            delay: itemIndex * 0.2 + 0.8
-                          }}
-                        />
-                      </div>
-                    </motion.div>
-                  </motion.div>
-                );
-              })}
-            </div>
-          </div>
+      {/* Floating particles background */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {[...Array(15)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-1 h-1 bg-maverick-orange/20 rounded-full"
+            style={{
+              left: `${Math.random() * 100}%`,
+            }}
+            animate={{
+              y: [-100, window.innerHeight + 100],
+              opacity: [0, 1, 0],
+            }}
+            transition={{
+              duration: Math.random() * 3 + 3,
+              repeat: Infinity,
+              delay: Math.random() * 6,
+              ease: "linear",
+            }}
+          />
         ))}
+      </div>
+
+      {/* Sticky content */}
+      <div className="sticky top-0 h-screen flex items-center justify-center overflow-hidden">
+        {/* Background gradient effects */}
+        <motion.div
+          className="absolute top-1/4 right-10 w-80 h-80 rounded-full bg-gradient-to-tr from-maverick-orange/20 to-transparent opacity-30 blur-3xl"
+          style={{
+            scale: useTransform(scrollYProgress, [0, 0.5, 1], [0.8, 1.2, 0.8]),
+            x: useTransform(scrollYProgress, [0, 0.5, 1], [50, -50, 50]),
+          }}
+        />
+
+        {/* Image stack */}
+        <div className="relative w-1/2 h-[80vh] perspective-1000 flex items-center justify-center">
+          <div className="relative w-full max-w-lg h-full">
+            {services.flatMap(service => service.items).map((item, index) => {
+              const offset = index - currentIndex;
+              const isActive = index === currentIndex;
+              
+              return (
+                <motion.div
+                  key={index}
+                  className="absolute inset-0 rounded-2xl overflow-hidden shadow-2xl"
+                  style={{
+                    zIndex: isActive ? 10 : Math.max(0, 10 - Math.abs(offset)),
+                  }}
+                  animate={{
+                    scale: isActive ? 1 : 1 - Math.abs(offset) * 0.05,
+                    rotateY: offset * 5,
+                    z: offset * -50,
+                    opacity: Math.abs(offset) > 2 ? 0 : 1,
+                  }}
+                  transition={{
+                    duration: 0.6,
+                    ease: "easeOut",
+                  }}
+                >
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    className="w-full h-full object-cover"
+                    style={{
+                      transform: isActive ? 'scale(1.05)' : 'scale(1)',
+                      transition: 'transform 0.6s ease',
+                    }}
+                  />
+                  {/* Overlay gradient */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
+                  {/* Decorative border */}
+                  <div className="absolute inset-0 border-2 border-maverick-orange/20 rounded-2xl" />
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Content area */}
+        <div className="w-1/2 px-16 text-white relative">
+          <motion.div
+            key={currentIndex}
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+          >
+            {/* Service icon and title */}
+            <div className="flex items-center mb-6">
+              <div className="p-3 bg-maverick-orange/10 rounded-full mr-4">
+                {currentData.service.icon}
+              </div>
+              <span className="text-maverick-orange text-sm font-medium uppercase tracking-wider">
+                {currentData.service.title}
+              </span>
+            </div>
+
+            {/* Item content */}
+            <h2 className="text-4xl font-bold mb-6 bg-gradient-to-r from-maverick-orange to-maverick-amber bg-clip-text text-transparent">
+              {currentData.item.title}
+            </h2>
+            
+            <p className="text-xl leading-relaxed mb-8 text-gray-300">
+              {currentData.item.description}
+            </p>
+
+            {/* CTA Button */}
+            <motion.a
+              href="#"
+              className="inline-block px-8 py-4 bg-gradient-to-r from-maverick-orange to-maverick-amber text-white font-bold rounded-full shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              Learn More
+            </motion.a>
+
+            {/* Decorative line */}
+            <motion.div
+              className="w-20 h-1 bg-gradient-to-r from-maverick-orange to-maverick-amber rounded-full mt-8"
+              initial={{ scaleX: 0 }}
+              animate={{ scaleX: 1 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+            />
+          </motion.div>
+        </div>
+
+        {/* Progress indicator */}
+        <div className="fixed right-8 top-1/2 transform -translate-y-1/2 z-50">
+          {services.flatMap((service, serviceIndex) => 
+            service.items.map((_, itemIndex) => {
+              const globalIndex = services.slice(0, serviceIndex).reduce((acc, s) => acc + s.items.length, 0) + itemIndex;
+              return (
+                <motion.div
+                  key={globalIndex}
+                  className="w-3 h-3 rounded-full my-2 cursor-pointer transition-all duration-300"
+                  style={{
+                    backgroundColor: globalIndex === currentIndex ? '#FF5A00' : 'rgba(255, 255, 255, 0.3)',
+                    transform: globalIndex === currentIndex ? 'scale(1.5)' : 'scale(1)',
+                  }}
+                  onClick={() => {
+                    const sectionTop = sectionRef.current?.offsetTop || 0;
+                    const sectionHeight = sectionRef.current?.offsetHeight || 0;
+                    const totalItems = services.reduce((acc, service) => acc + service.items.length, 0);
+                    const targetScroll = sectionTop + (globalIndex / (totalItems - 1)) * (sectionHeight - window.innerHeight);
+                    
+                    window.scrollTo({
+                      top: targetScroll,
+                      behavior: 'smooth'
+                    });
+                  }}
+                />
+              );
+            })
+          )}
+        </div>
       </div>
     </section>
   );
