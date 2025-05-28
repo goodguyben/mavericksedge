@@ -215,7 +215,6 @@ export default function ServiceCascadeSection() {
   const handleDotClick = (index: number) => {
     setActiveIndex(index);
     setIsAutoPlaying(false);
-    setTimeout(() => setIsAutoPlaying(true), 10000);
   };
 
   const toggleAutoPlay = () => {
