@@ -11,17 +11,9 @@ export default function Hero() {
   const [scrolled, setScrolled] = useState(false);
   const [videoLoaded, setVideoLoaded] = useState(false);
   const [heroOpacity, setHeroOpacity] = useState(1); // Added state for hero opacity
-  const [isFirstVisit, setIsFirstVisit] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
-    // Check if this is the first visit
-    const hasVisited = localStorage.getItem('hero-animation-played');
-    if (!hasVisited) {
-      setIsFirstVisit(true);
-      localStorage.setItem('hero-animation-played', 'true');
-    }
-
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
       // Calculate heroOpacity based on scroll position
@@ -86,61 +78,61 @@ export default function Hero() {
             <div className="inline-block">
               {/* Word-by-word animation for the heading */}
               <motion.span 
-                initial={{ opacity: isFirstVisit ? 0 : 1 }}
+                initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ duration: isFirstVisit ? 0.7 : 0, delay: isFirstVisit ? 0.4 : 0 }}
+                transition={{ duration: 0.7, delay: 0.4 }}
                 className="inline-block mr-2"
               >
                 Building
               </motion.span>
               <span className="text-maverick-orange relative inline-block">
                 <motion.span
-                  initial={{ opacity: isFirstVisit ? 0 : 1 }}
+                  initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  transition={{ duration: isFirstVisit ? 0.7 : 0, delay: isFirstVisit ? 0.8 : 0 }}
+                  transition={{ duration: 0.7, delay: 0.8 }}
                   className="mr-2"
                 >
                   resilience
                 </motion.span>
                 <motion.span 
                   className="absolute -bottom-1 left-0 h-1 bg-maverick-orange"
-                  initial={{ width: isFirstVisit ? 0 : "100%" }}
+                  initial={{ width: 0 }}
                   animate={{ width: "100%" }}
-                  transition={{ delay: isFirstVisit ? 1.2 : 0, duration: isFirstVisit ? 0.8 : 0 }}
+                  transition={{ delay: 1.2, duration: 0.8 }}
                 />
               </span>
               {" "}
               <motion.span 
-                initial={{ opacity: isFirstVisit ? 0 : 1 }}
+                initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ duration: isFirstVisit ? 0.7 : 0, delay: isFirstVisit ? 1.2 : 0 }}
+                transition={{ duration: 0.7, delay: 1.2 }}
                 className="inline-block mr-1"
               >
                 with
               </motion.span>
               {" "}
               <motion.span 
-                initial={{ opacity: isFirstVisit ? 0 : 1 }}
+                initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ duration: isFirstVisit ? 0.7 : 0, delay: isFirstVisit ? 1.6 : 0 }}
+                transition={{ duration: 0.7, delay: 1.6 }}
                 className="inline-block mr-1"
               >
                 innovation
               </motion.span>
               {" "}
               <motion.span 
-                initial={{ opacity: isFirstVisit ? 0 : 1 }}
+                initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ duration: isFirstVisit ? 0.7 : 0, delay: isFirstVisit ? 2.0 : 0 }}
+                transition={{ duration: 0.7, delay: 2.0 }}
                 className="inline-block mr-1"
               >
                 and
               </motion.span>
               {" "}
               <motion.span 
-                initial={{ opacity: isFirstVisit ? 0 : 1 }}
+                initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ duration: isFirstVisit ? 0.7 : 0, delay: isFirstVisit ? 2.4 : 0 }}
+                transition={{ duration: 0.7, delay: 2.4 }}
                 className="inline-block"
               >
                 heart
@@ -148,16 +140,16 @@ export default function Hero() {
             </div>
           </h1>
           <motion.p
-            initial={{ opacity: isFirstVisit ? 0 : 1 }}
+            initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: isFirstVisit ? 0.8 : 0, delay: isFirstVisit ? 2.8 : 0 }}
+            transition={{ duration: 0.8, delay: 2.8 }}
             className="text-xl md:text-2xl text-maverick-cream/80 mt-6 mb-10 max-w-l px-2 font-sans leading-relaxed mx-auto text-center"
           >
             We're Edmonton-based creators who design beautiful websites, improve your online visibility, and offer smart AI Integration so you can focus on growing your business          </motion.p>
           <motion.div
-            initial={{ opacity: isFirstVisit ? 0 : 1, y: isFirstVisit ? 20 : 0 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: isFirstVisit ? 0.8 : 0, delay: isFirstVisit ? 3.2 : 0 }}
+            transition={{ duration: 0.8, delay: 3.2 }}
             className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 justify-center"
           >
             <Button 
