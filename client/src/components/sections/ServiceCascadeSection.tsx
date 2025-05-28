@@ -2,6 +2,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { Code, PenTool, Brain, ChevronRight, Play, Pause } from "lucide-react";
+import { TechButton } from "../ui/tech-button";
 
 interface CascadeItem {
   id: string;
@@ -369,27 +370,13 @@ export default function ServiceCascadeSection() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: 0.3 }}
                   >
-                    <motion.button
-                      className="group relative inline-flex items-center px-6 py-3 bg-maverick-orange hover:bg-maverick-orange/90 text-black font-semibold rounded-lg overflow-hidden transition-all duration-300"
-                      whileHover={{ 
-                        y: -5, 
-                        scale: 1.05,
-                        boxShadow: "0 20px 40px rgba(255, 90, 0, 0.3)"
-                      }}
-                      whileTap={{ scale: 0.95 }}
+                    <TechButton 
+                      href={`/services/${currentService.id.replace('-applications', '').replace('-solutions', '')}`}
+                      className="inline-flex items-center"
                     >
-                      {/* Shimmer effect */}
-                      <motion.div
-                        className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
-                        initial={{ x: "-100%" }}
-                        whileHover={{ x: "100%" }}
-                        transition={{ duration: 0.6 }}
-                      />
-                      <span className="relative flex items-center gap-2">
-                        Learn More
-                        <ChevronRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-                      </span>
-                    </motion.button>
+                      Learn More
+                      <ChevronRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
+                    </TechButton>
                   </motion.div>
                 </motion.div>
               </AnimatePresence>
