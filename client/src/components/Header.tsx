@@ -56,7 +56,7 @@ export default function Header() {
       animate={{ opacity: 1 }}
       transition={{ 
         duration: 0.6,
-        delay: 3.4,
+        delay: 4.0,
         ease: "easeInOut"
       }}
     >
