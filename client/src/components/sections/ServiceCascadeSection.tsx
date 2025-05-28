@@ -131,7 +131,7 @@ export default function ServiceCascadeSection() {
         z: -80 * distance,
         rotateY: -12 * distance,
         scale: Math.max(0.6, 1 - 0.15 * distance),
-        opacity: distance === 1 ? 0.4 : 0.1, // Make non-active cards much less visible
+        opacity: distance === 1 ? 0.4 : 0.1,
         filter: `blur(${distance * 3}px) brightness(${Math.max(0.3, 1 - 0.2 * distance)})`,
         zIndex: 10 - distance
       };
@@ -144,7 +144,7 @@ export default function ServiceCascadeSection() {
         z: -60 * distance,
         rotateY: 15 * distance,
         scale: Math.max(0.5, 1 - 0.2 * distance),
-        opacity: distance === 1 ? 0.2 : 0.05, // Make future cards nearly invisible
+        opacity: distance === 1 ? 0.2 : 0.05,
         filter: `blur(${distance * 4}px) brightness(${Math.max(0.2, 0.8 - 0.3 * distance)})`,
         zIndex: 10 - distance
       };
@@ -154,11 +154,11 @@ export default function ServiceCascadeSection() {
   const handleDotClick = (index: number) => {
     setActiveIndex(index);
     setIsAutoPlaying(false);
-    setTimeout(() => setIsAutoPlaying(true), 10000); // Resume auto-play after 10s
+    setTimeout(() => setIsAutoPlaying(true), 10000);
   };
 
   return (
-    <section className="relative min-h-[500vh] bg-black overflow-hidden">
+    <div ref={containerRef} className="relative h-[500vh] bg-black">
       {/* Floating particles */}
       <div className="absolute inset-0 pointer-events-none">
         {[...Array(20)].map((_, i) => (
@@ -182,11 +182,8 @@ export default function ServiceCascadeSection() {
         ))}
       </div>
 
-      {/* Sticky container */}
-      <div 
-        ref={containerRef}
-        className="sticky top-0 h-screen flex items-center justify-center"
-      >
+      {/* Sticky content container */}
+      <div className="sticky top-0 h-screen flex items-center justify-center bg-black z-10">
         <div className="container mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           
           {/* 3D Image Stack */}
@@ -363,6 +360,6 @@ export default function ServiceCascadeSection() {
           </div>
         </div>
       </div>
-    </section>
+    </div>
   );
 }
