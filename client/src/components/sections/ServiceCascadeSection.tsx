@@ -85,44 +85,47 @@ export default function ServiceCascadeSection() {
   const allItems = services.flatMap(service => service.items);
   const totalItems = allItems.length;
 
-  // Controlled scroll-based progression with strict debouncing
+  // Stable scroll-based progression with threshold control
   useEffect(() => {
-    let debounceTimer: NodeJS.Timeout;
-    let lastDirection = 0; // Track scroll direction
-    let lastScrollValue = 0;
+    let lastUpdateTime = 0;
+    const UPDATE_THROTTLE = 300; // Minimum time between updates
     
     const unsubscribe = scrollYProgress.on("change", (latest) => {
-      // Clear previous debounce timer
-      if (debounceTimer) {
-        clearTimeout(debounceTimer);
+      const now = Date.now();
+      
+      // Throttle updates to prevent rapid changes
+      if (now - lastUpdateTime < UPDATE_THROTTLE) {
+        return;
       }
       
-      // Determine scroll direction
-      const currentDirection = latest > lastScrollValue ? 1 : -1;
-      lastScrollValue = latest;
+      // Calculate progress through each section
+      const sectionSize = 1 / totalItems;
+      const currentSection = latest / sectionSize;
       
-      // Debounce scroll changes - only process after scrolling stops
-      debounceTimer = setTimeout(() => {
-        // Calculate target index with large segments to prevent rapid switching
-        const segment = 1 / totalItems;
-        const rawIndex = latest / segment;
+      // Determine target index with large buffer zones to prevent skipping
+      let targetIndex;
+      
+      // Use more stable thresholds that require significant scroll movement
+      if (currentSection <= 0.3) {
+        targetIndex = 0;
+      } else if (currentSection >= totalItems - 0.3) {
+        targetIndex = totalItems - 1;
+      } else {
+        // For middle sections, require crossing the midpoint
+        targetIndex = Math.round(currentSection);
+      }
+      
+      // Only update if we've moved to a truly different section
+      if (targetIndex !== activeIndex) {
+        // Additional check: ensure we're far enough from boundaries
+        const progressInSection = (latest % sectionSize) / sectionSize;
+        const isNearSectionStart = progressInSection < 0.2;
+        const isNearSectionEnd = progressInSection > 0.8;
         
-        // Only change if we've scrolled significantly into the next/previous section
-        let targetIndex;
-        if (currentDirection > 0) {
-          // Scrolling down - require 60% into next section
-          targetIndex = Math.floor(rawIndex + 0.4);
-        } else {
-          // Scrolling up - require 60% into previous section  
-          targetIndex = Math.floor(rawIndex - 0.4);
-        }
-        
-        // Clamp the index
-        const clampedIndex = Math.min(Math.max(targetIndex, 0), totalItems - 1);
-        
-        // Only update if index actually changes
-        if (clampedIndex !== activeIndex) {
-          setActiveIndex(clampedIndex);
+        // Only change if we're well into the section or at the very beginning/end
+        if (!isNearSectionStart && !isNearSectionEnd) {
+          lastUpdateTime = now;
+          setActiveIndex(targetIndex);
           setIsScrolling(true);
           
           if (scrollTimeout.current) {
@@ -131,16 +134,13 @@ export default function ServiceCascadeSection() {
           
           scrollTimeout.current = setTimeout(() => {
             setIsScrolling(false);
-          }, 400);
+          }, 300);
         }
-      }, 150); // Wait 150ms after scroll stops
+      }
     });
 
     return () => {
       unsubscribe();
-      if (debounceTimer) {
-        clearTimeout(debounceTimer);
-      }
     };
   }, [scrollYProgress, activeIndex, totalItems]);
 
