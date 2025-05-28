@@ -154,7 +154,7 @@ export default function ServiceCascadeSection() {
   }, [activeIndex, services]);
 
   // Scroll-based progression - slower transition
-  const scrollProgress = useTransform(scrollYProgress, [0.5, 1], [0, totalItems - 1]);
+  const scrollProgress = useTransform(scrollYProgress, [0.4, 0.9], [0, totalItems - 1]);
 
   useEffect(() => {
     const unsubscribe = scrollProgress.on("change", (latest) => {
