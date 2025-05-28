@@ -15,6 +15,44 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Critical rendering optimizations */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-display: swap;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+/* Prevent layout shift during font loading */
+body {
+  font-family: Inter, system-ui, -apple-system, sans-serif;
+  font-optical-sizing: auto;
+  text-rendering: optimizeSpeed;
+}
+
+/* Optimize image rendering */
+img {
+  max-width: 100%;
+  height: auto;
+  content-visibility: auto;
+}
+
+/* Reduce paint complexity */
+.perspective-1000 {
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+/* GPU acceleration for animations */
+.preserve-3d {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
 @keyframes ripple {
   to {
     transform: scale(4);

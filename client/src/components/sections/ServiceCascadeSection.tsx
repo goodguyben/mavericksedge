@@ -288,7 +288,7 @@ export default function ServiceCascadeSection() {
             {/* 3D Image Stack */}
             <div className={`relative h-96 lg:h-[500px] perspective-1000 ${
               currentService.imagePosition === 'right' ? 'lg:col-start-2' : ''
-            }`}>
+            }`} style={{ containIntrinsicSize: '400px 500px' }}>
               <div className="relative w-full h-full preserve-3d">
                 {allItems.map((item, index) => {
                   const transform = getImageTransform(index);
@@ -311,8 +311,12 @@ export default function ServiceCascadeSection() {
                         filter: transform.filter,
                       }}
                       transition={{
-                        duration: 1.5,
-                        ease: [0.25, 0.46, 0.45, 0.94],
+                        duration: 0.8,
+                        ease: "easeOut",
+                        type: "tween",
+                      }}
+                      style={{
+                        willChange: index === activeIndex ? "transform, opacity" : "auto"
                       }}
                       onClick={() => handleDotClick(index)}
                     >
@@ -321,6 +325,10 @@ export default function ServiceCascadeSection() {
                           src={item.image}
                           alt={item.title}
                           className="w-full h-full object-cover"
+                          loading={index === 0 ? "eager" : "lazy"}
+                          decoding={index === 0 ? "sync" : "async"}
+                          fetchPriority={index === 0 ? "high" : "low"}
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                         />
                         
                         {/* Active card gradient overlay */}
