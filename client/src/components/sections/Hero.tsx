@@ -67,12 +67,6 @@ export default function Hero() {
         <div className={`absolute inset-0 bg-gradient-to-br from-[#0D0D0D] via-[#1A1A1A] to-[#0D0D0D] bg-gradient-animate animate-gradient-slow z-0 transition-opacity duration-1000 ${videoLoaded ? 'opacity-0' : 'opacity-100'}`}></div>
       </div>
 
-      {/* Gradient overlays for added depth - subtle gradients over the video */}
-      <div className="absolute w-full h-full top-0 left-0 opacity-40 pointer-events-none z-10">
-        <div className="absolute w-96 h-96 rounded-full bg-maverick-orange opacity-30 blur-3xl -top-20 -left-20"></div>
-        <div className="absolute w-80 h-80 rounded-full bg-maverick-amber opacity-20 blur-3xl bottom-20 right-20"></div>
-      </div>
-
       <div className="container mx-auto px-4 md:px-10 z-20 flex justify-center items-center w-full">
         <motion.div
           className="max-w-4xl text-center w-full"
