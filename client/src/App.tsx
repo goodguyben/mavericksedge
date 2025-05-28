@@ -5,7 +5,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { queryClient } from "@/lib/queryClient";
 import Layout from "@/components/Layout";
 import PageTransition from "@/components/PageTransition";
-import CustomCursor from "@/components/cursor/CustomCursor";
+
 
 // Lazy load pages
 const Home = lazy(() => import("@/pages/Home"));
@@ -33,7 +33,6 @@ export default function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <CustomCursor />
       <PageTransition />
       <Layout>
         <Suspense fallback={<div className="h-screen w-full bg-[#121212] flex items-center justify-center">Loading...</div>}>
