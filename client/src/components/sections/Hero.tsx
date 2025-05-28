@@ -86,7 +86,7 @@ export default function Hero() {
               <motion.span 
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ duration: 0.7, delay: 0.3 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
                 className="inline-block mr-2"
               >
                 Building
@@ -95,7 +95,7 @@ export default function Hero() {
                 <motion.span
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  transition={{ duration: 0.7, delay: 0.8 }}
+                  transition={{ duration: 0.5, delay: 0.4 }}
                   className="mr-2"
                 >
                   resilience
@@ -104,14 +104,14 @@ export default function Hero() {
                   className="absolute -bottom-1 left-0 h-1 bg-maverick-orange"
                   initial={{ width: 0 }}
                   animate={{ width: "100%" }}
-                  transition={{ delay: 1.3, duration: 0.8 }}
+                  transition={{ delay: 0.6, duration: 0.6 }}
                 />
               </span>
               {" "}
               <motion.span 
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ duration: 0.7, delay: 1.3 }}
+                transition={{ duration: 0.5, delay: 0.6 }}
                 className="inline-block mr-1"
               >
                 with
@@ -120,7 +120,7 @@ export default function Hero() {
               <motion.span 
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ duration: 0.7, delay: 1.8 }}
+                transition={{ duration: 0.5, delay: 0.8 }}
                 className="inline-block mr-1"
               >
                 innovation
@@ -129,7 +129,7 @@ export default function Hero() {
               <motion.span 
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ duration: 0.7, delay: 2.3 }}
+                transition={{ duration: 0.5, delay: 1.0 }}
                 className="inline-block mr-1"
               >
                 and
@@ -138,7 +138,7 @@ export default function Hero() {
               <motion.span 
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ duration: 0.7, delay: 2.8 }}
+                transition={{ duration: 0.5, delay: 1.2 }}
                 className="inline-block"
               >
                 heart
@@ -148,14 +148,14 @@ export default function Hero() {
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 3.3 }}
+            transition={{ duration: 0.6, delay: 1.4 }}
             className="text-xl md:text-2xl text-maverick-cream/80 mt-6 mb-10 max-w-l px-2 font-sans leading-relaxed mx-auto text-center"
           >
             We're Edmonton-based creators who design beautiful websites, improve your online visibility, and offer smart AI Integration so you can focus on growing your business          </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 3.8 }}
+            transition={{ duration: 0.6, delay: 1.6 }}
             className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 justify-center"
           >
             <Button 
