@@ -31,8 +31,8 @@ export default function Header() {
 
   const headerClasses = `fixed top-0 left-0 w-full py-4 sm:py-6 px-4 sm:px-5 md:px-10 z-50 transition-all duration-300 ${
     isScrolled
-      ? "bg-[#121212] bg-opacity-80 backdrop-blur-md shadow-md"
-      : "bg-transparent"
+      ? "bg-[#121212] bg-opacity-90 backdrop-blur-md shadow-md"
+      : "bg-[#121212] bg-opacity-50 backdrop-blur-sm"
   }`;
 
   const isCurrentPath = (path: string) => {
@@ -50,16 +50,9 @@ export default function Header() {
   }
 
   return (
-    <motion.header 
+    <header 
       className={headerClasses} 
       role="banner"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ 
-        duration: 0.6,
-        delay: isHomePage ? 4.0 : 0,
-        ease: "easeInOut"
-      }}
     >
       <div className="container mx-auto flex justify-between items-center">
         <Link href="/" className="flex items-center" aria-label="Mavericks Edge Home">
@@ -380,6 +373,6 @@ export default function Header() {
           />
         )}
       </AnimatePresence>
-    </motion.header>
+    </header>
   );
 }
