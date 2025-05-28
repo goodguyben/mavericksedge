@@ -489,10 +489,10 @@ export default function WhatWeDoSection() {
                                     delay: 0.7 + idx * 0.1,
                                   }}
                                 >
-                                  <div className="mr-2 mt-1 text-maverick-orange">
+                                  <div className="mr-3 mt-0.5 text-maverick-orange flex-shrink-0">
                                     •
                                   </div>
-                                  <span className="text-[#DDDDDD]">{prop}</span>
+                                  <span className="text-[#DDDDDD] leading-relaxed">{prop}</span>
                                 </motion.li>
                               ))}
                             </ul>
@@ -740,8 +740,7 @@ export default function WhatWeDoSection() {
                                         <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/80"></div>
                                         <div className="w-2.5 h-2.5 rounded-full bg-green-500/80"></div>
                                       </div>
-                                      <div className="text-xs bg-[#0D1117]/90 text-blue-300 px-2 py-0.5 rounded-sm```python
- flex-grow text-center font-mono">
+                                      <div className="text-xs bg-[#0D1117]/90 text-blue-300 px-2 py-0.5 rounded-sm flex-grow text-center font-mono">
                                         index.tsx
                                       </div>
                                       <div className="bg-blue-500/30 rounded px-1.5 py-0.5 text-[9px] text-blue-300 flex items-center">
@@ -1396,8 +1395,7 @@ export default function WhatWeDoSection() {
                                     transition={{ delay: 3.2, duration: 0.5 }}
                                   >
                                     <div className="bg-maverick-orange/20 border border-maverick-orange/40 px-2 py-1 rounded-md text-[9px] text-maverick-orange flex items-center shadow-lg">
-                                      <Brain className="w-2.5 h-2.5 mr-1" />
-                                      <span>
+                                      <Brain className="w-2.5 h-2.5 mr-1" /><span>
                                         AI-driven creative optimization
                                       </span>
                                     </div>
@@ -2347,8 +2345,7 @@ export default function WhatWeDoSection() {
                                       transition={{ delay: 2.6 }}
                                     >
                                       <div className="text-[9px] text-maverick-orange flex items-center">
-                                        <Brain className="w-2.5 h-2.5 mr-1" />
-                                        <span>
+                                        <Brain className="w-2.5 h-2.5 mr-1" /><span>
                                           Proactive AI maintenance saves 72% of
                                           potential downtime
                                         </span>
