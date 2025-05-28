@@ -90,13 +90,14 @@ export default function ServiceCascadeSection() {
     const unsubscribe = scrollYProgress.on("change", (latest) => {
       const now = Date.now();
       
-      // Throttle scroll events to prevent rapid changes
-      if (now - lastScrollTime.current < 100) return;
+      // Throttle scroll events to prevent rapid changes during hard scrolling
+      if (now - lastScrollTime.current < 200) return;
       lastScrollTime.current = now;
 
-      // Calculate target index based on scroll progress
-      const targetIndex = Math.floor(latest * totalItems);
-      const clampedIndex = Math.min(Math.max(targetIndex, 0), totalItems - 1);
+      // Calculate target index with precise segmentation for one-by-one transitions
+      const segmentSize = 1 / totalItems;
+      const currentSegment = Math.floor(latest / segmentSize);
+      const clampedIndex = Math.min(Math.max(currentSegment, 0), totalItems - 1);
       
       if (clampedIndex !== activeIndex) {
         setActiveIndex(clampedIndex);
@@ -143,7 +144,7 @@ export default function ServiceCascadeSection() {
         rotateY: -15 * distance,
         rotateX: 5 * distance,
         scale: Math.max(0.6, 1 - 0.15 * distance),
-        opacity: Math.max(0.1, 0.7 - 0.3 * distance),
+        opacity: distance === 1 ? 0.25 : 0.05,
         filter: `blur(${distance * 3}px) brightness(${Math.max(0.3, 1 - 0.2 * distance)})`,
         zIndex: 20 - distance
       };
@@ -157,7 +158,7 @@ export default function ServiceCascadeSection() {
         rotateY: 12 * distance,
         rotateX: -3 * distance,
         scale: Math.max(0.5, 1 - 0.2 * distance),
-        opacity: Math.max(0.05, 0.5 - 0.25 * distance),
+        opacity: distance === 1 ? 0.15 : 0.03,
         filter: `blur(${distance * 2}px) brightness(${Math.max(0.2, 0.8 - 0.3 * distance)})`,
         zIndex: 20 - distance
       };
@@ -268,8 +269,8 @@ export default function ServiceCascadeSection() {
                       filter: transform.filter,
                     }}
                     transition={{
-                      duration: 0.4,
-                      ease: [0.25, 0.46, 0.45, 0.94],
+                      duration: 0.6,
+                      ease: [0.23, 1, 0.32, 1],
                     }}
                     onClick={() => handleCardClick(index)}
                   >
