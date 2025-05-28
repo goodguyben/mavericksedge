@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useRef } from "react";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { Code, PenTool, Brain, ChevronRight, Play } from "lucide-react";
@@ -20,10 +19,7 @@ interface ServiceSection {
 
 export default function ServiceCascadeSection() {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [isScrolling, setIsScrolling] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
-  const lastScrollTime = useRef(0);
-  const scrollTimeout = useRef<NodeJS.Timeout>();
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -85,70 +81,34 @@ export default function ServiceCascadeSection() {
   const allItems = services.flatMap(service => service.items);
   const totalItems = allItems.length;
 
-  // Stable scroll-based progression with threshold control
+  // Simple, stable scroll-based index calculation
   useEffect(() => {
-    let lastUpdateTime = 0;
-    const UPDATE_THROTTLE = 300; // Minimum time between updates
-    
-    const unsubscribe = scrollYProgress.on("change", (latest) => {
-      const now = Date.now();
-      
-      // Throttle updates to prevent rapid changes
-      if (now - lastUpdateTime < UPDATE_THROTTLE) {
-        return;
-      }
-      
-      // Calculate progress through each section
+    const unsubscribe = scrollYProgress.on("change", (progress) => {
+      // Create equal sections for each item
       const sectionSize = 1 / totalItems;
-      const currentSection = latest / sectionSize;
-      
-      // Determine target index with large buffer zones to prevent skipping
-      let targetIndex;
-      
-      // Use more stable thresholds that require significant scroll movement
-      if (currentSection <= 0.3) {
-        targetIndex = 0;
-      } else if (currentSection >= totalItems - 0.3) {
-        targetIndex = totalItems - 1;
-      } else {
-        // For middle sections, require crossing the midpoint
-        targetIndex = Math.round(currentSection);
-      }
-      
-      // Only update if we've moved to a truly different section
-      if (targetIndex !== activeIndex) {
-        // Additional check: ensure we're far enough from boundaries
-        const progressInSection = (latest % sectionSize) / sectionSize;
-        const isNearSectionStart = progressInSection < 0.2;
-        const isNearSectionEnd = progressInSection > 0.8;
-        
-        // Only change if we're well into the section or at the very beginning/end
-        if (!isNearSectionStart && !isNearSectionEnd) {
-          lastUpdateTime = now;
-          setActiveIndex(targetIndex);
-          setIsScrolling(true);
-          
-          if (scrollTimeout.current) {
-            clearTimeout(scrollTimeout.current);
-          }
-          
-          scrollTimeout.current = setTimeout(() => {
-            setIsScrolling(false);
-          }, 300);
-        }
+
+      // Calculate which section we're in with hysteresis to prevent rapid switching
+      const rawIndex = Math.floor(progress / sectionSize);
+      const newIndex = Math.min(Math.max(rawIndex, 0), totalItems - 1);
+
+      // Only update if we're clearly in a new section (add buffer to prevent jitter)
+      const progressInCurrentSection = (progress % sectionSize) / sectionSize;
+      const isStableInSection = progressInCurrentSection > 0.3 && progressInCurrentSection < 0.7;
+
+      if (newIndex !== activeIndex && (isStableInSection || progress < 0.1 || progress > 0.9)) {
+        setActiveIndex(newIndex);
       }
     });
 
-    return () => {
-      unsubscribe();
-    };
+    return unsubscribe;
   }, [scrollYProgress, activeIndex, totalItems]);
 
+  // Clean transform function for 3D positioning
   const getImageTransform = (index: number) => {
     const diff = index - activeIndex;
-    
+
     if (diff === 0) {
-      // Active card - prominent and centered, fully opaque
+      // Active image - fully visible and centered
       return {
         x: 0,
         y: 0,
@@ -157,51 +117,49 @@ export default function ServiceCascadeSection() {
         rotateX: 0,
         scale: 1,
         opacity: 1,
-        filter: "blur(0px) brightness(1)",
-        zIndex: 20
+        filter: "blur(0px)",
+        zIndex: 10
       };
     } else if (diff < 0) {
-      // Cards behind - stacked with dramatic depth, but maintain high opacity
+      // Previous images - stacked behind
       const distance = Math.abs(diff);
       return {
-        x: -30 * distance,
-        y: 15 * distance,
-        z: -80 * distance,
-        rotateY: -15 * distance,
-        rotateX: 5 * distance,
-        scale: Math.max(0.7, 1 - 0.1 * distance),
-        opacity: Math.max(0.7, 1 - 0.1 * distance), // Much higher minimum opacity
-        filter: `blur(${distance * 1}px) brightness(1)`, // Reduced blur
-        zIndex: 20 - distance
+        x: -20 * distance,
+        y: 10 * distance,
+        z: -50 * distance,
+        rotateY: -8 * distance,
+        rotateX: 2 * distance,
+        scale: Math.max(0.8, 1 - 0.1 * distance),
+        opacity: 1, // Keep fully opaque
+        filter: `blur(${distance * 0.5}px)`,
+        zIndex: 10 - distance
       };
     } else {
-      // Cards ahead - partially visible with forward tilt, maintain high opacity
+      // Future images - slightly ahead
       const distance = diff;
       return {
-        x: 40 * distance,
-        y: -10 * distance,
-        z: -60 * distance,
-        rotateY: 12 * distance,
-        rotateX: -3 * distance,
-        scale: Math.max(0.6, 1 - 0.15 * distance),
-        opacity: Math.max(0.6, 1 - 0.15 * distance), // Much higher minimum opacity
-        filter: `blur(${distance * 1}px) brightness(1)`, // Reduced blur
-        zIndex: 20 - distance
+        x: 30 * distance,
+        y: -5 * distance,
+        z: -40 * distance,
+        rotateY: 10 * distance,
+        rotateX: -1 * distance,
+        scale: Math.max(0.7, 1 - 0.15 * distance),
+        opacity: 1, // Keep fully opaque
+        filter: `blur(${distance * 0.5}px)`,
+        zIndex: 10 - distance
       };
     }
   };
 
   const handleCardClick = (index: number) => {
-    if (index !== activeIndex) {
-      setActiveIndex(index);
-    }
+    setActiveIndex(index);
   };
 
   return (
     <div ref={containerRef} className="relative h-[300vh] bg-black">
-      {/* Floating particles - reduced for performance */}
+      {/* Floating particles */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        {[...Array(8)].map((_, i) => (
+        {[...Array(6)].map((_, i) => (
           <motion.div
             key={i}
             className="absolute w-1 h-1 bg-maverick-orange/40 rounded-full"
@@ -210,13 +168,13 @@ export default function ServiceCascadeSection() {
               top: `${Math.random() * 100}%`,
             }}
             animate={{
-              y: [-30, -120],
-              opacity: [0, 0.8, 0],
+              y: [-20, -80],
+              opacity: [0, 0.6, 0],
             }}
             transition={{
-              duration: 4 + Math.random() * 2,
+              duration: 3 + Math.random() * 2,
               repeat: Infinity,
-              delay: Math.random() * 3,
+              delay: Math.random() * 2,
               ease: "easeInOut",
             }}
           />
@@ -224,9 +182,9 @@ export default function ServiceCascadeSection() {
       </div>
 
       {/* Sticky content container */}
-      <div className="sticky top-16 h-screen flex items-center justify-center bg-black z-10 relative">
+      <div className="sticky top-16 h-screen flex items-center justify-center bg-black z-10">
         <div className="container mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
-          
+
           {/* 3D Image Stack */}
           <div className="relative h-96 lg:h-[500px] perspective-1000">
             {/* Progress indicator */}
@@ -236,7 +194,6 @@ export default function ServiceCascadeSection() {
                 <div className="w-24 h-1 bg-gray-800 rounded-full overflow-hidden">
                   <motion.div
                     className="h-full bg-gradient-to-r from-maverick-orange to-yellow-500 rounded-full"
-                    initial={{ width: "0%" }}
                     animate={{ width: `${((activeIndex + 1) / totalItems) * 100}%` }}
                     transition={{ duration: 0.3, ease: "easeOut" }}
                   />
@@ -275,7 +232,7 @@ export default function ServiceCascadeSection() {
             <div className="relative w-full h-full preserve-3d">
               {allItems.map((item, index) => {
                 const transform = getImageTransform(index);
-                
+
                 return (
                   <motion.div
                     key={item.id}
@@ -295,8 +252,8 @@ export default function ServiceCascadeSection() {
                       filter: transform.filter,
                     }}
                     transition={{
-                      duration: 0.4,
-                      ease: [0.25, 0.46, 0.45, 0.94],
+                      duration: 0.6,
+                      ease: "easeInOut",
                     }}
                     onClick={() => handleCardClick(index)}
                   >
@@ -307,38 +264,27 @@ export default function ServiceCascadeSection() {
                         className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                         loading="lazy"
                       />
-                      
-                      {/* Active card effects */}
+
+                      {/* Active card border */}
                       {index === activeIndex && (
-                        <>
-                          <motion.div
-                            className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            transition={{ duration: 0.3 }}
-                          />
-                          <motion.div
-                            className="absolute inset-0 border-2 border-maverick-orange/60 rounded-xl"
-                            initial={{ opacity: 0, scale: 0.98 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            transition={{ duration: 0.4, delay: 0.1 }}
-                          />
-                        </>
+                        <motion.div
+                          className="absolute inset-0 border-2 border-maverick-orange/60 rounded-xl"
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          transition={{ duration: 0.3 }}
+                        />
                       )}
 
                       {/* Card number */}
                       <motion.div
-                        className="absolute top-3 right-3 w-6 h-6 rounded-full bg-black/70 backdrop-blur-sm text-white text-xs font-bold flex items-center justify-center border border-maverick-orange/50"
+                        className="absolute top-3 right-3 w-6 h-6 rounded-full text-white text-xs font-bold flex items-center justify-center border border-maverick-orange/50"
                         animate={{ 
-                          scale: index === activeIndex ? 1.1 : 0.9,
                           backgroundColor: index === activeIndex ? "rgba(255, 90, 0, 0.9)" : "rgba(0, 0, 0, 0.7)"
                         }}
                         transition={{ duration: 0.3 }}
                       >
                         {index + 1}
                       </motion.div>
-
-                      {/* Removed inactive card overlay to prevent opacity issues */}
                     </div>
                   </motion.div>
                 );
@@ -358,7 +304,7 @@ export default function ServiceCascadeSection() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                 </svg>
               </motion.button>
-              
+
               <motion.button
                 className="p-2 rounded-full bg-black/50 backdrop-blur-sm border border-maverick-orange/30 hover:border-maverick-orange/70 transition-colors disabled:opacity-30"
                 onClick={() => setActiveIndex(Math.min(totalItems - 1, activeIndex + 1))}
@@ -382,13 +328,13 @@ export default function ServiceCascadeSection() {
                 initial={{ opacity: 0, x: 30 }}
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -30 }}
-                transition={{ duration: 0.3, ease: "easeOut" }}
+                transition={{ duration: 0.4, ease: "easeOut" }}
               >
                 <motion.h3
                   className="text-2xl lg:text-3xl font-bold text-white"
                   initial={{ opacity: 0, y: 15 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.3, delay: 0.05 }}
+                  transition={{ duration: 0.4, delay: 0.1 }}
                 >
                   {allItems[activeIndex].title}
                 </motion.h3>
@@ -397,7 +343,7 @@ export default function ServiceCascadeSection() {
                   className="text-gray-300 leading-relaxed"
                   initial={{ opacity: 0, y: 15 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.3, delay: 0.1 }}
+                  transition={{ duration: 0.4, delay: 0.15 }}
                 >
                   {allItems[activeIndex].description}
                 </motion.p>
@@ -405,7 +351,7 @@ export default function ServiceCascadeSection() {
                 <motion.div
                   initial={{ opacity: 0, y: 15 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.3, delay: 0.15 }}
+                  transition={{ duration: 0.4, delay: 0.2 }}
                 >
                   <motion.button
                     className="group relative inline-flex items-center px-5 py-2.5 bg-maverick-orange hover:bg-maverick-orange/90 text-black font-semibold rounded-lg overflow-hidden transition-all duration-200"
@@ -443,7 +389,7 @@ export default function ServiceCascadeSection() {
                     }}
                     transition={{ duration: 0.2 }}
                   />
-                  
+
                   {index === activeIndex && (
                     <motion.div
                       className="absolute inset-0 rounded-full bg-maverick-orange/20"
