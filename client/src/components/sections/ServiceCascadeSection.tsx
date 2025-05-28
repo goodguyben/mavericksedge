@@ -153,61 +153,60 @@ export default function ServiceCascadeSection() {
     }
   }, [activeIndex, services]);
 
-  // Scroll-based card navigation with very strict control
-  const scrollProgress = useTransform(scrollYProgress, [0.4, 0.9], [0, totalItems - 1]);
-  const [lastScrollTime, setLastScrollTime] = useState(0);
-  const [lastScrollValue, setLastScrollValue] = useState(0);
-  const [scrollDirection, setScrollDirection] = useState<'up' | 'down' | null>(null);
+  // One-card-at-a-time scroll progression with wheel events
   const [isScrolling, setIsScrolling] = useState(false);
+  const scrollTimeoutRef = useRef<NodeJS.Timeout>();
 
   useEffect(() => {
-    const unsubscribe = scrollProgress.on("change", (latest) => {
-      const now = Date.now();
-      
-      // Detect scroll direction and momentum
-      const direction = latest > lastScrollValue ? 'down' : 'up';
-      setScrollDirection(direction);
-      setLastScrollValue(latest);
-      setIsScrolling(true);
-      
-      // Clear scrolling state after a delay
-      const scrollTimeout = setTimeout(() => {
-        setIsScrolling(false);
-      }, 500);
-      
-      // Very strict throttling - only allow changes every 800ms
-      if (now - lastScrollTime < 800) return;
-      
-      const targetIndex = Math.round(latest);
-      
-      // Only change cards if:
-      // 1. Target index is different from current
-      // 2. We've moved at least 1 full unit (very strict)
-      // 3. Target is within valid range
-      // 4. Not currently in a rapid scroll state
-      const scrollDiff = Math.abs(latest - activeIndex);
-      const isValidTransition = 
-        targetIndex !== activeIndex && 
-        targetIndex >= 0 && 
-        targetIndex < totalItems &&
-        scrollDiff >= 1.0 && // Require full unit movement
-        !isScrolling; // Prevent changes during rapid scrolling
-      
-      if (isValidTransition) {
-        // Additional check: only allow sequential navigation (no skipping cards)
-        const indexDiff = Math.abs(targetIndex - activeIndex);
-        if (indexDiff === 1) { // Only allow moving to adjacent cards
-          setActiveIndex(targetIndex);
-          setIsAutoPlaying(false);
-          setLastScrollTime(now);
-        }
-      }
-      
-      return () => clearTimeout(scrollTimeout);
-    });
+    const container = containerRef.current;
+    if (!container) return;
 
-    return unsubscribe;
-  }, [scrollProgress, activeIndex, totalItems, lastScrollTime, lastScrollValue, isScrolling]);
+    const handleWheel = (e: WheelEvent) => {
+      if (isScrolling) {
+        e.preventDefault();
+        return;
+      }
+
+      const containerRect = container.getBoundingClientRect();
+      const isInView = containerRect.top <= window.innerHeight && containerRect.bottom >= 0;
+      
+      if (!isInView) return;
+
+      // Prevent default scroll when we're handling card navigation
+      e.preventDefault();
+      
+      const direction = e.deltaY > 0 ? 1 : -1;
+      
+      if (direction > 0 && activeIndex < totalItems - 1) {
+        // Scroll down - next card
+        setIsScrolling(true);
+        setActiveIndex(prev => prev + 1);
+        setIsAutoPlaying(false);
+        
+        clearTimeout(scrollTimeoutRef.current);
+        scrollTimeoutRef.current = setTimeout(() => {
+          setIsScrolling(false);
+        }, 800);
+      } else if (direction < 0 && activeIndex > 0) {
+        // Scroll up - previous card
+        setIsScrolling(true);
+        setActiveIndex(prev => prev - 1);
+        setIsAutoPlaying(false);
+        
+        clearTimeout(scrollTimeoutRef.current);
+        scrollTimeoutRef.current = setTimeout(() => {
+          setIsScrolling(false);
+        }, 800);
+      }
+    };
+
+    container.addEventListener('wheel', handleWheel, { passive: false });
+    
+    return () => {
+      container.removeEventListener('wheel', handleWheel);
+      clearTimeout(scrollTimeoutRef.current);
+    };
+  }, [activeIndex, totalItems, isScrolling]);
 
   const getImageTransform = (index: number) => {
     const diff = index - activeIndex;
