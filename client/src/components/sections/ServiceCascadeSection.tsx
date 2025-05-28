@@ -85,26 +85,20 @@ export default function ServiceCascadeSection() {
   const allItems = services.flatMap(service => service.items);
   const totalItems = allItems.length;
 
-  // Controlled scroll-based progression with heavy throttling for single-item changes
+  // Controlled scroll-based progression with throttling
   useEffect(() => {
     const unsubscribe = scrollYProgress.on("change", (latest) => {
       const now = Date.now();
       
-      // Heavy throttle to prevent rapid changes - only allow changes every 500ms
-      if (now - lastScrollTime.current < 500) return;
-      
-      // More granular scroll sections for smoother single-item progression
-      const scrollSection = latest * totalItems;
-      const targetIndex = Math.floor(scrollSection);
+      // Throttle scroll events to prevent rapid changes
+      if (now - lastScrollTime.current < 100) return;
+      lastScrollTime.current = now;
+
+      // Calculate target index based on scroll progress
+      const targetIndex = Math.floor(latest * totalItems);
       const clampedIndex = Math.min(Math.max(targetIndex, 0), totalItems - 1);
       
-      // Only change if we've crossed a significant threshold
-      const threshold = 0.15; // Require 15% scroll progress between items
-      const currentSection = activeIndex;
-      const sectionProgress = scrollSection - currentSection;
-      
-      if (Math.abs(sectionProgress) >= threshold && clampedIndex !== activeIndex) {
-        lastScrollTime.current = now;
+      if (clampedIndex !== activeIndex) {
         setActiveIndex(clampedIndex);
         setIsScrolling(true);
         
@@ -116,7 +110,7 @@ export default function ServiceCascadeSection() {
         // Set scrolling to false after animation completes
         scrollTimeout.current = setTimeout(() => {
           setIsScrolling(false);
-        }, 400);
+        }, 300);
       }
     });
 
@@ -177,127 +171,26 @@ export default function ServiceCascadeSection() {
   };
 
   return (
-    <div ref={containerRef} className="relative h-[300vh] bg-black overflow-hidden">
-      {/* Dynamic background gradients */}
-      <motion.div
-        className="absolute inset-0 opacity-30"
-        style={{
-          background: `
-            radial-gradient(circle at 20% 80%, rgba(255, 90, 0, 0.1) 0%, transparent 50%),
-            radial-gradient(circle at 80% 20%, rgba(255, 165, 0, 0.1) 0%, transparent 50%),
-            radial-gradient(circle at 40% 40%, rgba(255, 90, 0, 0.05) 0%, transparent 50%)
-          `
-        }}
-        animate={{
-          scale: [1, 1.1, 1],
-          opacity: [0.2, 0.4, 0.2],
-        }}
-        transition={{
-          duration: 8,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-      />
-      
-      {/* Animated mesh gradient */}
-      <motion.div
-        className="absolute inset-0"
-        style={{
-          background: `
-            conic-gradient(from 0deg at 50% 50%, 
-              transparent 0deg, 
-              rgba(255, 90, 0, 0.03) 90deg, 
-              transparent 180deg, 
-              rgba(255, 165, 0, 0.03) 270deg, 
-              transparent 360deg)
-          `
-        }}
-        animate={{
-          rotate: [0, 360],
-        }}
-        transition={{
-          duration: 30,
-          repeat: Infinity,
-          ease: "linear",
-        }}
-      />
-      {/* Enhanced floating graphics and particles */}
+    <div ref={containerRef} className="relative h-[300vh] bg-black">
+      {/* Floating particles - reduced for performance */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        {/* Floating geometric shapes */}
-        {[...Array(6)].map((_, i) => (
+        {[...Array(8)].map((_, i) => (
           <motion.div
-            key={`shape-${i}`}
-            className="absolute"
+            key={i}
+            className="absolute w-1 h-1 bg-maverick-orange/40 rounded-full"
             style={{
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
             }}
             animate={{
-              y: [-50, -200],
-              x: [0, Math.random() * 40 - 20],
-              rotate: [0, 360],
-              opacity: [0, 0.6, 0],
+              y: [-30, -120],
+              opacity: [0, 0.8, 0],
             }}
             transition={{
-              duration: 8 + Math.random() * 4,
+              duration: 4 + Math.random() * 2,
               repeat: Infinity,
-              delay: Math.random() * 5,
+              delay: Math.random() * 3,
               ease: "easeInOut",
-            }}
-          >
-            {i % 3 === 0 && (
-              <div className="w-3 h-3 border border-maverick-orange/30 rotate-45" />
-            )}
-            {i % 3 === 1 && (
-              <div className="w-2 h-2 bg-maverick-orange/40 rounded-full" />
-            )}
-            {i % 3 === 2 && (
-              <div className="w-4 h-0.5 bg-gradient-to-r from-transparent via-maverick-orange/50 to-transparent" />
-            )}
-          </motion.div>
-        ))}
-        
-        {/* Animated grid lines */}
-        <motion.div
-          className="absolute inset-0"
-          style={{
-            backgroundImage: `
-              linear-gradient(rgba(255, 90, 0, 0.05) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(255, 90, 0, 0.05) 1px, transparent 1px)
-            `,
-            backgroundSize: '60px 60px',
-          }}
-          animate={{
-            x: [0, 60],
-            y: [0, 60],
-          }}
-          transition={{
-            duration: 20,
-            repeat: Infinity,
-            ease: "linear",
-          }}
-        />
-        
-        {/* Glowing orbs */}
-        {[...Array(3)].map((_, i) => (
-          <motion.div
-            key={`orb-${i}`}
-            className="absolute w-32 h-32 rounded-full bg-gradient-radial from-maverick-orange/10 to-transparent blur-xl"
-            style={{
-              left: `${20 + i * 30}%`,
-              top: `${30 + i * 20}%`,
-            }}
-            animate={{
-              scale: [1, 1.5, 1],
-              opacity: [0.3, 0.6, 0.3],
-              x: [0, 30, 0],
-              y: [0, -20, 0],
-            }}
-            transition={{
-              duration: 6 + i * 2,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: i * 2,
             }}
           />
         ))}
@@ -309,39 +202,19 @@ export default function ServiceCascadeSection() {
           
           {/* 3D Image Stack */}
           <div className="relative h-96 lg:h-[500px] perspective-1000">
-            {/* Enhanced progress indicator */}
-            <div className="absolute -top-12 left-0 right-0 z-30">
-              <div className="flex justify-center items-center space-x-3">
-                <motion.div 
-                  className="flex items-center space-x-2"
-                  initial={{ opacity: 0, y: -10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5 }}
-                >
-                  <div className="w-32 h-2 bg-gray-800/50 rounded-full overflow-hidden backdrop-blur-sm border border-gray-700/30">
-                    <motion.div
-                      className="h-full bg-gradient-to-r from-maverick-orange via-yellow-500 to-maverick-orange rounded-full relative"
-                      initial={{ width: "0%" }}
-                      animate={{ width: `${((activeIndex + 1) / totalItems) * 100}%` }}
-                      transition={{ duration: 0.4, ease: "easeOut" }}
-                    >
-                      <motion.div
-                        className="absolute right-0 top-0 w-1 h-full bg-white/80 rounded-full"
-                        animate={{ opacity: [0.5, 1, 0.5] }}
-                        transition={{ duration: 1, repeat: Infinity }}
-                      />
-                    </motion.div>
-                  </div>
-                  <motion.span 
-                    className="text-xs text-maverick-orange font-medium"
-                    key={activeIndex}
-                    initial={{ scale: 0.8 }}
-                    animate={{ scale: 1 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    {activeIndex + 1}/{totalItems}
-                  </motion.span>
-                </motion.div>
+            {/* Progress indicator */}
+            <div className="absolute -top-8 left-0 right-0 z-30">
+              <div className="flex justify-center items-center space-x-2">
+                <span className="text-sm text-gray-400">{activeIndex + 1}</span>
+                <div className="w-24 h-1 bg-gray-800 rounded-full overflow-hidden">
+                  <motion.div
+                    className="h-full bg-gradient-to-r from-maverick-orange to-yellow-500 rounded-full"
+                    initial={{ width: "0%" }}
+                    animate={{ width: `${((activeIndex + 1) / totalItems) * 100}%` }}
+                    transition={{ duration: 0.3, ease: "easeOut" }}
+                  />
+                </div>
+                <span className="text-sm text-gray-400">{totalItems}</span>
               </div>
             </div>
 
@@ -426,15 +299,17 @@ export default function ServiceCascadeSection() {
                         </>
                       )}
 
-                      {/* Active card indicator */}
-                      {index === activeIndex && (
-                        <motion.div
-                          className="absolute top-3 right-3 w-3 h-3 rounded-full bg-maverick-orange shadow-lg shadow-maverick-orange/50"
-                          initial={{ scale: 0, opacity: 0 }}
-                          animate={{ scale: 1, opacity: 1 }}
-                          transition={{ duration: 0.3 }}
-                        />
-                      )}
+                      {/* Card number */}
+                      <motion.div
+                        className="absolute top-3 right-3 w-6 h-6 rounded-full bg-black/70 backdrop-blur-sm text-white text-xs font-bold flex items-center justify-center border border-maverick-orange/50"
+                        animate={{ 
+                          scale: index === activeIndex ? 1.1 : 0.9,
+                          backgroundColor: index === activeIndex ? "rgba(255, 90, 0, 0.9)" : "rgba(0, 0, 0, 0.7)"
+                        }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        {index + 1}
+                      </motion.div>
 
                       {/* Inactive card overlay */}
                       {index !== activeIndex && (
