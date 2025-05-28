@@ -1,4 +1,11 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  AnimatePresence,
+} from "framer-motion";
+import { useIsMobile } from "@/hooks/use-mobile";
 import {
   Code,
   PenTool,
@@ -11,18 +18,14 @@ import {
   Shield,
   FolderIcon,
   FileIcon,
+  Play,
+  Pause,
 } from "lucide-react";
-import {
-  motion,
-  useScroll,
-  useTransform,
-  AnimatePresence,
-} from "framer-motion";
-import { useIsMobile } from "@/hooks/use-mobile";
 
 export default function WhatWeDoSection() {
   const isMobile = useIsMobile();
   const [activeService, setActiveService] = useState("web-development");
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const sectionRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -115,6 +118,7 @@ export default function WhatWeDoSection() {
   // Auto-rotate services every 8 seconds
   useEffect(() => {
     if (isMobile) return; // Don't auto-rotate on mobile
+    if (!isAutoPlaying) return;
 
     const interval = setInterval(() => {
       const currentIndex = services.findIndex(
@@ -125,7 +129,7 @@ export default function WhatWeDoSection() {
     }, 8000);
 
     return () => clearInterval(interval);
-  }, [activeService, isMobile, services]);
+  }, [activeService, isMobile, services, isAutoPlaying]);
 
   return (
     <section
@@ -364,6 +368,32 @@ export default function WhatWeDoSection() {
                     )}
                   </motion.button>
                 ))}
+                <button
+                  onClick={() => setIsAutoPlaying(!isAutoPlaying)}
+                  className="relative px-4 py-3 min-w-[120px] rounded-lg transition-all duration-300 bg-[#1A1A1A]/30 text-gray-400 hover:text-gray-200"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.98 }}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: services.length * 0.1 + 0.2 }}
+                >
+                  <div className="flex flex-col items-center gap-2">
+                    <motion.div
+                      className={`p-2 rounded-lg bg-gray-800/20`}
+                    >
+                      <div className="w-6 h-6">
+                        {isAutoPlaying ? (
+                          <Pause className="w-6 h-6 text-gray-500" />
+                        ) : (
+                          <Play className="w-6 h-6 text-gray-500" />
+                        )}
+                      </div>
+                    </motion.div>
+                    <span className="font-medium text-sm">
+                      {isAutoPlaying ? "Pause" : "Play"}
+                    </span>
+                  </div>
+                </button>
               </motion.div>
             </div>
 
@@ -1372,6 +1402,7 @@ export default function WhatWeDoSection() {
                                   </motion.div>
                                 </div>
                               </>
+                            ```text
                             )}
 
                             {/* AI Integration Animations */}

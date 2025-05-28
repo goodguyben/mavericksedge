@@ -346,16 +346,7 @@ export default function ServiceCascadeSection() {
                 </motion.button>
               ))}
               
-              {/* Auto-play indicator */}
-              <div className="ml-4 flex items-center gap-2 text-sm text-gray-400">
-                <motion.div
-                  animate={{ rotate: isAutoPlaying ? 360 : 0 }}
-                  transition={{ duration: 4, repeat: isAutoPlaying ? Infinity : 0, ease: "linear" }}
-                >
-                  <Play className="w-3 h-3" />
-                </motion.div>
-                <span className="text-xs">Auto-play {isAutoPlaying ? 'ON' : 'OFF'}</span>
-              </div>
+              
             </div>
           </div>
         </div>
