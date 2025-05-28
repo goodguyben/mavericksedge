@@ -87,34 +87,66 @@ export default function ServiceCascadeSection() {
 
   // Controlled scroll-based progression with throttling
   useEffect(() => {
+    let animationFrame: number;
+    
     const unsubscribe = scrollYProgress.on("change", (latest) => {
-      const now = Date.now();
-      
-      // Throttle scroll events to prevent rapid changes
-      if (now - lastScrollTime.current < 100) return;
-      lastScrollTime.current = now;
-
-      // Calculate target index based on scroll progress
-      const targetIndex = Math.floor(latest * totalItems);
-      const clampedIndex = Math.min(Math.max(targetIndex, 0), totalItems - 1);
-      
-      if (clampedIndex !== activeIndex) {
-        setActiveIndex(clampedIndex);
-        setIsScrolling(true);
-        
-        // Clear existing timeout
-        if (scrollTimeout.current) {
-          clearTimeout(scrollTimeout.current);
-        }
-        
-        // Set scrolling to false after animation completes
-        scrollTimeout.current = setTimeout(() => {
-          setIsScrolling(false);
-        }, 300);
+      // Cancel previous animation frame to prevent rapid updates
+      if (animationFrame) {
+        cancelAnimationFrame(animationFrame);
       }
+      
+      animationFrame = requestAnimationFrame(() => {
+        const now = Date.now();
+        
+        // More aggressive throttling to prevent rapid changes
+        if (now - lastScrollTime.current < 200) return;
+        lastScrollTime.current = now;
+
+        // Calculate target index with smoother progression
+        // Use larger segments to prevent rapid switching
+        const segmentSize = 1 / totalItems;
+        const currentSegment = Math.floor(latest / segmentSize);
+        const targetIndex = Math.min(Math.max(currentSegment, 0), totalItems - 1);
+        
+        // Only change if we've crossed a significant threshold
+        const scrollThreshold = 0.15; // Require 15% scroll within segment to change
+        const segmentProgress = (latest % segmentSize) / segmentSize;
+        
+        // For forward scrolling, require crossing threshold
+        if (targetIndex > activeIndex && segmentProgress > scrollThreshold) {
+          setActiveIndex(targetIndex);
+          setIsScrolling(true);
+          
+          if (scrollTimeout.current) {
+            clearTimeout(scrollTimeout.current);
+          }
+          
+          scrollTimeout.current = setTimeout(() => {
+            setIsScrolling(false);
+          }, 500);
+        }
+        // For backward scrolling, require crossing threshold from the other direction
+        else if (targetIndex < activeIndex && segmentProgress < (1 - scrollThreshold)) {
+          setActiveIndex(targetIndex);
+          setIsScrolling(true);
+          
+          if (scrollTimeout.current) {
+            clearTimeout(scrollTimeout.current);
+          }
+          
+          scrollTimeout.current = setTimeout(() => {
+            setIsScrolling(false);
+          }, 500);
+        }
+      });
     });
 
-    return unsubscribe;
+    return () => {
+      unsubscribe();
+      if (animationFrame) {
+        cancelAnimationFrame(animationFrame);
+      }
+    };
   }, [scrollYProgress, activeIndex, totalItems]);
 
   const getImageTransform = (index: number) => {
