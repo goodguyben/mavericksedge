@@ -299,8 +299,11 @@ export default function ServiceCascadeSection() {
                         filter: transform.filter,
                       }}
                       transition={{
-                        duration: 1.5,
+                        duration: window.innerWidth < 768 ? 0.8 : 1.5,
                         ease: [0.25, 0.46, 0.45, 0.94],
+                      }}
+                      style={{
+                        willChange: index === activeIndex ? 'transform, opacity' : 'auto',
                       }}
                       onClick={() => handleDotClick(index)}
                     >
@@ -309,6 +312,11 @@ export default function ServiceCascadeSection() {
                           src={item.image}
                           alt={item.title}
                           className="w-full h-full object-cover"
+                          loading={index === 0 ? "eager" : "lazy"}
+                          fetchPriority={index === 0 ? "high" : "low"}
+                          decoding="async"
+                          width="800"
+                          height="600"
                         />
                         
                         {/* Active card gradient overlay */}
