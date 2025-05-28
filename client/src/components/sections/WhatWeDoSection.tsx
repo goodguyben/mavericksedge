@@ -1402,7 +1402,6 @@ export default function WhatWeDoSection() {
                                   </motion.div>
                                 </div>
                               </>
-                            ```text
                             )}
 
                             {/* AI Integration Animations */}
