@@ -153,60 +153,20 @@ export default function ServiceCascadeSection() {
     }
   }, [activeIndex, services]);
 
-  // One-card-at-a-time scroll progression with wheel events
-  const [isScrolling, setIsScrolling] = useState(false);
-  const scrollTimeoutRef = useRef<NodeJS.Timeout>();
+  // Scroll-based card navigation with defined ranges
+  const scrollProgress = useTransform(scrollYProgress, [0.4, 0.9], [0, totalItems - 1]);
 
   useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
-
-    const handleWheel = (e: WheelEvent) => {
-      if (isScrolling) {
-        e.preventDefault();
-        return;
-      }
-
-      const containerRect = container.getBoundingClientRect();
-      const isInView = containerRect.top <= window.innerHeight && containerRect.bottom >= 0;
-      
-      if (!isInView) return;
-
-      // Prevent default scroll when we're handling card navigation
-      e.preventDefault();
-      
-      const direction = e.deltaY > 0 ? 1 : -1;
-      
-      if (direction > 0 && activeIndex < totalItems - 1) {
-        // Scroll down - next card
-        setIsScrolling(true);
-        setActiveIndex(prev => prev + 1);
+    const unsubscribe = scrollProgress.on("change", (latest) => {
+      const newIndex = Math.round(latest);
+      if (newIndex !== activeIndex && newIndex >= 0 && newIndex < totalItems) {
+        setActiveIndex(newIndex);
         setIsAutoPlaying(false);
-        
-        clearTimeout(scrollTimeoutRef.current);
-        scrollTimeoutRef.current = setTimeout(() => {
-          setIsScrolling(false);
-        }, 800);
-      } else if (direction < 0 && activeIndex > 0) {
-        // Scroll up - previous card
-        setIsScrolling(true);
-        setActiveIndex(prev => prev - 1);
-        setIsAutoPlaying(false);
-        
-        clearTimeout(scrollTimeoutRef.current);
-        scrollTimeoutRef.current = setTimeout(() => {
-          setIsScrolling(false);
-        }, 800);
       }
-    };
+    });
 
-    container.addEventListener('wheel', handleWheel, { passive: false });
-    
-    return () => {
-      container.removeEventListener('wheel', handleWheel);
-      clearTimeout(scrollTimeoutRef.current);
-    };
-  }, [activeIndex, totalItems, isScrolling]);
+    return unsubscribe;
+  }, [scrollProgress, activeIndex, totalItems]);
 
   const getImageTransform = (index: number) => {
     const diff = index - activeIndex;
