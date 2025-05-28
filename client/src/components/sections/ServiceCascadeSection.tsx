@@ -38,16 +38,16 @@ export default function ServiceCascadeSection() {
       imagePosition: 'left',
       items: [
         {
-          id: "custom-solutions",
-          title: "Custom Web Solutions",
-          description: "We craft bespoke websites tailored to your unique business needs and brand identity. Our development process ensures scalable, secure, and lightning-fast performance that keeps your visitors engaged.",
+          id: "websites",
+          title: "Custom Interactive Websites",
+          description: "We craft custom interactive and 3D websites that engage users with motion, depth, and storytelling built to captivate and convert. Whether it’s scroll-triggered animations, immersive product showcases, or spatial design, we turn static sites into dynamic journeys.",
           image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop&crop=entropy",
           gradient: "from-orange-500/20 to-yellow-500/20"
         },
         {
-          id: "ecommerce",
-          title: "E-commerce Excellence",
-          description: "Transform your business with powerful e-commerce platforms that drive sales and enhance customer experience. We integrate secure payment systems, inventory management, and analytics to maximize your online revenue.",
+          id: "web-applications",
+          title: "Productivity & Management Web Applications",
+          description: "We develop web applications tailored to solve your unique operational challenges and streamline complex data management. From CRM software and asset management systems to interactive dashboards, our scalable, user-friendly solutions leverage AI-driven insights and low-code adaptability. Designed for seamless integration, these powerful tools empower your team to boost productivity, enhance decision-making, and accelerate business growth.",
           image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=600&fit=crop&crop=entropy",
           gradient: "from-yellow-500/20 to-orange-500/20"
         },
