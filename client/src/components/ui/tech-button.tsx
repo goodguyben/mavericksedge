@@ -47,12 +47,12 @@ export default function TechButton({
     }
   };
   
-  // Base classes
+  // Base classes - matching WhatWeDoSection Learn more button
   const baseClasses = `
-    relative overflow-hidden font-medium rounded-lg transition-all duration-300
-    border-2 flex items-center justify-center shadow-lg
-    ${sizeClasses[size]} ${getThemeClasses()} ${className}
-  `;
+    px-6 py-3 rounded-lg font-medium flex items-center gap-2 transition-all duration-300
+    bg-gradient-to-r from-maverick-orange to-maverick-amber hover:scale-105 hover:shadow-lg
+    text-white ${className}
+  `.replace(/bg-gradient-to-r.*?text-white/, 'bg-gradient-to-r from-[#E04500] to-[#E57B00] text-white');
 
   // Create ripple effect on click
   const handleRippleEffect = (event: React.MouseEvent<HTMLButtonElement | HTMLAnchorElement>) => {
@@ -97,25 +97,10 @@ export default function TechButton({
     }
   };
 
-  // Button content
+  // Button content - simplified to match WhatWeDoSection
   const buttonContent = (
     <>
-      {/* Tech indicator */}
-      {getTechElement()}
-      
-      {/* Button text */}
-      <span>{children}</span>
-      
-      {/* Ripple effect */}
-      {rippleActive && (
-        <span 
-          className={`absolute block rounded-full bg-white bg-opacity-30 animate-ripple`}
-          style={rippleStyle}
-        />
-      )}
-      
-      {/* Code snippet highlight */}
-      <span className={`absolute inset-0 w-full h-full bg-white opacity-0 transition-opacity duration-300 ${hovered ? 'opacity-5' : ''}`}></span>
+      {children}
     </>
   );
 
@@ -123,8 +108,12 @@ export default function TechButton({
     return (
       <Link href={href}>
         <a 
-          className={`${baseClasses} ${disabled ? 'opacity-60 cursor-not-allowed' : 'cursor-pointer'}`}
-          onClick={handleClick}
+          className={baseClasses}
+          style={{
+            background: `linear-gradient(90deg, #E04500 0%, #E57B00 100%)`,
+            boxShadow: hovered ? `0 10px 25px -5px rgba(224, 69, 0, 0.4)` : undefined,
+            transform: hovered ? 'scale(1.05)' : 'scale(1)',
+          }}
           onMouseEnter={() => setHovered(true)}
           onMouseLeave={() => setHovered(false)}
         >
@@ -137,7 +126,12 @@ export default function TechButton({
   return (
     <button
       type={type}
-      className={`${baseClasses} ${disabled ? 'opacity-60 cursor-not-allowed' : 'cursor-pointer'}`}
+      className={baseClasses}
+      style={{
+        background: `linear-gradient(90deg, #E04500 0%, #E57B00 100%)`,
+        boxShadow: hovered ? `0 10px 25px -5px rgba(224, 69, 0, 0.4)` : undefined,
+        transform: hovered ? 'scale(1.05)' : 'scale(1)',
+      }}
       onClick={handleClick}
       disabled={disabled}
       onMouseEnter={() => setHovered(true)}
