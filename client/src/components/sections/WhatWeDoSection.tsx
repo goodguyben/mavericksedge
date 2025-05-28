@@ -156,57 +156,59 @@ export default function WhatWeDoSection() {
       <div className="absolute inset-0 bg-[url('/images/noise.png')] opacity-[0.03] mix-blend-soft-light"></div>
 
       <div className="container mx-auto relative z-10">
-        <motion.div
-          className="text-center mb-20"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-        >
+        <header className="text-center mb-20">
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="inline-block mb-4"
-          >
-            <div className="px-4 py-2 bg-maverick-orange/10 rounded-full">
-              <span className="text-maverick-orange font-medium">
-                Our services
-              </span>
-            </div>
-          </motion.div>
-
-          <motion.h2
-            className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6"
+            className="text-center mb-20"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
+            transition={{ duration: 0.5 }}
           >
-            What We{" "}
-            <span className="text-maverick-orange relative inline-block">
-              Do
-              <motion.span
-                className="absolute -bottom-2 left-0 w-full h-1 bg-maverick-orange"
-                initial={{ scaleX: 0, originX: 0 }}
-                whileInView={{ scaleX: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.5 }}
-              />
-            </span>
-          </motion.h2>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="inline-block mb-4"
+            >
+              <div className="px-4 py-2 bg-maverick-orange/10 rounded-full">
+                <span className="text-maverick-orange font-medium">
+                  Our services
+                </span>
+              </div>
+            </motion.div>
 
-          <motion.p
-            className="text-[#AAAAAA] text-xl max-w-3xl mx-auto"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-          >
-            We offer a range of services, from building and optimizing websites and e-commerce platforms to developing strategic marketing campaigns and integrating AI solutions for automation. Our goal is to provide customized, impactful solutions that drive results.
-          </motion.p>
-        </motion.div>
+            <motion.h2
+              className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+            >
+              What We{" "}
+              <span className="text-maverick-orange relative inline-block">
+                Do
+                <motion.span
+                  className="absolute -bottom-2 left-0 w-full h-1 bg-maverick-orange"
+                  initial={{ scaleX: 0, originX: 0 }}
+                  whileInView={{ scaleX: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0.5 }}
+                />
+              </span>
+            </motion.h2>
+
+            <motion.p
+              className="text-[#AAAAAA] text-xl max-w-3xl mx-auto"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+            >
+              We offer a range of services, from building and optimizing websites and e-commerce platforms to developing strategic marketing campaigns and integrating AI solutions for automation. Our goal is to provide customized, impactful solutions that drive results.
+            </motion.p>
+          </motion.div>
+        </header>
 
         {isMobile ? (
           // Mobile version - Interactive vertical scroll list
@@ -2209,7 +2211,7 @@ export default function WhatWeDoSection() {
                                               AI Implemented
                                             </motion.text>
 
-                                            {/* After AI optimization line */}
+{/* After AI optimization line */}
                                             <motion.path
                                               d="M60,50 C70,35 80,25 90,20 C95,15 100,15 100,15 L100,100 L60,100 Z"
                                               fill={`${service.color}40`}
