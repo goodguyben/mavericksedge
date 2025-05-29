@@ -63,14 +63,23 @@ export default function AIWebGLBackground({ className = '' }: AIWebGLBackgroundP
   const lastTimeRef = useRef(0);
   const attractorNodesRef = useRef<{ x: number, y: number, strength: number, active: boolean }[]>([]);
 
-  // Enhanced color palette
+  // Enhanced AI-inspired color palette
   const colors = {
     input: { base: '#00FF80', glow: '#00FF80', trail: '#40E0D0' },
     hidden: { base: '#40E0FF', glow: '#00BFFF', trail: '#1E90FF' },
     output: { base: '#FF8040', glow: '#FF6347', trail: '#FF4500' },
+    neural: { base: '#9D4EDD', glow: '#C77DFF', trail: '#E0AAFF' },
+    quantum: { base: '#FF006E', glow: '#FF5D8F', trail: '#FFADCC' },
     connection: '#40E0FF',
-    background: { start: '#0A0A0A', mid: '#121212', end: '#0A0A0A' },
-    particle: '#00FFFF'
+    background: { 
+      start: '#0A0A0F', 
+      mid: '#0F0F1A', 
+      end: '#0A0A0F',
+      darkOverlay: 'rgba(0, 0, 0, 0.7)'
+    },
+    particle: '#00FFFF',
+    energy: '#FFD700',
+    data: '#00CED1'
   };
 
   const createParticles = useCallback((x: number, y: number, count: number = 5, color: string = colors.particle) => {
@@ -332,21 +341,89 @@ export default function AIWebGLBackground({ className = '' }: AIWebGLBackgroundP
       lastTimeRef.current = animationTime;
       const dt = Math.min(deltaTime / 16.67, 2); // Cap at 2x normal speed
 
-      // Create advanced gradient background
-      const gradient = ctx.createRadialGradient(
-        canvas.width / (2 * window.devicePixelRatio), 
-        canvas.height / (2 * window.devicePixelRatio), 
-        0,
-        canvas.width / (2 * window.devicePixelRatio), 
-        canvas.height / (2 * window.devicePixelRatio), 
-        canvas.width / window.devicePixelRatio
-      );
-      gradient.addColorStop(0, colors.background.mid);
-      gradient.addColorStop(0.5, colors.background.start);
-      gradient.addColorStop(1, colors.background.end);
+      // Create sophisticated multi-layered background
+      const time = Date.now() * 0.001;
+      const width = canvas.width / window.devicePixelRatio;
+      const height = canvas.height / window.devicePixelRatio;
+      
+      // Base gradient with enhanced depth
+      const gradient = ctx.createRadialGradient(width/2, height/2, 0, width/2, height/2, Math.max(width, height));
+      gradient.addColorStop(0, colors.background.start);
+      gradient.addColorStop(0.3, colors.background.mid);
+      gradient.addColorStop(0.7, colors.background.end);
+      gradient.addColorStop(1, '#000508');
       
       ctx.fillStyle = gradient;
-      ctx.fillRect(0, 0, canvas.width / window.devicePixelRatio, canvas.height / window.devicePixelRatio);
+      ctx.fillRect(0, 0, width, height);
+      
+      // Add text readability overlay
+      ctx.fillStyle = colors.background.darkOverlay;
+      ctx.fillRect(0, 0, width, height);
+      
+      // Dynamic quantum field effects
+      ctx.save();
+      ctx.globalCompositeOperation = 'screen';
+      for (let i = 0; i < 6; i++) {
+        const x = (width * 0.2) + (Math.sin(time * 0.4 + i) * width * 0.6);
+        const y = (height * 0.2) + (Math.cos(time * 0.25 + i) * height * 0.6);
+        const radius = 120 + Math.sin(time * 0.8 + i) * 40;
+        
+        const fieldGradient = ctx.createRadialGradient(x, y, 0, x, y, radius);
+        fieldGradient.addColorStop(0, `rgba(157, 78, 221, ${0.04 + Math.sin(time + i) * 0.02})`);
+        fieldGradient.addColorStop(0.5, `rgba(64, 224, 255, ${0.015 + Math.sin(time + i) * 0.008})`);
+        fieldGradient.addColorStop(1, 'rgba(0, 255, 128, 0)');
+        
+        ctx.fillStyle = fieldGradient;
+        ctx.fillRect(0, 0, width, height);
+      }
+      ctx.restore();
+      
+      // Animated data streams
+      ctx.strokeStyle = 'rgba(0, 206, 209, 0.08)';
+      ctx.lineWidth = 1;
+      const streamCount = 10;
+      for (let i = 0; i < streamCount; i++) {
+        const angle = (i / streamCount) * Math.PI * 2 + time * 0.15;
+        const startRadius = width * 0.45;
+        const endRadius = width * 0.08;
+        const startX = width/2 + Math.cos(angle) * startRadius;
+        const startY = height/2 + Math.sin(angle) * startRadius;
+        const endX = width/2 + Math.cos(angle + Math.PI) * endRadius;
+        const endY = height/2 + Math.sin(angle + Math.PI) * endRadius;
+        
+        ctx.beginPath();
+        ctx.moveTo(startX, startY);
+        ctx.quadraticCurveTo(
+          width/2 + Math.sin(time * 0.7 + i) * 80,
+          height/2 + Math.cos(time * 0.5 + i) * 80,
+          endX, endY
+        );
+        ctx.stroke();
+      }
+      
+      // Enhanced neural grid with dynamic opacity
+      const gridSize = 100;
+      const offset = (time * 15) % gridSize;
+      
+      for (let x = -gridSize + offset; x < width + gridSize; x += gridSize) {
+        const alpha = 0.02 + Math.sin(time * 0.8 + x * 0.008) * 0.015;
+        ctx.strokeStyle = `rgba(64, 224, 255, ${alpha})`;
+        ctx.lineWidth = 0.5;
+        ctx.beginPath();
+        ctx.moveTo(x, 0);
+        ctx.lineTo(x, height);
+        ctx.stroke();
+      }
+      
+      for (let y = -gridSize + offset; y < height + gridSize; y += gridSize) {
+        const alpha = 0.02 + Math.cos(time * 0.6 + y * 0.008) * 0.015;
+        ctx.strokeStyle = `rgba(64, 224, 255, ${alpha})`;
+        ctx.lineWidth = 0.5;
+        ctx.beginPath();
+        ctx.moveTo(0, y);
+        ctx.lineTo(width, y);
+        ctx.stroke();
+      }
 
       const neurons = neuronsRef.current;
       const signals = signalsRef.current;

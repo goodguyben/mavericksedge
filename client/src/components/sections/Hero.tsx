@@ -28,11 +28,8 @@ export default function Hero() {
     <section className="relative min-h-screen flex items-center overflow-hidden pt-16 sm:pt-20 md:pt-32">
       {/* WebGL AI Background */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
-        {/* Interactive WebGL Background */}
-        <AIWebGLBackground />
-        
-        {/* Dark overlay for better text readability - positioned above canvas but below content */}
-        <div className="absolute inset-0 bg-black/30 z-10 pointer-events-none"></div>
+        {/* Interactive WebGL Background with built-in text readability enhancement */}
+        <AIWebGLBackground className="backdrop-blur-[0.5px]" />
       </div>
       <div className="container mx-auto px-3 xs:px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 2xl:px-16 z-20 flex justify-center items-center w-full">
         <motion.div
