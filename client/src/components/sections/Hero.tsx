@@ -73,7 +73,7 @@ export default function Hero() {
           animate={{ opacity: heroOpacity, y: 0 }} // Animate opacity based on scroll
           transition={{ duration: 0.3 }}
         >
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-heading font-extrabold tracking-wide leading-tight sm:leading-normal text-maverick-cream text-center">
+          <h1 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-heading font-extrabold tracking-wide leading-tight text-maverick-cream text-center">
             <div className="inline-block text-[64px]">
               {/* Word-by-word animation for the heading */}
               <motion.span 
@@ -142,7 +142,7 @@ export default function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 2.8 }}
-            className="text-base sm:text-lg md:text-xl lg:text-2xl text-maverick-cream/80 mt-4 sm:mt-6 mb-8 sm:mb-10 max-w-lg px-4 sm:px-2 font-sans leading-relaxed mx-auto text-center"
+            className="text-sm xs:text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl text-maverick-cream/80 mt-3 xs:mt-4 sm:mt-6 md:mt-8 mb-6 xs:mb-8 sm:mb-10 md:mb-12 max-w-xs xs:max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl px-3 xs:px-4 sm:px-2 font-sans leading-relaxed mx-auto text-center"
           >
             We're Edmonton-based creators who design beautiful websites, improve your online visibility, and offer smart AI Integration so you can focus on growing your business          </motion.p>
           <motion.div
