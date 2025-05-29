@@ -231,9 +231,9 @@ export default function AIWebGLBackground({ className = '' }: AIWebGLBackgroundP
     canvas.addEventListener('click', handleClick);
 
     // Enhanced animation loop with delta time
-    const animate = (currentTime: number) => {
-      const deltaTime = currentTime - lastTimeRef.current;
-      lastTimeRef.current = currentTime;
+    const animate = (animationTime: number) => {
+      const deltaTime = animationTime - lastTimeRef.current;
+      lastTimeRef.current = animationTime;
       const dt = Math.min(deltaTime / 16.67, 2); // Cap at 2x normal speed
 
       // Create advanced gradient background
