@@ -72,20 +72,36 @@ export default function FooterWrapper() {
         <div className="footer-bottom">
           <div className="footer-copyright">
             <p>&copy; <span id="currentYear">2025</span> Mavericks Edge. All rights reserved.</p>
-            <address className="mt-2 text-sm text-gray-400">
-              123 Digital Way, Tech City, CA 94103<br />
-              <a href="tel:+15551234567" className="hover:text-maverick-orange">+1 (555) 123-4567</a> • 
-              <a href="mailto:info@mavericksedge.com" className="hover:text-maverick-orange ml-1">info@mavericksedge.com</a>
-            </address>
+            <div className="mt-4 space-y-2 text-sm">
+              <div className="flex items-center text-gray-300">
+                <svg className="w-4 h-4 mr-2 text-maverick-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+                <span>123 Digital Way, Tech City, CA 94103</span>
+              </div>
+              <div className="flex items-center text-gray-300">
+                <svg className="w-4 h-4 mr-2 text-maverick-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                </svg>
+                <a href="tel:+15551234567" className="hover:text-maverick-orange transition-colors">+1 (555) 123-4567</a>
+              </div>
+              <div className="flex items-center text-gray-300">
+                <svg className="w-4 h-4 mr-2 text-maverick-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+                <a href="mailto:info@mavericksedge.com" className="hover:text-maverick-orange transition-colors">info@mavericksedge.com</a>
+              </div>
+            </div>
           </div>
           <div className="footer-social">
             <h2 className="sr-only">Social Media Links</h2>
             <ul className="flex space-x-4">
               <li>
-                <a href="https://twitter.com/mavericksedge" title="Follow us on Twitter" target="_blank" rel="noopener noreferrer" className="social-icon">
-                  <span className="sr-only">Twitter</span>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                    <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path>
+                <a href="https://x.com/mavericksedge" title="Follow us on X" target="_blank" rel="noopener noreferrer" className="social-icon">
+                  <span className="sr-only">X</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
                   </svg>
                 </a>
               </li>
