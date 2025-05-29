@@ -1,29 +1,14 @@
-` tags. I also need to make sure that there are no forbidden words in the final code.
 
-```
-<replit_final_file>
 import React, { useRef, useEffect, useState } from 'react';
 
-interface DataNode {
+interface Particle {
   x: number;
   y: number;
   vx: number;
   vy: number;
-  size: number;
   connections: number[];
-  activity: number;
-  type: 'neuron' | 'data' | 'processor';
-  pulsePhase: number;
   energy: number;
-}
-
-interface DataStream {
-  startNode: number;
-  endNode: number;
-  progress: number;
-  speed: number;
-  intensity: number;
-  particles: Array<{x: number, y: number, life: number}>;
+  baseEnergy: number;
 }
 
 interface AIWebGLBackgroundProps {
@@ -33,14 +18,8 @@ interface AIWebGLBackgroundProps {
 export default function AIWebGLBackground({ className = '' }: AIWebGLBackgroundProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const animationRef = useRef<number>();
-  const nodesRef = useRef<DataNode[]>([]);
-  const streamsRef = useRef<DataStream[]>([]);
-  const mouseRef = useRef({ 
-    x: 0, 
-    y: 0, 
-    isPressed: false,
-    influence: 0
-  });
+  const particlesRef = useRef<Particle[]>([]);
+  const mouseRef = useRef({ x: 0, y: 0 });
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
@@ -63,309 +42,169 @@ export default function AIWebGLBackground({ className = '' }: AIWebGLBackgroundP
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas);
 
-    // Initialize AI network
-    const initNetwork = () => {
-      const canvasWidth = canvas.width / window.devicePixelRatio;
-      const canvasHeight = canvas.height / window.devicePixelRatio;
-      const nodes: DataNode[] = [];
-
-      // Create neural network structure
-      const layers = 4;
-      const nodesPerLayer = [8, 12, 10, 6];
-
-      for (let layer = 0; layer < layers; layer++) {
-        const layerNodes = nodesPerLayer[layer];
-        const layerSpacing = canvasHeight / (layerNodes + 1);
-        const xPos = (canvasWidth / (layers + 1)) * (layer + 1);
-
-        for (let i = 0; i < layerNodes; i++) {
-          const yPos = layerSpacing * (i + 1);
-          const nodeType = layer === 0 ? 'data' : layer === layers - 1 ? 'processor' : 'neuron';
-
-          nodes.push({
-            x: xPos + (Math.random() - 0.5) * 40,
-            y: yPos + (Math.random() - 0.5) * 30,
-            vx: 0,
-            vy: 0,
-            size: nodeType === 'processor' ? 8 : nodeType === 'neuron' ? 6 : 4,
-            connections: [],
-            activity: Math.random(),
-            type: nodeType,
-            pulsePhase: Math.random() * Math.PI * 2,
-            energy: 0.5 + Math.random() * 0.5
-          });
-        }
-      }
-
-      // Create connections between layers
-      for (let layer = 0; layer < layers - 1; layer++) {
-        const currentLayerStart = nodesPerLayer.slice(0, layer).reduce((a, b) => a + b, 0);
-        const nextLayerStart = nodesPerLayer.slice(0, layer + 1).reduce((a, b) => a + b, 0);
-
-        for (let i = 0; i < nodesPerLayer[layer]; i++) {
-          const currentNodeIndex = currentLayerStart + i;
-          const connectionsCount = Math.min(nodesPerLayer[layer + 1], 3 + Math.floor(Math.random() * 3));
-
-          for (let j = 0; j < connectionsCount; j++) {
-            const targetIndex = nextLayerStart + Math.floor(Math.random() * nodesPerLayer[layer + 1]);
-            if (!nodes[currentNodeIndex].connections.includes(targetIndex)) {
-              nodes[currentNodeIndex].connections.push(targetIndex);
-            }
-          }
-        }
-      }
-
-      nodesRef.current = nodes;
-
-      // Initialize data streams
-      const streams: DataStream[] = [];
-      nodes.forEach((node, index) => {
-        node.connections.forEach(targetIndex => {
-          streams.push({
-            startNode: index,
-            endNode: targetIndex,
-            progress: Math.random(),
-            speed: 0.008 + Math.random() * 0.012,
-            intensity: 0.3 + Math.random() * 0.7,
-            particles: []
-          });
+    // Initialize particles
+    const initParticles = () => {
+      const particles: Particle[] = [];
+      const numParticles = Math.min(150, Math.floor((canvas.width * canvas.height) / 15000));
+      
+      for (let i = 0; i < numParticles; i++) {
+        particles.push({
+          x: Math.random() * canvas.width / window.devicePixelRatio,
+          y: Math.random() * canvas.height / window.devicePixelRatio,
+          vx: (Math.random() - 0.5) * 0.5,
+          vy: (Math.random() - 0.5) * 0.5,
+          connections: [],
+          energy: Math.random() * 0.5 + 0.5,
+          baseEnergy: Math.random() * 0.5 + 0.5,
         });
-      });
-
-      streamsRef.current = streams;
+      }
+      
+      particlesRef.current = particles;
     };
 
-    initNetwork();
+    initParticles();
 
-    // Mouse interaction
+    // Mouse tracking
     const handleMouseMove = (e: MouseEvent) => {
       const rect = canvas.getBoundingClientRect();
-      mouseRef.current.x = e.clientX - rect.left;
-      mouseRef.current.y = e.clientY - rect.top;
-      mouseRef.current.influence = Math.min(mouseRef.current.influence + 0.05, 1);
-    };
-
-    const handleMouseDown = (e: MouseEvent) => {
-      mouseRef.current.isPressed = true;
-      const rect = canvas.getBoundingClientRect();
-      const mouseX = e.clientX - rect.left;
-      const mouseY = e.clientY - rect.top;
-
-      // Activate nearby nodes
-      nodesRef.current.forEach(node => {
-        const dx = node.x - mouseX;
-        const dy = node.y - mouseY;
-        const distance = Math.sqrt(dx * dx + dy * dy);
-
-        if (distance < 150) {
-          node.activity = Math.min(node.activity + 0.8, 1);
-          node.energy = 1;
-        }
-      });
-    };
-
-    const handleMouseUp = () => {
-      mouseRef.current.isPressed = false;
-    };
-
-    const handleMouseLeave = () => {
-      mouseRef.current.influence = Math.max(mouseRef.current.influence - 0.1, 0);
+      mouseRef.current = {
+        x: e.clientX - rect.left,
+        y: e.clientY - rect.top,
+      };
     };
 
     canvas.addEventListener('mousemove', handleMouseMove);
-    canvas.addEventListener('mousedown', handleMouseDown);
-    canvas.addEventListener('mouseup', handleMouseUp);
-    canvas.addEventListener('mouseleave', handleMouseLeave);
 
     // Animation loop
     const animate = () => {
+      ctx.fillStyle = 'rgba(13, 13, 13, 0.05)';
+      ctx.fillRect(0, 0, canvas.width / window.devicePixelRatio, canvas.height / window.devicePixelRatio);
+
+      const particles = particlesRef.current;
+      const mouse = mouseRef.current;
       const canvasWidth = canvas.width / window.devicePixelRatio;
       const canvasHeight = canvas.height / window.devicePixelRatio;
-      const time = Date.now() * 0.001;
-      const nodes = nodesRef.current;
-      const streams = streamsRef.current;
-      const mouse = mouseRef.current;
 
-      // Clear canvas with fade effect
-      ctx.fillStyle = 'rgba(5, 8, 16, 0.08)';
-      ctx.fillRect(0, 0, canvasWidth, canvasHeight);
-
-      // Update and draw connections/streams
-      streams.forEach(stream => {
-        const startNode = nodes[stream.startNode];
-        const endNode = nodes[stream.endNode];
-
-        if (!startNode || !endNode) return;
-
-        // Update stream progress
-        stream.progress += stream.speed;
-        if (stream.progress > 1) {
-          stream.progress = 0;
-          // Transfer activity
-          endNode.activity = Math.min(endNode.activity + startNode.activity * 0.3, 1);
-        }
-
-        // Draw connection line
-        const connectionStrength = (startNode.activity + endNode.activity) * 0.5;
-        const alpha = 0.1 + connectionStrength * 0.4;
-
-        ctx.strokeStyle = `rgba(64, 224, 255, ${alpha})`;
-        ctx.lineWidth = 1 + connectionStrength * 2;
-        ctx.beginPath();
-        ctx.moveTo(startNode.x, startNode.y);
-        ctx.lineTo(endNode.x, endNode.y);
-        ctx.stroke();
-
-        // Draw data packet
-        if (stream.progress > 0.1) {
-          const packetX = startNode.x + (endNode.x - startNode.x) * stream.progress;
-          const packetY = startNode.y + (endNode.y - startNode.y) * stream.progress;
-
-          const packetSize = 2 + stream.intensity * 3;
-          const glowSize = packetSize * 3;
-
-          // Packet glow
-          const gradient = ctx.createRadialGradient(
-            packetX, packetY, 0,
-            packetX, packetY, glowSize
-          );
-          gradient.addColorStop(0, `rgba(255, 165, 0, ${stream.intensity * 0.8})`);
-          gradient.addColorStop(1, 'transparent');
-
-          ctx.fillStyle = gradient;
-          ctx.beginPath();
-          ctx.arc(packetX, packetY, glowSize, 0, Math.PI * 2);
-          ctx.fill();
-
-          // Packet core
-          ctx.fillStyle = `rgba(255, 200, 50, ${stream.intensity})`;
-          ctx.beginPath();
-          ctx.arc(packetX, packetY, packetSize, 0, Math.PI * 2);
-          ctx.fill();
-        }
-      });
-
-      // Update and draw nodes
-      nodes.forEach((node, index) => {
-        // Mouse influence
-        const dx = mouse.x - node.x;
-        const dy = mouse.y - node.y;
+      // Update particles
+      particles.forEach((particle, i) => {
+        // Mouse interaction
+        const dx = mouse.x - particle.x;
+        const dy = mouse.y - particle.y;
         const distance = Math.sqrt(dx * dx + dy * dy);
-        const maxDistance = 120;
+        const maxDistance = 150;
 
-        if (distance < maxDistance && mouse.influence > 0) {
-          const force = (maxDistance - distance) / maxDistance * mouse.influence;
-          node.energy = Math.min(node.energy + force * 0.02, 1);
+        if (distance < maxDistance) {
+          const force = (maxDistance - distance) / maxDistance;
+          particle.energy = Math.min(2, particle.baseEnergy + force * 1.5);
+          
+          // Subtle attraction to mouse
+          const attraction = force * 0.002;
+          particle.vx += dx * attraction;
+          particle.vy += dy * attraction;
+        } else {
+          particle.energy = Math.max(particle.baseEnergy, particle.energy * 0.98);
+        }
 
-          if (mouse.isPressed) {
-            node.activity = Math.min(node.activity + force * 0.1, 1);
+        // Update position
+        particle.x += particle.vx;
+        particle.y += particle.vy;
+
+        // Apply friction
+        particle.vx *= 0.99;
+        particle.vy *= 0.99;
+
+        // Boundary conditions with wrapping
+        if (particle.x < 0) particle.x = canvasWidth;
+        if (particle.x > canvasWidth) particle.x = 0;
+        if (particle.y < 0) particle.y = canvasHeight;
+        if (particle.y > canvasHeight) particle.y = 0;
+
+        // Find connections
+        particle.connections = [];
+        for (let j = i + 1; j < particles.length; j++) {
+          const other = particles[j];
+          const dist = Math.sqrt(
+            Math.pow(particle.x - other.x, 2) + Math.pow(particle.y - other.y, 2)
+          );
+          
+          if (dist < 100) {
+            particle.connections.push(j);
           }
         }
-
-        // Natural activity decay and pulsing
-        node.activity *= 0.995;
-        node.energy *= 0.998;
-        node.pulsePhase += 0.05 + node.activity * 0.1;
-
-        // Add some autonomous activity
-        if (Math.random() < 0.002) {
-          node.activity = Math.min(node.activity + 0.3, 1);
-        }
-
-        // Draw node based on type
-        const pulseIntensity = Math.sin(node.pulsePhase) * 0.3 + 0.7;
-        const totalActivity = (node.activity + node.energy) * pulseIntensity;
-        const nodeSize = node.size * (0.8 + totalActivity * 0.5);
-
-        // Node glow
-        const glowRadius = nodeSize * (2 + totalActivity * 2);
-        const glowGradient = ctx.createRadialGradient(
-          node.x, node.y, 0,
-          node.x, node.y, glowRadius
-        );
-
-        let nodeColor: string;
-        switch (node.type) {
-          case 'data':
-            nodeColor = `64, 224, 255`; // Cyan for data
-            break;
-          case 'processor':
-            nodeColor = `255, 100, 100`; // Red for processors
-            break;
-          default:
-            nodeColor = `100, 255, 150`; // Green for neurons
-        }
-
-        glowGradient.addColorStop(0, `rgba(${nodeColor}, ${totalActivity * 0.8})`);
-        glowGradient.addColorStop(1, 'transparent');
-
-        ctx.fillStyle = glowGradient;
-        ctx.beginPath();
-        ctx.arc(node.x, node.y, glowRadius, 0, Math.PI * 2);
-        ctx.fill();
-
-        // Node core
-        ctx.fillStyle = `rgba(${nodeColor}, ${0.6 + totalActivity * 0.4})`;
-        ctx.beginPath();
-        ctx.arc(node.x, node.y, nodeSize, 0, Math.PI * 2);
-        ctx.fill();
-
-        // Node ring for processors
-        if (node.type === 'processor') {
-          ctx.strokeStyle = `rgba(${nodeColor}, ${totalActivity})`;
-          ctx.lineWidth = 2;
-          ctx.beginPath();
-          ctx.arc(node.x, node.y, nodeSize + 4, 0, Math.PI * 2);
-          ctx.stroke();
-        }
-
-        // Data type indicator
-        if (node.type === 'data' && totalActivity > 0.5) {
-          ctx.fillStyle = `rgba(255, 255, 255, ${totalActivity * 0.8})`;
-          ctx.font = '8px monospace';
-          ctx.textAlign = 'center';
-          ctx.fillText('01', node.x, node.y + 2);
-        }
       });
 
-      // Draw grid pattern in background
-      ctx.strokeStyle = 'rgba(64, 224, 255, 0.05)';
-      ctx.lineWidth = 0.5;
-      const gridSize = 40;
+      // Draw connections
+      particles.forEach((particle, i) => {
+        particle.connections.forEach((connectionIndex) => {
+          const other = particles[connectionIndex];
+          const dist = Math.sqrt(
+            Math.pow(particle.x - other.x, 2) + Math.pow(particle.y - other.y, 2)
+          );
+          
+          const opacity = Math.max(0, (100 - dist) / 100);
+          const energy = (particle.energy + other.energy) / 2;
+          
+          // AI-themed colors
+          const hue = (particle.energy * 60 + other.energy * 60 + Date.now() * 0.01) % 360;
+          const saturation = 70 + energy * 30;
+          const lightness = 40 + energy * 20;
+          
+          ctx.strokeStyle = `hsla(${hue}, ${saturation}%, ${lightness}%, ${opacity * energy * 0.8})`;
+          ctx.lineWidth = energy * 1.5;
+          
+          // Add glow effect
+          ctx.shadowColor = `hsl(${hue}, ${saturation}%, ${lightness}%)`;
+          ctx.shadowBlur = energy * 10;
+          
+          ctx.beginPath();
+          ctx.moveTo(particle.x, particle.y);
+          ctx.lineTo(other.x, other.y);
+          ctx.stroke();
+          
+          ctx.shadowBlur = 0;
+        });
+      });
 
-      for (let x = 0; x < canvasWidth; x += gridSize) {
+      // Draw particles
+      particles.forEach((particle) => {
+        const size = 2 + particle.energy * 3;
+        const hue = (particle.energy * 120 + Date.now() * 0.02) % 360;
+        const saturation = 80 + particle.energy * 20;
+        const lightness = 50 + particle.energy * 30;
+        
+        // Outer glow
+        ctx.shadowColor = `hsl(${hue}, ${saturation}%, ${lightness}%)`;
+        ctx.shadowBlur = particle.energy * 15;
+        
+        ctx.fillStyle = `hsla(${hue}, ${saturation}%, ${lightness}%, ${0.8 + particle.energy * 0.2})`;
         ctx.beginPath();
-        ctx.moveTo(x, 0);
-        ctx.lineTo(x, canvasHeight);
-        ctx.stroke();
-      }
-
-      for (let y = 0; y < canvasHeight; y += gridSize) {
+        ctx.arc(particle.x, particle.y, size, 0, Math.PI * 2);
+        ctx.fill();
+        
+        // Inner core
+        ctx.shadowBlur = 0;
+        ctx.fillStyle = `hsla(${hue + 30}, 90%, 80%, ${0.9 + particle.energy * 0.1})`;
         ctx.beginPath();
-        ctx.moveTo(0, y);
-        ctx.lineTo(canvasWidth, y);
-        ctx.stroke();
+        ctx.arc(particle.x, particle.y, size * 0.4, 0, Math.PI * 2);
+        ctx.fill();
+      });
+
+      // Add subtle data stream effects
+      const time = Date.now() * 0.001;
+      for (let i = 0; i < 5; i++) {
+        const x = (Math.sin(time * 0.5 + i) * 0.5 + 0.5) * canvasWidth;
+        const y = (Math.cos(time * 0.3 + i * 2) * 0.5 + 0.5) * canvasHeight;
+        
+        ctx.fillStyle = `hsla(${(time * 100 + i * 60) % 360}, 70%, 60%, 0.1)`;
+        ctx.beginPath();
+        ctx.arc(x, y, 20 + Math.sin(time * 2 + i) * 10, 0, Math.PI * 2);
+        ctx.fill();
       }
-
-      // Draw title overlay
-      ctx.fillStyle = 'rgba(64, 224, 255, 0.3)';
-      ctx.font = '12px monospace';
-      ctx.textAlign = 'left';
-      ctx.fillText('AI NEURAL NETWORK VISUALIZATION', 20, 30);
-
-      // Draw stats
-      const activeNodes = nodes.filter(n => n.activity > 0.1).length;
-      const totalEnergy = nodes.reduce((sum, n) => sum + n.energy, 0);
-
-      ctx.fillStyle = 'rgba(100, 255, 150, 0.6)';
-      ctx.font = '10px monospace';
-      ctx.fillText(`ACTIVE NODES: ${activeNodes}`, 20, 50);
-      ctx.fillText(`NETWORK ENERGY: ${Math.round(totalEnergy)}%`, 20, 65);
 
       animationRef.current = requestAnimationFrame(animate);
     };
 
-    // Start animation
+    // Start animation after a brief delay
     setTimeout(() => {
       setIsLoaded(true);
       animate();
@@ -374,9 +213,6 @@ export default function AIWebGLBackground({ className = '' }: AIWebGLBackgroundP
     return () => {
       window.removeEventListener('resize', resizeCanvas);
       canvas.removeEventListener('mousemove', handleMouseMove);
-      canvas.removeEventListener('mousedown', handleMouseDown);
-      canvas.removeEventListener('mouseup', handleMouseUp);
-      canvas.removeEventListener('mouseleave', handleMouseLeave);
       if (animationRef.current) {
         cancelAnimationFrame(animationRef.current);
       }
@@ -390,8 +226,7 @@ export default function AIWebGLBackground({ className = '' }: AIWebGLBackgroundP
         isLoaded ? 'opacity-100' : 'opacity-0'
       } ${className}`}
       style={{
-        background: 'radial-gradient(ellipse at center, #0a0f1c 0%, #050810 70%, #020406 100%)',
-        cursor: 'crosshair',
+        background: 'linear-gradient(135deg, #0D0D0D 0%, #1A1A1A 50%, #0D0D0D 100%)',
       }}
     />
   );
