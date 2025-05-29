@@ -27,13 +27,13 @@ export default function Hero() {
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden pt-16 sm:pt-20 md:pt-32">
       {/* WebGL AI Background */}
-      <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
+      <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-20">
         {/* Interactive WebGL Background with built-in text readability enhancement */}
         <AIWebGLBackground className="backdrop-blur-[0.5px]" />
       </div>
-      <div className="container mx-auto px-3 xs:px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 2xl:px-16 z-10 flex justify-center items-center w-full pointer-events-none">
+      <div className="container mx-auto px-3 xs:px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 2xl:px-16 z-30 flex justify-center items-center w-full pointer-events-none">
         <motion.div
-          className="max-w-xs xs:max-w-sm sm:max-w-2xl md:max-w-3xl lg:max-w-4xl xl:max-w-5xl 2xl:max-w-6xl text-center w-full pointer-events-auto"
+          className="max-w-xs xs:max-w-sm sm:max-w-2xl md:max-w-3xl lg:max-w-4xl xl:max-w-5xl 2xl:max-w-6xl text-center w-full pointer-events-auto relative"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: heroOpacity, y: 0 }}
           transition={{ duration: 0.1 }}
@@ -133,7 +133,7 @@ export default function Hero() {
         </motion.div>
       </div>
       <motion.div
-        className="scroll-indicator cursor-pointer absolute bottom-10 left-1/2 transform -translate-x-1/2 z-10 pointer-events-auto"
+        className="scroll-indicator cursor-pointer absolute bottom-10 left-1/2 transform -translate-x-1/2 z-30 pointer-events-auto"
         animate={{ 
           opacity: scrolled ? 0 : 1,
           y: scrolled ? 10 : 0 

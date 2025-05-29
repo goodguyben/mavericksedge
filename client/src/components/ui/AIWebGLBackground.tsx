@@ -1081,7 +1081,8 @@ export default function AIWebGLBackground({ className = '' }: AIWebGLBackgroundP
       style={{
         background: 'linear-gradient(135deg, #0A0A0A 0%, #121212 50%, #0A0A0A 100%)',
         cursor: 'crosshair',
-        pointerEvents: 'auto'
+        pointerEvents: 'auto',
+        touchAction: 'none'
       }}
     />
   );
