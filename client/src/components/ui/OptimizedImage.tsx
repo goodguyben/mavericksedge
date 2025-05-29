@@ -1,5 +1,4 @@
-
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState } from 'react';
 
 interface OptimizedImageProps {
   src: string;
@@ -11,75 +10,82 @@ interface OptimizedImageProps {
   priority?: boolean;
 }
 
-export default function OptimizedImage({ 
-  src, 
-  alt, 
-  width = 800, 
-  height = 600, 
+export const OptimizedImage: React.FC<OptimizedImageProps> = ({
+  src,
+  alt,
+  width,
+  height,
   className = '',
   loading = 'lazy',
-  priority = false 
-}: OptimizedImageProps) {
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [error, setError] = useState(false);
-  const imgRef = useRef<HTMLImageElement>(null);
+  priority = false
+}) => {
+  const [imageLoaded, setImageLoaded] = useState(false);
+  const [imageError, setImageError] = useState(false);
 
-  // Generate optimized URLs
-  const getOptimizedUrl = (format?: string) => {
-    if (src.includes('unsplash.com')) {
-      const url = new URL(src);
-      url.searchParams.set('w', width.toString());
-      url.searchParams.set('h', height.toString());
-      url.searchParams.set('q', '80');
-      url.searchParams.set('auto', 'format');
-      if (format) url.searchParams.set('fm', format);
-      return url.toString();
+  // Generate WebP and fallback sources
+  const generateWebPSrc = (baseSrc: string) => {
+    if (baseSrc.includes('unsplash.com')) {
+      return `${baseSrc}&fm=webp&q=80`;
     }
-    return src;
+    return baseSrc.replace(/\.(jpg|jpeg|png)$/, '.webp');
   };
 
-  const avifSrc = getOptimizedUrl('avif');
-  const webpSrc = getOptimizedUrl('webp');
-  const fallbackSrc = getOptimizedUrl();
+  // Generate different sizes for responsive images
+  const generateSrcSet = (baseSrc: string, format: 'webp' | 'original' = 'original') => {
+    const sizes = [400, 800, 1200];
+    const formatSrc = format === 'webp' ? generateWebPSrc(baseSrc) : baseSrc;
 
-  useEffect(() => {
-    if (priority && imgRef.current) {
-      // Preload priority images
-      const link = document.createElement('link');
-      link.rel = 'preload';
-      link.as = 'image';
-      link.href = webpSrc;
-      document.head.appendChild(link);
+    if (baseSrc.includes('unsplash.com')) {
+      return sizes.map(size => 
+        format === 'webp' 
+          ? `${baseSrc}&w=${size}&fm=webp&q=80 ${size}w`
+          : `${baseSrc}&w=${size}&q=80 ${size}w`
+      ).join(', ');
     }
-  }, [priority, webpSrc]);
+
+    return sizes.map(size => `${formatSrc}?w=${size} ${size}w`).join(', ');
+  };
+
+  const handleLoad = () => setImageLoaded(true);
+  const handleError = () => setImageError(true);
+
+  if (imageError) {
+    return (
+      <div 
+        className={`bg-gray-800 flex items-center justify-center ${className}`}
+        style={{ width, height }}
+      >
+        <span className="text-gray-400 text-sm">Image unavailable</span>
+      </div>
+    );
+  }
 
   return (
-    <div className={`relative ${className}`}>
-      {!isLoaded && !error && (
+    <picture>
+      <source
+        srcSet={generateSrcSet(src, 'webp')}
+        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+        type="image/webp"
+      />
+      <img
+        src={src}
+        srcSet={generateSrcSet(src)}
+        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+        alt={alt}
+        width={width}
+        height={height}
+        className={`${className} ${imageLoaded ? 'opacity-100' : 'opacity-0'} transition-opacity duration-300`}
+        loading={priority ? 'eager' : loading}
+        decoding="async"
+        onLoad={handleLoad}
+        onError={handleError}
+      />
+      {!imageLoaded && !imageError && (
         <div 
-          className="absolute inset-0 bg-gray-800 animate-pulse rounded"
-          style={{ aspectRatio: `${width}/${height}` }}
+          className={`absolute inset-0 bg-gray-800 animate-pulse ${className}`}
+          style={{ width, height }}
         />
       )}
-      
-      <picture>
-        <source srcSet={avifSrc} type="image/avif" />
-        <source srcSet={webpSrc} type="image/webp" />
-        <img
-          ref={imgRef}
-          src={fallbackSrc}
-          alt={alt}
-          width={width}
-          height={height}
-          loading={loading}
-          decoding="async"
-          className={`${className} transition-opacity duration-300 ${
-            isLoaded ? 'opacity-100' : 'opacity-0'
-          }`}
-          onLoad={() => setIsLoaded(true)}
-          onError={() => setError(true)}
-        />
-      </picture>
-    </div>
+    </picture>
   );
-}
+};

@@ -69,6 +69,10 @@
     <!-- Preconnect for Critical Resources -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    
+    <!-- Defer Google Fonts -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"></noscript>
 
     <!-- Alternative Languages -->
     <link rel="alternate" hreflang="en-ca" href="https://mavericksedge.com/" />
@@ -186,9 +190,17 @@
     <!-- Critical CSS Inline -->
     <style>
       /* Critical above-the-fold styles */
-      body { margin: 0; font-family: system-ui, -apple-system, sans-serif; }
+      body { margin: 0; font-family: system-ui, -apple-system, sans-serif; background: #121212; color: #fff; }
       .loading { opacity: 0; transition: opacity 0.3s ease; }
       .loaded { opacity: 1; }
+      
+      /* Critical hero styles */
+      .hero-container { min-height: 100vh; display: flex; align-items: center; justify-content: center; }
+      .hero-text { font-size: 2rem; font-weight: bold; text-align: center; }
+      
+      /* Critical layout */
+      .container { max-width: 1200px; margin: 0 auto; padding: 0 1rem; }
+      .btn-primary { background: #ff6b35; color: white; padding: 0.75rem 1.5rem; border-radius: 0.5rem; text-decoration: none; display: inline-block; }
     </style>
   </head>
   <body>

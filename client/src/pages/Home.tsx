@@ -1,17 +1,23 @@
 import { motion } from "framer-motion";
-import { Helmet } from 'react-helmet-async';
-import Hero from '../components/sections/Hero';
-import WhatWeDoSection from '../components/sections/WhatWeDoSection';
-import ServiceCascadeSection from '../components/sections/ServiceCascadeSection';
+import { Helmet } from "react-helmet-async";
+import { lazy, Suspense, useEffect } from "react";
+import Hero from "../components/sections/Hero";
+import WhatWeDoSection from "../components/sections/WhatWeDoSection";
+import { generateOrganizationStructuredData, generateWebsiteStructuredData, generateFAQStructuredData } from '../lib/seo';
+import LocalSEO from '../components/LocalSEO';
+import MobileOptimizations from '../components/MobileOptimized';
 import CreativeWorkSection from '../components/sections/CreativeWorkSection';
 import WhyChooseUsSection from '../components/sections/WhyChooseUsSection';
 import ProcessSection from '../components/sections/ProcessSection';
 import ContactSection from '../components/sections/ContactSection';
 import ScrollFadeSection from '../components/ui/scroll-fade-section';
 import SEOHead from '../components/SEOHead';
-import LocalSEO from '../components/LocalSEO';
-import { generateOrganizationStructuredData, generateWebsiteStructuredData, generateFAQStructuredData } from '../lib/seo';
-import { useEffect } from "react";
+
+// Lazy load non-critical components
+const ServiceCascadeSection = lazy(() => import("../components/sections/ServiceCascadeSection"));
+const ProcessSection = lazy(() => import("../components/sections/ProcessSection"));
+const WhyChooseUsSection = lazy(() => import("../components/sections/WhyChooseUsSection"));
+const ContactSection = lazy(() => import("../components/sections/ContactSection"));
 
 export default function Home() {
   // Track page view for analytics purposes
@@ -67,6 +73,7 @@ export default function Home() {
         className="home-page-wrapper"
       >
         <article>
+          <MobileOptimizations />
           {/* Main hero section - H1 heading for SEO is inside this component */}
           <Hero />
 
@@ -93,7 +100,9 @@ export default function Home() {
             initialOpacity={0}
             minOpacity={0.1}
           >
-            <ServiceCascadeSection />
+            <Suspense fallback={<div className="h-96 bg-gray-900 animate-pulse" />}>
+              <ServiceCascadeSection />
+            </Suspense>
           </ScrollFadeSection>
 
           <ScrollFadeSection
@@ -117,7 +126,9 @@ export default function Home() {
             initialOpacity={0}
             minOpacity={0.1}
           >
-            <WhyChooseUsSection />
+            <Suspense fallback={<div className="h-64 bg-gray-900 animate-pulse" />}>
+              <WhyChooseUsSection />
+            </Suspense>
           </ScrollFadeSection>
 
           <ScrollFadeSection
@@ -129,7 +140,9 @@ export default function Home() {
             initialOpacity={0}
             minOpacity={0.1}
           >
-            <ProcessSection />
+            <Suspense fallback={<div className="h-64 bg-gray-900 animate-pulse" />}>
+              <ProcessSection />
+            </Suspense>
           </ScrollFadeSection>
 
           <ScrollFadeSection
@@ -141,7 +154,9 @@ export default function Home() {
             initialOpacity={0}
             minOpacity={0.1}
           >
-            <ContactSection />
+            <Suspense fallback={<div className="h-96 bg-gray-900 animate-pulse" />}>
+              <ContactSection />
+            </Suspense>
           </ScrollFadeSection>
         </article>
       </motion.div>

@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useRef } from "react";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { Code, PenTool, Brain, ChevronRight, Play, Pause } from "lucide-react";
@@ -40,7 +39,7 @@ export default function ServiceCascadeSection() {
         {
           id: "websites",
           title: "Custom Interactive Websites",
-          description: "We craft custom interactive and 3D websites that engage users with motion, depth, and storytelling built to captivate and convert. Whether it’s scroll-triggered animations, immersive product showcases, or spatial design, we turn static sites into dynamic journeys.",
+          description: "We craft custom interactive and 3D websites that engage users with motion, depth, and storytelling built to captivate and convert. Whether it’s scroll-triggered animations, immersive product showcases, or spatial design, we turn static sites into dynamic journeys. Whether it’s scroll-triggered animations, immersive product showcases, or spatial design, we turn static sites into dynamic journeys.",
           image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop&crop=entropy",
           gradient: "from-orange-500/20 to-yellow-500/20"
         },
@@ -175,7 +174,7 @@ export default function ServiceCascadeSection() {
 
   const getImageTransform = (index: number) => {
     const diff = index - activeIndex;
-    
+
     if (diff === 0) {
       // Active card - fully visible and prominent
       return {
@@ -257,7 +256,7 @@ export default function ServiceCascadeSection() {
       {/* Sticky content container */}
       <div className="sticky top-0 h-screen flex items-center justify-center bg-black z-10 pt-32">
         <div className="container mx-auto px-4">
-          
+
           {/* Section Title */}
           <div className="text-center mb-16">
             <motion.div
@@ -277,7 +276,7 @@ export default function ServiceCascadeSection() {
           <div className={`grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center ${
             currentService.imagePosition === 'right' ? 'lg:grid-flow-col-dense' : ''
           }`}>
-            
+
             {/* 3D Image Stack */}
             <div className={`relative h-96 lg:h-[500px] perspective-1000 ${
               currentService.imagePosition === 'right' ? 'lg:col-start-2' : ''
@@ -285,7 +284,7 @@ export default function ServiceCascadeSection() {
               <div className="relative w-full h-full preserve-3d">
                 {allItems.map((item, index) => {
                   const transform = getImageTransform(index);
-                  
+
                   return (
                     <motion.div
                       key={item.id}
@@ -329,7 +328,7 @@ export default function ServiceCascadeSection() {
                             height="600"
                           />
                         </picture>
-                        
+
                         {/* Active card gradient overlay */}
                         {index === activeIndex && (
                           <motion.div
@@ -339,7 +338,7 @@ export default function ServiceCascadeSection() {
                             transition={{ duration: 0.5 }}
                           />
                         )}
-                        
+
                         {/* Decorative border for active card */}
                         {index === activeIndex && (
                           <motion.div
@@ -424,7 +423,7 @@ export default function ServiceCascadeSection() {
                       }}
                       transition={{ duration: 0.3 }}
                     />
-                    
+
                     {/* Active indicator with ripple */}
                     {index === activeIndex && (
                       <motion.div
@@ -440,7 +439,7 @@ export default function ServiceCascadeSection() {
                     )}
                   </motion.button>
                 ))}
-                
+
                 {/* Auto-play toggle */}
                 <motion.button
                   onClick={toggleAutoPlay}
