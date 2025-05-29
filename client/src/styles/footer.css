@@ -90,7 +90,7 @@
   .newsletter-container {
     padding: 0 0.5rem;
   }
-
+  
   .newsletter-container:before {
     left: 0;
     top: -10px;
@@ -106,47 +106,10 @@
   width: 100%;
 }
 
-/* Mobile styles (default) */
 .footer-wrapper {
-  padding: 1.5rem 0.75rem;
   max-width: 1200px;
   margin: 0 auto;
-}
-
-/* iPhone SE specific */
-@media (max-width: 375px) {
-  .footer-wrapper {
-    padding: 1rem 0.5rem;
-  }
-
-  .footer-top {
-    gap: 1rem;
-  }
-
-  .footer-links {
-    gap: 0.5rem;
-  }
-
-  .footer-heading {
-    font-size: 1rem;
-    margin-bottom: 0.75rem;
-  }
-
-  .footer-link a {
-    font-size: 0.875rem;
-    padding: 0.25rem 0;
-  }
-}
-
-/* iPhone 12 Pro Max specific */
-@media (min-width: 428px) and (max-width: 768px) {
-  .footer-wrapper {
-    padding: 2rem 1rem;
-  }
-
-  .footer-top {
-    gap: 1.5rem;
-  }
+  padding: 0 1.5rem;
 }
 
 .footer-top {
@@ -313,11 +276,11 @@
     align-items: center;
     text-align: center;
   }
-
+  
   .newsletter-container {
     margin-bottom: 0;
   }
-
+  
   .footer-logo-section {
     align-items: center;
     text-align: center;
@@ -374,7 +337,7 @@
     text-shadow: 0 2px 4px rgba(255, 86, 48, 0.3);
     transform: scale(1.05);
   }
-
+  
   /* Adjust logo size on mobile */
   .footer-logo img {
     width: auto;

@@ -1,0 +1,87 @@
+
+/* Button styles */
+.maverick-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 2rem;
+  border-radius: 9999px;
+  font-weight: 500;
+  text-align: center;
+  cursor: pointer;
+  font-family: 'Manrope', sans-serif;
+}
+
+/* Primary button */
+.maverick-button-primary {
+  background: linear-gradient(90deg, #E04500 0%, #E57B00 100%);
+  color: #FFFFFF !important; /* Force white text */
+  border: none;
+  border-radius: 9999px; /* Full rounded like non-orange buttons */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.maverick-button-primary:hover {
+  box-shadow: 0 10px 25px -5px rgba(255, 90, 0, 0.4);
+  transform: scale(1.05);
+}
+
+/* Subscribe button specific class to keep it with different corner radius */
+.subscribe-button {
+  border-radius: 0.5rem !important; /* Override the rounded corners */
+}
+
+/* Outline button */
+.maverick-button-outline {
+  background-color: transparent;
+  border: 2px solid #F15A29;
+  color: #F15A29 !important; /* Force text color */
+}
+
+.maverick-button-outline:hover {
+  background-color: rgba(241, 90, 41, 0.1);
+}
+
+/* Secondary button */
+.maverick-button-secondary {
+  background-color: #1A1A1A;
+  border: 2px solid #1A1A1A;
+  color: #F8F8F8 !important;
+}
+
+.maverick-button-secondary:hover {
+  background-color: #262626;
+}
+
+/* Ghost button */
+.maverick-button-ghost {
+  background-color: transparent;
+  color: #F15A29 !important;
+  border: none;
+}
+
+.maverick-button-ghost:hover {
+  background-color: rgba(241, 90, 41, 0.1);
+}
+
+/* Link style button */
+.maverick-button-link {
+  background-color: transparent;
+  color: #F15A29 !important;
+  padding: 0;
+  text-decoration: none;
+}
+
+.maverick-button-link:hover {
+  text-decoration: underline;
+}
+
+/* Disabled state for all buttons */
+.maverick-button-disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}

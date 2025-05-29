@@ -86,12 +86,12 @@ export default function WebServices() {
         transition={{ duration: 0.5 }}
       >
       {/* Hero Section */}
-      <div className="pt-32 sm:pt-40 md:pt-44 lg:pt-48 pb-8 sm:pb-12 md:pb-16 px-3 sm:px-5 md:px-10 bg-[#121212]">
+      <div className="pt-44 md:pt-48 pb-16 px-5 md:px-10 bg-[#121212]">
         <div className="container mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 md:gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold mb-4 sm:mb-6 font-heading leading-tight">Web & Digital Solutions</h1>
-              <p className="text-base sm:text-lg md:text-xl text-[#AAAAAA] max-w-3xl mb-6 sm:mb-8 leading-relaxed">
+              <h1 className="text-5xl md:text-7xl font-bold mb-6 font-heading">Web & Digital Solutions</h1>
+              <p className="text-xl text-[#AAAAAA] max-w-3xl mb-8">
                 Elevate your online presence with our comprehensive web development and digital solutions tailored specifically for SMBs and nonprofits.
               </p>
               <Link href="/contact">

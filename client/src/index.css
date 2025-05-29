@@ -10,7 +10,6 @@
 @import url('./styles/buttons.css');
 @import url('./styles/footer.css');
 @import url('./styles/cards.css');
-@import url('./styles/mobile-specific.css');
 
 /* Critical CSS - load immediately */
 @layer base {
@@ -132,50 +131,10 @@ img {
     letter-spacing: -0.03em;
   }
 
-  /* Mobile-first styling with iPhone-specific breakpoints */
+  /* Mobile-first styling for headings with breakpoints at 640px and 1024px */
   h1 {
-    @apply text-2xl sm:text-3xl md:text-4xl lg:text-6xl mb-3 sm:mb-4 md:mb-6 leading-tight;
+    @apply text-3xl sm:text-4xl lg:text-6xl mb-4 sm:mb-6 leading-tight;
     font-weight: 800;
-  }
-
-  /* iPhone SE specific adjustments */
-  @media (max-width: 375px) {
-    h1 {
-      @apply text-xl mb-2 leading-tight;
-      font-size: 1.5rem;
-    }
-    
-    h2 {
-      @apply text-lg mb-2;
-      font-size: 1.25rem;
-    }
-    
-    h3 {
-      @apply text-base mb-2;
-      font-size: 1rem;
-    }
-    
-    p {
-      @apply text-sm mb-2;
-      font-size: 0.875rem;
-      line-height: 1.4;
-    }
-  }
-
-  /* iPhone 12 Pro Max optimizations */
-  @media (min-width: 428px) and (max-width: 768px) {
-    h1 {
-      @apply text-3xl mb-4;
-    }
-    
-    h2 {
-      @apply text-2xl mb-3;
-    }
-    
-    p {
-      @apply text-base mb-3;
-      line-height: 1.6;
-    }
   }
 
   /* Tech forward button styling with improved contrast */
@@ -185,19 +144,19 @@ img {
   }
 
   h2 {
-    @apply text-xl sm:text-2xl md:text-3xl lg:text-5xl mb-2 sm:mb-3 md:mb-5 leading-tight;
+    @apply text-2xl sm:text-3xl lg:text-5xl mb-3 sm:mb-5 leading-tight;
   }
 
   h3 {
-    @apply text-lg sm:text-xl md:text-2xl lg:text-3xl mb-2 sm:mb-3 md:mb-4 leading-snug;
+    @apply text-xl sm:text-2xl lg:text-3xl mb-3 sm:mb-4 leading-snug;
   }
 
   h4 {
-    @apply text-base sm:text-lg md:text-xl lg:text-2xl mb-2 sm:mb-3;
+    @apply text-lg sm:text-xl lg:text-2xl mb-2 sm:mb-3;
   }
 
   p {
-    @apply leading-relaxed mb-2 sm:mb-3 md:mb-4 text-sm sm:text-base lg:text-lg;
+    @apply leading-relaxed mb-3 sm:mb-4 text-base lg:text-lg;
     font-weight: 450;
   }
 
@@ -335,27 +294,11 @@ img {
   color: #FFFFFF;
 }
 
-/* Mobile-first responsive grid with iPhone-optimized breakpoints */
+/* Mobile-first responsive grid with standard breakpoints */
 .responsive-grid {
   display: grid;
   grid-template-columns: repeat(1, minmax(0, 1fr));
-  gap: 0.75rem;
-}
-
-/* iPhone SE and smaller */
-@media (max-width: 375px) {
-  .responsive-grid {
-    gap: 0.5rem;
-    padding: 0.5rem;
-  }
-}
-
-/* iPhone 12 Pro Max and similar */
-@media (min-width: 428px) and (max-width: 640px) {
-  .responsive-grid {
-    gap: 1rem;
-    padding: 1rem;
-  }
+  gap: 1rem;
 }
 
 @media (min-width: 640px) {
@@ -369,47 +312,6 @@ img {
   .responsive-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 2rem;
-  }
-}
-
-/* Mobile container utilities */
-.mobile-container {
-  @apply px-4 mx-auto;
-  max-width: 100%;
-}
-
-@media (max-width: 375px) {
-  .mobile-container {
-    @apply px-3;
-  }
-}
-
-@media (min-width: 428px) {
-  .mobile-container {
-    @apply px-5;
-  }
-}
-
-/* Mobile touch targets */
-.mobile-touch-target {
-  min-height: 44px;
-  min-width: 44px;
-}
-
-/* Mobile-optimized spacing */
-.mobile-section-padding {
-  @apply py-8 px-4;
-}
-
-@media (max-width: 375px) {
-  .mobile-section-padding {
-    @apply py-6 px-3;
-  }
-}
-
-@media (min-width: 428px) {
-  .mobile-section-padding {
-    @apply py-10 px-5;
   }
 }
 
