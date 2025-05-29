@@ -1125,7 +1125,7 @@ export default function AIWebGLBackground({ className = '' }: AIWebGLBackgroundP
       // Draw neural clusters with specialization visualization
       clusters.forEach(cluster => {
         if (cluster.activation > 0.2) {
-          const clusterColor = colors.cluster[cluster.specialization];
+          const clusterColor = colors.cluster[cluster.specialization] || '#40E0FF';
           const pulse = Math.sin(time * 2 + cluster.center.x * 0.01) * 0.2 + 0.8;
           const radius = 40 + cluster.activation * 30;
           
