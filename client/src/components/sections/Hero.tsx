@@ -10,11 +10,18 @@ import backgroundVideo from "../../../assets/3129977-uhd_3840_2160_30fps.mp4";
 export default function Hero() {
   const [scrolled, setScrolled] = useState(false);
   const [videoLoaded, setVideoLoaded] = useState(false);
+  const [heroOpacity, setHeroOpacity] = useState(1);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
+      
+      // Calculate opacity based on scroll position
+      const scrollY = window.scrollY;
+      const maxFade = 400; // Distance in pixels to complete fade
+      const opacity = Math.max(0, 1 - (scrollY / maxFade));
+      setHeroOpacity(opacity);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -63,8 +70,9 @@ export default function Hero() {
         <motion.div
           className="max-w-xs xs:max-w-sm sm:max-w-2xl md:max-w-3xl lg:max-w-4xl xl:max-w-5xl 2xl:max-w-6xl text-center w-full"
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          animate={{ opacity: heroOpacity, y: 0 }}
+          transition={{ duration: 0.1 }}
+          style={{ opacity: heroOpacity }}
         >
           <h1 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-heading font-extrabold tracking-wide leading-tight text-maverick-cream text-center">
             <div className="inline-block">
