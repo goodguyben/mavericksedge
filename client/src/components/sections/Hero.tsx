@@ -10,18 +10,11 @@ import backgroundVideo from "../../../assets/3129977-uhd_3840_2160_30fps.mp4";
 export default function Hero() {
   const [scrolled, setScrolled] = useState(false);
   const [videoLoaded, setVideoLoaded] = useState(false);
-  const [heroOpacity, setHeroOpacity] = useState(1); // Added state for hero opacity
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
-      // Calculate heroOpacity based on scroll position
-      const scrollY = window.scrollY;
-      const heroHeight = document.querySelector('.max-w-4xl')?.offsetHeight || 0; // Get hero section height
-      const opacityThreshold = 0.7; // Adjust as needed.  0 = fully transparent at the top, 1 at the bottom
-      const opacity = Math.max(0, 1 - (scrollY / (heroHeight * opacityThreshold)));
-      setHeroOpacity(opacity);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -69,9 +62,9 @@ export default function Hero() {
       <div className="container mx-auto px-3 xs:px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 2xl:px-16 z-20 flex justify-center items-center w-full">
         <motion.div
           className="max-w-xs xs:max-w-sm sm:max-w-2xl md:max-w-3xl lg:max-w-4xl xl:max-w-5xl 2xl:max-w-6xl text-center w-full"
-          initial={{ opacity: 1, y: 0 }} // Start fully opaque
-          animate={{ opacity: heroOpacity, y: 0 }} // Animate opacity based on scroll
-          transition={{ duration: 0.3 }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
         >
           <h1 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-heading font-extrabold tracking-wide leading-tight text-maverick-cream text-center">
             <div className="inline-block">
