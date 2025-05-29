@@ -72,10 +72,10 @@ export default function Header() {
         {/* Mobile Menu Button */}
         <button
           onClick={toggleMenu}
-          className="block md:hidden focus:outline-none z-50 bg-maverick-charcoal/50 p-2 rounded-full backdrop-blur-sm ml-[-24px] mr-[-24px]"
+          className="block md:hidden focus:outline-none z-50 bg-maverick-charcoal/50 p-2 rounded-full backdrop-blur-sm"
           aria-label="Toggle menu"
         >
-          {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          {isOpen ? <X className="h-6 w-6 text-white" /> : <Menu className="h-6 w-6 text-white" />}
         </button>
 
         {/* Desktop Navigation */}
@@ -172,7 +172,7 @@ export default function Header() {
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="fixed inset-y-0 right-0 w-[70%] max-w-xs bg-maverick-charcoal border-l border-maverick-slate/20 z-40 flex flex-col"
+            className="fixed inset-y-0 right-0 w-[80%] max-w-sm bg-maverick-charcoal border-l border-maverick-slate/20 z-40 flex flex-col md:hidden"
             role="dialog"
             aria-modal="true" 
             aria-label="Main Menu"
@@ -373,7 +373,7 @@ export default function Header() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 bg-black/50 backdrop-blur-sm z-30"
+            className="fixed inset-0 bg-black/50 backdrop-blur-sm z-30 md:hidden"
             onClick={toggleMenu}
           />
         )}
