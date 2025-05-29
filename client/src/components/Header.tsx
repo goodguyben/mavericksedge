@@ -51,7 +51,7 @@ export default function Header() {
 
   return (
     <motion.header 
-      className="fixed top-0 left-0 w-full py-3 sm:py-4 md:py-6 px-3 sm:px-4 md:px-10 z-50 transition-all duration-300 bg-[#00000066]" 
+      className={headerClasses} 
       role="banner"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
@@ -62,9 +62,9 @@ export default function Header() {
       }}
     >
       <div className="container mx-auto flex justify-between items-center">
-        <Link href="/" className="flex items-center ml-[-29px] mr-[-29px]" aria-label="Mavericks Edge Home">
+        <Link href="/" className="flex items-center ml-[-16px] mr-[-16px]" aria-label="Mavericks Edge Home">
           <Logo size={isMobile ? "small" : "large"} noLink={true} showText={false}/>
-          <h1 className="font-heading sm:text-4xl md:text-5xl text-maverick-orange whitespace-nowrap mt-[15px] mb-[15px] pl-[0px] pr-[0px] text-[38px] font-semibold ml-[-4px] mr-[-4px]" style={{ letterSpacing: '0' }}>
+          <h1 className="font-heading font-bold sm:text-4xl md:text-5xl text-maverick-orange whitespace-nowrap mt-[15px] mb-[15px] text-[30px] ml-[-8px] mr-[-8px] pl-[0px] pr-[0px]" style={{ letterSpacing: '0' }}>
             Mavericks Edge
           </h1>
         </Link>
@@ -72,7 +72,7 @@ export default function Header() {
         {/* Mobile Menu Button */}
         <button
           onClick={toggleMenu}
-          className="block md:hidden focus:outline-none z-50 p-2 ml-[-24px] mr-[-24px]"
+          className="block md:hidden focus:outline-none z-50 bg-maverick-charcoal/50 p-2 rounded-full backdrop-blur-sm ml-[-24px] mr-[-24px]"
           aria-label="Toggle menu"
         >
           {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
