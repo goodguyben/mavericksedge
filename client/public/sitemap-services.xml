@@ -5,72 +5,171 @@
   
   <!-- Web Development Services -->
   <url>
-    <loc>https://mavericksedge.com/services/web/custom-websites</loc>
+    <loc>https://mavericksedge.com/services/web-design-and-development-edmonton/custom-websites</loc>
     <lastmod>2025-01-17</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
     <image:image>
-      <image:loc>https://mavericksedge.com/images/web-development-service.jpg</image:loc>
-      <image:title>Custom Website Development</image:title>
-      <image:caption>Professional custom website development services</image:caption>
+      <image:loc>https://mavericksedge.com/images/edmonton-web-design-custom-websites.jpg</image:loc>
+      <image:title>Custom Website Design Edmonton</image:title>
+      <image:caption>Professional custom website design and development services for Edmonton businesses</image:caption>
     </image:image>
   </url>
   
   <url>
-    <loc>https://mavericksedge.com/services/web/ecommerce</loc>
+    <loc>https://mavericksedge.com/services/web-design-and-development-edmonton/ecommerce-development</loc>
     <lastmod>2025-01-17</lastmod>
-    <changefreq>monthly</changefreq>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
-    <loc>https://mavericksedge.com/services/web/web-applications</loc>
+    <loc>https://mavericksedge.com/services/web-design-and-development-edmonton/wordpress-development</loc>
     <lastmod>2025-01-17</lastmod>
-    <changefreq>monthly</changefreq>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://mavericksedge.com/services/web-design-and-development-edmonton/shopify-development</loc>
+    <lastmod>2025-01-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://mavericksedge.com/services/web-design-and-development-edmonton/responsive-web-design</loc>
+    <lastmod>2025-01-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://mavericksedge.com/services/web-design-and-development-edmonton/web-applications</loc>
+    <lastmod>2025-01-17</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   
   <!-- Marketing Services -->
   <url>
-    <loc>https://mavericksedge.com/services/marketing/seo</loc>
+    <loc>https://mavericksedge.com/services/digital-marketing-edmonton/search-engine-optimization-seo</loc>
     <lastmod>2025-01-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   
   <url>
-    <loc>https://mavericksedge.com/services/marketing/social-media</loc>
+    <loc>https://mavericksedge.com/services/digital-marketing-edmonton/local-seo-optimization</loc>
+    <lastmod>2025-01-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  
+  <url>
+    <loc>https://mavericksedge.com/services/digital-marketing-edmonton/social-media-marketing</loc>
     <lastmod>2025-01-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
-    <loc>https://mavericksedge.com/services/marketing/content-strategy</loc>
+    <loc>https://mavericksedge.com/services/digital-marketing-edmonton/google-ads-management</loc>
+    <lastmod>2025-01-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://mavericksedge.com/services/digital-marketing-edmonton/content-marketing-strategy</loc>
+    <lastmod>2025-01-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://mavericksedge.com/services/digital-marketing-edmonton/brand-strategy-development</loc>
     <lastmod>2025-01-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://mavericksedge.com/services/digital-marketing-edmonton/email-marketing-automation</loc>
+    <lastmod>2025-01-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
   
   <!-- AI Services -->
   <url>
-    <loc>https://mavericksedge.com/services/ai/automation</loc>
+    <loc>https://mavericksedge.com/services/ai-integration-automation-edmonton/business-process-automation</loc>
     <lastmod>2025-01-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
-    <loc>https://mavericksedge.com/services/ai/analytics</loc>
+    <loc>https://mavericksedge.com/services/ai-integration-automation-edmonton/ai-powered-analytics</loc>
     <lastmod>2025-01-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
-    <loc>https://mavericksedge.com/services/ai/chatbots</loc>
+    <loc>https://mavericksedge.com/services/ai-integration-automation-edmonton/chatbot-development</loc>
     <lastmod>2025-01-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://mavericksedge.com/services/ai-integration-automation-edmonton/machine-learning-solutions</loc>
+    <lastmod>2025-01-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mavericksedge.com/services/ai-integration-automation-edmonton/ai-consulting-strategy</loc>
+    <lastmod>2025-01-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Industry-specific services -->
+  <url>
+    <loc>https://mavericksedge.com/services/nonprofit-web-design-edmonton</loc>
+    <lastmod>2025-01-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://mavericksedge.com/services/small-business-web-design-edmonton</loc>
+    <lastmod>2025-01-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://mavericksedge.com/services/restaurant-web-design-edmonton</loc>
+    <lastmod>2025-01-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mavericksedge.com/services/healthcare-web-design-edmonton</loc>
+    <lastmod>2025-01-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mavericksedge.com/services/real-estate-web-design-edmonton</loc>
+    <lastmod>2025-01-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
 </urlset>

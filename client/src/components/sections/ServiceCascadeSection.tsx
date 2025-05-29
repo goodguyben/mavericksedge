@@ -396,7 +396,7 @@ export default function ServiceCascadeSection() {
                     transition={{ duration: 0.6, delay: 0.3 }}
                   >
                     <TechButton 
-                      href={`/services/${currentService.id.replace('-applications', '').replace('-solutions', '')}`}
+                      href={`/services/${currentService.id === 'web-applications' ? 'web-design-and-development-edmonton' : currentService.id === 'marketing-solutions' ? 'digital-marketing-edmonton' : 'ai-integration-automation-edmonton'}`}
                       className="inline-flex items-center"
                     >
                       Learn More
