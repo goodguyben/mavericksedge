@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { ChevronDown } from "lucide-react";
 import { scrollToSection } from "@/lib/scroll";
 import { Button } from "@/components/ui/custom-button";
-import AIWebGLBackground from "@/components/ui/AIWebGLBackground";
+import AIWebGL3DBackground from '../ui/AIWebGL3DBackground';
 
 export default function Hero() {
   const [scrolled, setScrolled] = useState(false);
@@ -12,7 +12,7 @@ export default function Hero() {
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
-      
+
       // Calculate opacity based on scroll position
       const scrollY = window.scrollY;
       const maxFade = 400; // Distance in pixels to complete fade
@@ -29,7 +29,18 @@ export default function Hero() {
       {/* WebGL AI Background */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-20">
         {/* Interactive WebGL Background with built-in text readability enhancement */}
-        <AIWebGLBackground className="backdrop-blur-[0.5px]" />
+        <AIWebGL3DBackground 
+          className="opacity-70"
+          showGrid={true}
+          showLabels={false}
+          showParticles={true}
+          neuronCount={{
+            input: 8,
+            processing: 12,
+            reasoning: 10,
+            output: 6
+          }}
+        />
       </div>
       <div className="container mx-auto px-3 xs:px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 2xl:px-16 z-30 flex justify-center items-center w-full pointer-events-none">
         <motion.div
