@@ -1,27 +1,29 @@
+` tags. I also need to make sure that there are no forbidden words in the final code.
 
+```
+<replit_final_file>
 import React, { useRef, useEffect, useState } from 'react';
 
-interface Particle {
+interface DataNode {
   x: number;
   y: number;
   vx: number;
   vy: number;
   size: number;
-  life: number;
-  maxLife: number;
-  hue: number;
-  opacity: number;
-  trail: Array<{x: number, y: number, life: number}>;
+  connections: number[];
+  activity: number;
+  type: 'neuron' | 'data' | 'processor';
+  pulsePhase: number;
+  energy: number;
 }
 
-interface ForceField {
-  x: number;
-  y: number;
-  strength: number;
-  radius: number;
-  type: 'attract' | 'repel' | 'vortex';
-  life: number;
-  maxLife: number;
+interface DataStream {
+  startNode: number;
+  endNode: number;
+  progress: number;
+  speed: number;
+  intensity: number;
+  particles: Array<{x: number, y: number, life: number}>;
 }
 
 interface AIWebGLBackgroundProps {
@@ -31,14 +33,13 @@ interface AIWebGLBackgroundProps {
 export default function AIWebGLBackground({ className = '' }: AIWebGLBackgroundProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const animationRef = useRef<number>();
-  const particlesRef = useRef<Particle[]>([]);
-  const forceFieldsRef = useRef<ForceField[]>([]);
+  const nodesRef = useRef<DataNode[]>([]);
+  const streamsRef = useRef<DataStream[]>([]);
   const mouseRef = useRef({ 
     x: 0, 
     y: 0, 
-    isPressed: false, 
-    velocity: { x: 0, y: 0 },
-    trail: [] as Array<{x: number, y: number, life: number}>
+    isPressed: false,
+    influence: 0
   });
   const [isLoaded, setIsLoaded] = useState(false);
 
@@ -62,68 +63,86 @@ export default function AIWebGLBackground({ className = '' }: AIWebGLBackgroundP
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas);
 
-    // Initialize particles
-    const initParticles = () => {
-      const particles: Particle[] = [];
+    // Initialize AI network
+    const initNetwork = () => {
       const canvasWidth = canvas.width / window.devicePixelRatio;
       const canvasHeight = canvas.height / window.devicePixelRatio;
-      const numParticles = Math.min(150, Math.floor((canvasWidth * canvasHeight) / 8000));
-      
-      for (let i = 0; i < numParticles; i++) {
-        const particle: Particle = {
-          x: Math.random() * canvasWidth,
-          y: Math.random() * canvasHeight,
-          vx: (Math.random() - 0.5) * 2,
-          vy: (Math.random() - 0.5) * 2,
-          size: 1 + Math.random() * 3,
-          life: Math.random() * 100 + 50,
-          maxLife: 150,
-          hue: 180 + Math.random() * 120, // Cyan to purple range
-          opacity: 0.3 + Math.random() * 0.7,
-          trail: []
-        };
-        particles.push(particle);
+      const nodes: DataNode[] = [];
+
+      // Create neural network structure
+      const layers = 4;
+      const nodesPerLayer = [8, 12, 10, 6];
+
+      for (let layer = 0; layer < layers; layer++) {
+        const layerNodes = nodesPerLayer[layer];
+        const layerSpacing = canvasHeight / (layerNodes + 1);
+        const xPos = (canvasWidth / (layers + 1)) * (layer + 1);
+
+        for (let i = 0; i < layerNodes; i++) {
+          const yPos = layerSpacing * (i + 1);
+          const nodeType = layer === 0 ? 'data' : layer === layers - 1 ? 'processor' : 'neuron';
+
+          nodes.push({
+            x: xPos + (Math.random() - 0.5) * 40,
+            y: yPos + (Math.random() - 0.5) * 30,
+            vx: 0,
+            vy: 0,
+            size: nodeType === 'processor' ? 8 : nodeType === 'neuron' ? 6 : 4,
+            connections: [],
+            activity: Math.random(),
+            type: nodeType,
+            pulsePhase: Math.random() * Math.PI * 2,
+            energy: 0.5 + Math.random() * 0.5
+          });
+        }
       }
 
-      particlesRef.current = particles;
+      // Create connections between layers
+      for (let layer = 0; layer < layers - 1; layer++) {
+        const currentLayerStart = nodesPerLayer.slice(0, layer).reduce((a, b) => a + b, 0);
+        const nextLayerStart = nodesPerLayer.slice(0, layer + 1).reduce((a, b) => a + b, 0);
+
+        for (let i = 0; i < nodesPerLayer[layer]; i++) {
+          const currentNodeIndex = currentLayerStart + i;
+          const connectionsCount = Math.min(nodesPerLayer[layer + 1], 3 + Math.floor(Math.random() * 3));
+
+          for (let j = 0; j < connectionsCount; j++) {
+            const targetIndex = nextLayerStart + Math.floor(Math.random() * nodesPerLayer[layer + 1]);
+            if (!nodes[currentNodeIndex].connections.includes(targetIndex)) {
+              nodes[currentNodeIndex].connections.push(targetIndex);
+            }
+          }
+        }
+      }
+
+      nodesRef.current = nodes;
+
+      // Initialize data streams
+      const streams: DataStream[] = [];
+      nodes.forEach((node, index) => {
+        node.connections.forEach(targetIndex => {
+          streams.push({
+            startNode: index,
+            endNode: targetIndex,
+            progress: Math.random(),
+            speed: 0.008 + Math.random() * 0.012,
+            intensity: 0.3 + Math.random() * 0.7,
+            particles: []
+          });
+        });
+      });
+
+      streamsRef.current = streams;
     };
 
-    initParticles();
+    initNetwork();
 
-    // Mouse tracking with velocity calculation
-    let lastMousePos = { x: 0, y: 0 };
-    let lastTime = Date.now();
-
+    // Mouse interaction
     const handleMouseMove = (e: MouseEvent) => {
       const rect = canvas.getBoundingClientRect();
-      const currentTime = Date.now();
-      const deltaTime = currentTime - lastTime;
-      
-      const newX = e.clientX - rect.left;
-      const newY = e.clientY - rect.top;
-      
-      // Calculate velocity
-      if (deltaTime > 0) {
-        mouseRef.current.velocity.x = (newX - lastMousePos.x) / deltaTime * 50;
-        mouseRef.current.velocity.y = (newY - lastMousePos.y) / deltaTime * 50;
-      }
-      
-      mouseRef.current.x = newX;
-      mouseRef.current.y = newY;
-      
-      // Add to mouse trail
-      mouseRef.current.trail.push({
-        x: newX,
-        y: newY,
-        life: 30
-      });
-      
-      if (mouseRef.current.trail.length > 20) {
-        mouseRef.current.trail.shift();
-      }
-      
-      lastMousePos = { x: newX, y: newY };
-      lastTime = currentTime;
+      mouseRef.current.x = e.clientX - rect.left;
+      mouseRef.current.y = e.clientY - rect.top;
+      mouseRef.current.influence = Math.min(mouseRef.current.influence + 0.05, 1);
     };
 
     const handleMouseDown = (e: MouseEvent) => {
@@ -131,293 +150,217 @@ export default function AIWebGLBackground({ className = '' }: AIWebGLBackgroundP
       const rect = canvas.getBoundingClientRect();
       const mouseX = e.clientX - rect.left;
       const mouseY = e.clientY - rect.top;
-      
-      // Create force field at click location
-      const forceType = Math.random() > 0.5 ? 'attract' : 'vortex';
-      forceFieldsRef.current.push({
-        x: mouseX,
-        y: mouseY,
-        strength: 50 + Math.random() * 100,
-        radius: 100 + Math.random() * 150,
-        type: forceType,
-        life: 200,
-        maxLife: 200
+
+      // Activate nearby nodes
+      nodesRef.current.forEach(node => {
+        const dx = node.x - mouseX;
+        const dy = node.y - mouseY;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+
+        if (distance < 150) {
+          node.activity = Math.min(node.activity + 0.8, 1);
+          node.energy = 1;
+        }
       });
-      
-      // Spawn burst of particles at click
-      const burstCount = 15 + Math.random() * 25;
-      for (let i = 0; i < burstCount; i++) {
-        const angle = (Math.PI * 2 * i) / burstCount + Math.random() * 0.5;
-        const speed = 2 + Math.random() * 8;
-        const distance = Math.random() * 30;
-        
-        particlesRef.current.push({
-          x: mouseX + Math.cos(angle) * distance,
-          y: mouseY + Math.sin(angle) * distance,
-          vx: Math.cos(angle) * speed,
-          vy: Math.sin(angle) * speed,
-          size: 1 + Math.random() * 4,
-          life: 80 + Math.random() * 40,
-          maxLife: 120,
-          hue: 30 + Math.random() * 60, // Orange to yellow for clicks
-          opacity: 0.8 + Math.random() * 0.2,
-          trail: []
-        });
-      }
     };
 
     const handleMouseUp = () => {
       mouseRef.current.isPressed = false;
     };
 
+    const handleMouseLeave = () => {
+      mouseRef.current.influence = Math.max(mouseRef.current.influence - 0.1, 0);
+    };
+
     canvas.addEventListener('mousemove', handleMouseMove);
     canvas.addEventListener('mousedown', handleMouseDown);
     canvas.addEventListener('mouseup', handleMouseUp);
+    canvas.addEventListener('mouseleave', handleMouseLeave);
 
     // Animation loop
     const animate = () => {
       const canvasWidth = canvas.width / window.devicePixelRatio;
       const canvasHeight = canvas.height / window.devicePixelRatio;
       const time = Date.now() * 0.001;
+      const nodes = nodesRef.current;
+      const streams = streamsRef.current;
       const mouse = mouseRef.current;
-      const particles = particlesRef.current;
-      const forceFields = forceFieldsRef.current;
 
-      // Clear with trailing effect
-      ctx.fillStyle = 'rgba(8, 8, 12, 0.05)';
+      // Clear canvas with fade effect
+      ctx.fillStyle = 'rgba(5, 8, 16, 0.08)';
       ctx.fillRect(0, 0, canvasWidth, canvasHeight);
 
-      // Update mouse trail
-      mouse.trail.forEach(point => {
-        point.life--;
+      // Update and draw connections/streams
+      streams.forEach(stream => {
+        const startNode = nodes[stream.startNode];
+        const endNode = nodes[stream.endNode];
+
+        if (!startNode || !endNode) return;
+
+        // Update stream progress
+        stream.progress += stream.speed;
+        if (stream.progress > 1) {
+          stream.progress = 0;
+          // Transfer activity
+          endNode.activity = Math.min(endNode.activity + startNode.activity * 0.3, 1);
+        }
+
+        // Draw connection line
+        const connectionStrength = (startNode.activity + endNode.activity) * 0.5;
+        const alpha = 0.1 + connectionStrength * 0.4;
+
+        ctx.strokeStyle = `rgba(64, 224, 255, ${alpha})`;
+        ctx.lineWidth = 1 + connectionStrength * 2;
+        ctx.beginPath();
+        ctx.moveTo(startNode.x, startNode.y);
+        ctx.lineTo(endNode.x, endNode.y);
+        ctx.stroke();
+
+        // Draw data packet
+        if (stream.progress > 0.1) {
+          const packetX = startNode.x + (endNode.x - startNode.x) * stream.progress;
+          const packetY = startNode.y + (endNode.y - startNode.y) * stream.progress;
+
+          const packetSize = 2 + stream.intensity * 3;
+          const glowSize = packetSize * 3;
+
+          // Packet glow
+          const gradient = ctx.createRadialGradient(
+            packetX, packetY, 0,
+            packetX, packetY, glowSize
+          );
+          gradient.addColorStop(0, `rgba(255, 165, 0, ${stream.intensity * 0.8})`);
+          gradient.addColorStop(1, 'transparent');
+
+          ctx.fillStyle = gradient;
+          ctx.beginPath();
+          ctx.arc(packetX, packetY, glowSize, 0, Math.PI * 2);
+          ctx.fill();
+
+          // Packet core
+          ctx.fillStyle = `rgba(255, 200, 50, ${stream.intensity})`;
+          ctx.beginPath();
+          ctx.arc(packetX, packetY, packetSize, 0, Math.PI * 2);
+          ctx.fill();
+        }
       });
-      mouse.trail = mouse.trail.filter(point => point.life > 0);
 
-      // Update force fields
-      for (let i = forceFields.length - 1; i >= 0; i--) {
-        const field = forceFields[i];
-        field.life--;
-        
-        if (field.life <= 0) {
-          forceFields.splice(i, 1);
-          continue;
-        }
-        
-        // Draw force field visualization
-        const alpha = field.life / field.maxLife;
-        const pulseIntensity = Math.sin(time * 4 + i) * 0.3 + 0.7;
-        
-        ctx.strokeStyle = `hsla(${field.type === 'attract' ? 60 : field.type === 'vortex' ? 280 : 0}, 70%, 60%, ${alpha * 0.3 * pulseIntensity})`;
-        ctx.lineWidth = 2;
-        ctx.beginPath();
-        ctx.arc(field.x, field.y, field.radius * alpha, 0, Math.PI * 2);
-        ctx.stroke();
-        
-        // Inner glow
-        const gradient = ctx.createRadialGradient(
-          field.x, field.y, 0,
-          field.x, field.y, field.radius * alpha * 0.5
-        );
-        gradient.addColorStop(0, `hsla(${field.type === 'attract' ? 60 : field.type === 'vortex' ? 280 : 0}, 80%, 70%, ${alpha * 0.2})`);
-        gradient.addColorStop(1, 'transparent');
-        
-        ctx.fillStyle = gradient;
-        ctx.beginPath();
-        ctx.arc(field.x, field.y, field.radius * alpha * 0.5, 0, Math.PI * 2);
-        ctx.fill();
-      }
-
-      // Draw mouse trail
-      if (mouse.trail.length > 1) {
-        ctx.strokeStyle = 'hsla(200, 80%, 70%, 0.6)';
-        ctx.lineWidth = 3;
-        ctx.lineCap = 'round';
-        ctx.lineJoin = 'round';
-        ctx.beginPath();
-        
-        for (let i = 0; i < mouse.trail.length; i++) {
-          const point = mouse.trail[i];
-          const alpha = point.life / 30;
-          
-          if (i === 0) {
-            ctx.moveTo(point.x, point.y);
-          } else {
-            ctx.globalAlpha = alpha;
-            ctx.lineTo(point.x, point.y);
-          }
-        }
-        ctx.globalAlpha = 1;
-        ctx.stroke();
-      }
-
-      // Update particles
-      for (let i = particles.length - 1; i >= 0; i--) {
-        const particle = particles[i];
-        
-        // Age particle
-        particle.life--;
-        if (particle.life <= 0) {
-          particles.splice(i, 1);
-          continue;
-        }
-        
-        // Update trail
-        particle.trail.push({ x: particle.x, y: particle.y, life: 10 });
-        if (particle.trail.length > 8) {
-          particle.trail.shift();
-        }
-        particle.trail.forEach(point => point.life--);
-        particle.trail = particle.trail.filter(point => point.life > 0);
-        
-        // Mouse interaction
-        const dx = mouse.x - particle.x;
-        const dy = mouse.y - particle.y;
+      // Update and draw nodes
+      nodes.forEach((node, index) => {
+        // Mouse influence
+        const dx = mouse.x - node.x;
+        const dy = mouse.y - node.y;
         const distance = Math.sqrt(dx * dx + dy * dy);
         const maxDistance = 120;
-        
-        if (distance < maxDistance && distance > 0) {
-          const force = (maxDistance - distance) / maxDistance;
-          const angle = Math.atan2(dy, dx);
-          
+
+        if (distance < maxDistance && mouse.influence > 0) {
+          const force = (maxDistance - distance) / maxDistance * mouse.influence;
+          node.energy = Math.min(node.energy + force * 0.02, 1);
+
           if (mouse.isPressed) {
-            // Strong attraction when clicking
-            particle.vx += Math.cos(angle) * force * 0.8;
-            particle.vy += Math.sin(angle) * force * 0.8;
-            particle.hue = 60 + Math.random() * 60; // Yellow/orange
-          } else {
-            // Gentle repulsion on hover
-            particle.vx -= Math.cos(angle) * force * 0.2;
-            particle.vy -= Math.sin(angle) * force * 0.2;
+            node.activity = Math.min(node.activity + force * 0.1, 1);
           }
-          
-          // Add mouse velocity influence
-          particle.vx += mouse.velocity.x * force * 0.1;
-          particle.vy += mouse.velocity.y * force * 0.1;
         }
-        
-        // Force field interactions
-        forceFields.forEach(field => {
-          const fdx = field.x - particle.x;
-          const fdy = field.y - particle.y;
-          const fdistance = Math.sqrt(fdx * fdx + fdy * fdy);
-          
-          if (fdistance < field.radius && fdistance > 0) {
-            const fieldForce = (field.radius - fdistance) / field.radius * field.strength * 0.01;
-            const fieldAngle = Math.atan2(fdy, fdx);
-            
-            switch (field.type) {
-              case 'attract':
-                particle.vx += Math.cos(fieldAngle) * fieldForce;
-                particle.vy += Math.sin(fieldAngle) * fieldForce;
-                break;
-              case 'repel':
-                particle.vx -= Math.cos(fieldAngle) * fieldForce;
-                particle.vy -= Math.sin(fieldAngle) * fieldForce;
-                break;
-              case 'vortex':
-                const perpAngle = fieldAngle + Math.PI / 2;
-                particle.vx += Math.cos(perpAngle) * fieldForce;
-                particle.vy += Math.sin(perpAngle) * fieldForce;
-                // Also add slight inward pull
-                particle.vx += Math.cos(fieldAngle) * fieldForce * 0.3;
-                particle.vy += Math.sin(fieldAngle) * fieldForce * 0.3;
-                break;
-            }
-            
-            particle.hue = field.type === 'vortex' ? 280 : 60;
-          }
-        });
-        
-        // Environmental forces
-        particle.vx += Math.sin(time * 0.5 + particle.x * 0.01) * 0.02;
-        particle.vy += Math.cos(time * 0.3 + particle.y * 0.01) * 0.02;
-        
-        // Apply velocity
-        particle.x += particle.vx;
-        particle.y += particle.vy;
-        
-        // Damping
-        particle.vx *= 0.99;
-        particle.vy *= 0.99;
-        
-        // Boundary wrapping
-        if (particle.x < 0) particle.x = canvasWidth;
-        if (particle.x > canvasWidth) particle.x = 0;
-        if (particle.y < 0) particle.y = canvasHeight;
-        if (particle.y > canvasHeight) particle.y = 0;
-        
-        // Draw particle trail
-        if (particle.trail.length > 1) {
-          ctx.strokeStyle = `hsla(${particle.hue}, 70%, 50%, 0.3)`;
-          ctx.lineWidth = Math.max(0.5, particle.size * 0.3);
-          ctx.lineCap = 'round';
-          ctx.beginPath();
-          
-          for (let j = 0; j < particle.trail.length; j++) {
-            const trailPoint = particle.trail[j];
-            const trailAlpha = trailPoint.life / 10;
-            
-            if (j === 0) {
-              ctx.moveTo(trailPoint.x, trailPoint.y);
-            } else {
-              ctx.globalAlpha = trailAlpha * 0.5;
-              ctx.lineTo(trailPoint.x, trailPoint.y);
-            }
-          }
-          ctx.globalAlpha = 1;
-          ctx.stroke();
+
+        // Natural activity decay and pulsing
+        node.activity *= 0.995;
+        node.energy *= 0.998;
+        node.pulsePhase += 0.05 + node.activity * 0.1;
+
+        // Add some autonomous activity
+        if (Math.random() < 0.002) {
+          node.activity = Math.min(node.activity + 0.3, 1);
         }
-        
-        // Draw particle
-        const lifeRatio = particle.life / particle.maxLife;
-        const pulseIntensity = Math.sin(time * 3 + i * 0.1) * 0.2 + 0.8;
-        const currentSize = Math.max(0.5, particle.size * lifeRatio * pulseIntensity);
-        
-        // Particle glow
+
+        // Draw node based on type
+        const pulseIntensity = Math.sin(node.pulsePhase) * 0.3 + 0.7;
+        const totalActivity = (node.activity + node.energy) * pulseIntensity;
+        const nodeSize = node.size * (0.8 + totalActivity * 0.5);
+
+        // Node glow
+        const glowRadius = nodeSize * (2 + totalActivity * 2);
         const glowGradient = ctx.createRadialGradient(
-          particle.x, particle.y, 0,
-          particle.x, particle.y, currentSize * 3
+          node.x, node.y, 0,
+          node.x, node.y, glowRadius
         );
-        glowGradient.addColorStop(0, `hsla(${particle.hue}, 80%, 70%, ${particle.opacity * lifeRatio})`);
+
+        let nodeColor: string;
+        switch (node.type) {
+          case 'data':
+            nodeColor = `64, 224, 255`; // Cyan for data
+            break;
+          case 'processor':
+            nodeColor = `255, 100, 100`; // Red for processors
+            break;
+          default:
+            nodeColor = `100, 255, 150`; // Green for neurons
+        }
+
+        glowGradient.addColorStop(0, `rgba(${nodeColor}, ${totalActivity * 0.8})`);
         glowGradient.addColorStop(1, 'transparent');
-        
+
         ctx.fillStyle = glowGradient;
         ctx.beginPath();
-        ctx.arc(particle.x, particle.y, currentSize * 3, 0, Math.PI * 2);
+        ctx.arc(node.x, node.y, glowRadius, 0, Math.PI * 2);
         ctx.fill();
-        
-        // Particle core
-        ctx.fillStyle = `hsla(${particle.hue}, 90%, 80%, ${particle.opacity * lifeRatio})`;
+
+        // Node core
+        ctx.fillStyle = `rgba(${nodeColor}, ${0.6 + totalActivity * 0.4})`;
         ctx.beginPath();
-        ctx.arc(particle.x, particle.y, currentSize, 0, Math.PI * 2);
+        ctx.arc(node.x, node.y, nodeSize, 0, Math.PI * 2);
         ctx.fill();
+
+        // Node ring for processors
+        if (node.type === 'processor') {
+          ctx.strokeStyle = `rgba(${nodeColor}, ${totalActivity})`;
+          ctx.lineWidth = 2;
+          ctx.beginPath();
+          ctx.arc(node.x, node.y, nodeSize + 4, 0, Math.PI * 2);
+          ctx.stroke();
+        }
+
+        // Data type indicator
+        if (node.type === 'data' && totalActivity > 0.5) {
+          ctx.fillStyle = `rgba(255, 255, 255, ${totalActivity * 0.8})`;
+          ctx.font = '8px monospace';
+          ctx.textAlign = 'center';
+          ctx.fillText('01', node.x, node.y + 2);
+        }
+      });
+
+      // Draw grid pattern in background
+      ctx.strokeStyle = 'rgba(64, 224, 255, 0.05)';
+      ctx.lineWidth = 0.5;
+      const gridSize = 40;
+
+      for (let x = 0; x < canvasWidth; x += gridSize) {
+        ctx.beginPath();
+        ctx.moveTo(x, 0);
+        ctx.lineTo(x, canvasHeight);
+        ctx.stroke();
       }
 
-      // Spawn new particles periodically
-      if (Math.random() < 0.3 && particles.length < 200) {
-        const edge = Math.floor(Math.random() * 4);
-        let x, y;
-        
-        switch (edge) {
-          case 0: x = Math.random() * canvasWidth; y = 0; break;
-          case 1: x = canvasWidth; y = Math.random() * canvasHeight; break;
-          case 2: x = Math.random() * canvasWidth; y = canvasHeight; break;
-          default: x = 0; y = Math.random() * canvasHeight; break;
-        }
-        
-        particles.push({
-          x,
-          y,
-          vx: (Math.random() - 0.5) * 2,
-          vy: (Math.random() - 0.5) * 2,
-          size: 1 + Math.random() * 2,
-          life: 100 + Math.random() * 50,
-          maxLife: 150,
-          hue: 180 + Math.random() * 120,
-          opacity: 0.3 + Math.random() * 0.5,
-          trail: []
-        });
+      for (let y = 0; y < canvasHeight; y += gridSize) {
+        ctx.beginPath();
+        ctx.moveTo(0, y);
+        ctx.lineTo(canvasWidth, y);
+        ctx.stroke();
       }
+
+      // Draw title overlay
+      ctx.fillStyle = 'rgba(64, 224, 255, 0.3)';
+      ctx.font = '12px monospace';
+      ctx.textAlign = 'left';
+      ctx.fillText('AI NEURAL NETWORK VISUALIZATION', 20, 30);
+
+      // Draw stats
+      const activeNodes = nodes.filter(n => n.activity > 0.1).length;
+      const totalEnergy = nodes.reduce((sum, n) => sum + n.energy, 0);
+
+      ctx.fillStyle = 'rgba(100, 255, 150, 0.6)';
+      ctx.font = '10px monospace';
+      ctx.fillText(`ACTIVE NODES: ${activeNodes}`, 20, 50);
+      ctx.fillText(`NETWORK ENERGY: ${Math.round(totalEnergy)}%`, 20, 65);
 
       animationRef.current = requestAnimationFrame(animate);
     };
@@ -433,6 +376,7 @@ export default function AIWebGLBackground({ className = '' }: AIWebGLBackgroundP
       canvas.removeEventListener('mousemove', handleMouseMove);
       canvas.removeEventListener('mousedown', handleMouseDown);
       canvas.removeEventListener('mouseup', handleMouseUp);
+      canvas.removeEventListener('mouseleave', handleMouseLeave);
       if (animationRef.current) {
         cancelAnimationFrame(animationRef.current);
       }
