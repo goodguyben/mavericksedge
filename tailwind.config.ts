@@ -4,6 +4,14 @@ export default {
   darkMode: ["class"],
   content: ["./client/index.html", "./client/src/**/*.{js,jsx,ts,tsx}"],
   theme: {
+    screens: {
+      'xs': '375px',    // Small mobile
+      'sm': '640px',    // Tablet portrait
+      'md': '768px',    // Tablet landscape
+      'lg': '1024px',   // Desktop
+      'xl': '1440px',   // Large desktop
+      '2xl': '1920px',  // Extra large desktop
+    },
     fontFamily: {
       sans: ['Space Grotesk', 'system-ui', 'sans-serif'],
       heading: ['Outfit', 'system-ui', 'sans-serif'],

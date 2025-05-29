@@ -7,9 +7,7 @@ import { generateOrganizationStructuredData, generateWebsiteStructuredData, gene
 import LocalSEO from '../components/LocalSEO';
 import MobileOptimizations from '../components/MobileOptimized';
 import CreativeWorkSection from '../components/sections/CreativeWorkSection';
-import WhyChooseUsSection from '../components/sections/WhyChooseUsSection';
 import ProcessSection from '../components/sections/ProcessSection';
-import ContactSection from '../components/sections/ContactSection';
 import ScrollFadeSection from '../components/ui/scroll-fade-section';
 import SEOHead from '../components/SEOHead';
 

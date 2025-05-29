@@ -10,17 +10,17 @@ import backgroundVideo from "../../../assets/3129977-uhd_3840_2160_30fps.mp4";
 export default function Hero() {
   const [scrolled, setScrolled] = useState(false);
   const [videoLoaded, setVideoLoaded] = useState(false);
-  const [heroOpacity, setHeroOpacity] = useState(1); // Added state for hero opacity
+  const [heroOpacity, setHeroOpacity] = useState(1);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
-      // Calculate heroOpacity based on scroll position
+      
+      // Calculate opacity based on scroll position
       const scrollY = window.scrollY;
-      const heroHeight = document.querySelector('.max-w-4xl')?.offsetHeight || 0; // Get hero section height
-      const opacityThreshold = 0.7; // Adjust as needed.  0 = fully transparent at the top, 1 at the bottom
-      const opacity = Math.max(0, 1 - (scrollY / (heroHeight * opacityThreshold)));
+      const maxFade = 400; // Distance in pixels to complete fade
+      const opacity = Math.max(0, 1 - (scrollY / maxFade));
       setHeroOpacity(opacity);
     };
 
@@ -45,7 +45,7 @@ export default function Hero() {
   }, [videoLoaded]);
 
   return (
-    <section className="relative h-screen flex items-center overflow-hidden pt-24 md:pt-32">
+    <section className="relative min-h-screen flex items-center overflow-hidden pt-16 sm:pt-20 md:pt-32">
       {/* Video background */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
         {/* Dark overlay for better text readability */}
@@ -66,15 +66,15 @@ export default function Hero() {
         {/* Fallback gradient background (shows while video loads or if video fails) */}
         <div className={`absolute inset-0 bg-gradient-to-br from-[#0D0D0D] via-[#1A1A1A] to-[#0D0D0D] bg-gradient-animate animate-gradient-slow z-0 transition-opacity duration-1000 ${videoLoaded ? 'opacity-0' : 'opacity-100'}`}></div>
       </div>
-
-      <div className="container mx-auto px-4 md:px-10 z-20 flex justify-center items-center w-full">
+      <div className="container mx-auto px-3 xs:px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 2xl:px-16 z-20 flex justify-center items-center w-full">
         <motion.div
-          className="max-w-4xl text-center w-full"
-          initial={{ opacity: 1, y: 0 }} // Start fully opaque
-          animate={{ opacity: heroOpacity, y: 0 }} // Animate opacity based on scroll
-          transition={{ duration: 0.3 }}
+          className="max-w-xs xs:max-w-sm sm:max-w-2xl md:max-w-3xl lg:max-w-4xl xl:max-w-5xl 2xl:max-w-6xl text-center w-full"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: heroOpacity, y: 0 }}
+          transition={{ duration: 0.1 }}
+          style={{ opacity: heroOpacity }}
         >
-          <h1 className="text-5xl md:text-7xl font-heading font-extrabold tracking-wide leading-normal text-maverick-cream text-center">
+          <h1 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-heading font-extrabold tracking-wide leading-tight text-maverick-cream text-center">
             <div className="inline-block">
               {/* Word-by-word animation for the heading */}
               <motion.span 
@@ -143,7 +143,7 @@ export default function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 2.8 }}
-            className="text-xl md:text-2xl text-maverick-cream/80 mt-6 mb-10 max-w-l px-2 font-sans leading-relaxed mx-auto text-center"
+            className="text-xs xs:text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl text-maverick-cream/80 mt-3 xs:mt-4 sm:mt-5 md:mt-6 lg:mt-8 xl:mt-10 mb-6 xs:mb-8 sm:mb-10 md:mb-12 lg:mb-14 xl:mb-16 font-sans leading-relaxed mx-auto text-center"
           >
             We're Edmonton-based creators who design beautiful websites, improve your online visibility, and offer smart AI Integration so you can focus on growing your business          </motion.p>
           <motion.div
@@ -167,7 +167,6 @@ export default function Hero() {
           </motion.div>
         </motion.div>
       </div>
-
       <motion.div
         className="scroll-indicator cursor-pointer absolute bottom-10 left-1/2 transform -translate-x-1/2 z-20"
         animate={{ 
