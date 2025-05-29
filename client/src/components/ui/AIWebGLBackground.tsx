@@ -153,54 +153,54 @@ export default function AIWebGLBackground({
     currentLLM: 'hybrid' as 'chatgpt' | 'gemini' | 'grok' | 'claude' | 'hybrid'
   });
 
-  // Enhanced LLM-inspired color palette
+  // Brand-aligned color palette matching company logo
   const colors = {
     llm: {
       chatgpt: { 
-        primary: '#10A37F', 
-        secondary: '#1A7F64', 
-        glow: '#00D4AA',
-        accent: '#74AA9C'
-      },
-      gemini: { 
-        primary: '#4285F4', 
-        secondary: '#1A73E8', 
-        glow: '#5BB3FF',
-        accent: '#9FCDFF'
-      },
-      grok: { 
-        primary: '#1DA1F2', 
-        secondary: '#0F7A9F', 
-        glow: '#50D4FF',
-        accent: '#87E7FF'
-      },
-      claude: { 
-        primary: '#FF6B35', 
+        primary: '#FF5630', 
         secondary: '#E55A2B', 
         glow: '#FF8A5C',
         accent: '#FFB899'
       },
+      gemini: { 
+        primary: '#FFD74B', 
+        secondary: '#FFC43D', 
+        glow: '#FFE066',
+        accent: '#FFF2B3'
+      },
+      grok: { 
+        primary: '#AE6A4D', 
+        secondary: '#9A5D43', 
+        glow: '#C4876A',
+        accent: '#D4A487'
+      },
+      claude: { 
+        primary: '#FF8A50', 
+        secondary: '#FF7036', 
+        glow: '#FFA470',
+        accent: '#FFBF99'
+      },
       hybrid: {
-        primary: '#9D4EDD',
-        secondary: '#7B2CBF',
-        glow: '#C77DFF',
-        accent: '#E0AAFF'
+        primary: '#FF5630',
+        secondary: '#AE6A4D',
+        glow: '#FFD74B',
+        accent: '#FFC43D'
       }
     },
     neural: {
-      input: { base: '#00FF80', glow: '#40E0D0', trail: '#00CED1' },
-      processing: { base: '#40E0FF', glow: '#00BFFF', trail: '#1E90FF' },
-      reasoning: { base: '#9D4EDD', glow: '#C77DFF', trail: '#E0AAFF' },
-      output: { base: '#FF8040', glow: '#FF6347', trail: '#FF4500' }
+      input: { base: '#FFD74B', glow: '#FFC43D', trail: '#FFE066' },
+      processing: { base: '#FF8A50', glow: '#FF7036', trail: '#FFA470' },
+      reasoning: { base: '#AE6A4D', glow: '#C4876A', trail: '#D4A487' },
+      output: { base: '#FF5630', glow: '#E55A2B', trail: '#FF8A5C' }
     },
-    connection: '#40E0FF',
+    connection: '#FF8A50',
     background: { 
       start: '#0A0A0F', 
-      mid: '#0F0F1A', 
+      mid: '#1E1A18', 
       end: '#0A0A0F',
-      darkOverlay: 'rgba(0, 0, 0, 0.7)'
+      darkOverlay: 'rgba(30, 26, 24, 0.7)'
     },
-    particle: '#00FFFF'
+    particle: '#FFD74B'
   };
 
   const createFluidParticles = useCallback((x: number, y: number, z: number = 0, count: number = 3, type: Particle['type'] = 'token', llmType: Particle['llmType'] = 'neutral') => {
@@ -668,7 +668,7 @@ export default function AIWebGLBackground({
       if (showGrid) {
         const gridSize = 100;
         const gridOffset = (time * 8) % gridSize;
-        ctx.strokeStyle = 'rgba(64, 224, 255, 0.02)';
+        ctx.strokeStyle = 'rgba(255, 215, 75, 0.02)';
         ctx.lineWidth = 0.5;
 
         for (let x = -gridSize + gridOffset; x < width + gridSize; x += gridSize) {
@@ -1277,7 +1277,7 @@ export default function AIWebGLBackground({
         ctx.fillStyle = 'rgba(255, 255, 255, 0.6)';
         ctx.font = 'bold 11px Arial';
         ctx.textAlign = 'center';
-        ctx.shadowColor = '#00FFFF';
+        ctx.shadowColor = '#FFD74B';
         ctx.shadowBlur = 2;
 
         const currentLLM = globalProcessingStateRef.current.currentLLM;
@@ -1293,9 +1293,9 @@ export default function AIWebGLBackground({
 
       // Enhanced mouse trail
       if (mouse.trail.length > 1) {
-        ctx.strokeStyle = `rgba(0, 255, 255, ${0.7 + mouse.interactionStrength * 0.3})`;
+        ctx.strokeStyle = `rgba(255, 215, 75, ${0.7 + mouse.interactionStrength * 0.3})`;
         ctx.lineWidth = 2 + mouse.interactionStrength * 2;
-        ctx.shadowColor = '#00FFFF';
+        ctx.shadowColor = '#FFD74B';
         ctx.shadowBlur = 8;
 
         ctx.beginPath();
@@ -1324,11 +1324,11 @@ export default function AIWebGLBackground({
         const pulse = Math.sin(currentTime * 0.005) * 0.2 + 0.8;
         const dynamicRadius = Math.min(120, 80 + mouse.interactionStrength * 40);
 
-        ctx.strokeStyle = `rgba(0, 255, 255, ${pulse * 0.8})`;
+        ctx.strokeStyle = `rgba(255, 215, 75, ${pulse * 0.8})`;
         ctx.lineWidth = 2 + mouse.interactionStrength;
         ctx.setLineDash([8, 8]);
         ctx.lineDashOffset = -currentTime * 0.1;
-        ctx.shadowColor = '#00FFFF';
+        ctx.shadowColor = '#FFD74B';
         ctx.shadowBlur = 10;
         ctx.beginPath();
         ctx.arc(mouse.x, mouse.y, dynamicRadius * pulse, 0, Math.PI * 2);
