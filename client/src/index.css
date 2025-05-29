@@ -370,6 +370,40 @@ img {
   .space-y-4 > * + * { margin-top: 0.375rem !important; }
 }
 
+/* Galaxy Z Fold 5 (Unfolded - 1768px wide) */
+@media (min-width: 1768px) and (max-width: 1800px) {
+  h1 { 
+    font-size: 5rem !important; 
+    line-height: 1.05 !important; 
+  }
+  
+  /* Hero section specific */
+  .hero-title { 
+    font-size: 5.5rem !important; 
+  }
+  
+  .hero-subtitle { 
+    font-size: 1.75rem !important; 
+  }
+}
+
+/* Galaxy S8+ (412px wide) */
+@media (min-width: 412px) and (max-width: 450px) {
+  h1 { 
+    font-size: 2.25rem !important; 
+    line-height: 1.1 !important; 
+  }
+  
+  /* Hero section specific */
+  .hero-title { 
+    font-size: 2.75rem !important; 
+  }
+  
+  .hero-subtitle { 
+    font-size: 1.125rem !important; 
+  }
+}
+
 /* GPU acceleration for animations */
 .gpu-accelerated {
   transform: translateZ(0);
