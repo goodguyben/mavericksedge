@@ -31,9 +31,9 @@ export default function Hero() {
         {/* Interactive WebGL Background with built-in text readability enhancement */}
         <AIWebGLBackground className="backdrop-blur-[0.5px]" />
       </div>
-      <div className="container mx-auto px-3 xs:px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 2xl:px-16 z-20 flex justify-center items-center w-full">
+      <div className="container mx-auto px-3 xs:px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 2xl:px-16 z-10 flex justify-center items-center w-full pointer-events-none">
         <motion.div
-          className="max-w-xs xs:max-w-sm sm:max-w-2xl md:max-w-3xl lg:max-w-4xl xl:max-w-5xl 2xl:max-w-6xl text-center w-full"
+          className="max-w-xs xs:max-w-sm sm:max-w-2xl md:max-w-3xl lg:max-w-4xl xl:max-w-5xl 2xl:max-w-6xl text-center w-full pointer-events-auto"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: heroOpacity, y: 0 }}
           transition={{ duration: 0.1 }}
@@ -133,7 +133,7 @@ export default function Hero() {
         </motion.div>
       </div>
       <motion.div
-        className="scroll-indicator cursor-pointer absolute bottom-10 left-1/2 transform -translate-x-1/2 z-20"
+        className="scroll-indicator cursor-pointer absolute bottom-10 left-1/2 transform -translate-x-1/2 z-10 pointer-events-auto"
         animate={{ 
           opacity: scrolled ? 0 : 1,
           y: scrolled ? 10 : 0 
