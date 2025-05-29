@@ -61,7 +61,7 @@ export default function Header() {
         ease: "easeInOut"
       }}
     >
-      <div className="container mx-auto flex justify-between items-center min-h-[60px] relative"></div>
+      <div className="container mx-auto flex justify-between items-center min-h-[60px] relative">
         <Link href="/" className="flex items-center min-w-0 flex-shrink-0" aria-label="Mavericks Edge Home">
           <Logo size="small" noLink={true} showText={false}/>
           <h1 className="font-heading font-bold text-maverick-orange ml-1 whitespace-nowrap flex-shrink-0" style={{ 
