@@ -66,15 +66,15 @@ export default function Hero() {
         {/* Fallback gradient background (shows while video loads or if video fails) */}
         <div className={`absolute inset-0 bg-gradient-to-br from-[#0D0D0D] via-[#1A1A1A] to-[#0D0D0D] bg-gradient-animate animate-gradient-slow z-0 transition-opacity duration-1000 ${videoLoaded ? 'opacity-0' : 'opacity-100'}`}></div>
       </div>
-      <div className="container mx-auto px-4 md:px-10 z-20 flex justify-center items-center w-full">
+      <div className="container mx-auto px-3 xs:px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 2xl:px-16 z-20 flex justify-center items-center w-full">
         <motion.div
-          className="max-w-4xl text-center w-full"
+          className="max-w-xs xs:max-w-sm sm:max-w-2xl md:max-w-3xl lg:max-w-4xl xl:max-w-5xl 2xl:max-w-6xl text-center w-full"
           initial={{ opacity: 1, y: 0 }} // Start fully opaque
           animate={{ opacity: heroOpacity, y: 0 }} // Animate opacity based on scroll
           transition={{ duration: 0.3 }}
         >
-          <h1 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-heading font-extrabold tracking-wide leading-tight text-maverick-cream text-center">
-            <div className="inline-block text-[64px]">
+          <h1 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-heading font-extrabold tracking-wide leading-tight text-maverick-cream text-center">
+            <div className="inline-block">
               {/* Word-by-word animation for the heading */}
               <motion.span 
                 initial={{ opacity: 0 }}
@@ -142,7 +142,7 @@ export default function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 2.8 }}
-            className="text-sm xs:text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl text-maverick-cream/80 mt-3 xs:mt-4 sm:mt-6 md:mt-8 mb-6 xs:mb-8 sm:mb-10 md:mb-12 max-w-xs xs:max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl px-3 xs:px-4 sm:px-2 font-sans leading-relaxed mx-auto text-center"
+            className="text-sm xs:text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl text-maverick-cream/80 mt-4 xs:mt-5 sm:mt-6 md:mt-8 lg:mt-10 xl:mt-12 mb-8 xs:mb-10 sm:mb-12 md:mb-14 lg:mb-16 xl:mb-18 font-sans leading-relaxed mx-auto text-center"
           >
             We're Edmonton-based creators who design beautiful websites, improve your online visibility, and offer smart AI Integration so you can focus on growing your business          </motion.p>
           <motion.div
