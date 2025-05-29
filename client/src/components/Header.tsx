@@ -57,30 +57,25 @@ export default function Header() {
       animate={{ opacity: 1 }}
       transition={{ 
         duration: 0.6,
-        delay: isHomePage ? 4.0 : 0,
+        delay: isHomePage ? (isMobile ? 1.5 : 4.0) : 0,
         ease: "easeInOut"
       }}
     >
-      <div className="container mx-auto flex justify-between items-center min-h-[60px] relative">
-        <Link href="/" className="flex items-center min-w-0 flex-shrink-0" aria-label="Mavericks Edge Home">
-          <Logo size="small" noLink={true} showText={false}/>
-          <h1 className="font-heading font-bold text-maverick-orange ml-1 whitespace-nowrap flex-shrink-0" style={{ 
-            letterSpacing: '0',
-            fontSize: isMobile ? '1.25rem' : '1.875rem',
-            lineHeight: '1.2'
-          }}>
-            <span className="hidden xs:inline">Mavericks Edge</span>
-            <span className="xs:hidden">Mavericks</span>
+      <div className="container mx-auto flex justify-between items-center">
+        <Link href="/" className="flex items-center ml-[-16px] mr-[-16px]" aria-label="Mavericks Edge Home">
+          <Logo size={isMobile ? "small" : "large"} noLink={true} showText={false}/>
+          <h1 className="font-heading font-bold text-3xl sm:text-4xl md:text-5xl text-maverick-orange ml-1 whitespace-nowrap mt-[15px] mb-[15px]" style={{ letterSpacing: '0' }}>
+            Mavericks Edge
           </h1>
         </Link>
 
         {/* Mobile Menu Button */}
         <button
           onClick={toggleMenu}
-          className="block md:hidden focus:outline-none z-50 bg-maverick-charcoal/50 p-2 rounded-full backdrop-blur-sm flex-shrink-0"
+          className="block md:hidden focus:outline-none z-50 bg-maverick-charcoal/80 p-3 rounded-full backdrop-blur-md border border-maverick-orange/20 hover:bg-maverick-orange/10 transition-all duration-200 ml-[-24px] mr-[-24px]"
           aria-label="Toggle menu"
         >
-          {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          {isOpen ? <X className="h-6 w-6 text-maverick-orange" /> : <Menu className="h-6 w-6 text-maverick-orange" />}
         </button>
 
         {/* Desktop Navigation */}
@@ -177,7 +172,7 @@ export default function Header() {
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="fixed inset-y-0 right-0 w-[70%] max-w-xs bg-maverick-charcoal border-l border-maverick-slate/20 z-40 flex flex-col"
+            className="fixed inset-y-0 right-0 w-[75%] max-w-sm bg-maverick-charcoal/95 backdrop-blur-xl border-l border-maverick-orange/30 z-40 flex flex-col shadow-2xl"
             role="dialog"
             aria-modal="true" 
             aria-label="Main Menu"
@@ -378,7 +373,7 @@ export default function Header() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 bg-black/50 backdrop-blur-sm z-30"
+            className="fixed inset-0 bg-black/70 backdrop-blur-md z-30"
             onClick={toggleMenu}
           />
         )}

@@ -16,7 +16,7 @@
   html {
     scroll-behavior: smooth;
   }
-
+  
   body {
     margin: 0;
     padding: 0;
@@ -25,7 +25,7 @@
     font-family: 'Inter', system-ui, sans-serif;
     line-height: 1.6;
   }
-
+  
   * {
     box-sizing: border-box;
   }
@@ -50,113 +50,87 @@ img {
 
 /* Responsive Design System - 6 Breakpoints */
 
-/* Extra Small Mobile (320px - 374px) */
+/* 1. Extra Small Mobile (320px - 374px) */
 @media (max-width: 374px) {
-  /* Hide "Edge" text on very small screens */
-  .xs\:hidden {
-    display: none !important;
-  }
-
-  .xs\:inline {
-    display: none !important;
-  }
   .container {
     padding-left: 0.75rem;
     padding-right: 0.75rem;
     max-width: 100%;
   }
-
+  
   /* Typography scaling */
   h1 { font-size: 1.25rem !important; line-height: 1.1 !important; }
   h2 { font-size: 1.125rem !important; line-height: 1.2 !important; }
   h3 { font-size: 1rem !important; line-height: 1.3 !important; }
   h4 { font-size: 0.875rem !important; line-height: 1.4 !important; }
   p { font-size: 0.75rem !important; line-height: 1.5 !important; }
-
+  
   /* Hero section specific fixes */
   .hero-title { font-size: 1.5rem !important; }
   .hero-subtitle { font-size: 0.8rem !important; margin-top: 0.75rem !important; margin-bottom: 1.5rem !important; }
-
+  
   /* Compact spacing */
   .space-y-8 > * + * { margin-top: 1rem !important; }
   .space-y-6 > * + * { margin-top: 0.75rem !important; }
   .space-y-4 > * + * { margin-top: 0.5rem !important; }
-
+  
   /* Button optimization */
   button, .btn {
     padding: 0.625rem 1.25rem !important;
     font-size: 0.8125rem !important;
     min-height: 40px;
   }
-
+  
   /* Section padding */
   section { padding: 1.5rem 0 !important; }
   .py-12 { padding: 1.5rem 0 !important; }
   .mb-12 { margin-bottom: 1.5rem !important; }
-
+  
   /* Grid simplification */
   .grid-cols-2, .sm\:grid-cols-2, .md\:grid-cols-2, .lg\:grid-cols-2 {
     grid-template-columns: 1fr !important;
   }
-
-  /* Header visibility optimization for small mobile */
-  header {
-    background-color: rgba(18, 18, 18, 0.9) !important;
-    backdrop-filter: blur(12px) !important;
-    -webkit-backdrop-filter: blur(12px) !important;
-    border-bottom: 1px solid rgba(241, 90, 41, 0.15);
-    min-height: 60px !important;
-  }
-
-  /* Ensure header content doesn't overflow */
-  header .container {
-    padding-left: 0.75rem !important;
-    padding-right: 0.75rem !important;
-  }
-
-  /* Logo optimization for very small screens */
-  header img {
-    width: 3rem !important;
-    height: 3rem !important;
-    flex-shrink: 0;
-  }
 }
 
-/* Show full text on screens larger than 374px */
-@media (min-width: 375px) {
-  .xs\:inline {
-    display: inline !important;
-  }
-
-  .xs\:hidden {
-    display: none !important;
-  }
-}
-
-/* Small Mobile (375px - 639px) */
+/* 2. Small Mobile (375px - 639px) */
 @media (min-width: 375px) and (max-width: 639px) {
   .container {
     padding-left: 1rem;
     padding-right: 1rem;
     max-width: 100%;
   }
-
+  
   /* Typography scaling */
   h1 { font-size: 1.75rem; line-height: 1.2; }
   h2 { font-size: 1.5rem; line-height: 1.3; }
   h3 { font-size: 1.25rem; line-height: 1.4; }
   p { font-size: 0.9375rem; line-height: 1.6; }
-
+  
+  /* Header visibility optimization for small mobile */
+  header {
+    background-color: rgba(18, 18, 18, 0.9) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    border-bottom: 1px solid rgba(241, 90, 41, 0.15);
+  }
+  
+  /* Mobile menu button enhancement */
+  header button[aria-label="Toggle menu"] {
+    background-color: rgba(18, 18, 18, 0.9) !important;
+    border: 2px solid rgba(241, 90, 41, 0.3) !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  }
+  
   /* Touch-friendly elements */
   a, button, [role="button"] {
     min-height: 44px;
     min-width: 44px;
   }
-
+  
   /* Section spacing */
   section { padding: 2rem 0; }
   .py-12 { padding: 2rem 0; }
-
+  
   /* Grid behavior */
   .lg\:grid-cols-4 { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
   .lg\:grid-cols-3 { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
@@ -169,17 +143,17 @@ img {
     padding-right: 1.5rem;
     max-width: 640px;
   }
-
+  
   /* Typography scaling */
   h1 { font-size: 2.25rem; line-height: 1.2; }
   h2 { font-size: 1.875rem; line-height: 1.3; }
   h3 { font-size: 1.5rem; line-height: 1.4; }
   p { font-size: 1rem; line-height: 1.6; }
-
+  
   /* Section spacing */
   section { padding: 3rem 0; }
   .py-12 { padding: 3rem 0; }
-
+  
   /* Grid behavior */
   .lg\:grid-cols-4 { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
   .lg\:grid-cols-3 { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
@@ -192,17 +166,17 @@ img {
     padding-right: 2rem;
     max-width: 768px;
   }
-
+  
   /* Typography scaling */
   h1 { font-size: 3rem; line-height: 1.2; }
   h2 { font-size: 2.25rem; line-height: 1.3; }
   h3 { font-size: 1.875rem; line-height: 1.4; }
   p { font-size: 1.125rem; line-height: 1.6; }
-
+  
   /* Section spacing */
   section { padding: 4rem 0; }
   .py-12 { padding: 4rem 0; }
-
+  
   /* Grid behavior */
   .lg\:grid-cols-4 { grid-template-columns: repeat(3, 1fr); gap: 2rem; }
   .lg\:grid-cols-3 { grid-template-columns: repeat(3, 1fr); gap: 2rem; }
@@ -216,17 +190,17 @@ img {
     padding-right: 2.5rem;
     max-width: 1024px;
   }
-
+  
   /* Typography scaling */
   h1 { font-size: 3.75rem; line-height: 1.2; }
   h2 { font-size: 3rem; line-height: 1.3; }
   h3 { font-size: 2.25rem; line-height: 1.4; }
   p { font-size: 1.25rem; line-height: 1.6; }
-
+  
   /* Section spacing */
   section { padding: 5rem 0; }
   .py-12 { padding: 5rem 0; }
-
+  
   /* Grid behavior maintains defaults */
 }
 
@@ -237,17 +211,17 @@ img {
     padding-right: 3rem;
     max-width: 1440px;
   }
-
+  
   /* Typography scaling */
   h1 { font-size: 4.5rem; line-height: 1.1; }
   h2 { font-size: 3.75rem; line-height: 1.2; }
   h3 { font-size: 3rem; line-height: 1.3; }
   p { font-size: 1.375rem; line-height: 1.7; }
-
+  
   /* Section spacing */
   section { padding: 6rem 0; }
   .py-12 { padding: 6rem 0; }
-
+  
   /* Enhanced spacing for large screens */
   .space-y-8 > * + * { margin-top: 3rem; }
   .space-y-6 > * + * { margin-top: 2rem; }
@@ -260,24 +234,24 @@ img {
     padding-right: 4rem;
     max-width: 1920px;
   }
-
+  
   /* Typography scaling for ultra-wide */
   h1 { font-size: 5.5rem; line-height: 1.05; }
   h2 { font-size: 4.5rem; line-height: 1.15; }
   h3 { font-size: 3.5rem; line-height: 1.25; }
   h4 { font-size: 2.5rem; line-height: 1.3; }
   p { font-size: 1.5rem; line-height: 1.8; }
-
+  
   /* Section spacing */
   section { padding: 8rem 0; }
   .py-12 { padding: 8rem 0; }
   .py-16 { padding: 10rem 0; }
   .py-24 { padding: 12rem 0; }
-
+  
   /* Grid enhancements */
   .lg\:grid-cols-3 { grid-template-columns: repeat(4, 1fr); gap: 3rem; }
   .lg\:grid-cols-4 { grid-template-columns: repeat(5, 1fr); gap: 3rem; }
-
+  
   /* Enhanced spacing */
   .space-y-8 > * + * { margin-top: 4rem; }
   .space-y-6 > * + * { margin-top: 3rem; }
@@ -291,32 +265,32 @@ img {
     padding-right: 5rem;
     max-width: 2560px;
   }
-
+  
   /* Typography scaling for 4K */
   h1 { font-size: 7rem; line-height: 1.0; }
   h2 { font-size: 5.5rem; line-height: 1.1; }
   h3 { font-size: 4.5rem; line-height: 1.2; }
   h4 { font-size: 3.5rem; line-height: 1.25; }
   p { font-size: 1.75rem; line-height: 1.8; }
-
+  
   /* Section spacing for 4K */
   section { padding: 10rem 0; }
   .py-12 { padding: 12rem 0; }
   .py-16 { padding: 14rem 0; }
   .py-24 { padding: 16rem 0; }
-
+  
   /* Button scaling */
   button, .btn {
     padding: 1.5rem 3rem;
     font-size: 1.375rem;
     border-radius: 1rem;
   }
-
+  
   /* Grid layouts for 4K */
   .lg\:grid-cols-2 { grid-template-columns: repeat(3, 1fr); gap: 4rem; }
   .lg\:grid-cols-3 { grid-template-columns: repeat(5, 1fr); gap: 4rem; }
   .lg\:grid-cols-4 { grid-template-columns: repeat(6, 1fr); gap: 4rem; }
-
+  
   /* Enhanced spacing for 4K */
   .space-y-8 > * + * { margin-top: 5rem; }
   .space-y-6 > * + * { margin-top: 4rem; }
@@ -330,20 +304,20 @@ img {
     padding-right: 6rem;
     max-width: 3840px;
   }
-
+  
   /* Typography scaling for 8K */
   h1 { font-size: 9rem; line-height: 0.95; }
   h2 { font-size: 7rem; line-height: 1.05; }
   h3 { font-size: 5.5rem; line-height: 1.15; }
   h4 { font-size: 4.5rem; line-height: 1.2; }
   p { font-size: 2.25rem; line-height: 1.9; }
-
+  
   /* Section spacing for 8K */
   section { padding: 12rem 0; }
   .py-12 { padding: 16rem 0; }
   .py-16 { padding: 18rem 0; }
   .py-24 { padding: 20rem 0; }
-
+  
   /* Button scaling for 8K */
   button, .btn {
     padding: 2rem 4rem;
@@ -351,17 +325,17 @@ img {
     border-radius: 1.25rem;
     min-height: 80px;
   }
-
+  
   /* Grid layouts for 8K */
   .lg\:grid-cols-2 { grid-template-columns: repeat(4, 1fr); gap: 6rem; }
   .lg\:grid-cols-3 { grid-template-columns: repeat(6, 1fr); gap: 6rem; }
   .lg\:grid-cols-4 { grid-template-columns: repeat(8, 1fr); gap: 6rem; }
-
+  
   /* Ultra enhanced spacing for 8K */
   .space-y-8 > * + * { margin-top: 6rem; }
   .space-y-6 > * + * { margin-top: 5rem; }
   .space-y-4 > * + * { margin-top: 4rem; }
-
+  
   /* Image and media scaling */
   img, video {
     image-rendering: -webkit-optimize-contrast;
@@ -376,20 +350,20 @@ img {
     padding-right: 0.5rem;
     max-width: 100%;
   }
-
+  
   /* Ultra-compact typography */
   h1 { font-size: 1.5rem !important; line-height: 1.1 !important; }
   h2 { font-size: 1.25rem !important; line-height: 1.2 !important; }
   h3 { font-size: 1rem !important; line-height: 1.3 !important; }
   h4 { font-size: 0.875rem !important; line-height: 1.4 !important; }
   p { font-size: 0.75rem !important; line-height: 1.5 !important; }
-
+  
   /* Minimal spacing */
   section { padding: 1rem 0 !important; }
   .py-12 { padding: 1rem 0 !important; }
   .py-16 { padding: 1.25rem 0 !important; }
   .py-24 { padding: 1.5rem 0 !important; }
-
+  
   /* Ultra-compact buttons */
   button, .btn {
     padding: 0.5rem 1rem !important;
@@ -397,14 +371,14 @@ img {
     min-height: 36px;
     border-radius: 0.25rem !important;
   }
-
+  
   /* Single column layout */
   .grid-cols-2, .sm\:grid-cols-2, .md\:grid-cols-2, .lg\:grid-cols-2,
   .lg\:grid-cols-3, .lg\:grid-cols-4 {
     grid-template-columns: 1fr !important;
     gap: 0.5rem !important;
   }
-
+  
   /* Minimal spacing */
   .space-y-8 > * + * { margin-top: 0.75rem !important; }
   .space-y-6 > * + * { margin-top: 0.5rem !important; }
@@ -418,25 +392,25 @@ img {
     padding-right: 1rem;
     max-width: 100%;
   }
-
+  
   h1 { 
     font-size: 2rem !important; 
     line-height: 1.1 !important; 
   }
-
+  
   /* Hero section specific for folded state */
   .hero-title { 
     font-size: 2.25rem !important; 
   }
-
+  
   .hero-subtitle { 
     font-size: 1rem !important; 
   }
-
+  
   /* Compact spacing for narrow folded screen */
   section { padding: 2rem 0 !important; }
   .py-12 { padding: 2rem 0 !important; }
-
+  
   /* Button optimization for narrow screen */
   button, .btn {
     padding: 0.75rem 1.5rem !important;
@@ -452,25 +426,25 @@ img {
     padding-right: 3rem;
     max-width: 1768px;
   }
-
+  
   h1 { 
     font-size: 6rem !important; 
     line-height: 1.05 !important; 
   }
-
+  
   /* Hero section specific for unfolded state */
   .hero-title { 
     font-size: 6.5rem !important; 
   }
-
+  
   .hero-subtitle { 
     font-size: 2rem !important; 
   }
-
+  
   /* Enhanced spacing for large unfolded screen */
   section { padding: 6rem 0 !important; }
   .py-12 { padding: 6rem 0 !important; }
-
+  
   /* Grid optimization for wide screen */
   .lg\:grid-cols-2 { grid-template-columns: repeat(3, 1fr); gap: 3rem; }
   .lg\:grid-cols-3 { grid-template-columns: repeat(4, 1fr); gap: 3rem; }
@@ -484,25 +458,32 @@ img {
     padding-right: 1.25rem;
     max-width: 100%;
   }
-
+  
   h1 { 
     font-size: 2.5rem !important; 
     line-height: 1.1 !important; 
   }
-
+  
   /* Hero section specific for Galaxy S8+ */
   .hero-title { 
     font-size: 3rem !important; 
   }
-
+  
   .hero-subtitle { 
     font-size: 1.25rem !important; 
   }
-
+  
+  /* Header visibility optimization for Galaxy S8+ */
+  header {
+    backdrop-filter: blur(16px) !important;
+    -webkit-backdrop-filter: blur(16px) !important;
+    border-bottom: 1px solid rgba(241, 90, 41, 0.1);
+  }
+  
   /* Optimized spacing for Galaxy S8+ tall screen */
   section { padding: 2.5rem 0 !important; }
   .py-12 { padding: 2.5rem 0 !important; }
-
+  
   /* Touch-friendly elements for Galaxy S8+ */
   button, .btn {
     padding: 0.875rem 1.75rem !important;
@@ -510,11 +491,11 @@ img {
     min-height: 48px;
     border-radius: 0.5rem !important;
   }
-
+  
   /* Grid behavior for Galaxy S8+ */
   .lg\:grid-cols-4 { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
   .lg\:grid-cols-3 { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
-
+  
   /* Enhanced spacing for tall screen */
   .space-y-8 > * + * { margin-top: 2.5rem !important; }
   .space-y-6 > * + * { margin-top: 2rem !important; }
@@ -715,7 +696,7 @@ img {
   @apply shadow-xl shadow-maverick-amber/20;
 }
 
-.pricing-card.Applying responsive optimizations to the CSS to address header issues on small devices.border-maverick-light-orange:hover {
+.pricing-card.border-maverick-light-orange:hover {
   @apply shadow-xl shadow-maverick-light-orange/20;
 }
 
