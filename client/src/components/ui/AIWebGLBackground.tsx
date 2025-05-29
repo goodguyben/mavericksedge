@@ -1,30 +1,27 @@
 
 import React, { useRef, useEffect, useState } from 'react';
 
-interface FluidParticle {
+interface Node {
   x: number;
   y: number;
   vx: number;
   vy: number;
   radius: number;
-  targetRadius: number;
-  hue: number;
-  saturation: number;
-  lightness: number;
-  alpha: number;
   energy: number;
-  life: number;
-  maxLife: number;
+  hue: number;
+  connections: number[];
+  pulsePhase: number;
+  activated: boolean;
+  activationTime: number;
 }
 
-interface RippleEffect {
-  x: number;
-  y: number;
-  radius: number;
-  maxRadius: number;
-  alpha: number;
+interface DataPacket {
+  fromNode: number;
+  toNode: number;
+  progress: number;
+  speed: number;
   hue: number;
-  life: number;
+  size: number;
 }
 
 interface AIWebGLBackgroundProps {
@@ -34,9 +31,9 @@ interface AIWebGLBackgroundProps {
 export default function AIWebGLBackground({ className = '' }: AIWebGLBackgroundProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const animationRef = useRef<number>();
-  const particlesRef = useRef<FluidParticle[]>([]);
-  const ripplesRef = useRef<RippleEffect[]>([]);
-  const mouseRef = useRef({ x: 0, y: 0, isPressed: false });
+  const nodesRef = useRef<Node[]>([]);
+  const packetsRef = useRef<DataPacket[]>([]);
+  const mouseRef = useRef({ x: 0, y: 0, isPressed: false, lastClick: 0 });
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
@@ -59,34 +56,49 @@ export default function AIWebGLBackground({ className = '' }: AIWebGLBackgroundP
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas);
 
-    // Initialize particles
-    const initParticles = () => {
-      const particles: FluidParticle[] = [];
-      const numParticles = Math.min(80, Math.floor((canvas.width * canvas.height) / 20000));
+    // Initialize neural network nodes
+    const initNodes = () => {
+      const nodes: Node[] = [];
+      const canvasWidth = canvas.width / window.devicePixelRatio;
+      const canvasHeight = canvas.height / window.devicePixelRatio;
+      const numNodes = Math.min(60, Math.floor((canvasWidth * canvasHeight) / 15000));
       
-      for (let i = 0; i < numParticles; i++) {
-        const life = 200 + Math.random() * 300;
-        particles.push({
-          x: Math.random() * canvas.width / window.devicePixelRatio,
-          y: Math.random() * canvas.height / window.devicePixelRatio,
-          vx: (Math.random() - 0.5) * 0.8,
-          vy: (Math.random() - 0.5) * 0.8,
-          radius: 15 + Math.random() * 25,
-          targetRadius: 15 + Math.random() * 25,
-          hue: 200 + Math.random() * 160, // Blue to purple range
-          saturation: 60 + Math.random() * 40,
-          lightness: 40 + Math.random() * 30,
-          alpha: 0.3 + Math.random() * 0.4,
+      for (let i = 0; i < numNodes; i++) {
+        const node: Node = {
+          x: Math.random() * canvasWidth,
+          y: Math.random() * canvasHeight,
+          vx: (Math.random() - 0.5) * 0.5,
+          vy: (Math.random() - 0.5) * 0.5,
+          radius: 3 + Math.random() * 4,
           energy: Math.random(),
-          life: life,
-          maxLife: life,
-        });
+          hue: 180 + Math.random() * 100, // Cyan to purple range for AI theme
+          connections: [],
+          pulsePhase: Math.random() * Math.PI * 2,
+          activated: false,
+          activationTime: 0,
+        };
+        nodes.push(node);
       }
-      
-      particlesRef.current = particles;
+
+      // Create connections between nearby nodes
+      nodes.forEach((node, i) => {
+        nodes.forEach((otherNode, j) => {
+          if (i !== j && node.connections.length < 4) {
+            const dx = node.x - otherNode.x;
+            const dy = node.y - otherNode.y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+            
+            if (distance < 120 && Math.random() > 0.7) {
+              node.connections.push(j);
+            }
+          }
+        });
+      });
+
+      nodesRef.current = nodes;
     };
 
-    initParticles();
+    initNodes();
 
     // Mouse tracking
     const handleMouseMove = (e: MouseEvent) => {
@@ -97,20 +109,45 @@ export default function AIWebGLBackground({ className = '' }: AIWebGLBackgroundP
 
     const handleMouseDown = (e: MouseEvent) => {
       mouseRef.current.isPressed = true;
-      const rect = canvas.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
+      mouseRef.current.lastClick = Date.now();
       
-      // Create ripple effect
-      ripplesRef.current.push({
-        x: x,
-        y: y,
-        radius: 0,
-        maxRadius: 150 + Math.random() * 100,
-        alpha: 0.8,
-        hue: 200 + Math.random() * 160,
-        life: 0
+      const rect = canvas.getBoundingClientRect();
+      const mouseX = e.clientX - rect.left;
+      const mouseY = e.clientY - rect.top;
+      
+      // Find nearest node and activate it
+      const nodes = nodesRef.current;
+      let nearestNode = -1;
+      let nearestDistance = Infinity;
+      
+      nodes.forEach((node, i) => {
+        const dx = mouseX - node.x;
+        const dy = mouseY - node.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+        
+        if (distance < nearestDistance && distance < 100) {
+          nearestDistance = distance;
+          nearestNode = i;
+        }
       });
+      
+      if (nearestNode !== -1) {
+        // Activate node and send data packets
+        nodes[nearestNode].activated = true;
+        nodes[nearestNode].activationTime = Date.now();
+        
+        // Create data packets to connected nodes
+        nodes[nearestNode].connections.forEach(connectionIndex => {
+          packetsRef.current.push({
+            fromNode: nearestNode,
+            toNode: connectionIndex,
+            progress: 0,
+            speed: 0.8 + Math.random() * 1.2,
+            hue: 60 + Math.random() * 60, // Yellow to orange for data flow
+            size: 2 + Math.random() * 3,
+          });
+        });
+      }
     };
 
     const handleMouseUp = () => {
@@ -123,191 +160,235 @@ export default function AIWebGLBackground({ className = '' }: AIWebGLBackgroundP
 
     // Animation loop
     const animate = () => {
-      // Clear with fade effect
-      ctx.fillStyle = 'rgba(13, 13, 13, 0.02)';
-      ctx.fillRect(0, 0, canvas.width / window.devicePixelRatio, canvas.height / window.devicePixelRatio);
-
-      const particles = particlesRef.current;
-      const ripples = ripplesRef.current;
-      const mouse = mouseRef.current;
       const canvasWidth = canvas.width / window.devicePixelRatio;
       const canvasHeight = canvas.height / window.devicePixelRatio;
       const time = Date.now() * 0.001;
+      const mouse = mouseRef.current;
+      const nodes = nodesRef.current;
+      const packets = packetsRef.current;
 
-      // Update and draw ripples
-      for (let i = ripples.length - 1; i >= 0; i--) {
-        const ripple = ripples[i];
-        ripple.life += 1;
-        ripple.radius = (ripple.life / 60) * ripple.maxRadius;
-        ripple.alpha = Math.max(0, 0.8 - (ripple.life / 60));
+      // Clear with fade effect
+      ctx.fillStyle = 'rgba(8, 8, 12, 0.03)';
+      ctx.fillRect(0, 0, canvasWidth, canvasHeight);
 
-        if (ripple.alpha <= 0) {
-          ripples.splice(i, 1);
-          continue;
-        }
-
-        // Draw ripple
-        ctx.strokeStyle = `hsla(${ripple.hue}, 70%, 60%, ${ripple.alpha})`;
-        ctx.lineWidth = 3;
-        ctx.beginPath();
-        ctx.arc(ripple.x, ripple.y, ripple.radius, 0, Math.PI * 2);
-        ctx.stroke();
-
-        // Inner ripple
-        ctx.strokeStyle = `hsla(${ripple.hue + 30}, 80%, 70%, ${ripple.alpha * 0.5})`;
-        ctx.lineWidth = 1;
-        ctx.beginPath();
-        ctx.arc(ripple.x, ripple.y, ripple.radius * 0.7, 0, Math.PI * 2);
-        ctx.stroke();
-      }
-
-      // Update particles
-      particles.forEach((particle, i) => {
+      // Update nodes
+      nodes.forEach((node, i) => {
         // Mouse interaction
-        const dx = mouse.x - particle.x;
-        const dy = mouse.y - particle.y;
+        const dx = mouse.x - node.x;
+        const dy = mouse.y - node.y;
         const distance = Math.sqrt(dx * dx + dy * dy);
-        const maxDistance = 120;
+        const maxDistance = 150;
 
         if (distance < maxDistance) {
           const force = (maxDistance - distance) / maxDistance;
           const angle = Math.atan2(dy, dx);
           
-          // Smooth attraction/repulsion
-          const attraction = mouse.isPressed ? -force * 0.3 : force * 0.1;
-          particle.vx += Math.cos(angle) * attraction;
-          particle.vy += Math.sin(angle) * attraction;
+          // Attraction/repulsion based on mouse state
+          const attraction = mouse.isPressed ? force * 0.8 : -force * 0.3;
+          node.vx += Math.cos(angle) * attraction * 0.02;
+          node.vy += Math.sin(angle) * attraction * 0.02;
           
-          // Energy boost
-          particle.energy = Math.min(1, particle.energy + force * 0.02);
-          particle.targetRadius = particle.radius + force * 15;
+          // Increase energy when mouse is near
+          node.energy = Math.min(1, node.energy + force * 0.05);
         } else {
-          particle.energy *= 0.995;
-          particle.targetRadius = Math.max(15, particle.targetRadius * 0.98);
+          node.energy *= 0.99;
         }
 
-        // Smooth radius transition
-        particle.radius += (particle.targetRadius - particle.radius) * 0.1;
+        // Update position
+        node.x += node.vx;
+        node.y += node.vy;
 
-        // Update position with smooth movement
-        particle.x += particle.vx;
-        particle.y += particle.vy;
+        // Apply friction
+        node.vx *= 0.98;
+        node.vy *= 0.98;
 
-        // Apply fluid-like friction
-        particle.vx *= 0.985;
-        particle.vy *= 0.985;
+        // Add neural-like oscillation
+        node.vx += Math.sin(time * 0.8 + i * 0.1) * 0.01;
+        node.vy += Math.cos(time * 0.6 + i * 0.15) * 0.01;
 
-        // Add gentle floating motion
-        particle.vx += Math.sin(time * 0.5 + i * 0.1) * 0.02;
-        particle.vy += Math.cos(time * 0.3 + i * 0.15) * 0.02;
+        // Boundary wrapping
+        if (node.x < 0) node.x = canvasWidth;
+        if (node.x > canvasWidth) node.x = 0;
+        if (node.y < 0) node.y = canvasHeight;
+        if (node.y > canvasHeight) node.y = 0;
 
-        // Boundary conditions with smooth wrapping
-        if (particle.x < -particle.radius) particle.x = canvasWidth + particle.radius;
-        if (particle.x > canvasWidth + particle.radius) particle.x = -particle.radius;
-        if (particle.y < -particle.radius) particle.y = canvasHeight + particle.radius;
-        if (particle.y > canvasHeight + particle.radius) particle.y = -particle.radius;
+        // Update pulse phase
+        node.pulsePhase += 0.05 + node.energy * 0.1;
 
-        // Cycle life for color animation
-        particle.life = (particle.life + 1) % particle.maxLife;
-        const lifeRatio = particle.life / particle.maxLife;
-        particle.hue = 200 + Math.sin(lifeRatio * Math.PI * 2) * 50;
-        particle.lightness = 40 + Math.sin(lifeRatio * Math.PI * 2 + Math.PI) * 20;
+        // Deactivate nodes after time
+        if (node.activated && Date.now() - node.activationTime > 2000) {
+          node.activated = false;
+        }
       });
 
-      // Draw connections with fluid-like behavior
-      particles.forEach((particle, i) => {
-        for (let j = i + 1; j < particles.length; j++) {
-          const other = particles[j];
-          const dx = particle.x - other.x;
-          const dy = particle.y - other.y;
-          const distance = Math.sqrt(dx * dx + dy * dy);
+      // Update data packets
+      for (let i = packets.length - 1; i >= 0; i--) {
+        const packet = packets[i];
+        packet.progress += packet.speed * 0.01;
+
+        if (packet.progress >= 1) {
+          // Activate destination node
+          const destNode = nodes[packet.toNode];
+          if (destNode) {
+            destNode.activated = true;
+            destNode.activationTime = Date.now();
+            destNode.energy = Math.min(1, destNode.energy + 0.3);
+          }
+          packets.splice(i, 1);
+        }
+      }
+
+      // Draw connections
+      nodes.forEach((node, i) => {
+        node.connections.forEach(connectionIndex => {
+          const connectedNode = nodes[connectionIndex];
+          if (!connectedNode) return;
+
+          const distance = Math.sqrt(
+            (node.x - connectedNode.x) ** 2 + (node.y - connectedNode.y) ** 2
+          );
+
+          // Connection strength based on node energy and distance
+          const strength = Math.max(0.1, (node.energy + connectedNode.energy) / 2) * 
+                          Math.max(0.3, 1 - distance / 200);
+
+          // Draw connection line
+          const gradient = ctx.createLinearGradient(
+            node.x, node.y, connectedNode.x, connectedNode.y
+          );
           
-          if (distance < 120) {
-            const opacity = Math.max(0, (120 - distance) / 120);
-            const energy = (particle.energy + other.energy) / 2;
-            
-            // Create gradient for connections
-            const gradient = ctx.createLinearGradient(particle.x, particle.y, other.x, other.y);
-            gradient.addColorStop(0, `hsla(${particle.hue}, ${particle.saturation}%, ${particle.lightness}%, ${opacity * energy * 0.4})`);
-            gradient.addColorStop(1, `hsla(${other.hue}, ${other.saturation}%, ${other.lightness}%, ${opacity * energy * 0.4})`);
-            
-            ctx.strokeStyle = gradient;
-            ctx.lineWidth = Math.max(0.5, energy * 2);
-            
-            // Add glow effect
-            ctx.shadowColor = `hsl(${(particle.hue + other.hue) / 2}, 70%, 60%)`;
-            ctx.shadowBlur = energy * 8;
-            
-            ctx.beginPath();
-            ctx.moveTo(particle.x, particle.y);
-            ctx.lineTo(other.x, other.y);
+          const alpha = strength * 0.6;
+          gradient.addColorStop(0, `hsla(${node.hue}, 70%, 60%, ${alpha})`);
+          gradient.addColorStop(1, `hsla(${connectedNode.hue}, 70%, 60%, ${alpha})`);
+
+          ctx.strokeStyle = gradient;
+          ctx.lineWidth = Math.max(0.5, strength * 2);
+          ctx.beginPath();
+          ctx.moveTo(node.x, node.y);
+          ctx.lineTo(connectedNode.x, connectedNode.y);
+          ctx.stroke();
+
+          // Add glow effect for active connections
+          if (node.activated || connectedNode.activated) {
+            ctx.shadowColor = `hsl(${(node.hue + connectedNode.hue) / 2}, 80%, 70%)`;
+            ctx.shadowBlur = 8;
             ctx.stroke();
-            
             ctx.shadowBlur = 0;
           }
-        }
+        });
       });
 
-      // Draw particles with fluid morphing
-      particles.forEach((particle) => {
-        const energyBoost = particle.energy;
-        const size = Math.max(1, particle.radius);
-        
-        // Create radial gradient for each particle
-        const gradient = ctx.createRadialGradient(
-          particle.x, particle.y, 0,
-          particle.x, particle.y, size
-        );
-        
-        gradient.addColorStop(0, `hsla(${particle.hue}, ${particle.saturation + 20}%, ${particle.lightness + 20}%, ${particle.alpha + energyBoost * 0.3})`);
-        gradient.addColorStop(0.7, `hsla(${particle.hue}, ${particle.saturation}%, ${particle.lightness}%, ${particle.alpha * 0.7})`);
-        gradient.addColorStop(1, `hsla(${particle.hue}, ${particle.saturation - 10}%, ${particle.lightness - 10}%, 0)`);
-        
-        // Outer glow
-        ctx.shadowColor = `hsl(${particle.hue}, ${particle.saturation}%, ${particle.lightness}%)`;
-        ctx.shadowBlur = energyBoost * 20 + 5;
-        
-        ctx.fillStyle = gradient;
+      // Draw data packets
+      packets.forEach(packet => {
+        const fromNode = nodes[packet.fromNode];
+        const toNode = nodes[packet.toNode];
+        if (!fromNode || !toNode) return;
+
+        const x = fromNode.x + (toNode.x - fromNode.x) * packet.progress;
+        const y = fromNode.y + (toNode.y - fromNode.y) * packet.progress;
+
+        // Packet trail
+        ctx.strokeStyle = `hsla(${packet.hue}, 90%, 70%, 0.8)`;
+        ctx.lineWidth = packet.size;
+        ctx.lineCap = 'round';
         ctx.beginPath();
-        ctx.arc(particle.x, particle.y, size, 0, Math.PI * 2);
-        ctx.fill();
         
-        // Inner core with different shape variation
+        const prevProgress = Math.max(0, packet.progress - 0.1);
+        const prevX = fromNode.x + (toNode.x - fromNode.x) * prevProgress;
+        const prevY = fromNode.y + (toNode.y - fromNode.y) * prevProgress;
+        
+        ctx.moveTo(prevX, prevY);
+        ctx.lineTo(x, y);
+        ctx.stroke();
+
+        // Packet glow
+        ctx.shadowColor = `hsl(${packet.hue}, 90%, 70%)`;
+        ctx.shadowBlur = packet.size * 3;
+        ctx.fillStyle = `hsla(${packet.hue}, 90%, 80%, 0.9)`;
+        ctx.beginPath();
+        ctx.arc(x, y, packet.size, 0, Math.PI * 2);
+        ctx.fill();
         ctx.shadowBlur = 0;
-        const coreSize = size * 0.3;
-        const coreGradient = ctx.createRadialGradient(
-          particle.x, particle.y, 0,
-          particle.x, particle.y, coreSize
+      });
+
+      // Draw nodes
+      nodes.forEach((node, i) => {
+        const pulseIntensity = Math.sin(node.pulsePhase) * 0.3 + 0.7;
+        const energyBoost = node.energy * 0.5;
+        const activationBoost = node.activated ? 0.8 : 0;
+        
+        const totalRadius = Math.max(1, node.radius + energyBoost * 3 + activationBoost * 5);
+        const opacity = 0.6 + energyBoost * 0.3 + activationBoost * 0.4;
+
+        // Node glow
+        if (node.activated || node.energy > 0.3) {
+          const glowRadius = totalRadius * (2 + activationBoost * 2);
+          const glowGradient = ctx.createRadialGradient(
+            node.x, node.y, 0,
+            node.x, node.y, glowRadius
+          );
+          
+          glowGradient.addColorStop(0, `hsla(${node.hue}, 80%, 70%, ${opacity * 0.4})`);
+          glowGradient.addColorStop(1, `hsla(${node.hue}, 80%, 70%, 0)`);
+          
+          ctx.fillStyle = glowGradient;
+          ctx.beginPath();
+          ctx.arc(node.x, node.y, glowRadius, 0, Math.PI * 2);
+          ctx.fill();
+        }
+
+        // Main node
+        const nodeGradient = ctx.createRadialGradient(
+          node.x, node.y, 0,
+          node.x, node.y, totalRadius
         );
         
-        coreGradient.addColorStop(0, `hsla(${particle.hue + 40}, 90%, 80%, ${0.8 + energyBoost * 0.2})`);
-        coreGradient.addColorStop(1, `hsla(${particle.hue + 40}, 90%, 80%, 0)`);
-        
-        ctx.fillStyle = coreGradient;
+        const brightness = 50 + energyBoost * 30 + activationBoost * 40;
+        nodeGradient.addColorStop(0, `hsla(${node.hue}, 90%, ${brightness + 20}%, ${opacity})`);
+        nodeGradient.addColorStop(0.7, `hsla(${node.hue}, 80%, ${brightness}%, ${opacity * 0.8})`);
+        nodeGradient.addColorStop(1, `hsla(${node.hue}, 70%, ${brightness - 10}%, 0)`);
+
+        ctx.fillStyle = nodeGradient;
         ctx.beginPath();
-        ctx.arc(particle.x, particle.y, coreSize, 0, Math.PI * 2);
+        ctx.arc(node.x, node.y, totalRadius, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Core highlight
+        const coreSize = Math.max(0.5, totalRadius * 0.3);
+        ctx.fillStyle = `hsla(${node.hue + 30}, 100%, 90%, ${opacity * pulseIntensity})`;
+        ctx.beginPath();
+        ctx.arc(node.x, node.y, coreSize, 0, Math.PI * 2);
         ctx.fill();
       });
 
-      // Add ambient flowing effects
-      for (let i = 0; i < 3; i++) {
-        const waveX = (Math.sin(time * 0.2 + i * 2) * 0.5 + 0.5) * canvasWidth;
-        const waveY = (Math.cos(time * 0.15 + i * 1.5) * 0.5 + 0.5) * canvasHeight;
-        
-        const waveGradient = ctx.createRadialGradient(waveX, waveY, 0, waveX, waveY, 80);
-        waveGradient.addColorStop(0, `hsla(${(time * 30 + i * 120) % 360}, 60%, 50%, 0.05)`);
-        waveGradient.addColorStop(1, `hsla(${(time * 30 + i * 120) % 360}, 60%, 50%, 0)`);
-        
-        ctx.fillStyle = waveGradient;
-        ctx.beginPath();
-        ctx.arc(waveX, waveY, 80, 0, Math.PI * 2);
-        ctx.fill();
+      // Add ambient AI-themed effects
+      const gridSize = 100;
+      ctx.strokeStyle = `hsla(200, 50%, 30%, 0.1)`;
+      ctx.lineWidth = 0.5;
+      
+      // Subtle grid pattern
+      for (let x = 0; x < canvasWidth; x += gridSize) {
+        if (Math.sin(time * 0.2 + x * 0.01) > 0.8) {
+          ctx.beginPath();
+          ctx.moveTo(x, 0);
+          ctx.lineTo(x, canvasHeight);
+          ctx.stroke();
+        }
+      }
+      
+      for (let y = 0; y < canvasHeight; y += gridSize) {
+        if (Math.cos(time * 0.15 + y * 0.01) > 0.8) {
+          ctx.beginPath();
+          ctx.moveTo(0, y);
+          ctx.lineTo(canvasWidth, y);
+          ctx.stroke();
+        }
       }
 
       animationRef.current = requestAnimationFrame(animate);
     };
 
-    // Start animation after a brief delay
+    // Start animation
     setTimeout(() => {
       setIsLoaded(true);
       animate();
@@ -331,7 +412,7 @@ export default function AIWebGLBackground({ className = '' }: AIWebGLBackgroundP
         isLoaded ? 'opacity-100' : 'opacity-0'
       } ${className}`}
       style={{
-        background: 'radial-gradient(ellipse at center, #1A1A1A 0%, #0D0D0D 70%, #000000 100%)',
+        background: 'radial-gradient(ellipse at center, #0f1419 0%, #080c10 70%, #050608 100%)',
         cursor: 'crosshair',
       }}
     />
