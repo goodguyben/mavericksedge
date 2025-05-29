@@ -311,17 +311,22 @@ export default function ServiceCascadeSection() {
                       <div className="relative w-full h-full rounded-2xl overflow-hidden group">
                         <picture>
                           <source 
-                            srcSet={`${item.image}?fm=avif&w=800&h=600&q=80&auto=format`}
+                            srcSet={`${item.image}?fm=avif&w=800&h=600&q=90&auto=format&fit=crop&crop=entropy`}
                             type="image/avif"
                           />
                           <source 
-                            srcSet={`${item.image}?fm=webp&w=800&h=600&q=80&auto=format`}
+                            srcSet={`${item.image}?fm=webp&w=800&h=600&q=90&auto=format&fit=crop&crop=entropy`}
                             type="image/webp"
                           />
                           <img
-                            src={`${item.image}?w=800&h=600&q=80&auto=format`}
+                            src={`${item.image}?w=800&h=600&q=90&auto=format&fit=crop&crop=entropy`}
                             alt={item.title}
-                            className="w-full h-full object-cover"
+                            className="w-full h-full object-cover transition-all duration-700 ease-out"
+                            style={{
+                              filter: index === activeIndex 
+                                ? 'brightness(1.1) contrast(1.05) saturate(1.1)' 
+                                : 'brightness(0.9) contrast(0.95) saturate(0.8)',
+                            }}
                             loading={index === activeIndex ? "eager" : "lazy"}
                             decoding="async"
                             width="800"
@@ -329,23 +334,57 @@ export default function ServiceCascadeSection() {
                           />
                         </picture>
 
-                        {/* Active card gradient overlay */}
+                        {/* Enhanced gradient overlay with depth */}
                         {index === activeIndex && (
                           <motion.div
-                            className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"
+                            className="absolute inset-0"
+                            style={{
+                              background: `linear-gradient(135deg, 
+                                rgba(255, 86, 48, 0.1) 0%, 
+                                transparent 30%, 
+                                transparent 70%, 
+                                rgba(0, 0, 0, 0.3) 100%)`
+                            }}
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
-                            transition={{ duration: 0.5 }}
+                            transition={{ duration: 0.6 }}
                           />
                         )}
 
-                        {/* Decorative border for active card */}
+                        {/* Enhanced decorative border with glow effect */}
                         {index === activeIndex && (
+                          <>
+                            <motion.div
+                              className="absolute inset-0 border-2 border-maverick-orange/40 rounded-2xl"
+                              initial={{ opacity: 0, scale: 0.95 }}
+                              animate={{ opacity: 1, scale: 1 }}
+                              transition={{ duration: 0.6, delay: 0.2 }}
+                            />
+                            <motion.div
+                              className="absolute inset-0 rounded-2xl"
+                              style={{
+                                boxShadow: `0 0 30px rgba(255, 86, 48, 0.3), 
+                                           inset 0 0 20px rgba(255, 215, 75, 0.1)`
+                              }}
+                              initial={{ opacity: 0 }}
+                              animate={{ opacity: 1 }}
+                              transition={{ duration: 0.8, delay: 0.3 }}
+                            />
+                          </>
+                        )}
+
+                        {/* Subtle shimmer effect for non-active cards */}
+                        {index !== activeIndex && Math.abs(index - activeIndex) <= 2 && (
                           <motion.div
-                            className="absolute inset-0 border-2 border-maverick-orange/30 rounded-2xl"
-                            initial={{ opacity: 0, scale: 0.95 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            transition={{ duration: 0.6, delay: 0.2 }}
+                            className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent"
+                            style={{ transform: 'translateX(-100%)' }}
+                            animate={{ transform: 'translateX(100%)' }}
+                            transition={{
+                              duration: 2,
+                              repeat: Infinity,
+                              repeatDelay: 3,
+                              ease: "easeInOut"
+                            }}
                           />
                         )}
                       </div>

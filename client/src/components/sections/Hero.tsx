@@ -28,8 +28,31 @@ export default function Hero() {
     <section className="relative min-h-screen flex items-center overflow-hidden pt-16 sm:pt-20 md:pt-32">
       {/* WebGL AI Background */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-20">
-        {/* Interactive WebGL Background with built-in text readability enhancement */}
-        <AIWebGLBackground className="backdrop-blur-[0.5px]" />
+        {/* Interactive WebGL Background with enhanced visual effects */}
+        <AIWebGLBackground 
+          className="backdrop-blur-[0.5px]" 
+          neuronCount={{
+            input: 12,
+            processing: 18,
+            reasoning: 15,
+            output: 10
+          }}
+          showGrid={true}
+          showLabels={true}
+          showParticles={true}
+        />
+        {/* Additional atmospheric overlay for depth */}
+        <div 
+          className="absolute inset-0 opacity-30"
+          style={{
+            background: `radial-gradient(circle at 30% 20%, 
+              rgba(255, 215, 75, 0.1) 0%, 
+              transparent 50%), 
+            radial-gradient(circle at 70% 80%, 
+              rgba(255, 134, 80, 0.08) 0%, 
+              transparent 50%)`
+          }}
+        />
       </div>
       <div className="container mx-auto px-3 xs:px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 2xl:px-16 z-30 flex justify-center items-center w-full pointer-events-none">
         <motion.div

@@ -153,54 +153,65 @@ export default function AIWebGLBackground({
     currentLLM: 'hybrid' as 'chatgpt' | 'gemini' | 'grok' | 'claude' | 'hybrid'
   });
 
-  // Enhanced LLM-inspired color palette
+  // Enhanced brand-aligned color palette with improved gradients
   const colors = {
     llm: {
       chatgpt: { 
-        primary: '#10A37F', 
-        secondary: '#1A7F64', 
-        glow: '#00D4AA',
-        accent: '#74AA9C'
-      },
-      gemini: { 
-        primary: '#4285F4', 
-        secondary: '#1A73E8', 
-        glow: '#5BB3FF',
-        accent: '#9FCDFF'
-      },
-      grok: { 
-        primary: '#1DA1F2', 
-        secondary: '#0F7A9F', 
-        glow: '#50D4FF',
-        accent: '#87E7FF'
-      },
-      claude: { 
-        primary: '#FF6B35', 
+        primary: '#FF5630', 
         secondary: '#E55A2B', 
         glow: '#FF8A5C',
-        accent: '#FFB899'
+        accent: '#FFB899',
+        gradient: ['#FF5630', '#FF8A50', '#FFB899']
+      },
+      gemini: { 
+        primary: '#FFD74B', 
+        secondary: '#FFC43D', 
+        glow: '#FFE066',
+        accent: '#FFF2B3',
+        gradient: ['#FFD74B', '#FFE066', '#FFF2B3']
+      },
+      grok: { 
+        primary: '#AE6A4D', 
+        secondary: '#9A5D43', 
+        glow: '#C4876A',
+        accent: '#D4A487',
+        gradient: ['#AE6A4D', '#C4876A', '#D4A487']
+      },
+      claude: { 
+        primary: '#FF8A50', 
+        secondary: '#FF7036', 
+        glow: '#FFA470',
+        accent: '#FFBF99',
+        gradient: ['#FF8A50', '#FFA470', '#FFBF99']
       },
       hybrid: {
-        primary: '#9D4EDD',
-        secondary: '#7B2CBF',
-        glow: '#C77DFF',
-        accent: '#E0AAFF'
+        primary: '#FF5630',
+        secondary: '#AE6A4D',
+        glow: '#FFD74B',
+        accent: '#FFC43D',
+        gradient: ['#FF5630', '#FFD74B', '#FFC43D']
       }
     },
     neural: {
-      input: { base: '#00FF80', glow: '#40E0D0', trail: '#00CED1' },
-      processing: { base: '#40E0FF', glow: '#00BFFF', trail: '#1E90FF' },
-      reasoning: { base: '#9D4EDD', glow: '#C77DFF', trail: '#E0AAFF' },
-      output: { base: '#FF8040', glow: '#FF6347', trail: '#FF4500' }
+      input: { base: '#FFD74B', glow: '#FFC43D', trail: '#FFE066', shadow: '#FFB300' },
+      processing: { base: '#FF8A50', glow: '#FF7036', trail: '#FFA470', shadow: '#FF5500' },
+      reasoning: { base: '#AE6A4D', glow: '#C4876A', trail: '#D4A487', shadow: '#8B5A3C' },
+      output: { base: '#FF5630', glow: '#E55A2B', trail: '#FF8A5C', shadow: '#CC4400' }
     },
-    connection: '#40E0FF',
+    connection: '#FF8A50',
     background: { 
       start: '#0A0A0F', 
-      mid: '#0F0F1A', 
+      mid: '#1E1A18', 
       end: '#0A0A0F',
-      darkOverlay: 'rgba(0, 0, 0, 0.7)'
+      darkOverlay: 'rgba(30, 26, 24, 0.85)',
+      accent: '#2A201E'
     },
-    particle: '#00FFFF'
+    particle: '#FFD74B',
+    ambient: {
+      warm: '#332922',
+      cool: '#1A1F2E',
+      neutral: '#262626'
+    }
   };
 
   const createFluidParticles = useCallback((x: number, y: number, z: number = 0, count: number = 3, type: Particle['type'] = 'token', llmType: Particle['llmType'] = 'neutral') => {
@@ -433,15 +444,15 @@ export default function AIWebGLBackground({
         y: touch.clientY - rect.top,
         id: touch.identifier
       }));
-      
+
       mouseRef.current.touches = touches;
-      
+
       if (touches.length > 0) {
         const touch = touches[0];
         mouseRef.current.x = touch.x;
         mouseRef.current.y = touch.y;
         mouseRef.current.isActive = true;
-        
+
         // Trigger click-like behavior for touch
         handleInteraction(touch.x, touch.y, true);
       }
@@ -455,9 +466,9 @@ export default function AIWebGLBackground({
         y: touch.clientY - rect.top,
         id: touch.identifier
       }));
-      
+
       mouseRef.current.touches = touches;
-      
+
       if (touches.length > 0) {
         const touch = touches[0];
         handleInteraction(touch.x, touch.y, false);
@@ -502,7 +513,7 @@ export default function AIWebGLBackground({
       neuronsRef.current.forEach((neuron, index) => {
         const distance = Math.sqrt((neuron.x - newX) ** 2 + (neuron.y - newY) ** 2);
         const interactionRadius = isClick ? 200 : 150;
-        
+
         if (distance < interactionRadius) {
           const influence = Math.pow((interactionRadius - distance) / interactionRadius, 1.5);
 
@@ -520,7 +531,7 @@ export default function AIWebGLBackground({
       llmNodesRef.current.forEach(llmNode => {
         const distance = Math.sqrt((llmNode.x - newX) ** 2 + (llmNode.y - newY) ** 2);
         const interactionRadius = isClick ? 150 : 120;
-        
+
         if (distance < interactionRadius) {
           const influence = (interactionRadius - distance) / interactionRadius;
           llmNode.activity = Math.min(1, llmNode.activity + influence * (isClick ? 0.02 : 0.015));
@@ -634,7 +645,7 @@ export default function AIWebGLBackground({
     canvas.addEventListener('mousemove', handleMouseMove, { passive: true });
     canvas.addEventListener('mouseleave', handleMouseLeave);
     canvas.addEventListener('click', handleClick);
-    
+
     // Touch event listeners
     canvas.addEventListener('touchstart', handleTouchStart, { passive: false });
     canvas.addEventListener('touchmove', handleTouchMove, { passive: false });
@@ -936,7 +947,7 @@ export default function AIWebGLBackground({
           for (let i = 0; i < glowLayers; i++) {
             const glowSize = size * (2.5 - i * 0.5);
             const glowAlpha = (llm.activity * 0.8) / (i + 1);
-            
+
             ctx.shadowColor = colorConfig.glow;
             ctx.shadowBlur = 20 * llm.activity;
             ctx.fillStyle = `${colorConfig.glow}${Math.floor(glowAlpha * 60).toString(16).padStart(2, '0')}`;
@@ -973,7 +984,7 @@ export default function AIWebGLBackground({
         ctx.save();
         ctx.shadowColor = 'rgba(0, 0, 0, 0.5)';
         ctx.shadowBlur = 3;
-        
+
         switch (llm.type) {
           case 'chatgpt':
             // ChatGPT logo with rounded squares
@@ -982,14 +993,14 @@ export default function AIWebGLBackground({
             ctx.beginPath();
             ctx.roundRect(llm.x - squareSize/2, llm.y - squareSize/2, squareSize, squareSize, squareSize * 0.2);
             ctx.fill();
-            
+
             ctx.fillStyle = colorConfig.primary;
             ctx.font = `bold ${size * 0.25}px Arial`;
             ctx.textAlign = 'center';
             ctx.textBaseline = 'middle';
             ctx.fillText('GPT', llm.x, llm.y);
             break;
-            
+
           case 'gemini':
             // Enhanced Gemini constellation pattern
             ctx.fillStyle = 'rgba(255, 255, 255, 0.95)';
@@ -1002,7 +1013,7 @@ export default function AIWebGLBackground({
               { x: llm.x, y: llm.y - size * 0.3 },
               { x: llm.x, y: llm.y + size * 0.1 }
             ];
-            
+
             // Draw stars
             positions.forEach(pos => {
               ctx.beginPath();
@@ -1016,7 +1027,7 @@ export default function AIWebGLBackground({
               ctx.closePath();
               ctx.fill();
             });
-            
+
             // Connect with lines
             ctx.strokeStyle = 'rgba(255, 255, 255, 0.6)';
             ctx.lineWidth = 1.5;
@@ -1028,13 +1039,13 @@ export default function AIWebGLBackground({
             ctx.lineTo(positions[0].x, positions[0].y);
             ctx.stroke();
             break;
-            
+
           case 'grok':
             // Enhanced X logo with cross pattern
             ctx.strokeStyle = 'rgba(255, 255, 255, 0.95)';
             ctx.lineWidth = size * 0.15;
             ctx.lineCap = 'round';
-            
+
             const crossSize = size * 0.4;
             ctx.beginPath();
             ctx.moveTo(llm.x - crossSize, llm.y - crossSize);
@@ -1043,19 +1054,19 @@ export default function AIWebGLBackground({
             ctx.lineTo(llm.x - crossSize, llm.y + crossSize);
             ctx.stroke();
             break;
-            
+
           case 'claude':
             // Enhanced Claude logo with abstract curves
             ctx.strokeStyle = 'rgba(255, 255, 255, 0.95)';
             ctx.lineWidth = size * 0.08;
             ctx.lineCap = 'round';
-            
+
             // Draw flowing curves
             ctx.beginPath();
             ctx.arc(llm.x - size * 0.15, llm.y, size * 0.3, Math.PI * 0.2, Math.PI * 0.8);
             ctx.arc(llm.x + size * 0.15, llm.y, size * 0.3, Math.PI * 1.2, Math.PI * 1.8);
             ctx.stroke();
-            
+
             // Center dot
             ctx.fillStyle = 'rgba(255, 255, 255, 0.95)';
             ctx.beginPath();
@@ -1063,7 +1074,7 @@ export default function AIWebGLBackground({
             ctx.fill();
             break;
         }
-        
+
         ctx.restore();
 
         // Enhanced processing load indicator with multiple rings
@@ -1072,16 +1083,16 @@ export default function AIWebGLBackground({
           for (let ring = 0; ring < rings; ring++) {
             const ringRadius = size * (1.4 + ring * 0.2);
             const ringAlpha = llm.processingLoad * (1 - ring * 0.3);
-            
+
             ctx.strokeStyle = `${colorConfig.accent}${Math.floor(ringAlpha * 255).toString(16).padStart(2, '0')}`;
             ctx.lineWidth = 2 - ring * 0.5;
             ctx.setLineDash([8, 8]);
             ctx.lineDashOffset = -currentTime * 0.01 * (ring + 1);
-            
+
             ctx.beginPath();
             ctx.arc(llm.x, llm.y, ringRadius, 0, Math.PI * 2 * llm.processingLoad);
             ctx.stroke();
-            
+
             ctx.setLineDash([]);
           }
         }
@@ -1092,7 +1103,7 @@ export default function AIWebGLBackground({
             const pulsePhase = (currentTime * 0.003 + i * 0.5) % 1;
             const pulseRadius = size * (1.5 + pulsePhase * 2);
             const pulseAlpha = llm.activity * (1 - pulsePhase) * 0.4;
-            
+
             ctx.strokeStyle = `${colorConfig.glow}${Math.floor(pulseAlpha * 255).toString(16).padStart(2, '0')}`;
             ctx.lineWidth = 1;
             ctx.beginPath();
