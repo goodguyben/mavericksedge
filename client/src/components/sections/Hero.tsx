@@ -3,15 +3,12 @@ import { useEffect, useState, useRef } from "react";
 import { ChevronDown } from "lucide-react";
 import { scrollToSection } from "@/lib/scroll";
 import { Button } from "@/components/ui/custom-button";
-
-// Import video directly using Vite's asset handling
-import backgroundVideo from "../../../assets/3129977-uhd_3840_2160_30fps.mp4";
+import InteractiveBackground from "../InteractiveBackground";
 
 export default function Hero() {
   const [scrolled, setScrolled] = useState(false);
-  const [videoLoaded, setVideoLoaded] = useState(false);
+  const [backgroundLoaded, setBackgroundLoaded] = useState(false);
   const [heroOpacity, setHeroOpacity] = useState(1);
-  const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -28,21 +25,14 @@ export default function Hero() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Handle video loading
+  // Handle background loading
   useEffect(() => {
-    if (videoRef.current) {
-      videoRef.current.addEventListener('loadeddata', () => {
-        setVideoLoaded(true);
-      });
-
-      // Fallback in case video doesn't load in 3 seconds
-      const timeout = setTimeout(() => {
-        if (!videoLoaded) setVideoLoaded(true);
-      }, 3000);
-
-      return () => clearTimeout(timeout);
-    }
-  }, [videoLoaded]);
+    const timer = setTimeout(() => {
+      setBackgroundLoaded(true);
+    }, 500);
+    
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden pt-16 sm:pt-20 md:pt-32">
@@ -51,20 +41,11 @@ export default function Hero() {
         {/* Dark overlay for better text readability */}
         <div className="absolute inset-0 bg-black/50 z-10"></div>
 
-        {/* Video element */}
-        <video 
-          ref={videoRef}
-          autoPlay 
-          muted 
-          loop 
-          playsInline
-          className={`absolute top-0 left-0 min-w-full min-h-full object-cover transition-opacity duration-1000 ${videoLoaded ? 'opacity-100' : 'opacity-0'}`}
-        >
-          <source src={backgroundVideo} type="video/mp4" />
-        </video>
-
-        {/* Fallback gradient background (shows while video loads or if video fails) */}
-        <div className={`absolute inset-0 bg-gradient-to-br from-[#0D0D0D] via-[#1A1A1A] to-[#0D0D0D] bg-gradient-animate animate-gradient-slow z-0 transition-opacity duration-1000 ${videoLoaded ? 'opacity-0' : 'opacity-100'}`}></div>
+        {/* Interactive WebGL Background */}
+        <InteractiveBackground />
+        
+        {/* Fallback gradient background (shows while background loads) */}
+        <div className={`absolute inset-0 bg-gradient-to-br from-[#0D0D0D] via-[#1A1A1A] to-[#0D0D0D] bg-gradient-animate animate-gradient-slow z-0 transition-opacity duration-1000 ${backgroundLoaded ? 'opacity-0' : 'opacity-100'}`}></div>
       </div>
       <div className="container mx-auto px-3 xs:px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 2xl:px-16 z-20 flex justify-center items-center w-full">
         <motion.div
