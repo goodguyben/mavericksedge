@@ -73,8 +73,8 @@ export default function FooterWrapper() {
           <div className="footer-copyright">
             <p>&copy; <span id="currentYear">2025</span> Mavericks Edge. All rights reserved.</p>
             <address className="mt-2 text-sm text-gray-400">
-              123 Digital Way, Tech City, CA 94103<br />
-              <a href="tel:+15551234567" className="hover:text-maverick-orange">+1 (555) 123-4567</a> • 
+              6908 100 Ave NW, Suite B, Edmonton, AB T6A 0G2, Canada<br />
+              <a href="tel:+15551234567" className="hover:text-maverick-orange">+1 (250) 883-8849</a> • 
               <a href="mailto:info@mavericksedge.com" className="hover:text-maverick-orange ml-1">info@mavericksedge.com</a>
             </address>
           </div>
