@@ -153,54 +153,54 @@ export default function AIWebGLBackground({
     currentLLM: 'hybrid' as 'chatgpt' | 'gemini' | 'grok' | 'claude' | 'hybrid'
   });
 
-  // Brand-aligned color palette matching company logo
+  // Enhanced LLM-inspired color palette
   const colors = {
     llm: {
       chatgpt: { 
-        primary: '#FF5630', 
+        primary: '#10A37F', 
+        secondary: '#1A7F64', 
+        glow: '#00D4AA',
+        accent: '#74AA9C'
+      },
+      gemini: { 
+        primary: '#4285F4', 
+        secondary: '#1A73E8', 
+        glow: '#5BB3FF',
+        accent: '#9FCDFF'
+      },
+      grok: { 
+        primary: '#1DA1F2', 
+        secondary: '#0F7A9F', 
+        glow: '#50D4FF',
+        accent: '#87E7FF'
+      },
+      claude: { 
+        primary: '#FF6B35', 
         secondary: '#E55A2B', 
         glow: '#FF8A5C',
         accent: '#FFB899'
       },
-      gemini: { 
-        primary: '#FFD74B', 
-        secondary: '#FFC43D', 
-        glow: '#FFE066',
-        accent: '#FFF2B3'
-      },
-      grok: { 
-        primary: '#AE6A4D', 
-        secondary: '#9A5D43', 
-        glow: '#C4876A',
-        accent: '#D4A487'
-      },
-      claude: { 
-        primary: '#FF8A50', 
-        secondary: '#FF7036', 
-        glow: '#FFA470',
-        accent: '#FFBF99'
-      },
       hybrid: {
-        primary: '#FF5630',
-        secondary: '#AE6A4D',
-        glow: '#FFD74B',
-        accent: '#FFC43D'
+        primary: '#9D4EDD',
+        secondary: '#7B2CBF',
+        glow: '#C77DFF',
+        accent: '#E0AAFF'
       }
     },
     neural: {
-      input: { base: '#FFD74B', glow: '#FFC43D', trail: '#FFE066' },
-      processing: { base: '#FF8A50', glow: '#FF7036', trail: '#FFA470' },
-      reasoning: { base: '#AE6A4D', glow: '#C4876A', trail: '#D4A487' },
-      output: { base: '#FF5630', glow: '#E55A2B', trail: '#FF8A5C' }
+      input: { base: '#00FF80', glow: '#40E0D0', trail: '#00CED1' },
+      processing: { base: '#40E0FF', glow: '#00BFFF', trail: '#1E90FF' },
+      reasoning: { base: '#9D4EDD', glow: '#C77DFF', trail: '#E0AAFF' },
+      output: { base: '#FF8040', glow: '#FF6347', trail: '#FF4500' }
     },
-    connection: '#FF8A50',
+    connection: '#40E0FF',
     background: { 
       start: '#0A0A0F', 
-      mid: '#1E1A18', 
+      mid: '#0F0F1A', 
       end: '#0A0A0F',
-      darkOverlay: 'rgba(30, 26, 24, 0.7)'
+      darkOverlay: 'rgba(0, 0, 0, 0.7)'
     },
-    particle: '#FFD74B'
+    particle: '#00FFFF'
   };
 
   const createFluidParticles = useCallback((x: number, y: number, z: number = 0, count: number = 3, type: Particle['type'] = 'token', llmType: Particle['llmType'] = 'neutral') => {
@@ -349,16 +349,16 @@ export default function AIWebGLBackground({
           const llmAffinities: Neuron['llmAffinity'][] = ['chatgpt', 'gemini', 'grok', 'claude', 'neutral'];
 
           const neuron: Neuron = {
-            x: layer.x + (Math.random() - 0.5) * 60,
-            y: baseY + (Math.random() - 0.5) * 40,
-            z: (Math.random() - 0.5) * 120,
-            targetX: layer.x + (Math.random() - 0.5) * 80,
-            targetY: baseY + (Math.random() - 0.5) * 60,
-            targetZ: (Math.random() - 0.5) * 40,
-            vx: (Math.random() - 0.5) * 2,
-            vy: (Math.random() - 0.5) * 2,
-            vz: (Math.random() - 0.5) * 1,
-            radius: 8 + Math.random() * 6, // Much larger neurons
+            x: layer.x + (Math.random() - 0.5) * 30,
+            y: baseY + (Math.random() - 0.5) * 20,
+            z: (Math.random() - 0.5) * 80,
+            targetX: layer.x,
+            targetY: baseY,
+            targetZ: 0,
+            vx: 0,
+            vy: 0,
+            vz: 0,
+            radius: 4 + Math.random() * 3, // Larger neurons
             activity: Math.random() * 0.3,
             energy: Math.random() * 0.5,
             type: layer.type,
@@ -668,7 +668,7 @@ export default function AIWebGLBackground({
       if (showGrid) {
         const gridSize = 100;
         const gridOffset = (time * 8) % gridSize;
-        ctx.strokeStyle = 'rgba(255, 215, 75, 0.02)';
+        ctx.strokeStyle = 'rgba(64, 224, 255, 0.02)';
         ctx.lineWidth = 0.5;
 
         for (let x = -gridSize + gridOffset; x < width + gridSize; x += gridSize) {
@@ -746,36 +746,19 @@ export default function AIWebGLBackground({
         }
       }
 
-      // Enhanced neuron updates with more dynamic physics
+      // Enhanced neuron updates with smoother physics
       neurons.forEach((neuron, index) => {
-        neuron.pulsePhase += (0.015 + neuron.activity * 0.03) * dt;
+        neuron.pulsePhase += (0.01 + neuron.activity * 0.02) * dt;
 
-        // Dynamic orbital movement around target position
-        const orbitRadius = 25 + neuron.activity * 35;
-        const orbitSpeed = 0.002 + neuron.energy * 0.008;
-        const orbitX = Math.cos(time * orbitSpeed + index * 0.3) * orbitRadius;
-        const orbitY = Math.sin(time * orbitSpeed * 0.7 + index * 0.5) * orbitRadius * 0.6;
-        const orbitZ = Math.sin(time * orbitSpeed * 0.5 + index * 0.8) * 20;
-
-        // Dynamic target position that moves in orbital pattern
-        const dynamicTargetX = neuron.targetX + orbitX;
-        const dynamicTargetY = neuron.targetY + orbitY;
-        const dynamicTargetZ = neuron.targetZ + orbitZ;
-
-        // Smooth movement toward dynamic target with varying forces
-        const returnForce = 0.004 * (1 + neuron.learningRate * 8);
-        const dx = dynamicTargetX - neuron.x;
-        const dy = dynamicTargetY - neuron.y;
-        const dz = dynamicTargetZ - neuron.z;
+        // Smooth return to position with adaptive learning
+        const returnForce = 0.006 * (1 + neuron.learningRate * 5);
+        const dx = neuron.targetX - neuron.x;
+        const dy = neuron.targetY - neuron.y;
+        const dz = neuron.targetZ - neuron.z;
 
         neuron.vx += dx * returnForce * dt;
         neuron.vy += dy * returnForce * dt;
-        neuron.vz += dz * returnForce * 0.9 * dt;
-
-        // Add some autonomous movement
-        neuron.vx += Math.sin(time * 0.003 + index * 0.1) * 0.1 * dt;
-        neuron.vy += Math.cos(time * 0.004 + index * 0.2) * 0.08 * dt;
-        neuron.vz += Math.sin(time * 0.002 + index * 0.15) * 0.05 * dt;
+        neuron.vz += dz * returnForce * 0.8 * dt;
 
         // Smooth decay with LLM context
         const timeSinceActivation = currentTime - neuron.lastActivation;
@@ -882,62 +865,39 @@ export default function AIWebGLBackground({
         }
       }
 
-      // Draw enhanced connections with improved graphics
+      // Draw enhanced connections with LLM context
       neurons.forEach((neuron, index) => {
         neuron.connections.forEach(targetIndex => {
           const target = neurons[targetIndex];
           if (!target) return;
 
           const activity = (neuron.activity + target.activity) / 2;
-          const energy = (neuron.energy + target.energy) / 2;
-          const baseOpacity = Math.max(0.1, activity * 0.6);
+          const baseOpacity = Math.max(0.06, activity * 0.4);
 
-          // Enhanced LLM-aware connection coloring
+          // LLM-aware connection coloring
           let connectionColor = colors.connection;
           if (neuron.llmAffinity !== 'neutral' && target.llmAffinity === neuron.llmAffinity) {
             connectionColor = colors.llm[neuron.llmAffinity].secondary;
           }
 
-          // Create more sophisticated gradient
           const gradient = ctx.createLinearGradient(neuron.x, neuron.y, target.x, target.y);
           gradient.addColorStop(0, `${connectionColor}${Math.floor(baseOpacity * 255).toString(16).padStart(2, '0')}`);
-          gradient.addColorStop(0.3, `rgba(255, 255, 255, ${baseOpacity * 0.5})`);
-          gradient.addColorStop(0.7, `rgba(255, 255, 255, ${baseOpacity * 0.5})`);
+          gradient.addColorStop(0.5, `rgba(255, 255, 255, ${baseOpacity * 0.3})`);
           gradient.addColorStop(1, `${connectionColor}${Math.floor(baseOpacity * 255).toString(16).padStart(2, '0')}`);
 
           ctx.strokeStyle = gradient;
-          ctx.lineWidth = Math.max(1, 2 + activity * 3 + energy * 2);
-          ctx.shadowColor = connectionColor;
-          ctx.shadowBlur = Math.max(2, activity * 8);
+          ctx.lineWidth = Math.max(0.5, 1 + activity * 2);
 
-          // Enhanced animated dash with energy influence
-          const dashLength = 4 + activity * 6 + energy * 3;
-          const gapLength = dashLength * (1.2 - energy * 0.4);
-          ctx.setLineDash([dashLength, gapLength]);
-          ctx.lineDashOffset = -currentTime * 0.08 * (1 + activity + energy);
+          // Smooth animated dash
+          const dashLength = 3 + activity * 4;
+          ctx.setLineDash([dashLength, dashLength * 1.5]);
+          ctx.lineDashOffset = -currentTime * 0.06 * (1 + activity);
 
           ctx.beginPath();
           ctx.moveTo(neuron.x, neuron.y);
           ctx.lineTo(target.x, target.y);
           ctx.stroke();
           ctx.setLineDash([]);
-          ctx.shadowBlur = 0;
-
-          // Add energy flow particles along active connections
-          if (activity > 0.6 && energy > 0.5) {
-            const flowProgress = (currentTime * 0.002 + index * 0.1) % 1;
-            const flowX = neuron.x + (target.x - neuron.x) * flowProgress;
-            const flowY = neuron.y + (target.y - neuron.y) * flowProgress;
-            const flowSize = 2 + activity * 2;
-
-            ctx.fillStyle = `${connectionColor}${Math.floor(activity * 255).toString(16).padStart(2, '0')}`;
-            ctx.shadowColor = connectionColor;
-            ctx.shadowBlur = 6;
-            ctx.beginPath();
-            ctx.arc(flowX, flowY, flowSize, 0, Math.PI * 2);
-            ctx.fill();
-            ctx.shadowBlur = 0;
-          }
         });
       });
 
@@ -1162,113 +1122,57 @@ export default function AIWebGLBackground({
         });
       }
 
-      // Enhanced neurons with improved graphics and larger size
+      // Enhanced neurons with LLM integration
       neurons.forEach((neuron) => {
-        const baseSize = Math.max(3, neuron.radius);
-        const activityPulse = Math.sin(neuron.pulsePhase) * 0.4 + 1;
-        const energyPulse = Math.sin(neuron.pulsePhase * 1.3) * 0.2 + 1;
-        const size = baseSize * (1 + neuron.activity * 0.8) * activityPulse * energyPulse;
+        const baseSize = Math.max(1.5, neuron.radius);
+        const activityPulse = Math.sin(neuron.pulsePhase) * 0.3 + 1;
+        const size = baseSize * (1 + neuron.activity * 0.5) * activityPulse;
 
         const neuralColorConfig = colors.neural[neuron.type];
         const llmColorConfig = neuron.llmAffinity !== 'neutral' ? colors.llm[neuron.llmAffinity] : null;
 
-        // Multi-layer enhanced glow system
-        if (neuron.glowIntensity > 0.05 || neuron.activity > 0.2) {
-          const glowIntensity = Math.max(neuron.glowIntensity, neuron.activity * 0.8);
+        // Enhanced glow
+        if (neuron.glowIntensity > 0.1 || neuron.activity > 0.4) {
+          const glowIntensity = Math.max(neuron.glowIntensity, neuron.activity * 0.7);
           const glowColor = llmColorConfig ? llmColorConfig.glow : neuralColorConfig.glow;
 
-          // Outer glow layers
-          for (let i = 0; i < 3; i++) {
-            const layerSize = size * (2.5 - i * 0.5);
-            const layerAlpha = glowIntensity * (0.8 - i * 0.2);
-            
-            ctx.shadowColor = glowColor;
-            ctx.shadowBlur = Math.max(12, glowIntensity * 35);
-            ctx.fillStyle = `${glowColor}${Math.floor(layerAlpha * 80).toString(16).padStart(2, '0')}`;
-            ctx.beginPath();
-            ctx.arc(neuron.x, neuron.y, layerSize, 0, Math.PI * 2);
-            ctx.fill();
-          }
+          ctx.shadowColor = glowColor;
+          ctx.shadowBlur = Math.max(6, glowIntensity * 20);
+          ctx.fillStyle = `rgba(255, 255, 255, ${glowIntensity * 0.3})`;
+          ctx.beginPath();
+          ctx.arc(neuron.x, neuron.y, size * 1.5, 0, Math.PI * 2);
+          ctx.fill();
           ctx.shadowBlur = 0;
         }
 
-        // Enhanced main neuron with better gradient
+        // Main neuron with LLM-aware coloring
         const gradient = ctx.createRadialGradient(
-          neuron.x - size * 0.35, neuron.y - size * 0.35, 0,
-          neuron.x, neuron.y, size * 1.2
+          neuron.x - size * 0.3, neuron.y - size * 0.3, 0,
+          neuron.x, neuron.y, size
         );
 
         const primaryColor = llmColorConfig ? llmColorConfig.primary : neuralColorConfig.base;
-        const secondaryColor = llmColorConfig ? llmColorConfig.secondary : neuralColorConfig.trail;
-        const alpha = 0.8 + neuron.activity * 0.2;
+        const alpha = 0.7 + neuron.activity * 0.3;
 
-        gradient.addColorStop(0, 'rgba(255, 255, 255, 0.95)');
-        gradient.addColorStop(0.2, `rgba(255, 255, 255, 0.7)`);
-        gradient.addColorStop(0.5, `${primaryColor}${Math.floor(alpha * 255).toString(16).padStart(2, '0')}`);
-        gradient.addColorStop(0.8, `${secondaryColor}${Math.floor(alpha * 180).toString(16).padStart(2, '0')}`);
-        gradient.addColorStop(1, `${primaryColor}30`);
+        gradient.addColorStop(0, 'rgba(255, 255, 255, 0.9)');
+        gradient.addColorStop(0.4, `${primaryColor}${Math.floor(alpha * 255).toString(16).padStart(2, '0')}`);
+        gradient.addColorStop(1, `${primaryColor}40`);
 
         ctx.fillStyle = gradient;
         ctx.shadowColor = primaryColor;
-        ctx.shadowBlur = Math.max(8, neuron.activity * 25);
+        ctx.shadowBlur = Math.max(3, neuron.activity * 15);
         ctx.beginPath();
         ctx.arc(neuron.x, neuron.y, size, 0, Math.PI * 2);
         ctx.fill();
         ctx.shadowBlur = 0;
 
-        // Enhanced border with activity-based thickness
-        ctx.strokeStyle = `${primaryColor}${Math.floor((0.9 + neuron.activity * 0.1) * 255).toString(16).padStart(2, '0')}`;
-        ctx.lineWidth = 1 + neuron.activity * 2;
-        ctx.beginPath();
-        ctx.arc(neuron.x, neuron.y, size, 0, Math.PI * 2);
-        ctx.stroke();
-
-        // Energy core visualization
-        if (neuron.energy > 0.4) {
-          const coreSize = size * 0.3 * neuron.energy;
-          ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
-          ctx.shadowColor = 'rgba(255, 255, 255, 0.8)';
-          ctx.shadowBlur = 6;
+        // LLM affinity indicator
+        if (neuron.llmAffinity !== 'neutral' && neuron.activity > 0.3) {
+          ctx.strokeStyle = `${llmColorConfig?.accent || '#FFFFFF'}${Math.floor(neuron.activity * 255).toString(16).padStart(2, '0')}`;
+          ctx.lineWidth = 1.5;
           ctx.beginPath();
-          ctx.arc(neuron.x, neuron.y, coreSize, 0, Math.PI * 2);
-          ctx.fill();
-          ctx.shadowBlur = 0;
-        }
-
-        // Enhanced LLM affinity indicator with rotating rings
-        if (neuron.llmAffinity !== 'neutral' && neuron.activity > 0.2) {
-          const rings = 2;
-          for (let ring = 0; ring < rings; ring++) {
-            const ringRadius = size * (1.4 + ring * 0.3);
-            const ringAlpha = neuron.activity * (1 - ring * 0.3);
-            const rotation = currentTime * 0.001 * (ring + 1);
-            
-            ctx.strokeStyle = `${llmColorConfig?.accent || '#FFFFFF'}${Math.floor(ringAlpha * 180).toString(16).padStart(2, '0')}`;
-            ctx.lineWidth = 2 - ring * 0.5;
-            ctx.setLineDash([6, 6]);
-            ctx.lineDashOffset = rotation * 20;
-            
-            ctx.beginPath();
-            ctx.arc(neuron.x, neuron.y, ringRadius, 0, Math.PI * 2);
-            ctx.stroke();
-            
-            ctx.setLineDash([]);
-          }
-        }
-
-        // Activity pulse rings
-        if (neuron.activity > 0.5) {
-          for (let i = 0; i < 2; i++) {
-            const pulsePhase = (currentTime * 0.004 + i * 0.5) % 1;
-            const pulseRadius = size * (1.5 + pulsePhase * 1.5);
-            const pulseAlpha = neuron.activity * (1 - pulsePhase) * 0.6;
-            
-            ctx.strokeStyle = `${primaryColor}${Math.floor(pulseAlpha * 255).toString(16).padStart(2, '0')}`;
-            ctx.lineWidth = 1.5;
-            ctx.beginPath();
-            ctx.arc(neuron.x, neuron.y, pulseRadius, 0, Math.PI * 2);
-            ctx.stroke();
-          }
+          ctx.arc(neuron.x, neuron.y, size * 1.2, 0, Math.PI * 2);
+          ctx.stroke();
         }
       });
 
@@ -1277,7 +1181,7 @@ export default function AIWebGLBackground({
         ctx.fillStyle = 'rgba(255, 255, 255, 0.6)';
         ctx.font = 'bold 11px Arial';
         ctx.textAlign = 'center';
-        ctx.shadowColor = '#FFD74B';
+        ctx.shadowColor = '#00FFFF';
         ctx.shadowBlur = 2;
 
         const currentLLM = globalProcessingStateRef.current.currentLLM;
@@ -1293,9 +1197,9 @@ export default function AIWebGLBackground({
 
       // Enhanced mouse trail
       if (mouse.trail.length > 1) {
-        ctx.strokeStyle = `rgba(255, 215, 75, ${0.7 + mouse.interactionStrength * 0.3})`;
+        ctx.strokeStyle = `rgba(0, 255, 255, ${0.7 + mouse.interactionStrength * 0.3})`;
         ctx.lineWidth = 2 + mouse.interactionStrength * 2;
-        ctx.shadowColor = '#FFD74B';
+        ctx.shadowColor = '#00FFFF';
         ctx.shadowBlur = 8;
 
         ctx.beginPath();
@@ -1324,11 +1228,11 @@ export default function AIWebGLBackground({
         const pulse = Math.sin(currentTime * 0.005) * 0.2 + 0.8;
         const dynamicRadius = Math.min(120, 80 + mouse.interactionStrength * 40);
 
-        ctx.strokeStyle = `rgba(255, 215, 75, ${pulse * 0.8})`;
+        ctx.strokeStyle = `rgba(0, 255, 255, ${pulse * 0.8})`;
         ctx.lineWidth = 2 + mouse.interactionStrength;
         ctx.setLineDash([8, 8]);
         ctx.lineDashOffset = -currentTime * 0.1;
-        ctx.shadowColor = '#FFD74B';
+        ctx.shadowColor = '#00FFFF';
         ctx.shadowBlur = 10;
         ctx.beginPath();
         ctx.arc(mouse.x, mouse.y, dynamicRadius * pulse, 0, Math.PI * 2);
