@@ -199,35 +199,16 @@
     <link rel="icon" type="image/png" href="/images/logo-transparent-thumb4x.png" sizes="32x32" />
     <link rel="icon" type="image/png" href="/images/logo-transparent-thumb4x.png" sizes="16x16" />
     
-    <!-- Critical CSS inlined for faster FCP -->
-    <style>
-      /* Critical above-the-fold styles */
-      #root { min-height: 100vh; background: #121212; }
-      .hero-container { background: #121212; color: white; }
-      .loading-spinner { 
-        position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
-        width: 40px; height: 40px; border: 3px solid #333;
-        border-top: 3px solid #FF5A00; border-radius: 50%; animation: spin 1s linear infinite;
-      }
-      @keyframes spin { 0% { transform: translate(-50%, -50%) rotate(0deg); } 100% { transform: translate(-50%, -50%) rotate(360deg); } }
-    </style>
-    
-    <!-- Fonts with optimized loading -->
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Raleway:wght@400;500;600;700;800&family=EB+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Raleway:wght@400;500;600;700;800&family=EB+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Raleway:wght@400;500;600;700;800&family=EB+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- Preload critical resources with proper priorities -->
-    <link rel="preload" href="/images/logo-transparent-thumb4x.png" as="image" fetchpriority="high" />
-    <link rel="preload" href="/src/main.tsx" as="script" />
-    <link rel="dns-prefetch" href="https://images.unsplash.com" />
+    <!-- Preload critical resources -->
+    <link rel="preload" href="/images/logo-transparent-thumb4x.png" as="image" />
   </head>
   <body>
-    <div id="root">
-      <!-- Inline loading state for faster FCP -->
-      <div class="loading-spinner"></div>
-    </div>
+    <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
     
     <!-- This is a replit script which adds a banner on the top of the page when opened in development mode outside the replit environment -->

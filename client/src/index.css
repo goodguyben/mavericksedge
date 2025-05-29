@@ -11,48 +11,6 @@
 @import url('./styles/footer.css');
 @import url('./styles/cards.css');
 
-/* Critical performance optimizations */
-@layer base {
-  /* Optimize font rendering */
-  body {
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-rendering: optimizeSpeed;
-  }
-
-  /* Optimize images for mobile */
-  img {
-    max-width: 100%;
-    height: auto;
-    content-visibility: auto;
-  }
-
-  /* Critical above-the-fold optimization */
-  .hero-container,
-  .header-container {
-    contain: layout style paint;
-  }
-
-  /* Optimize expensive animations for mobile */
-  @media (max-width: 768px) {
-    * {
-      will-change: auto !important;
-    }
-
-    /* Reduce motion for better performance on mobile */
-    .heavy-animation {
-      animation-duration: 0.3s !important;
-      transition-duration: 0.3s !important;
-    }
-  }
-
-  /* Optimize scroll performance */
-  .scroll-container {
-    -webkit-overflow-scrolling: touch;
-    overscroll-behavior: contain;
-  }
-}
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
