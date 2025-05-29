@@ -61,18 +61,23 @@ export default function Header() {
         ease: "easeInOut"
       }}
     >
-      <div className="container mx-auto flex justify-between items-center">
-        <Link href="/" className="flex items-center ml-[-16px] mr-[-16px]" aria-label="Mavericks Edge Home">
-          <Logo size={isMobile ? "small" : "large"} noLink={true} showText={false}/>
-          <h1 className="font-heading font-bold text-3xl sm:text-4xl md:text-5xl text-maverick-orange ml-1 whitespace-nowrap mt-[15px] mb-[15px]" style={{ letterSpacing: '0' }}>
-            Mavericks Edge
+      <div className="container mx-auto flex justify-between items-center min-h-[60px] relative"></div>
+        <Link href="/" className="flex items-center min-w-0 flex-shrink-0" aria-label="Mavericks Edge Home">
+          <Logo size="small" noLink={true} showText={false}/>
+          <h1 className="font-heading font-bold text-maverick-orange ml-1 whitespace-nowrap flex-shrink-0" style={{ 
+            letterSpacing: '0',
+            fontSize: isMobile ? '1.25rem' : '1.875rem',
+            lineHeight: '1.2'
+          }}>
+            <span className="hidden xs:inline">Mavericks Edge</span>
+            <span className="xs:hidden">Mavericks</span>
           </h1>
         </Link>
 
         {/* Mobile Menu Button */}
         <button
           onClick={toggleMenu}
-          className="block md:hidden focus:outline-none z-50 bg-maverick-charcoal/50 p-2 rounded-full backdrop-blur-sm ml-[-24px] mr-[-24px]"
+          className="block md:hidden focus:outline-none z-50 bg-maverick-charcoal/50 p-2 rounded-full backdrop-blur-sm flex-shrink-0"
           aria-label="Toggle menu"
         >
           {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
