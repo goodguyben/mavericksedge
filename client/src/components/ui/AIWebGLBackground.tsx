@@ -186,6 +186,8 @@ export default function AIWebGLBackground({ className = '' }: AIWebGLBackgroundP
       const newX = e.clientX - rect.left;
       const newY = e.clientY - rect.top;
       
+      console.log('Mouse move:', newX, newY); // Debug log
+      
       // Calculate velocity for enhanced effects
       mouseRef.current.velocity.x = newX - mouseRef.current.lastX;
       mouseRef.current.velocity.y = newY - mouseRef.current.lastY;
@@ -235,6 +237,7 @@ export default function AIWebGLBackground({ className = '' }: AIWebGLBackgroundP
       const clickX = e.clientX - rect.left;
       const clickY = e.clientY - rect.top;
       
+      console.log('Mouse click:', clickX, clickY, e.button); // Debug log
       mouseRef.current.clicked = true;
       
       // Create enhanced explosion effect based on click intensity
