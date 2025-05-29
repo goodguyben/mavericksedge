@@ -72,7 +72,7 @@ export default function Header() {
         {/* Mobile Menu Button */}
         <button
           onClick={toggleMenu}
-          className="block md:hidden focus:outline-none z-50 bg-maverick-charcoal/50 p-2 rounded-full backdrop-blur-sm ml-[-24px] mr-[-24px]"
+          className="block md:hidden focus:outline-none z-50 p-2 rounded-full backdrop-blur-sm ml-[-24px] mr-[-24px] bg-[#3d445c00]"
           aria-label="Toggle menu"
         >
           {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
