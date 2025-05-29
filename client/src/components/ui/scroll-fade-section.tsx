@@ -45,7 +45,7 @@ export default function ScrollFadeSection({
     <motion.section
       id={id}
       ref={sectionRef}
-      className={`relative ${className}`}
+      className="relative pt-[0px] pb-[0px]"
       style={{ opacity }}
       initial={{ opacity: initialOpacity }}
       animate={{ opacity }}
