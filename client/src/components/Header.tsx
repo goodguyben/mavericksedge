@@ -172,7 +172,7 @@ export default function Header() {
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="fixed inset-y-0 right-0 w-[80%] max-w-sm bg-maverick-charcoal border-l border-maverick-slate/20 z-40 flex flex-col md:hidden"
+            className="fixed top-0 right-0 h-full w-[80%] max-w-sm bg-maverick-charcoal border-l border-maverick-slate/20 z-40 flex flex-col md:hidden"
             role="dialog"
             aria-modal="true" 
             aria-label="Main Menu"
