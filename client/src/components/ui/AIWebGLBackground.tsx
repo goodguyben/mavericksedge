@@ -274,14 +274,14 @@ export default function AIWebGLBackground({ className = '' }: AIWebGLBackgroundP
           ctx.shadowBlur = 10;
           ctx.fillStyle = `rgba(0, 255, 255, ${opacity})`;
           ctx.beginPath();
-          ctx.arc(x, y, size, 0, Math.PI * 2);
+          ctx.arc(x, y, Math.max(1, size), 0, Math.PI * 2);
           ctx.fill();
           
           // Inner core
           ctx.shadowBlur = 0;
           ctx.fillStyle = `rgba(255, 255, 255, ${opacity})`;
           ctx.beginPath();
-          ctx.arc(x, y, size * 0.5, 0, Math.PI * 2);
+          ctx.arc(x, y, Math.max(0.5, size * 0.5), 0, Math.PI * 2);
           ctx.fill();
         }
       });
@@ -290,7 +290,7 @@ export default function AIWebGLBackground({ className = '' }: AIWebGLBackgroundP
       neurons.forEach((neuron, index) => {
         const baseSize = neuron.radius;
         const activityPulse = Math.sin(neuron.pulsePhase) * 0.3 + 1;
-        const size = baseSize * (1 + neuron.activity * 0.5) * activityPulse;
+        const size = Math.max(2, baseSize * (1 + neuron.activity * 0.5) * activityPulse);
         
         // Neuron type colors
         let color;
@@ -315,7 +315,7 @@ export default function AIWebGLBackground({ className = '' }: AIWebGLBackgroundP
         
         ctx.fillStyle = color;
         ctx.beginPath();
-        ctx.arc(neuron.x, neuron.y, Math.max(1, size), 0, Math.PI * 2);
+        ctx.arc(neuron.x, neuron.y, Math.max(2, size), 0, Math.PI * 2);
         ctx.fill();
         
         // Inner core for active neurons
