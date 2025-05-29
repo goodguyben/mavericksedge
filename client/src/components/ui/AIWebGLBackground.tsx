@@ -288,9 +288,9 @@ export default function AIWebGLBackground({ className = '' }: AIWebGLBackgroundP
 
       // Draw neurons
       neurons.forEach((neuron, index) => {
-        const baseSize = neuron.radius;
-        const activityPulse = Math.sin(neuron.pulsePhase) * 0.3 + 1;
-        const size = Math.max(2, baseSize * (1 + neuron.activity * 0.5) * activityPulse);
+        const baseSize = Math.max(1, neuron.radius);
+        const activityPulse = Math.max(0.1, Math.sin(neuron.pulsePhase) * 0.3 + 1);
+        const size = Math.max(2, baseSize * (1 + Math.max(0, neuron.activity) * 0.5) * activityPulse);
         
         // Neuron type colors
         let color;
@@ -323,7 +323,7 @@ export default function AIWebGLBackground({ className = '' }: AIWebGLBackgroundP
           ctx.shadowBlur = 0;
           ctx.fillStyle = `rgba(255, 255, 255, ${neuron.activity * 0.8})`;
           ctx.beginPath();
-          ctx.arc(neuron.x, neuron.y, Math.max(1, size * 0.4), 0, Math.PI * 2);
+          ctx.arc(neuron.x, neuron.y, Math.max(0.5, size * 0.4), 0, Math.PI * 2);
           ctx.fill();
         }
       });
@@ -334,7 +334,7 @@ export default function AIWebGLBackground({ className = '' }: AIWebGLBackgroundP
         ctx.lineWidth = 2;
         ctx.setLineDash([5, 5]);
         ctx.beginPath();
-        ctx.arc(mouse.x, mouse.y, 100, 0, Math.PI * 2);
+        ctx.arc(mouse.x, mouse.y, Math.max(1, 100), 0, Math.PI * 2);
         ctx.stroke();
         ctx.setLineDash([]);
       }
