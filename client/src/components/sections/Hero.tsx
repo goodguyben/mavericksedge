@@ -66,7 +66,6 @@ export default function Hero() {
         {/* Fallback gradient background (shows while video loads or if video fails) */}
         <div className={`absolute inset-0 bg-gradient-to-br from-[#0D0D0D] via-[#1A1A1A] to-[#0D0D0D] bg-gradient-animate animate-gradient-slow z-0 transition-opacity duration-1000 ${videoLoaded ? 'opacity-0' : 'opacity-100'}`}></div>
       </div>
-
       <div className="container mx-auto px-4 md:px-10 z-20 flex justify-center items-center w-full">
         <motion.div
           className="max-w-4xl text-center w-full"
@@ -75,7 +74,7 @@ export default function Hero() {
           transition={{ duration: 0.3 }}
         >
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-heading font-extrabold tracking-wide leading-tight sm:leading-normal text-maverick-cream text-center">
-            <div className="inline-block">
+            <div className="inline-block text-[40px]">
               {/* Word-by-word animation for the heading */}
               <motion.span 
                 initial={{ opacity: 0 }}
@@ -167,7 +166,6 @@ export default function Hero() {
           </motion.div>
         </motion.div>
       </div>
-
       <motion.div
         className="scroll-indicator cursor-pointer absolute bottom-10 left-1/2 transform -translate-x-1/2 z-20"
         animate={{ 
