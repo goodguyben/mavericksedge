@@ -199,13 +199,16 @@
     <link rel="icon" type="image/png" href="/images/logo-transparent-thumb4x.png" sizes="32x32" />
     <link rel="icon" type="image/png" href="/images/logo-transparent-thumb4x.png" sizes="16x16" />
     
-    <!-- Fonts -->
+    <!-- Fonts with display=swap for better loading -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Raleway:wght@400;500;600;700;800&family=EB+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Raleway:wght@400;500;600;700;800&family=EB+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Raleway:wght@400;500;600;700;800&family=EB+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
     
     <!-- Preload critical resources -->
     <link rel="preload" href="/images/logo-transparent-thumb4x.png" as="image" />
+    <link rel="modulepreload" href="/src/main.tsx" />
+    <link rel="preload" href="/src/index.css" as="style" />
   </head>
   <body>
     <div id="root"></div>

@@ -11,6 +11,26 @@
 @import url('./styles/footer.css');
 @import url('./styles/cards.css');
 
+/* Critical CSS - load immediately */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    margin: 0;
+    padding: 0;
+    background-color: #121212;
+    color: white;
+    font-family: 'Inter', system-ui, sans-serif;
+    line-height: 1.6;
+  }
+  
+  * {
+    box-sizing: border-box;
+  }
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

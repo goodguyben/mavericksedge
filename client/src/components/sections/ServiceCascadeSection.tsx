@@ -153,15 +153,20 @@ export default function ServiceCascadeSection() {
     }
   }, [activeIndex, services]);
 
-  // Scroll-based progression - much slower transition
+  // Scroll-based progression - optimized with throttling
   const scrollProgress = useTransform(scrollYProgress, [0.2, 0.95], [0, totalItems - 1]);
 
   useEffect(() => {
+    let lastUpdate = 0;
     const unsubscribe = scrollProgress.on("change", (latest) => {
-      const newIndex = Math.round(latest);
-      if (newIndex !== activeIndex && newIndex >= 0 && newIndex < totalItems) {
-        setActiveIndex(newIndex);
-        setIsAutoPlaying(false);
+      const now = Date.now();
+      if (now - lastUpdate > 16) { // Throttle to ~60fps
+        const newIndex = Math.round(latest);
+        if (newIndex !== activeIndex && newIndex >= 0 && newIndex < totalItems) {
+          setActiveIndex(newIndex);
+          setIsAutoPlaying(false);
+        }
+        lastUpdate = now;
       }
     });
 
@@ -226,9 +231,9 @@ export default function ServiceCascadeSection() {
 
   return (
     <div ref={containerRef} className="relative h-[500vh] bg-black">
-      {/* Floating particles */}
+      {/* Floating particles - reduced for performance */}
       <div className="absolute inset-0 pointer-events-none">
-        {[...Array(20)].map((_, i) => (
+        {[...Array(8)].map((_, i) => (
           <motion.div
             key={i}
             className="absolute w-1 h-1 bg-maverick-orange/30 rounded-full"
@@ -305,11 +310,25 @@ export default function ServiceCascadeSection() {
                       onClick={() => handleDotClick(index)}
                     >
                       <div className="relative w-full h-full rounded-2xl overflow-hidden group">
-                        <img
-                          src={item.image}
-                          alt={item.title}
-                          className="w-full h-full object-cover"
-                        />
+                        <picture>
+                          <source 
+                            srcSet={`${item.image}?fm=avif&w=800&h=600&q=80&auto=format`}
+                            type="image/avif"
+                          />
+                          <source 
+                            srcSet={`${item.image}?fm=webp&w=800&h=600&q=80&auto=format`}
+                            type="image/webp"
+                          />
+                          <img
+                            src={`${item.image}?w=800&h=600&q=80&auto=format`}
+                            alt={item.title}
+                            className="w-full h-full object-cover"
+                            loading={index === activeIndex ? "eager" : "lazy"}
+                            decoding="async"
+                            width="800"
+                            height="600"
+                          />
+                        </picture>
                         
                         {/* Active card gradient overlay */}
                         {index === activeIndex && (

@@ -1,0 +1,32 @@
+
+# Cache static assets for 1 year
+/images/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/videos/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Cache CSS and JS for 1 year with versioning
+*.css
+  Cache-Control: public, max-age=31536000, immutable
+
+*.js
+  Cache-Control: public, max-age=31536000, immutable
+
+# Cache fonts for 1 year
+*.woff2
+  Cache-Control: public, max-age=31536000, immutable
+
+*.woff
+  Cache-Control: public, max-age=31536000, immutable
+
+# HTML files - cache for 1 hour
+*.html
+  Cache-Control: public, max-age=3600
+
+# Root HTML
+/
+  Cache-Control: public, max-age=3600
