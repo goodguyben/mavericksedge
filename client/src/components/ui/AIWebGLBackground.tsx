@@ -750,7 +750,9 @@ export default function AIWebGLBackground({ className = '' }: AIWebGLBackgroundP
   return (
     <canvas
       ref={canvasRef}
-      className="absolute inset-0 w-full h-full transition-opacity duration-1000 z-0 opacity-100 ml-[18px] mr-[18px]"
+      className={`absolute inset-0 w-full h-full transition-opacity duration-1000 z-0 ${
+        isLoaded ? 'opacity-100' : 'opacity-0'
+      } ${className}`}
       style={{
         background: 'linear-gradient(135deg, #0A0A0A 0%, #121212 50%, #0A0A0A 100%)',
         cursor: 'crosshair',
