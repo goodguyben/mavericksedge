@@ -1,14 +1,23 @@
 
 import React, { useRef, useEffect, useState } from 'react';
 
-interface Particle {
+interface Neuron {
   x: number;
   y: number;
-  vx: number;
-  vy: number;
+  radius: number;
+  activity: number;
+  maxActivity: number;
   connections: number[];
-  energy: number;
-  baseEnergy: number;
+  pulsePhase: number;
+  type: 'input' | 'hidden' | 'output';
+}
+
+interface Pulse {
+  fromIndex: number;
+  toIndex: number;
+  progress: number;
+  strength: number;
+  id: number;
 }
 
 interface AIWebGLBackgroundProps {
@@ -18,9 +27,11 @@ interface AIWebGLBackgroundProps {
 export default function AIWebGLBackground({ className = '' }: AIWebGLBackgroundProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const animationRef = useRef<number>();
-  const particlesRef = useRef<Particle[]>([]);
-  const mouseRef = useRef({ x: 0, y: 0 });
+  const neuronsRef = useRef<Neuron[]>([]);
+  const pulsesRef = useRef<Pulse[]>([]);
+  const mouseRef = useRef({ x: 0, y: 0, isActive: false });
   const [isLoaded, setIsLoaded] = useState(false);
+  const pulseIdRef = useRef(0);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -42,27 +53,65 @@ export default function AIWebGLBackground({ className = '' }: AIWebGLBackgroundP
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas);
 
-    // Initialize particles
-    const initParticles = () => {
-      const particles: Particle[] = [];
-      const numParticles = Math.min(150, Math.floor((canvas.width * canvas.height) / 15000));
+    // Initialize neural network
+    const initNeuralNetwork = () => {
+      const neurons: Neuron[] = [];
+      const canvasWidth = canvas.width / window.devicePixelRatio;
+      const canvasHeight = canvas.height / window.devicePixelRatio;
       
-      for (let i = 0; i < numParticles; i++) {
-        particles.push({
-          x: Math.random() * canvas.width / window.devicePixelRatio,
-          y: Math.random() * canvas.height / window.devicePixelRatio,
-          vx: (Math.random() - 0.5) * 0.5,
-          vy: (Math.random() - 0.5) * 0.5,
-          connections: [],
-          energy: Math.random() * 0.5 + 0.5,
-          baseEnergy: Math.random() * 0.5 + 0.5,
-        });
+      // Create layers of neurons (like a brain structure)
+      const layers = [
+        { count: 8, x: canvasWidth * 0.15, type: 'input' as const },
+        { count: 12, x: canvasWidth * 0.35, type: 'hidden' as const },
+        { count: 15, x: canvasWidth * 0.5, type: 'hidden' as const },
+        { count: 12, x: canvasWidth * 0.65, type: 'hidden' as const },
+        { count: 6, x: canvasWidth * 0.85, type: 'output' as const }
+      ];
+
+      let neuronIndex = 0;
+      layers.forEach(layer => {
+        const startY = (canvasHeight - (layer.count - 1) * 60) / 2;
+        for (let i = 0; i < layer.count; i++) {
+          neurons.push({
+            x: layer.x + (Math.random() - 0.5) * 40,
+            y: startY + i * 60 + (Math.random() - 0.5) * 20,
+            radius: layer.type === 'hidden' ? 8 : 6,
+            activity: Math.random() * 0.3,
+            maxActivity: 1,
+            connections: [],
+            pulsePhase: Math.random() * Math.PI * 2,
+            type: layer.type
+          });
+        }
+      });
+
+      // Create connections between layers
+      const layerSizes = layers.map(l => l.count);
+      let currentIndex = 0;
+      
+      for (let l = 0; l < layers.length - 1; l++) {
+        const currentLayerSize = layerSizes[l];
+        const nextLayerSize = layerSizes[l + 1];
+        
+        for (let i = 0; i < currentLayerSize; i++) {
+          const neuronIdx = currentIndex + i;
+          const connectionsCount = Math.min(nextLayerSize, 3 + Math.floor(Math.random() * 3));
+          
+          // Connect to next layer neurons
+          for (let j = 0; j < connectionsCount; j++) {
+            const targetIdx = currentIndex + currentLayerSize + Math.floor(Math.random() * nextLayerSize);
+            if (!neurons[neuronIdx].connections.includes(targetIdx)) {
+              neurons[neuronIdx].connections.push(targetIdx);
+            }
+          }
+        }
+        currentIndex += currentLayerSize;
       }
-      
-      particlesRef.current = particles;
+
+      neuronsRef.current = neurons;
     };
 
-    initParticles();
+    initNeuralNetwork();
 
     // Mouse tracking
     const handleMouseMove = (e: MouseEvent) => {
@@ -70,141 +119,230 @@ export default function AIWebGLBackground({ className = '' }: AIWebGLBackgroundP
       mouseRef.current = {
         x: e.clientX - rect.left,
         y: e.clientY - rect.top,
+        isActive: true
       };
     };
 
+    const handleMouseClick = () => {
+      // Trigger a wave of activity on click
+      const neurons = neuronsRef.current;
+      const mouse = mouseRef.current;
+      
+      neurons.forEach((neuron, index) => {
+        const distance = Math.sqrt(
+          Math.pow(neuron.x - mouse.x, 2) + Math.pow(neuron.y - mouse.y, 2)
+        );
+        
+        if (distance < 150) {
+          neuron.activity = Math.min(1, neuron.activity + (150 - distance) / 150);
+          
+          // Create pulses from this neuron
+          neuron.connections.forEach(targetIdx => {
+            pulsesRef.current.push({
+              fromIndex: index,
+              toIndex: targetIdx,
+              progress: 0,
+              strength: neuron.activity,
+              id: pulseIdRef.current++
+            });
+          });
+        }
+      });
+    };
+
+    const handleMouseLeave = () => {
+      mouseRef.current.isActive = false;
+    };
+
     canvas.addEventListener('mousemove', handleMouseMove);
+    canvas.addEventListener('click', handleMouseClick);
+    canvas.addEventListener('mouseleave', handleMouseLeave);
 
     // Animation loop
     const animate = () => {
-      ctx.fillStyle = 'rgba(13, 13, 13, 0.05)';
-      ctx.fillRect(0, 0, canvas.width / window.devicePixelRatio, canvas.height / window.devicePixelRatio);
-
-      const particles = particlesRef.current;
-      const mouse = mouseRef.current;
       const canvasWidth = canvas.width / window.devicePixelRatio;
       const canvasHeight = canvas.height / window.devicePixelRatio;
+      
+      // Clear canvas with gradient background
+      const gradient = ctx.createRadialGradient(
+        canvasWidth / 2, canvasHeight / 2, 0,
+        canvasWidth / 2, canvasHeight / 2, Math.max(canvasWidth, canvasHeight) / 2
+      );
+      gradient.addColorStop(0, '#0A0A0F');
+      gradient.addColorStop(0.5, '#0D0D13');
+      gradient.addColorStop(1, '#050507');
+      
+      ctx.fillStyle = gradient;
+      ctx.fillRect(0, 0, canvasWidth, canvasHeight);
 
-      // Update particles
-      particles.forEach((particle, i) => {
-        // Mouse interaction
-        const dx = mouse.x - particle.x;
-        const dy = mouse.y - particle.y;
-        const distance = Math.sqrt(dx * dx + dy * dy);
-        const maxDistance = 150;
+      const neurons = neuronsRef.current;
+      const pulses = pulsesRef.current;
+      const mouse = mouseRef.current;
+      const time = Date.now() * 0.001;
 
-        if (distance < maxDistance) {
-          const force = (maxDistance - distance) / maxDistance;
-          particle.energy = Math.min(2, particle.baseEnergy + force * 1.5);
-          
-          // Subtle attraction to mouse
-          const attraction = force * 0.002;
-          particle.vx += dx * attraction;
-          particle.vy += dy * attraction;
-        } else {
-          particle.energy = Math.max(particle.baseEnergy, particle.energy * 0.98);
-        }
-
-        // Update position
-        particle.x += particle.vx;
-        particle.y += particle.vy;
-
-        // Apply friction
-        particle.vx *= 0.99;
-        particle.vy *= 0.99;
-
-        // Boundary conditions with wrapping
-        if (particle.x < 0) particle.x = canvasWidth;
-        if (particle.x > canvasWidth) particle.x = 0;
-        if (particle.y < 0) particle.y = canvasHeight;
-        if (particle.y > canvasHeight) particle.y = 0;
-
-        // Find connections
-        particle.connections = [];
-        for (let j = i + 1; j < particles.length; j++) {
-          const other = particles[j];
-          const dist = Math.sqrt(
-            Math.pow(particle.x - other.x, 2) + Math.pow(particle.y - other.y, 2)
+      // Update neuron activity
+      neurons.forEach((neuron, index) => {
+        // Natural decay
+        neuron.activity *= 0.995;
+        
+        // Mouse influence
+        if (mouse.isActive) {
+          const distance = Math.sqrt(
+            Math.pow(neuron.x - mouse.x, 2) + Math.pow(neuron.y - mouse.y, 2)
           );
           
-          if (dist < 100) {
-            particle.connections.push(j);
+          if (distance < 100) {
+            const influence = (100 - distance) / 100;
+            neuron.activity = Math.min(1, neuron.activity + influence * 0.02);
           }
         }
+        
+        // Update pulse phase
+        neuron.pulsePhase += 0.05 + neuron.activity * 0.1;
       });
 
+      // Update pulses
+      for (let i = pulses.length - 1; i >= 0; i--) {
+        const pulse = pulses[i];
+        pulse.progress += 0.03;
+        
+        if (pulse.progress >= 1) {
+          // Pulse reached target, activate target neuron
+          const targetNeuron = neurons[pulse.toIndex];
+          if (targetNeuron) {
+            targetNeuron.activity = Math.min(1, targetNeuron.activity + pulse.strength * 0.3);
+            
+            // Propagate to next layer
+            if (Math.random() < pulse.strength * 0.7) {
+              targetNeuron.connections.forEach(nextTarget => {
+                pulses.push({
+                  fromIndex: pulse.toIndex,
+                  toIndex: nextTarget,
+                  progress: 0,
+                  strength: pulse.strength * 0.8,
+                  id: pulseIdRef.current++
+                });
+              });
+            }
+          }
+          
+          pulses.splice(i, 1);
+        }
+      }
+
+      // Auto-generate some activity
+      if (Math.random() < 0.02) {
+        const inputNeurons = neurons.filter(n => n.type === 'input');
+        const randomInput = inputNeurons[Math.floor(Math.random() * inputNeurons.length)];
+        if (randomInput) {
+          randomInput.activity = Math.min(1, randomInput.activity + 0.5);
+        }
+      }
+
       // Draw connections
-      particles.forEach((particle, i) => {
-        particle.connections.forEach((connectionIndex) => {
-          const other = particles[connectionIndex];
-          const dist = Math.sqrt(
-            Math.pow(particle.x - other.x, 2) + Math.pow(particle.y - other.y, 2)
-          );
-          
-          const opacity = Math.max(0, (100 - dist) / 100);
-          const energy = (particle.energy + other.energy) / 2;
-          
-          // AI-themed colors
-          const hue = (particle.energy * 60 + other.energy * 60 + Date.now() * 0.01) % 360;
-          const saturation = 70 + energy * 30;
-          const lightness = 40 + energy * 20;
-          
-          ctx.strokeStyle = `hsla(${hue}, ${saturation}%, ${lightness}%, ${opacity * energy * 0.8})`;
-          ctx.lineWidth = energy * 1.5;
-          
-          // Add glow effect
-          ctx.shadowColor = `hsl(${hue}, ${saturation}%, ${lightness}%)`;
-          ctx.shadowBlur = energy * 10;
-          
-          ctx.beginPath();
-          ctx.moveTo(particle.x, particle.y);
-          ctx.lineTo(other.x, other.y);
-          ctx.stroke();
-          
-          ctx.shadowBlur = 0;
+      ctx.strokeStyle = 'rgba(100, 150, 255, 0.1)';
+      ctx.lineWidth = 1;
+      neurons.forEach((neuron, index) => {
+        neuron.connections.forEach(targetIdx => {
+          const target = neurons[targetIdx];
+          if (target) {
+            const opacity = 0.1 + neuron.activity * 0.3;
+            ctx.strokeStyle = `rgba(100, 150, 255, ${opacity})`;
+            
+            ctx.beginPath();
+            ctx.moveTo(neuron.x, neuron.y);
+            ctx.lineTo(target.x, target.y);
+            ctx.stroke();
+          }
         });
       });
 
-      // Draw particles
-      particles.forEach((particle) => {
-        const size = 2 + particle.energy * 3;
-        const hue = (particle.energy * 120 + Date.now() * 0.02) % 360;
-        const saturation = 80 + particle.energy * 20;
-        const lightness = 50 + particle.energy * 30;
+      // Draw pulses
+      pulses.forEach(pulse => {
+        const fromNeuron = neurons[pulse.fromIndex];
+        const toNeuron = neurons[pulse.toIndex];
         
-        // Outer glow
-        ctx.shadowColor = `hsl(${hue}, ${saturation}%, ${lightness}%)`;
-        ctx.shadowBlur = particle.energy * 15;
-        
-        ctx.fillStyle = `hsla(${hue}, ${saturation}%, ${lightness}%, ${0.8 + particle.energy * 0.2})`;
-        ctx.beginPath();
-        ctx.arc(particle.x, particle.y, size, 0, Math.PI * 2);
-        ctx.fill();
-        
-        // Inner core
-        ctx.shadowBlur = 0;
-        ctx.fillStyle = `hsla(${hue + 30}, 90%, 80%, ${0.9 + particle.energy * 0.1})`;
-        ctx.beginPath();
-        ctx.arc(particle.x, particle.y, size * 0.4, 0, Math.PI * 2);
-        ctx.fill();
+        if (fromNeuron && toNeuron) {
+          const x = fromNeuron.x + (toNeuron.x - fromNeuron.x) * pulse.progress;
+          const y = fromNeuron.y + (toNeuron.y - fromNeuron.y) * pulse.progress;
+          
+          const size = 3 + pulse.strength * 2;
+          const opacity = pulse.strength * (1 - pulse.progress * 0.5);
+          
+          // Outer glow
+          ctx.shadowColor = '#00FFFF';
+          ctx.shadowBlur = 10;
+          ctx.fillStyle = `rgba(0, 255, 255, ${opacity})`;
+          ctx.beginPath();
+          ctx.arc(x, y, size, 0, Math.PI * 2);
+          ctx.fill();
+          
+          // Inner core
+          ctx.shadowBlur = 0;
+          ctx.fillStyle = `rgba(255, 255, 255, ${opacity})`;
+          ctx.beginPath();
+          ctx.arc(x, y, size * 0.5, 0, Math.PI * 2);
+          ctx.fill();
+        }
       });
 
-      // Add subtle data stream effects
-      const time = Date.now() * 0.001;
-      for (let i = 0; i < 5; i++) {
-        const x = (Math.sin(time * 0.5 + i) * 0.5 + 0.5) * canvasWidth;
-        const y = (Math.cos(time * 0.3 + i * 2) * 0.5 + 0.5) * canvasHeight;
+      // Draw neurons
+      neurons.forEach((neuron, index) => {
+        const baseSize = neuron.radius;
+        const activityPulse = Math.sin(neuron.pulsePhase) * 0.3 + 1;
+        const size = baseSize * (1 + neuron.activity * 0.5) * activityPulse;
         
-        ctx.fillStyle = `hsla(${(time * 100 + i * 60) % 360}, 70%, 60%, 0.1)`;
+        // Neuron type colors
+        let color;
+        switch (neuron.type) {
+          case 'input':
+            color = `rgba(0, 255, 100, ${0.6 + neuron.activity * 0.4})`;
+            break;
+          case 'output':
+            color = `rgba(255, 100, 0, ${0.6 + neuron.activity * 0.4})`;
+            break;
+          default:
+            color = `rgba(100, 150, 255, ${0.4 + neuron.activity * 0.6})`;
+        }
+        
+        // Outer glow
+        if (neuron.activity > 0.1) {
+          ctx.shadowColor = color;
+          ctx.shadowBlur = 15 * neuron.activity;
+        } else {
+          ctx.shadowBlur = 0;
+        }
+        
+        ctx.fillStyle = color;
         ctx.beginPath();
-        ctx.arc(x, y, 20 + Math.sin(time * 2 + i) * 10, 0, Math.PI * 2);
+        ctx.arc(neuron.x, neuron.y, Math.max(1, size), 0, Math.PI * 2);
         ctx.fill();
+        
+        // Inner core for active neurons
+        if (neuron.activity > 0.3) {
+          ctx.shadowBlur = 0;
+          ctx.fillStyle = `rgba(255, 255, 255, ${neuron.activity * 0.8})`;
+          ctx.beginPath();
+          ctx.arc(neuron.x, neuron.y, Math.max(1, size * 0.4), 0, Math.PI * 2);
+          ctx.fill();
+        }
+      });
+
+      // Draw mouse influence area
+      if (mouse.isActive) {
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.1)';
+        ctx.lineWidth = 2;
+        ctx.setLineDash([5, 5]);
+        ctx.beginPath();
+        ctx.arc(mouse.x, mouse.y, 100, 0, Math.PI * 2);
+        ctx.stroke();
+        ctx.setLineDash([]);
       }
 
       animationRef.current = requestAnimationFrame(animate);
     };
 
-    // Start animation after a brief delay
+    // Start animation
     setTimeout(() => {
       setIsLoaded(true);
       animate();
@@ -213,6 +351,8 @@ export default function AIWebGLBackground({ className = '' }: AIWebGLBackgroundP
     return () => {
       window.removeEventListener('resize', resizeCanvas);
       canvas.removeEventListener('mousemove', handleMouseMove);
+      canvas.removeEventListener('click', handleMouseClick);
+      canvas.removeEventListener('mouseleave', handleMouseLeave);
       if (animationRef.current) {
         cancelAnimationFrame(animationRef.current);
       }
@@ -226,7 +366,7 @@ export default function AIWebGLBackground({ className = '' }: AIWebGLBackgroundP
         isLoaded ? 'opacity-100' : 'opacity-0'
       } ${className}`}
       style={{
-        background: 'linear-gradient(135deg, #0D0D0D 0%, #1A1A1A 50%, #0D0D0D 100%)',
+        cursor: 'crosshair',
       }}
     />
   );
