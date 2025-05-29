@@ -72,7 +72,7 @@ export default function Header() {
         {/* Mobile Menu Button */}
         <button
           onClick={toggleMenu}
-          className="block md:hidden focus:outline-none z-50 bg-maverick-charcoal/50 p-2 rounded-full backdrop-blur-sm"
+          className="block md:hidden focus:outline-none z-50 bg-maverick-charcoal/50 p-2 rounded-full backdrop-blur-sm ml-[-24px] mr-[-24px]"
           aria-label="Toggle menu"
         >
           {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -164,7 +164,6 @@ export default function Header() {
           </Link>
         </nav>
       </div>
-
       {/* Mobile Navigation - Slide in from right */}
       <AnimatePresence>
         {isOpen && (
@@ -366,7 +365,6 @@ export default function Header() {
           </motion.div>
         )}
       </AnimatePresence>
-
       {/* Backdrop for mobile menu */}
       <AnimatePresence>
         {isOpen && (
