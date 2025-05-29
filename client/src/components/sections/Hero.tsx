@@ -75,7 +75,7 @@ export default function Hero() {
           style={{ opacity: heroOpacity }}
         >
           <h1 className="text-4xl xs:text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl 2xl:text-10xl font-heading font-extrabold tracking-wide leading-tight text-maverick-cream text-center">
-            <div className="inline-block">
+            <div className="inline-block text-[60px]">
               {/* Word-by-word animation for the heading */}
               <motion.span 
                 initial={{ opacity: 0 }}
