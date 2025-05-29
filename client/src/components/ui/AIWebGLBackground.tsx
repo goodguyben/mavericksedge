@@ -49,9 +49,19 @@ export default function AIWebGLBackground({ className = '' }: AIWebGLBackgroundP
   const neuronsRef = useRef<Neuron[]>([]);
   const signalsRef = useRef<Signal[]>([]);
   const particlesRef = useRef<Particle[]>([]);
-  const mouseRef = useRef({ x: 0, y: 0, isActive: false, clicked: false });
+  const mouseRef = useRef({ 
+    x: 0, 
+    y: 0, 
+    isActive: false, 
+    clicked: false,
+    velocity: { x: 0, y: 0 },
+    trail: [] as { x: number, y: number, alpha: number }[],
+    lastX: 0,
+    lastY: 0
+  });
   const [isLoaded, setIsLoaded] = useState(false);
   const lastTimeRef = useRef(0);
+  const attractorNodesRef = useRef<{ x: number, y: number, strength: number, active: boolean }[]>([]);
 
   // Enhanced color palette
   const colors = {
@@ -173,16 +183,51 @@ export default function AIWebGLBackground({ className = '' }: AIWebGLBackgroundP
     // Enhanced mouse interactions
     const handleMouseMove = (e: MouseEvent) => {
       const rect = canvas.getBoundingClientRect();
-      mouseRef.current = {
-        ...mouseRef.current,
-        x: e.clientX - rect.left,
-        y: e.clientY - rect.top,
-        isActive: true
-      };
+      const newX = e.clientX - rect.left;
+      const newY = e.clientY - rect.top;
+      
+      // Calculate velocity for enhanced effects
+      mouseRef.current.velocity.x = newX - mouseRef.current.lastX;
+      mouseRef.current.velocity.y = newY - mouseRef.current.lastY;
+      
+      mouseRef.current.lastX = mouseRef.current.x;
+      mouseRef.current.lastY = mouseRef.current.y;
+      mouseRef.current.x = newX;
+      mouseRef.current.y = newY;
+      mouseRef.current.isActive = true;
+      
+      // Update mouse trail
+      mouseRef.current.trail.unshift({ x: newX, y: newY, alpha: 1 });
+      if (mouseRef.current.trail.length > 20) {
+        mouseRef.current.trail.pop();
+      }
+      
+      // Create dynamic particles based on mouse speed
+      const speed = Math.sqrt(mouseRef.current.velocity.x ** 2 + mouseRef.current.velocity.y ** 2);
+      if (speed > 5 && Math.random() > 0.7) {
+        createParticles(newX, newY, Math.floor(speed / 10), colors.particle);
+      }
+      
+      // Attract nearby neurons with smooth influence
+      neuronsRef.current.forEach(neuron => {
+        const distance = Math.sqrt((neuron.x - newX) ** 2 + (neuron.y - newY) ** 2);
+        if (distance < 150) {
+          const influence = (150 - distance) / 150;
+          neuron.activity = Math.min(1, neuron.activity + influence * 0.02);
+          neuron.glowIntensity = Math.max(neuron.glowIntensity, influence * 0.5);
+          
+          // Add subtle attraction force
+          const force = influence * 0.1;
+          neuron.vx += (newX - neuron.x) * force * 0.001;
+          neuron.vy += (newY - neuron.y) * force * 0.001;
+        }
+      });
     };
 
     const handleMouseLeave = () => {
       mouseRef.current.isActive = false;
+      mouseRef.current.trail = [];
+      mouseRef.current.velocity = { x: 0, y: 0 };
     };
 
     const handleClick = (e: MouseEvent) => {
@@ -192,43 +237,91 @@ export default function AIWebGLBackground({ className = '' }: AIWebGLBackgroundP
       
       mouseRef.current.clicked = true;
       
-      // Create explosion effect
-      createParticles(clickX, clickY, 15, colors.particle);
+      // Create enhanced explosion effect based on click intensity
+      const explosionSize = e.shiftKey ? 25 : 15;
+      const explosionRadius = e.shiftKey ? 300 : 200;
+      createParticles(clickX, clickY, explosionSize, colors.particle);
       
-      // Enhanced neural activation
+      // Add attractor node on right-click
+      if (e.button === 2) {
+        attractorNodesRef.current.push({
+          x: clickX,
+          y: clickY,
+          strength: 1,
+          active: true
+        });
+        createParticles(clickX, clickY, 20, colors.input.glow);
+      }
+      
+      // Enhanced neural activation with wave propagation
       neuronsRef.current.forEach((neuron, index) => {
         const distance = Math.sqrt(Math.pow(neuron.x - clickX, 2) + Math.pow(neuron.y - clickY, 2));
-        if (distance < 200) {
-          const influence = (200 - distance) / 200;
-          neuron.activity = Math.min(1, neuron.activity + influence * 0.9);
+        if (distance < explosionRadius) {
+          const influence = (explosionRadius - distance) / explosionRadius;
+          const activationStrength = e.shiftKey ? 1.2 : 0.9;
+          
+          neuron.activity = Math.min(1, neuron.activity + influence * activationStrength);
           neuron.energy = Math.min(1, neuron.energy + influence * 0.5);
           neuron.glowIntensity = influence;
           neuron.lastActivation = Date.now();
           
-          // Create enhanced signals
-          neuron.connections.forEach(targetIndex => {
-            if (Math.random() > 0.3) {
-              const signal: Signal = {
-                from: index,
-                to: targetIndex,
-                progress: 0,
-                strength: neuron.activity * influence,
-                id: `${index}-${targetIndex}-${Date.now()}-${Math.random()}`,
-                color: colors[neuron.type].trail,
-                trail: []
-              };
-              signalsRef.current.push(signal);
-            }
-          });
+          // Add velocity push away from click
+          const pushForce = influence * 0.5;
+          neuron.vx += (neuron.x - clickX) * pushForce * 0.001;
+          neuron.vy += (neuron.y - clickY) * pushForce * 0.001;
+          
+          // Create enhanced signals with delay for wave effect
+          setTimeout(() => {
+            neuron.connections.forEach(targetIndex => {
+              if (Math.random() > 0.2) {
+                const signal: Signal = {
+                  from: index,
+                  to: targetIndex,
+                  progress: 0,
+                  strength: neuron.activity * influence,
+                  id: `${index}-${targetIndex}-${Date.now()}-${Math.random()}`,
+                  color: colors[neuron.type].trail,
+                  trail: []
+                };
+                signalsRef.current.push(signal);
+              }
+            });
+          }, distance * 2); // Delay based on distance for wave effect
         }
       });
       
-      setTimeout(() => { mouseRef.current.clicked = false; }, 100);
+      setTimeout(() => { mouseRef.current.clicked = false; }, 150);
+    };
+
+    const handleDoubleClick = (e: MouseEvent) => {
+      const rect = canvas.getBoundingClientRect();
+      const clickX = e.clientX - rect.left;
+      const clickY = e.clientY - rect.top;
+      
+      // Create massive energy burst
+      createParticles(clickX, clickY, 30, colors.output.glow);
+      
+      // Activate all neurons with ripple effect
+      neuronsRef.current.forEach((neuron, index) => {
+        const distance = Math.sqrt(Math.pow(neuron.x - clickX, 2) + Math.pow(neuron.y - clickY, 2));
+        setTimeout(() => {
+          neuron.activity = 1;
+          neuron.energy = 1;
+          neuron.glowIntensity = 1;
+          neuron.lastActivation = Date.now();
+        }, distance * 3);
+      });
+    };
+
+    const handleContextMenu = (e: MouseEvent) => {
+      e.preventDefault(); // Prevent default context menu
     };
 
     canvas.addEventListener('mousemove', handleMouseMove);
     canvas.addEventListener('mouseleave', handleMouseLeave);
     canvas.addEventListener('click', handleClick);
+    canvas.addEventListener('dblclick', handleDoubleClick);
+    canvas.addEventListener('contextmenu', handleContextMenu);
 
     // Enhanced animation loop with delta time
     const animate = (animationTime: number) => {
@@ -496,6 +589,55 @@ export default function AIWebGLBackground({ className = '' }: AIWebGLBackgroundP
         ctx.shadowBlur = 0;
       });
 
+      // Render attractor nodes
+      attractorNodesRef.current.forEach((attractor, index) => {
+        if (!attractor.active) return;
+        
+        const pulse = Math.sin(currentTime * 0.008) * 0.3 + 0.7;
+        const size = 15 * pulse * attractor.strength;
+        
+        // Outer ring
+        ctx.strokeStyle = `rgba(0, 255, 128, ${0.6 * attractor.strength})`;
+        ctx.lineWidth = 3;
+        ctx.setLineDash([4, 4]);
+        ctx.lineDashOffset = currentTime * 0.05;
+        ctx.shadowColor = '#00FF80';
+        ctx.shadowBlur = 15;
+        ctx.beginPath();
+        ctx.arc(attractor.x, attractor.y, size * 1.5, 0, Math.PI * 2);
+        ctx.stroke();
+        ctx.setLineDash([]);
+        
+        // Inner core
+        ctx.fillStyle = `rgba(0, 255, 128, ${0.8 * attractor.strength})`;
+        ctx.shadowBlur = 10;
+        ctx.beginPath();
+        ctx.arc(attractor.x, attractor.y, size * 0.3, 0, Math.PI * 2);
+        ctx.fill();
+        
+        ctx.shadowBlur = 0;
+        
+        // Fade out attractor over time
+        attractor.strength *= 0.995;
+        if (attractor.strength < 0.1) {
+          attractor.active = false;
+        }
+        
+        // Attract nearby neurons
+        neurons.forEach(neuron => {
+          const distance = Math.sqrt((neuron.x - attractor.x) ** 2 + (neuron.y - attractor.y) ** 2);
+          if (distance < 200) {
+            const force = (200 - distance) / 200 * attractor.strength * 0.001;
+            neuron.vx += (attractor.x - neuron.x) * force;
+            neuron.vy += (attractor.y - neuron.y) * force;
+            neuron.activity = Math.min(1, neuron.activity + force * 0.5);
+          }
+        });
+      });
+
+      // Clean up inactive attractors
+      attractorNodesRef.current = attractorNodesRef.current.filter(a => a.active);
+
       // Enhanced UI elements
       ctx.fillStyle = 'rgba(255, 255, 255, 0.4)';
       ctx.font = 'bold 14px Arial';
@@ -512,9 +654,42 @@ export default function AIWebGLBackground({ className = '' }: AIWebGLBackgroundP
       ctx.fillText('OUTPUT', canvasWidth * 0.88, canvasHeight - 25);
       ctx.shadowBlur = 0;
 
+      // Enhanced mouse trail effect
+      if (mouse.trail.length > 1) {
+        ctx.strokeStyle = 'rgba(0, 255, 255, 0.8)';
+        ctx.lineWidth = 3;
+        ctx.shadowColor = '#00FFFF';
+        ctx.shadowBlur = 8;
+        ctx.beginPath();
+        
+        for (let i = 0; i < mouse.trail.length - 1; i++) {
+          const point = mouse.trail[i];
+          const alpha = (1 - i / mouse.trail.length) * point.alpha;
+          
+          if (i === 0) {
+            ctx.moveTo(point.x, point.y);
+          } else {
+            const nextPoint = mouse.trail[i + 1];
+            const cpx = (point.x + nextPoint.x) / 2;
+            const cpy = (point.y + nextPoint.y) / 2;
+            ctx.quadraticCurveTo(point.x, point.y, cpx, cpy);
+          }
+          
+          // Fade trail points
+          mouse.trail[i].alpha *= 0.95;
+        }
+        
+        ctx.stroke();
+        ctx.shadowBlur = 0;
+      }
+
       // Interactive cursor effect
       if (mouse.isActive) {
         const pulse = Math.sin(currentTime * 0.005) * 0.3 + 0.7;
+        const speed = Math.sqrt(mouse.velocity.x ** 2 + mouse.velocity.y ** 2);
+        const dynamicRadius = Math.min(150, 80 + speed * 2);
+        
+        // Main cursor ring
         ctx.strokeStyle = `rgba(0, 255, 255, ${pulse * 0.6})`;
         ctx.lineWidth = 3;
         ctx.setLineDash([8, 8]);
@@ -522,9 +697,20 @@ export default function AIWebGLBackground({ className = '' }: AIWebGLBackgroundP
         ctx.shadowColor = '#00FFFF';
         ctx.shadowBlur = 10;
         ctx.beginPath();
-        ctx.arc(mouse.x, mouse.y, 120 * pulse, 0, Math.PI * 2);
+        ctx.arc(mouse.x, mouse.y, dynamicRadius * pulse, 0, Math.PI * 2);
         ctx.stroke();
         ctx.setLineDash([]);
+        
+        // Speed-based inner rings
+        if (speed > 3) {
+          const speedPulse = Math.sin(currentTime * 0.01) * 0.2 + 0.8;
+          ctx.strokeStyle = `rgba(255, 255, 255, ${(speed / 20) * speedPulse})`;
+          ctx.lineWidth = 2;
+          ctx.beginPath();
+          ctx.arc(mouse.x, mouse.y, (dynamicRadius * 0.6) * speedPulse, 0, Math.PI * 2);
+          ctx.stroke();
+        }
+        
         ctx.shadowBlur = 0;
         
         if (mouse.clicked) {
@@ -550,6 +736,8 @@ export default function AIWebGLBackground({ className = '' }: AIWebGLBackgroundP
       canvas.removeEventListener('mousemove', handleMouseMove);
       canvas.removeEventListener('mouseleave', handleMouseLeave);
       canvas.removeEventListener('click', handleClick);
+      canvas.removeEventListener('dblclick', handleDoubleClick);
+      canvas.removeEventListener('contextmenu', handleContextMenu);
       if (animationRef.current) {
         cancelAnimationFrame(animationRef.current);
       }
