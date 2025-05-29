@@ -106,21 +106,6 @@ img {
   h3 { font-size: 1.25rem; line-height: 1.4; }
   p { font-size: 0.9375rem; line-height: 1.6; }
   
-  /* Header visibility optimization for small mobile */
-  header {
-    background-color: rgba(18, 18, 18, 0.9) !important;
-    backdrop-filter: blur(12px) !important;
-    -webkit-backdrop-filter: blur(12px) !important;
-    border-bottom: 1px solid rgba(241, 90, 41, 0.15);
-  }
-  
-  /* Mobile menu button enhancement */
-  header button[aria-label="Toggle menu"] {
-    background-color: rgba(18, 18, 18, 0.9) !important;
-    border: 2px solid rgba(241, 90, 41, 0.3) !important;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-  }
-  
   /* Touch-friendly elements */
   a, button, [role="button"] {
     min-height: 44px;
@@ -471,13 +456,6 @@ img {
   
   .hero-subtitle { 
     font-size: 1.25rem !important; 
-  }
-  
-  /* Header visibility optimization for Galaxy S8+ */
-  header {
-    backdrop-filter: blur(16px) !important;
-    -webkit-backdrop-filter: blur(16px) !important;
-    border-bottom: 1px solid rgba(241, 90, 41, 0.1);
   }
   
   /* Optimized spacing for Galaxy S8+ tall screen */
