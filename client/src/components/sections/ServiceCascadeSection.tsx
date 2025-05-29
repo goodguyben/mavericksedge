@@ -254,8 +254,8 @@ export default function ServiceCascadeSection() {
       </div>
 
       {/* Sticky content container */}
-      <div className="sticky top-0 h-screen flex items-center justify-center bg-black z-10 pt-32">
-        <div className="container mx-auto px-4">
+      <div className="sticky top-0 h-screen flex items-center justify-center bg-black z-10 pt-16 sm:pt-20 md:pt-32">
+        <div className="container mx-auto px-4 sm:px-6 md:px-8">
 
           {/* Section Title */}
           <div className="text-center mb-16">
@@ -273,12 +273,12 @@ export default function ServiceCascadeSection() {
             </motion.div>
           </div>
 
-          <div className={`grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center ${
+          <div className={`grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-16 items-center ${
             currentService.imagePosition === 'right' ? 'lg:grid-flow-col-dense' : ''
           }`}>
 
             {/* 3D Image Stack */}
-            <div className={`relative h-96 lg:h-[500px] perspective-1000 ${
+            <div className={`relative h-64 sm:h-80 md:h-96 lg:h-[500px] perspective-1000 ${
               currentService.imagePosition === 'right' ? 'lg:col-start-2' : ''
             }`}>
               <div className="relative w-full h-full preserve-3d">

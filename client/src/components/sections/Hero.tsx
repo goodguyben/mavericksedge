@@ -45,7 +45,7 @@ export default function Hero() {
   }, [videoLoaded]);
 
   return (
-    <section className="relative h-screen flex items-center overflow-hidden pt-24 md:pt-32">
+    <section className="relative min-h-screen flex items-center overflow-hidden pt-16 sm:pt-20 md:pt-32">
       {/* Video background */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
         {/* Dark overlay for better text readability */}
@@ -74,7 +74,7 @@ export default function Hero() {
           animate={{ opacity: heroOpacity, y: 0 }} // Animate opacity based on scroll
           transition={{ duration: 0.3 }}
         >
-          <h1 className="text-5xl md:text-7xl font-heading font-extrabold tracking-wide leading-normal text-maverick-cream text-center">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-heading font-extrabold tracking-wide leading-tight sm:leading-normal text-maverick-cream text-center">
             <div className="inline-block">
               {/* Word-by-word animation for the heading */}
               <motion.span 
@@ -143,7 +143,7 @@ export default function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 2.8 }}
-            className="text-xl md:text-2xl text-maverick-cream/80 mt-6 mb-10 max-w-l px-2 font-sans leading-relaxed mx-auto text-center"
+            className="text-base sm:text-lg md:text-xl lg:text-2xl text-maverick-cream/80 mt-4 sm:mt-6 mb-8 sm:mb-10 max-w-lg px-4 sm:px-2 font-sans leading-relaxed mx-auto text-center"
           >
             We're Edmonton-based creators who design beautiful websites, improve your online visibility, and offer smart AI Integration so you can focus on growing your business          </motion.p>
           <motion.div
