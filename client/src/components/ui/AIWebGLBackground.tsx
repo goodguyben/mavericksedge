@@ -182,8 +182,11 @@ export default function AIWebGLBackground({ className = '' }: AIWebGLBackgroundP
 
       // Update neuron activity
       neurons.forEach((neuron, index) => {
+        // Ensure radius is always positive
+        neuron.radius = Math.max(2, Math.abs(neuron.radius || 6));
+        
         // Natural decay
-        neuron.activity *= 0.995;
+        neuron.activity = Math.max(0, neuron.activity * 0.995);
         
         // Mouse influence
         if (mouse.isActive) {
@@ -193,12 +196,12 @@ export default function AIWebGLBackground({ className = '' }: AIWebGLBackgroundP
           
           if (distance < 100) {
             const influence = (100 - distance) / 100;
-            neuron.activity = Math.min(1, neuron.activity + influence * 0.02);
+            neuron.activity = Math.min(1, Math.max(0, neuron.activity + influence * 0.02));
           }
         }
         
         // Update pulse phase
-        neuron.pulsePhase += 0.05 + neuron.activity * 0.1;
+        neuron.pulsePhase += 0.05 + Math.max(0, neuron.activity) * 0.1;
       });
 
       // Update pulses
@@ -266,31 +269,34 @@ export default function AIWebGLBackground({ className = '' }: AIWebGLBackgroundP
           const x = fromNeuron.x + (toNeuron.x - fromNeuron.x) * pulse.progress;
           const y = fromNeuron.y + (toNeuron.y - fromNeuron.y) * pulse.progress;
           
-          const size = 3 + pulse.strength * 2;
-          const opacity = pulse.strength * (1 - pulse.progress * 0.5);
+          const size = Math.max(2, 3 + Math.abs(pulse.strength) * 2);
+          const opacity = Math.max(0, Math.abs(pulse.strength) * (1 - pulse.progress * 0.5));
           
           // Outer glow
           ctx.shadowColor = '#00FFFF';
           ctx.shadowBlur = 10;
-          ctx.fillStyle = `rgba(0, 255, 255, ${opacity})`;
+          ctx.fillStyle = `rgba(0, 255, 255, ${Math.max(0, opacity)})`;
           ctx.beginPath();
-          ctx.arc(x, y, Math.max(1, size), 0, Math.PI * 2);
+          ctx.arc(x, y, size, 0, Math.PI * 2);
           ctx.fill();
           
           // Inner core
           ctx.shadowBlur = 0;
-          ctx.fillStyle = `rgba(255, 255, 255, ${opacity})`;
+          ctx.fillStyle = `rgba(255, 255, 255, ${Math.max(0, opacity)})`;
           ctx.beginPath();
-          ctx.arc(x, y, Math.max(0.5, size * 0.5), 0, Math.PI * 2);
+          const coreSize = Math.max(1, size * 0.5);
+          ctx.arc(x, y, coreSize, 0, Math.PI * 2);
           ctx.fill();
         }
       });
 
       // Draw neurons
       neurons.forEach((neuron, index) => {
-        const baseSize = Math.max(1, neuron.radius);
-        const activityPulse = Math.max(0.1, Math.sin(neuron.pulsePhase) * 0.3 + 1);
-        const size = Math.max(2, baseSize * (1 + Math.max(0, neuron.activity) * 0.5) * activityPulse);
+        // Triple-check all values are positive
+        const baseSize = Math.max(2, Math.abs(neuron.radius || 6));
+        const safeActivity = Math.max(0, Math.abs(neuron.activity || 0));
+        const activityPulse = Math.max(0.5, Math.abs(Math.sin(neuron.pulsePhase) * 0.3 + 1));
+        const size = Math.max(3, baseSize * (1 + safeActivity * 0.5) * activityPulse);
         
         // Neuron type colors
         let color;
@@ -315,15 +321,17 @@ export default function AIWebGLBackground({ className = '' }: AIWebGLBackgroundP
         
         ctx.fillStyle = color;
         ctx.beginPath();
-        ctx.arc(neuron.x, neuron.y, Math.max(2, size), 0, Math.PI * 2);
+        const finalSize = Math.max(3, Math.abs(size));
+        ctx.arc(neuron.x, neuron.y, finalSize, 0, Math.PI * 2);
         ctx.fill();
         
         // Inner core for active neurons
-        if (neuron.activity > 0.3) {
+        if (safeActivity > 0.3) {
           ctx.shadowBlur = 0;
-          ctx.fillStyle = `rgba(255, 255, 255, ${neuron.activity * 0.8})`;
+          ctx.fillStyle = `rgba(255, 255, 255, ${safeActivity * 0.8})`;
           ctx.beginPath();
-          ctx.arc(neuron.x, neuron.y, Math.max(0.5, size * 0.4), 0, Math.PI * 2);
+          const coreSize = Math.max(1, Math.abs(finalSize * 0.4));
+          ctx.arc(neuron.x, neuron.y, coreSize, 0, Math.PI * 2);
           ctx.fill();
         }
       });
@@ -334,7 +342,7 @@ export default function AIWebGLBackground({ className = '' }: AIWebGLBackgroundP
         ctx.lineWidth = 2;
         ctx.setLineDash([5, 5]);
         ctx.beginPath();
-        ctx.arc(mouse.x, mouse.y, Math.max(1, 100), 0, Math.PI * 2);
+        ctx.arc(mouse.x, mouse.y, 100, 0, Math.PI * 2);
         ctx.stroke();
         ctx.setLineDash([]);
       }
