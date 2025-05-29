@@ -15,7 +15,6 @@ import SEOHead from '../components/SEOHead';
 
 // Lazy load non-critical components
 const ServiceCascadeSection = lazy(() => import("../components/sections/ServiceCascadeSection"));
-const ProcessSection = lazy(() => import("../components/sections/ProcessSection"));
 const WhyChooseUsSection = lazy(() => import("../components/sections/WhyChooseUsSection"));
 const ContactSection = lazy(() => import("../components/sections/ContactSection"));
 
