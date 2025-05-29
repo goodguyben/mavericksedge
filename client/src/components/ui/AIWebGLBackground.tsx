@@ -96,9 +96,33 @@ interface NeuralCluster {
 
 interface AIWebGLBackgroundProps {
   className?: string;
+  neuronCount?: {
+    input?: number;
+    processing?: number;
+    reasoning?: number;
+    output?: number;
+  };
+  showGrid?: boolean;
+  showLabels?: boolean;
+  showParticles?: boolean;
+  colorScheme?: 'default' | 'blue' | 'purple' | 'green';
+  allowLLMSelection?: boolean;
 }
 
-export default function AIWebGLBackground({ className = '' }: AIWebGLBackgroundProps) {
+export default function AIWebGLBackground({ 
+  className = '',
+  neuronCount = {
+    input: 10,
+    processing: 15,
+    reasoning: 12,
+    output: 8
+  },
+  showGrid = true,
+  showLabels = true,
+  showParticles = true,
+  colorScheme = 'default',
+  allowLLMSelection = true
+}: AIWebGLBackgroundProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const animationRef = useRef<number>();
   const neuronsRef = useRef<Neuron[]>([]);
@@ -116,7 +140,8 @@ export default function AIWebGLBackground({ className = '' }: AIWebGLBackgroundP
     trail: [] as { x: number, y: number, alpha: number, z: number }[],
     lastX: 0,
     lastY: 0,
-    interactionStrength: 0
+    interactionStrength: 0,
+    touches: [] as { x: number, y: number, id: number }[]
   });
   const [isLoaded, setIsLoaded] = useState(false);
   const lastTimeRef = useRef(0);
@@ -281,12 +306,12 @@ export default function AIWebGLBackground({ className = '' }: AIWebGLBackgroundP
       const canvasWidth = canvas.width / Math.min(window.devicePixelRatio || 1, 2);
       const canvasHeight = canvas.height / Math.min(window.devicePixelRatio || 1, 2);
 
-      // 4 optimized neural layers
+      // 4 optimized neural layers with configurable counts
       const layers = [
-        { type: 'input' as const, count: 8, x: canvasWidth * 0.15, specialization: 'input_processing' },
-        { type: 'processing' as const, count: 12, x: canvasWidth * 0.35, specialization: 'multi_modal_reasoning' },
-        { type: 'reasoning' as const, count: 10, x: canvasWidth * 0.65, specialization: 'knowledge_synthesis' },
-        { type: 'output' as const, count: 6, x: canvasWidth * 0.85, specialization: 'response_generation' }
+        { type: 'input' as const, count: neuronCount.input || 10, x: canvasWidth * 0.15, specialization: 'input_processing' },
+        { type: 'processing' as const, count: neuronCount.processing || 15, x: canvasWidth * 0.35, specialization: 'multi_modal_reasoning' },
+        { type: 'reasoning' as const, count: neuronCount.reasoning || 12, x: canvasWidth * 0.65, specialization: 'knowledge_synthesis' },
+        { type: 'output' as const, count: neuronCount.output || 8, x: canvasWidth * 0.85, specialization: 'response_generation' }
       ];
 
       // Create LLM nodes positioned strategically
@@ -304,7 +329,7 @@ export default function AIWebGLBackground({ className = '' }: AIWebGLBackgroundP
           z: (Math.random() - 0.5) * 50,
           type,
           activity: Math.random() * 0.3,
-          size: 15 + Math.random() * 10,
+          size: 25 + Math.random() * 15, // Larger LLM nodes
           connections: [],
           processingLoad: 0,
           lastQuery: 0,
@@ -333,7 +358,7 @@ export default function AIWebGLBackground({ className = '' }: AIWebGLBackgroundP
             vx: 0,
             vy: 0,
             vz: 0,
-            radius: 2.5 + Math.random() * 2,
+            radius: 4 + Math.random() * 3, // Larger neurons
             activity: Math.random() * 0.3,
             energy: Math.random() * 0.5,
             type: layer.type,
@@ -399,12 +424,55 @@ export default function AIWebGLBackground({ className = '' }: AIWebGLBackgroundP
 
     initEnhancedNeuralNetwork();
 
-    // Smooth mouse interactions
-    const handleMouseMove = (e: MouseEvent) => {
+    // Touch event handlers
+    const handleTouchStart = (e: TouchEvent) => {
+      e.preventDefault();
       const rect = canvas.getBoundingClientRect();
-      const newX = e.clientX - rect.left;
-      const newY = e.clientY - rect.top;
+      const touches = Array.from(e.touches).map(touch => ({
+        x: touch.clientX - rect.left,
+        y: touch.clientY - rect.top,
+        id: touch.identifier
+      }));
+      
+      mouseRef.current.touches = touches;
+      
+      if (touches.length > 0) {
+        const touch = touches[0];
+        mouseRef.current.x = touch.x;
+        mouseRef.current.y = touch.y;
+        mouseRef.current.isActive = true;
+        
+        // Trigger click-like behavior for touch
+        handleInteraction(touch.x, touch.y, true);
+      }
+    };
 
+    const handleTouchMove = (e: TouchEvent) => {
+      e.preventDefault();
+      const rect = canvas.getBoundingClientRect();
+      const touches = Array.from(e.touches).map(touch => ({
+        x: touch.clientX - rect.left,
+        y: touch.clientY - rect.top,
+        id: touch.identifier
+      }));
+      
+      mouseRef.current.touches = touches;
+      
+      if (touches.length > 0) {
+        const touch = touches[0];
+        handleInteraction(touch.x, touch.y, false);
+      }
+    };
+
+    const handleTouchEnd = (e: TouchEvent) => {
+      e.preventDefault();
+      mouseRef.current.touches = [];
+      mouseRef.current.isActive = false;
+      mouseRef.current.trail = [];
+    };
+
+    // Unified interaction handler for mouse and touch
+    const handleInteraction = (newX: number, newY: number, isClick: boolean = false) => {
       // Smooth velocity calculation with damping
       const velocityDamping = 0.85;
       mouseRef.current.velocity.x = (mouseRef.current.velocity.x * velocityDamping) + (newX - mouseRef.current.lastX) * (1 - velocityDamping);
@@ -433,15 +501,17 @@ export default function AIWebGLBackground({ className = '' }: AIWebGLBackgroundP
       // Enhanced neural interactions with LLM context
       neuronsRef.current.forEach((neuron, index) => {
         const distance = Math.sqrt((neuron.x - newX) ** 2 + (neuron.y - newY) ** 2);
-        if (distance < 150) {
-          const influence = Math.pow((150 - distance) / 150, 1.5); // Smoother falloff
+        const interactionRadius = isClick ? 200 : 150;
+        
+        if (distance < interactionRadius) {
+          const influence = Math.pow((interactionRadius - distance) / interactionRadius, 1.5);
 
-          neuron.activity = Math.min(1, neuron.activity + influence * 0.012);
-          neuron.glowIntensity = Math.max(neuron.glowIntensity, influence * 0.7);
+          neuron.activity = Math.min(1, neuron.activity + influence * (isClick ? 0.02 : 0.012));
+          neuron.glowIntensity = Math.max(neuron.glowIntensity, influence * (isClick ? 0.9 : 0.7));
 
           // Create contextual particles based on LLM affinity
-          if (neuron.activity > 0.6 && Math.random() > 0.88) {
-            createFluidParticles(neuron.x, neuron.y, neuron.z, 2, 'thought', neuron.llmAffinity);
+          if (showParticles && neuron.activity > 0.6 && Math.random() > (isClick ? 0.5 : 0.88)) {
+            createFluidParticles(neuron.x, neuron.y, neuron.z, isClick ? 4 : 2, 'thought', neuron.llmAffinity);
           }
         }
       });
@@ -449,16 +519,32 @@ export default function AIWebGLBackground({ className = '' }: AIWebGLBackgroundP
       // LLM node interactions
       llmNodesRef.current.forEach(llmNode => {
         const distance = Math.sqrt((llmNode.x - newX) ** 2 + (llmNode.y - newY) ** 2);
-        if (distance < 120) {
-          const influence = (120 - distance) / 120;
-          llmNode.activity = Math.min(1, llmNode.activity + influence * 0.015);
-          llmNode.processingLoad = Math.max(llmNode.processingLoad, influence * 0.8);
+        const interactionRadius = isClick ? 150 : 120;
+        
+        if (distance < interactionRadius) {
+          const influence = (interactionRadius - distance) / interactionRadius;
+          llmNode.activity = Math.min(1, llmNode.activity + influence * (isClick ? 0.02 : 0.015));
+          llmNode.processingLoad = Math.max(llmNode.processingLoad, influence * (isClick ? 1.0 : 0.8));
 
-          if (Math.random() > 0.85) {
-            createFluidParticles(llmNode.x, llmNode.y, llmNode.z, 3, 'response', llmNode.type);
+          if (showParticles && Math.random() > (isClick ? 0.3 : 0.85)) {
+            createFluidParticles(llmNode.x, llmNode.y, llmNode.z, isClick ? 6 : 3, 'response', llmNode.type);
           }
         }
       });
+
+      if (isClick) {
+        mouseRef.current.clicked = true;
+        handleClickResponse(newX, newY);
+        setTimeout(() => { mouseRef.current.clicked = false; }, 150);
+      }
+    };
+
+    // Smooth mouse interactions
+    const handleMouseMove = (e: MouseEvent) => {
+      const rect = canvas.getBoundingClientRect();
+      const newX = e.clientX - rect.left;
+      const newY = e.clientY - rect.top;
+      handleInteraction(newX, newY, false);
     };
 
     const handleMouseLeave = () => {
@@ -468,13 +554,7 @@ export default function AIWebGLBackground({ className = '' }: AIWebGLBackgroundP
       mouseRef.current.interactionStrength = 0;
     };
 
-    const handleClick = (e: MouseEvent) => {
-      const rect = canvas.getBoundingClientRect();
-      const clickX = e.clientX - rect.left;
-      const clickY = e.clientY - rect.top;
-
-      mouseRef.current.clicked = true;
-
+    const handleClickResponse = (clickX: number, clickY: number) => {
       // Create intelligent response based on nearest LLM
       let nearestLLM = llmNodesRef.current[0];
       let minDistance = Infinity;
@@ -495,7 +575,9 @@ export default function AIWebGLBackground({ className = '' }: AIWebGLBackgroundP
       globalProcessingStateRef.current.activeQueries++;
 
       // Create response particles
-      createFluidParticles(clickX, clickY, 0, 8, 'response', nearestLLM.type);
+      if (showParticles) {
+        createFluidParticles(clickX, clickY, 0, 8, 'response', nearestLLM.type);
+      }
 
       // Trigger neural cascade
       neuronsRef.current.forEach((neuron, index) => {
@@ -540,13 +622,23 @@ export default function AIWebGLBackground({ className = '' }: AIWebGLBackgroundP
           }, distance * 0.8); // Smooth wave propagation
         }
       });
+    };
 
-      setTimeout(() => { mouseRef.current.clicked = false; }, 150);
+    const handleClick = (e: MouseEvent) => {
+      const rect = canvas.getBoundingClientRect();
+      const clickX = e.clientX - rect.left;
+      const clickY = e.clientY - rect.top;
+      handleInteraction(clickX, clickY, true);
     };
 
     canvas.addEventListener('mousemove', handleMouseMove, { passive: true });
     canvas.addEventListener('mouseleave', handleMouseLeave);
     canvas.addEventListener('click', handleClick);
+    
+    // Touch event listeners
+    canvas.addEventListener('touchstart', handleTouchStart, { passive: false });
+    canvas.addEventListener('touchmove', handleTouchMove, { passive: false });
+    canvas.addEventListener('touchend', handleTouchEnd, { passive: false });
 
     // Enhanced fluid animation loop
     const animate = (animationTime: number) => {
@@ -572,24 +664,26 @@ export default function AIWebGLBackground({ className = '' }: AIWebGLBackgroundP
       ctx.fillStyle = colors.background.darkOverlay;
       ctx.fillRect(0, 0, width, height);
 
-      // Subtle grid for neural context
-      const gridSize = 100;
-      const gridOffset = (time * 8) % gridSize;
-      ctx.strokeStyle = 'rgba(64, 224, 255, 0.02)';
-      ctx.lineWidth = 0.5;
+      // Conditional grid rendering
+      if (showGrid) {
+        const gridSize = 100;
+        const gridOffset = (time * 8) % gridSize;
+        ctx.strokeStyle = 'rgba(64, 224, 255, 0.02)';
+        ctx.lineWidth = 0.5;
 
-      for (let x = -gridSize + gridOffset; x < width + gridSize; x += gridSize) {
-        ctx.beginPath();
-        ctx.moveTo(x, 0);
-        ctx.lineTo(x, height);
-        ctx.stroke();
-      }
+        for (let x = -gridSize + gridOffset; x < width + gridSize; x += gridSize) {
+          ctx.beginPath();
+          ctx.moveTo(x, 0);
+          ctx.lineTo(x, height);
+          ctx.stroke();
+        }
 
-      for (let y = -gridSize + gridOffset; y < height + gridSize; y += gridSize) {
-        ctx.beginPath();
-        ctx.moveTo(0, y);
-        ctx.lineTo(width, y);
-        ctx.stroke();
+        for (let y = -gridSize + gridOffset; y < height + gridSize; y += gridSize) {
+          ctx.beginPath();
+          ctx.moveTo(0, y);
+          ctx.lineTo(width, y);
+          ctx.stroke();
+        }
       }
 
       const neurons = neuronsRef.current;
@@ -830,98 +924,203 @@ export default function AIWebGLBackground({ className = '' }: AIWebGLBackgroundP
         });
       });
 
-      // Render LLM nodes with logos (simplified geometric representations)
+      // Render enhanced LLM nodes with improved graphics
       llmNodes.forEach(llm => {
-        const pulse = Math.sin(time * 2 + llm.x * 0.01) * 0.2 + 0.8;
-        const size = llm.size * (1 + llm.activity * 0.3) * pulse;
+        const pulse = Math.sin(time * 2 + llm.x * 0.01) * 0.15 + 0.85;
+        const size = llm.size * (1 + llm.activity * 0.4) * pulse;
         const colorConfig = colors.llm[llm.type];
 
-        // Glow effect
-        if (llm.activity > 0.2) {
-          ctx.shadowColor = colorConfig.glow;
-          ctx.shadowBlur = 15 * llm.activity;
-          ctx.fillStyle = `${colorConfig.glow}${Math.floor(llm.activity * 50).toString(16).padStart(2, '0')}`;
-          ctx.beginPath();
-          ctx.arc(llm.x, llm.y, size * 2, 0, Math.PI * 2);
-          ctx.fill();
+        // Enhanced outer glow effect
+        if (llm.activity > 0.1) {
+          const glowLayers = 3;
+          for (let i = 0; i < glowLayers; i++) {
+            const glowSize = size * (2.5 - i * 0.5);
+            const glowAlpha = (llm.activity * 0.8) / (i + 1);
+            
+            ctx.shadowColor = colorConfig.glow;
+            ctx.shadowBlur = 20 * llm.activity;
+            ctx.fillStyle = `${colorConfig.glow}${Math.floor(glowAlpha * 60).toString(16).padStart(2, '0')}`;
+            ctx.beginPath();
+            ctx.arc(llm.x, llm.y, glowSize, 0, Math.PI * 2);
+            ctx.fill();
+          }
           ctx.shadowBlur = 0;
         }
 
-        // Main LLM node
+        // Main LLM node with enhanced gradient
         const gradient = ctx.createRadialGradient(
-          llm.x - size * 0.3, llm.y - size * 0.3, 0,
-          llm.x, llm.y, size
+          llm.x - size * 0.25, llm.y - size * 0.25, 0,
+          llm.x, llm.y, size * 1.2
         );
-        gradient.addColorStop(0, `${colorConfig.primary}FF`);
-        gradient.addColorStop(0.7, `${colorConfig.secondary}CC`);
-        gradient.addColorStop(1, `${colorConfig.secondary}40`);
+        gradient.addColorStop(0, 'rgba(255, 255, 255, 0.95)');
+        gradient.addColorStop(0.3, `${colorConfig.primary}FF`);
+        gradient.addColorStop(0.8, `${colorConfig.secondary}DD`);
+        gradient.addColorStop(1, `${colorConfig.secondary}20`);
 
         ctx.fillStyle = gradient;
         ctx.beginPath();
         ctx.arc(llm.x, llm.y, size, 0, Math.PI * 2);
         ctx.fill();
 
-        // Logo-inspired geometric shapes
-        ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
-        ctx.font = `bold ${size * 0.6}px Arial`;
-        ctx.textAlign = 'center';
-        ctx.textBaseline = 'middle';
+        // Enhanced border
+        ctx.strokeStyle = `${colorConfig.accent}${Math.floor((0.8 + llm.activity * 0.2) * 255).toString(16).padStart(2, '0')}`;
+        ctx.lineWidth = 2 + llm.activity;
+        ctx.beginPath();
+        ctx.arc(llm.x, llm.y, size, 0, Math.PI * 2);
+        ctx.stroke();
 
+        // Enhanced logo designs
+        ctx.save();
+        ctx.shadowColor = 'rgba(0, 0, 0, 0.5)';
+        ctx.shadowBlur = 3;
+        
         switch (llm.type) {
           case 'chatgpt':
+            // ChatGPT logo with rounded squares
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.95)';
+            const squareSize = size * 0.35;
+            ctx.beginPath();
+            ctx.roundRect(llm.x - squareSize/2, llm.y - squareSize/2, squareSize, squareSize, squareSize * 0.2);
+            ctx.fill();
+            
+            ctx.fillStyle = colorConfig.primary;
+            ctx.font = `bold ${size * 0.25}px Arial`;
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
             ctx.fillText('GPT', llm.x, llm.y);
             break;
+            
           case 'gemini':
-            // Gemini-like diamond shape
-            ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+            // Enhanced Gemini constellation pattern
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.95)';
+            const starSize = size * 0.08;
+            const positions = [
+              { x: llm.x - size * 0.25, y: llm.y - size * 0.15 },
+              { x: llm.x + size * 0.25, y: llm.y - size * 0.15 },
+              { x: llm.x - size * 0.15, y: llm.y + size * 0.25 },
+              { x: llm.x + size * 0.15, y: llm.y + size * 0.25 },
+              { x: llm.x, y: llm.y - size * 0.3 },
+              { x: llm.x, y: llm.y + size * 0.1 }
+            ];
+            
+            // Draw stars
+            positions.forEach(pos => {
+              ctx.beginPath();
+              for (let i = 0; i < 5; i++) {
+                const angle = (i * 4 * Math.PI) / 5;
+                const x = pos.x + Math.cos(angle) * starSize;
+                const y = pos.y + Math.sin(angle) * starSize;
+                if (i === 0) ctx.moveTo(x, y);
+                else ctx.lineTo(x, y);
+              }
+              ctx.closePath();
+              ctx.fill();
+            });
+            
+            // Connect with lines
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.6)';
+            ctx.lineWidth = 1.5;
             ctx.beginPath();
-            ctx.moveTo(llm.x, llm.y - size * 0.4);
-            ctx.lineTo(llm.x + size * 0.4, llm.y);
-            ctx.lineTo(llm.x, llm.y + size * 0.4);
-            ctx.lineTo(llm.x - size * 0.4, llm.y);
-            ctx.closePath();
-            ctx.fill();
-            break;
-          case 'grok':
-            ctx.fillText('X', llm.x, llm.y);
-            break;
-          case 'claude':
-            // Claude-like arc
-            ctx.strokeStyle = 'rgba(255, 255, 255, 0.9)';
-            ctx.lineWidth = 3;
-            ctx.beginPath();
-            ctx.arc(llm.x, llm.y, size * 0.3, 0, Math.PI);
+            ctx.moveTo(positions[0].x, positions[0].y);
+            ctx.lineTo(positions[1].x, positions[1].y);
+            ctx.lineTo(positions[3].x, positions[3].y);
+            ctx.lineTo(positions[2].x, positions[2].y);
+            ctx.lineTo(positions[0].x, positions[0].y);
             ctx.stroke();
             break;
+            
+          case 'grok':
+            // Enhanced X logo with cross pattern
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.95)';
+            ctx.lineWidth = size * 0.15;
+            ctx.lineCap = 'round';
+            
+            const crossSize = size * 0.4;
+            ctx.beginPath();
+            ctx.moveTo(llm.x - crossSize, llm.y - crossSize);
+            ctx.lineTo(llm.x + crossSize, llm.y + crossSize);
+            ctx.moveTo(llm.x + crossSize, llm.y - crossSize);
+            ctx.lineTo(llm.x - crossSize, llm.y + crossSize);
+            ctx.stroke();
+            break;
+            
+          case 'claude':
+            // Enhanced Claude logo with abstract curves
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.95)';
+            ctx.lineWidth = size * 0.08;
+            ctx.lineCap = 'round';
+            
+            // Draw flowing curves
+            ctx.beginPath();
+            ctx.arc(llm.x - size * 0.15, llm.y, size * 0.3, Math.PI * 0.2, Math.PI * 0.8);
+            ctx.arc(llm.x + size * 0.15, llm.y, size * 0.3, Math.PI * 1.2, Math.PI * 1.8);
+            ctx.stroke();
+            
+            // Center dot
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.95)';
+            ctx.beginPath();
+            ctx.arc(llm.x, llm.y, size * 0.08, 0, Math.PI * 2);
+            ctx.fill();
+            break;
+        }
+        
+        ctx.restore();
+
+        // Enhanced processing load indicator with multiple rings
+        if (llm.processingLoad > 0.05) {
+          const rings = 2;
+          for (let ring = 0; ring < rings; ring++) {
+            const ringRadius = size * (1.4 + ring * 0.2);
+            const ringAlpha = llm.processingLoad * (1 - ring * 0.3);
+            
+            ctx.strokeStyle = `${colorConfig.accent}${Math.floor(ringAlpha * 255).toString(16).padStart(2, '0')}`;
+            ctx.lineWidth = 2 - ring * 0.5;
+            ctx.setLineDash([8, 8]);
+            ctx.lineDashOffset = -currentTime * 0.01 * (ring + 1);
+            
+            ctx.beginPath();
+            ctx.arc(llm.x, llm.y, ringRadius, 0, Math.PI * 2 * llm.processingLoad);
+            ctx.stroke();
+            
+            ctx.setLineDash([]);
+          }
         }
 
-        // Processing load indicator
-        if (llm.processingLoad > 0.1) {
-          ctx.strokeStyle = `${colorConfig.accent}${Math.floor(llm.processingLoad * 255).toString(16).padStart(2, '0')}`;
-          ctx.lineWidth = 2;
+        // Activity pulse rings
+        if (llm.activity > 0.3) {
+          for (let i = 0; i < 3; i++) {
+            const pulsePhase = (currentTime * 0.003 + i * 0.5) % 1;
+            const pulseRadius = size * (1.5 + pulsePhase * 2);
+            const pulseAlpha = llm.activity * (1 - pulsePhase) * 0.4;
+            
+            ctx.strokeStyle = `${colorConfig.glow}${Math.floor(pulseAlpha * 255).toString(16).padStart(2, '0')}`;
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.arc(llm.x, llm.y, pulseRadius, 0, Math.PI * 2);
+            ctx.stroke();
+          }
+        }
+      });
+
+      // Conditional enhanced particle rendering
+      if (showParticles) {
+        particles.forEach(particle => {
+          const alpha = particle.life / particle.maxLife;
+          const size = particle.size * alpha;
+
+          const llmColorConfig = particle.llmType !== 'neutral' ? colors.llm[particle.llmType] : null;
+          const particleColor = llmColorConfig ? llmColorConfig.primary : particle.color;
+
+          ctx.fillStyle = `${particleColor}${Math.floor(alpha * 200).toString(16).padStart(2, '0')}`;
+          ctx.shadowColor = particleColor;
+          ctx.shadowBlur = 4 * alpha;
+
           ctx.beginPath();
-          ctx.arc(llm.x, llm.y, size * 1.3, 0, Math.PI * 2 * llm.processingLoad);
-          ctx.stroke();
-        }
-      });
-
-      // Render enhanced particles
-      particles.forEach(particle => {
-        const alpha = particle.life / particle.maxLife;
-        const size = particle.size * alpha;
-
-        const llmColorConfig = particle.llmType !== 'neutral' ? colors.llm[particle.llmType] : null;
-        const particleColor = llmColorConfig ? llmColorConfig.primary : particle.color;
-
-        ctx.fillStyle = `${particleColor}${Math.floor(alpha * 200).toString(16).padStart(2, '0')}`;
-        ctx.shadowColor = particleColor;
-        ctx.shadowBlur = 4 * alpha;
-
-        ctx.beginPath();
-        ctx.arc(particle.x, particle.y, size, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.shadowBlur = 0;
-      });
+          ctx.arc(particle.x, particle.y, size, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.shadowBlur = 0;
+        });
+      }
 
       // Enhanced neurons with LLM integration
       neurons.forEach((neuron) => {
@@ -977,22 +1176,24 @@ export default function AIWebGLBackground({ className = '' }: AIWebGLBackgroundP
         }
       });
 
-      // Layer labels with LLM context
-      ctx.fillStyle = 'rgba(255, 255, 255, 0.6)';
-      ctx.font = 'bold 11px Arial';
-      ctx.textAlign = 'center';
-      ctx.shadowColor = '#00FFFF';
-      ctx.shadowBlur = 2;
+      // Conditional layer labels with LLM context
+      if (showLabels) {
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.6)';
+        ctx.font = 'bold 11px Arial';
+        ctx.textAlign = 'center';
+        ctx.shadowColor = '#00FFFF';
+        ctx.shadowBlur = 2;
 
-      const currentLLM = globalProcessingStateRef.current.currentLLM;
-      const llmSuffix = currentLLM !== 'hybrid' ? ` [${currentLLM.toUpperCase()}]` : '';
+        const currentLLM = globalProcessingStateRef.current.currentLLM;
+        const llmSuffix = currentLLM !== 'hybrid' ? ` [${currentLLM.toUpperCase()}]` : '';
 
-      ctx.fillText('INPUT', width * 0.15, height - 15);
-      ctx.fillText('PROCESSING' + llmSuffix, width * 0.35, height - 15);
-      ctx.fillText('REASONING', width * 0.65, height - 15);
-      ctx.fillText('OUTPUT', width * 0.85, height - 15);
+        ctx.fillText('INPUT', width * 0.15, height - 15);
+        ctx.fillText('PROCESSING' + llmSuffix, width * 0.35, height - 15);
+        ctx.fillText('REASONING', width * 0.65, height - 15);
+        ctx.fillText('OUTPUT', width * 0.85, height - 15);
 
-      ctx.shadowBlur = 0;
+        ctx.shadowBlur = 0;
+      }
 
       // Enhanced mouse trail
       if (mouse.trail.length > 1) {
@@ -1066,6 +1267,9 @@ export default function AIWebGLBackground({ className = '' }: AIWebGLBackgroundP
       canvas.removeEventListener('mousemove', handleMouseMove);
       canvas.removeEventListener('mouseleave', handleMouseLeave);
       canvas.removeEventListener('click', handleClick);
+      canvas.removeEventListener('touchstart', handleTouchStart);
+      canvas.removeEventListener('touchmove', handleTouchMove);
+      canvas.removeEventListener('touchend', handleTouchEnd);
       if (animationRef.current) {
         cancelAnimationFrame(animationRef.current);
       }
