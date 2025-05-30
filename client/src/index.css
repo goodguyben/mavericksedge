@@ -49,9 +49,102 @@ html {
   -webkit-overflow-scrolling: touch;
 }
 
-/* Touch-friendly utilities */
+/* Enhanced Touch-friendly utilities for tablets */
 .touch-manipulation {
   touch-action: manipulation;
+  -webkit-tap-highlight-color: rgba(255, 90, 48, 0.2);
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* Tablet-specific touch optimizations */
+@media (min-width: 768px) and (max-width: 1023px) {
+  /* Enhanced touch feedback */
+  .touch-manipulation:active {
+    transform: scale(0.98);
+    transition: transform 0.1s ease;
+  }
+
+  /* Improved tap targets */
+  .tap-target {
+    position: relative;
+    min-height: 48px;
+    min-width: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem;
+  }
+
+  /* Enhanced hover states for tablets with pointer support */
+  @media (hover: hover) {
+    .touch-manipulation:hover {
+      transform: scale(1.02);
+      transition: transform 0.2s ease;
+    }
+  }
+
+  /* Optimize scroll performance */
+  * {
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+  }
+
+  /* Improve momentum scrolling */
+  .scroll-container {
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+  }
+
+  /* Prevent text selection on interactive elements */
+  button, .btn, [role="button"], .interactive {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+  }
+
+  /* Optimize form inputs for tablets */
+  input, textarea, select {
+    font-size: 16px; /* Prevents zoom on iOS */
+    padding: 0.875rem 1rem;
+    border-radius: 0.5rem;
+    min-height: 48px;
+  }
+
+  /* Enhanced focus states for keyboard navigation */
+  :focus-visible {
+    outline: 3px solid rgba(255, 90, 48, 0.6);
+    outline-offset: 2px;
+    border-radius: 0.25rem;
+  }
+
+  /* Improve image performance on tablets */
+  img {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: optimize-contrast;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
+
+  /* Optimize animations for tablet performance */
+  @media (prefers-reduced-motion: no-preference) {
+    .gpu-accelerated {
+      transform: translateZ(0);
+      will-change: transform;
+      backface-visibility: hidden;
+    }
+  }
+
+  /* Reduce motion for accessibility */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
 }
 
 /* Perspective utility for 3D transforms */
@@ -176,28 +269,84 @@ img {
   .lg\:grid-cols-3 { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
 }
 
-/* 4. Tablet Landscape (768px - 1023px) */
+/* 4. Tablet Landscape (768px - 1023px) - Enhanced */
 @media (min-width: 768px) and (max-width: 1023px) {
   .container {
     padding-left: 2rem;
     padding-right: 2rem;
-    max-width: 768px;
+    max-width: 100%;
   }
 
-  /* Typography scaling */
-  h1 { font-size: 3rem; line-height: 1.2; }
-  h2 { font-size: 2.25rem; line-height: 1.3; }
-  h3 { font-size: 1.875rem; line-height: 1.4; }
-  p { font-size: 1.125rem; line-height: 1.6; }
+  /* Enhanced Typography scaling for tablets */
+  h1 { font-size: clamp(2.5rem, 4vw, 3.5rem); line-height: 1.15; letter-spacing: -0.02em; }
+  h2 { font-size: clamp(2rem, 3.5vw, 2.75rem); line-height: 1.25; letter-spacing: -0.01em; }
+  h3 { font-size: clamp(1.75rem, 3vw, 2.25rem); line-height: 1.35; }
+  h4 { font-size: clamp(1.5rem, 2.5vw, 1.875rem); line-height: 1.4; }
+  p { font-size: clamp(1rem, 2vw, 1.25rem); line-height: 1.65; }
 
-  /* Section spacing */
-  section { padding: 4rem 0; }
-  .py-12 { padding: 4rem 0; }
+  /* Tablet-optimized section spacing */
+  section { padding: clamp(3rem, 5vw, 5rem) 0; }
+  .py-12 { padding: clamp(3rem, 5vw, 5rem) 0; }
+  .py-16 { padding: clamp(4rem, 6vw, 6rem) 0; }
+  .py-24 { padding: clamp(5rem, 7vw, 7rem) 0; }
 
-  /* Grid behavior */
-  .lg\:grid-cols-4 { grid-template-columns: repeat(3, 1fr); gap: 2rem; }
-  .lg\:grid-cols-3 { grid-template-columns: repeat(3, 1fr); gap: 2rem; }
-  .lg\:grid-cols-2 { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+  /* Tablet-specific grid behavior */
+  .lg\:grid-cols-4 { grid-template-columns: repeat(2, 1fr); gap: clamp(1.5rem, 3vw, 2.5rem); }
+  .lg\:grid-cols-3 { grid-template-columns: repeat(2, 1fr); gap: clamp(1.5rem, 3vw, 2.5rem); }
+  .lg\:grid-cols-2 { grid-template-columns: repeat(2, 1fr); gap: clamp(1.5rem, 3vw, 2.5rem); }
+
+  /* Touch-friendly button sizing */
+  button, .btn, [role="button"] {
+    min-height: 48px;
+    min-width: 48px;
+    padding: clamp(0.75rem, 2vw, 1rem) clamp(1.5rem, 3vw, 2rem);
+    font-size: clamp(0.875rem, 2vw, 1.125rem);
+  }
+
+  /* Enhanced touch targets */
+  a, button, [role="button"], input, select, textarea {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Tablet landscape specific adjustments */
+  @media (orientation: landscape) {
+    .container {
+      max-width: 90%;
+    }
+    
+    /* Optimize for wider tablet screens */
+    .lg\:grid-cols-4 { grid-template-columns: repeat(3, 1fr); }
+    .lg\:grid-cols-3 { grid-template-columns: repeat(3, 1fr); }
+    
+    /* Adjust hero sections for landscape */
+    .hero-container {
+      padding: 2rem 0;
+    }
+    
+    /* Better spacing for landscape orientation */
+    .space-y-8 > * + * { margin-top: clamp(1.5rem, 3vw, 2.5rem); }
+    .space-y-6 > * + * { margin-top: clamp(1rem, 2.5vw, 2rem); }
+    .space-y-4 > * + * { margin-top: clamp(0.75rem, 2vw, 1.5rem); }
+  }
+
+  @media (orientation: portrait) {
+    /* Portrait tablet optimizations */
+    .lg\:grid-cols-4, .lg\:grid-cols-3 { 
+      grid-template-columns: repeat(2, 1fr); 
+      gap: clamp(1rem, 2.5vw, 2rem);
+    }
+    
+    /* Tighter spacing for portrait */
+    section { padding: clamp(2.5rem, 4vw, 4rem) 0; }
+    
+    /* Optimize text for portrait reading */
+    p { 
+      max-width: 85ch; 
+      margin-left: auto; 
+      margin-right: auto; 
+    }
+  }
 }
 
 /* 5. Desktop (1024px - 1439px) */

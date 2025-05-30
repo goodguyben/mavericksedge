@@ -11,6 +11,13 @@ export default {
       'lg': '1024px',   // Desktop
       'xl': '1440px',   // Large desktop
       '2xl': '1920px',  // Extra large desktop
+      // Tablet-specific breakpoints
+      'tablet': '768px',
+      'tablet-lg': '1024px',
+      'tablet-portrait': {'raw': '(min-width: 768px) and (max-width: 1023px) and (orientation: portrait)'},
+      'tablet-landscape': {'raw': '(min-width: 768px) and (max-width: 1023px) and (orientation: landscape)'},
+      // High DPI tablets
+      'tablet-retina': {'raw': '(min-width: 768px) and (max-width: 1023px) and (-webkit-min-device-pixel-ratio: 2)'},
     },
     fontFamily: {
       sans: ['Space Grotesk', 'system-ui', 'sans-serif'],

@@ -24,11 +24,14 @@ export default function TechButton({
   asButton = false,
 }: TechButtonProps) {
   const baseClasses = cn(
-    "inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg font-medium transition-all duration-300 text-white",
+    "inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg font-medium transition-all duration-300 text-white touch-manipulation",
     "bg-gradient-to-r from-[#E04500] to-[#E57B00] hover:from-[#E57B00] hover:to-[#E04500]",
     "hover:scale-105 hover:shadow-lg hover:shadow-maverick-orange/30",
     "focus:outline-none focus:ring-2 focus:ring-maverick-orange focus:ring-offset-2",
     "disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100",
+    "min-h-[44px] min-w-[44px]", // WCAG 2.1 AA touch target size
+    "tablet:min-h-[48px] tablet:px-8 tablet:py-4", // Enhanced tablet sizing
+    "active:scale-95 active:shadow-inner", // Tablet touch feedback
     className
   );
 
