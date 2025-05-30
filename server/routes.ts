@@ -117,21 +117,13 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // 404 Error Handler - Must be the last route
-  app.use('*', (req, res) => {
-    res.status(404);
-    
-    // For API routes, return JSON
-    if (req.originalUrl.startsWith('/api/')) {
-      return res.json({ 
-        success: false, 
-        message: 'API endpoint not found',
-        status: 404 
-      });
-    }
-    
-    // For all other routes, serve the React app (which will show the 404 page)
-    res.sendFile(path.resolve(process.cwd(), 'dist/client/index.html'));
+  // 404 Error Handler for API routes only - Let Vite handle SPA routing in development
+  app.use('/api/*', (req, res) => {
+    res.status(404).json({ 
+      success: false, 
+      message: 'API endpoint not found',
+      status: 404 
+    });
   });
 
   const httpServer = createServer(app);
