@@ -29,7 +29,7 @@ export default function Header() {
 
   const toggleMenu = () => setIsOpen(!isOpen);
 
-  const headerClasses = `fixed top-0 left-0 w-full py-3 sm:py-4 md:py-6 px-3 sm:px-4 md:px-10 z-50 transition-all duration-300 ${
+  const headerClasses = `fixed top-0 left-0 w-full py-3 sm:py-4 tablet:py-5 md:py-6 px-3 sm:px-4 tablet:px-6 md:px-10 z-50 transition-all duration-300 touch-manipulation ${
     isScrolled
       ? "bg-[#121212] bg-opacity-80 backdrop-blur-md shadow-md"
       : "bg-transparent"

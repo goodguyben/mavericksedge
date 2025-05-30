@@ -52,7 +52,7 @@ export default function Hero() {
           transition={{ duration: 0.1 }}
           style={{ opacity: heroOpacity }}
         >
-          <h1 className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-heading font-extrabold tracking-wide leading-tight text-maverick-cream text-center px-2">
+          <h1 className="text-3xl xs:text-4xl sm:text-5xl tablet:text-6xl tablet-landscape:text-7xl md:text-6xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-heading font-extrabold tracking-wide leading-tight text-maverick-cream text-center px-2 tablet:px-4">
             <div className="inline-block">
               {/* Word-by-word animation for the heading */}
               <motion.span 
