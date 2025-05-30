@@ -46,7 +46,7 @@ export default function TechButton({
         return 'bg-maverick-orange hover:bg-maverick-orange/90 border-maverick-orange hover:border-maverick-orange/90 text-white';
     }
   };
-  
+
   // Base classes - matching WhatWeDoSection Learn more button
   const baseClasses = `
     px-6 py-3 rounded-lg font-medium flex items-center gap-2 transition-all duration-300
@@ -58,20 +58,20 @@ export default function TechButton({
     const button = event.currentTarget;
     const diameter = Math.max(button.clientWidth, button.clientHeight);
     const radius = diameter / 2;
-    
+
     const rect = button.getBoundingClientRect();
     const rippleX = event.clientX - rect.left - radius;
     const rippleY = event.clientY - rect.top - radius;
-    
+
     setRippleStyle({
       width: `${diameter}px`,
       height: `${diameter}px`,
       left: `${rippleX}px`,
       top: `${rippleY}px`
     });
-    
+
     setRippleActive(true);
-    
+
     setTimeout(() => {
       setRippleActive(false);
     }, 600);

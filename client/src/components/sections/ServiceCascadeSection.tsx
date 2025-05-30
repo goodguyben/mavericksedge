@@ -229,10 +229,10 @@ export default function ServiceCascadeSection() {
   const currentItem = allItems[activeIndex];
 
   return (
-    <div ref={containerRef} className="relative h-[500vh] bg-black">
-      {/* Floating particles - reduced for performance */}
+    <div ref={containerRef} className="relative h-[400vh] sm:h-[500vh] bg-black">
+      {/* Floating particles - reduced for performance and mobile */}
       <div className="absolute inset-0 pointer-events-none">
-        {[...Array(8)].map((_, i) => (
+        {[...Array(window?.innerWidth <= 768 ? 4 : 8)].map((_, i) => (
           <motion.div
             key={i}
             className="absolute w-1 h-1 bg-maverick-orange/30 rounded-full"
@@ -254,7 +254,7 @@ export default function ServiceCascadeSection() {
       </div>
 
       {/* Sticky content container */}
-      <div className="sticky top-0 h-screen flex items-center justify-center bg-black z-10 pt-16 sm:pt-20 md:pt-32">
+      <div className="sticky top-0 h-screen flex items-center justify-center bg-black z-10 pt-16 sm:pt-20 md:pt-32 relative">
         <div className="container mx-auto px-4 sm:px-6 md:px-8">
 
           {/* Section Title */}
@@ -273,12 +273,12 @@ export default function ServiceCascadeSection() {
             </motion.div>
           </div>
 
-          <div className={`grid grid-cols-1 lg:grid-cols-2 gap-4 xs:gap-6 sm:gap-8 md:gap-12 lg:gap-16 xl:gap-20 items-center px-2 xs:px-4 sm:px-6 md:px-8 lg:px-0 ${
+          <div className={`grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 md:gap-12 lg:gap-16 xl:gap-20 items-center px-4 sm:px-6 md:px-8 lg:px-0 ${
             currentService.imagePosition === 'right' ? 'lg:grid-flow-col-dense' : ''
           }`}>
 
             {/* 3D Image Stack */}
-            <div className={`relative h-48 xs:h-56 sm:h-64 md:h-80 lg:h-96 xl:h-[500px] 2xl:h-[600px] perspective-1000 ${
+            <div className={`relative h-56 sm:h-64 md:h-80 lg:h-96 xl:h-[500px] 2xl:h-[600px] perspective-1000 touch-manipulation ${
               currentService.imagePosition === 'right' ? 'lg:col-start-2' : ''
             }`}>
               <div className="relative w-full h-full preserve-3d">
@@ -409,7 +409,7 @@ export default function ServiceCascadeSection() {
                 >
                   {/* Title */}
                   <motion.h3
-                    className="text-3xl lg:text-4xl font-bold text-white"
+                    className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white leading-tight"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: 0.1 }}
@@ -419,7 +419,7 @@ export default function ServiceCascadeSection() {
 
                   {/* Description */}
                   <motion.p
-                    className="text-lg text-gray-300 leading-relaxed"
+                    className="text-base sm:text-lg text-gray-300 leading-relaxed"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: 0.2 }}
@@ -444,18 +444,18 @@ export default function ServiceCascadeSection() {
               </AnimatePresence>
 
               {/* Progress Indicators */}
-              <div className="flex items-center gap-3 pt-8">
+              <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2 sm:gap-3 pt-6 sm:pt-8">
                 {allItems.map((_, index) => (
                   <motion.button
                     key={index}
-                    className="relative"
+                    className="relative touch-manipulation min-h-[44px] min-w-[44px] flex items-center justify-center"
                     onClick={() => handleDotClick(index)}
                     whileHover={{ scale: 1.2 }}
                     whileTap={{ scale: 0.9 }}
                   >
                     {/* Background circle */}
                     <motion.div
-                      className="w-3 h-3 rounded-full bg-gray-600"
+                      className="w-3 h-3 rounded-full bg-gray-600 sm:w-4 sm:h-4"
                       animate={{
                         scale: index === activeIndex ? 1.5 : 1,
                         backgroundColor: index === activeIndex ? "#FF5A00" : "#4B5563"
@@ -482,7 +482,7 @@ export default function ServiceCascadeSection() {
                 {/* Auto-play toggle */}
                 <motion.button
                   onClick={toggleAutoPlay}
-                  className="flex items-center gap-2 px-3 py-1 ml-4 text-sm text-gray-400 hover:text-white transition-colors duration-200"
+                  className="flex items-center gap-1 sm:gap-2 px-2 sm:px-3 py-1 ml-2 sm:ml-4 text-xs sm:text-sm text-gray-400 hover:text-white transition-colors duration-200 touch-manipulation min-h-[44px] whitespace-nowrap"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >

@@ -33,12 +33,16 @@ export default function Hero() {
           muted
           loop
           playsInline
+          preload="metadata"
           className="w-full h-full object-cover"
+          style={{
+            objectPosition: window?.innerWidth <= 768 ? 'center center' : 'center center'
+          }}
         >
           <source src="/videos/background.mp4" type="video/mp4" />
         </video>
         {/* Dark overlay for better text readability */}
-        <div className="absolute inset-0 bg-black/60" />
+        <div className="absolute inset-0 bg-black/60 sm:bg-black/50" />
       </div>
       <div className="container mx-auto px-3 xs:px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 2xl:px-16 z-20 flex justify-center items-center w-full pointer-events-none">
         <motion.div
@@ -48,7 +52,7 @@ export default function Hero() {
           transition={{ duration: 0.1 }}
           style={{ opacity: heroOpacity }}
         >
-          <h1 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-heading font-extrabold tracking-wide leading-tight text-maverick-cream text-center">
+          <h1 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-heading font-extrabold tracking-wide leading-tight text-maverick-cream text-center px-2">
             <div className="inline-block">
               {/* Word-by-word animation for the heading */}
               <motion.span 
@@ -124,7 +128,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 3.2 }}
-            className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 justify-center"
+            className="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4 justify-center items-center px-4"
           >
             <Button 
               href="/services" 
