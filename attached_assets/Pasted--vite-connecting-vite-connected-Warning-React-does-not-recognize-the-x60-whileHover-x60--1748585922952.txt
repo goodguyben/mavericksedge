@@ -1,0 +1,30 @@
+[vite] connecting...
+[vite] connected.
+Warning: React does not recognize the &#x60;whileHover&#x60; prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase &#x60;whilehover&#x60; instead. If you accidentally passed it from a parent component, remove it from the DOM element.
+    at button
+    at div
+    at MotionComponent (https://629a8f5e-f04c-4437-a224-1b702aff5485-00-2mntk5k0605k0.picard.replit.dev/node_modules/.vite/deps/framer-motion.js?v=87bebed1:945:40)
+    at div
+    at div
+    at MotionComponent (https://629a8f5e-f04c-4437-a224-1b702aff5485-00-2mntk5k0605k0.picard.replit.dev/node_modules/.vite/deps/framer-motion.js?v=87bebed1:945:40)
+    at div
+    at section
+    at WhatWeDoSection (https://629a8f5e-f04c-4437-a224-1b702aff5485-00-2mntk5k0605k0.picard.replit.dev/src/components/sections/WhatWeDoSection.tsx:43:20)
+    at section
+    at MotionComponent (https://629a8f5e-f04c-4437-a224-1b702aff5485-00-2mntk5k0605k0.picard.replit.dev/node_modules/.vite/deps/framer-motion.js?v=87bebed1:945:40)
+    at ScrollFadeSection (https://629a8f5e-f04c-4437-a224-1b702aff5485-00-2mntk5k0605k0.picard.replit.dev/src/components/ui/scroll-fade-section.tsx:22:3)
+    at article
+    at div
+    at MotionComponent (https://629a8f5e-f04c-4437-a224-1b702aff5485-00-2mntk5k0605k0.picard.replit.dev/node_modules/.vite/deps/framer-motion.js?v=87bebed1:945:40)
+    at Home (https://629a8f5e-f04c-4437-a224-1b702aff5485-00-2mntk5k0605k0.picard.replit.dev/src/pages/Home.tsx:37:3)
+    at Route (https://629a8f5e-f04c-4437-a224-1b702aff5485-00-2mntk5k0605k0.picard.replit.dev/node_modules/.vite/deps/wouter.js?v=87bebed1:280:16)
+    at Switch (https://629a8f5e-f04c-4437-a224-1b702aff5485-00-2mntk5k0605k0.picard.replit.dev/node_modules/.vite/deps/wouter.js?v=87bebed1:336:17)
+    at Suspense
+    at main
+    at div
+    at Layout (https://629a8f5e-f04c-4437-a224-1b702aff5485-00-2mntk5k0605k0.picard.replit.dev/src/components/Layout.tsx:23:34)
+    at QueryClientProvider (https://629a8f5e-f04c-4437-a224-1b702aff5485-00-2mntk5k0605k0.picard.replit.dev/node_modules/.vite/deps/@tanstack_react-query.js?v=87bebed1:2805:3)
+    at App (https://629a8f5e-f04c-4437-a224-1b702aff5485-00-2mntk5k0605k0.picard.replit.dev/src/App.tsx?v=m29Y8CH46a8UsNimDIfpA:55:22)
+    at PresenceChild (https://629a8f5e-f04c-4437-a224-1b702aff5485-00-2mntk5k0605k0.picard.replit.dev/node_modules/.vite/deps/framer-motion.js?v=87bebed1:121:24)
+    at AnimatePresence (https://629a8f5e-f04c-4437-a224-1b702aff5485-00-2mntk5k0605k0.picard.replit.dev/node_modules/.vite/deps/framer-motion.js?v=87bebed1:210:26)
+    at _a (https://629a8f5e-f04c-4437-a224-1b702aff5485-00-2mntk5k0605k0.picard.replit.dev/node_modules/.vite/deps/react-helmet-async.js?v=87bebed1:624:5)
