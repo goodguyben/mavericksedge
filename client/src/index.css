@@ -269,14 +269,16 @@ html {
   }
 }
 
-  /* Enhanced hover states for tablets with pointer support */
-  @media (hover: hover) {
-    .touch-manipulation:hover {
-      transform: scale(1.02);
-      transition: transform 0.2s ease;
-    }
+/* Enhanced hover states for tablets with pointer support */
+@media (hover: hover) {
+  .touch-manipulation:hover {
+    transform: scale(1.02);
+    transition: transform 0.2s ease;
   }
+}
 
+/* Tablet Optimization Rules */
+@media (min-width: 768px) and (max-width: 1300px) {
   /* Optimize scroll performance */
   * {
     -webkit-overflow-scrolling: touch;
