@@ -431,11 +431,11 @@ export default function ServiceCascadeSection() {
               </AnimatePresence>
 
               {/* Progress Indicators */}
-              <div className="flex items-center justify-start gap-1 sm:gap-3 pt-3 sm:pt-6">
+              <div className="flex items-center justify-center sm:justify-start -space-x-3 sm:gap-3 pt-3 sm:pt-6">
                 {allItems.map((_, index) => (
                   <motion.button
                     key={index}
-                    className="relative touch-manipulation min-h-[44px] min-w-[12px] sm:min-w-[44px] flex items-center justify-center"
+                    className="relative touch-manipulation min-h-[44px] min-w-[16px] sm:min-w-[44px] flex items-center justify-center"
                     onClick={() => handleDotClick(index)}
                     whileHover={{ scale: 1.2 }}
                     whileTap={{ scale: 0.9 }}
