@@ -72,14 +72,14 @@ export default function Header() {
         {/* Mobile Menu Button */}
         <button
           onClick={toggleMenu}
-          className="block md:hidden focus:outline-none z-50 p-3"
+          className="block lg:hidden focus:outline-none z-50 p-3"
           aria-label="Toggle menu"
         >
           {isOpen ? <X className="h-6 w-6 text-white" /> : <Menu className="h-6 w-6 text-white" />}
         </button>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center space-x-6 lg:space-x-8 ml-[2px] mr-[2px] pl-[0px] pr-[0px]" role="navigation" aria-label="Main Navigation">
+        <nav className="hidden lg:flex items-center space-x-6 lg:space-x-8 ml-[2px] mr-[2px] pl-[0px] pr-[0px]" role="navigation" aria-label="Main Navigation">
           <Link href="/" className={`px-2 py-1.5 rounded-md text-sm lg:text-base font-medium transition-colors duration-200 ${isCurrentPath('/') ? 'text-maverick-orange' : 'text-white hover:text-maverick-orange'}`} aria-current={isCurrentPath('/') ? 'page' : undefined}>
             Home
           </Link>
@@ -172,7 +172,7 @@ export default function Header() {
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="fixed top-0 right-0 h-full w-[80%] max-w-sm bg-maverick-charcoal border-l border-maverick-slate/20 z-40 flex flex-col md:hidden"
+            className="fixed top-0 right-0 h-full w-[85%] max-w-md bg-maverick-charcoal/95 backdrop-blur-md border-l border-maverick-slate/30 z-40 flex flex-col lg:hidden shadow-2xl"
             role="dialog"
             aria-modal="true" 
             aria-label="Main Menu"
@@ -373,7 +373,7 @@ export default function Header() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 bg-black/50 backdrop-blur-sm z-30 md:hidden"
+            className="fixed inset-0 bg-black/50 backdrop-blur-sm z-30 lg:hidden"
             onClick={toggleMenu}
           />
         )}
