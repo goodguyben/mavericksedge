@@ -449,7 +449,7 @@ export default function ServiceCascadeSection() {
                 {allItems.map((_, index) => (
                   <motion.button
                     key={index}
-                    className="relative touch-manipulation min-h-[44px] min-w-[28px] sm:min-w-[44px] flex items-center justify-center"
+                    className="relative touch-manipulation min-h-[44px] min-w-[24px] sm:min-w-[44px] flex items-center justify-center"
                     onClick={() => handleDotClick(index)}
                     whileHover={{ scale: 1.2 }}
                     whileTap={{ scale: 0.9 }}
@@ -483,7 +483,7 @@ export default function ServiceCascadeSection() {
                 {/* Auto-play toggle */}
                 <motion.button
                   onClick={toggleAutoPlay}
-                  className="flex items-center gap-1 sm:gap-2 px-1 sm:px-3 py-1 ml-1 sm:ml-4 text-xs sm:text-sm text-gray-400 hover:text-white transition-colors duration-200 touch-manipulation min-h-[44px] whitespace-nowrap"
+                  className="flex items-center gap-0.5 sm:gap-2 px-0.5 sm:px-3 py-1 ml-0.5 sm:ml-4 text-xs sm:text-sm text-gray-400 hover:text-white transition-colors duration-200 touch-manipulation min-h-[44px] whitespace-nowrap"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
