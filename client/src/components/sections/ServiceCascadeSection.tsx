@@ -215,59 +215,136 @@ export default function ServiceCascadeSection() {
   const currentItem = allItems[activeIndex];
 
   return (
-    <div ref={containerRef} className="relative h-[400vh] sm:h-[450vh] md:h-[500vh] tablet:h-[480vh] tablet-landscape:h-[420vh] bg-black">
-      {/* Floating particles - optimized for different screen sizes and tablet views */}
+    <div ref={containerRef} className="relative h-[400vh] sm:h-[450vh] ipad-portrait:h-[480vh] ipad-landscape:h-[420vh] galaxy-portrait:h-[490vh] galaxy-landscape:h-[410vh] surface-compact:h-[520vh] surface-pro:h-[460vh] tablet-all:h-[480vh] bg-black">
+      {/* Optimized floating particles for tablet performance */}
       <div className="absolute inset-0 pointer-events-none">
-        {[...Array(window?.innerWidth <= 768 ? 4 : window?.innerWidth <= 1024 ? 6 : 8)].map((_, i) => (
+        {[...Array(
+          window?.innerWidth <= 600 ? 3 : // Surface compact
+          window?.innerWidth <= 768 ? 4 : // Small tablets
+          window?.innerWidth <= 1024 ? 5 : // Standard tablets
+          window?.innerWidth <= 1300 ? 6 : // Large tablets landscape
+          8 // Desktop
+        )].map((_, i) => (
           <motion.div
             key={i}
-            className="absolute w-1 h-1 bg-maverick-orange/30 rounded-full tablet:w-1.5 tablet:h-1.5"
+            className="absolute w-1 h-1 bg-maverick-orange/25 rounded-full 
+                       ipad-portrait:w-1.5 ipad-portrait:h-1.5 
+                       ipad-landscape:w-2 ipad-landscape:h-2
+                       galaxy-portrait:w-1.5 galaxy-portrait:h-1.5
+                       galaxy-landscape:w-2 galaxy-landscape:h-2
+                       surface-compact:w-1 surface-compact:h-1
+                       surface-pro:w-1.5 surface-pro:h-1.5"
             style={{
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
             }}
             animate={{
-              y: [-20, -100],
-              opacity: [0, 1, 0],
+              y: [-15, -80],
+              opacity: [0, 0.8, 0],
             }}
             transition={{
-              duration: 3 + Math.random() * 2,
+              duration: window?.innerWidth <= 1024 ? 2.5 + Math.random() * 1.5 : 3 + Math.random() * 2, // Faster on tablets
               repeat: Infinity,
               delay: Math.random() * 2,
+              ease: "easeInOut"
             }}
           />
         ))}
       </div>
 
-      {/* Sticky content container - Enhanced tablet responsiveness */}
-      <div className="sticky top-0 h-screen flex items-center justify-center bg-black z-10 pt-12 sm:pt-14 md:pt-16 tablet:pt-12 tablet-landscape:pt-8 lg:pt-20 relative">
-        <div className="container mx-auto px-4 sm:px-6 md:px-8 tablet:px-6 tablet-landscape:px-12 lg:px-12">
+      {/* Sticky content container - Comprehensive tablet optimization */}
+      <div className="sticky top-0 h-screen flex items-center justify-center bg-black z-10 
+                      pt-12 sm:pt-14 
+                      ipad-portrait:pt-16 ipad-landscape:pt-12
+                      galaxy-portrait:pt-14 galaxy-landscape:pt-10
+                      surface-compact:pt-18 surface-pro:pt-14
+                      tablet-all:pt-14 lg:pt-20 relative">
+        <div className="container mx-auto 
+                        px-4 sm:px-6 
+                        ipad-portrait:px-8 ipad-landscape:px-12
+                        galaxy-portrait:px-6 galaxy-landscape:px-16
+                        surface-compact:px-4 surface-pro:px-10
+                        tablet-all:px-8 lg:px-12
+                        max-w-none ipad-portrait:max-w-[95%] ipad-landscape:max-w-[90%]
+                        galaxy-portrait:max-w-[95%] galaxy-landscape:max-w-[88%]
+                        surface-compact:max-w-[100%] surface-pro:max-w-[92%]">
 
-          {/* Section Title - Enhanced tablet responsiveness */}
-          <div className="text-center mb-6 sm:mb-8 md:mb-8 tablet:mb-6 tablet-landscape:mb-8 lg:mb-12">
+          {/* Section Title - Comprehensive tablet typography */}
+          <div className="text-center 
+                          mb-6 sm:mb-8 
+                          ipad-portrait:mb-8 ipad-landscape:mb-6
+                          galaxy-portrait:mb-9 galaxy-landscape:mb-7
+                          surface-compact:mb-10 surface-pro:mb-8
+                          tablet-all:mb-8 lg:mb-12">
             <motion.div
               key={currentSection}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="flex items-center justify-center gap-3 sm:gap-4 tablet:gap-5 tablet-landscape:gap-6 mb-3 sm:mb-4 tablet:mb-3"
+              className="flex items-center justify-center 
+                         gap-3 sm:gap-4 
+                         ipad-portrait:gap-5 ipad-landscape:gap-6
+                         galaxy-portrait:gap-4 galaxy-landscape:gap-7
+                         surface-compact:gap-3 surface-pro:gap-5
+                         tablet-all:gap-5 lg:gap-6
+                         mb-3 sm:mb-4 
+                         ipad-portrait:mb-4 ipad-landscape:mb-3
+                         galaxy-portrait:mb-5 galaxy-landscape:mb-4
+                         surface-compact:mb-6 surface-pro:mb-4
+                         tablet-all:mb-4"
             >
-              <div className="text-maverick-orange transform md:scale-110 tablet:scale-125 tablet-landscape:scale-110">
+              <div className="text-maverick-orange transform 
+                             md:scale-110 
+                             ipad-portrait:scale-125 ipad-landscape:scale-115
+                             galaxy-portrait:scale-120 galaxy-landscape:scale-110
+                             surface-compact:scale-130 surface-pro:scale-120
+                             tablet-all:scale-120 
+                             transition-transform duration-300">
                 {currentService.icon}
               </div>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl tablet:text-3xl tablet-landscape:text-4xl lg:text-5xl xl:text-6xl font-bold text-white leading-tight tablet:leading-snug">
+              <h2 className="font-bold text-white leading-tight
+                             text-2xl sm:text-3xl 
+                             ipad-portrait:text-3xl ipad-landscape:text-4xl
+                             galaxy-portrait:text-3xl galaxy-landscape:text-4xl
+                             surface-compact:text-2.5xl surface-pro:text-3xl
+                             tablet-all:text-3xl lg:text-5xl xl:text-6xl
+                             ipad-portrait:leading-snug ipad-landscape:leading-tight
+                             galaxy-portrait:leading-snug galaxy-landscape:leading-tight
+                             surface-compact:leading-tight surface-pro:leading-snug
+                             tablet-all:leading-snug">
                 {currentService.title}
               </h2>
             </motion.div>
           </div>
 
-          <div className={`grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 md:gap-10 tablet:gap-8 tablet-landscape:gap-12 lg:gap-16 xl:gap-20 items-center px-2 sm:px-4 md:px-4 tablet:px-2 tablet-landscape:px-8 lg:px-0 ${
-            currentService.imagePosition === 'right' ? 'md:grid-flow-col-dense tablet:grid-flow-col-dense' : ''
+          <div className={`grid grid-cols-1 md:grid-cols-2 
+                               gap-6 sm:gap-8 
+                               ipad-portrait:gap-8 ipad-landscape:gap-12
+                               galaxy-portrait:gap-7 galaxy-landscape:gap-14
+                               surface-compact:gap-6 surface-pro:gap-10
+                               tablet-all:gap-9 lg:gap-16 xl:gap-20 
+                               items-center 
+                               px-2 sm:px-4 
+                               ipad-portrait:px-4 ipad-landscape:px-8
+                               galaxy-portrait:px-3 galaxy-landscape:px-10
+                               surface-compact:px-2 surface-pro:px-6
+                               tablet-all:px-4 lg:px-0 ${
+            currentService.imagePosition === 'right' ? 'md:grid-flow-col-dense ipad-portrait:grid-flow-col-dense ipad-landscape:grid-flow-col-dense galaxy-portrait:grid-flow-col-dense galaxy-landscape:grid-flow-col-dense surface-pro:grid-flow-col-dense tablet-all:grid-flow-col-dense' : ''
           }`}>
 
-            {/* 3D Image Stack - Comprehensive tablet optimization */}
-            <div className={`relative h-64 sm:h-80 md:h-80 tablet-portrait:h-72 tablet-landscape:h-96 tablet:h-80 lg:h-[26rem] xl:h-[30rem] 2xl:h-[34rem] perspective-1000 touch-manipulation transform tablet:scale-105 tablet-landscape:scale-100 ${
-              currentService.imagePosition === 'right' ? 'md:col-start-2 tablet:col-start-2' : ''
+            {/* 3D Image Stack - Multi-device tablet optimization */}
+            <div className={`relative perspective-1000 touch-manipulation transform
+                             h-64 sm:h-80 
+                             ipad-portrait:h-80 ipad-landscape:h-96
+                             galaxy-portrait:h-76 galaxy-landscape:h-88
+                             surface-compact:h-72 surface-pro:h-84
+                             tablet-all:h-80 lg:h-[26rem] xl:h-[30rem] 2xl:h-[34rem]
+                             ipad-portrait:scale-105 ipad-landscape:scale-100
+                             galaxy-portrait:scale-108 galaxy-landscape:scale-102
+                             surface-compact:scale-110 surface-pro:scale-105
+                             tablet-all:scale-105 lg:scale-100
+                             transition-transform duration-300 ${
+              currentService.imagePosition === 'right' ? 'md:col-start-2 ipad-portrait:col-start-2 ipad-landscape:col-start-2 galaxy-portrait:col-start-2 galaxy-landscape:col-start-2 surface-pro:col-start-2 tablet-all:col-start-2' : ''
             }`}>
               <div className="relative w-full h-full preserve-3d">
                 {allItems.map((item, index) => {

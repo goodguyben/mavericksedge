@@ -11,13 +11,30 @@ export default {
       'lg': '1024px',   // Desktop
       'xl': '1440px',   // Large desktop
       '2xl': '1920px',  // Extra large desktop
-      // Tablet-specific breakpoints
+      
+      // Comprehensive tablet device breakpoints
       'tablet': '768px',
       'tablet-lg': '1024px',
+      
+      // iPad breakpoints (768x1024, 820x1180)
+      'ipad-portrait': {'raw': '(min-width: 768px) and (max-width: 834px) and (orientation: portrait)'},
+      'ipad-landscape': {'raw': '(min-width: 1024px) and (max-width: 1180px) and (orientation: landscape)'},
+      
+      // Galaxy Tab breakpoints (800x1280)
+      'galaxy-portrait': {'raw': '(min-width: 800px) and (max-width: 820px) and (orientation: portrait)'},
+      'galaxy-landscape': {'raw': '(min-width: 1280px) and (max-width: 1300px) and (orientation: landscape)'},
+      
+      // Surface devices (540x720, 912x1368)
+      'surface-compact': {'raw': '(min-width: 540px) and (max-width: 600px)'},
+      'surface-pro': {'raw': '(min-width: 912px) and (max-width: 950px)'},
+      
+      // Generic tablet orientations
       'tablet-portrait': {'raw': '(min-width: 768px) and (max-width: 1023px) and (orientation: portrait)'},
-      'tablet-landscape': {'raw': '(min-width: 768px) and (max-width: 1023px) and (orientation: landscape)'},
-      // High DPI tablets
-      'tablet-retina': {'raw': '(min-width: 768px) and (max-width: 1023px) and (-webkit-min-device-pixel-ratio: 2)'},
+      'tablet-landscape': {'raw': '(min-width: 768px) and (max-width: 1300px) and (orientation: landscape)'},
+      
+      // High DPI and performance considerations
+      'tablet-retina': {'raw': '(min-width: 768px) and (max-width: 1300px) and (-webkit-min-device-pixel-ratio: 2)'},
+      'tablet-all': {'raw': '(min-width: 540px) and (max-width: 1300px)'},
     },
     fontFamily: {
       sans: ['Space Grotesk', 'system-ui', 'sans-serif'],

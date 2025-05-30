@@ -58,24 +58,216 @@ html {
   user-select: none;
 }
 
-/* Tablet-specific touch optimizations */
-@media (min-width: 768px) and (max-width: 1023px) {
-  /* Enhanced touch feedback */
-  .touch-manipulation:active {
-    transform: scale(0.98);
-    transition: transform 0.1s ease;
+/* Comprehensive Tablet Optimizations - 4-5 Device Support */
+
+/* iPad (768x1024) and iPad Air (820x1180) Portrait */
+@media (min-width: 768px) and (max-width: 834px) and (orientation: portrait) {
+  :root {
+    --tablet-scale: 1.1;
+    --tablet-spacing: 1.25rem;
+    --tablet-font-scale: 1.05;
   }
 
-  /* Improved tap targets */
-  .tap-target {
-    position: relative;
+  .container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+    max-width: 100%;
+  }
+
+  /* Enhanced touch targets for iPad */
+  .tap-target, button, [role="button"], a {
+    min-height: 44px;
+    min-width: 44px;
+    padding: 0.875rem 1.25rem;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: rgba(255, 90, 48, 0.3);
+  }
+
+  /* Typography optimization for iPad reading distance */
+  h1 { font-size: clamp(2.25rem, 4vw, 3rem); line-height: 1.2; }
+  h2 { font-size: clamp(1.875rem, 3.5vw, 2.5rem); line-height: 1.25; }
+  h3 { font-size: clamp(1.5rem, 3vw, 2rem); line-height: 1.35; }
+  p { font-size: clamp(1rem, 2.5vw, 1.25rem); line-height: 1.6; }
+
+  /* Grid optimizations */
+  .lg\:grid-cols-4 { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+  .lg\:grid-cols-3 { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+  .lg\:grid-cols-2 { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+}
+
+/* iPad (1024x768) and iPad Air (1180x820) Landscape */
+@media (min-width: 1024px) and (max-width: 1180px) and (orientation: landscape) {
+  :root {
+    --tablet-scale: 1.0;
+    --tablet-spacing: 1.5rem;
+    --tablet-font-scale: 1.0;
+  }
+
+  .container {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+    max-width: 95%;
+  }
+
+  /* Landscape-optimized layout */
+  .lg\:grid-cols-4 { grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+  .lg\:grid-cols-3 { grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+  
+  /* Reduced vertical spacing for landscape */
+  section { padding: clamp(2rem, 4vw, 4rem) 0; }
+}
+
+/* Galaxy Tab S8/S9 (800x1280) Portrait */
+@media (min-width: 800px) and (max-width: 820px) and (orientation: portrait) {
+  :root {
+    --tablet-scale: 1.08;
+    --tablet-spacing: 1.2rem;
+    --tablet-font-scale: 1.03;
+  }
+
+  /* Slightly tighter spacing for Galaxy Tab */
+  .container {
+    padding-left: 1.75rem;
+    padding-right: 1.75rem;
+  }
+
+  /* Android tablet touch optimizations */
+  button, [role="button"] {
+    min-height: 48px;
+    border-radius: 8px;
+    font-weight: 500;
+  }
+}
+
+/* Galaxy Tab S8/S9 (1280x800) Landscape */
+@media (min-width: 1280px) and (max-width: 1300px) and (orientation: landscape) {
+  .container {
+    max-width: 90%;
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+
+  /* Wider grid for large landscape tablets */
+  .lg\:grid-cols-3 { grid-template-columns: repeat(4, 1fr); }
+}
+
+/* Surface Duo/Pro (540x720) Portrait - Narrow tablets */
+@media (min-width: 540px) and (max-width: 600px) and (orientation: portrait) {
+  :root {
+    --tablet-scale: 1.15;
+    --tablet-spacing: 1rem;
+    --tablet-font-scale: 1.08;
+  }
+
+  .container {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  /* Compact layout for narrow tablets */
+  .lg\:grid-cols-4, .lg\:grid-cols-3, .lg\:grid-cols-2 {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  /* Enhanced readability */
+  p { font-size: 1.125rem; line-height: 1.7; }
+}
+
+/* Universal tablet touch enhancements */
+@media (min-width: 540px) and (max-width: 1300px) {
+  /* Improved touch feedback */
+  .touch-manipulation:active {
+    transform: scale(0.97);
+    transition: transform 0.1s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .touch-manipulation:hover {
+    transform: scale(1.02);
+    transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Enhanced focus states for keyboard navigation */
+  :focus-visible {
+    outline: 3px solid rgba(255, 90, 48, 0.7);
+    outline-offset: 3px;
+    border-radius: 0.5rem;
+  }
+
+  /* Optimize scroll performance */
+  * {
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+  }
+
+  /* Reduce motion for performance on older tablets */
+  @media (prefers-reduced-motion: no-preference) {
+    .reduce-motion-tablet {
+      animation-duration: 0.3s !important;
+      transition-duration: 0.3s !important;
+    }
+  }
+
+  /* Image optimization for tablets */
+  img {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: optimize-contrast;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    will-change: auto;
+  }
+
+  /* Form optimizations */
+  input, textarea, select {
+    font-size: 16px; /* Prevents zoom on iOS */
+    padding: 1rem 1.25rem;
+    border-radius: 0.75rem;
+    min-height: 48px;
+    border: 2px solid transparent;
+    transition: border-color 0.2s ease;
+  }
+
+  input:focus, textarea:focus, select:focus {
+    border-color: rgba(255, 90, 48, 0.6);
+    outline: none;
+  }
+
+  /* Navigation optimizations */
+  nav button, nav a {
     min-height: 48px;
     min-width: 48px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.75rem;
+    padding: 0.75rem 1.5rem;
   }
+
+  /* Performance optimizations */
+  .gpu-optimized {
+    transform: translateZ(0);
+    will-change: transform;
+    backface-visibility: hidden;
+  }
+}
+
+/* High-DPI tablet optimizations */
+@media (min-width: 768px) and (max-width: 1300px) and (-webkit-min-device-pixel-ratio: 2) {
+  /* Crisp images on retina tablets */
+  img {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+
+  /* Enhanced borders and shadows */
+  .service-card, .pricing-card {
+    border-width: 0.5px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  /* Sharper text rendering */
+  body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+}
 
   /* Enhanced hover states for tablets with pointer support */
   @media (hover: hover) {
