@@ -1,0 +1,75 @@
+Warning: validateDOMNesting(...): <a> cannot appear as a descendant of &lt;a&gt;.
+    at a
+    at a
+    at https://629a8f5e-f04c-4437-a224-1b702aff5485-00-2mntk5k0605k0.picard.replit.dev/node_modules/.vite/deps/wouter.js?v=87bebed1:294:18
+    at TechButton (https://629a8f5e-f04c-4437-a224-1b702aff5485-00-2mntk5k0605k0.picard.replit.dev/src/components/ui/tech-button.tsx:21:3)
+    at div
+    at MotionComponent (https://629a8f5e-f04c-4437-a224-1b702aff5485-00-2mntk5k0605k0.picard.replit.dev/node_modules/.vite/deps/framer-motion.js?v=87bebed1:945:40)
+    at div
+    at MotionComponent (https://629a8f5e-f04c-4437-a224-1b702aff5485-00-2mntk5k0605k0.picard.replit.dev/node_modules/.vite/deps/framer-motion.js?v=87bebed1:945:40)
+    at PresenceChild (https://629a8f5e-f04c-4437-a224-1b702aff5485-00-2mntk5k0605k0.picard.replit.dev/node_modules/.vite/deps/framer-motion.js?v=87bebed1:121:24)
+    at AnimatePresence (https://629a8f5e-f04c-4437-a224-1b702aff5485-00-2mntk5k0605k0.picard.replit.dev/node_modules/.vite/deps/framer-motion.js?v=87bebed1:210:26)
+    at div
+    at div
+    at div
+    at div
+    at div
+    at ServiceCascadeSection (https://629a8f5e-f04c-4437-a224-1b702aff5485-00-2mntk5k0605k0.picard.replit.dev/src/components/sections/ServiceCascadeSection.tsx:24:41)
+    at Suspense
+    at section
+    at MotionComponent (https://629a8f5e-f04c-4437-a224-1b702aff5485-00-2mntk5k0605k0.picard.replit.dev/node_modules/.vite/deps/framer-motion.js?v=87bebed1:945:40)
+    at ScrollFadeSection (https://629a8f5e-f04c-4437-a224-1b702aff5485-00-2mntk5k0605k0.picard.replit.dev/src/components/ui/scroll-fade-section.tsx:22:3)
+    at article
+    at div
+    at MotionComponent (https://629a8f5e-f04c-4437-a224-1b702aff5485-00-2mntk5k0605k0.picard.replit.dev/node_modules/.vite/deps/framer-motion.js?v=87bebed1:945:40)
+    at Home (https://629a8f5e-f04c-4437-a224-1b702aff5485-00-2mntk5k0605k0.picard.replit.dev/src/pages/Home.tsx?t=1748586054553:37:3)
+    at Route (https://629a8f5e-f04c-4437-a224-1b702aff5485-00-2mntk5k0605k0.picard.replit.dev/node_modules/.vite/deps/wouter.js?v=87bebed1:280:16)
+    at Switch (https://629a8f5e-f04c-4437-a224-1b702aff5485-00-2mntk5k0605k0.picard.replit.dev/node_modules/.vite/deps/wouter.js?v=87bebed1:336:17)
+    at Suspense
+    at main
+    at div
+    at Layout (https://629a8f5e-f04c-4437-a224-1b702aff5485-00-2mntk5k0605k0.picard.replit.dev/src/components/Layout.tsx?t=1748585891205:23:34)
+    at QueryClientProvider (https://629a8f5e-f04c-4437-a224-1b702aff5485-00-2mntk5k0605k0.picard.replit.dev/node_modules/.vite/deps/@tanstack_react-query.js?v=87bebed1:2805:3)
+    at App (https://629a8f5e-f04c-4437-a224-1b702aff5485-00-2mntk5k0605k0.picard.replit.dev/src/App.tsx?t=1748586054553&v=EZD3vwc6WpLgXiyFJmlsV:55:22)
+    at PresenceChild (https://629a8f5e-f04c-4437-a224-1b702aff5485-00-2mntk5k0605k0.picard.replit.dev/node_modules/.vite/deps/framer-motion.js?v=87bebed1:121:24)
+    at AnimatePresence (https://629a8f5e-f04c-4437-a224-1b702aff5485-00-2mntk5k0605k0.picard.replit.dev/node_modules/.vite/deps/framer-motion.js?v=87bebed1:210:26)
+    at _a (https://629a8f5e-f04c-4437-a224-1b702aff5485-00-2mntk5k0605k0.picard.replit.dev/node_modules/.vite/deps/react-helmet-async.js?v=87bebed1:624:5)
+at a
+at a
+at https://629a8f5e-f04c-4437-a224-1b702aff5485-00-2mntk5k0605k0.picard.replit.dev/node_modules/.vite/deps/wouter.js?v=87bebed1:294:18
+at TechButton (https://629a8f5e-f04c-4437-a224-1b702aff5485-00-2mntk5k0605k0.picard.replit.dev/src/components/ui/tech-button.tsx:21:3)
+at div
+at MotionComponent (https://629a8f5e-f04c-4437-a224-1b702aff5485-00-2mntk5k0605k0.picard.replit.dev/node_modules/.vite/deps/framer-motion.js?v=87bebed1:945:40)
+at div
+at MotionComponent (https://629a8f5e-f04c-4437-a224-1b702aff5485-00-2mntk5k0605k0.picard.replit.dev/node_modules/.vite/deps/framer-motion.js?v=87bebed1:945:40)
+at PresenceChild (https://629a8f5e-f04c-4437-a224-1b702aff5485-00-2mntk5k0605k0.picard.replit.dev/node_modules/.vite/deps/framer-motion.js?v=87bebed1:121:24)
+at AnimatePresence (https://629a8f5e-f04c-4437-a224-1b702aff5485-00-2mntk5k0605k0.picard.replit.dev/node_modules/.vite/deps/framer-motion.js?v=87bebed1:210:26)
+at div
+at div
+at div
+at div
+at div
+at ServiceCascadeSection (https://629a8f5e-f04c-4437-a224-1b702aff5485-00-2mntk5k0605k0.picard.replit.dev/src/components/sections/ServiceCascadeSection.tsx:24:41)
+at Suspense
+at section
+at MotionComponent (https://629a8f5e-f04c-4437-a224-1b702aff5485-00-2mntk5k0605k0.picard.replit.dev/node_modules/.vite/deps/framer-motion.js?v=87bebed1:945:40)
+at ScrollFadeSection (https://629a8f5e-f04c-4437-a224-1b702aff5485-00-2mntk5k0605k0.picard.replit.dev/src/components/ui/scroll-fade-section.tsx:22:3)
+at article
+at div
+at MotionComponent (https://629a8f5e-f04c-4437-a224-1b702aff5485-00-2mntk5k0605k0.picard.replit.dev/node_modules/.vite/deps/framer-motion.js?v=87bebed1:945:40)
+at Home (https://629a8f5e-f04c-4437-a224-1b702aff5485-00-2mntk5k0605k0.picard.replit.dev/src/pages/Home.tsx?t=1748586054553:37:3)
+at Route (https://629a8f5e-f04c-4437-a224-1b702aff5485-00-2mntk5k0605k0.picard.replit.dev/node_modules/.vite/deps/wouter.js?v=87bebed1:280:16)
+at Switch (https://629a8f5e-f04c-4437-a224-1b702aff5485-00-2mntk5k0605k0.picard.replit.dev/node_modules/.vite/deps/wouter.js?v=87bebed1:336:17)
+at Suspense
+at main
+at div
+at Layout (https://629a8f5e-f04c-4437-a224-1b702aff5485-00-2mntk5k0605k0.picard.replit.dev/src/components/Layout.tsx?t=1748585891205:23:34)
+at QueryClientProvider (https://629a8f5e-f04c-4437-a224-1b702aff5485-00-2mntk5k0605k0.picard.replit.dev/node_modules/.vite/deps/@tanstack_react-query.js?v=87bebed1:2805:3)
+at App (https://629a8f5e-f04c-4437-a224-1b702aff5485-00-2mntk5k0605k0.picard.replit.dev/src/App.tsx?t=1748586054553&amp;v=EZD3vwc6WpLgXiyFJmlsV:55:22)
+at PresenceChild (https://629a8f5e-f04c-4437-a224-1b702aff5485-00-2mntk5k0605k0.picard.replit.dev/node_modules/.vite/deps/framer-motion.js?v=87bebed1:121:24)
+at AnimatePresence (https://629a8f5e-f04c-4437-a224-1b702aff5485-00-2mntk5k0605k0.picard.replit.dev/node_modules/.vite/deps/framer-motion.js?v=87bebed1:210:26)
+at _a (https://629a8f5e-f04c-4437-a224-1b702aff5485-00-2mntk5k0605k0.picard.replit.dev/node_modules/.vite/deps/react-helmet-async.js?v=87bebed1:624:5)
+at t.value (https://629a8f5e-f04c-4437-a224-1b702aff5485-00-2mntk5k0605k0.picard.replit.dev/__replco/static/devtools/eruda/3.2.3/eruda.js:2:17465)
+at new t (https://629a8f5e-f04c-4437-a224-1b702aff5485-00-2mntk5k0605k0.picard.replit.dev/__replco/static/devtools/eruda/3.2.3/eruda.js:2:12630)
+at t.value (https://629a8f5e-f04c-4437-a224-1b702aff5485-00-2mntk5k0605k0.picard.replit.dev/__replco/static/devtools/eruda/3.2.3/eruda.js:2:32766)
+at https://629a8f5e-f04c-4437-a224-1b702aff5485-00-2mntk5k0605k0.picard.replit.dev/__replco/static/devtools/eruda/3.2.3/eruda.js:2:34400
