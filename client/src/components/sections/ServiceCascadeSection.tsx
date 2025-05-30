@@ -445,7 +445,7 @@ export default function ServiceCascadeSection() {
               </AnimatePresence>
 
               {/* Progress Indicators */}
-              <div className="flex items-center justify-center sm:justify-start gap-0 sm:gap-3 pt-4 sm:pt-8">
+              <div className="flex items-center justify-center sm:justify-start -space-x-1 sm:gap-3 pt-4 sm:pt-8">
                 {allItems.map((_, index) => (
                   <motion.button
                     key={index}
