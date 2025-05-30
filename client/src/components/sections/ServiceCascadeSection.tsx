@@ -476,14 +476,12 @@ export default function ServiceCascadeSection() {
                   {isAutoPlaying ? (
                     <>
                       <Pause className="w-3 h-3 sm:w-4 sm:h-4" />
-                      <span className="hidden xs:inline">Auto-play ON</span>
-                      <span className="xs:hidden">ON</span>
+                      <span className="hidden lg:inline">Auto-play ON</span>
                     </>
                   ) : (
                     <>
                       <Play className="w-3 h-3 sm:w-4 sm:h-4" />
-                      <span className="hidden xs:inline">Auto-play OFF</span>
-                      <span className="xs:hidden">OFF</span>
+                      <span className="hidden lg:inline">Auto-play OFF</span>
                     </>
                   )}
                 </motion.button>
