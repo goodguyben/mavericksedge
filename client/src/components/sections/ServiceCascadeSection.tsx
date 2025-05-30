@@ -187,31 +187,17 @@ export default function ServiceCascadeSection() {
         filter: "blur(0px) brightness(1)",
         zIndex: 10
       };
-    } else if (diff < 0) {
-      // Cards behind - less visible, stacked behind
-      const distance = Math.abs(diff);
-      return {
-        x: -30 * distance,
-        y: 15 * distance,
-        z: -80 * distance,
-        rotateY: -12 * distance,
-        scale: Math.max(0.6, 1 - 0.15 * distance),
-        opacity: distance === 1 ? 0.4 : 0.1,
-        filter: `blur(${distance * 3}px) brightness(${Math.max(0.3, 1 - 0.2 * distance)})`,
-        zIndex: 10 - distance
-      };
     } else {
-      // Cards ahead - hidden or barely visible
-      const distance = diff;
+      // All non-active cards - completely hidden
       return {
-        x: 40 * distance,
-        y: -20 * distance,
-        z: -60 * distance,
-        rotateY: 15 * distance,
-        scale: Math.max(0.5, 1 - 0.2 * distance),
-        opacity: distance === 1 ? 0.2 : 0.05,
-        filter: `blur(${distance * 4}px) brightness(${Math.max(0.2, 0.8 - 0.3 * distance)})`,
-        zIndex: 10 - distance
+        x: 0,
+        y: 0,
+        z: 0,
+        rotateY: 0,
+        scale: 1,
+        opacity: 0,
+        filter: "blur(0px) brightness(1)",
+        zIndex: 1
       };
     }
   };
