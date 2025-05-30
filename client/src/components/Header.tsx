@@ -219,46 +219,120 @@ export default function Header() {
             </AnimatePresence>
           </div>
 
-          {/* Pricing dropdown */}
-          <div className="relative group">
+          {/* Pricing dropdown - Tablet Enhanced */}
+          <div className="relative">
             <button 
               type="button"
-              aria-expanded="false"
+              aria-expanded={pricingDropdownOpen}
               aria-haspopup="true"
-              className={`px-2 py-1.5 rounded-md text-sm lg:text-base font-medium transition-colors duration-200 inline-flex items-center ${
+              onMouseEnter={() => !useTabletNav && setPricingDropdownOpen(true)}
+              onMouseLeave={() => !useTabletNav && setPricingDropdownOpen(false)}
+              onClick={() => useTabletNav && setPricingDropdownOpen(!pricingDropdownOpen)}
+              className={`px-3 py-2 min-h-[44px] rounded-md ${
+                useTabletNav ? 'text-base tablet:text-lg' : 'text-sm lg:text-base'
+              } font-medium transition-colors duration-200 inline-flex items-center touch-target ${
                 isCurrentPath('/pricing') || isCurrentPath('/pricing/web') || isCurrentPath('/pricing/marketing') || isCurrentPath('/pricing/ai') 
                   ? 'text-maverick-orange' 
-                  : 'text-maverick-orange hover:text-maverick-orange'
+                  : 'text-white hover:text-maverick-orange'
               }`}
-              onClick={() => {}}  // Dropdown handled by hover
             >
               <span>Pricing</span>
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 lg:h-4 lg:w-4 ml-1 transform transition-transform duration-300 group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-              </svg>
+              <ChevronDown className={`ml-2 ${useTabletNav ? 'h-5 w-5' : 'h-4 w-4'} transition-transform duration-200 ${
+                pricingDropdownOpen ? 'rotate-180' : ''
+              }`} />
             </button>
-            <div className="absolute left-0 mt-1 w-52 lg:w-56 opacity-0 invisible group-hover:opacity-100 group-hover:visible transform group-hover:translate-y-0 translate-y-[-8px] transition-all duration-300 ease-in-out z-50">
-              <div className="py-1 bg-[#1A1A1A]/95 backdrop-blur-md border border-gray-800/50 rounded-lg shadow-xl" role="menu" aria-orientation="vertical" aria-labelledby="pricing-menu">
-                <Link href="/pricing" className={`block px-3 py-2 text-sm lg:text-base ${isCurrentPath('/pricing') ? 'text-maverick-orange' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'}`} role="menuitem" aria-current={isCurrentPath('/pricing') ? 'page' : undefined}>
-                  All Pricing Plans
-                </Link>
-                <Link href="/pricing/web" className={`block px-3 py-2 text-sm lg:text-base ${isCurrentPath('/pricing/web') ? 'text-maverick-orange' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'}`} role="menuitem" aria-current={isCurrentPath('/pricing/web') ? 'page' : undefined}>
-                  Web Design & Development
-                </Link>
-                <Link href="/pricing/marketing" className={`block px-3 py-2 text-sm lg:text-base ${isCurrentPath('/pricing/marketing') ? 'text-maverick-orange' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'}`} role="menuitem" aria-current={isCurrentPath('/pricing/marketing') ? 'page' : undefined}>
-                  Marketing & Creative
-                </Link>
-                <Link href="/pricing/ai" className={`block px-3 py-2 text-sm lg:text-base ${isCurrentPath('/pricing/ai') ? 'text-maverick-orange' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'}`} role="menuitem" aria-current={isCurrentPath('/pricing/ai') ? 'page' : undefined}>
-                  AI Integration & Automation
-                </Link>
-              </div>
-            </div>
+            
+            <AnimatePresence>
+              {pricingDropdownOpen && (
+                <motion.div 
+                  initial={{ opacity: 0, y: -8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -8 }}
+                  transition={{ duration: 0.2 }}
+                  className={`absolute left-0 mt-2 ${
+                    useTabletNav ? 'w-64 tablet:w-72' : 'w-52 lg:w-56'
+                  } z-50`}
+                  onMouseEnter={() => !useTabletNav && setPricingDropdownOpen(true)}
+                  onMouseLeave={() => !useTabletNav && setPricingDropdownOpen(false)}
+                >
+                  <div className="py-2 bg-[#1A1A1A]/95 backdrop-blur-md border border-gray-800/50 rounded-lg shadow-xl" role="menu">
+                    <Link 
+                      href="/pricing" 
+                      className={`block px-4 py-3 min-h-[44px] ${
+                        useTabletNav ? 'text-base tablet:text-lg' : 'text-sm lg:text-base'
+                      } touch-target ${
+                        isCurrentPath('/pricing') ? 'text-maverick-orange bg-maverick-orange/10' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'
+                      }`} 
+                      role="menuitem"
+                      onClick={() => useTabletNav && setPricingDropdownOpen(false)}
+                    >
+                      All Pricing Plans
+                    </Link>
+                    <Link 
+                      href="/pricing/web" 
+                      className={`block px-4 py-3 min-h-[44px] ${
+                        useTabletNav ? 'text-base tablet:text-lg' : 'text-sm lg:text-base'
+                      } touch-target ${
+                        isCurrentPath('/pricing/web') ? 'text-maverick-orange bg-maverick-orange/10' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'
+                      }`} 
+                      role="menuitem"
+                      onClick={() => useTabletNav && setPricingDropdownOpen(false)}
+                    >
+                      Web Design & Development
+                    </Link>
+                    <Link 
+                      href="/pricing/marketing" 
+                      className={`block px-4 py-3 min-h-[44px] ${
+                        useTabletNav ? 'text-base tablet:text-lg' : 'text-sm lg:text-base'
+                      } touch-target ${
+                        isCurrentPath('/pricing/marketing') ? 'text-maverick-orange bg-maverick-orange/10' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'
+                      }`} 
+                      role="menuitem"
+                      onClick={() => useTabletNav && setPricingDropdownOpen(false)}
+                    >
+                      Marketing & Creative
+                    </Link>
+                    <Link 
+                      href="/pricing/ai" 
+                      className={`block px-4 py-3 min-h-[44px] ${
+                        useTabletNav ? 'text-base tablet:text-lg' : 'text-sm lg:text-base'
+                      } touch-target ${
+                        isCurrentPath('/pricing/ai') ? 'text-maverick-orange bg-maverick-orange/10' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'
+                      }`} 
+                      role="menuitem"
+                      onClick={() => useTabletNav && setPricingDropdownOpen(false)}
+                    >
+                      AI Integration & Automation
+                    </Link>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
 
-          <Link href="/about" className={`px-2 py-1.5 rounded-md text-sm lg:text-base font-medium transition-colors duration-200 ${isCurrentPath('/about') ? 'text-maverick-orange' : 'text-white hover:text-maverick-orange'}`} aria-current={isCurrentPath('/about') ? 'page' : undefined}>
+          {/* About Link - Tablet Optimized */}
+          <Link 
+            href="/about" 
+            className={`px-3 py-2 min-h-[44px] rounded-md ${
+              useTabletNav ? 'text-base tablet:text-lg' : 'text-sm lg:text-base'
+            } font-medium transition-colors duration-200 touch-target flex items-center ${
+              isCurrentPath('/about') ? 'text-maverick-orange' : 'text-white hover:text-maverick-orange'
+            }`} 
+            aria-current={isCurrentPath('/about') ? 'page' : undefined}
+          >
             About
           </Link>
-          <Link href="/contact" className={`px-2 py-1.5 rounded-md text-sm lg:text-base font-medium transition-colors duration-200 ${isCurrentPath('/contact') ? 'text-maverick-orange' : 'text-white hover:text-maverick-orange'}`} aria-current={isCurrentPath('/contact') ? 'page' : undefined}>
+
+          {/* Contact Link - Tablet Optimized */}
+          <Link 
+            href="/contact" 
+            className={`px-3 py-2 min-h-[44px] rounded-md ${
+              useTabletNav ? 'text-base tablet:text-lg' : 'text-sm lg:text-base'
+            } font-medium transition-colors duration-200 touch-target flex items-center ${
+              isCurrentPath('/contact') ? 'text-maverick-orange' : 'text-white hover:text-maverick-orange'
+            }`} 
+            aria-current={isCurrentPath('/contact') ? 'page' : undefined}
+          >
             Contact
           </Link>
         </nav>
