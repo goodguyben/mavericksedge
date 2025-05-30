@@ -1,4 +1,5 @@
-import { ReactNode } from "react";
+import { ReactNode, useEffect } from "react";
+import { useLocation } from "wouter";
 import Header from "./Header";
 import FooterWrapper from "./FooterWrapper";
 import { Toaster } from "./ui/toaster";
