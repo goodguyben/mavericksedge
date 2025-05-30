@@ -199,26 +199,34 @@ img {
   .lg\:grid-cols-3 { grid-template-columns: repeat(3, 1fr); gap: 2rem; }
   .lg\:grid-cols-2 { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
 
-  /* Force tablet header to inherit large mobile styles */
+  /* Tablet header optimization */
   header {
-    /* Use large mobile header padding */
-    padding-top: 0.75rem !important;
-    padding-bottom: 0.75rem !important;
+    /* Larger padding for tablet */
+    padding-top: 1rem !important;
+    padding-bottom: 1.5rem !important;
   }
 
   header .container {
-    /* Use large mobile container spacing */
-    max-width: 768px !important;
-    padding-left: 2rem !important;
+    /* Move everything to the left on tablet */
+    max-width: 1024px !important;
+    padding-left: 1rem !important;
     padding-right: 2rem !important;
+    justify-content: flex-start !important;
   }
 
   header h1 {
     /* Much larger company name for tablet with significant downward movement */
-    font-size: clamp(4.5rem, 8vw, 5.5rem) !important;
-    line-height: 1.0 !important;
-    margin-top: 3.5rem !important;
+    font-size: clamp(5.5rem, 10vw, 7rem) !important;
+    line-height: 0.95 !important;
+    margin-top: 4.5rem !important;
+    margin-left: 0.5rem !important;
     letter-spacing: -0.02em !important;
+  }
+
+  /* Move logo to the left on tablet */
+  header .flex.items-center.justify-start {
+    justify-content: flex-start !important;
+    margin-left: 0 !important;
   }
 
   /* Keep mobile navigation behavior on tablet */
@@ -226,13 +234,14 @@ img {
     display: none !important;
   }
 
-  /* Show mobile menu button on tablet */
+  /* Show mobile menu button on tablet and move left */
   header button[aria-label="Toggle menu"] {
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
     min-height: 44px !important;
     min-width: 44px !important;
+    margin-left: auto !important;
   }
 }
 
