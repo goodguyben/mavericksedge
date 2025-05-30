@@ -211,7 +211,7 @@ export default function WhatWeDoSection() {
         </header>
 
         {isMobile ? (
-          // Mobile/Tablet version - Mimics desktop layout
+          // Mobile/Tablet version - Mimics desktop layout with graphics
           <motion.div className="relative min-h-[500px]" style={{ opacity, y }}>
             {/* Service Navigation */}
             <div className="mb-8">
@@ -278,36 +278,10 @@ export default function WhatWeDoSection() {
                     )}
                   </motion.button>
                 ))}
-                
-                {/* Auto-play toggle button for mobile */}
-                <motion.button
-                  onClick={() => setIsAutoPlaying(!isAutoPlaying)}
-                  className="relative px-3 py-4 min-h-[100px] rounded-lg transition-all duration-300 bg-[#1A1A1A]/30 text-gray-400 hover:text-gray-200 col-span-2"
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: services.length * 0.1 + 0.2 }}
-                >
-                  <div className="flex items-center justify-center gap-3">
-                    <motion.div className="p-2 rounded-lg bg-gray-800/20">
-                      <div className="w-6 h-6">
-                        {isAutoPlaying ? (
-                          <Pause className="w-6 h-6 text-gray-500" />
-                        ) : (
-                          <Play className="w-6 h-6 text-gray-500" />
-                        )}
-                      </div>
-                    </motion.div>
-                    <span className="font-medium text-xs">
-                      {isAutoPlaying ? "Pause Auto-play" : "Start Auto-play"}
-                    </span>
-                  </div>
-                </motion.button>
               </motion.div>
             </div>
 
-            {/* Service Content Display */}
+            {/* Service Content Display with Graphics */}
             <div className="mt-10">
               <AnimatePresence mode="wait">
                 {services.map(
@@ -319,9 +293,432 @@ export default function WhatWeDoSection() {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -20 }}
                         transition={{ duration: 0.5, ease: "easeOut" }}
-                        className="space-y-6"
+                        className="grid grid-cols-1 gap-8 items-center"
                       >
-                        {/* Icon and Title */}
+                        {/* Visual side with same graphics as desktop */}
+                        <motion.div
+                          className="relative h-64 rounded-2xl overflow-hidden"
+                          initial={{ opacity: 0, x: 30 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ duration: 0.5, delay: 0.4 }}
+                        >
+                          {/* Main visual container */}
+                          <div className="absolute inset-0 bg-[#1A1A1A]/60 backdrop-blur-sm rounded-2xl overflow-hidden">
+                            {/* Animated decorative elements */}
+                            <motion.div
+                              className="absolute -top-10 -right-10 w-40 h-40 rounded-full"
+                              style={{
+                                background: `radial-gradient(circle, ${service.color}40 0%, transparent 70%)`,
+                              }}
+                              animate={{
+                                scale: [1, 1.2, 1],
+                                opacity: [0.3, 0.4, 0.3],
+                                rotate: [0, 90, 180, 270, 360],
+                              }}
+                              transition={{
+                                duration: 15,
+                                repeat: Infinity,
+                                repeatType: "reverse",
+                              }}
+                            />
+
+                            <motion.div
+                              className="absolute bottom-10 left-10 w-20 h-20 rounded-full"
+                              style={{
+                                background: `radial-gradient(circle, ${service.color}30 0%, transparent 70%)`,
+                              }}
+                              animate={{
+                                scale: [1, 1.5, 1],
+                                opacity: [0.2, 0.3, 0.2],
+                                y: [0, -30, 0],
+                              }}
+                              transition={{
+                                duration: 10,
+                                repeat: Infinity,
+                                repeatType: "reverse",
+                              }}
+                            />
+
+                            {/* Web Development Animations */}
+                            {service.animationElements === "code" && (
+                              <>
+                                {/* Interactive design visualization - Mobile scaled */}
+                                <motion.div 
+                                  className="absolute top-3 left-3 right-3 h-32 rounded-lg bg-gradient-to-br from-[#1E1E1E]/90 to-[#252530]/90 overflow-hidden border border-gray-700 shadow-lg shadow-purple-500/20"
+                                  animate={{ 
+                                    rotateX: [0, 2, 0, -2, 0],
+                                    rotateY: [0, -2, 0, 2, 0],
+                                    translateZ: [0, 5, 0, -5, 0]
+                                  }}
+                                  transition={{ 
+                                    duration: 10, 
+                                    repeat: Infinity, 
+                                    ease: "easeInOut" 
+                                  }}
+                                  style={{ transformStyle: "preserve-3d", perspective: "1000px" }}
+                                >
+                                  {/* Design tool header */}
+                                  <div className="h-5 bg-gradient-to-r from-purple-900/80 via-indigo-800/80 to-blue-900/80 flex items-center px-2 justify-between">
+                                    <div className="flex gap-1">
+                                      <div className="w-1.5 h-1.5 rounded-full bg-red-500/80"></div>
+                                      <div className="w-1.5 h-1.5 rounded-full bg-yellow-500/80"></div>
+                                      <div className="w-1.5 h-1.5 rounded-full bg-green-500/80"></div>
+                                    </div>
+                                    <div className="text-[8px] text-gray-300 font-medium">
+                                      Design Canvas
+                                    </div>
+                                    <div className="text-[8px] text-cyan-300 bg-cyan-800/40 px-1 py-0.5 rounded-sm flex items-center backdrop-blur-sm">
+                                      <PenTool className="w-1.5 h-1.5 mr-0.5" />
+                                      Live
+                                    </div>
+                                  </div>
+
+                                  <div className="p-2 relative h-full">
+                                    {/* Color palette */}
+                                    <motion.div 
+                                      className="absolute top-1 left-1 flex gap-1"
+                                      initial={{ opacity: 0, x: -10 }}
+                                      animate={{ opacity: 1, x: 0 }}
+                                      transition={{ delay: 0.3, duration: 0.5 }}
+                                    >
+                                      {["#FF5A5F", "#3A86FF", "#8338EC", "#FFB830"].map((color, i) => (
+                                        <motion.div
+                                          key={i}
+                                          className="w-3 h-3 rounded-full"
+                                          style={{ backgroundColor: color, boxShadow: `0 0 4px ${color}80` }}
+                                          initial={{ scale: 0 }}
+                                          animate={{ scale: 1 }}
+                                          transition={{ delay: 0.4 + i * 0.1 }}
+                                        />
+                                      ))}
+                                    </motion.div>
+
+                                    {/* Website mock design */}
+                                    <motion.div
+                                      className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-32 h-20 bg-gradient-to-br from-gray-900/60 to-gray-800/60 rounded-lg overflow-hidden border border-gray-700/50"
+                                      initial={{ opacity: 0, scale: 0.8 }}
+                                      animate={{ opacity: 1, scale: 1 }}
+                                      transition={{ delay: 0.8 }}
+                                    >
+                                      {/* Header */}
+                                      <motion.div
+                                        className="h-2 w-full bg-gradient-to-r from-purple-600/80 to-indigo-600/80"
+                                        initial={{ width: 0 }}
+                                        animate={{ width: '100%' }}
+                                        transition={{ delay: 1.0, duration: 0.6 }}
+                                      />
+
+                                      {/* Hero section */}
+                                      <motion.div
+                                        className="h-8 w-full relative overflow-hidden"
+                                        initial={{ opacity: 0 }}
+                                        animate={{ opacity: 1 }}
+                                        transition={{ delay: 1.2 }}
+                                      >
+                                        <div className="absolute inset-0 bg-gradient-to-br from-indigo-800/50 via-purple-700/50 to-pink-800/50" />
+                                        <div className="relative z-10 flex flex-col items-center justify-center h-full p-1">
+                                          <motion.div 
+                                            className="w-12 h-1 bg-white/80 rounded-full mb-1"
+                                            initial={{ width: 0 }}
+                                            animate={{ width: '12px' }}
+                                            transition={{ delay: 1.3, duration: 0.5 }}
+                                          />
+                                          <motion.div 
+                                            className="w-8 h-0.5 bg-white/60 rounded-full"
+                                            initial={{ width: 0 }}
+                                            animate={{ width: '8px' }}
+                                            transition={{ delay: 1.4, duration: 0.5 }}
+                                          />
+                                        </div>
+                                      </motion.div>
+
+                                      {/* Content blocks */}
+                                      <div className="p-1 grid grid-cols-2 gap-1">
+                                        {[
+                                          { color: 'from-cyan-500/70 to-blue-600/70' },
+                                          { color: 'from-purple-500/70 to-pink-600/70' },
+                                          { color: 'from-amber-500/70 to-orange-600/70' },
+                                          { color: 'from-emerald-500/70 to-green-600/70' }
+                                        ].map((block, i) => (
+                                          <motion.div
+                                            key={i}
+                                            className={`h-3 rounded bg-gradient-to-br ${block.color}`}
+                                            initial={{ opacity: 0, scale: 0.8 }}
+                                            animate={{ opacity: 1, scale: 1 }}
+                                            transition={{ delay: 1.6 + i * 0.1 }}
+                                          />
+                                        ))}
+                                      </div>
+                                    </motion.div>
+                                  </div>
+                                </motion.div>
+
+                                {/* Code editor - Mobile scaled */}
+                                <motion.div
+                                  className="absolute bottom-3 left-3 right-3 h-32 bg-gradient-to-br from-[#0D1117]/90 to-[#161B22]/90 rounded-lg overflow-hidden border border-gray-700 shadow-lg shadow-blue-500/20"
+                                  initial={{ opacity: 0, y: 20 }}
+                                  animate={{ opacity: 1, y: 0 }}
+                                  transition={{ delay: 0.8, duration: 0.5 }}
+                                >
+                                  <div className="h-5 bg-gradient-to-r from-[#1F2937]/95 via-[#111827]/95 to-[#1F2937]/95 flex items-center px-2">
+                                    <div className="flex gap-1">
+                                      <div className="w-1.5 h-1.5 rounded-full bg-red-500/80"></div>
+                                      <div className="w-1.5 h-1.5 rounded-full bg-yellow-500/80"></div>
+                                      <div className="w-1.5 h-1.5 rounded-full bg-green-500/80"></div>
+                                    </div>
+                                    <div className="text-[8px] bg-[#0D1117]/90 text-blue-300 px-1 py-0.5 rounded-sm flex-grow text-center font-mono">
+                                      index.tsx
+                                    </div>
+                                  </div>
+
+                                  <div className="p-2 font-mono text-[7px] relative">
+                                    {[
+                                      { content: 'import React from "react";', color: 'text-gray-400' },
+                                      { content: 'import { motion } from "framer-motion";', color: 'text-gray-400' },
+                                      { content: 'const Hero = () => {', color: 'text-pink-400' },
+                                      { content: '  return (', color: 'text-white' },
+                                      { content: '    <motion.h1', color: 'text-orange-400' },
+                                      { content: '      animate={{ opacity: 1, y: 0 }}', color: 'text-green-400', highlight: true },
+                                      { content: '    >', color: 'text-orange-400' },
+                                      { content: '      Modern Web Solutions', color: 'text-amber-300' },
+                                    ].map((line, i) => (
+                                      <motion.div
+                                        key={i}
+                                        className={`flex items-start ${line.highlight ? 'bg-blue-900/30 -mx-1 px-1 rounded' : ''}`}
+                                        initial={{ opacity: 0, x: 5 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        transition={{ delay: 1.2 + i * 0.05 }}
+                                      >
+                                        <span className="text-gray-600 w-2 mr-1">{i + 1}</span>
+                                        <span className={line.color}>{line.content}</span>
+                                      </motion.div>
+                                    ))}
+                                  </div>
+                                </motion.div>
+                              </>
+                            )}
+
+                            {/* Marketing & Creative Animations */}
+                            {service.animationElements === "creative" && (
+                              <div className="absolute inset-3 overflow-hidden rounded-lg border border-gray-700 bg-[#1A1A1A]/90 shadow-lg shadow-maverick-orange/10">
+                                <div className="h-6 bg-gradient-to-r from-[#222]/90 to-[#333]/80 flex items-center px-2 justify-between">
+                                  <div className="text-[9px] text-gray-200 font-medium flex items-center">
+                                    <Brain className="w-2.5 h-2.5 mr-1 text-maverick-orange" />
+                                    AI Marketing Center
+                                  </div>
+                                  <div className="text-[7px] bg-green-500/20 text-green-400 px-1 py-0.5 rounded-sm">
+                                    Live
+                                  </div>
+                                </div>
+
+                                <div className="p-2 grid grid-cols-2 gap-2">
+                                  <motion.div
+                                    className="bg-[#222]/80 rounded p-2"
+                                    initial={{ opacity: 0, y: 10 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: 0.3 }}
+                                  >
+                                    <div className="text-[8px] text-gray-300 mb-1">Performance</div>
+                                    <div className="h-12 relative">
+                                      <svg className="w-full h-full">
+                                        <motion.path
+                                          d="M0,40 C10,35 20,30 30,20 L30,50 L0,50 Z"
+                                          fill={`${service.color}30`}
+                                          stroke={service.color}
+                                          strokeWidth="1"
+                                          initial={{ pathLength: 0 }}
+                                          animate={{ pathLength: 1 }}
+                                          transition={{ delay: 0.5, duration: 1.5 }}
+                                        />
+                                      </svg>
+                                    </div>
+                                  </motion.div>
+
+                                  <motion.div
+                                    className="bg-[#222]/80 rounded p-2"
+                                    initial={{ opacity: 0, y: 10 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: 0.5 }}
+                                  >
+                                    <div className="text-[8px] text-gray-300 mb-1">AI Insights</div>
+                                    <div className="flex gap-1">
+                                      {[73, 42, 87].map((value, i) => (
+                                        <div key={i} className="flex-1 flex flex-col items-center">
+                                          <div className="w-full h-8 bg-[#444]/50 rounded-sm relative">
+                                            <motion.div
+                                              className="absolute bottom-0 left-0 right-0 rounded-sm"
+                                              style={{ backgroundColor: service.color }}
+                                              initial={{ height: 0 }}
+                                              animate={{ height: `${value}%` }}
+                                              transition={{ delay: 0.8 + i * 0.2, duration: 1 }}
+                                            />
+                                          </div>
+                                          <div className="text-[7px] text-gray-300">{value}%</div>
+                                        </div>
+                                      ))}
+                                    </div>
+                                  </motion.div>
+                                </div>
+                              </div>
+                            )}
+
+                            {/* AI Integration Animations */}
+                            {service.animationElements === "ai" && (
+                              <div className="absolute inset-3 rounded-lg border border-gray-700 bg-gradient-to-br from-[#121212]/95 to-[#1E1E1E]/95 overflow-hidden">
+                                <div className="h-6 bg-[#222]/90 flex items-center px-2 justify-between border-b border-gray-700/50">
+                                  <div className="text-[9px] text-white font-medium flex items-center">
+                                    <Brain className="w-2.5 h-2.5 mr-1 text-maverick-orange" />
+                                    AI Integration
+                                  </div>
+                                  <div className="text-[7px] bg-green-500/20 text-green-400 px-1 py-0.5 rounded-sm">
+                                    Connected
+                                  </div>
+                                </div>
+
+                                <div className="grid grid-cols-3 gap-2 p-2">
+                                  <motion.div
+                                    className="bg-[#222]/80 rounded p-2"
+                                    initial={{ opacity: 0, x: -10 }}
+                                    animate={{ opacity: 1, x: 0 }}
+                                    transition={{ delay: 0.3 }}
+                                  >
+                                    <div className="text-[8px] text-gray-300 mb-1">Processes</div>
+                                    {["Customer Service", "Inventory", "Forecasting"].map((process, i) => (
+                                      <motion.div
+                                        key={i}
+                                        className="bg-[#333]/60 rounded p-1 mb-1"
+                                        initial={{ opacity: 0, y: 5 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        transition={{ delay: 0.5 + i * 0.2 }}
+                                      >
+                                        <div className="text-[7px] text-gray-200">{process}</div>
+                                        <div className="text-[6px] text-green-400">AI Enhanced</div>
+                                      </motion.div>
+                                    ))}
+                                  </motion.div>
+
+                                  <div className="relative flex flex-col justify-center">
+                                    {[0, 1].map((layer) => (
+                                      <div key={layer} className="absolute top-0 bottom-0 flex flex-col justify-around" style={{ left: `${20 + layer * 30}%` }}>
+                                        {[...Array(layer === 0 ? 3 : 2)].map((_, i) => (
+                                          <motion.div
+                                            key={i}
+                                            className="w-3 h-3 rounded-full flex items-center justify-center"
+                                            style={{ backgroundColor: `${service.color}80`, boxShadow: `0 0 6px ${service.color}40` }}
+                                            initial={{ scale: 0 }}
+                                            animate={{ scale: 1 }}
+                                            transition={{ delay: 0.9 + layer * 0.2 + i * 0.1 }}
+                                          >
+                                            {layer === 0 && i === 1 && <Brain className="w-2 h-2 text-white" />}
+                                          </motion.div>
+                                        ))}
+                                      </div>
+                                    ))}
+                                  </div>
+
+                                  <motion.div
+                                    className="bg-[#222]/80 rounded p-2"
+                                    initial={{ opacity: 0, x: 10 }}
+                                    animate={{ opacity: 1, x: 0 }}
+                                    transition={{ delay: 0.7 }}
+                                  >
+                                    <div className="text-[8px] text-green-400 mb-1">Results</div>
+                                    {["+89%", "+76%", "+94%"].map((result, i) => (
+                                      <motion.div
+                                        key={i}
+                                        className="text-[7px] text-gray-300 mb-0.5"
+                                        initial={{ opacity: 0 }}
+                                        animate={{ opacity: 1 }}
+                                        transition={{ delay: 1.0 + i * 0.2 }}
+                                      >
+                                        <span className="text-green-400">{result}</span> improvement
+                                      </motion.div>
+                                    ))}
+                                  </motion.div>
+                                </div>
+                              </div>
+                            )}
+
+                            {/* Support & Maintenance Animations */}
+                            {service.animationElements === "support" && (
+                              <div className="absolute inset-3 rounded-lg border border-gray-700 bg-gradient-to-br from-[#121212]/95 to-[#1A1A1A]/95 overflow-hidden">
+                                <div className="h-6 bg-gradient-to-r from-[#222]/90 to-[#333]/80 flex items-center px-2 justify-between border-b border-gray-700/50">
+                                  <div className="text-[9px] text-white font-medium flex items-center">
+                                    <Brain className="w-2.5 h-2.5 mr-1 text-maverick-orange" />
+                                    System Monitor
+                                  </div>
+                                  <div className="text-[7px] bg-green-500/20 text-green-400 px-1 py-0.5 rounded-sm">
+                                    Live
+                                  </div>
+                                </div>
+
+                                <div className="grid grid-cols-2 gap-2 p-2">
+                                  <motion.div
+                                    className="bg-[#222]/80 rounded p-2"
+                                    initial={{ opacity: 0, x: -10 }}
+                                    animate={{ opacity: 1, x: 0 }}
+                                    transition={{ delay: 0.3 }}
+                                  >
+                                    <div className="text-[8px] text-gray-300 mb-1">Health</div>
+                                    {[
+                                      { label: "Uptime", value: "99.99%", status: "optimal" },
+                                      { label: "Response", value: "84ms", status: "optimal" },
+                                      { label: "CPU", value: "18%", status: "optimal" },
+                                    ].map((metric, i) => (
+                                      <motion.div
+                                        key={i}
+                                        className="bg-[#333]/60 rounded p-1 mb-1 flex justify-between items-center"
+                                        initial={{ opacity: 0, y: 5 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        transition={{ delay: 0.4 + i * 0.15 }}
+                                      >
+                                        <span className="text-[7px] text-gray-400">{metric.label}</span>
+                                        <div className="flex items-center">
+                                          <span className="text-[7px] font-medium text-white mr-1">{metric.value}</span>
+                                          <span className="w-1.5 h-1.5 rounded-full bg-green-500" />
+                                        </div>
+                                      </motion.div>
+                                    ))}
+                                  </motion.div>
+
+                                  <motion.div
+                                    className="bg-[#222]/80 rounded p-2"
+                                    initial={{ opacity: 0, x: 10 }}
+                                    animate={{ opacity: 1, x: 0 }}
+                                    transition={{ delay: 0.4 }}
+                                  >
+                                    <div className="text-[8px] text-gray-300 mb-1">Performance</div>
+                                    <div className="h-16 relative">
+                                      <svg className="w-full h-full">
+                                        <motion.path
+                                          d="M0,40 C10,45 20,35 30,45 C40,55 50,40 60,30 L60,60 L0,60 Z"
+                                          fill="rgba(100,100,150,0.2)"
+                                          stroke="#6666aa"
+                                          strokeWidth="1"
+                                          strokeDasharray="2,2"
+                                          initial={{ pathLength: 0 }}
+                                          animate={{ pathLength: 1 }}
+                                          transition={{ delay: 0.9, duration: 1 }}
+                                        />
+                                        <motion.path
+                                          d="M60,30 C70,20 80,15 90,10 L90,60 L60,60 Z"
+                                          fill={`${service.color}40`}
+                                          stroke={service.color}
+                                          strokeWidth="1"
+                                          initial={{ pathLength: 0 }}
+                                          animate={{ pathLength: 1 }}
+                                          transition={{ delay: 1.5, duration: 1 }}
+                                        />
+                                      </svg>
+                                    </div>
+                                  </motion.div>
+                                </div>
+                              </div>
+                            )}
+                          </div>
+                        </motion.div>
+
+                        {/* Content side */}
                         <motion.div
                           initial={{ opacity: 0, x: -30 }}
                           animate={{ opacity: 1, x: 0 }}
@@ -356,65 +753,55 @@ export default function WhatWeDoSection() {
                           >
                             {service.title}
                           </motion.h3>
-                        </motion.div>
 
-                        {/* Description */}
-                        <motion.p
-                          className="text-[#AAAAAA] text-lg text-center"
-                          initial={{ opacity: 0 }}
-                          animate={{ opacity: 1 }}
-                          transition={{ duration: 0.5, delay: 0.4 }}
-                        >
-                          {service.description}
-                        </motion.p>
+                          <motion.p
+                            className="text-[#AAAAAA] text-lg mb-4"
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ duration: 0.5, delay: 0.4 }}
+                          >
+                            {service.description}
+                          </motion.p>
 
-                        <motion.p
-                          className="text-[#DDDDDD] leading-relaxed text-center"
-                          initial={{ opacity: 0 }}
-                          animate={{ opacity: 1 }}
-                          transition={{ duration: 0.5, delay: 0.5 }}
-                        >
-                          {service.details}
-                        </motion.p>
+                          <motion.p
+                            className="text-[#DDDDDD] leading-relaxed mb-6"
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ duration: 0.5, delay: 0.5 }}
+                          >
+                            {service.details}
+                          </motion.p>
 
-                        {/* Key Benefits */}
-                        <motion.div
-                          className="bg-[#1A1A1A]/50 rounded-lg p-6"
-                          initial={{ opacity: 0 }}
-                          animate={{ opacity: 1 }}
-                          transition={{ duration: 0.5, delay: 0.6 }}
-                        >
-                          <h4 className="text-lg font-semibold mb-4 text-white text-center">
-                            Key Benefits:
-                          </h4>
-                          <ul className="space-y-3">
-                            {service.valueProps.map((prop, idx) => (
-                              <motion.li
-                                key={idx}
-                                className="flex items-start"
-                                initial={{ opacity: 0, x: -10 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                transition={{
-                                  duration: 0.3,
-                                  delay: 0.7 + idx * 0.1,
-                                }}
-                              >
-                                <div className="mr-3 mt-1 text-maverick-orange flex-shrink-0">
-                                  •
-                                </div>
-                                <span className="text-[#DDDDDD] leading-relaxed">{prop}</span>
-                              </motion.li>
-                            ))}
-                          </ul>
-                        </motion.div>
+                          <motion.div
+                            className="mb-6"
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ duration: 0.5, delay: 0.6 }}
+                          >
+                            <h4 className="text-lg font-semibold mb-3 text-white">
+                              Key Benefits:
+                            </h4>
+                            <ul className="space-y-2 text-left max-w-md mx-auto">
+                              {service.valueProps.map((prop, idx) => (
+                                <motion.li
+                                  key={idx}
+                                  className="flex items-start"
+                                  initial={{ opacity: 0, x: -10 }}
+                                  animate={{ opacity: 1, x: 0 }}
+                                  transition={{
+                                    duration: 0.3,
+                                    delay: 0.7 + idx * 0.1,
+                                  }}
+                                >
+                                  <div className="mr-3 mt-0.5 text-maverick-orange flex-shrink-0">
+                                    •
+                                  </div>
+                                  <span className="text-[#DDDDDD] leading-relaxed">{prop}</span>
+                                </motion.li>
+                              ))}
+                            </ul>
+                          </motion.div>
 
-                        {/* CTA Button */}
-                        <motion.div
-                          className="text-center"
-                          initial={{ opacity: 0, y: 20 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ delay: 0.8 }}
-                        >
                           <motion.button
                             className="px-6 py-3 rounded-lg font-medium flex items-center gap-2 transition-all duration-300 mx-auto"
                             style={{
@@ -425,6 +812,9 @@ export default function WhatWeDoSection() {
                               boxShadow: `0 10px 25px -5px rgba(224, 69, 0, 0.4)`,
                             }}
                             whileTap={{ scale: 0.98 }}
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.8 }}
                           >
                             Learn more <ArrowRight className="w-4 h-4" />
                           </motion.button>
