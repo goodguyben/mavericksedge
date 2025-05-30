@@ -431,7 +431,7 @@ export default function ServiceCascadeSection() {
               </AnimatePresence>
 
               {/* Progress Indicators */}
-              <div className="flex items-center justify-start pt-3 sm:pt-6">
+              <div className="flex items-center justify-center lg:justify-start pt-3 sm:pt-6">
                 <div className="flex items-center -space-x-1 lg:gap-3">
                   {allItems.map((_, index) => (
                     <motion.button
@@ -468,22 +468,22 @@ export default function ServiceCascadeSection() {
                   ))}
                 </div>
 
-                {/* Auto-play toggle */}
+                {/* Auto-play toggle - hidden on mobile */}
                 <motion.button
                   onClick={toggleAutoPlay}
-                  className="flex items-center gap-1 sm:gap-2 px-2 sm:px-3 py-2 ml-2 sm:ml-4 text-sm sm:text-sm text-gray-400 hover:text-white transition-colors duration-200 touch-manipulation min-h-[48px] lg:min-h-[44px] whitespace-nowrap bg-gray-800/30 lg:bg-transparent rounded-lg lg:rounded-none"
+                  className="hidden lg:flex items-center gap-2 px-3 py-2 ml-4 text-sm text-gray-400 hover:text-white transition-colors duration-200 touch-manipulation min-h-[44px] whitespace-nowrap"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
                   {isAutoPlaying ? (
                     <>
-                      <Pause className="w-4 h-4 sm:w-4 sm:h-4" />
-                      <span className="hidden lg:inline">Auto-play ON</span>
+                      <Pause className="w-4 h-4" />
+                      <span>Auto-play ON</span>
                     </>
                   ) : (
                     <>
-                      <Play className="w-4 h-4 sm:w-4 sm:h-4" />
-                      <span className="hidden lg:inline">Auto-play OFF</span>
+                      <Play className="w-4 h-4" />
+                      <span>Auto-play OFF</span>
                     </>
                   )}
                 </motion.button>
