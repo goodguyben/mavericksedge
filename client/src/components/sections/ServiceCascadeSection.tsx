@@ -215,10 +215,10 @@ export default function ServiceCascadeSection() {
   const currentItem = allItems[activeIndex];
 
   return (
-    <div ref={containerRef} className="relative h-[400vh] sm:h-[500vh] bg-black">
-      {/* Floating particles - reduced for performance and mobile */}
+    <div ref={containerRef} className="relative h-[400vh] sm:h-[450vh] md:h-[500vh] bg-black">
+      {/* Floating particles - optimized for different screen sizes */}
       <div className="absolute inset-0 pointer-events-none">
-        {[...Array(window?.innerWidth <= 768 ? 4 : 8)].map((_, i) => (
+        {[...Array(window?.innerWidth <= 768 ? 4 : window?.innerWidth <= 1024 ? 6 : 8)].map((_, i) => (
           <motion.div
             key={i}
             className="absolute w-1 h-1 bg-maverick-orange/30 rounded-full"
@@ -240,32 +240,34 @@ export default function ServiceCascadeSection() {
       </div>
 
       {/* Sticky content container */}
-      <div className="sticky top-0 h-screen flex items-center justify-center bg-black z-10 pt-12 sm:pt-16 md:pt-20 lg:pt-24 relative">
-        <div className="container mx-auto px-4 sm:px-6 md:px-8">
+      <div className="sticky top-0 h-screen flex items-center justify-center bg-black z-10 pt-12 sm:pt-14 md:pt-16 lg:pt-20 relative">
+        <div className="container mx-auto px-4 sm:px-6 md:px-10 lg:px-12">
 
           {/* Section Title */}
-          <div className="text-center mb-8 lg:mb-12">
+          <div className="text-center mb-6 sm:mb-8 md:mb-10 lg:mb-12">
             <motion.div
               key={currentSection}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="flex items-center justify-center gap-4 mb-4"
+              className="flex items-center justify-center gap-3 sm:gap-4 mb-3 sm:mb-4"
             >
-              {currentService.icon}
-              <h2 className="text-3xl lg:text-4xl xl:text-5xl font-bold text-white">
+              <div className="text-maverick-orange transform md:scale-110">
+                {currentService.icon}
+              </div>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white leading-tight">
                 {currentService.title}
               </h2>
             </motion.div>
           </div>
 
-          <div className={`grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 md:gap-10 lg:gap-12 xl:gap-16 items-center px-4 sm:px-6 md:px-8 lg:px-0 ${
-            currentService.imagePosition === 'right' ? 'lg:grid-flow-col-dense' : ''
+          <div className={`grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 md:gap-12 lg:gap-16 xl:gap-20 items-center px-2 sm:px-4 md:px-6 lg:px-0 ${
+            currentService.imagePosition === 'right' ? 'md:grid-flow-col-dense' : ''
           }`}>
 
             {/* 3D Image Stack */}
-            <div className={`relative h-64 sm:h-72 md:h-80 lg:h-96 xl:h-[28rem] 2xl:h-[32rem] perspective-1000 touch-manipulation ${
-              currentService.imagePosition === 'right' ? 'lg:col-start-2' : ''
+            <div className={`relative h-64 sm:h-80 md:h-96 lg:h-[26rem] xl:h-[30rem] 2xl:h-[34rem] perspective-1000 touch-manipulation ${
+              currentService.imagePosition === 'right' ? 'md:col-start-2' : ''
             }`}>
               <div className="relative w-full h-full preserve-3d">
                 {allItems.map((item, index) => {
@@ -381,13 +383,13 @@ export default function ServiceCascadeSection() {
             </div>
 
             {/* Content Area */}
-            <div className={`space-y-6 lg:space-y-8 ${
-              currentService.imagePosition === 'right' ? 'lg:col-start-1 lg:row-start-1' : ''
+            <div className={`space-y-4 sm:space-y-6 md:space-y-7 lg:space-y-8 ${
+              currentService.imagePosition === 'right' ? 'md:col-start-1 md:row-start-1' : ''
             }`}>
               <AnimatePresence mode="wait">
                 <motion.div
                   key={activeIndex}
-                  className="space-y-4 lg:space-y-6"
+                  className="space-y-3 sm:space-y-4 md:space-y-5 lg:space-y-6"
                   initial={{ opacity: 0, x: currentService.imagePosition === 'right' ? -50 : 50 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: currentService.imagePosition === 'right' ? 50 : -50 }}
@@ -395,7 +397,7 @@ export default function ServiceCascadeSection() {
                 >
                   {/* Title */}
                   <motion.h3
-                    className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-bold text-white leading-tight"
+                    className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-white leading-tight md:leading-snug"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: 0.1 }}
@@ -405,7 +407,7 @@ export default function ServiceCascadeSection() {
 
                   {/* Description */}
                   <motion.p
-                    className="text-sm sm:text-base lg:text-lg text-gray-300 leading-relaxed"
+                    className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-300 leading-relaxed md:leading-loose max-w-2xl"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: 0.2 }}
@@ -418,10 +420,11 @@ export default function ServiceCascadeSection() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: 0.3 }}
+                    className="pt-2 md:pt-4"
                   >
                     <TechButton 
                       href={`/services/${currentService.id === 'web-applications' ? 'web-design-and-development-edmonton' : currentService.id === 'marketing-solutions' ? 'digital-marketing-edmonton' : 'ai-integration-automation-edmonton'}`}
-                      className="inline-flex items-center"
+                      className="inline-flex items-center text-sm sm:text-base md:text-lg px-6 py-3 md:px-8 md:py-4"
                       asButton={true}
                     >
                       Learn More
@@ -431,20 +434,20 @@ export default function ServiceCascadeSection() {
               </AnimatePresence>
 
               {/* Progress Indicators */}
-              <div className="flex items-center justify-center pt-3 sm:pt-6">
-                <div className="flex items-center gap-2 md:gap-4">
-                  <div className="flex items-center -space-x-1 lg:gap-3">
+              <div className="flex items-center justify-center pt-4 sm:pt-6 md:pt-8">
+                <div className="flex items-center gap-3 md:gap-6">
+                  <div className="flex items-center gap-1 sm:gap-2 md:gap-3 lg:gap-4">
                     {allItems.map((_, index) => (
                       <motion.button
                         key={index}
-                        className="relative touch-manipulation min-h-[44px] min-w-[16px] lg:min-w-[44px] flex items-center justify-center"
+                        className="relative touch-manipulation min-h-[48px] min-w-[20px] md:min-h-[52px] md:min-w-[24px] lg:min-w-[48px] flex items-center justify-center p-2"
                         onClick={() => handleDotClick(index)}
                         whileHover={{ scale: 1.2 }}
                         whileTap={{ scale: 0.9 }}
                       >
                         {/* Background circle */}
                         <motion.div
-                          className="w-2 h-2 rounded-full bg-gray-600 lg:w-4 lg:h-4"
+                          className="w-2.5 h-2.5 md:w-3.5 md:h-3.5 lg:w-4 lg:h-4 rounded-full bg-gray-600"
                           animate={{
                             scale: index === activeIndex ? 1.5 : 1,
                             backgroundColor: index === activeIndex ? "#FF5A00" : "#4B5563"
@@ -469,22 +472,22 @@ export default function ServiceCascadeSection() {
                     ))}
                   </div>
 
-                  {/* Auto-play toggle - hidden on mobile, visible on tablet+ */}
+                  {/* Auto-play toggle - enhanced for tablet */}
                   <motion.button
                     onClick={toggleAutoPlay}
-                    className="hidden md:flex items-center gap-1 md:gap-2 px-2 md:px-3 py-2 text-xs md:text-sm text-gray-400 hover:text-white transition-colors duration-200 touch-manipulation min-h-[44px] whitespace-nowrap bg-gray-800/30 md:bg-transparent rounded-lg md:rounded-none"
-                    whileHover={{ scale: 1.05 }}
+                    className="hidden md:flex items-center gap-2 lg:gap-3 px-3 md:px-4 lg:px-6 py-2.5 md:py-3 text-sm md:text-base text-gray-400 hover:text-white transition-colors duration-200 touch-manipulation min-h-[48px] md:min-h-[52px] whitespace-nowrap bg-gray-800/40 hover:bg-gray-700/50 backdrop-blur-sm rounded-xl border border-gray-700/30"
+                    whileHover={{ scale: 1.05, backgroundColor: "rgba(55, 65, 81, 0.6)" }}
                     whileTap={{ scale: 0.95 }}
                   >
                     {isAutoPlaying ? (
                       <>
-                        <Pause className="w-3 h-3 md:w-4 md:h-4" />
-                        <span className="hidden lg:inline">Auto-play ON</span>
+                        <Pause className="w-4 h-4 md:w-5 md:h-5" />
+                        <span className="hidden lg:inline font-medium">Auto-play ON</span>
                       </>
                     ) : (
                       <>
-                        <Play className="w-3 h-3 md:w-4 md:h-4" />
-                        <span className="hidden lg:inline">Auto-play OFF</span>
+                        <Play className="w-4 h-4 md:w-5 md:h-5" />
+                        <span className="hidden lg:inline font-medium">Auto-play OFF</span>
                       </>
                     )}
                   </motion.button>
