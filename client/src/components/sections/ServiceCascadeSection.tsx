@@ -431,56 +431,58 @@ export default function ServiceCascadeSection() {
               </AnimatePresence>
 
               {/* Progress Indicators */}
-              <div className="flex items-center justify-center sm:justify-start -space-x-3 sm:gap-3 pt-3 sm:pt-6">
-                {allItems.map((_, index) => (
-                  <motion.button
-                    key={index}
-                    className="relative touch-manipulation min-h-[44px] min-w-[16px] sm:min-w-[44px] flex items-center justify-center"
-                    onClick={() => handleDotClick(index)}
-                    whileHover={{ scale: 1.2 }}
-                    whileTap={{ scale: 0.9 }}
-                  >
-                    {/* Background circle */}
-                    <motion.div
-                      className="w-1.5 h-1.5 rounded-full bg-gray-600 sm:w-4 sm:h-4"
-                      animate={{
-                        scale: index === activeIndex ? 1.5 : 1,
-                        backgroundColor: index === activeIndex ? "#FF5A00" : "#4B5563"
-                      }}
-                      transition={{ duration: 0.3 }}
-                    />
-
-                    {/* Active indicator with ripple */}
-                    {index === activeIndex && (
+              <div className="flex items-center justify-between lg:justify-start -space-x-2 sm:gap-3 pt-3 sm:pt-6">
+                <div className="flex items-center -space-x-2 sm:gap-3">
+                  {allItems.map((_, index) => (
+                    <motion.button
+                      key={index}
+                      className="relative touch-manipulation min-h-[44px] min-w-[20px] sm:min-w-[44px] flex items-center justify-center"
+                      onClick={() => handleDotClick(index)}
+                      whileHover={{ scale: 1.2 }}
+                      whileTap={{ scale: 0.9 }}
+                    >
+                      {/* Background circle */}
                       <motion.div
-                        className="absolute inset-0 rounded-full bg-maverick-orange/30"
-                        initial={{ scale: 1 }}
-                        animate={{ scale: [1, 2, 1] }}
-                        transition={{ 
-                          duration: 2, 
-                          repeat: Infinity,
-                          ease: "easeInOut"
+                        className="w-2 h-2 rounded-full bg-gray-600 sm:w-4 sm:h-4"
+                        animate={{
+                          scale: index === activeIndex ? 1.5 : 1,
+                          backgroundColor: index === activeIndex ? "#FF5A00" : "#4B5563"
                         }}
+                        transition={{ duration: 0.3 }}
                       />
-                    )}
-                  </motion.button>
-                ))}
+
+                      {/* Active indicator with ripple */}
+                      {index === activeIndex && (
+                        <motion.div
+                          className="absolute inset-0 rounded-full bg-maverick-orange/30"
+                          initial={{ scale: 1 }}
+                          animate={{ scale: [1, 2, 1] }}
+                          transition={{ 
+                            duration: 2, 
+                            repeat: Infinity,
+                            ease: "easeInOut"
+                          }}
+                        />
+                      )}
+                    </motion.button>
+                  ))}
+                </div>
 
                 {/* Auto-play toggle */}
                 <motion.button
                   onClick={toggleAutoPlay}
-                  className="flex items-center gap-0.5 sm:gap-2 px-0.5 sm:px-3 py-1 ml-0.5 sm:ml-4 text-xs sm:text-sm text-gray-400 hover:text-white transition-colors duration-200 touch-manipulation min-h-[44px] whitespace-nowrap"
+                  className="flex items-center gap-1 sm:gap-2 px-2 sm:px-3 py-2 ml-2 sm:ml-4 text-sm sm:text-sm text-gray-400 hover:text-white transition-colors duration-200 touch-manipulation min-h-[48px] lg:min-h-[44px] whitespace-nowrap bg-gray-800/30 lg:bg-transparent rounded-lg lg:rounded-none"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
                   {isAutoPlaying ? (
                     <>
-                      <Pause className="w-3 h-3 sm:w-4 sm:h-4" />
+                      <Pause className="w-4 h-4 sm:w-4 sm:h-4" />
                       <span className="hidden lg:inline">Auto-play ON</span>
                     </>
                   ) : (
                     <>
-                      <Play className="w-3 h-3 sm:w-4 sm:h-4" />
+                      <Play className="w-4 h-4 sm:w-4 sm:h-4" />
                       <span className="hidden lg:inline">Auto-play OFF</span>
                     </>
                   )}
