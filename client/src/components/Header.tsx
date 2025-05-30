@@ -5,20 +5,13 @@ import { X, Menu, ChevronDown } from "lucide-react";
 import Logo from "./Logo";
 import { Button } from "@/components/ui/custom-button";
 import { useIsMobile } from "@/hooks/use-mobile";
-import { useTabletInfo } from "./TabletOptimizer";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false);
-  const [pricingDropdownOpen, setPricingDropdownOpen] = useState(false);
   const [location] = useLocation();
   const isMobile = useIsMobile();
-  const tabletInfo = useTabletInfo();
   const isHomePage = location === '/';
-  
-  // Determine if we should use tablet navigation (show full nav instead of hamburger)
-  const useTabletNav = tabletInfo.isTablet && tabletInfo.viewportWidth >= 768;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -36,18 +29,11 @@ export default function Header() {
 
   const toggleMenu = () => setIsOpen(!isOpen);
 
-  // Tablet-optimized header classes
-  const getHeaderClasses = () => {
-    const baseClasses = "fixed top-0 left-0 w-full z-50 transition-all duration-300 touch-manipulation";
-    const paddingClasses = useTabletNav 
-      ? "py-4 px-6 tablet:py-5 tablet:px-8 tablet-landscape:py-4" 
-      : "py-3 sm:py-4 px-3 sm:px-4 md:px-10";
-    const backgroundClasses = isScrolled
-      ? "bg-[#121212] bg-opacity-85 backdrop-blur-lg shadow-lg border-b border-maverick-orange/20"
-      : "bg-transparent";
-    
-    return `${baseClasses} ${paddingClasses} ${backgroundClasses}`;
-  };
+  const headerClasses = `fixed top-0 left-0 w-full py-3 sm:py-4 md:py-6 px-3 sm:px-4 md:px-10 z-50 transition-all duration-300 ${
+    isScrolled
+      ? "bg-[#121212] bg-opacity-80 backdrop-blur-md shadow-md"
+      : "bg-transparent"
+  }`;
 
   const isCurrentPath = (path: string) => {
     if (path === '/services' && (location === '/services/web' || location === '/services/marketing' || location === '/services/ai')) {
@@ -65,7 +51,7 @@ export default function Header() {
 
   return (
     <motion.header 
-      className={getHeaderClasses()}
+      className="fixed top-0 left-0 w-full py-2 md:py-2 px-3 sm:px-4 md:px-8 lg:px-10 z-50 transition-all duration-300 backdrop-blur-md border-b border-maverick-orange/10 bg-[#12121261]" 
       role="banner"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
@@ -75,264 +61,105 @@ export default function Header() {
         ease: "easeInOut"
       }}
     >
-      <div className="container mx-auto flex justify-between items-center max-w-7xl edge-safe">
-        {/* Logo - Tablet Optimized */}
-        <Link 
-          href="/" 
-          className="flex items-center justify-start min-h-[44px] touch-target" 
-          aria-label="Mavericks Edge Home"
-        >
-          <Logo 
-            size={useTabletNav ? "medium" : isMobile ? "small" : "medium"} 
-            noLink={true} 
-            showText={false}
-          />
-          <h1 className={`font-heading font-bold text-maverick-orange ml-3 whitespace-nowrap leading-tight ${
-            useTabletNav 
-              ? "text-2xl tablet:text-3xl tablet-landscape:text-2xl" 
-              : "text-xl xs:text-2xl sm:text-3xl md:text-3xl lg:text-4xl xl:text-5xl"
-          }`} style={{ letterSpacing: '-0.02em' }}>
+      <div className="container mx-auto flex justify-between items-center max-w-7xl">
+        <Link href="/" className="flex items-center justify-start" aria-label="Mavericks Edge Home">
+          <Logo size={isMobile ? "small" : "medium"} noLink={true} showText={false}/>
+          <h1 className="font-heading font-bold text-maverick-orange ml-3 md:ml-2 whitespace-nowrap text-xl xs:text-2xl sm:text-3xl md:text-3xl lg:text-4xl xl:text-5xl leading-tight mt-0 md:mt-3" style={{ letterSpacing: '-0.02em' }}>
             Mavericks Edge
           </h1>
         </Link>
 
-        {/* Mobile Menu Button - Only show on small mobile devices */}
+        {/* Mobile Menu Button */}
         <button
           onClick={toggleMenu}
-          className={`${useTabletNav ? 'hidden' : 'block md:hidden'} focus:outline-none z-50 p-3 rounded-full bg-maverick-charcoal/80 backdrop-blur-sm border border-maverick-slate/20 min-h-[44px] min-w-[44px] touch-target`}
+          className="block md:hidden focus:outline-none z-50 p-3 rounded-full bg-maverick-charcoal/80 backdrop-blur-sm border border-maverick-slate/20"
           aria-label="Toggle menu"
         >
           {isOpen ? <X className="h-6 w-6 text-white" /> : <Menu className="h-6 w-6 text-white" />}
         </button>
 
-        {/* Tablet & Desktop Navigation */}
-        <nav 
-          className={`${useTabletNav ? 'flex' : 'hidden md:flex'} items-center ${
-            useTabletNav 
-              ? 'space-x-4 tablet:space-x-6 tablet-landscape:space-x-4' 
-              : 'space-x-6 lg:space-x-8'
-          }`} 
-          role="navigation" 
-          aria-label="Main Navigation"
-        >
-          {/* Home Link - Tablet Optimized */}
-          <Link 
-            href="/" 
-            className={`px-3 py-2 min-h-[44px] rounded-md ${
-              useTabletNav ? 'text-base tablet:text-lg' : 'text-sm lg:text-base'
-            } font-medium transition-colors duration-200 touch-target flex items-center ${
-              isCurrentPath('/') ? 'text-maverick-orange' : 'text-white hover:text-maverick-orange'
-            }`} 
-            aria-current={isCurrentPath('/') ? 'page' : undefined}
-          >
+        {/* Desktop Navigation */}
+        <nav className="hidden md:flex items-center space-x-6 lg:space-x-8 ml-[2px] mr-[2px] pl-[0px] pr-[0px]" role="navigation" aria-label="Main Navigation">
+          <Link href="/" className={`px-2 py-1.5 rounded-md text-sm lg:text-base font-medium transition-colors duration-200 ${isCurrentPath('/') ? 'text-maverick-orange' : 'text-white hover:text-maverick-orange'}`} aria-current={isCurrentPath('/') ? 'page' : undefined}>
             Home
           </Link>
 
-          {/* Services dropdown - Tablet Enhanced */}
-          <div className="relative">
+          {/* Services dropdown */}
+          <div className="relative group">
             <button 
               type="button"
-              aria-expanded={servicesDropdownOpen}
+              aria-expanded="false"
               aria-haspopup="true"
-              onMouseEnter={() => !useTabletNav && setServicesDropdownOpen(true)}
-              onMouseLeave={() => !useTabletNav && setServicesDropdownOpen(false)}
-              onClick={() => useTabletNav && setServicesDropdownOpen(!servicesDropdownOpen)}
-              className={`px-3 py-2 min-h-[44px] rounded-md ${
-                useTabletNav ? 'text-base tablet:text-lg' : 'text-sm lg:text-base'
-              } font-medium transition-colors duration-200 inline-flex items-center touch-target ${
+              className={`px-2 py-1.5 rounded-md text-sm lg:text-base font-medium transition-colors duration-200 inline-flex items-center ${
                 isCurrentPath('/services') || isCurrentPath('/services/web') || isCurrentPath('/services/marketing') || isCurrentPath('/services/ai') 
                   ? 'text-maverick-orange' 
-                  : 'text-white hover:text-maverick-orange'
+                  : 'text-maverick-orange hover:text-maverick-orange'
               }`}
+              onClick={() => {}}  // Dropdown handled by hover
             >
               <span>Services</span>
-              <ChevronDown className={`ml-2 ${useTabletNav ? 'h-5 w-5' : 'h-4 w-4'} transition-transform duration-200 ${
-                servicesDropdownOpen ? 'rotate-180' : ''
-              }`} />
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 lg:h-4 lg:w-4 ml-1 transform transition-transform duration-300 group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
             </button>
-            
-            <AnimatePresence>
-              {servicesDropdownOpen && (
-                <motion.div 
-                  initial={{ opacity: 0, y: -8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -8 }}
-                  transition={{ duration: 0.2 }}
-                  className={`absolute left-0 mt-2 ${
-                    useTabletNav ? 'w-64 tablet:w-72' : 'w-52 lg:w-56'
-                  } z-50`}
-                  onMouseEnter={() => !useTabletNav && setServicesDropdownOpen(true)}
-                  onMouseLeave={() => !useTabletNav && setServicesDropdownOpen(false)}
-                >
-                  <div className="py-2 bg-[#1A1A1A]/95 backdrop-blur-md border border-gray-800/50 rounded-lg shadow-xl" role="menu">
-                    <Link 
-                      href="/services" 
-                      className={`block px-4 py-3 min-h-[44px] ${
-                        useTabletNav ? 'text-base tablet:text-lg' : 'text-sm lg:text-base'
-                      } touch-target ${
-                        isCurrentPath('/services') ? 'text-maverick-orange bg-maverick-orange/10' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'
-                      }`} 
-                      role="menuitem"
-                      onClick={() => useTabletNav && setServicesDropdownOpen(false)}
-                    >
-                      All Services
-                    </Link>
-                    <Link 
-                      href="/services/web" 
-                      className={`block px-4 py-3 min-h-[44px] ${
-                        useTabletNav ? 'text-base tablet:text-lg' : 'text-sm lg:text-base'
-                      } touch-target ${
-                        isCurrentPath('/services/web') ? 'text-maverick-orange bg-maverick-orange/10' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'
-                      }`} 
-                      role="menuitem"
-                      onClick={() => useTabletNav && setServicesDropdownOpen(false)}
-                    >
-                      Web Design & Development
-                    </Link>
-                    <Link 
-                      href="/services/marketing" 
-                      className={`block px-4 py-3 min-h-[44px] ${
-                        useTabletNav ? 'text-base tablet:text-lg' : 'text-sm lg:text-base'
-                      } touch-target ${
-                        isCurrentPath('/services/marketing') ? 'text-maverick-orange bg-maverick-orange/10' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'
-                      }`} 
-                      role="menuitem"
-                      onClick={() => useTabletNav && setServicesDropdownOpen(false)}
-                    >
-                      Marketing & Creative
-                    </Link>
-                    <Link 
-                      href="/services/ai" 
-                      className={`block px-4 py-3 min-h-[44px] ${
-                        useTabletNav ? 'text-base tablet:text-lg' : 'text-sm lg:text-base'
-                      } touch-target ${
-                        isCurrentPath('/services/ai') ? 'text-maverick-orange bg-maverick-orange/10' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'
-                      }`} 
-                      role="menuitem"
-                      onClick={() => useTabletNav && setServicesDropdownOpen(false)}
-                    >
-                      AI Integration & Automation
-                    </Link>
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
+            <div className="absolute left-0 mt-1 w-52 lg:w-56 opacity-0 invisible group-hover:opacity-100 group-hover:visible transform group-hover:translate-y-0 translate-y-[-8px] transition-all duration-300 ease-in-out z-50">
+              <div className="py-1 bg-[#1A1A1A]/95 backdrop-blur-md border border-gray-800/50 rounded-lg shadow-xl" role="menu" aria-orientation="vertical" aria-labelledby="services-menu">
+                <Link href="/services" className={`block px-3 py-2 text-sm lg:text-base ${isCurrentPath('/services') ? 'text-maverick-orange' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'}`} role="menuitem" aria-current={isCurrentPath('/services') ? 'page' : undefined}>
+                  All Services
+                </Link>
+                <Link href="/services/web" className={`block px-3 py-2 text-sm lg:text-base ${isCurrentPath('/services/web') ? 'text-maverick-orange' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'}`} role="menuitem" aria-current={isCurrentPath('/services/web') ? 'page' : undefined}>
+                  Web Design & Development
+                </Link>
+                <Link href="/services/marketing" className={`block px-3 py-2 text-sm lg:text-base ${isCurrentPath('/services/marketing') ? 'text-maverick-orange' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'}`} role="menuitem" aria-current={isCurrentPath('/services/marketing') ? 'page' : undefined}>
+                  Marketing & Creative
+                </Link>
+                <Link href="/services/ai" className={`block px-3 py-2 text-sm lg:text-base ${isCurrentPath('/services/ai') ? 'text-maverick-orange' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'}`} role="menuitem" aria-current={isCurrentPath('/services/ai') ? 'page' : undefined}>
+                  AI Integration & Automation
+                </Link>
+              </div>
+            </div>
           </div>
 
-          {/* Pricing dropdown - Tablet Enhanced */}
-          <div className="relative">
+          {/* Pricing dropdown */}
+          <div className="relative group">
             <button 
               type="button"
-              aria-expanded={pricingDropdownOpen}
+              aria-expanded="false"
               aria-haspopup="true"
-              onMouseEnter={() => !useTabletNav && setPricingDropdownOpen(true)}
-              onMouseLeave={() => !useTabletNav && setPricingDropdownOpen(false)}
-              onClick={() => useTabletNav && setPricingDropdownOpen(!pricingDropdownOpen)}
-              className={`px-3 py-2 min-h-[44px] rounded-md ${
-                useTabletNav ? 'text-base tablet:text-lg' : 'text-sm lg:text-base'
-              } font-medium transition-colors duration-200 inline-flex items-center touch-target ${
+              className={`px-2 py-1.5 rounded-md text-sm lg:text-base font-medium transition-colors duration-200 inline-flex items-center ${
                 isCurrentPath('/pricing') || isCurrentPath('/pricing/web') || isCurrentPath('/pricing/marketing') || isCurrentPath('/pricing/ai') 
                   ? 'text-maverick-orange' 
-                  : 'text-white hover:text-maverick-orange'
+                  : 'text-maverick-orange hover:text-maverick-orange'
               }`}
+              onClick={() => {}}  // Dropdown handled by hover
             >
               <span>Pricing</span>
-              <ChevronDown className={`ml-2 ${useTabletNav ? 'h-5 w-5' : 'h-4 w-4'} transition-transform duration-200 ${
-                pricingDropdownOpen ? 'rotate-180' : ''
-              }`} />
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 lg:h-4 lg:w-4 ml-1 transform transition-transform duration-300 group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
             </button>
-            
-            <AnimatePresence>
-              {pricingDropdownOpen && (
-                <motion.div 
-                  initial={{ opacity: 0, y: -8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -8 }}
-                  transition={{ duration: 0.2 }}
-                  className={`absolute left-0 mt-2 ${
-                    useTabletNav ? 'w-64 tablet:w-72' : 'w-52 lg:w-56'
-                  } z-50`}
-                  onMouseEnter={() => !useTabletNav && setPricingDropdownOpen(true)}
-                  onMouseLeave={() => !useTabletNav && setPricingDropdownOpen(false)}
-                >
-                  <div className="py-2 bg-[#1A1A1A]/95 backdrop-blur-md border border-gray-800/50 rounded-lg shadow-xl" role="menu">
-                    <Link 
-                      href="/pricing" 
-                      className={`block px-4 py-3 min-h-[44px] ${
-                        useTabletNav ? 'text-base tablet:text-lg' : 'text-sm lg:text-base'
-                      } touch-target ${
-                        isCurrentPath('/pricing') ? 'text-maverick-orange bg-maverick-orange/10' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'
-                      }`} 
-                      role="menuitem"
-                      onClick={() => useTabletNav && setPricingDropdownOpen(false)}
-                    >
-                      All Pricing Plans
-                    </Link>
-                    <Link 
-                      href="/pricing/web" 
-                      className={`block px-4 py-3 min-h-[44px] ${
-                        useTabletNav ? 'text-base tablet:text-lg' : 'text-sm lg:text-base'
-                      } touch-target ${
-                        isCurrentPath('/pricing/web') ? 'text-maverick-orange bg-maverick-orange/10' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'
-                      }`} 
-                      role="menuitem"
-                      onClick={() => useTabletNav && setPricingDropdownOpen(false)}
-                    >
-                      Web Design & Development
-                    </Link>
-                    <Link 
-                      href="/pricing/marketing" 
-                      className={`block px-4 py-3 min-h-[44px] ${
-                        useTabletNav ? 'text-base tablet:text-lg' : 'text-sm lg:text-base'
-                      } touch-target ${
-                        isCurrentPath('/pricing/marketing') ? 'text-maverick-orange bg-maverick-orange/10' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'
-                      }`} 
-                      role="menuitem"
-                      onClick={() => useTabletNav && setPricingDropdownOpen(false)}
-                    >
-                      Marketing & Creative
-                    </Link>
-                    <Link 
-                      href="/pricing/ai" 
-                      className={`block px-4 py-3 min-h-[44px] ${
-                        useTabletNav ? 'text-base tablet:text-lg' : 'text-sm lg:text-base'
-                      } touch-target ${
-                        isCurrentPath('/pricing/ai') ? 'text-maverick-orange bg-maverick-orange/10' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'
-                      }`} 
-                      role="menuitem"
-                      onClick={() => useTabletNav && setPricingDropdownOpen(false)}
-                    >
-                      AI Integration & Automation
-                    </Link>
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
+            <div className="absolute left-0 mt-1 w-52 lg:w-56 opacity-0 invisible group-hover:opacity-100 group-hover:visible transform group-hover:translate-y-0 translate-y-[-8px] transition-all duration-300 ease-in-out z-50">
+              <div className="py-1 bg-[#1A1A1A]/95 backdrop-blur-md border border-gray-800/50 rounded-lg shadow-xl" role="menu" aria-orientation="vertical" aria-labelledby="pricing-menu">
+                <Link href="/pricing" className={`block px-3 py-2 text-sm lg:text-base ${isCurrentPath('/pricing') ? 'text-maverick-orange' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'}`} role="menuitem" aria-current={isCurrentPath('/pricing') ? 'page' : undefined}>
+                  All Pricing Plans
+                </Link>
+                <Link href="/pricing/web" className={`block px-3 py-2 text-sm lg:text-base ${isCurrentPath('/pricing/web') ? 'text-maverick-orange' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'}`} role="menuitem" aria-current={isCurrentPath('/pricing/web') ? 'page' : undefined}>
+                  Web Design & Development
+                </Link>
+                <Link href="/pricing/marketing" className={`block px-3 py-2 text-sm lg:text-base ${isCurrentPath('/pricing/marketing') ? 'text-maverick-orange' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'}`} role="menuitem" aria-current={isCurrentPath('/pricing/marketing') ? 'page' : undefined}>
+                  Marketing & Creative
+                </Link>
+                <Link href="/pricing/ai" className={`block px-3 py-2 text-sm lg:text-base ${isCurrentPath('/pricing/ai') ? 'text-maverick-orange' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'}`} role="menuitem" aria-current={isCurrentPath('/pricing/ai') ? 'page' : undefined}>
+                  AI Integration & Automation
+                </Link>
+              </div>
+            </div>
           </div>
 
-          {/* About Link - Tablet Optimized */}
-          <Link 
-            href="/about" 
-            className={`px-3 py-2 min-h-[44px] rounded-md ${
-              useTabletNav ? 'text-base tablet:text-lg' : 'text-sm lg:text-base'
-            } font-medium transition-colors duration-200 touch-target flex items-center ${
-              isCurrentPath('/about') ? 'text-maverick-orange' : 'text-white hover:text-maverick-orange'
-            }`} 
-            aria-current={isCurrentPath('/about') ? 'page' : undefined}
-          >
+          <Link href="/about" className={`px-2 py-1.5 rounded-md text-sm lg:text-base font-medium transition-colors duration-200 ${isCurrentPath('/about') ? 'text-maverick-orange' : 'text-white hover:text-maverick-orange'}`} aria-current={isCurrentPath('/about') ? 'page' : undefined}>
             About
           </Link>
-
-          {/* Contact Link - Tablet Optimized */}
-          <Link 
-            href="/contact" 
-            className={`px-3 py-2 min-h-[44px] rounded-md ${
-              useTabletNav ? 'text-base tablet:text-lg' : 'text-sm lg:text-base'
-            } font-medium transition-colors duration-200 touch-target flex items-center ${
-              isCurrentPath('/contact') ? 'text-maverick-orange' : 'text-white hover:text-maverick-orange'
-            }`} 
-            aria-current={isCurrentPath('/contact') ? 'page' : undefined}
-          >
+          <Link href="/contact" className={`px-2 py-1.5 rounded-md text-sm lg:text-base font-medium transition-colors duration-200 ${isCurrentPath('/contact') ? 'text-maverick-orange' : 'text-white hover:text-maverick-orange'}`} aria-current={isCurrentPath('/contact') ? 'page' : undefined}>
             Contact
           </Link>
         </nav>

@@ -2,8 +2,6 @@ import { ReactNode } from "react";
 import Header from "./Header";
 import FooterWrapper from "./FooterWrapper";
 import PageTransition from "./PageTransition";
-import TabletOptimizer from "./TabletOptimizer";
-import TabletTestSuite from "./TabletTestSuite";
 import { useLocation } from "wouter";
 import { useEffect } from "react";
 
@@ -20,14 +18,11 @@ export default function Layout({ children }: LayoutProps) {
   }, [location]);
 
   return (
-    <TabletOptimizer>
-      <div className="min-h-screen flex flex-col">
-        <PageTransition />
-        <Header />
-        <main id="main-content" className="flex-grow" role="main" aria-label="Main content">{children}</main>
-        <FooterWrapper />
-        <TabletTestSuite />
-      </div>
-    </TabletOptimizer>
+    <div className="min-h-screen flex flex-col">
+      <PageTransition />
+      <Header />
+      <main id="main-content" className="flex-grow" role="main" aria-label="Main content">{children}</main>
+      <FooterWrapper />
+    </div>
   );
 }
