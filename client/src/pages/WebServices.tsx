@@ -1,18 +1,27 @@
 import { motion } from "framer-motion";
-import { Helmet } from 'react-helmet';
-import { Code, Monitor, Database, Layout, ShoppingCart, Globe, Shield, Gauge, Bookmark, Users } from "lucide-react";
+import { Code, Monitor, Database, Layout as LayoutIcon, ShoppingCart, Globe, Shield, Gauge, Bookmark, Users } from "lucide-react";
 import ContactSection from "@/components/sections/ContactSection";
 import { Link } from "wouter";
 import { useEffect } from "react";
+import SEOHead from "@/components/SEOHead";
+import StructuredData, { webDevelopmentServiceSchema, generateBreadcrumbSchema } from "@/components/StructuredData";
+import Layout from "@/components/Layout";
+import { Helmet } from "react-helmet-async";
 
 export default function WebServices() {
   // Track page view for analytics
   useEffect(() => {
     console.log("Web Services page viewed");
   }, []);
+
+  const breadcrumbs = [
+    { name: "Home", url: "https://mavericksedge.ca/" },
+    { name: "Services", url: "https://mavericksedge.ca/services" },
+    { name: "Web Development", url: "https://mavericksedge.ca/services/web" }
+  ];
   const services = [
     {
-      icon: <Layout className="h-10 w-10 text-maverick-orange" />,
+      icon: <LayoutIcon className="h-10 w-10 text-maverick-orange" />,
       title: "Custom Website Design & Development",
       description: "Tailored website solutions that align with your brand identity and business objectives. We create responsive, user-friendly websites that drive results."
     },
@@ -65,19 +74,19 @@ export default function WebServices() {
 
   return (
     <div>
-      <Helmet>
-        <title>Web Development Services | Custom Website Design & Solutions | Mavericks Edge</title>
-        <meta name="description" content="Professional web design and development services for SMBs and nonprofits. Create responsive, user-friendly websites that drive results with our custom web solutions." />
-        <link rel="canonical" href="https://mavericksedge.com/services/web" />
-        <meta name="keywords" content="web design services, custom website development, CMS development, e-commerce solutions, web application development, UI/UX design, responsive website design" />
-        
-        {/* Open Graph data */}
-        <meta property="og:title" content="Web Development Services | Custom Website Design & Solutions | Mavericks Edge" />
-        <meta property="og:description" content="Professional web design and development services for SMBs and nonprofits. Create responsive, user-friendly websites that drive results with our custom web solutions." />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://mavericksedge.com/services/web" />
-        <meta property="og:image" content="/images/logo-transparent-thumb4x.png" />
-      </Helmet>
+      <SEOHead 
+        title="Web Development Services Edmonton | Custom Website Design | Mavericks Edge"
+        description="Professional web design and development services in Edmonton, Alberta. Custom websites, e-commerce solutions, and web applications for SMBs and nonprofits."
+        keywords="Edmonton web development, custom website design Edmonton, web development services Alberta, responsive web design Edmonton, e-commerce development Edmonton, CMS development Alberta"
+        canonicalUrl="https://mavericksedge.ca/services/web"
+        ogTitle="Web Development Services Edmonton | Custom Website Design | Mavericks Edge"
+        ogDescription="Professional web design and development services in Edmonton, Alberta. Custom websites, e-commerce solutions, and web applications for SMBs and nonprofits."
+        ogImage="https://mavericksedge.ca/logo.png"
+        ogType="website"
+      />
+      
+      <StructuredData data={webDevelopmentServiceSchema} />
+      <StructuredData data={generateBreadcrumbSchema(breadcrumbs)} />
       
       <motion.div
         initial={{ opacity: 0 }}

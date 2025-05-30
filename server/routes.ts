@@ -9,6 +9,21 @@ import { sendEmail, formatContactEmail } from "./email";
 import { sendEmailWithNodemailer } from "./nodemailer";
 
 export async function registerRoutes(app: Express): Promise<Server> {
+  // SEO Routes - Serve robots.txt and sitemap.xml with proper headers
+  app.get('/robots.txt', (req, res) => {
+    res.type('text/plain');
+    res.sendFile('robots.txt', { root: './public' });
+  });
+
+  app.get('/sitemap.xml', (req, res) => {
+    res.type('application/xml');
+    res.sendFile('sitemap.xml', { root: './public' });
+  });
+
+  // Favicon route
+  app.get('/favicon.ico', (req, res) => {
+    res.sendFile('favicon.ico', { root: './public' });
+  });
   // Serve static files from the public directory
   app.use(express.static(path.resolve(process.cwd(), "public")));
   
@@ -100,6 +115,23 @@ export async function registerRoutes(app: Express): Promise<Server> {
         message: "An error occurred while processing your request. Please try again later." 
       });
     }
+  });
+
+  // 404 Error Handler - Must be the last route
+  app.use('*', (req, res) => {
+    res.status(404);
+    
+    // For API routes, return JSON
+    if (req.originalUrl.startsWith('/api/')) {
+      return res.json({ 
+        success: false, 
+        message: 'API endpoint not found',
+        status: 404 
+      });
+    }
+    
+    // For all other routes, serve the React app (which will show the 404 page)
+    res.sendFile(path.resolve(process.cwd(), 'dist/client/index.html'));
   });
 
   const httpServer = createServer(app);
