@@ -240,11 +240,11 @@ export default function ServiceCascadeSection() {
       </div>
 
       {/* Sticky content container */}
-      <div className="sticky top-0 h-screen flex items-center justify-center bg-black z-10 pt-16 sm:pt-20 md:pt-32 relative">
+      <div className="sticky top-0 h-screen flex items-center justify-center bg-black z-10 pt-12 sm:pt-16 md:pt-20 lg:pt-24 relative">
         <div className="container mx-auto px-4 sm:px-6 md:px-8">
 
           {/* Section Title */}
-          <div className="text-center mb-16">
+          <div className="text-center mb-8 lg:mb-12">
             <motion.div
               key={currentSection}
               initial={{ opacity: 0, y: 20 }}
@@ -253,18 +253,18 @@ export default function ServiceCascadeSection() {
               className="flex items-center justify-center gap-4 mb-4"
             >
               {currentService.icon}
-              <h2 className="text-4xl lg:text-5xl font-bold text-white">
+              <h2 className="text-3xl lg:text-4xl xl:text-5xl font-bold text-white">
                 {currentService.title}
               </h2>
             </motion.div>
           </div>
 
-          <div className={`grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 md:gap-12 lg:gap-16 xl:gap-20 items-center px-4 sm:px-6 md:px-8 lg:px-0 ${
+          <div className={`grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 md:gap-10 lg:gap-12 xl:gap-16 items-center px-4 sm:px-6 md:px-8 lg:px-0 ${
             currentService.imagePosition === 'right' ? 'lg:grid-flow-col-dense' : ''
           }`}>
 
             {/* 3D Image Stack */}
-            <div className={`relative h-56 sm:h-64 md:h-80 lg:h-96 xl:h-[500px] 2xl:h-[600px] perspective-1000 touch-manipulation ${
+            <div className={`relative h-48 sm:h-56 md:h-64 lg:h-72 xl:h-80 2xl:h-96 perspective-1000 touch-manipulation ${
               currentService.imagePosition === 'right' ? 'lg:col-start-2' : ''
             }`}>
               <div className="relative w-full h-full preserve-3d">
@@ -381,13 +381,13 @@ export default function ServiceCascadeSection() {
             </div>
 
             {/* Content Area */}
-            <div className={`space-y-8 ${
+            <div className={`space-y-6 lg:space-y-8 ${
               currentService.imagePosition === 'right' ? 'lg:col-start-1 lg:row-start-1' : ''
             }`}>
               <AnimatePresence mode="wait">
                 <motion.div
                   key={activeIndex}
-                  className="space-y-6"
+                  className="space-y-4 lg:space-y-6"
                   initial={{ opacity: 0, x: currentService.imagePosition === 'right' ? -50 : 50 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: currentService.imagePosition === 'right' ? 50 : -50 }}
@@ -395,7 +395,7 @@ export default function ServiceCascadeSection() {
                 >
                   {/* Title */}
                   <motion.h3
-                    className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white leading-tight"
+                    className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-bold text-white leading-tight"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: 0.1 }}
@@ -405,7 +405,7 @@ export default function ServiceCascadeSection() {
 
                   {/* Description */}
                   <motion.p
-                    className="text-base sm:text-lg text-gray-300 leading-relaxed"
+                    className="text-sm sm:text-base lg:text-lg text-gray-300 leading-relaxed"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: 0.2 }}
@@ -431,7 +431,7 @@ export default function ServiceCascadeSection() {
               </AnimatePresence>
 
               {/* Progress Indicators */}
-              <div className="flex items-center justify-center sm:justify-start -space-x-1 sm:gap-3 pt-4 sm:pt-8">
+              <div className="flex items-center justify-center sm:justify-start -space-x-1 sm:gap-3 pt-3 sm:pt-6">
                 {allItems.map((_, index) => (
                   <motion.button
                     key={index}
