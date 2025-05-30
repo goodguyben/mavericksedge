@@ -199,50 +199,40 @@ img {
   .lg\:grid-cols-3 { grid-template-columns: repeat(3, 1fr); gap: 2rem; }
   .lg\:grid-cols-2 { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
 
-  /* Tablet header optimization */
+  /* Force tablet header to inherit large mobile styles */
   header {
-    /* Larger padding for tablet */
-    padding-top: 1rem !important;
-    padding-bottom: 1rem !important;
+    /* Use large mobile header padding */
+    padding-top: 0.75rem !important;
+    padding-bottom: 0.75rem !important;
   }
 
   header .container {
-    /* Tablet container spacing */
-    max-width: 1024px !important;
+    /* Use large mobile container spacing */
+    max-width: 768px !important;
     padding-left: 2rem !important;
     padding-right: 2rem !important;
   }
 
   header h1 {
-    /* Larger company name for tablet with downward movement */
-    font-size: clamp(2.5rem, 4vw, 3.5rem) !important;
-    line-height: 1.1 !important;
-    margin-top: 1rem !important;
+    /* Use large mobile typography for header title */
+    font-size: clamp(1.75rem, 5vw, 2.25rem) !important;
+    line-height: 1.2 !important;
+    margin-top: 0.5rem !important;
     letter-spacing: -0.02em !important;
   }
 
-  /* Show desktop navigation on tablet */
+  /* Keep mobile navigation behavior on tablet */
   header nav {
-    display: flex !important;
-  }
-
-  /* Hide mobile menu button on tablet */
-  header button[aria-label="Toggle menu"] {
     display: none !important;
   }
 
-  /* Ensure dropdown menus work properly on tablet */
-  header .group:hover .group-hover\:opacity-100 {
-    opacity: 1 !important;
-    visibility: visible !important;
-  }
-
-  header .group:hover .group-hover\:visible {
-    visibility: visible !important;
-  }
-
-  header .group:hover .group-hover\:translate-y-0 {
-    transform: translateY(0) !important;
+  /* Show mobile menu button on tablet */
+  header button[aria-label="Toggle menu"] {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-height: 44px !important;
+    min-width: 44px !important;
   }
 }
 
