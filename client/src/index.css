@@ -198,6 +198,52 @@ img {
   .lg\:grid-cols-4 { grid-template-columns: repeat(3, 1fr); gap: 2rem; }
   .lg\:grid-cols-3 { grid-template-columns: repeat(3, 1fr); gap: 2rem; }
   .lg\:grid-cols-2 { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+
+  /* Force tablet header to inherit desktop styles */
+  header {
+    /* Override any mobile-specific header styles for tablet */
+    padding-top: 0.5rem !important;
+    padding-bottom: 0.5rem !important;
+  }
+
+  header .container {
+    /* Ensure desktop-like spacing */
+    max-width: 1200px !important;
+    padding-left: 2.5rem !important;
+    padding-right: 2.5rem !important;
+  }
+
+  header h1 {
+    /* Force desktop typography for header title */
+    font-size: clamp(2rem, 3vw, 3rem) !important;
+    line-height: 1.2 !important;
+    margin-top: 0.75rem !important;
+    letter-spacing: -0.02em !important;
+  }
+
+  /* Force desktop navigation to show on tablet */
+  header nav {
+    display: flex !important;
+  }
+
+  /* Hide mobile menu button on tablet */
+  header button[aria-label="Toggle menu"] {
+    display: none !important;
+  }
+
+  /* Ensure dropdown menus work properly on tablet */
+  header .group:hover .group-hover\:opacity-100 {
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+
+  header .group:hover .group-hover\:visible {
+    visibility: visible !important;
+  }
+
+  header .group:hover .group-hover\:translate-y-0 {
+    transform: translateY(0) !important;
+  }
 }
 
 /* 5. Desktop (1024px - 1439px) */
