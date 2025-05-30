@@ -214,10 +214,10 @@ img {
   }
 
   header h1 {
-    /* Use large mobile typography for header title */
-    font-size: clamp(1.75rem, 5vw, 2.25rem) !important;
-    line-height: 1.2 !important;
-    margin-top: 0.5rem !important;
+    /* Larger company name for tablet with more downward movement */
+    font-size: clamp(2.25rem, 4.5vw, 3rem) !important;
+    line-height: 1.1 !important;
+    margin-top: 1.25rem !important;
     letter-spacing: -0.02em !important;
   }
 
