@@ -10,6 +10,7 @@
 @import url('./styles/buttons.css');
 @import url('./styles/footer.css');
 @import url('./styles/cards.css');
+@import url('./styles/tablet-optimizations.css');
 
 /* Critical CSS - load immediately */
 @layer base {

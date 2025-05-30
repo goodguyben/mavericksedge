@@ -1,0 +1,359 @@
+/* 
+  Comprehensive Tablet Optimization CSS
+  Targeting: iPad, Galaxy Tab, Surface Pro, Fire HD, Lenovo Tab
+  Breakpoints: 768px-1024px (Portrait), 1024px-1366px (Landscape)
+*/
+
+/* Critical Tablet Viewport Meta Configuration */
+@viewport {
+  width: device-width;
+  initial-scale: 1.0;
+  maximum-scale: 5.0;
+  user-scalable: yes;
+}
+
+/* Base Tablet Optimizations - All Devices */
+@media (min-width: 768px) and (max-width: 1366px) {
+  /* Prevent layout shifts during load */
+  * {
+    contain-intrinsic-size: auto none;
+  }
+
+  /* Optimize font rendering for high-DPI tablets */
+  body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    font-feature-settings: "kern" 1, "liga" 1, "calt" 1, "pnum" 1, "tnum" 0, "onum" 1, "lnum" 0, "dlig" 0;
+  }
+
+  /* Improved touch targets - minimum 44px as per WCAG 2.1 AA */
+  button, [role="button"], input, select, textarea, .touch-target {
+    min-height: 44px;
+    min-width: 44px;
+    padding: 12px 16px;
+    touch-action: manipulation;
+  }
+
+  /* Enhanced focus indicators for keyboard navigation */
+  :focus-visible {
+    outline: 3px solid #40E0FF;
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  /* Optimize scroll performance */
+  .scroll-container {
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+    scroll-snap-type: y mandatory;
+  }
+
+  /* Prevent text size adjustments */
+  html {
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+}
+
+/* iPad Specific (768x1024 / 1024x768) */
+@media screen and (device-width: 768px) and (device-height: 1024px),
+       screen and (device-width: 1024px) and (device-height: 768px) {
+  
+  /* iPad Portrait */
+  @media (orientation: portrait) {
+    .container {
+      max-width: 720px;
+      padding: 0 24px;
+    }
+
+    /* Hero section optimization */
+    .hero-section {
+      min-height: 85vh;
+      padding: 120px 0 80px;
+    }
+
+    .hero-title {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Navigation optimizations */
+    .nav-menu {
+      gap: 2rem;
+      padding: 0 1rem;
+    }
+
+    .nav-link {
+      font-size: 1.1rem;
+      padding: 0.75rem 1rem;
+    }
+  }
+
+  /* iPad Landscape */
+  @media (orientation: landscape) {
+    .container {
+      max-width: 960px;
+      padding: 0 32px;
+    }
+
+    .hero-section {
+      min-height: 70vh;
+      padding: 100px 0 60px;
+    }
+
+    /* Two-column layouts */
+    .content-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+  }
+}
+
+/* iPad Pro 11" (834x1194 / 1194x834) */
+@media screen and (device-width: 834px) and (device-height: 1194px),
+       screen and (device-width: 1194px) and (device-height: 834px) {
+  
+  .container {
+    max-width: 1120px;
+    padding: 0 32px;
+  }
+
+  .hero-title {
+    font-size: clamp(3rem, 6vw, 5rem);
+  }
+
+  /* Service cards grid optimization */
+  .services-grid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+  }
+}
+
+/* iPad Pro 12.9" (1024x1366 / 1366x1024) */
+@media screen and (device-width: 1024px) and (device-height: 1366px),
+       screen and (device-width: 1366px) and (device-height: 1024px) {
+  
+  .container {
+    max-width: 1280px;
+    padding: 0 40px;
+  }
+
+  /* Enhanced grid layouts */
+  .services-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem;
+  }
+
+  .pricing-grid {
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+}
+
+/* Samsung Galaxy Tab S Series (800x1280 / 1280x800) */
+@media screen and (device-width: 800px) and (device-height: 1280px),
+       screen and (device-width: 1280px) and (device-height: 800px) {
+  
+  .container {
+    max-width: 1200px;
+    padding: 0 28px;
+  }
+
+  /* Optimize for Samsung's edge gestures */
+  .edge-safe {
+    padding-left: env(safe-area-inset-left, 16px);
+    padding-right: env(safe-area-inset-right, 16px);
+  }
+}
+
+/* Microsoft Surface Pro (1368x912 / 912x1368) */
+@media screen and (device-width: 1368px) and (device-height: 912px),
+       screen and (device-width: 912px) and (device-height: 1368px) {
+  
+  /* Enhanced for touch and stylus */
+  .touch-optimized {
+    touch-action: manipulation;
+    user-select: none;
+  }
+
+  .stylus-friendly {
+    touch-action: auto;
+    user-select: text;
+  }
+}
+
+/* High-DPI Tablet Optimizations (Retina displays) */
+@media (min-width: 768px) and (max-width: 1366px) and (-webkit-min-device-pixel-ratio: 2),
+       (min-width: 768px) and (max-width: 1366px) and (min-resolution: 192dpi) {
+  
+  /* Crisp images and icons */
+  img, svg {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+
+  /* Enhanced borders and shadows */
+  .card, .service-card, .pricing-card {
+    border-width: 0.5px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+  }
+
+  /* Sharper text on retina */
+  .hero-title, .section-title {
+    -webkit-font-smoothing: antialiased;
+    text-shadow: 0 0 1px rgba(255, 255, 255, 0.1);
+  }
+}
+
+/* Accessibility Enhancements for Tablets */
+@media (min-width: 768px) and (max-width: 1366px) {
+  
+  /* WCAG 2.1 AA Color Contrast */
+  .text-primary {
+    color: #FFFFFF;
+    background-color: transparent;
+  }
+
+  .text-secondary {
+    color: #CCCCCC;
+  }
+
+  .link-color {
+    color: #40E0FF;
+  }
+
+  .link-color:hover, .link-color:focus {
+    color: #00BFFF;
+    text-decoration: underline;
+  }
+
+  /* Enhanced keyboard navigation */
+  .skip-link {
+    position: absolute;
+    top: -40px;
+    left: 6px;
+    background: #000;
+    color: #fff;
+    padding: 8px;
+    text-decoration: none;
+    border-radius: 4px;
+    z-index: 1000;
+  }
+
+  .skip-link:focus {
+    top: 6px;
+  }
+
+  /* Focus management for touch interfaces */
+  .modal, .dropdown {
+    outline: none;
+  }
+
+  .modal:focus-within, .dropdown:focus-within {
+    outline: 2px solid #40E0FF;
+    outline-offset: 2px;
+  }
+}
+
+/* Performance Optimizations */
+@media (min-width: 768px) and (max-width: 1366px) {
+  
+  /* GPU acceleration for smooth animations */
+  .animated, .transform-gpu {
+    transform: translateZ(0);
+    will-change: transform;
+    backface-visibility: hidden;
+  }
+
+  /* Optimize form inputs */
+  input, textarea, select {
+    font-size: 16px; /* Prevents zoom on iOS */
+    padding: 0.875rem 1rem;
+    border-radius: 0.5rem;
+    min-height: 48px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  input:focus, textarea:focus, select:focus {
+    outline: none;
+    border-color: #40E0FF;
+    box-shadow: 0 0 0 3px rgba(64, 224, 255, 0.1);
+  }
+
+  /* Optimize button interactions */
+  button, .btn {
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    letter-spacing: 0.025em;
+  }
+
+  button:hover, .btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  button:active, .btn:active {
+    transform: translateY(0);
+  }
+}
+
+/* Tablet-Specific Grid Systems */
+@media (min-width: 768px) and (max-width: 1024px) {
+  /* Portrait tablet grid */
+  .grid-tablet-1 { grid-template-columns: 1fr; }
+  .grid-tablet-2 { grid-template-columns: repeat(2, 1fr); }
+  .grid-tablet-3 { grid-template-columns: repeat(2, 1fr); }
+  .grid-tablet-4 { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 1024px) and (max-width: 1366px) {
+  /* Landscape tablet grid */
+  .grid-tablet-1 { grid-template-columns: 1fr; }
+  .grid-tablet-2 { grid-template-columns: repeat(2, 1fr); }
+  .grid-tablet-3 { grid-template-columns: repeat(3, 1fr); }
+  .grid-tablet-4 { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* Typography Scale for Tablets */
+@media (min-width: 768px) and (max-width: 1366px) {
+  .text-xs { font-size: 0.75rem; line-height: 1rem; }
+  .text-sm { font-size: 0.875rem; line-height: 1.25rem; }
+  .text-base { font-size: 1rem; line-height: 1.5rem; }
+  .text-lg { font-size: 1.125rem; line-height: 1.75rem; }
+  .text-xl { font-size: 1.25rem; line-height: 1.75rem; }
+  .text-2xl { font-size: 1.5rem; line-height: 2rem; }
+  .text-3xl { font-size: 1.875rem; line-height: 2.25rem; }
+  .text-4xl { font-size: 2.25rem; line-height: 2.5rem; }
+  .text-5xl { font-size: 3rem; line-height: 1; }
+  .text-6xl { font-size: 3.75rem; line-height: 1; }
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .card, .service-card, .pricing-card {
+    border: 2px solid currentColor;
+  }
+  
+  button, .btn {
+    border: 2px solid currentColor;
+  }
+}

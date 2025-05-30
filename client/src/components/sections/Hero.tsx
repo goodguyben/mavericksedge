@@ -25,8 +25,8 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden pt-16 sm:pt-20 md:pt-32">
-      {/* Video Background */}
+    <section className="relative min-h-screen flex items-center overflow-hidden pt-16 sm:pt-20 md:pt-32 tablet:pt-28 tablet:min-h-[85vh]">
+      {/* Video Background - Tablet Optimized */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-10">
         <video
           autoPlay
@@ -34,17 +34,17 @@ export default function Hero() {
           loop
           playsInline
           preload="metadata"
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover tablet:object-contain tablet:scale-110"
           style={{
-            objectPosition: window?.innerWidth <= 768 ? 'center center' : 'center center'
+            objectPosition: window?.innerWidth >= 768 && window?.innerWidth <= 1366 ? 'center center' : 'center center'
           }}
         >
           <source src="/videos/background.mp4" type="video/mp4" />
         </video>
-        {/* Dark overlay for better text readability */}
-        <div className="absolute inset-0 bg-black/60 sm:bg-black/50" />
+        {/* Tablet-optimized overlay for better text readability */}
+        <div className="absolute inset-0 bg-black/60 sm:bg-black/50 tablet:bg-black/45" />
       </div>
-      <div className="container mx-auto px-3 xs:px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 2xl:px-16 z-20 flex justify-center items-center w-full pointer-events-none">
+      <div className="container mx-auto px-3 xs:px-4 sm:px-6 tablet:px-8 md:px-8 lg:px-10 xl:px-12 2xl:px-16 z-20 flex justify-center items-center w-full pointer-events-none edge-safe">
         <motion.div
           className="max-w-xs xs:max-w-sm sm:max-w-2xl md:max-w-3xl lg:max-w-4xl xl:max-w-5xl 2xl:max-w-6xl text-center w-full pointer-events-auto relative"
           initial={{ opacity: 0, y: 20 }}
