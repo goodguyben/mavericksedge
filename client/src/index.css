@@ -215,9 +215,9 @@ img {
 
   header h1 {
     /* Larger company name for tablet with more downward movement */
-    font-size: clamp(2.75rem, 5vw, 3.5rem) !important;
-    line-height: 1.1 !important;
-    margin-top: 1.75rem !important;
+    font-size: clamp(3.25rem, 6vw, 4rem) !important;
+    line-height: 1.05 !important;
+    margin-top: 2.25rem !important;
     letter-spacing: -0.02em !important;
   }
 
