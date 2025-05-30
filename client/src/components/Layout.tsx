@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import Header from "./Header";
+import NewHeader from "./NewHeader";
 import FooterWrapper from "./FooterWrapper";
 import PageTransition from "./PageTransition";
 import { useLocation } from "wouter";
@@ -20,7 +20,7 @@ export default function Layout({ children }: LayoutProps) {
   return (
     <div className="min-h-screen flex flex-col">
       <PageTransition />
-      <Header />
+      <NewHeader />
       <main id="main-content" className="flex-grow" role="main" aria-label="Main content">{children}</main>
       <FooterWrapper />
     </div>

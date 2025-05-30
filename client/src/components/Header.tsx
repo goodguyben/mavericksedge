@@ -1,10 +1,9 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "wouter";
-import { AnimatePresence, motion } from "framer-motion";
-import { X, Menu, ChevronDown } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Menu, ChevronDown } from "lucide-react";
 import Logo from "./Logo";
-import { Button } from "@/components/ui/custom-button";
-import { useIsMobile } from "@/hooks/use-mobile";
+import MobileNavigation from "./MobileNavigation";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
