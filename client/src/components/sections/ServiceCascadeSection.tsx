@@ -431,19 +431,19 @@ export default function ServiceCascadeSection() {
               </AnimatePresence>
 
               {/* Progress Indicators */}
-              <div className="flex items-center justify-between lg:justify-start -space-x-2 sm:gap-3 pt-3 sm:pt-6">
-                <div className="flex items-center -space-x-2 sm:gap-3">
+              <div className="flex items-center justify-between lg:justify-start pt-3 sm:pt-6">
+                <div className="flex items-center -space-x-1 lg:gap-3">
                   {allItems.map((_, index) => (
                     <motion.button
                       key={index}
-                      className="relative touch-manipulation min-h-[44px] min-w-[20px] sm:min-w-[44px] flex items-center justify-center"
+                      className="relative touch-manipulation min-h-[44px] min-w-[16px] lg:min-w-[44px] flex items-center justify-center"
                       onClick={() => handleDotClick(index)}
                       whileHover={{ scale: 1.2 }}
                       whileTap={{ scale: 0.9 }}
                     >
                       {/* Background circle */}
                       <motion.div
-                        className="w-2 h-2 rounded-full bg-gray-600 sm:w-4 sm:h-4"
+                        className="w-2 h-2 rounded-full bg-gray-600 lg:w-4 lg:h-4"
                         animate={{
                           scale: index === activeIndex ? 1.5 : 1,
                           backgroundColor: index === activeIndex ? "#FF5A00" : "#4B5563"
