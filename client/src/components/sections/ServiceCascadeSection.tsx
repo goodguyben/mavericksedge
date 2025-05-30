@@ -241,7 +241,7 @@ export default function ServiceCascadeSection() {
 
       {/* Sticky content container */}
       <div className="sticky top-0 h-screen flex items-center justify-center bg-black z-10 pt-12 sm:pt-16 md:pt-20 lg:pt-24 relative">
-        <div className="container mx-auto px-4 sm:px-6 md:px-8">
+        <div className="container mx-auto px-4 sm:px-6 md:px-8 tablet-content-width">
 
           {/* Section Title */}
           <div className="text-center mb-8 lg:mb-12">
@@ -437,7 +437,7 @@ export default function ServiceCascadeSection() {
                     {allItems.map((_, index) => (
                       <motion.button
                         key={index}
-                        className="relative touch-manipulation min-h-[44px] min-w-[16px] lg:min-w-[44px] flex items-center justify-center"
+                        className="relative touch-manipulation min-h-[48px] min-w-[20px] md:min-w-[48px] lg:min-w-[48px] flex items-center justify-center"
                         onClick={() => handleDotClick(index)}
                         whileHover={{ scale: 1.2 }}
                         whileTap={{ scale: 0.9 }}
@@ -472,7 +472,7 @@ export default function ServiceCascadeSection() {
                   {/* Auto-play toggle - hidden on mobile, visible on tablet+ */}
                   <motion.button
                     onClick={toggleAutoPlay}
-                    className="hidden md:flex items-center gap-1 md:gap-2 px-2 md:px-3 py-2 text-xs md:text-sm text-gray-400 hover:text-white transition-colors duration-200 touch-manipulation min-h-[44px] whitespace-nowrap bg-gray-800/30 md:bg-transparent rounded-lg md:rounded-none"
+                    className="hidden md:flex items-center gap-1 md:gap-2 px-3 md:px-4 py-3 text-sm md:text-base text-gray-400 hover:text-white transition-colors duration-200 touch-manipulation min-h-[48px] min-w-[48px] whitespace-nowrap bg-gray-800/30 md:bg-transparent rounded-lg md:rounded-none tablet-touch-spacing"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                   >

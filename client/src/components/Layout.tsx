@@ -1,9 +1,9 @@
 import { ReactNode } from "react";
 import Header from "./Header";
 import FooterWrapper from "./FooterWrapper";
+import { Toaster } from "./ui/toaster";
 import PageTransition from "./PageTransition";
-import { useLocation } from "wouter";
-import { useEffect } from "react";
+import TabletOptimizer from "./TabletOptimizer";
 
 interface LayoutProps {
   children: ReactNode;
@@ -18,11 +18,13 @@ export default function Layout({ children }: LayoutProps) {
   }, [location]);
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen bg-maverick-charcoal text-maverick-cream overflow-x-hidden">
       <PageTransition />
+      <TabletOptimizer />
       <Header />
-      <main id="main-content" className="flex-grow" role="main" aria-label="Main content">{children}</main>
+      <main className="relative z-10">{children}</main>
       <FooterWrapper />
+      <Toaster />
     </div>
   );
 }

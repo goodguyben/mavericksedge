@@ -153,51 +153,80 @@ img {
   .lg\:grid-cols-3 { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
 }
 
-/* 3. Tablet Portrait (640px - 767px) */
+/* 3. Tablet Portrait (640px - 767px) - Enhanced Desktop Inheritance */
 @media (min-width: 640px) and (max-width: 767px) {
+  /* Container: Keep desktop structure */
   .container {
     padding-left: 1.5rem;
     padding-right: 1.5rem;
-    max-width: 640px;
+    max-width: 768px; /* Use larger desktop container */
   }
 
-  /* Typography scaling */
-  h1 { font-size: 2.25rem; line-height: 1.2; }
-  h2 { font-size: 1.875rem; line-height: 1.3; }
-  h3 { font-size: 1.5rem; line-height: 1.4; }
-  p { font-size: 1rem; line-height: 1.6; }
+  /* Essential touch targets for portrait tablets */
+  button, [role="button"], a {
+    min-height: 48px !important;
+    min-width: 48px !important;
+  }
 
-  /* Section spacing */
-  section { padding: 3rem 0; }
-  .py-12 { padding: 3rem 0; }
-
-  /* Grid behavior */
+  /* Grid: Only adjust where absolutely necessary */
   .lg\:grid-cols-4 { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
   .lg\:grid-cols-3 { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+  
+  /* Typography: Minimal scaling from desktop */
+  h1 { font-size: clamp(2rem, 5vw, 3.75rem); }
+  h2 { font-size: clamp(1.75rem, 4vw, 3rem); }
+  
+  /* Navigation adjustments for portrait mode */
+  header nav {
+    gap: 0.75rem;
+  }
+  
+  /* Service cards: Maintain desktop proportions */
+  .service-card, .pricing-card {
+    min-height: 280px;
+  }
 }
 
-/* 4. Tablet Landscape (768px - 1023px) */
+/* 4. Tablet Landscape (768px - 1023px) - Inherit Desktop Styles with Targeted Overrides */
 @media (min-width: 768px) and (max-width: 1023px) {
+  /* Container: Slightly reduced padding for tablet screens */
   .container {
     padding-left: 2rem;
     padding-right: 2rem;
-    max-width: 768px;
+    max-width: 1024px; /* Use desktop max-width */
   }
 
-  /* Typography scaling */
-  h1 { font-size: 3rem; line-height: 1.2; }
-  h2 { font-size: 2.25rem; line-height: 1.3; }
-  h3 { font-size: 1.875rem; line-height: 1.4; }
-  p { font-size: 1.125rem; line-height: 1.6; }
+  /* Touch target improvements for tablet */
+  button, [role="button"], a {
+    min-height: 48px !important;
+    min-width: 48px !important;
+    padding: 0.875rem 1.75rem;
+  }
 
-  /* Section spacing */
-  section { padding: 4rem 0; }
-  .py-12 { padding: 4rem 0; }
+  /* Navigation spacing adjustments */
+  nav button, nav a {
+    padding: 0.75rem 1.5rem;
+    margin: 0 0.25rem;
+  }
 
-  /* Grid behavior */
-  .lg\:grid-cols-4 { grid-template-columns: repeat(3, 1fr); gap: 2rem; }
-  .lg\:grid-cols-3 { grid-template-columns: repeat(3, 1fr); gap: 2rem; }
-  .lg\:grid-cols-2 { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+  /* Grid adjustments only where layout breaks */
+  .lg\:grid-cols-4 { grid-template-columns: repeat(3, 1fr); }
+  
+  /* Typography: Inherit desktop but with slight scaling for readability */
+  h1 { font-size: clamp(2.5rem, 4vw, 3.75rem); }
+  h2 { font-size: clamp(2rem, 3.5vw, 3rem); }
+  h3 { font-size: clamp(1.5rem, 3vw, 2.25rem); }
+  
+  /* Service cascade section specific adjustments */
+  .service-cascade .container {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+  
+  /* Image containers: Ensure proper aspect ratios */
+  .aspect-video, .aspect-square {
+    min-height: 200px;
+  }
 }
 
 /* 5. Desktop (1024px - 1439px) */
@@ -401,6 +430,49 @@ img {
   .space-y-8 > * + * { margin-top: 0.75rem !important; }
   .space-y-6 > * + * { margin-top: 0.5rem !important; }
   .space-y-4 > * + * { margin-top: 0.375rem !important; }
+}
+
+/* Tablet-specific utility classes for targeted overrides */
+@media (min-width: 640px) and (max-width: 1023px) {
+  /* Force desktop grid behavior */
+  .tablet-desktop-grid .lg\:grid-cols-4 { 
+    grid-template-columns: repeat(4, 1fr) !important; 
+  }
+  .tablet-desktop-grid .lg\:grid-cols-3 { 
+    grid-template-columns: repeat(3, 1fr) !important; 
+  }
+  .tablet-desktop-grid .lg\:grid-cols-2 { 
+    grid-template-columns: repeat(2, 1fr) !important; 
+  }
+
+  /* Touch-optimized spacing utilities */
+  .tablet-touch-spacing {
+    padding: 0.75rem 1.5rem;
+    margin: 0.5rem;
+  }
+
+  /* Tablet navigation optimization */
+  .tablet-nav-optimized {
+    gap: 1rem;
+    padding: 0.5rem 1rem;
+  }
+
+  /* Content width adjustments for readability */
+  .tablet-content-width {
+    max-width: 90% !important;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Hide elements that don't work well on tablets */
+  .tablet-hide {
+    display: none !important;
+  }
+
+  /* Show tablet-specific alternatives */
+  .tablet-show {
+    display: block !important;
+  }
 }
 
 /* Mobile-first responsive approach */
