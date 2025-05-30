@@ -6,12 +6,14 @@ import Logo from "./Logo";
 import MobileNavigation from "./MobileNavigation";
 
 export default function Header() {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false);
+  const [pricingDropdownOpen, setPricingDropdownOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [location] = useLocation();
-  const isMobile = useIsMobile();
   const isHomePage = location === '/';
 
+  // Handle scroll effect
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
@@ -23,360 +25,285 @@ export default function Header() {
 
   // Close mobile menu when location changes
   useEffect(() => {
-    setIsOpen(false);
+    setIsMobileMenuOpen(false);
+    setServicesDropdownOpen(false);
+    setPricingDropdownOpen(false);
   }, [location]);
 
-  const toggleMenu = () => setIsOpen(!isOpen);
+  // Close dropdowns when clicking outside
+  useEffect(() => {
+    const handleClickOutside = () => {
+      setServicesDropdownOpen(false);
+      setPricingDropdownOpen(false);
+    };
 
-  const headerClasses = `fixed top-0 left-0 w-full py-3 sm:py-4 md:py-6 px-3 sm:px-4 md:px-10 z-50 transition-all duration-300 ${
-    isScrolled
-      ? "bg-[#121212] bg-opacity-80 backdrop-blur-md shadow-md"
-      : "bg-transparent"
-  }`;
+    if (servicesDropdownOpen || pricingDropdownOpen) {
+      document.addEventListener('click', handleClickOutside);
+      return () => document.removeEventListener('click', handleClickOutside);
+    }
+  }, [servicesDropdownOpen, pricingDropdownOpen]);
 
-  const isCurrentPath = (path: string) => {
-    if (path === '/services' && (location === '/services/web' || location === '/services/marketing' || location === '/services/ai')) {
-      return false;
-    }
-    if (path === '/pricing' && (location === '/pricing/web' || location === '/pricing/marketing' || location === '/pricing/ai')) {
-      return false;
-    }
-    return location === path || location.startsWith(`${path}/`);
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
-  const closeMenu = () => {
-    setIsOpen(false);
-  }
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false);
+  };
+
+  const isCurrentPath = (path: string) => location === path;
+
+  const getHeaderClasses = () => {
+    return `fixed top-0 left-0 w-full py-3 px-4 sm:px-6 lg:px-8 z-50 transition-all duration-300 backdrop-blur-md border-b border-maverick-orange/10 ${
+      isScrolled ? 'bg-[#121212]/95' : 'bg-[#12121261]'
+    }`;
+  };
 
   return (
-    <motion.header 
-      className="fixed top-0 left-0 w-full py-2 md:py-2 px-3 sm:px-4 md:px-8 lg:px-10 z-50 transition-all duration-300 backdrop-blur-md border-b border-maverick-orange/10 bg-[#12121261]" 
-      role="banner"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ 
-        duration: 0.6,
-        delay: isHomePage ? 4.0 : 0,
-        ease: "easeInOut"
-      }}
-    >
-      <div className="container mx-auto flex justify-between items-center max-w-7xl">
-        <Link href="/" className="flex items-center justify-start" aria-label="Mavericks Edge Home">
-          <Logo size={isMobile ? "small" : "medium"} noLink={true} showText={false}/>
-          <h1 className="font-heading font-bold text-maverick-orange ml-3 md:ml-2 whitespace-nowrap text-xl xs:text-2xl sm:text-3xl md:text-3xl lg:text-4xl xl:text-5xl leading-tight mt-0 md:mt-3" style={{ letterSpacing: '-0.02em' }}>
-            Mavericks Edge
-          </h1>
-        </Link>
-
-        {/* Mobile Menu Button */}
-        <button
-          onClick={toggleMenu}
-          className="block lg:hidden focus:outline-none z-50 p-3"
-          aria-label="Toggle menu"
-        >
-          {isOpen ? <X className="h-6 w-6 text-white" /> : <Menu className="h-6 w-6 text-white" />}
-        </button>
-
-        {/* Desktop Navigation */}
-        <nav className="hidden lg:flex items-center space-x-6 lg:space-x-8 ml-[2px] mr-[2px] pl-[0px] pr-[0px]" role="navigation" aria-label="Main Navigation">
-          <Link href="/" className={`px-2 py-1.5 rounded-md text-sm lg:text-base font-medium transition-colors duration-200 ${isCurrentPath('/') ? 'text-maverick-orange' : 'text-white hover:text-maverick-orange'}`} aria-current={isCurrentPath('/') ? 'page' : undefined}>
-            Home
-          </Link>
-
-          {/* Services dropdown */}
-          <div className="relative group">
-            <button 
-              type="button"
-              aria-expanded="false"
-              aria-haspopup="true"
-              className={`px-2 py-1.5 rounded-md text-sm lg:text-base font-medium transition-colors duration-200 inline-flex items-center ${
-                isCurrentPath('/services') || isCurrentPath('/services/web') || isCurrentPath('/services/marketing') || isCurrentPath('/services/ai') 
-                  ? 'text-maverick-orange' 
-                  : 'text-maverick-orange hover:text-maverick-orange'
-              }`}
-              onClick={() => {}}  // Dropdown handled by hover
-            >
-              <span>Services</span>
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 lg:h-4 lg:w-4 ml-1 transform transition-transform duration-300 group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-              </svg>
-            </button>
-            <div className="absolute left-0 mt-1 w-52 lg:w-56 opacity-0 invisible group-hover:opacity-100 group-hover:visible transform group-hover:translate-y-0 translate-y-[-8px] transition-all duration-300 ease-in-out z-50">
-              <div className="py-1 bg-[#1A1A1A]/95 backdrop-blur-md border border-gray-800/50 rounded-lg shadow-xl" role="menu" aria-orientation="vertical" aria-labelledby="services-menu">
-                <Link href="/services" className={`block px-3 py-2 text-sm lg:text-base ${isCurrentPath('/services') ? 'text-maverick-orange' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'}`} role="menuitem" aria-current={isCurrentPath('/services') ? 'page' : undefined}>
-                  All Services
-                </Link>
-                <Link href="/services/web" className={`block px-3 py-2 text-sm lg:text-base ${isCurrentPath('/services/web') ? 'text-maverick-orange' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'}`} role="menuitem" aria-current={isCurrentPath('/services/web') ? 'page' : undefined}>
-                  Web Design & Development
-                </Link>
-                <Link href="/services/marketing" className={`block px-3 py-2 text-sm lg:text-base ${isCurrentPath('/services/marketing') ? 'text-maverick-orange' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'}`} role="menuitem" aria-current={isCurrentPath('/services/marketing') ? 'page' : undefined}>
-                  Marketing & Creative
-                </Link>
-                <Link href="/services/ai" className={`block px-3 py-2 text-sm lg:text-base ${isCurrentPath('/services/ai') ? 'text-maverick-orange' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'}`} role="menuitem" aria-current={isCurrentPath('/services/ai') ? 'page' : undefined}>
-                  AI Integration & Automation
-                </Link>
-              </div>
-            </div>
-          </div>
-
-          {/* Pricing dropdown */}
-          <div className="relative group">
-            <button 
-              type="button"
-              aria-expanded="false"
-              aria-haspopup="true"
-              className={`px-2 py-1.5 rounded-md text-sm lg:text-base font-medium transition-colors duration-200 inline-flex items-center ${
-                isCurrentPath('/pricing') || isCurrentPath('/pricing/web') || isCurrentPath('/pricing/marketing') || isCurrentPath('/pricing/ai') 
-                  ? 'text-maverick-orange' 
-                  : 'text-maverick-orange hover:text-maverick-orange'
-              }`}
-              onClick={() => {}}  // Dropdown handled by hover
-            >
-              <span>Pricing</span>
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 lg:h-4 lg:w-4 ml-1 transform transition-transform duration-300 group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-              </svg>
-            </button>
-            <div className="absolute left-0 mt-1 w-52 lg:w-56 opacity-0 invisible group-hover:opacity-100 group-hover:visible transform group-hover:translate-y-0 translate-y-[-8px] transition-all duration-300 ease-in-out z-50">
-              <div className="py-1 bg-[#1A1A1A]/95 backdrop-blur-md border border-gray-800/50 rounded-lg shadow-xl" role="menu" aria-orientation="vertical" aria-labelledby="pricing-menu">
-                <Link href="/pricing" className={`block px-3 py-2 text-sm lg:text-base ${isCurrentPath('/pricing') ? 'text-maverick-orange' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'}`} role="menuitem" aria-current={isCurrentPath('/pricing') ? 'page' : undefined}>
-                  All Pricing Plans
-                </Link>
-                <Link href="/pricing/web" className={`block px-3 py-2 text-sm lg:text-base ${isCurrentPath('/pricing/web') ? 'text-maverick-orange' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'}`} role="menuitem" aria-current={isCurrentPath('/pricing/web') ? 'page' : undefined}>
-                  Web Design & Development
-                </Link>
-                <Link href="/pricing/marketing" className={`block px-3 py-2 text-sm lg:text-base ${isCurrentPath('/pricing/marketing') ? 'text-maverick-orange' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'}`} role="menuitem" aria-current={isCurrentPath('/pricing/marketing') ? 'page' : undefined}>
-                  Marketing & Creative
-                </Link>
-                <Link href="/pricing/ai" className={`block px-3 py-2 text-sm lg:text-base ${isCurrentPath('/pricing/ai') ? 'text-maverick-orange' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'}`} role="menuitem" aria-current={isCurrentPath('/pricing/ai') ? 'page' : undefined}>
-                  AI Integration & Automation
-                </Link>
-              </div>
-            </div>
-          </div>
-
-          <Link href="/about" className={`px-2 py-1.5 rounded-md text-sm lg:text-base font-medium transition-colors duration-200 ${isCurrentPath('/about') ? 'text-maverick-orange' : 'text-white hover:text-maverick-orange'}`} aria-current={isCurrentPath('/about') ? 'page' : undefined}>
-            About
-          </Link>
-          <Link href="/contact" className={`px-2 py-1.5 rounded-md text-sm lg:text-base font-medium transition-colors duration-200 ${isCurrentPath('/contact') ? 'text-maverick-orange' : 'text-white hover:text-maverick-orange'}`} aria-current={isCurrentPath('/contact') ? 'page' : undefined}>
-            Contact
-          </Link>
-        </nav>
-      </div>
-      {/* Mobile Navigation - Slide in from right */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ x: "100%" }}
-            animate={{ x: 0 }}
-            exit={{ x: "100%" }}
-            transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="fixed top-0 right-0 h-full w-[85%] max-w-md bg-maverick-charcoal/95 backdrop-blur-md border-l border-maverick-slate/30 z-40 flex flex-col lg:hidden shadow-2xl"
-            role="dialog"
-            aria-modal="true" 
-            aria-label="Main Menu"
+    <>
+      <motion.header 
+        className={getHeaderClasses()}
+        role="banner"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ 
+          duration: 0.6,
+          delay: isHomePage ? 4.0 : 0,
+          ease: "easeInOut"
+        }}
+      >
+        <div className="container mx-auto flex justify-between items-center max-w-7xl">
+          {/* Logo */}
+          <Link 
+            href="/" 
+            className="flex items-center justify-start min-h-[44px] touch-manipulation" 
+            aria-label="Mavericks Edge Home"
           >
-            <div className="flex flex-col items-center justify-center h-full">
-              <motion.nav
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.2 }}
-                className="flex flex-col items-center space-y-8 text-xl w-full px-5 text-center"
-                role="navigation"
-                aria-label="Mobile Navigation"
+            <Logo size="medium" noLink={true} showText={false} />
+            <h1 className="font-heading font-bold text-maverick-orange ml-3 whitespace-nowrap text-xl sm:text-2xl md:text-3xl lg:text-4xl leading-tight" style={{ letterSpacing: '-0.02em' }}>
+              Mavericks Edge
+            </h1>
+          </Link>
+
+          {/* Desktop Navigation */}
+          <nav className="hidden lg:flex items-center space-x-6 xl:space-x-8" role="navigation" aria-label="Main Navigation">
+            {/* Home Link */}
+            <Link 
+              href="/" 
+              className={`px-3 py-2 min-h-[44px] rounded-md text-base font-medium transition-colors duration-200 touch-manipulation flex items-center ${
+                isCurrentPath('/') ? 'text-maverick-orange' : 'text-white hover:text-maverick-orange'
+              }`} 
+              aria-current={isCurrentPath('/') ? 'page' : undefined}
+            >
+              Home
+            </Link>
+
+            {/* Services Dropdown */}
+            <div className="relative">
+              <button 
+                type="button"
+                aria-expanded={servicesDropdownOpen}
+                aria-haspopup="true"
+                onMouseEnter={() => setServicesDropdownOpen(true)}
+                onMouseLeave={() => setServicesDropdownOpen(false)}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setServicesDropdownOpen(!servicesDropdownOpen);
+                }}
+                className={`px-3 py-2 min-h-[44px] rounded-md text-base font-medium transition-colors duration-200 inline-flex items-center touch-manipulation ${
+                  isCurrentPath('/services') || isCurrentPath('/services/web') || isCurrentPath('/services/marketing') || isCurrentPath('/services/ai') 
+                    ? 'text-maverick-orange' 
+                    : 'text-white hover:text-maverick-orange'
+                }`}
               >
-                <Link 
-                  href="/" 
-                  className={`hover-link py-3 w-full text-center border-b border-maverick-slate/20 text-lg ${isCurrentPath('/') ? 'text-maverick-orange' : 'text-white hover:text-maverick-orange'}`} 
-                  onClick={closeMenu}
-                  aria-current={isCurrentPath('/') ? 'page' : undefined}
-                >
-                  Home
-                </Link>
-
-                {/* Services dropdown */}
-                <div className="w-full text-center border-b border-maverick-slate/20 py-3">
-                  <button 
-                    onClick={(e) => {
-                      e.preventDefault();
-                      const dropdown = document.getElementById('mobile-services-dropdown');
-                      const chevron = document.getElementById('mobile-services-chevron');
-                      if (dropdown) {
-                        const isExpanded = dropdown.classList.contains('max-h-48');
-                        dropdown.classList.toggle('max-h-0');
-                        dropdown.classList.toggle('max-h-48');
-                        dropdown.classList.toggle('opacity-0');
-                        dropdown.classList.toggle('opacity-100');
-                        if (chevron) {
-                          chevron.classList.toggle('rotate-180');
-                        }
-                        // Update aria-expanded attribute
-                        e.currentTarget.setAttribute('aria-expanded', !isExpanded ? 'true' : 'false');
-                      }
-                    }}
-                    className="cursor-pointer inline-flex items-center justify-center hover-link py-3 w-full text-center text-lg text-maverick-orange hover:text-maverick-orange pl-4"
-                    aria-haspopup="true"
-                    aria-expanded="false"
-                    aria-controls="mobile-services-dropdown"
+                <span>Services</span>
+                <ChevronDown className={`ml-2 h-4 w-4 transition-transform duration-200 ${
+                  servicesDropdownOpen ? 'rotate-180' : ''
+                }`} />
+              </button>
+              
+              <AnimatePresence>
+                {servicesDropdownOpen && (
+                  <motion.div 
+                    initial={{ opacity: 0, y: -8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -8 }}
+                    transition={{ duration: 0.2 }}
+                    className="absolute left-0 mt-2 w-64 z-50"
+                    onMouseEnter={() => setServicesDropdownOpen(true)}
+                    onMouseLeave={() => setServicesDropdownOpen(false)}
                   >
-                    Services
-                    <ChevronDown id="mobile-services-chevron" className="ml-1 h-4 w-4 transition-transform duration-300" aria-hidden="true" />
-                  </button>
-                  <div 
-                    id="mobile-services-dropdown" 
-                    className="max-h-0 mt-2 w-full overflow-hidden opacity-0 transition-all duration-300 ease-in-out"
-                    role="menu"
-                    aria-labelledby="services-mobile-menu-button"
-                  >
-                    <Link 
-                      href="/services" 
-                      className={`block py-2 text-center text-lg ${isCurrentPath('/services') ? 'text-maverick-orange' : 'text-white hover:text-maverick-orange'}`} 
-                      onClick={closeMenu}
-                      role="menuitem"
-                      aria-current={isCurrentPath('/services') ? 'page' : undefined}
-                    >
-                      All Services
-                    </Link>
-                    <Link 
-                      href="/services/web" 
-                      className={`block py-2 text-center text-lg ${isCurrentPath('/services/web') ? 'text-maverick-orange' : 'text-white hover:text-maverick-orange'}`} 
-                      onClick={closeMenu}
-                      role="menuitem"
-                      aria-current={isCurrentPath('/services/web') ? 'page' : undefined}
-                    >
-                      Web Design & Development
-                    </Link>
-                    <Link 
-                      href="/services/marketing" 
-                      className={`block py-2 text-center text-lg ${isCurrentPath('/services/marketing') ? 'text-maverick-orange' : 'text-white hover:text-maverick-orange'}`} 
-                      onClick={closeMenu}
-                      role="menuitem"
-                      aria-current={isCurrentPath('/services/marketing') ? 'page' : undefined}
-                    >
-                      Marketing & Creative
-                    </Link>
-                    <Link 
-                      href="/services/ai" 
-                      className={`block py-2 text-center text-lg ${isCurrentPath('/services/ai') ? 'text-maverick-orange' : 'text-white hover:text-maverick-orange'}`} 
-                      onClick={closeMenu}
-                      role="menuitem"
-                      aria-current={isCurrentPath('/services/ai') ? 'page' : undefined}
-                    >
-                      AI Integration & Automation
-                    </Link>
-                  </div>
-                </div>
-
-                {/* Mobile Pricing dropdown */}
-                <div className="w-full text-center border-b border-maverick-slate/20 py-3">
-                  <button 
-                    onClick={(e) => {
-                      e.preventDefault();
-                      const dropdown = document.getElementById('mobile-pricing-dropdown');
-                      const chevron = document.getElementById('mobile-pricing-chevron');
-                      if (dropdown) {
-                        const isExpanded = dropdown.classList.contains('max-h-48');
-                        dropdown.classList.toggle('max-h-0');
-                        dropdown.classList.toggle('max-h-48');
-                        dropdown.classList.toggle('opacity-0');
-                        dropdown.classList.toggle('opacity-100');
-                        if (chevron) {
-                          chevron.classList.toggle('rotate-180');
-                        }
-                        // Update aria-expanded attribute
-                        e.currentTarget.setAttribute('aria-expanded', !isExpanded ? 'true' : 'false');
-                      }
-                    }}
-                    className="cursor-pointer inline-flex items-center justify-center hover-link py-3 w-full text-center text-lg text-maverick-orange hover:text-maverick-orange pl-4"
-                    aria-haspopup="true"
-                    aria-expanded="false"
-                    aria-controls="mobile-pricing-dropdown"
-                  >
-                    Pricing
-                    <ChevronDown id="mobile-pricing-chevron" className="ml-1 h-4 w-4 transition-transform duration-300" aria-hidden="true" />
-                  </button>
-                  <div 
-                    id="mobile-pricing-dropdown" 
-                    className="max-h-0 mt-2 w-full overflow-hidden opacity-0 transition-all duration-300 ease-in-out"
-                    role="menu"
-                    aria-labelledby="pricing-mobile-menu-button"
-                  >
-                    <Link 
-                      href="/pricing" 
-                      className={`block py-2 text-center text-lg ${isCurrentPath('/pricing') ? 'text-maverick-orange' : 'text-white hover:text-maverick-orange'}`} 
-                      onClick={closeMenu}
-                      role="menuitem"
-                      aria-current={isCurrentPath('/pricing') ? 'page' : undefined}
-                    >
-                      All Pricing Plans
-                    </Link>
-                    <Link 
-                      href="/pricing/web" 
-                      className={`block py-2 text-center text-lg ${isCurrentPath('/pricing/web') ? 'text-maverick-orange' : 'text-white hover:text-maverick-orange'}`} 
-                      onClick={closeMenu}
-                      role="menuitem"
-                      aria-current={isCurrentPath('/pricing/web') ? 'page' : undefined}
-                    >
-                      Web Design & Development
-                    </Link>
-                    <Link 
-                      href="/pricing/marketing" 
-                      className={`block py-2 text-center text-lg ${isCurrentPath('/pricing/marketing') ? 'text-maverick-orange' : 'text-white hover:text-maverick-orange'}`} 
-                      onClick={closeMenu}
-                      role="menuitem"
-                      aria-current={isCurrentPath('/pricing/marketing') ? 'page' : undefined}
-                    >
-                      Marketing & Creative
-                    </Link>
-                    <Link 
-                      href="/pricing/ai" 
-                      className={`block py-2 text-center text-lg ${isCurrentPath('/pricing/ai') ? 'text-maverick-orange' : 'text-white hover:text-maverick-orange'}`} 
-                      onClick={closeMenu}
-                      role="menuitem"
-                      aria-current={isCurrentPath('/pricing/ai') ? 'page' : undefined}
-                    >
-                      AI Integration & Automation
-                    </Link>
-                  </div>
-                </div>
-
-                <Link 
-                  href="/about" 
-                  className={`hover-link py-3 w-full text-center border-b border-maverick-slate/20 text-lg ${isCurrentPath('/about') ? 'text-maverick-orange' : 'text-white hover:text-maverick-orange'}`} 
-                  onClick={closeMenu}
-                  aria-current={isCurrentPath('/about') ? 'page' : undefined}
-                >
-                  About
-                </Link>
-                <div className="w-full text-center">
-                  <Button
-                    href="/contact"
-                    variant="primary"
-                    className="px-5 py-3 mt-4 mx-auto"
-                    onClick={closeMenu}
-                    aria-current={isCurrentPath('/contact') ? 'page' : undefined}
-                  >
-                    Contact
-                  </Button>
-                </div>
-              </motion.nav>
+                    <div className="py-2 bg-[#1A1A1A]/95 backdrop-blur-md border border-gray-800/50 rounded-lg shadow-xl" role="menu">
+                      <Link 
+                        href="/services" 
+                        className={`block px-4 py-3 min-h-[44px] text-base touch-manipulation ${
+                          isCurrentPath('/services') ? 'text-maverick-orange bg-maverick-orange/10' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'
+                        }`} 
+                        role="menuitem"
+                        onClick={() => setServicesDropdownOpen(false)}
+                      >
+                        All Services
+                      </Link>
+                      <Link 
+                        href="/services/web" 
+                        className={`block px-4 py-3 min-h-[44px] text-base touch-manipulation ${
+                          isCurrentPath('/services/web') ? 'text-maverick-orange bg-maverick-orange/10' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'
+                        }`} 
+                        role="menuitem"
+                        onClick={() => setServicesDropdownOpen(false)}
+                      >
+                        Web Design & Development
+                      </Link>
+                      <Link 
+                        href="/services/marketing" 
+                        className={`block px-4 py-3 min-h-[44px] text-base touch-manipulation ${
+                          isCurrentPath('/services/marketing') ? 'text-maverick-orange bg-maverick-orange/10' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'
+                        }`} 
+                        role="menuitem"
+                        onClick={() => setServicesDropdownOpen(false)}
+                      >
+                        Marketing & Creative
+                      </Link>
+                      <Link 
+                        href="/services/ai" 
+                        className={`block px-4 py-3 min-h-[44px] text-base touch-manipulation ${
+                          isCurrentPath('/services/ai') ? 'text-maverick-orange bg-maverick-orange/10' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'
+                        }`} 
+                        role="menuitem"
+                        onClick={() => setServicesDropdownOpen(false)}
+                      >
+                        AI Integration & Automation
+                      </Link>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-      {/* Backdrop for mobile menu */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            className="fixed inset-0 bg-black/50 backdrop-blur-sm z-30 lg:hidden"
-            onClick={toggleMenu}
-          />
-        )}
-      </AnimatePresence>
-    </motion.header>
+
+            {/* Pricing Dropdown */}
+            <div className="relative">
+              <button 
+                type="button"
+                aria-expanded={pricingDropdownOpen}
+                aria-haspopup="true"
+                onMouseEnter={() => setPricingDropdownOpen(true)}
+                onMouseLeave={() => setPricingDropdownOpen(false)}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setPricingDropdownOpen(!pricingDropdownOpen);
+                }}
+                className={`px-3 py-2 min-h-[44px] rounded-md text-base font-medium transition-colors duration-200 inline-flex items-center touch-manipulation ${
+                  isCurrentPath('/pricing') || isCurrentPath('/pricing/web') || isCurrentPath('/pricing/marketing') || isCurrentPath('/pricing/ai') 
+                    ? 'text-maverick-orange' 
+                    : 'text-white hover:text-maverick-orange'
+                }`}
+              >
+                <span>Pricing</span>
+                <ChevronDown className={`ml-2 h-4 w-4 transition-transform duration-200 ${
+                  pricingDropdownOpen ? 'rotate-180' : ''
+                }`} />
+              </button>
+              
+              <AnimatePresence>
+                {pricingDropdownOpen && (
+                  <motion.div 
+                    initial={{ opacity: 0, y: -8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -8 }}
+                    transition={{ duration: 0.2 }}
+                    className="absolute left-0 mt-2 w-64 z-50"
+                    onMouseEnter={() => setPricingDropdownOpen(true)}
+                    onMouseLeave={() => setPricingDropdownOpen(false)}
+                  >
+                    <div className="py-2 bg-[#1A1A1A]/95 backdrop-blur-md border border-gray-800/50 rounded-lg shadow-xl" role="menu">
+                      <Link 
+                        href="/pricing" 
+                        className={`block px-4 py-3 min-h-[44px] text-base touch-manipulation ${
+                          isCurrentPath('/pricing') ? 'text-maverick-orange bg-maverick-orange/10' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'
+                        }`} 
+                        role="menuitem"
+                        onClick={() => setPricingDropdownOpen(false)}
+                      >
+                        All Pricing Plans
+                      </Link>
+                      <Link 
+                        href="/pricing/web" 
+                        className={`block px-4 py-3 min-h-[44px] text-base touch-manipulation ${
+                          isCurrentPath('/pricing/web') ? 'text-maverick-orange bg-maverick-orange/10' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'
+                        }`} 
+                        role="menuitem"
+                        onClick={() => setPricingDropdownOpen(false)}
+                      >
+                        Web Design & Development
+                      </Link>
+                      <Link 
+                        href="/pricing/marketing" 
+                        className={`block px-4 py-3 min-h-[44px] text-base touch-manipulation ${
+                          isCurrentPath('/pricing/marketing') ? 'text-maverick-orange bg-maverick-orange/10' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'
+                        }`} 
+                        role="menuitem"
+                        onClick={() => setPricingDropdownOpen(false)}
+                      >
+                        Marketing & Creative
+                      </Link>
+                      <Link 
+                        href="/pricing/ai" 
+                        className={`block px-4 py-3 min-h-[44px] text-base touch-manipulation ${
+                          isCurrentPath('/pricing/ai') ? 'text-maverick-orange bg-maverick-orange/10' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'
+                        }`} 
+                        role="menuitem"
+                        onClick={() => setPricingDropdownOpen(false)}
+                      >
+                        AI Integration & Automation
+                      </Link>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+
+            {/* About Link */}
+            <Link 
+              href="/about" 
+              className={`px-3 py-2 min-h-[44px] rounded-md text-base font-medium transition-colors duration-200 touch-manipulation flex items-center ${
+                isCurrentPath('/about') ? 'text-maverick-orange' : 'text-white hover:text-maverick-orange'
+              }`} 
+              aria-current={isCurrentPath('/about') ? 'page' : undefined}
+            >
+              About
+            </Link>
+
+            {/* Contact Link */}
+            <Link 
+              href="/contact" 
+              className={`px-3 py-2 min-h-[44px] rounded-md text-base font-medium transition-colors duration-200 touch-manipulation flex items-center ${
+                isCurrentPath('/contact') ? 'text-maverick-orange' : 'text-white hover:text-maverick-orange'
+              }`} 
+              aria-current={isCurrentPath('/contact') ? 'page' : undefined}
+            >
+              Contact
+            </Link>
+          </nav>
+
+          {/* Mobile Menu Button */}
+          <button
+            onClick={toggleMobileMenu}
+            className="block lg:hidden p-3 rounded-full bg-maverick-charcoal/80 backdrop-blur-sm border border-maverick-slate/20 hover:bg-maverick-charcoal transition-colors duration-200 min-h-[44px] min-w-[44px] touch-manipulation"
+            aria-label="Toggle mobile navigation menu"
+            aria-expanded={isMobileMenuOpen}
+          >
+            <motion.div
+              animate={{ rotate: isMobileMenuOpen ? 90 : 0 }}
+              transition={{ duration: 0.2 }}
+            >
+              <Menu className="h-6 w-6 text-white" />
+            </motion.div>
+          </button>
+        </div>
+      </motion.header>
+
+      {/* Mobile Navigation Panel */}
+      <MobileNavigation isOpen={isMobileMenuOpen} onClose={closeMobileMenu} />
+    </>
   );
 }
