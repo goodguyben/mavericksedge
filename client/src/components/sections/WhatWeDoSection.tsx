@@ -649,23 +649,6 @@ export default function WhatWeDoSection() {
                                 </motion.li>
                               ))}
                             </ul>
-                          </motion.div>
-
-                          <motion.button
-                            className="px-6 py-3 rounded-lg font-medium flex items-center gap-2 transition-all duration-300"
-                            style={{
-                              background: `linear-gradient(90deg, #E04500 0%, #E57B00 100%)`,
-                            }}
-                            whileHover={{
-                              scale: 1.05,
-                              boxShadow: `0 10px 25px -5px rgba(224, 69, 0, 0.4)`,
-                            }}
-                            whileTap={{ scale: 0.98 }}
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.6 }}
-                          >
-                            Learn more <ArrowRight className="w-4 h-4" />
                           </motion.button>
                         </motion.div>
 
@@ -780,7 +763,8 @@ export default function WhatWeDoSection() {
                                       >
                                         <div className="text-[9px] text-gray-400 mb-1 flex items-center justify-between">
                                           <span>Layers</span>
-                                          <span className="text-purple-400">4</span>
+                                          <span className```text
+="text-purple-400">4</span>
                                         </div>
                                         <div className="space-y-1">
                                           {["Header", "Hero Section", "Features", "CTA"].map((layer, i) => (
@@ -1424,7 +1408,8 @@ export default function WhatWeDoSection() {
                                                         metric.color,
                                                     }}
                                                     initial={{ height: 0 }}
-                                                    animate={{
+                               ```text
+animate={{
                                                       height: `${metric.value}%`,
                                                     }}
                                                     transition={{
@@ -2221,7 +2206,7 @@ export default function WhatWeDoSection() {
                                                 {activity.ai && (
                                                   <motion.div
                                                     className="text-[8px] bg-maverick-orange/20 text-maverick-orange px-1 py-0.5 rounded flex items-center"
-                                                    initial={{ opacity: 0 }}
+                               initial={{ opacity: 0 }}
                                                     animate={{ opacity: 1 }}
                                                     transition={{
                                                       delay: 1.2 + idx * 0.2,
