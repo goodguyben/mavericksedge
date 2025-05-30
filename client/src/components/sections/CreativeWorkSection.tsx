@@ -189,8 +189,9 @@ export default function CreativeWorkSection() {
     <section className="py-24 px-5 md:px-10 bg-[#0D0D0D] relative overflow-hidden">
       {/* Background pattern */}
       <div className="absolute inset-0 opacity-5">
-        <div className="absolute inset-0 bg-grid-pattern pt-[0px] pb-[0px] mt-[51px] mb-[51px]"></div>
+        <div className="absolute inset-0 bg-grid-pattern"></div>
       </div>
+      
       <div className="container mx-auto relative z-10">
         <motion.div 
           className="text-center mb-16"
