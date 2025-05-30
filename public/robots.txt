@@ -1,60 +1,11 @@
-
-# robots.txt for Mavericks Edge - Edmonton Web Design & Digital Marketing
-
-# Allow all robots full access
 User-agent: *
 Allow: /
 
-# Disallow specific folders and files
+# Sitemaps
+Sitemap: https://mavericksedge.ca/sitemap.xml
+
+# Block access to admin areas and sensitive files
 Disallow: /admin/
-Disallow: /private/
-Disallow: /temp/
-Disallow: /_headers
-Disallow: /payment-confirmed
-Disallow: /wp-admin/
-Disallow: /wp-includes/
-Disallow: /*.php$
-Disallow: /search
-Disallow: /*?*
-
-# Allow important bot access to all content
-User-agent: Googlebot
-Allow: /
-
-User-agent: Bingbot
-Allow: /
-
-User-agent: Slurp
-Allow: /
-
-User-agent: DuckDuckBot
-Allow: /
-
-User-agent: Baiduspider
-Allow: /
-
-User-agent: YandexBot
-Allow: /
-
-User-agent: facebookexternalhit
-Allow: /
-
-User-agent: Twitterbot
-Allow: /
-
-User-agent: LinkedInBot
-Allow: /
-
-# Crawl delay for better server performance
-Crawl-delay: 1
-
-# Sitemap locations
-Sitemap: https://mavericksedge.com/sitemap.xml
-Sitemap: https://mavericksedge.com/sitemap-main.xml
-Sitemap: https://mavericksedge.com/sitemap-services.xml
-
-# Host directive (preferred domain)
-Host: https://mavericksedge.com
-
-# Additional directives for better SEO
-Clean-param: utm_source&utm_medium&utm_campaign&utm_term&utm_content&gclid&fbclid&msclkid&twclid
+Disallow: /_next/
+Disallow: /api/
+Disallow: /*.json$

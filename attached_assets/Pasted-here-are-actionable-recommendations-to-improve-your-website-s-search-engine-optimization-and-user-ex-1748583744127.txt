@@ -1,0 +1,145 @@
+here are actionable recommendations to improve your website's search engine optimization and user experience. These are prioritized generally from critical technical fixes to on-page and content enhancements.
+
+1. Critical Technical SEO Fixes
+These issues can significantly hinder how search engines crawl, index, and understand your site.
+
+a. Custom 404 Error Page:
+
+Issue: Non-existent pages on your site may be returning an incorrect HTTP status code (e.g., 200 OK instead of 404 Not Found). This means your server is telling search engines that broken or non-existent URLs are valid pages, which is problematic for indexing and can confuse users.
+
+Action:
+
+Configure your server to return a proper 404 HTTP status code for pages that do not exist.
+
+Ensure your 404 page is user-friendly:
+
+Clearly state that the page was not found.
+
+Provide a link back to the homepage.
+
+Optionally, include a search bar or links to popular sections of your site.
+
+Maintain your site's branding and navigation.
+
+b. Robots.txt Configuration:
+
+Issue:
+
+Your robots.txt file may be referencing sitemaps for a different domain (e.g., .com instead of .ca).
+
+A Crawl-delay directive was noted. While not inherently bad, ensure this crawl delay is necessary and not excessively slowing down legitimate crawlers like Googlebot. Google generally does a good job of auto-detecting server capacity.
+
+Action:
+
+Update Sitemap Declarations: Ensure your robots.txt file on mavericksedge.ca points to the correct sitemap(s) for the .ca domain (e.g., Sitemap: https://mavericksedge.ca/sitemap.xml).
+
+Review Crawl Delay: Evaluate if the Crawl-delay directive is essential. If your server can handle Google's default crawl rate, consider removing or reducing this. You can also set crawl rate preferences in Google Search Console.
+
+Verify Disallow Directives: Double-check that no important pages or directories on mavericksedge.ca are accidentally disallowed from crawling.
+
+c. XML Sitemap Issues:
+
+Issue: Your XML sitemaps for mavericksedge.ca might be empty, incorrectly formatted, or not discoverable by search engines, hindering their ability to find all your site's content.
+
+Action:
+
+Generate/Verify Sitemaps for .ca: Ensure you have valid, comprehensive XML sitemaps for mavericksedge.ca. These sitemaps should list all important, indexable URLs on your site.
+
+Check Sitemap Format: Use a sitemap validator tool to confirm your sitemaps are correctly formatted.
+
+Submit to Search Consoles: Submit the correct sitemap URLs to Google Search Console and Bing Webmaster Tools for the mavericksedge.ca property.
+
+Monitor Sitemap Processing: Regularly check Google Search Console for any errors or warnings related to sitemap processing.
+
+2. On-Page Content & Metadata
+(Assuming the CSV would contain data for these fields once Lighthouse and page parsing are stable)
+
+a. Page Titles (<title> tags):
+
+Review: Ensure every important page has a unique, descriptive title.
+
+Length: Aim for titles between 50-60 characters to avoid truncation in search results.
+
+Keywords: Include relevant target keywords naturally, preferably towards the beginning.
+
+Branding: Consistently include your brand name (e.g., "| Mavericks Edge") at the end.
+
+b. Meta Descriptions:
+
+Review: Write compelling, unique meta descriptions for all important pages. These act as ad copy in search results.
+
+Length: Aim for 150-160 characters.
+
+Keywords: Include relevant keywords naturally.
+
+Call to Action (CTA): Encourage clicks where appropriate.
+
+c. H1 Tags:
+
+Presence: Ensure every page has one, and only one, <h1> tag.
+
+Content: The <h1> should accurately describe the main topic of the page and ideally include the primary keyword.
+
+Uniqueness: While not as strict as titles, aim for H1s that are distinct for each page's main content.
+
+d. Heading Structure (H2-H6):
+
+Hierarchy: Use headings (<h2>, <h3>, etc.) to create a logical structure for your content. Follow a proper hierarchy (e.g., don't skip from <h2> to <h4>).
+
+Readability: Break up long blocks of text with descriptive subheadings.
+
+Keywords: Naturally incorporate secondary keywords into subheadings where relevant.
+
+e. Image SEO (Alt Text):
+
+Coverage: Ensure all meaningful images have descriptive alt text. This helps with accessibility and image search.
+
+Relevance: Alt text should accurately describe the image and, if appropriate, include relevant keywords. Decorative images can have empty alt="".
+
+f. Content Quality & Relevance:
+
+Word Count: While not a direct ranking factor, ensure pages have sufficient content to thoroughly cover the topic and satisfy user intent.
+
+Readability: Aim for content that is easy to read and understand for your target audience. (The script aims to add Flesch Reading Ease).
+
+Keyword Usage: Integrate your TARGET_KEYWORDS naturally throughout the content (titles, headings, body copy). Avoid keyword stuffing.
+
+Originality: Ensure content is unique and provides value.
+
+3. Structured Data (Schema Markup)
+Implementation: Utilize relevant schema markup (e.g., LocalBusiness, Service, Article, FAQPage, BreadcrumbList) to help search engines better understand your content and potentially gain rich snippets in search results.
+
+Validation: Use Google's Rich Results Test to validate your structured data implementation and check for errors.
+
+4. User Experience (UX)
+Favicon: Ensure a favicon is present and correctly configured. It helps with branding in browser tabs and bookmarks.
+
+Language Consistency: Verify that the lang attribute in the <html> tag and any Content-Language HTTP headers are consistent and correct.
+
+Mobile Friendliness: (This will come from Lighthouse) Ensure your site provides a good experience on mobile devices.
+
+Internal Linking:
+
+Use descriptive anchor text for internal links.
+
+Ensure important pages are well-linked from other relevant pages on your site.
+
+5. Local SEO (for mavericksedge.ca)
+NAP (Name, Address, Phone Number): Ensure your NAP information is consistent across your website and in online directories (e.g., Google Business Profile, Yelp).
+
+LocalBusiness Schema: Implement LocalBusiness schema markup on relevant pages (e.g., homepage, contact page).
+
+Google Maps Embed: The audit checks for this; embedding a map can be helpful for users.
+
+Geo-Targeted Content: Continue creating content relevant to your service areas (e.g., Edmonton, Alberta), as indicated by your GEO Optimization Notes checks.
+
+Prioritization:
+Address Critical Technical Issues First: 404 handling, robots.txt, and XML sitemap issues are foundational.
+
+On-Page Basics: Titles, meta descriptions, and H1 tags are crucial for every page.
+
+Content and Structure: Improve heading hierarchy, image alt text, and content quality.
+
+Advanced/Ongoing: Structured data, deeper performance optimization, and continuous content improvement.
+
+By systematically addressing these points, you can significantly improve the SEO performance and user experience of mavericksedge.ca. Remember that SEO is an ongoing process, so regular audits and monitoring are recommended.

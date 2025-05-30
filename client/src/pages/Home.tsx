@@ -10,6 +10,7 @@ import CreativeWorkSection from '../components/sections/CreativeWorkSection';
 import ProcessSection from '../components/sections/ProcessSection';
 import ScrollFadeSection from '../components/ui/scroll-fade-section';
 import SEOHead from '../components/SEOHead';
+import StructuredData, { organizationSchema, localBusinessSchema, websiteSchema, faqSchema } from '../components/StructuredData';
 
 // Lazy load non-critical components
 const ServiceCascadeSection = lazy(() => import("../components/sections/ServiceCascadeSection"));
@@ -25,40 +26,23 @@ export default function Home() {
 
   return (
     <>
-      {/* SEO Optimization */}
-      <Helmet>
-        <title>Edmonton Web Design & Digital Marketing Agency | Mavericks Edge</title>
-        <meta name="description" content="Premier Edmonton web design and digital marketing agency. Custom websites, SEO, AI integration for small businesses across Alberta. Free consultation available." />
-        <meta name="keywords" content="Edmonton web design, Edmonton digital marketing, web development Edmonton, SEO Edmonton, AI integration Edmonton, custom websites Edmonton, small business web design Alberta, nonprofit web design Edmonton, responsive web design Alberta, ecommerce development Edmonton" />
-        <link rel="canonical" href="https://mavericksedge.com/" />
-
-        {/* Enhanced Open Graph */}
-        <meta property="og:title" content="Edmonton Web Design & Digital Marketing Agency | Mavericks Edge" />
-        <meta property="og:description" content="Premier Edmonton web design and digital marketing agency. Custom websites, SEO, AI integration for small businesses across Alberta." />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://mavericksedge.com/" />
-        <meta property="og:image" content="https://mavericksedge.com/images/logo-transparent-thumb4x.png" />
-        <meta property="og:locale" content="en_CA" />
-        <meta property="og:site_name" content="Mavericks Edge" />
-
-        {/* Twitter Cards */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:site" content="@mavericksedge" />
-        <meta name="twitter:title" content="Edmonton Web Design & Digital Marketing Agency | Mavericks Edge" />
-        <meta name="twitter:description" content="Premier Edmonton web design and digital marketing agency. Custom websites, SEO, AI integration for small businesses across Alberta." />
-        <meta name="twitter:image" content="https://mavericksedge.com/images/logo-transparent-thumb4x.png" />
-
-        {/* Structured Data */}
-        <script type="application/ld+json">
-          {JSON.stringify(generateOrganizationStructuredData())}
-        </script>
-        <script type="application/ld+json">
-          {JSON.stringify(generateWebsiteStructuredData())}
-        </script>
-        <script type="application/ld+json">
-          {JSON.stringify(generateFAQStructuredData())}
-        </script>
-      </Helmet>
+      {/* Enhanced SEO with Structured Data */}
+      <SEOHead 
+        title="Edmonton Web Design & Digital Marketing Agency | Mavericks Edge"
+        description="Premier Edmonton web design and digital marketing agency. Custom websites, SEO, AI integration for small businesses across Alberta. Free consultation available."
+        keywords="Edmonton web design, Edmonton digital marketing, web development Edmonton, SEO Edmonton, AI integration Edmonton, custom websites Edmonton, small business web design Alberta, nonprofit web design Edmonton, responsive web design Alberta, ecommerce development Edmonton"
+        canonicalUrl="https://mavericksedge.ca/"
+        ogTitle="Edmonton Web Design & Digital Marketing Agency | Mavericks Edge"
+        ogDescription="Premier Edmonton web design and digital marketing agency. Custom websites, SEO, AI integration for small businesses across Alberta."
+        ogImage="https://mavericksedge.ca/logo.png"
+        ogType="website"
+      />
+      
+      {/* Comprehensive Structured Data */}
+      <StructuredData data={organizationSchema} />
+      <StructuredData data={localBusinessSchema} />
+      <StructuredData data={websiteSchema} />
+      <StructuredData data={faqSchema} />
 
       <LocalSEO page="home" location="Edmonton" />
 
