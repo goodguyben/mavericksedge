@@ -461,6 +461,15 @@ img {
     line-height: 1.2;
     margin-top: 0.5rem !important;
   }
+
+  /* Fix mobile menu button positioning */
+  header button[aria-label="Toggle menu"] {
+    min-height: 44px;
+    min-width: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }
 
 /* Extra small mobile devices */
@@ -468,6 +477,28 @@ img {
   header h1 {
     font-size: clamp(1.25rem, 6vw, 1.75rem) !important;
     margin-top: 0.625rem !important;
+  }
+
+  /* Ensure proper spacing on very small screens */
+  header .container {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+}
+
+/* Hero text improvements for mobile */
+@media (max-width: 639px) {
+  .hero-tagline {
+    font-size: clamp(0.875rem, 4vw, 1.125rem) !important;
+    line-height: 1.5 !important;
+    padding: 0 1rem;
+  }
+}
+
+@media (min-width: 640px) and (max-width: 767px) {
+  .hero-tagline {
+    font-size: clamp(1rem, 3.5vw, 1.25rem) !important;
+    line-height: 1.4 !important;
   }
 }
 
