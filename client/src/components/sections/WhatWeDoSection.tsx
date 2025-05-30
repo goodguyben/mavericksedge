@@ -370,7 +370,7 @@ export default function WhatWeDoSection() {
                     )}
                   </motion.button>
                 ))}
-                <button
+                <motion.button
                   onClick={() => setIsAutoPlaying(!isAutoPlaying)}
                   className="relative px-4 py-3 min-w-[120px] rounded-lg transition-all duration-300 bg-[#1A1A1A]/30 text-gray-400 hover:text-gray-200"
                   whileHover={{ scale: 1.05 }}
@@ -395,7 +395,7 @@ export default function WhatWeDoSection() {
                       {isAutoPlaying ? "Pause" : "Play"}
                     </span>
                   </div>
-                </button>
+                </motion.button>
               </motion.div>
             </div>
 
@@ -1396,7 +1396,7 @@ export default function WhatWeDoSection() {
                                   >
                                     <div className="bg-maverick-orange/20 border border-maverick-orange/40 px-2 py-1 rounded-md text-[9px] text-maverick-orange flex items-center shadow-lg">
                                       <Brain className="w-2.5 h-2.5 mr-1" /><span>
-                                        AI-driven creative optimization
+                                                                       AI-driven creative optimization
                                       </span>
                                     </div>
                                   </motion.div>
