@@ -215,13 +215,13 @@ export default function ServiceCascadeSection() {
   const currentItem = allItems[activeIndex];
 
   return (
-    <div ref={containerRef} className="relative h-[400vh] sm:h-[450vh] md:h-[500vh] bg-black">
-      {/* Floating particles - optimized for different screen sizes */}
+    <div ref={containerRef} className="relative h-[400vh] sm:h-[450vh] md:h-[500vh] tablet:h-[480vh] tablet-landscape:h-[420vh] bg-black">
+      {/* Floating particles - optimized for different screen sizes and tablet views */}
       <div className="absolute inset-0 pointer-events-none">
         {[...Array(window?.innerWidth <= 768 ? 4 : window?.innerWidth <= 1024 ? 6 : 8)].map((_, i) => (
           <motion.div
             key={i}
-            className="absolute w-1 h-1 bg-maverick-orange/30 rounded-full"
+            className="absolute w-1 h-1 bg-maverick-orange/30 rounded-full tablet:w-1.5 tablet:h-1.5"
             style={{
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
@@ -239,35 +239,35 @@ export default function ServiceCascadeSection() {
         ))}
       </div>
 
-      {/* Sticky content container */}
-      <div className="sticky top-0 h-screen flex items-center justify-center bg-black z-10 pt-12 sm:pt-14 md:pt-16 lg:pt-20 relative">
-        <div className="container mx-auto px-4 sm:px-6 md:px-10 lg:px-12">
+      {/* Sticky content container - Enhanced tablet responsiveness */}
+      <div className="sticky top-0 h-screen flex items-center justify-center bg-black z-10 pt-12 sm:pt-14 md:pt-16 tablet:pt-12 tablet-landscape:pt-8 lg:pt-20 relative">
+        <div className="container mx-auto px-4 sm:px-6 md:px-8 tablet:px-6 tablet-landscape:px-12 lg:px-12">
 
-          {/* Section Title */}
-          <div className="text-center mb-6 sm:mb-8 md:mb-10 lg:mb-12">
+          {/* Section Title - Enhanced tablet responsiveness */}
+          <div className="text-center mb-6 sm:mb-8 md:mb-8 tablet:mb-6 tablet-landscape:mb-8 lg:mb-12">
             <motion.div
               key={currentSection}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="flex items-center justify-center gap-3 sm:gap-4 mb-3 sm:mb-4"
+              className="flex items-center justify-center gap-3 sm:gap-4 tablet:gap-5 tablet-landscape:gap-6 mb-3 sm:mb-4 tablet:mb-3"
             >
-              <div className="text-maverick-orange transform md:scale-110">
+              <div className="text-maverick-orange transform md:scale-110 tablet:scale-125 tablet-landscape:scale-110">
                 {currentService.icon}
               </div>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white leading-tight">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl tablet:text-3xl tablet-landscape:text-4xl lg:text-5xl xl:text-6xl font-bold text-white leading-tight tablet:leading-snug">
                 {currentService.title}
               </h2>
             </motion.div>
           </div>
 
-          <div className={`grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 md:gap-12 lg:gap-16 xl:gap-20 items-center px-2 sm:px-4 md:px-6 lg:px-0 ${
-            currentService.imagePosition === 'right' ? 'md:grid-flow-col-dense' : ''
+          <div className={`grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 md:gap-10 tablet:gap-8 tablet-landscape:gap-12 lg:gap-16 xl:gap-20 items-center px-2 sm:px-4 md:px-4 tablet:px-2 tablet-landscape:px-8 lg:px-0 ${
+            currentService.imagePosition === 'right' ? 'md:grid-flow-col-dense tablet:grid-flow-col-dense' : ''
           }`}>
 
-            {/* 3D Image Stack */}
-            <div className={`relative h-64 sm:h-80 md:h-96 lg:h-[26rem] xl:h-[30rem] 2xl:h-[34rem] perspective-1000 touch-manipulation ${
-              currentService.imagePosition === 'right' ? 'md:col-start-2' : ''
+            {/* 3D Image Stack - Comprehensive tablet optimization */}
+            <div className={`relative h-64 sm:h-80 md:h-80 tablet-portrait:h-72 tablet-landscape:h-96 tablet:h-80 lg:h-[26rem] xl:h-[30rem] 2xl:h-[34rem] perspective-1000 touch-manipulation transform tablet:scale-105 tablet-landscape:scale-100 ${
+              currentService.imagePosition === 'right' ? 'md:col-start-2 tablet:col-start-2' : ''
             }`}>
               <div className="relative w-full h-full preserve-3d">
                 {allItems.map((item, index) => {
@@ -296,8 +296,18 @@ export default function ServiceCascadeSection() {
                       }}
                       onClick={() => handleDotClick(index)}
                     >
-                      <div className="relative w-full h-full rounded-2xl overflow-hidden group">
+                      <div className="relative w-full h-full rounded-2xl tablet:rounded-3xl overflow-hidden group shadow-lg tablet:shadow-xl">
                         <picture>
+                          <source 
+                            media="(min-width: 768px) and (max-width: 1023px)"
+                            srcSet={`${item.image}?fm=avif&w=1000&h=750&q=95&auto=format&fit=crop&crop=entropy`}
+                            type="image/avif"
+                          />
+                          <source 
+                            media="(min-width: 768px) and (max-width: 1023px)"
+                            srcSet={`${item.image}?fm=webp&w=1000&h=750&q=95&auto=format&fit=crop&crop=entropy`}
+                            type="image/webp"
+                          />
                           <source 
                             srcSet={`${item.image}?fm=avif&w=800&h=600&q=90&auto=format&fit=crop&crop=entropy`}
                             type="image/avif"
@@ -309,7 +319,7 @@ export default function ServiceCascadeSection() {
                           <img
                             src={`${item.image}?w=800&h=600&q=90&auto=format&fit=crop&crop=entropy`}
                             alt={item.title}
-                            className="w-full h-full object-cover transition-all duration-700 ease-out"
+                            className="w-full h-full object-cover transition-all duration-700 ease-out tablet:object-center"
                             style={{
                               filter: index === activeIndex 
                                 ? 'brightness(1.1) contrast(1.05) saturate(1.1)' 
@@ -382,22 +392,22 @@ export default function ServiceCascadeSection() {
               </div>
             </div>
 
-            {/* Content Area */}
-            <div className={`space-y-4 sm:space-y-6 md:space-y-7 lg:space-y-8 ${
-              currentService.imagePosition === 'right' ? 'md:col-start-1 md:row-start-1' : ''
+            {/* Content Area - Enhanced tablet responsiveness */}
+            <div className={`space-y-4 sm:space-y-6 md:space-y-6 tablet-portrait:space-y-5 tablet-landscape:space-y-7 lg:space-y-8 ${
+              currentService.imagePosition === 'right' ? 'md:col-start-1 md:row-start-1 tablet:col-start-1 tablet:row-start-1' : ''
             }`}>
               <AnimatePresence mode="wait">
                 <motion.div
                   key={activeIndex}
-                  className="space-y-3 sm:space-y-4 md:space-y-5 lg:space-y-6"
+                  className="space-y-3 sm:space-y-4 md:space-y-4 tablet-portrait:space-y-4 tablet-landscape:space-y-5 lg:space-y-6"
                   initial={{ opacity: 0, x: currentService.imagePosition === 'right' ? -50 : 50 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: currentService.imagePosition === 'right' ? 50 : -50 }}
                   transition={{ duration: 0.6, ease: "easeOut" }}
                 >
-                  {/* Title */}
+                  {/* Title - Tablet-optimized typography */}
                   <motion.h3
-                    className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-white leading-tight md:leading-snug"
+                    className="text-xl sm:text-2xl md:text-2xl tablet-portrait:text-2xl tablet-landscape:text-3xl tablet:text-2.5xl lg:text-4xl xl:text-5xl font-bold text-white leading-tight md:leading-snug tablet:leading-tight"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: 0.1 }}
@@ -405,9 +415,9 @@ export default function ServiceCascadeSection() {
                     {currentItem.title}
                   </motion.h3>
 
-                  {/* Description */}
+                  {/* Description - Tablet-optimized readability */}
                   <motion.p
-                    className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-300 leading-relaxed md:leading-loose max-w-2xl"
+                    className="text-sm sm:text-base md:text-base tablet-portrait:text-base tablet-landscape:text-lg tablet:text-lg tablet:max-w-none lg:text-xl text-gray-300 leading-relaxed md:leading-relaxed tablet:leading-relaxed tablet-landscape:leading-loose max-w-2xl tablet:max-w-full"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: 0.2 }}
@@ -415,16 +425,16 @@ export default function ServiceCascadeSection() {
                     {currentItem.description}
                   </motion.p>
 
-                  {/* Button */}
+                  {/* Button - Enhanced tablet interaction */}
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: 0.3 }}
-                    className="pt-2 md:pt-4"
+                    className="pt-2 md:pt-3 tablet:pt-4 tablet-landscape:pt-5"
                   >
                     <TechButton 
                       href={`/services/${currentService.id === 'web-applications' ? 'web-design-and-development-edmonton' : currentService.id === 'marketing-solutions' ? 'digital-marketing-edmonton' : 'ai-integration-automation-edmonton'}`}
-                      className="inline-flex items-center text-sm sm:text-base md:text-lg px-6 py-3 md:px-8 md:py-4"
+                      className="inline-flex items-center text-sm sm:text-base md:text-base tablet:text-lg px-6 py-3 md:px-7 md:py-3.5 tablet:px-8 tablet:py-4 tablet-landscape:px-10 tablet-landscape:py-5"
                       asButton={true}
                     >
                       Learn More
@@ -433,21 +443,21 @@ export default function ServiceCascadeSection() {
                 </motion.div>
               </AnimatePresence>
 
-              {/* Progress Indicators */}
-              <div className="flex items-center justify-center pt-4 sm:pt-6 md:pt-8 tablet:pt-10">
-                <div className="flex items-center gap-3 md:gap-6 tablet:gap-8">
-                  <div className="flex items-center gap-1 sm:gap-2 md:gap-3 tablet:gap-4 lg:gap-4">
+              {/* Progress Indicators - Comprehensive tablet optimization */}
+              <div className="flex items-center justify-center pt-4 sm:pt-6 md:pt-6 tablet-portrait:pt-5 tablet-landscape:pt-8 tablet:pt-6">
+                <div className="flex items-center gap-3 md:gap-4 tablet-portrait:gap-4 tablet-landscape:gap-6 tablet:gap-5">
+                  <div className="flex items-center gap-1 sm:gap-2 md:gap-2 tablet-portrait:gap-2 tablet-landscape:gap-3 tablet:gap-2.5 lg:gap-4">
                     {allItems.map((_, index) => (
                       <motion.button
                         key={index}
-                        className="relative touch-manipulation tap-target min-h-[48px] min-w-[20px] md:min-h-[52px] md:min-w-[24px] tablet:min-h-[56px] tablet:min-w-[28px] lg:min-w-[48px] flex items-center justify-center p-2 tablet:p-3"
+                        className="relative touch-manipulation tap-target min-h-[48px] min-w-[20px] md:min-h-[52px] md:min-w-[24px] tablet-portrait:min-h-[52px] tablet-portrait:min-w-[26px] tablet-landscape:min-h-[56px] tablet-landscape:min-w-[30px] tablet:min-h-[54px] tablet:min-w-[28px] lg:min-w-[48px] flex items-center justify-center p-2 tablet:p-3 tablet-landscape:p-4"
                         onClick={() => handleDotClick(index)}
                         whileHover={{ scale: 1.2 }}
                         whileTap={{ scale: 0.9 }}
                       >
-                        {/* Background circle */}
+                        {/* Background circle - Enhanced for different tablet views */}
                         <motion.div
-                          className="w-2.5 h-2.5 md:w-3.5 md:h-3.5 lg:w-4 lg:h-4 rounded-full bg-gray-600"
+                          className="w-2.5 h-2.5 md:w-3 md:h-3 tablet-portrait:w-3.5 tablet-portrait:h-3.5 tablet-landscape:w-4 tablet-landscape:h-4 tablet:w-3.5 tablet:h-3.5 lg:w-4 lg:h-4 rounded-full bg-gray-600"
                           animate={{
                             scale: index === activeIndex ? 1.5 : 1,
                             backgroundColor: index === activeIndex ? "#FF5A00" : "#4B5563"
@@ -455,7 +465,7 @@ export default function ServiceCascadeSection() {
                           transition={{ duration: 0.3 }}
                         />
 
-                        {/* Active indicator with ripple */}
+                        {/* Active indicator with ripple - Enhanced for tablets */}
                         {index === activeIndex && (
                           <motion.div
                             className="absolute inset-0 rounded-full bg-maverick-orange/30"
@@ -472,22 +482,22 @@ export default function ServiceCascadeSection() {
                     ))}
                   </div>
 
-                  {/* Auto-play toggle - enhanced for tablet */}
+                  {/* Auto-play toggle - Multiple tablet view optimizations */}
                   <motion.button
                     onClick={toggleAutoPlay}
-                    className="hidden md:flex items-center gap-2 lg:gap-3 px-3 md:px-4 lg:px-6 py-2.5 md:py-3 text-sm md:text-base text-gray-400 hover:text-white transition-colors duration-200 touch-manipulation min-h-[48px] md:min-h-[52px] whitespace-nowrap bg-gray-800/40 hover:bg-gray-700/50 backdrop-blur-sm rounded-xl border border-gray-700/30"
+                    className="hidden md:flex items-center gap-2 tablet-portrait:gap-2 tablet-landscape:gap-3 tablet:gap-2.5 lg:gap-3 px-3 md:px-4 tablet-portrait:px-4 tablet-landscape:px-5 tablet:px-4.5 lg:px-6 py-2.5 md:py-3 tablet:py-3.5 text-sm md:text-base tablet:text-base text-gray-400 hover:text-white transition-colors duration-200 touch-manipulation min-h-[48px] md:min-h-[52px] tablet:min-h-[54px] whitespace-nowrap bg-gray-800/40 hover:bg-gray-700/50 backdrop-blur-sm rounded-xl border border-gray-700/30 tablet:border-gray-600/40"
                     whileHover={{ scale: 1.05, backgroundColor: "rgba(55, 65, 81, 0.6)" }}
                     whileTap={{ scale: 0.95 }}
                   >
                     {isAutoPlaying ? (
                       <>
-                        <Pause className="w-4 h-4 md:w-5 md:h-5" />
-                        <span className="hidden lg:inline font-medium">Auto-play ON</span>
+                        <Pause className="w-4 h-4 md:w-5 md:h-5 tablet:w-5 tablet:h-5" />
+                        <span className="hidden lg:inline tablet-landscape:inline font-medium">Auto-play ON</span>
                       </>
                     ) : (
                       <>
-                        <Play className="w-4 h-4 md:w-5 md:h-5" />
-                        <span className="hidden lg:inline font-medium">Auto-play OFF</span>
+                        <Play className="w-4 h-4 md:w-5 md:h-5 tablet:w-5 tablet:h-5" />
+                        <span className="hidden lg:inline tablet-landscape:inline font-medium">Auto-play OFF</span>
                       </>
                     )}
                   </motion.button>
