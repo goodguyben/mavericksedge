@@ -8,8 +8,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Sansation:wght@700&display=swap');
 /* Import custom CSS files */
 @import url('./styles/buttons.css');
-@import url('./styles/responsive-system.css');
-@import url('./styles/device-optimizations.css');
 @import url('./styles/footer.css');
 @import url('./styles/cards.css');
 

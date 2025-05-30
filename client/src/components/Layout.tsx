@@ -2,7 +2,6 @@ import { ReactNode } from "react";
 import Header from "./Header";
 import FooterWrapper from "./FooterWrapper";
 import PageTransition from "./PageTransition";
-import DeviceOptimizer from "./DeviceOptimizer";
 import { useLocation } from "wouter";
 import { useEffect } from "react";
 
@@ -19,11 +18,10 @@ export default function Layout({ children }: LayoutProps) {
   }, [location]);
 
   return (
-    <div className="min-h-screen flex flex-col safe-area-inset">
-      <DeviceOptimizer />
+    <div className="min-h-screen flex flex-col">
       <PageTransition />
       <Header />
-      <main id="main-content" className="flex-grow container grid-responsive" role="main" aria-label="Main content">{children}</main>
+      <main id="main-content" className="flex-grow" role="main" aria-label="Main content">{children}</main>
       <FooterWrapper />
     </div>
   );
