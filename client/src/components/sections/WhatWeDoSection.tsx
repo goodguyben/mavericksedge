@@ -211,96 +211,249 @@ export default function WhatWeDoSection() {
         </header>
 
         {isMobile ? (
-          // Mobile version - Interactive vertical scroll list
-          <div className="space-y-6">
-            {services.map((service, index) => (
-              <motion.div
-                key={service.id}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="relative"
-              >
-                <motion.div
-                  className="bg-[#1A1A1A]/80 backdrop-blur-sm p-6 rounded-xl border border-gray-800 overflow-hidden"
-                  whileTap={{ scale: 0.98 }}
-                  onClick={() =>
-                    setActiveService(
-                      activeService === service.id ? "" : service.id,
-                    )
-                  }
+          // Enhanced Mobile version - Closer to desktop representation
+          <div className="space-y-8">
+            {/* Mobile Service Navigation */}
+            <motion.div
+              className="flex flex-wrap justify-center gap-2 mb-8"
+              initial={{ opacity: 0, y: -20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+            >
+              {services.map((service, index) => (
+                <motion.button
+                  key={service.id}
+                  onClick={() => setActiveService(service.id)}
+                  className={`relative px-3 py-2 min-w-[100px] rounded-lg transition-all duration-300 ${
+                    activeService === service.id
+                      ? "bg-gradient-to-r from-maverick-orange/20 to-maverick-amber/10 text-white"
+                      : "bg-[#1A1A1A]/30 text-gray-400"
+                  }`}
+                  whileTap={{ scale: 0.95 }}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.1 + 0.3 }}
                 >
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-4">
-                      <div
-                        className="p-3 rounded-lg"
-                        style={{ backgroundColor: `${service.color}20` }}
-                      >
-                        {service.icon}
-                      </div>
-                      <h3 className="text-xl font-semibold">{service.title}</h3>
-                    </div>
+                  <div className="flex flex-col items-center gap-1">
                     <motion.div
                       animate={{
-                        rotate: activeService === service.id ? 90 : 0,
+                        scale: activeService === service.id ? 1.1 : 1,
                       }}
                       transition={{ duration: 0.3 }}
+                      className={`p-1.5 rounded-lg ${
+                        activeService === service.id
+                          ? `bg-${service.id} bg-opacity-20`
+                          : "bg-gray-800/20"
+                      }`}
                     >
-                      <ArrowRight className="w-5 h-5 text-maverick-orange" />
+                      <div className="w-4 h-4">
+                        {React.cloneElement(
+                          service.icon as React.ReactElement,
+                          {
+                            className: `w-4 h-4 ${activeService === service.id ? "text-maverick-orange" : "text-gray-500"}`,
+                          },
+                        )}
+                      </div>
                     </motion.div>
+                    <span className="font-medium text-xs">
+                      {service.title.split(" ")[0]}
+                    </span>
                   </div>
 
-                  <AnimatePresence>
-                    {activeService === service.id && (
-                      <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: "auto", opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.3 }}
-                        className="mt-4 overflow-hidden"
-                      >
-                        <p className="text-[#AAAAAA] mb-3">
-                          {service.description}
-                        </p>
-                        <p className="text-[#DDDDDD] leading-relaxed text-sm mb-3">
-                          {service.details}
-                        </p>
+                  {/* Active indicator line */}
+                  {activeService === service.id && (
+                    <motion.div
+                      className="absolute bottom-0 left-0 w-full h-0.5 bg-maverick-orange rounded-b-lg"
+                      layoutId="mobileActiveServiceIndicator"
+                      transition={{
+                        type: "spring",
+                        stiffness: 200,
+                        damping: 25,
+                      }}
+                    />
+                  )}
+                </motion.button>
+              ))}
+            </motion.div>
 
-                        <div className="mb-2">
-                          <h4 className="text-sm font-semibold mb-2 text-white">
+            {/* Enhanced Service Content Display */}
+            <AnimatePresence mode="wait">
+              {services.map(
+                (service) =>
+                  activeService === service.id && (
+                    <motion.div
+                      key={service.id}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -20 }}
+                      transition={{ duration: 0.5, ease: "easeOut" }}
+                      className="bg-[#1A1A1A]/80 backdrop-blur-sm p-6 rounded-xl border border-gray-800 overflow-hidden relative"
+                    >
+                      {/* Animated background elements */}
+                      <motion.div
+                        className="absolute top-4 right-4 w-20 h-20 rounded-full opacity-20 blur-2xl"
+                        style={{ backgroundColor: service.color }}
+                        animate={{
+                          scale: [1, 1.2, 1],
+                          opacity: [0.1, 0.3, 0.1],
+                        }}
+                        transition={{
+                          duration: 4,
+                          repeat: Infinity,
+                          repeatType: "reverse",
+                        }}
+                      />
+
+                      <div className="relative z-10">
+                        {/* Service Icon and Title */}
+                        <motion.div
+                          className="flex items-center gap-4 mb-4"
+                          initial={{ opacity: 0, x: -20 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ duration: 0.5, delay: 0.1 }}
+                        >
+                          <motion.div
+                            className="p-3 rounded-lg"
+                            style={{ backgroundColor: `${service.color}30` }}
+                            animate={{ scale: [1, 1.05, 1], rotate: [0, 1, 0] }}
+                            transition={{
+                              duration: 3,
+                              repeat: Infinity,
+                              repeatType: "reverse",
+                            }}
+                          >
+                            <div className="w-8 h-8">
+                              {React.cloneElement(
+                                service.icon as React.ReactElement,
+                                {
+                                  className: "w-8 h-8 text-maverick-orange",
+                                },
+                              )}
+                            </div>
+                          </motion.div>
+                          <h3 className="text-2xl font-bold">{service.title}</h3>
+                        </motion.div>
+
+                        {/* Service Description */}
+                        <motion.p
+                          className="text-[#AAAAAA] text-lg mb-4"
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          transition={{ duration: 0.5, delay: 0.2 }}
+                        >
+                          {service.description}
+                        </motion.p>
+
+                        <motion.p
+                          className="text-[#DDDDDD] leading-relaxed mb-4"
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          transition={{ duration: 0.5, delay: 0.3 }}
+                        >
+                          {service.details}
+                        </motion.p>
+
+                        {/* Key Benefits */}
+                        <motion.div
+                          className="mb-6"
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          transition={{ duration: 0.5, delay: 0.4 }}
+                        >
+                          <h4 className="text-lg font-semibold mb-3 text-white">
                             Key Benefits:
                           </h4>
-                          <ul className="space-y-1.5">
+                          <ul className="space-y-2">
                             {service.valueProps.map((prop, idx) => (
-                              <li
+                              <motion.li
                                 key={idx}
-                                className="flex items-start text-xs"
+                                className="flex items-start"
+                                initial={{ opacity: 0, x: -10 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                transition={{
+                                  duration: 0.3,
+                                  delay: 0.5 + idx * 0.1,
+                                }}
                               >
-                                <span className="mr-1.5 mt-0.5 text-maverick-orange">
+                                <div className="mr-3 mt-0.5 text-maverick-orange flex-shrink-0">
                                   •
-                                </span>
-                                <span className="text-[#DDDDDD]">{prop}</span>
-                              </li>
+                                </div>
+                                <span className="text-[#DDDDDD] leading-relaxed">{prop}</span>
+                              </motion.li>
                             ))}
                           </ul>
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </motion.div>
+                        </motion.div>
 
-                {/* Animated accent line */}
-                <motion.div
-                  className="absolute left-0 top-0 h-full w-1 rounded-l-lg"
-                  style={{ backgroundColor: service.color }}
-                  initial={{ scaleY: 0 }}
-                  whileInView={{ scaleY: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: index * 0.1 + 0.2 }}
-                />
-              </motion.div>
-            ))}
+                        {/* CTA Button */}
+                        <motion.button
+                          className="px-6 py-3 rounded-lg font-medium flex items-center gap-2 transition-all duration-300 w-full justify-center"
+                          style={{
+                            background: `linear-gradient(90deg, #E04500 0%, #E57B00 100%)`,
+                          }}
+                          whileTap={{ scale: 0.98 }}
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: 0.6 }}
+                        >
+                          Learn more <ArrowRight className="w-4 h-4" />
+                        </motion.button>
+
+                        {/* Decorative elements */}
+                        <motion.div
+                          className="absolute bottom-4 left-4 w-8 h-8 rounded-full opacity-30"
+                          style={{ backgroundColor: service.color }}
+                          animate={{
+                            scale: [1, 1.3, 1],
+                            opacity: [0.2, 0.4, 0.2],
+                          }}
+                          transition={{
+                            duration: 2,
+                            repeat: Infinity,
+                            repeatType: "reverse",
+                          }}
+                        />
+                      </div>
+
+                      {/* Animated accent border */}
+                      <motion.div
+                        className="absolute inset-0 border-2 rounded-xl pointer-events-none"
+                        style={{ borderColor: `${service.color}40` }}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: [0, 0.6, 0] }}
+                        transition={{ duration: 2, repeat: Infinity, delay: 1 }}
+                      />
+                    </motion.div>
+                  ),
+              )}
+            </AnimatePresence>
+
+            {/* Auto-play toggle for mobile */}
+            <motion.div
+              className="flex justify-center mt-6"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.8 }}
+            >
+              <motion.button
+                onClick={() => setIsAutoPlaying(!isAutoPlaying)}
+                className="flex items-center gap-2 px-4 py-2 bg-[#1A1A1A]/80 rounded-lg border border-gray-700 text-gray-400 hover:text-white transition-colors duration-200"
+                whileTap={{ scale: 0.95 }}
+              >
+                {isAutoPlaying ? (
+                  <>
+                    <Pause className="w-4 h-4" />
+                    <span className="text-sm">Auto-play ON</span>
+                  </>
+                ) : (
+                  <>
+                    <Play className="w-4 h-4" />
+                    <span className="text-sm">Auto-play OFF</span>
+                  </>
+                )}
+              </motion.button>
+            </div>
           </div>
         ) : (
           // Desktop version - Interactive showcase
