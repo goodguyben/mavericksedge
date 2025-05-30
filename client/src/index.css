@@ -410,6 +410,15 @@ img {
     padding-right: 1rem;
   }
 
+  /* Improved mobile text visibility */
+  .text-shadow-sm {
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  }
+
+  .text-shadow-md {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
+  }
+
   /* Reduce animations for better performance */
   .reduce-motion {
     animation-duration: 0.01ms !important;
@@ -437,6 +446,19 @@ img {
   /* Prevent horizontal scrolling */
   body {
     overflow-x: hidden;
+  }
+}
+
+/* Improved header spacing for mobile */
+@media (max-width: 768px) {
+  header {
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+  }
+
+  header h1 {
+    font-size: clamp(1.25rem, 4vw, 1.75rem);
+    line-height: 1.2;
   }
 }
 

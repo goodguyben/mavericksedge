@@ -10,7 +10,7 @@ interface LogoProps {
 
 export default function Logo({ size = "medium", showText = true, noLink = false }: LogoProps) {
   const sizeClasses = {
-    small: "w-20 h-20", 
+    small: "w-12 h-12", 
     medium: "w-24 h-24",
     large: "w-32 h-32"
   };
@@ -20,7 +20,7 @@ export default function Logo({ size = "medium", showText = true, noLink = false 
       <img 
         src={logoPath}
         alt="Mavericks Edge Logo" 
-        className="w-24 h-24 ml-[0px] mr-[0px] mt-[-5px] mb-[-5px]"
+        className={`${sizeClasses[size]} object-contain`}
       />
       {showText && (
         <span className={`font-heading font-bold text-maverick-orange ${size === 'large' ? 'text-2xl' : 'text-xl'}`}>

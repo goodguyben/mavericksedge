@@ -12,7 +12,7 @@ export default function Hero() {
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
-      
+
       // Calculate opacity based on scroll position
       const scrollY = window.scrollY;
       const maxFade = 400; // Distance in pixels to complete fade
