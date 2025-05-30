@@ -252,7 +252,6 @@ export default function ServiceCascadeSection() {
           />
         ))}
       </div>
-
       {/* Sticky content container */}
       <div className="sticky top-0 h-screen flex items-center justify-center bg-black z-10 pt-16 sm:pt-20 md:pt-32 relative">
         <div className="container mx-auto px-4 sm:px-6 md:px-8">
@@ -361,7 +360,7 @@ export default function ServiceCascadeSection() {
                               transition={{ duration: 0.6, delay: 0.2 }}
                             />
                             <motion.div
-                              className="absolute inset-0 rounded-2xl"
+                              className="absolute inset-0 rounded-2xl mt-[-12px] mb-[-12px]"
                               style={{
                                 boxShadow: `0 0 30px rgba(255, 86, 48, 0.3), 
                                            inset 0 0 20px rgba(255, 215, 75, 0.1)`
