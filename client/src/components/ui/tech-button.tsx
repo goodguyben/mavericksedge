@@ -25,7 +25,7 @@ export default function TechButton({
 }: TechButtonProps) {
   const baseClasses = cn(
     "inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg font-medium transition-all duration-300 text-white",
-    "bg-gradient-to-r from-maverick-orange to-maverick-amber hover:from-maverick-amber hover:to-maverick-orange",
+    "bg-gradient-to-r from-[#E04500] to-[#E57B00] hover:from-[#E57B00] hover:to-[#E04500]",
     "hover:scale-105 hover:shadow-lg hover:shadow-maverick-orange/30",
     "focus:outline-none focus:ring-2 focus:ring-maverick-orange focus:ring-offset-2",
     "disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100",
