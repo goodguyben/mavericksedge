@@ -64,7 +64,7 @@ export default function Header() {
       <div className="container mx-auto flex justify-between items-center max-w-7xl">
         <Link href="/" className="flex items-center justify-start" aria-label="Mavericks Edge Home">
           <Logo size={isMobile ? "small" : "medium"} noLink={true} showText={false}/>
-          <h1 className="font-heading font-bold text-maverick-orange ml-3 whitespace-nowrap text-xl xs:text-2xl sm:text-3xl md:text-2xl lg:text-3xl xl:text-4xl leading-tight" style={{ letterSpacing: '-0.02em' }}>
+          <h1 className="font-heading font-bold text-maverick-orange ml-3 whitespace-nowrap text-xl xs:text-2xl sm:text-3xl md:text-3xl lg:text-4xl xl:text-5xl leading-tight mt-0 md:mt-2" style={{ letterSpacing: '-0.02em' }}>
             Mavericks Edge
           </h1>
         </Link>
