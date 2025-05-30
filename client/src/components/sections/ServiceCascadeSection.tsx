@@ -436,6 +436,7 @@ export default function ServiceCascadeSection() {
                     <TechButton 
                       href={`/services/${currentService.id === 'web-applications' ? 'web-design-and-development-edmonton' : currentService.id === 'marketing-solutions' ? 'digital-marketing-edmonton' : 'ai-integration-automation-edmonton'}`}
                       className="inline-flex items-center"
+                      asButton={true}
                     >
                       Learn More
                     </TechButton>
