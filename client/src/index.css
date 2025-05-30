@@ -199,49 +199,54 @@ img {
   .lg\:grid-cols-3 { grid-template-columns: repeat(3, 1fr); gap: 2rem; }
   .lg\:grid-cols-2 { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
 
-  /* Tablet header optimization */
+  /* Tablet header optimization - mimic desktop navigation */
   header {
-    /* Larger padding for tablet */
-    padding-top: 1rem !important;
-    padding-bottom: 1.5rem !important;
+    /* Desktop-style padding for tablet */
+    padding-top: 0.75rem !important;
+    padding-bottom: 0.75rem !important;
   }
 
   header .container {
-    /* Move everything to the left on tablet */
+    /* Desktop-style container layout */
     max-width: 1024px !important;
-    padding-left: 1rem !important;
+    padding-left: 2rem !important;
     padding-right: 2rem !important;
-    justify-content: flex-start !important;
+    justify-content: space-between !important;
   }
 
   header h1 {
-    /* Much larger company name for tablet with significant downward movement */
-    font-size: clamp(5.5rem, 10vw, 7rem) !important;
-    line-height: 0.95 !important;
-    margin-top: 4.5rem !important;
+    /* Moderate company name size for tablet desktop-style header */
+    font-size: clamp(1.75rem, 3vw, 2.5rem) !important;
+    line-height: 1.2 !important;
+    margin-top: 0.5rem !important;
     margin-left: 0.5rem !important;
     letter-spacing: -0.02em !important;
   }
 
-  /* Move logo to the left on tablet */
-  header .flex.items-center.justify-start {
-    justify-content: flex-start !important;
-    margin-left: 0 !important;
+  /* Show desktop navigation on tablet */
+  header nav {
+    display: flex !important;
+    align-items: center !important;
+    gap: 2rem !important;
   }
 
-  /* Keep mobile navigation behavior on tablet */
-  header nav {
+  header nav a {
+    font-size: 1rem !important;
+    font-weight: 500 !important;
+    padding: 0.5rem 1rem !important;
+    border-radius: 0.5rem !important;
+    transition: all 0.2s ease !important;
+  }
+
+  /* Hide mobile menu button on tablet */
+  header button[aria-label="Toggle menu"] {
     display: none !important;
   }
 
-  /* Show mobile menu button on tablet and move left */
-  header button[aria-label="Toggle menu"] {
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    min-height: 44px !important;
-    min-width: 44px !important;
-    margin-left: auto !important;
+  /* Desktop-style button sizing for tablet */
+  header nav .btn {
+    padding: 0.5rem 1.25rem !important;
+    font-size: 0.875rem !important;
   }
 }
 
