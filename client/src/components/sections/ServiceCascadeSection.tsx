@@ -187,31 +187,17 @@ export default function ServiceCascadeSection() {
         filter: "blur(0px) brightness(1)",
         zIndex: 10
       };
-    } else if (diff < 0) {
-      // Cards behind (coming from left) - flip effect
-      const distance = Math.abs(diff);
-      return {
-        x: -100 * distance,
-        y: 0,
-        z: -50 * distance,
-        rotateY: -45 * distance,
-        scale: Math.max(0.7, 1 - 0.2 * distance),
-        opacity: distance === 1 ? 0.3 : 0,
-        filter: `blur(${distance * 2}px) brightness(${Math.max(0.4, 1 - 0.3 * distance)})`,
-        zIndex: 10 - distance
-      };
     } else {
-      // Cards ahead (going to right) - flip effect
-      const distance = diff;
+      // All non-active cards - completely hidden
       return {
-        x: 100 * distance,
+        x: 0,
         y: 0,
-        z: -50 * distance,
-        rotateY: 45 * distance,
-        scale: Math.max(0.7, 1 - 0.2 * distance),
-        opacity: distance === 1 ? 0.3 : 0,
-        filter: `blur(${distance * 2}px) brightness(${Math.max(0.4, 1 - 0.3 * distance)})`,
-        zIndex: 10 - distance
+        z: 0,
+        rotateY: 0,
+        scale: 1,
+        opacity: 0,
+        filter: "blur(0px) brightness(1)",
+        zIndex: 1
       };
     }
   };
@@ -303,11 +289,8 @@ export default function ServiceCascadeSection() {
                         filter: transform.filter,
                       }}
                       transition={{
-                        duration: 1.2,
-                        ease: [0.4, 0.0, 0.2, 1],
-                        type: "spring",
-                        damping: 25,
-                        stiffness: 120,
+                        duration: 1.5,
+                        ease: [0.25, 0.46, 0.45, 0.94],
                       }}
                       onClick={() => handleDotClick(index)}
                     >
