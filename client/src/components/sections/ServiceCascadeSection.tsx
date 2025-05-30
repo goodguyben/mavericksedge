@@ -445,18 +445,18 @@ export default function ServiceCascadeSection() {
               </AnimatePresence>
 
               {/* Progress Indicators */}
-              <div className="flex flex-wrap items-center justify-center sm:justify-start gap-1 sm:gap-3 pt-4 sm:pt-8">
+              <div className="flex items-center justify-center sm:justify-start gap-0.5 sm:gap-3 pt-4 sm:pt-8">
                 {allItems.map((_, index) => (
                   <motion.button
                     key={index}
-                    className="relative touch-manipulation min-h-[44px] min-w-[44px] flex items-center justify-center"
+                    className="relative touch-manipulation min-h-[44px] min-w-[32px] sm:min-w-[44px] flex items-center justify-center"
                     onClick={() => handleDotClick(index)}
                     whileHover={{ scale: 1.2 }}
                     whileTap={{ scale: 0.9 }}
                   >
                     {/* Background circle */}
                     <motion.div
-                      className="w-3 h-3 rounded-full bg-gray-600 sm:w-4 sm:h-4"
+                      className="w-2 h-2 rounded-full bg-gray-600 sm:w-4 sm:h-4"
                       animate={{
                         scale: index === activeIndex ? 1.5 : 1,
                         backgroundColor: index === activeIndex ? "#FF5A00" : "#4B5563"
@@ -483,19 +483,21 @@ export default function ServiceCascadeSection() {
                 {/* Auto-play toggle */}
                 <motion.button
                   onClick={toggleAutoPlay}
-                  className="flex items-center gap-1 sm:gap-2 px-2 sm:px-3 py-1 ml-1 sm:ml-4 text-xs sm:text-sm text-gray-400 hover:text-white transition-colors duration-200 touch-manipulation min-h-[44px] whitespace-nowrap"
+                  className="flex items-center gap-1 sm:gap-2 px-1.5 sm:px-3 py-1 ml-2 sm:ml-4 text-xs sm:text-sm text-gray-400 hover:text-white transition-colors duration-200 touch-manipulation min-h-[44px] whitespace-nowrap"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
                   {isAutoPlaying ? (
                     <>
-                      <Pause className="w-4 h-4" />
-                      <span>Auto-play ON</span>
+                      <Pause className="w-3 h-3 sm:w-4 sm:h-4" />
+                      <span className="hidden xs:inline">Auto-play ON</span>
+                      <span className="xs:hidden">ON</span>
                     </>
                   ) : (
                     <>
-                      <Play className="w-4 h-4" />
-                      <span>Auto-play OFF</span>
+                      <Play className="w-3 h-3 sm:w-4 sm:h-4" />
+                      <span className="hidden xs:inline">Auto-play OFF</span>
+                      <span className="xs:hidden">OFF</span>
                     </>
                   )}
                 </motion.button>
