@@ -111,9 +111,9 @@ export default function Header() {
                   setServicesDropdownOpen(!servicesDropdownOpen);
                 }}
                 className={`px-3 py-2 min-h-[44px] rounded-md text-base font-medium transition-colors duration-200 inline-flex items-center touch-manipulation ${
-                  isCurrentPath('/services') || isCurrentPath('/services/web') || isCurrentPath('/services/marketing') || isCurrentPath('/services/ai') 
+                  isCurrentPath('/services') || isCurrentPath('/services/web') || isCurrentPath('/services/marketing') || isCurrentPath('/services/ai') || location.startsWith('/services/')
                     ? 'text-maverick-orange' 
-                    : 'text-white hover:text-maverick-orange'
+                    : 'text-maverick-orange hover:text-maverick-orange'
                 }`}
               >
                 <span>Services</span>
@@ -193,9 +193,9 @@ export default function Header() {
                   setPricingDropdownOpen(!pricingDropdownOpen);
                 }}
                 className={`px-3 py-2 min-h-[44px] rounded-md text-base font-medium transition-colors duration-200 inline-flex items-center touch-manipulation ${
-                  isCurrentPath('/pricing') || isCurrentPath('/pricing/web') || isCurrentPath('/pricing/marketing') || isCurrentPath('/pricing/ai') 
+                  isCurrentPath('/pricing') || isCurrentPath('/pricing/web') || isCurrentPath('/pricing/marketing') || isCurrentPath('/pricing/ai') || location.startsWith('/pricing/')
                     ? 'text-maverick-orange' 
-                    : 'text-white hover:text-maverick-orange'
+                    : 'text-maverick-orange hover:text-maverick-orange'
                 }`}
               >
                 <span>Pricing</span>
