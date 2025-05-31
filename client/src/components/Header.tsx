@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "wouter";
 import { AnimatePresence, motion } from "framer-motion";
-import { X, Menu, ChevronDown, ChevronRight } from "lucide-react";
+import { X, Menu, ChevronDown } from "lucide-react";
 import Logo from "./Logo";
 import { Button } from "@/components/ui/custom-button";
 import { useIsMobile } from "@/hooks/use-mobile";
