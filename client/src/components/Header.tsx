@@ -72,7 +72,7 @@ export default function Header() {
         {/* Mobile Menu Button */}
         <button
           onClick={toggleMenu}
-          className="block md:hidden focus:outline-none z-50 p-3 rounded-full bg-maverick-charcoal/80 backdrop-blur-sm border border-maverick-slate/20"
+          className="block md:hidden focus:outline-none z-50 p-3"
           aria-label="Toggle menu"
         >
           {isOpen ? <X className="h-6 w-6 text-white" /> : <Menu className="h-6 w-6 text-white" />}
@@ -172,7 +172,14 @@ export default function Header() {
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="fixed top-0 right-0 h-full w-[80%] max-w-sm bg-maverick-charcoal border-l border-maverick-slate/20 z-40 flex flex-col md:hidden"
+            className="fixed top-0 right-0 h-full w-[80%] max-w-sm bg-black/20 backdrop-blur-xl border-l border-white/10 z-40 flex flex-col md:hidden shadow-2xl"
+            style={{
+              backdropFilter: 'blur(20px) saturate(180%)',
+              WebkitBackdropFilter: 'blur(20px) saturate(180%)',
+              background: 'rgba(0, 0, 0, 0.25)',
+              borderLeft: '1px solid rgba(255, 255, 255, 0.1)',
+              boxShadow: '-10px 0 50px rgba(0, 0, 0, 0.5)'
+            }}
             role="dialog"
             aria-modal="true" 
             aria-label="Main Menu"
@@ -373,7 +380,12 @@ export default function Header() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 bg-black/50 backdrop-blur-sm z-30 md:hidden"
+            className="fixed inset-0 z-30 md:hidden"
+            style={{
+              background: 'rgba(0, 0, 0, 0.4)',
+              backdropFilter: 'blur(8px)',
+              WebkitBackdropFilter: 'blur(8px)'
+            }}
             onClick={toggleMenu}
           />
         )}
