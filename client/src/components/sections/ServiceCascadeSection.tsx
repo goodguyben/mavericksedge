@@ -528,6 +528,8 @@ export default function ServiceCascadeSection() {
                       </motion.button>
                     ))}
                   </div>
+
+                  </div>
               </div>
             </div>
           </div>
