@@ -430,8 +430,8 @@ export default function ServiceCascadeSection() {
                 </motion.div>
               </AnimatePresence>
 
-              {/* Progress Bar Navigation */}
-              <div className="flex items-center justify-center pt-4 sm:pt-8">
+              {/* Progress Bar Navigation - hidden on mobile phones */}
+              <div className="hidden sm:flex items-center justify-center pt-4 sm:pt-8">
                 <div className="flex items-center gap-4 md:gap-8">
                   {/* Modern segmented progress bar */}
                   <div className="relative flex items-center">
