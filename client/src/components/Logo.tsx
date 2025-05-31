@@ -3,7 +3,7 @@ import { Link } from "wouter";
 import logoPath from "@assets/logo-transparent-thumb4x.png";
 
 interface LogoProps {
-  size?: "small" | "medium" | "large" | "extra-small" | "mobile-large" | "mobile-xl" | "mobile-xxl" | "mobile-xxxl";
+  size?: "small" | "medium" | "large" | "extra-small" | "mobile-large" | "mobile-xl" | "mobile-xxl";
   showText?: boolean;
   noLink?: boolean;
 }
@@ -16,8 +16,7 @@ export default function Logo({ size = "medium", showText = true, noLink = false 
     "extra-small": "w-10 h-10",
     "mobile-large": "w-16 h-16",
     "mobile-xl": "w-20 h-20",
-    "mobile-xxl": "w-24 h-24",
-    "mobile-xxxl": "w-30 h-30"
+    "mobile-xxl": "w-24 h-24"
   };
 
   const LogoContent = () => (
