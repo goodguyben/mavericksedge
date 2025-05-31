@@ -117,7 +117,6 @@ export default function WhatWeDoSection() {
 
   // Auto-rotate services every 8 seconds
   useEffect(() => {
-    if (isMobile) return; // Don't auto-rotate on mobile
     if (!isAutoPlaying) return;
 
     const interval = setInterval(() => {
@@ -129,7 +128,7 @@ export default function WhatWeDoSection() {
     }, 8000);
 
     return () => clearInterval(interval);
-  }, [activeService, isMobile, services, isAutoPlaying]);
+  }, [activeService, services, isAutoPlaying]);
 
   return (
     <section
