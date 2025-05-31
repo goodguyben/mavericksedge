@@ -434,7 +434,7 @@ export default function ServiceCascadeSection() {
               <div className="flex items-center justify-center pt-4">
                 <div className="flex items-center gap-3 px-3 py-2 bg-black/40 backdrop-blur-sm rounded-full border border-gray-800/50">
                   {/* Compact dot indicators */}
-                  <div className="flex items-center gap-1">
+                  <div className="flex items-center gap-0.5">
                     {allItems.map((_, index) => (
                       <motion.button
                         key={index}
