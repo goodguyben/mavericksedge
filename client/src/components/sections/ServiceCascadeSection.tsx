@@ -46,7 +46,7 @@ export default function ServiceCascadeSection() {
         {
           id: "web-applications",
           title: "Productivity & Management Web Applications",
-          description: "We build web apps tailored to your unique operational needs, simplifying complex data and workflows. From CRMs, service operations systems, and project trackers to booking systems, inventory tools, and AI-powered dashboards, our scalable, low-code solutions are intuitive and integration-ready. These tools boost productivity, support smarter decisions, and fuel business growth.",
+          description: "We develop web applications tailored to solve your unique operational challenges and streamline complex data management. From CRM software and asset management systems to interactive dashboards, our scalable, user-friendly solutions leverage AI-driven insights and low-code adaptability. Designed for seamless integration, these powerful tools empower your team to boost productivity, enhance decision-making, and accelerate business growth.",
           image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=600&fit=crop&crop=entropy",
           gradient: "from-yellow-500/20 to-orange-500/20"
         },
@@ -60,7 +60,7 @@ export default function ServiceCascadeSection() {
         {
           id: "performance",
           title: "Performance Optimization & Online Visibility",
-          description: "We optimize your site’s speed, mobile responsiveness, and Core Web Vitals for a seamless user experience. Beyond traditional SEO, we use Generative Engine Optimization (GEO), directory listings, and content systems like blogs and newsletters to boost visibility across Google, ChatGPT, and other AI-driven platforms. With structured data, semantic clarity, and multi-channel reach, we drive greater discoverability, engagement, and conversion",
+          description: "We enhance your website’s speed, mobile responsiveness, and Core Web Vitals to ensure a seamless user experience. Our strategies incorporate Generative Engine Optimization (GEO) to position your content in AI-generated responses across platforms like Google’s AI Overviews and ChatGPT. By focusing on structured data, semantic clarity, and user-centric design, we not only boost your search rankings but also increase visibility in AI-driven search results, driving higher engagement and conversions.",
           image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop&crop=entropy",
           gradient: "from-orange-500/20 to-red-500/20"
         }
@@ -263,7 +263,122 @@ export default function ServiceCascadeSection() {
             currentService.imagePosition === 'right' ? 'lg:grid-flow-col-dense' : ''
           }`}>
 
+            {/* 3D Image Stack */}
+            <div className={`relative h-48 xs:h-56 sm:h-64 md:h-72 lg:h-80 xl:h-96 2xl:h-[28rem] perspective-1000 touch-manipulation ${
+              currentService.imagePosition === 'right' ? 'lg:col-start-2' : ''
+            }`}>
+              <div className="relative w-full h-full preserve-3d">
+                {allItems.map((item, index) => {
+                  const transform = getImageTransform(index);
 
+                  return (
+                    <motion.div
+                      key={item.id}
+                      className="absolute inset-0 cursor-pointer"
+                      style={{
+                        transformStyle: "preserve-3d",
+                        zIndex: transform.zIndex,
+                      }}
+                      animate={{
+                        x: transform.x,
+                        y: transform.y,
+                        z: transform.z,
+                        rotateY: transform.rotateY,
+                        scale: transform.scale,
+                        opacity: transform.opacity,
+                        filter: transform.filter,
+                      }}
+                      transition={{
+                        duration: 1.5,
+                        ease: [0.25, 0.46, 0.45, 0.94],
+                      }}
+                      onClick={() => handleDotClick(index)}
+                    >
+                      <div className="relative w-full h-full rounded-2xl overflow-hidden group">
+                        <picture>
+                          <source 
+                            srcSet={`${item.image}?fm=avif&w=800&h=600&q=90&auto=format&fit=crop&crop=entropy`}
+                            type="image/avif"
+                          />
+                          <source 
+                            srcSet={`${item.image}?fm=webp&w=800&h=600&q=90&auto=format&fit=crop&crop=entropy`}
+                            type="image/webp"
+                          />
+                          <img
+                            src={`${item.image}?w=800&h=600&q=90&auto=format&fit=crop&crop=entropy`}
+                            alt={item.title}
+                            className="w-full h-full object-cover transition-all duration-700 ease-out"
+                            style={{
+                              filter: index === activeIndex 
+                                ? 'brightness(1.1) contrast(1.05) saturate(1.1)' 
+                                : 'brightness(0.9) contrast(0.95) saturate(0.8)',
+                            }}
+                            loading={index === activeIndex ? "eager" : "lazy"}
+                            decoding="async"
+                            width="800"
+                            height="600"
+                          />
+                        </picture>
+
+                        {/* Enhanced gradient overlay with depth */}
+                        {index === activeIndex && (
+                          <motion.div
+                            className="absolute inset-0"
+                            style={{
+                              background: `linear-gradient(135deg, 
+                                rgba(255, 86, 48, 0.1) 0%, 
+                                transparent 30%, 
+                                transparent 70%, 
+                                rgba(0, 0, 0, 0.3) 100%)`
+                            }}
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ duration: 0.6 }}
+                          />
+                        )}
+
+                        {/* Enhanced decorative border with glow effect */}
+                        {index === activeIndex && (
+                          <>
+                            <motion.div
+                              className="absolute inset-0 border-2 border-maverick-orange/40 rounded-2xl"
+                              initial={{ opacity: 0, scale: 0.95 }}
+                              animate={{ opacity: 1, scale: 1 }}
+                              transition={{ duration: 0.6, delay: 0.2 }}
+                            />
+                            <motion.div
+                              className="absolute inset-0 rounded-2xl"
+                              style={{
+                                boxShadow: `0 0 30px rgba(255, 86, 48, 0.3), 
+                                           inset 0 0 20px rgba(255, 215, 75, 0.1)`
+                              }}
+                              initial={{ opacity: 0 }}
+                              animate={{ opacity: 1 }}
+                              transition={{ duration: 0.8, delay: 0.3 }}
+                            />
+                          </>
+                        )}
+
+                        {/* Subtle shimmer effect for non-active cards */}
+                        {index !== activeIndex && Math.abs(index - activeIndex) <= 2 && (
+                          <motion.div
+                            className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent"
+                            style={{ transform: 'translateX(-100%)' }}
+                            animate={{ transform: 'translateX(100%)' }}
+                            transition={{
+                              duration: 2,
+                              repeat: Infinity,
+                              repeatDelay: 3,
+                              ease: "easeInOut"
+                            }}
+                          />
+                        )}
+                      </div>
+                    </motion.div>
+                  );
+                })}
+              </div>
+            </div>
 
             {/* Content Area */}
             <div className={`space-y-6 lg:space-y-8 ${
@@ -322,7 +437,7 @@ export default function ServiceCascadeSection() {
                   <div className="relative flex items-center">
                     {/* Background track */}
                     <div className="absolute inset-0 h-1 bg-gray-800 rounded-full" />
-
+                    
                     {/* Progress segments */}
                     <div className="relative flex items-center gap-0.5">
                       {allItems.map((_, index) => (
@@ -359,7 +474,7 @@ export default function ServiceCascadeSection() {
                               />
                             )}
                           </motion.div>
-
+                          
                           {/* Hover indicator */}
                           <motion.div
                             className="absolute -top-2 w-2 h-2 bg-maverick-orange rounded-full opacity-0 group-hover:opacity-100"
@@ -367,7 +482,7 @@ export default function ServiceCascadeSection() {
                             whileHover={{ scale: 1 }}
                             transition={{ duration: 0.2 }}
                           />
-
+                          
                           {/* Active indicator */}
                           {index === activeIndex && (
                             <motion.div
@@ -386,7 +501,7 @@ export default function ServiceCascadeSection() {
                         </motion.button>
                       ))}
                     </div>
-
+                    
                     {/* Progress text - hidden on mobile phones */}
                     <motion.div
                       className="absolute -bottom-6 left-0 text-xs text-gray-400 font-medium hidden sm:block"
