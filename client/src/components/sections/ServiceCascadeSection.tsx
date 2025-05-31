@@ -430,61 +430,41 @@ export default function ServiceCascadeSection() {
                 </motion.div>
               </AnimatePresence>
 
-              {/* Narrow Progress Navigation */}
-              <div className="flex items-center justify-center pt-4">
-                <div className="flex items-center gap-3 px-3 py-2 bg-black/40 backdrop-blur-sm rounded-full border border-gray-800/50">
-                  {/* Compact dot indicators */}
-                  <div className="flex items-center gap-0.5">
+              {/* Ultra-Compact Navigation */}
+              <div className="flex items-center justify-center pt-2">
+                <div className="flex items-center gap-1 px-2 py-1 bg-black/30 backdrop-blur-sm rounded-full border border-gray-800/30">
+                  {/* Minimal dots */}
+                  <div className="flex items-center">
                     {allItems.map((_, index) => (
                       <motion.button
                         key={index}
-                        className="relative w-6 h-6 flex items-center justify-center touch-manipulation group"
+                        className="relative w-4 h-4 flex items-center justify-center touch-manipulation"
                         onClick={() => handleDotClick(index)}
-                        whileHover={{ scale: 1.1 }}
-                        whileTap={{ scale: 0.9 }}
+                        whileTap={{ scale: 0.8 }}
                       >
                         <motion.div
                           className="rounded-full"
                           animate={{
-                            width: index === activeIndex ? "8px" : "3px",
-                            height: index === activeIndex ? "8px" : "3px",
+                            width: index === activeIndex ? "6px" : "2px",
+                            height: index === activeIndex ? "6px" : "2px",
                             backgroundColor: index === activeIndex ? "#FF5A00" : "#6B7280"
                           }}
-                          transition={{ duration: 0.3, ease: "easeInOut" }}
+                          transition={{ duration: 0.2 }}
                         />
-                        
-                        {/* Active glow */}
-                        {index === activeIndex && (
-                          <motion.div
-                            className="absolute inset-0 rounded-full bg-maverick-orange/20"
-                            style={{ filter: "blur(2px)" }}
-                            animate={{ opacity: [0.5, 1, 0.5] }}
-                            transition={{ 
-                              duration: 1.5, 
-                              repeat: Infinity,
-                              ease: "easeInOut"
-                            }}
-                          />
-                        )}
                       </motion.button>
                     ))}
                   </div>
 
-                  {/* Divider */}
-                  <div className="w-px h-4 bg-gray-600/50" />
-
-                  {/* Compact auto-play toggle */}
+                  {/* Auto-play toggle */}
                   <motion.button
                     onClick={toggleAutoPlay}
-                    className="flex items-center justify-center w-6 h-6 text-gray-400 hover:text-maverick-orange transition-colors duration-200 touch-manipulation"
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.9 }}
-                    title={isAutoPlaying ? "Pause auto-play" : "Start auto-play"}
+                    className="flex items-center justify-center w-4 h-4 text-gray-500 hover:text-maverick-orange transition-colors ml-1"
+                    whileTap={{ scale: 0.8 }}
                   >
                     {isAutoPlaying ? (
-                      <Pause className="w-3 h-3" />
+                      <Pause className="w-2 h-2" />
                     ) : (
-                      <Play className="w-3 h-3" />
+                      <Play className="w-2 h-2" />
                     )}
                   </motion.button>
                 </div>
