@@ -79,7 +79,7 @@ export default function Header() {
             className="flex items-center justify-start min-h-[44px] touch-manipulation" 
             aria-label="Mavericks Edge Home"
           >
-            <Logo size="mobile-xl" noLink={true} showText={false} />
+            <Logo size="mobile-xxl" noLink={true} showText={false} />
             <h1 className="font-heading font-bold text-maverick-orange whitespace-nowrap sm:text-2xl md:text-3xl lg:text-4xl text-[64px] ml-[4px] mr-[4px] pl-[-6px] pr-[-6px] mt-[12px] mb-[12px]" style={{ letterSpacing: '-0.02em' }}>
               Mavericks Edge
             </h1>
