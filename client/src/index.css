@@ -198,51 +198,6 @@ img {
   .lg\:grid-cols-4 { grid-template-columns: repeat(3, 1fr); gap: 2rem; }
   .lg\:grid-cols-3 { grid-template-columns: repeat(3, 1fr); gap: 2rem; }
   .lg\:grid-cols-2 { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
-
-  /* Tablet header optimization - use mobile navigation panel */
-  header {
-    /* Tablet-optimized padding */
-    padding-top: 0.75rem !important;
-    padding-bottom: 0.75rem !important;
-  }
-
-  header .container {
-    /* Tablet container layout */
-    max-width: 1024px !important;
-    padding-left: 1.5rem !important;
-    padding-right: 1.5rem !important;
-    justify-content: space-between !important;
-  }
-
-  header h1 {
-    /* Larger company name for tablet */
-    font-size: clamp(2rem, 4vw, 3rem) !important;
-    line-height: 1.1 !important;
-    margin-top: 0.25rem !important;
-    margin-left: 0.5rem !important;
-    letter-spacing: -0.02em !important;
-  }
-
-  /* Keep mobile navigation behavior on tablet */
-  header nav {
-    display: none !important;
-  }
-
-  /* Show mobile menu button on tablet */
-  header button[aria-label="Toggle menu"] {
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    min-height: 44px !important;
-    min-width: 44px !important;
-    padding: 0.75rem !important;
-  }
-
-  /* Enhanced mobile navigation panel for tablet */
-  header .fixed.top-0.right-0 {
-    width: 70% !important;
-    max-width: 24rem !important;
-  }
 }
 
 /* 5. Desktop (1024px - 1439px) */
@@ -502,10 +457,9 @@ img {
   }
 
   header h1 {
-    font-size: clamp(2.5rem, 8vw, 3.5rem) !important;
-    line-height: 1.1 !important;
-    margin-top: 0.25rem !important;
-    margin-left: 0.25rem !important;
+    font-size: clamp(1.5rem, 5vw, 2rem) !important;
+    line-height: 1.2;
+    margin-top: 0.5rem !important;
   }
 
   /* Fix mobile menu button positioning */
@@ -521,9 +475,8 @@ img {
 /* Extra small mobile devices */
 @media (max-width: 480px) {
   header h1 {
-    font-size: clamp(2rem, 9vw, 3rem) !important;
-    margin-top: 0.125rem !important;
-    margin-left: 0.125rem !important;
+    font-size: clamp(1.25rem, 6vw, 1.75rem) !important;
+    margin-top: 0.625rem !important;
   }
 
   /* Ensure proper spacing on very small screens */
