@@ -144,7 +144,6 @@ export default function WhatWeDoSection() {
           x: useTransform(scrollYProgress, [0, 0.5, 1], [-50, 50, -50]),
         }}
       />
-
       <motion.div
         className="absolute bottom-1/3 right-10 w-96 h-96 rounded-full bg-gradient-to-bl from-maverick-amber/20 to-transparent opacity-20 blur-3xl"
         style={{
@@ -152,11 +151,9 @@ export default function WhatWeDoSection() {
           y: useTransform(scrollYProgress, [0, 0.5, 1], [50, -50, 50]),
         }}
       />
-
       <div className="absolute inset-0 bg-[url('/images/noise.png')] opacity-[0.03] mix-blend-soft-light"></div>
-
       <div className="container mx-auto relative z-10">
-        <header className="text-center mb-20">
+        <header className="text-center mt-[-16px] mb-[-16px]">
           <motion.div
             className="text-center mb-20"
             initial={{ opacity: 0, y: 20 }}
@@ -212,7 +209,7 @@ export default function WhatWeDoSection() {
 
         {isMobile ? (
           // Mobile/Tablet version - Mimics desktop layout with graphics
-          <motion.div className="relative min-h-[500px]" style={{ opacity, y }}>
+          (<motion.div className="relative min-h-[500px]" style={{ opacity, y }}>
             {/* Service Navigation */}
             <div className="mb-8">
               <motion.div
@@ -280,7 +277,6 @@ export default function WhatWeDoSection() {
                 ))}
               </motion.div>
             </div>
-
             {/* Service Content Display with Graphics */}
             <div className="mt-10">
               <AnimatePresence mode="wait">
@@ -824,10 +820,10 @@ export default function WhatWeDoSection() {
                 )}
               </AnimatePresence>
             </div>
-          </motion.div>
+          </motion.div>)
         ) : (
           // Desktop version - Interactive showcase
-          <motion.div className="relative min-h-[500px]" style={{ opacity, y }}>
+          (<motion.div className="relative min-h-[500px]" style={{ opacity, y }}>
             {/* Service Navigation */}
             <div className="absolute top-[-50px] left-0 w-full z-10">
               <motion.div
@@ -921,7 +917,6 @@ export default function WhatWeDoSection() {
                 </motion.button>
               </motion.div>
             </div>
-
             {/* Service Content Display */}
             <div className="mt-10 pt-14">
               <AnimatePresence mode="wait">
@@ -2885,7 +2880,7 @@ export default function WhatWeDoSection() {
                 )}
               </AnimatePresence>
             </div>
-          </motion.div>
+          </motion.div>)
         )}
       </div>
     </section>
