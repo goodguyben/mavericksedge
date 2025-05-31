@@ -5,7 +5,7 @@ import { Menu, ChevronDown } from "lucide-react";
 import Logo from "./Logo";
 import MobileNavigation from "./MobileNavigation";
 
-export default function Header() {
+export default function NewHeader() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false);
   const [pricingDropdownOpen, setPricingDropdownOpen] = useState(false);
@@ -79,8 +79,8 @@ export default function Header() {
             className="flex items-center justify-start min-h-[44px] touch-manipulation" 
             aria-label="Mavericks Edge Home"
           >
-            <Logo size="mobile-xxxl" noLink={true} showText={false} />
-            <h1 className="font-heading font-bold text-maverick-orange whitespace-nowrap sm:text-2xl md:text-3xl lg:text-4xl text-[64px] ml-[4px] mr-[4px] pl-[-6px] pr-[-6px] mt-[12px] mb-[12px]" style={{ letterSpacing: '-0.02em' }}>
+            <Logo size="medium" noLink={true} showText={false} />
+            <h1 className="font-heading font-bold text-maverick-orange ml-3 whitespace-nowrap text-xl sm:text-2xl md:text-3xl lg:text-4xl leading-tight" style={{ letterSpacing: '-0.02em' }}>
               Mavericks Edge
             </h1>
           </Link>
@@ -111,9 +111,9 @@ export default function Header() {
                   setServicesDropdownOpen(!servicesDropdownOpen);
                 }}
                 className={`px-3 py-2 min-h-[44px] rounded-md text-base font-medium transition-colors duration-200 inline-flex items-center touch-manipulation ${
-                  isCurrentPath('/services') || isCurrentPath('/services/web') || isCurrentPath('/services/marketing') || isCurrentPath('/services/ai') || location.startsWith('/services/')
+                  isCurrentPath('/services') || isCurrentPath('/services/web') || isCurrentPath('/services/marketing') || isCurrentPath('/services/ai') 
                     ? 'text-maverick-orange' 
-                    : 'text-maverick-orange hover:text-maverick-orange'
+                    : 'text-white hover:text-maverick-orange'
                 }`}
               >
                 <span>Services</span>
@@ -193,9 +193,9 @@ export default function Header() {
                   setPricingDropdownOpen(!pricingDropdownOpen);
                 }}
                 className={`px-3 py-2 min-h-[44px] rounded-md text-base font-medium transition-colors duration-200 inline-flex items-center touch-manipulation ${
-                  isCurrentPath('/pricing') || isCurrentPath('/pricing/web') || isCurrentPath('/pricing/marketing') || isCurrentPath('/pricing/ai') || location.startsWith('/pricing/')
+                  isCurrentPath('/pricing') || isCurrentPath('/pricing/web') || isCurrentPath('/pricing/marketing') || isCurrentPath('/pricing/ai') 
                     ? 'text-maverick-orange' 
-                    : 'text-maverick-orange hover:text-maverick-orange'
+                    : 'text-white hover:text-maverick-orange'
                 }`}
               >
                 <span>Pricing</span>
@@ -301,6 +301,7 @@ export default function Header() {
           </button>
         </div>
       </motion.header>
+
       {/* Mobile Navigation Panel */}
       <MobileNavigation isOpen={isMobileMenuOpen} onClose={closeMobileMenu} />
     </>
