@@ -966,7 +966,7 @@ export default function WhatWeDoSection() {
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             transition={{ duration: 0.5, delay: 0.3 }}
-                            className="mt-20" // Increased top margin to move content further down
+                            className="mt-8" // Reduced top margin to move content up
                           >
                             <h3 className="text-3xl lg:text-4xl font-bold mb-4">
                               {service.title}
