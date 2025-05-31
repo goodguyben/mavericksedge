@@ -446,8 +446,8 @@ export default function ServiceCascadeSection() {
                         <motion.div
                           className="rounded-full bg-gray-600"
                           animate={{
-                            width: index === activeIndex ? "24px" : "6px",
-                            height: "6px",
+                            width: index === activeIndex ? "16px" : "4px",
+                            height: "4px",
                             backgroundColor: index === activeIndex ? "#FF5A00" : "#4B5563"
                           }}
                           transition={{ duration: 0.4, ease: "easeInOut" }}
