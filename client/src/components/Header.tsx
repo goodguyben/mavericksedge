@@ -339,7 +339,7 @@ export default function Header() {
             >
               {/* Header */}
               <div className="flex items-center justify-between p-4 border-b border-white/10">
-                <h2 className="text-lg font-medium text-white">Mavericks Edge</h2>
+                <h2 className="text-lg text-white text-justify ml-[118px] mr-[118px] pl-[-5px] pr-[-5px] font-semibold mt-[7px] mb-[7px]">Menu</h2>
                 <button
                   onClick={closeMobileMenu}
                   className="p-2 rounded-full hover:bg-white/10 text-white transition-colors duration-200 min-h-[44px] min-w-[44px] touch-manipulation"
