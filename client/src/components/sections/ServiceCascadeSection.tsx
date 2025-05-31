@@ -515,10 +515,10 @@ export default function ServiceCascadeSection() {
                     </motion.div>
                   </div>
 
-                  {/* Auto-play toggle - hidden on mobile, visible on tablet+ */}
+                  {/* Auto-play toggle - hidden on phones, visible on tablet+ */}
                   <motion.button
                     onClick={toggleAutoPlay}
-                    className="hidden md:flex items-center gap-1 md:gap-2 px-2 md:px-3 py-2 text-xs md:text-sm text-gray-400 hover:text-white transition-colors duration-200 touch-manipulation min-h-[44px] whitespace-nowrap bg-gray-800/30 md:bg-transparent rounded-lg md:rounded-none"
+                    className="hidden lg:flex items-center gap-2 px-3 py-2 text-sm text-gray-400 hover:text-white transition-colors duration-200 touch-manipulation min-h-[44px] whitespace-nowrap"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                   >
