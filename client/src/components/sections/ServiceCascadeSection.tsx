@@ -433,41 +433,37 @@ export default function ServiceCascadeSection() {
               {/* Progress Indicators */}
               <div className="flex items-center justify-center pt-3 sm:pt-6">
                 <div className="flex items-center gap-2 md:gap-4">
-                  <div className="flex items-center">
+                  <div className="flex items-center justify-center bg-gray-800/40 rounded-full px-2 py-1">
                     {allItems.map((_, index) => (
                       <motion.button
                         key={index}
-                        className="relative touch-manipulation min-h-[44px] flex items-center justify-center px-1"
+                        className="relative touch-manipulation w-6 h-6 flex items-center justify-center"
                         onClick={() => handleDotClick(index)}
-                        whileHover={{ scale: 1.1 }}
-                        whileTap={{ scale: 0.95 }}
+                        whileHover={{ scale: 1.2 }}
+                        whileTap={{ scale: 0.9 }}
                       >
-                        {/* Sleek line indicator */}
+                        {/* Compact dot indicator */}
                         <motion.div
-                          className="rounded-full bg-gray-600"
+                          className="rounded-full"
                           animate={{
-                            width: index === activeIndex ? "16px" : "4px",
-                            height: "4px",
-                            backgroundColor: index === activeIndex ? "#FF5A00" : "#4B5563"
+                            width: index === activeIndex ? "8px" : "3px",
+                            height: index === activeIndex ? "8px" : "3px",
+                            backgroundColor: index === activeIndex ? "#FF5A00" : "#6B7280"
                           }}
-                          transition={{ duration: 0.4, ease: "easeInOut" }}
+                          transition={{ duration: 0.3, ease: "easeInOut" }}
                         />
 
-                        {/* Subtle glow for active state */}
+                        {/* Active state glow */}
                         {index === activeIndex && (
                           <motion.div
                             className="absolute inset-0 rounded-full"
                             style={{
-                              background: "radial-gradient(circle, rgba(255, 90, 0, 0.2) 0%, transparent 70%)",
-                              filter: "blur(4px)"
+                              background: "radial-gradient(circle, rgba(255, 90, 0, 0.3) 0%, transparent 60%)",
+                              filter: "blur(2px)"
                             }}
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: [0, 1, 0] }}
-                            transition={{ 
-                              duration: 2, 
-                              repeat: Infinity,
-                              ease: "easeInOut"
-                            }}
+                            initial={{ opacity: 0, scale: 0.8 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{ duration: 0.3 }}
                           />
                         )}
                       </motion.button>
