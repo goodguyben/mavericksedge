@@ -39,7 +39,7 @@ export default function ServiceCascadeSection() {
         {
           id: "websites",
           title: "Custom Interactive Websites",
-          description: "We craft custom interactive and 3D websites that engage users with motion, depth, and storytelling built to captivate and convert. Whether it’s scroll-triggered animations, immersive product showcases, or spatial design, we turn static sites into dynamic journeys. Whether it’s scroll-triggered animations, immersive product showcases, or spatial design, we turn static sites into dynamic journeys.",
+          description: "We craft custom interactive and 3D websites that engage users with motion, depth, and storytelling built to captivate and convert. Whether it’s scroll-triggered animations, immersive product showcases, or spatial design, we turn static sites into dynamic journeys.",
           image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop&crop=entropy",
           gradient: "from-orange-500/20 to-yellow-500/20"
         },
