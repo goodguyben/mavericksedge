@@ -325,7 +325,7 @@ export default function Header() {
                 stiffness: 300,
                 duration: 0.4 
               }}
-              className="fixed top-0 right-0 h-full w-[85%] max-w-sm z-40 flex flex-col md:hidden"
+              className="fixed top-0 right-0 h-full w-[85%] max-w-sm z-60 flex flex-col md:hidden"
               style={{
                 backdropFilter: 'blur(40px) saturate(180%)',
                 WebkitBackdropFilter: 'blur(40px) saturate(180%)',
