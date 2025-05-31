@@ -529,12 +529,7 @@ export default function ServiceCascadeSection() {
                     ))}
                   </div>
 
-                  {/* Section Labels */}
-                  <div className="absolute -bottom-4 left-0 right-0 flex justify-between text-xs text-gray-500">
-                    <span className="text-maverick-orange/80">{activeIndex + 1}</span>
-                    <span>of {allItems.length}</span>
                   </div>
-                </div>
               </div>
             </div>
           </div>
