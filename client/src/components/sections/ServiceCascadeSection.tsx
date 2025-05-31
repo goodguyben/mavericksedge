@@ -80,13 +80,6 @@ export default function ServiceCascadeSection() {
           gradient: "from-purple-500/20 to-pink-500/20"
         },
         {
-          id: "digital-campaigns",
-          title: "Digital Marketing Campaigns",
-          description: "Drive targeted traffic and maximize ROI with our data-driven marketing campaigns across all digital channels. We leverage analytics and user behavior insights to create campaigns that convert prospects into loyal customers.",
-          image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop&crop=entropy",
-          gradient: "from-pink-500/20 to-red-500/20"
-        },
-        {
           id: "social-media",
           title: "Social Media Management",
           description: "Build meaningful connections with your audience through strategic social media presence. Our comprehensive approach includes content creation, community management, and performance analytics to grow your brand online.",
