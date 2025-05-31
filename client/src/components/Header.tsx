@@ -321,19 +321,17 @@ export default function Header() {
               exit={{ x: "100%" }}
               transition={{ 
                 type: "spring", 
-                damping: 30, 
-                stiffness: 300,
-                duration: 0.4 
+                damping: 25, 
+                stiffness: 250,
+                duration: 0.5 
               }}
-              className="fixed top-0 right-0 h-full w-[85%] max-w-sm z-60 flex flex-col md:hidden"
+              className="fixed top-0 right-0 h-full w-[85%] max-w-sm z-50 flex flex-col lg:hidden"
               style={{
-                backdropFilter: 'blur(40px) saturate(180%)',
-                WebkitBackdropFilter: 'blur(40px) saturate(180%)',
-                background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.05) 50%, rgba(255, 255, 255, 0.06) 100%)',
-                borderLeft: '1px solid rgba(255, 255, 255, 0.2)',
-                boxShadow: '-20px 0 60px rgba(0, 0, 0, 0.4), inset 1px 0 0 rgba(255, 255, 255, 0.15)',
-                border: '1px solid rgba(255, 255, 255, 0.15)',
-                borderRight: 'none'
+                backdropFilter: 'blur(20px) saturate(180%)',
+                WebkitBackdropFilter: 'blur(20px) saturate(180%)',
+                background: 'rgba(18, 18, 18, 0.95)',
+                borderLeft: '1px solid rgba(255, 86, 0, 0.3)',
+                boxShadow: '-10px 0 40px rgba(0, 0, 0, 0.5)',
               }}
               role="dialog"
               aria-modal="true"
