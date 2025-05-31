@@ -476,8 +476,7 @@ export default function ServiceCascadeSection() {
                         whileHover={{ scale: 1.2 }}
                         whileTap={{ scale: 0.8 }}
                       >
-                        {/* Invisible clickable area */}
-                        <div className="absolute -inset-2 rounded-full" />
+
                         
                         {/* Hover indicator */}
                         <motion.div
