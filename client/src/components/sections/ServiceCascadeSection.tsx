@@ -264,7 +264,7 @@ export default function ServiceCascadeSection() {
           }`}>
 
             {/* 3D Image Stack */}
-            <div className={`relative h-64 sm:h-72 md:h-80 lg:h-96 xl:h-[28rem] 2xl:h-[32rem] perspective-1000 touch-manipulation ${
+            <div className={`relative h-48 xs:h-56 sm:h-64 md:h-72 lg:h-80 xl:h-96 2xl:h-[28rem] perspective-1000 touch-manipulation ${
               currentService.imagePosition === 'right' ? 'lg:col-start-2' : ''
             }`}>
               <div className="relative w-full h-full preserve-3d">
