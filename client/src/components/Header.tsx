@@ -79,7 +79,7 @@ export default function Header() {
             aria-label="Mavericks Edge Home"
           >
             <Logo size="medium" noLink={true} showText={false} />
-            <h1 className="font-heading font-bold text-maverick-orange whitespace-nowrap text-[40px] sm:text-[48px] md:text-3xl lg:text-4xl mt-[12px] mb-[12px] ml-[-4px] mr-[-4px]" style={{ letterSpacing: '-0.02em' }}>
+            <h1 className="font-heading font-bold text-maverick-orange ml-3 whitespace-nowrap sm:text-2xl md:text-3xl lg:text-4xl text-[42px] mt-[12px] mb-[12px]" style={{ letterSpacing: '-0.02em' }}>
               Mavericks Edge
             </h1>
           </Link>
@@ -342,7 +342,7 @@ export default function Header() {
               {/* Header with improved design */}
               <div className="relative">
                 <div className="flex items-center justify-between p-6 border-b border-white/10">
-                  <div className="flex items-center gap-3 mt-[16px] mb-[16px]">
+                  <div className="flex items-center gap-3">
                     <div className="w-2 h-8 bg-gradient-to-b from-maverick-orange to-yellow-500 rounded-full"></div>
                     <h2 className="text-xl text-white font-bold tracking-wide mt-[8px] mb-[8px]">Navigation</h2>
                   </div>
@@ -360,7 +360,7 @@ export default function Header() {
 
               {/* Navigation Items with improved spacing */}
               <div className="flex-1 overflow-y-auto py-8 px-6">
-                <nav className="space-y-2 mt-[23px] mb-[23px]">
+                <nav className="space-y-2">
                   <Link 
                     href="/" 
                     className={`group flex items-center px-4 py-4 rounded-xl min-h-[56px] touch-manipulation transition-all duration-300 relative overflow-hidden ${
