@@ -432,40 +432,26 @@ export default function ServiceCascadeSection() {
 
               {/* Progress Indicators */}
               <div className="flex items-center justify-center pt-3 sm:pt-6">
-                <div className="flex items-center gap-2 md:gap-4">
-                  <div className="flex items-center justify-center bg-gray-800/40 rounded-full px-2 py-1">
+                <div className="flex items-center gap-3 md:gap-6">
+                  <div className="flex items-center bg-gray-900/60 rounded-full px-1 py-0.5 border border-gray-700/50">
                     {allItems.map((_, index) => (
                       <motion.button
                         key={index}
-                        className="relative touch-manipulation w-6 h-6 flex items-center justify-center"
+                        className="relative touch-manipulation p-1 flex items-center justify-center"
                         onClick={() => handleDotClick(index)}
-                        whileHover={{ scale: 1.2 }}
-                        whileTap={{ scale: 0.9 }}
+                        whileHover={{ scale: 1.15 }}
+                        whileTap={{ scale: 0.85 }}
                       >
-                        {/* Compact dot indicator */}
                         <motion.div
                           className="rounded-full"
                           animate={{
-                            width: index === activeIndex ? "8px" : "3px",
-                            height: index === activeIndex ? "8px" : "3px",
-                            backgroundColor: index === activeIndex ? "#FF5A00" : "#6B7280"
+                            width: index === activeIndex ? "6px" : "2px",
+                            height: index === activeIndex ? "6px" : "2px",
+                            backgroundColor: index === activeIndex ? "#FF5A00" : "#4B5563",
+                            margin: "0px"
                           }}
-                          transition={{ duration: 0.3, ease: "easeInOut" }}
+                          transition={{ duration: 0.2, ease: "easeInOut" }}
                         />
-
-                        {/* Active state glow */}
-                        {index === activeIndex && (
-                          <motion.div
-                            className="absolute inset-0 rounded-full"
-                            style={{
-                              background: "radial-gradient(circle, rgba(255, 90, 0, 0.3) 0%, transparent 60%)",
-                              filter: "blur(2px)"
-                            }}
-                            initial={{ opacity: 0, scale: 0.8 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            transition={{ duration: 0.3 }}
-                          />
-                        )}
                       </motion.button>
                     ))}
                   </div>
