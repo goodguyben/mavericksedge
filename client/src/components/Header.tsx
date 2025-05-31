@@ -120,7 +120,7 @@ export default function Header() {
                   servicesDropdownOpen ? 'rotate-180' : ''
                 }`} />
               </button>
-              
+
               <AnimatePresence>
                 {servicesDropdownOpen && (
                   <motion.div 
@@ -202,7 +202,7 @@ export default function Header() {
                   pricingDropdownOpen ? 'rotate-180' : ''
                 }`} />
               </button>
-              
+
               <AnimatePresence>
                 {pricingDropdownOpen && (
                   <motion.div 
@@ -325,144 +325,189 @@ export default function Header() {
                 stiffness: 300,
                 duration: 0.4 
               }}
-              className="fixed top-0 right-0 h-full w-[85%] max-w-sm bg-gray-900/95 backdrop-blur-md border-l border-gray-700/50 z-50 lg:hidden"
+              className="fixed top-0 right-0 h-full w-[85%] max-w-sm z-40 flex flex-col md:hidden"
+              style={{
+                backdropFilter: 'blur(40px) saturate(180%)',
+                WebkitBackdropFilter: 'blur(40px) saturate(180%)',
+                background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.05) 50%, rgba(255, 255, 255, 0.06) 100%)',
+                borderLeft: '1px solid rgba(255, 255, 255, 0.2)',
+                boxShadow: '-20px 0 60px rgba(0, 0, 0, 0.4), inset 1px 0 0 rgba(255, 255, 255, 0.15)',
+                border: '1px solid rgba(255, 255, 255, 0.15)',
+                borderRight: 'none'
+              }}
               role="dialog"
               aria-modal="true"
               aria-label="Mobile Navigation Menu"
             >
               {/* Header */}
-              <div className="flex items-center justify-between p-6 border-b border-gray-700/50">
-                <h2 className="text-xl font-bold text-white">Menu</h2>
+              <div className="flex items-center justify-between p-4 border-b border-white/10">
+                <h2 className="text-lg font-medium text-white">Mavericks Edge</h2>
                 <button
                   onClick={closeMobileMenu}
-                  className="p-2 rounded-full bg-gray-800 hover:bg-gray-700 text-white transition-colors duration-200 min-h-[44px] min-w-[44px] touch-manipulation"
+                  className="p-2 rounded-full hover:bg-white/10 text-white transition-colors duration-200 min-h-[44px] min-w-[44px] touch-manipulation"
                   aria-label="Close navigation menu"
                 >
-                  <X className="w-6 h-6" />
+                  <X className="w-5 h-5" />
                 </button>
               </div>
 
               {/* Navigation Items */}
-              <div className="flex-1 overflow-y-auto py-4 px-4">
-                <nav className="space-y-2">
+              <div className="flex-1 overflow-y-auto py-6 px-4">
+                <nav className="space-y-3">
                   <Link 
                     href="/" 
-                    className={`flex items-center space-x-3 p-4 rounded-lg min-h-[56px] touch-manipulation transition-all duration-200 ${
-                      isCurrentPath('/') ? 'bg-maverick-orange text-white' : 'text-gray-300 hover:bg-gray-800 hover:text-white'
+                    className={`flex items-center px-3 py-3 rounded-lg min-h-[48px] touch-manipulation transition-all duration-200 ${
+                      isCurrentPath('/') ? 'text-maverick-orange bg-white/5' : 'text-white hover:bg-white/5'
                     }`}
                     onClick={closeMobileMenu}
                   >
-                    <span className="text-lg font-medium">Home</span>
+                    <span className="text-base font-medium">Home</span>
                   </Link>
 
+                  {/* Services Dropdown */}
                   <div className="space-y-1">
-                    <div className="text-gray-400 px-4 py-2 text-sm font-medium">Services</div>
-                    <Link 
-                      href="/services" 
-                      className={`flex items-center space-x-3 p-4 ml-4 rounded-lg min-h-[48px] touch-manipulation transition-all duration-200 ${
-                        isCurrentPath('/services') ? 'bg-maverick-orange/20 text-maverick-orange border-l-2 border-maverick-orange' : 'text-gray-400 hover:bg-gray-800 hover:text-white'
-                      }`}
-                      onClick={closeMobileMenu}
+                    <button 
+                      onClick={() => setServicesDropdownOpen(!servicesDropdownOpen)}
+                      className="flex items-center justify-between w-full px-3 py-3 rounded-lg min-h-[48px] touch-manipulation transition-all duration-200 text-white hover:bg-white/5"
                     >
-                      <span className="text-base font-medium">All Services</span>
-                    </Link>
-                    <Link 
-                      href="/services/web" 
-                      className={`flex items-center space-x-3 p-4 ml-4 rounded-lg min-h-[48px] touch-manipulation transition-all duration-200 ${
-                        isCurrentPath('/services/web') ? 'bg-maverick-orange/20 text-maverick-orange border-l-2 border-maverick-orange' : 'text-gray-400 hover:bg-gray-800 hover:text-white'
-                      }`}
-                      onClick={closeMobileMenu}
-                    >
-                      <span className="text-base font-medium">Web Design & Development</span>
-                    </Link>
-                    <Link 
-                      href="/services/marketing" 
-                      className={`flex items-center space-x-3 p-4 ml-4 rounded-lg min-h-[48px] touch-manipulation transition-all duration-200 ${
-                        isCurrentPath('/services/marketing') ? 'bg-maverick-orange/20 text-maverick-orange border-l-2 border-maverick-orange' : 'text-gray-400 hover:bg-gray-800 hover:text-white'
-                      }`}
-                      onClick={closeMobileMenu}
-                    >
-                      <span className="text-base font-medium">Marketing & Creative</span>
-                    </Link>
-                    <Link 
-                      href="/services/ai" 
-                      className={`flex items-center space-x-3 p-4 ml-4 rounded-lg min-h-[48px] touch-manipulation transition-all duration-200 ${
-                        isCurrentPath('/services/ai') ? 'bg-maverick-orange/20 text-maverick-orange border-l-2 border-maverick-orange' : 'text-gray-400 hover:bg-gray-800 hover:text-white'
-                      }`}
-                      onClick={closeMobileMenu}
-                    >
-                      <span className="text-base font-medium">AI Integration & Automation</span>
-                    </Link>
+                      <span className="text-base font-medium">Services</span>
+                      <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${
+                        servicesDropdownOpen ? 'rotate-180' : ''
+                      }`} />
+                    </button>
+
+                    <AnimatePresence>
+                      {servicesDropdownOpen && (
+                        <motion.div
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: "auto" }}
+                          exit={{ opacity: 0, height: 0 }}
+                          transition={{ duration: 0.2 }}
+                          className="ml-4 space-y-1 overflow-hidden"
+                        >
+                          <Link 
+                            href="/services" 
+                            className={`block px-3 py-2 rounded-lg min-h-[40px] touch-manipulation transition-all duration-200 ${
+                              isCurrentPath('/services') ? 'text-maverick-orange bg-white/5' : 'text-gray-300 hover:bg-white/5 hover:text-white'
+                            }`}
+                            onClick={closeMobileMenu}
+                          >
+                            <span className="text-sm">All Services</span>
+                          </Link>
+                          <Link 
+                            href="/services/web" 
+                            className={`block px-3 py-2 rounded-lg min-h-[40px] touch-manipulation transition-all duration-200 ${
+                              isCurrentPath('/services/web') ? 'text-maverick-orange bg-white/5' : 'text-gray-300 hover:bg-white/5 hover:text-white'
+                            }`}
+                            onClick={closeMobileMenu}
+                          >
+                            <span className="text-sm">Web Design & Development</span>
+                          </Link>
+                          <Link 
+                            href="/services/marketing" 
+                            className={`block px-3 py-2 rounded-lg min-h-[40px] touch-manipulation transition-all duration-200 ${
+                              isCurrentPath('/services/marketing') ? 'text-maverick-orange bg-white/5' : 'text-gray-300 hover:bg-white/5 hover:text-white'
+                            }`}
+                            onClick={closeMobileMenu}
+                          >
+                            <span className="text-sm">Marketing & Creative</span>
+                          </Link>
+                          <Link 
+                            href="/services/ai" 
+                            className={`block px-3 py-2 rounded-lg min-h-[40px] touch-manipulation transition-all duration-200 ${
+                              isCurrentPath('/services/ai') ? 'text-maverick-orange bg-white/5' : 'text-gray-300 hover:bg-white/5 hover:text-white'
+                            }`}
+                            onClick={closeMobileMenu}
+                          >
+                            <span className="text-sm">AI Integration & Automation</span>
+                          </Link>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
                   </div>
 
+                  {/* Pricing Dropdown */}
                   <div className="space-y-1">
-                    <div className="text-gray-400 px-4 py-2 text-sm font-medium">Pricing</div>
-                    <Link 
-                      href="/pricing" 
-                      className={`flex items-center space-x-3 p-4 ml-4 rounded-lg min-h-[48px] touch-manipulation transition-all duration-200 ${
-                        isCurrentPath('/pricing') ? 'bg-maverick-orange/20 text-maverick-orange border-l-2 border-maverick-orange' : 'text-gray-400 hover:bg-gray-800 hover:text-white'
-                      }`}
-                      onClick={closeMobileMenu}
+                    <button 
+                      onClick={() => setPricingDropdownOpen(!pricingDropdownOpen)}
+                      className="flex items-center justify-between w-full px-3 py-3 rounded-lg min-h-[48px] touch-manipulation transition-all duration-200 text-white hover:bg-white/5"
                     >
-                      <span className="text-base font-medium">All Pricing Plans</span>
-                    </Link>
-                    <Link 
-                      href="/pricing/web" 
-                      className={`flex items-center space-x-3 p-4 ml-4 rounded-lg min-h-[48px] touch-manipulation transition-all duration-200 ${
-                        isCurrentPath('/pricing/web') ? 'bg-maverick-orange/20 text-maverick-orange border-l-2 border-maverick-orange' : 'text-gray-400 hover:bg-gray-800 hover:text-white'
-                      }`}
-                      onClick={closeMobileMenu}
-                    >
-                      <span className="text-base font-medium">Web Design & Development</span>
-                    </Link>
-                    <Link 
-                      href="/pricing/marketing" 
-                      className={`flex items-center space-x-3 p-4 ml-4 rounded-lg min-h-[48px] touch-manipulation transition-all duration-200 ${
-                        isCurrentPath('/pricing/marketing') ? 'bg-maverick-orange/20 text-maverick-orange border-l-2 border-maverick-orange' : 'text-gray-400 hover:bg-gray-800 hover:text-white'
-                      }`}
-                      onClick={closeMobileMenu}
-                    >
-                      <span className="text-base font-medium">Marketing & Creative</span>
-                    </Link>
-                    <Link 
-                      href="/pricing/ai" 
-                      className={`flex items-center space-x-3 p-4 ml-4 rounded-lg min-h-[48px] touch-manipulation transition-all duration-200 ${
-                        isCurrentPath('/pricing/ai') ? 'bg-maverick-orange/20 text-maverick-orange border-l-2 border-maverick-orange' : 'text-gray-400 hover:bg-gray-800 hover:text-white'
-                      }`}
-                      onClick={closeMobileMenu}
-                    >
-                      <span className="text-base font-medium">AI Integration & Automation</span>
-                    </Link>
+                      <span className="text-base font-medium">Pricing</span>
+                      <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${
+                        pricingDropdownOpen ? 'rotate-180' : ''
+                      }`} />
+                    </button>
+
+                    <AnimatePresence>
+                      {pricingDropdownOpen && (
+                        <motion.div
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: "auto" }}
+                          exit={{ opacity: 0, height: 0 }}
+                          transition={{ duration: 0.2 }}
+                          className="ml-4 space-y-1 overflow-hidden"
+                        >
+                          <Link 
+                            href="/pricing" 
+                            className={`block px-3 py-2 rounded-lg min-h-[40px] touch-manipulation transition-all duration-200 ${
+                              isCurrentPath('/pricing') ? 'text-maverick-orange bg-white/5' : 'text-gray-300 hover:bg-white/5 hover:text-white'
+                            }`}
+                            onClick={closeMobileMenu}
+                          >
+                            <span className="text-sm">All Pricing Plans</span>
+                          </Link>
+                          <Link 
+                            href="/pricing/web" 
+                            className={`block px-3 py-2 rounded-lg min-h-[40px] touch-manipulation transition-all duration-200 ${
+                              isCurrentPath('/pricing/web') ? 'text-maverick-orange bg-white/5' : 'text-gray-300 hover:bg-white/5 hover:text-white'
+                            }`}
+                            onClick={closeMobileMenu}
+                          >
+                            <span className="text-sm">Web Design & Development</span>
+                          </Link>
+                          <Link 
+                            href="/pricing/marketing" 
+                            className={`block px-3 py-2 rounded-lg min-h-[40px] touch-manipulation transition-all duration-200 ${
+                              isCurrentPath('/pricing/marketing') ? 'text-maverick-orange bg-white/5' : 'text-gray-300 hover:bg-white/5 hover:text-white'
+                            }`}
+                            onClick={closeMobileMenu}
+                          >
+                            <span className="text-sm">Marketing & Creative</span>
+                          </Link>
+                          <Link 
+                            href="/pricing/ai" 
+                            className={`block px-3 py-2 rounded-lg min-h-[40px] touch-manipulation transition-all duration-200 ${
+                              isCurrentPath('/pricing/ai') ? 'text-maverick-orange bg-white/5' : 'text-gray-300 hover:bg-white/5 hover:text-white'
+                            }`}
+                            onClick={closeMobileMenu}
+                          >
+                            <span className="text-sm">AI Integration & Automation</span>
+                          </Link>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
                   </div>
 
                   <Link 
                     href="/about" 
-                    className={`flex items-center space-x-3 p-4 rounded-lg min-h-[56px] touch-manipulation transition-all duration-200 ${
-                      isCurrentPath('/about') ? 'bg-maverick-orange text-white' : 'text-gray-300 hover:bg-gray-800 hover:text-white'
+                    className={`flex items-center px-3 py-3 rounded-lg min-h-[48px] touch-manipulation transition-all duration-200 ${
+                      isCurrentPath('/about') ? 'text-maverick-orange bg-white/5' : 'text-white hover:bg-white/5'
                     }`}
                     onClick={closeMobileMenu}
                   >
-                    <span className="text-lg font-medium">About</span>
+                    <span className="text-base font-medium">About</span>
                   </Link>
 
                   <Link 
                     href="/contact" 
-                    className={`flex items-center space-x-3 p-4 rounded-lg min-h-[56px] touch-manipulation transition-all duration-200 ${
-                      isCurrentPath('/contact') ? 'bg-maverick-orange text-white' : 'text-gray-300 hover:bg-gray-800 hover:text-white'
+                    className={`flex items-center px-3 py-3 rounded-lg min-h-[48px] touch-manipulation transition-all duration-200 ${
+                      isCurrentPath('/contact') ? 'text-maverick-orange bg-white/5' : 'text-white hover:bg-white/5'
                     }`}
                     onClick={closeMobileMenu}
                   >
-                    <span className="text-lg font-medium">Contact</span>
+                    <span className="text-base font-medium">Contact</span>
                   </Link>
                 </nav>
-              </div>
-
-              {/* Footer */}
-              <div className="p-6 border-t border-gray-700/50">
-                <div className="text-center">
-                  <p className="text-sm text-gray-400">Mavericks Edge</p>
-                  <p className="text-xs text-gray-500 mt-1">Web Design & Digital Marketing</p>
-                </div>
               </div>
             </motion.div>
           </>
