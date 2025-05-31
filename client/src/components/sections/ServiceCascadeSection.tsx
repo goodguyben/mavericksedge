@@ -430,41 +430,34 @@ export default function ServiceCascadeSection() {
                 </motion.div>
               </AnimatePresence>
 
-              {/* Ultra-Compact Navigation */}
+              {/* Compact Navigation */}
               <div className="flex items-center justify-center pt-2">
-                <div className="flex items-center gap-1 px-2 py-1 bg-black/30 backdrop-blur-sm rounded-full border border-gray-800/30">
+                <div className="flex items-center gap-0.5 px-1.5 py-0.5 bg-black/20 backdrop-blur-sm rounded-full border border-gray-800/20">
                   {/* Minimal dots */}
-                  <div className="flex items-center">
-                    {allItems.map((_, index) => (
-                      <motion.button
-                        key={index}
-                        className="relative w-4 h-4 flex items-center justify-center touch-manipulation"
-                        onClick={() => handleDotClick(index)}
-                        whileTap={{ scale: 0.8 }}
-                      >
-                        <motion.div
-                          className="rounded-full"
-                          animate={{
-                            width: index === activeIndex ? "6px" : "2px",
-                            height: index === activeIndex ? "6px" : "2px",
-                            backgroundColor: index === activeIndex ? "#FF5A00" : "#6B7280"
-                          }}
-                          transition={{ duration: 0.2 }}
-                        />
-                      </motion.button>
-                    ))}
-                  </div>
+                  {allItems.map((_, index) => (
+                    <motion.button
+                      key={index}
+                      className="w-2 h-2 rounded-full cursor-pointer touch-manipulation"
+                      onClick={() => handleDotClick(index)}
+                      animate={{
+                        backgroundColor: index === activeIndex ? "#FF5A00" : "#6B7280",
+                        scale: index === activeIndex ? 1.2 : 1
+                      }}
+                      whileTap={{ scale: 0.7 }}
+                      transition={{ duration: 0.15 }}
+                    />
+                  ))}
 
                   {/* Auto-play toggle */}
                   <motion.button
                     onClick={toggleAutoPlay}
-                    className="flex items-center justify-center w-4 h-4 text-gray-500 hover:text-maverick-orange transition-colors ml-1"
-                    whileTap={{ scale: 0.8 }}
+                    className="w-2 h-2 ml-1 text-gray-500 hover:text-maverick-orange transition-colors"
+                    whileTap={{ scale: 0.7 }}
                   >
                     {isAutoPlaying ? (
-                      <Pause className="w-2 h-2" />
+                      <Pause className="w-full h-full" />
                     ) : (
-                      <Play className="w-2 h-2" />
+                      <Play className="w-full h-full" />
                     )}
                   </motion.button>
                 </div>
