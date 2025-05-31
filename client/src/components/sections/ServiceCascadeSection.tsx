@@ -430,36 +430,79 @@ export default function ServiceCascadeSection() {
                 </motion.div>
               </AnimatePresence>
 
-              {/* Compact Navigation */}
-              <div className="flex items-center justify-center pt-2">
-                <div className="flex items-center gap-0.5 px-1.5 py-0.5 bg-black/20 backdrop-blur-sm rounded-full border border-gray-800/20">
-                  {/* Minimal dots */}
-                  {allItems.map((_, index) => (
+              {/* Modern Progress Navigation */}
+              <div className="flex items-center justify-center pt-4">
+                <div className="relative">
+                  {/* Progress Track */}
+                  <div className="flex items-center gap-1">
+                    <div className="relative h-0.5 bg-gray-800/40 rounded-full overflow-hidden" style={{ width: `${allItems.length * 12}px` }}>
+                      {/* Active Progress Bar */}
+                      <motion.div
+                        className="absolute top-0 left-0 h-full bg-gradient-to-r from-maverick-orange to-maverick-amber rounded-full"
+                        animate={{ 
+                          width: `${((activeIndex + 1) / allItems.length) * 100}%`
+                        }}
+                        transition={{ duration: 0.3, ease: "easeOut" }}
+                      />
+                    </div>
+                    
+                    {/* Auto-play Control */}
                     <motion.button
-                      key={index}
-                      className="w-2 h-2 rounded-full cursor-pointer touch-manipulation"
-                      onClick={() => handleDotClick(index)}
-                      animate={{
-                        backgroundColor: index === activeIndex ? "#FF5A00" : "#6B7280",
-                        scale: index === activeIndex ? 1.2 : 1
-                      }}
-                      whileTap={{ scale: 0.7 }}
-                      transition={{ duration: 0.15 }}
-                    />
-                  ))}
+                      onClick={toggleAutoPlay}
+                      className="ml-2 p-1 rounded-full bg-gray-900/60 hover:bg-gray-800/80 transition-all duration-200"
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.9 }}
+                    >
+                      <motion.div
+                        animate={{ rotate: isAutoPlaying ? 0 : 180 }}
+                        transition={{ duration: 0.2 }}
+                      >
+                        {isAutoPlaying ? (
+                          <Pause className="w-3 h-3 text-maverick-orange" />
+                        ) : (
+                          <Play className="w-3 h-3 text-gray-400" />
+                        )}
+                      </motion.div>
+                    </motion.button>
+                  </div>
 
-                  {/* Auto-play toggle */}
-                  <motion.button
-                    onClick={toggleAutoPlay}
-                    className="w-2 h-2 ml-1 text-gray-500 hover:text-maverick-orange transition-colors"
-                    whileTap={{ scale: 0.7 }}
-                  >
-                    {isAutoPlaying ? (
-                      <Pause className="w-full h-full" />
-                    ) : (
-                      <Play className="w-full h-full" />
-                    )}
-                  </motion.button>
+                  {/* Interactive Segments */}
+                  <div className="absolute top-0 left-0 flex items-center gap-1">
+                    {allItems.map((_, index) => (
+                      <motion.button
+                        key={index}
+                        className="relative w-3 h-0.5 cursor-pointer group"
+                        onClick={() => handleDotClick(index)}
+                        whileHover={{ scale: 1.2 }}
+                        whileTap={{ scale: 0.8 }}
+                      >
+                        {/* Invisible clickable area */}
+                        <div className="absolute -inset-2 rounded-full" />
+                        
+                        {/* Hover indicator */}
+                        <motion.div
+                          className="absolute -top-1 left-1/2 w-1 h-3 bg-maverick-orange/60 rounded-full transform -translate-x-1/2 opacity-0 group-hover:opacity-100"
+                          transition={{ duration: 0.15 }}
+                        />
+                        
+                        {/* Active indicator */}
+                        {index === activeIndex && (
+                          <motion.div
+                            className="absolute -top-0.5 left-1/2 w-0.5 h-1.5 bg-maverick-orange rounded-full transform -translate-x-1/2"
+                            initial={{ opacity: 0, y: 2 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.2 }}
+                          />
+                        )}
+                      </motion.button>
+                    ))}
+                  </div>
+                  
+                  {/* Section Labels */}
+                  <div className="absolute -bottom-4 left-0 right-0 flex justify-between text-xs text-gray-500">
+                    <span className="text-maverick-orange/80">{activeIndex + 1}</span>
+                    <span>of {allItems.length}</span>
+                  </div>
                 </div>
               </div>
             </div>
