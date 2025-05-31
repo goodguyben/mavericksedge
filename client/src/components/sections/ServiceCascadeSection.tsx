@@ -445,7 +445,7 @@ export default function ServiceCascadeSection() {
                         transition={{ duration: 0.3, ease: "easeOut" }}
                       />
                     </div>
-                    
+
                     {/* Auto-play Control */}
                     <motion.button
                       onClick={toggleAutoPlay}
@@ -471,32 +471,64 @@ export default function ServiceCascadeSection() {
                     {allItems.map((_, index) => (
                       <motion.button
                         key={index}
-                        className="relative w-3 h-0.5 cursor-pointer group"
+                        className="relative w-5 h-5 flex items-center justify-center touch-manipulation group focus:outline-none focus-visible:ring-2 focus-visible:ring-maverick-orange/50 rounded-full"
                         onClick={() => handleDotClick(index)}
                         whileHover={{ scale: 1.2 }}
-                        whileTap={{ scale: 0.8 }}
+                        whileTap={{ scale: 0.85 }}
+                        aria-label={`Go to item ${index + 1}`}
+                        role="tab"
+                        aria-selected={index === activeIndex}
                       >
-
-                        
-                        {/* Hover indicator */}
+                        {/* Background hover effect */}
                         <motion.div
-                          className="absolute -top-1 left-1/2 w-1 h-3 bg-maverick-orange/60 rounded-full transform -translate-x-1/2 opacity-0 group-hover:opacity-100"
-                          transition={{ duration: 0.15 }}
+                          className="absolute inset-0 bg-maverick-orange/20 rounded-full opacity-0 group-hover:opacity-100"
+                          transition={{ duration: 0.2 }}
                         />
-                        
-                        {/* Active indicator */}
+
+                        {/* Main dot */}
+                        <motion.div
+                          className="rounded-full relative z-10"
+                          animate={{
+                            width: index === activeIndex ? "8px" : "3px",
+                            height: index === activeIndex ? "8px" : "3px",
+                            backgroundColor: index === activeIndex ? "#FF5A00" : "#6B7280"
+                          }}
+                          transition={{ 
+                            duration: 0.3,
+                            ease: [0.25, 0.46, 0.45, 0.94]
+                          }}
+                        />
+
+                        {/* Active glow */}
                         {index === activeIndex && (
                           <motion.div
-                            className="absolute -top-0.5 left-1/2 w-0.5 h-1.5 bg-maverick-orange rounded-full transform -translate-x-1/2"
-                            initial={{ opacity: 0, y: 2 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.2 }}
+                            className="absolute inset-0 bg-maverick-orange/30 rounded-full blur-sm"
+                            initial={{ opacity: 0, scale: 0.5 }}
+                            animate={{ 
+                              opacity: [0.3, 0.6, 0.3],
+                              scale: [1, 1.2, 1]
+                            }}
+                            transition={{ 
+                              duration: 2,
+                              repeat: Infinity,
+                              ease: "easeInOut"
+                            }}
                           />
                         )}
+
+                        {/* Ripple effect on click */}
+                        <motion.div
+                          className="absolute inset-0 bg-maverick-orange/40 rounded-full opacity-0"
+                          animate={index === activeIndex ? { 
+                            scale: [1, 1.8, 1],
+                            opacity: [0, 0.4, 0]
+                          } : {}}
+                          transition={{ duration: 0.6 }}
+                        />
                       </motion.button>
                     ))}
                   </div>
-                  
+
                   {/* Section Labels */}
                   <div className="absolute -bottom-4 left-0 right-0 flex justify-between text-xs text-gray-500">
                     <span className="text-maverick-orange/80">{activeIndex + 1}</span>
