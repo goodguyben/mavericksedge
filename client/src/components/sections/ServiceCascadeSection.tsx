@@ -46,7 +46,7 @@ export default function ServiceCascadeSection() {
         {
           id: "web-applications",
           title: "Productivity & Management Web Applications",
-          description: "We develop web applications tailored to solve your unique operational challenges and streamline complex data management. From CRM software and asset management systems to interactive dashboards, our scalable, user-friendly solutions leverage AI-driven insights and low-code adaptability. Designed for seamless integration, these powerful tools empower your team to boost productivity, enhance decision-making, and accelerate business growth.",
+          description: "We build web apps tailored to your unique operational needs, simplifying complex data and workflows. From CRMs, service operations systems, and project trackers to booking systems, inventory tools, and AI-powered dashboards, our scalable, low-code solutions are intuitive and integration-ready. These tools boost productivity, support smarter decisions, and fuel business growth.",
           image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=600&fit=crop&crop=entropy",
           gradient: "from-yellow-500/20 to-orange-500/20"
         },
@@ -60,7 +60,7 @@ export default function ServiceCascadeSection() {
         {
           id: "performance",
           title: "Performance Optimization & Online Visibility",
-          description: "We enhance your website’s speed, mobile responsiveness, and Core Web Vitals to ensure a seamless user experience. Our strategies incorporate Generative Engine Optimization (GEO) to position your content in AI-generated responses across platforms like Google’s AI Overviews and ChatGPT. By focusing on structured data, semantic clarity, and user-centric design, we not only boost your search rankings but also increase visibility in AI-driven search results, driving higher engagement and conversions.",
+          description: "We optimize your site’s speed, mobile responsiveness, and Core Web Vitals for a seamless user experience. Beyond traditional SEO, we use Generative Engine Optimization (GEO), directory listings, and content systems like blogs and newsletters to boost visibility across Google, ChatGPT, and other AI-driven platforms. With structured data, semantic clarity, and multi-channel reach, we drive greater discoverability, engagement, and conversion",
           image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop&crop=entropy",
           gradient: "from-orange-500/20 to-red-500/20"
         }
@@ -264,7 +264,7 @@ export default function ServiceCascadeSection() {
           }`}>
 
             {/* 3D Image Stack */}
-            <div className={`relative h-48 xs:h-56 sm:h-64 md:h-72 lg:h-80 xl:h-96 2xl:h-[28rem] perspective-1000 touch-manipulation ${
+            <div className={`relative h-64 sm:h-72 md:h-80 lg:h-96 xl:h-[28rem] 2xl:h-[32rem] perspective-1000 touch-manipulation ${
               currentService.imagePosition === 'right' ? 'lg:col-start-2' : ''
             }`}>
               <div className="relative w-full h-full preserve-3d">
