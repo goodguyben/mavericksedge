@@ -430,106 +430,70 @@ export default function ServiceCascadeSection() {
                 </motion.div>
               </AnimatePresence>
 
-              {/* Modern Progress Navigation */}
-              <div className="flex items-center justify-center pt-4">
-                <div className="relative">
-                  {/* Progress Track */}
-                  <div className="flex items-center gap-1">
-                    <div className="relative h-0.5 bg-gray-800/40 rounded-full overflow-hidden" style={{ width: `${allItems.length * 12}px` }}>
-                      {/* Active Progress Bar */}
-                      <motion.div
-                        className="absolute top-0 left-0 h-full bg-gradient-to-r from-maverick-orange to-maverick-amber rounded-full"
-                        animate={{ 
-                          width: `${((activeIndex + 1) / allItems.length) * 100}%`
-                        }}
-                        transition={{ duration: 0.3, ease: "easeOut" }}
-                      />
-                    </div>
-
-                    {/* Auto-play Control */}
-                    <motion.button
-                      onClick={toggleAutoPlay}
-                      className="ml-2 p-1 rounded-full bg-gray-900/60 hover:bg-gray-800/80 transition-all duration-200"
-                      whileHover={{ scale: 1.1 }}
-                      whileTap={{ scale: 0.9 }}
-                    >
-                      <motion.div
-                        animate={{ rotate: isAutoPlaying ? 0 : 180 }}
-                        transition={{ duration: 0.2 }}
-                      >
-                        {isAutoPlaying ? (
-                          <Pause className="w-3 h-3 text-maverick-orange" />
-                        ) : (
-                          <Play className="w-3 h-3 text-gray-400" />
-                        )}
-                      </motion.div>
-                    </motion.button>
-                  </div>
-
-                  {/* Interactive Segments */}
-                  <div className="absolute top-0 left-0 flex items-center gap-1">
+              {/* Progress Indicators */}
+              <div className="flex items-center justify-center pt-3 sm:pt-6">
+                <div className="flex items-center gap-2 md:gap-4">
+                  <div className="flex items-center gap-1.5">
                     {allItems.map((_, index) => (
                       <motion.button
                         key={index}
-                        className="relative w-5 h-5 flex items-center justify-center touch-manipulation group focus:outline-none focus-visible:ring-2 focus-visible:ring-maverick-orange/50 rounded-full"
+                        className="relative touch-manipulation min-h-[44px] min-w-[20px] flex items-center justify-center"
                         onClick={() => handleDotClick(index)}
-                        whileHover={{ scale: 1.2 }}
-                        whileTap={{ scale: 0.85 }}
-                        aria-label={`Go to item ${index + 1}`}
-                        role="tab"
-                        aria-selected={index === activeIndex}
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.95 }}
                       >
-                        {/* Background hover effect */}
+                        {/* Sleek line indicator */}
                         <motion.div
-                          className="absolute inset-0 bg-maverick-orange/20 rounded-full opacity-0 group-hover:opacity-100"
-                          transition={{ duration: 0.2 }}
-                        />
-
-                        {/* Main dot */}
-                        <motion.div
-                          className="rounded-full relative z-10"
+                          className="rounded-full bg-gray-600"
                           animate={{
-                            width: index === activeIndex ? "8px" : "3px",
-                            height: index === activeIndex ? "8px" : "3px",
-                            backgroundColor: index === activeIndex ? "#FF5A00" : "#6B7280"
+                            width: index === activeIndex ? "16px" : "4px",
+                            height: "4px",
+                            backgroundColor: index === activeIndex ? "#FF5A00" : "#4B5563"
                           }}
-                          transition={{ 
-                            duration: 0.3,
-                            ease: [0.25, 0.46, 0.45, 0.94]
-                          }}
+                          transition={{ duration: 0.4, ease: "easeInOut" }}
                         />
 
-                        {/* Active glow */}
+                        {/* Subtle glow for active state */}
                         {index === activeIndex && (
                           <motion.div
-                            className="absolute inset-0 bg-maverick-orange/30 rounded-full blur-sm"
-                            initial={{ opacity: 0, scale: 0.5 }}
-                            animate={{ 
-                              opacity: [0.3, 0.6, 0.3],
-                              scale: [1, 1.2, 1]
+                            className="absolute inset-0 rounded-full"
+                            style={{
+                              background: "radial-gradient(circle, rgba(255, 90, 0, 0.2) 0%, transparent 70%)",
+                              filter: "blur(4px)"
                             }}
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: [0, 1, 0] }}
                             transition={{ 
-                              duration: 2,
+                              duration: 2, 
                               repeat: Infinity,
                               ease: "easeInOut"
                             }}
                           />
                         )}
-
-                        {/* Ripple effect on click */}
-                        <motion.div
-                          className="absolute inset-0 bg-maverick-orange/40 rounded-full opacity-0"
-                          animate={index === activeIndex ? { 
-                            scale: [1, 1.8, 1],
-                            opacity: [0, 0.4, 0]
-                          } : {}}
-                          transition={{ duration: 0.6 }}
-                        />
                       </motion.button>
                     ))}
                   </div>
 
-                  </div>
+                  {/* Auto-play toggle - hidden on mobile, visible on tablet+ */}
+                  <motion.button
+                    onClick={toggleAutoPlay}
+                    className="hidden md:flex items-center gap-1 md:gap-2 px-2 md:px-3 py-2 text-xs md:text-sm text-gray-400 hover:text-white transition-colors duration-200 touch-manipulation min-h-[44px] whitespace-nowrap bg-gray-800/30 md:bg-transparent rounded-lg md:rounded-none"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    {isAutoPlaying ? (
+                      <>
+                        <Pause className="w-3 h-3 md:w-4 md:h-4" />
+                        <span className="hidden lg:inline">Auto-play ON</span>
+                      </>
+                    ) : (
+                      <>
+                        <Play className="w-3 h-3 md:w-4 md:h-4" />
+                        <span className="hidden lg:inline">Auto-play OFF</span>
+                      </>
+                    )}
+                  </motion.button>
+                </div>
               </div>
             </div>
           </div>
