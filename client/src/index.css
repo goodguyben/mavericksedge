@@ -502,9 +502,10 @@ img {
   }
 
   header h1 {
-    font-size: clamp(1.5rem, 5vw, 2rem) !important;
-    line-height: 1.2;
-    margin-top: 0.5rem !important;
+    font-size: clamp(2.5rem, 8vw, 3.5rem) !important;
+    line-height: 1.1 !important;
+    margin-top: 0.25rem !important;
+    margin-left: 0.25rem !important;
   }
 
   /* Fix mobile menu button positioning */
@@ -520,8 +521,9 @@ img {
 /* Extra small mobile devices */
 @media (max-width: 480px) {
   header h1 {
-    font-size: clamp(1.25rem, 6vw, 1.75rem) !important;
-    margin-top: 0.625rem !important;
+    font-size: clamp(2rem, 9vw, 3rem) !important;
+    margin-top: 0.125rem !important;
+    margin-left: 0.125rem !important;
   }
 
   /* Ensure proper spacing on very small screens */
