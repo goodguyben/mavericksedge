@@ -263,122 +263,7 @@ export default function ServiceCascadeSection() {
             currentService.imagePosition === 'right' ? 'lg:grid-flow-col-dense' : ''
           }`}>
 
-            {/* 3D Image Stack */}
-            <div className={`relative h-64 sm:h-72 md:h-80 lg:h-96 xl:h-[28rem] 2xl:h-[32rem] perspective-1000 touch-manipulation ${
-              currentService.imagePosition === 'right' ? 'lg:col-start-2' : ''
-            }`}>
-              <div className="relative w-full h-full preserve-3d">
-                {allItems.map((item, index) => {
-                  const transform = getImageTransform(index);
 
-                  return (
-                    <motion.div
-                      key={item.id}
-                      className="absolute inset-0 cursor-pointer"
-                      style={{
-                        transformStyle: "preserve-3d",
-                        zIndex: transform.zIndex,
-                      }}
-                      animate={{
-                        x: transform.x,
-                        y: transform.y,
-                        z: transform.z,
-                        rotateY: transform.rotateY,
-                        scale: transform.scale,
-                        opacity: transform.opacity,
-                        filter: transform.filter,
-                      }}
-                      transition={{
-                        duration: 1.5,
-                        ease: [0.25, 0.46, 0.45, 0.94],
-                      }}
-                      onClick={() => handleDotClick(index)}
-                    >
-                      <div className="relative w-full h-full rounded-2xl overflow-hidden group">
-                        <picture>
-                          <source 
-                            srcSet={`${item.image}?fm=avif&w=800&h=600&q=90&auto=format&fit=crop&crop=entropy`}
-                            type="image/avif"
-                          />
-                          <source 
-                            srcSet={`${item.image}?fm=webp&w=800&h=600&q=90&auto=format&fit=crop&crop=entropy`}
-                            type="image/webp"
-                          />
-                          <img
-                            src={`${item.image}?w=800&h=600&q=90&auto=format&fit=crop&crop=entropy`}
-                            alt={item.title}
-                            className="w-full h-full object-cover transition-all duration-700 ease-out"
-                            style={{
-                              filter: index === activeIndex 
-                                ? 'brightness(1.1) contrast(1.05) saturate(1.1)' 
-                                : 'brightness(0.9) contrast(0.95) saturate(0.8)',
-                            }}
-                            loading={index === activeIndex ? "eager" : "lazy"}
-                            decoding="async"
-                            width="800"
-                            height="600"
-                          />
-                        </picture>
-
-                        {/* Enhanced gradient overlay with depth */}
-                        {index === activeIndex && (
-                          <motion.div
-                            className="absolute inset-0"
-                            style={{
-                              background: `linear-gradient(135deg, 
-                                rgba(255, 86, 48, 0.1) 0%, 
-                                transparent 30%, 
-                                transparent 70%, 
-                                rgba(0, 0, 0, 0.3) 100%)`
-                            }}
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            transition={{ duration: 0.6 }}
-                          />
-                        )}
-
-                        {/* Enhanced decorative border with glow effect */}
-                        {index === activeIndex && (
-                          <>
-                            <motion.div
-                              className="absolute inset-0 border-2 border-maverick-orange/40 rounded-2xl"
-                              initial={{ opacity: 0, scale: 0.95 }}
-                              animate={{ opacity: 1, scale: 1 }}
-                              transition={{ duration: 0.6, delay: 0.2 }}
-                            />
-                            <motion.div
-                              className="absolute inset-0 rounded-2xl"
-                              style={{
-                                boxShadow: `0 0 30px rgba(255, 86, 48, 0.3), 
-                                           inset 0 0 20px rgba(255, 215, 75, 0.1)`
-                              }}
-                              initial={{ opacity: 0 }}
-                              animate={{ opacity: 1 }}
-                              transition={{ duration: 0.8, delay: 0.3 }}
-                            />
-                          </>
-                        )}
-
-                        {/* Subtle shimmer effect for non-active cards */}
-                        {index !== activeIndex && Math.abs(index - activeIndex) <= 2 && (
-                          <motion.div
-                            className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent"
-                            style={{ transform: 'translateX(-100%)' }}
-                            animate={{ transform: 'translateX(100%)' }}
-                            transition={{
-                              duration: 2,
-                              repeat: Infinity,
-                              repeatDelay: 3,
-                              ease: "easeInOut"
-                            }}
-                          />
-                        )}
-                      </div>
-                    </motion.div>
-                  );
-                })}
-              </div>
-            </div>
 
             {/* Content Area */}
             <div className={`space-y-6 lg:space-y-8 ${
@@ -437,7 +322,7 @@ export default function ServiceCascadeSection() {
                   <div className="relative flex items-center">
                     {/* Background track */}
                     <div className="absolute inset-0 h-1 bg-gray-800 rounded-full" />
-                    
+
                     {/* Progress segments */}
                     <div className="relative flex items-center gap-0.5">
                       {allItems.map((_, index) => (
@@ -474,7 +359,7 @@ export default function ServiceCascadeSection() {
                               />
                             )}
                           </motion.div>
-                          
+
                           {/* Hover indicator */}
                           <motion.div
                             className="absolute -top-2 w-2 h-2 bg-maverick-orange rounded-full opacity-0 group-hover:opacity-100"
@@ -482,7 +367,7 @@ export default function ServiceCascadeSection() {
                             whileHover={{ scale: 1 }}
                             transition={{ duration: 0.2 }}
                           />
-                          
+
                           {/* Active indicator */}
                           {index === activeIndex && (
                             <motion.div
@@ -501,7 +386,7 @@ export default function ServiceCascadeSection() {
                         </motion.button>
                       ))}
                     </div>
-                    
+
                     {/* Progress text - hidden on mobile phones */}
                     <motion.div
                       className="absolute -bottom-6 left-0 text-xs text-gray-400 font-medium hidden sm:block"
