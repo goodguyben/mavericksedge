@@ -360,7 +360,7 @@ export default function Header() {
 
               {/* Navigation Items with improved spacing */}
               <div className="flex-1 overflow-y-auto py-8 px-6">
-                <nav className="space-y-2">
+                <nav className="space-y-2 mt-[23px] mb-[23px]">
                   <Link 
                     href="/" 
                     className={`group flex items-center px-4 py-4 rounded-xl min-h-[56px] touch-manipulation transition-all duration-300 relative overflow-hidden ${
