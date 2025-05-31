@@ -327,50 +327,65 @@ export default function Header() {
               }}
               className="fixed top-0 right-0 h-full w-[85%] max-w-sm z-50 flex flex-col lg:hidden"
               style={{
-                backdropFilter: 'blur(20px) saturate(180%)',
-                WebkitBackdropFilter: 'blur(20px) saturate(180%)',
-                background: 'rgba(18, 18, 18, 0.95)',
-                borderLeft: '1px solid rgba(255, 86, 0, 0.3)',
-                boxShadow: '-10px 0 40px rgba(0, 0, 0, 0.5)',
+                backdropFilter: 'blur(32px) saturate(200%)',
+                WebkitBackdropFilter: 'blur(32px) saturate(200%)',
+                background: 'linear-gradient(135deg, rgba(18, 18, 18, 0.98) 0%, rgba(20, 20, 20, 0.95) 100%)',
+                borderLeft: '1px solid rgba(255, 86, 0, 0.4)',
+                boxShadow: `-20px 0 80px rgba(0, 0, 0, 0.6), 
+                           inset 1px 0 0 rgba(255, 255, 255, 0.08),
+                           0 0 40px rgba(255, 86, 0, 0.1)`,
               }}
               role="dialog"
               aria-modal="true"
               aria-label="Mobile Navigation Menu"
             >
-              {/* Header */}
-              <div className="flex items-center justify-between p-4 border-b border-white/10">
-                <h2 className="text-lg text-white text-justify ml-[118px] mr-[118px] pl-[-5px] pr-[-5px] font-semibold mt-[7px] mb-[7px]">Menu</h2>
-                <button
-                  onClick={closeMobileMenu}
-                  className="p-2 rounded-full hover:bg-white/10 text-white transition-colors duration-200 min-h-[44px] min-w-[44px] touch-manipulation"
-                  aria-label="Close navigation menu"
-                >
-                  <X className="w-5 h-5" />
-                </button>
+              {/* Header with improved design */}
+              <div className="relative">
+                <div className="flex items-center justify-between p-6 border-b border-white/10">
+                  <div className="flex items-center gap-3">
+                    <div className="w-2 h-8 bg-gradient-to-b from-maverick-orange to-yellow-500 rounded-full"></div>
+                    <h2 className="text-xl text-white font-bold tracking-wide">Navigation</h2>
+                  </div>
+                  <button
+                    onClick={closeMobileMenu}
+                    className="p-2.5 rounded-xl hover:bg-white/10 text-white transition-all duration-200 min-h-[44px] min-w-[44px] touch-manipulation group"
+                    aria-label="Close navigation menu"
+                  >
+                    <X className="w-5 h-5 group-hover:rotate-90 transition-transform duration-200" />
+                  </button>
+                </div>
+                {/* Subtle gradient line */}
+                <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-maverick-orange/30 to-transparent"></div>
               </div>
 
-              {/* Navigation Items */}
-              <div className="flex-1 overflow-y-auto py-6 px-4">
-                <nav className="space-y-3">
+              {/* Navigation Items with improved spacing */}
+              <div className="flex-1 overflow-y-auto py-8 px-6">
+                <nav className="space-y-2">
                   <Link 
                     href="/" 
-                    className={`flex items-center px-3 py-3 rounded-lg min-h-[48px] touch-manipulation transition-all duration-200 ${
-                      isCurrentPath('/') ? 'text-maverick-orange bg-white/5' : 'text-white hover:bg-white/5'
+                    className={`group flex items-center px-4 py-4 rounded-xl min-h-[56px] touch-manipulation transition-all duration-300 relative overflow-hidden ${
+                      isCurrentPath('/') 
+                        ? 'text-maverick-orange bg-gradient-to-r from-maverick-orange/15 to-yellow-500/10 border border-maverick-orange/20' 
+                        : 'text-white hover:bg-white/8 hover:text-maverick-orange border border-transparent hover:border-white/10'
                     }`}
                     onClick={closeMobileMenu}
                   >
-                    <span className="text-base font-medium">Home</span>
+                    {isCurrentPath('/') && (
+                      <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-maverick-orange to-yellow-500 rounded-r-full"></div>
+                    )}
+                    <span className="text-lg font-semibold relative z-10">Home</span>
+                    <ChevronRight className="w-5 h-5 ml-auto opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
                   </Link>
 
-                  {/* Services Dropdown */}
-                  <div className="space-y-1">
+                  {/* Services Dropdown with enhanced design */}
+                  <div className="space-y-2">
                     <button 
                       onClick={() => setServicesDropdownOpen(!servicesDropdownOpen)}
-                      className="flex items-center justify-between w-full px-3 py-3 rounded-lg min-h-[48px] touch-manipulation transition-all duration-200 text-white hover:bg-white/5"
+                      className="group flex items-center justify-between w-full px-4 py-4 rounded-xl min-h-[56px] touch-manipulation transition-all duration-300 text-white hover:bg-white/8 hover:text-maverick-orange border border-transparent hover:border-white/10"
                     >
-                      <span className="text-base font-medium">Services</span>
-                      <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${
-                        servicesDropdownOpen ? 'rotate-180' : ''
+                      <span className="text-lg font-semibold">Services</span>
+                      <ChevronDown className={`w-5 h-5 transition-all duration-300 ${
+                        servicesDropdownOpen ? 'rotate-180 text-maverick-orange' : 'group-hover:text-maverick-orange'
                       }`} />
                     </button>
 
@@ -380,59 +395,67 @@ export default function Header() {
                           initial={{ opacity: 0, height: 0 }}
                           animate={{ opacity: 1, height: "auto" }}
                           exit={{ opacity: 0, height: 0 }}
-                          transition={{ duration: 0.2 }}
-                          className="ml-4 space-y-1 overflow-hidden"
+                          transition={{ duration: 0.3, ease: "easeInOut" }}
+                          className="ml-6 space-y-1 overflow-hidden border-l border-white/10 pl-4"
                         >
                           <Link 
                             href="/services" 
-                            className={`block px-3 py-2 rounded-lg min-h-[40px] touch-manipulation transition-all duration-200 ${
-                              isCurrentPath('/services') ? 'text-maverick-orange bg-white/5' : 'text-gray-300 hover:bg-white/5 hover:text-white'
+                            className={`block px-4 py-3 rounded-lg min-h-[44px] touch-manipulation transition-all duration-200 ${
+                              isCurrentPath('/services') 
+                                ? 'text-maverick-orange bg-maverick-orange/10 border border-maverick-orange/20' 
+                                : 'text-gray-300 hover:bg-white/5 hover:text-white border border-transparent'
                             }`}
                             onClick={closeMobileMenu}
                           >
-                            <span className="text-sm">All Services</span>
+                            <span className="text-base font-medium">All Services</span>
                           </Link>
                           <Link 
                             href="/services/web" 
-                            className={`block px-3 py-2 rounded-lg min-h-[40px] touch-manipulation transition-all duration-200 ${
-                              isCurrentPath('/services/web') ? 'text-maverick-orange bg-white/5' : 'text-gray-300 hover:bg-white/5 hover:text-white'
+                            className={`block px-4 py-3 rounded-lg min-h-[44px] touch-manipulation transition-all duration-200 ${
+                              isCurrentPath('/services/web') 
+                                ? 'text-maverick-orange bg-maverick-orange/10 border border-maverick-orange/20' 
+                                : 'text-gray-300 hover:bg-white/5 hover:text-white border border-transparent'
                             }`}
                             onClick={closeMobileMenu}
                           >
-                            <span className="text-sm">Web Design & Development</span>
+                            <span className="text-base font-medium">Web Design & Development</span>
                           </Link>
                           <Link 
                             href="/services/marketing" 
-                            className={`block px-3 py-2 rounded-lg min-h-[40px] touch-manipulation transition-all duration-200 ${
-                              isCurrentPath('/services/marketing') ? 'text-maverick-orange bg-white/5' : 'text-gray-300 hover:bg-white/5 hover:text-white'
+                            className={`block px-4 py-3 rounded-lg min-h-[44px] touch-manipulation transition-all duration-200 ${
+                              isCurrentPath('/services/marketing') 
+                                ? 'text-maverick-orange bg-maverick-orange/10 border border-maverick-orange/20' 
+                                : 'text-gray-300 hover:bg-white/5 hover:text-white border border-transparent'
                             }`}
                             onClick={closeMobileMenu}
                           >
-                            <span className="text-sm">Marketing & Creative</span>
+                            <span className="text-base font-medium">Marketing & Creative</span>
                           </Link>
                           <Link 
                             href="/services/ai" 
-                            className={`block px-3 py-2 rounded-lg min-h-[40px] touch-manipulation transition-all duration-200 ${
-                              isCurrentPath('/services/ai') ? 'text-maverick-orange bg-white/5' : 'text-gray-300 hover:bg-white/5 hover:text-white'
+                            className={`block px-4 py-3 rounded-lg min-h-[44px] touch-manipulation transition-all duration-200 ${
+                              isCurrentPath('/services/ai') 
+                                ? 'text-maverick-orange bg-maverick-orange/10 border border-maverick-orange/20' 
+                                : 'text-gray-300 hover:bg-white/5 hover:text-white border border-transparent'
                             }`}
                             onClick={closeMobileMenu}
                           >
-                            <span className="text-sm">AI Integration & Automation</span>
+                            <span className="text-base font-medium">AI Integration & Automation</span>
                           </Link>
                         </motion.div>
                       )}
                     </AnimatePresence>
                   </div>
 
-                  {/* Pricing Dropdown */}
-                  <div className="space-y-1">
+                  {/* Pricing Dropdown with enhanced design */}
+                  <div className="space-y-2">
                     <button 
                       onClick={() => setPricingDropdownOpen(!pricingDropdownOpen)}
-                      className="flex items-center justify-between w-full px-3 py-3 rounded-lg min-h-[48px] touch-manipulation transition-all duration-200 text-white hover:bg-white/5"
+                      className="group flex items-center justify-between w-full px-4 py-4 rounded-xl min-h-[56px] touch-manipulation transition-all duration-300 text-white hover:bg-white/8 hover:text-maverick-orange border border-transparent hover:border-white/10"
                     >
-                      <span className="text-base font-medium">Pricing</span>
-                      <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${
-                        pricingDropdownOpen ? 'rotate-180' : ''
+                      <span className="text-lg font-semibold">Pricing</span>
+                      <ChevronDown className={`w-5 h-5 transition-all duration-300 ${
+                        pricingDropdownOpen ? 'rotate-180 text-maverick-orange' : 'group-hover:text-maverick-orange'
                       }`} />
                     </button>
 
@@ -442,44 +465,52 @@ export default function Header() {
                           initial={{ opacity: 0, height: 0 }}
                           animate={{ opacity: 1, height: "auto" }}
                           exit={{ opacity: 0, height: 0 }}
-                          transition={{ duration: 0.2 }}
-                          className="ml-4 space-y-1 overflow-hidden"
+                          transition={{ duration: 0.3, ease: "easeInOut" }}
+                          className="ml-6 space-y-1 overflow-hidden border-l border-white/10 pl-4"
                         >
                           <Link 
                             href="/pricing" 
-                            className={`block px-3 py-2 rounded-lg min-h-[40px] touch-manipulation transition-all duration-200 ${
-                              isCurrentPath('/pricing') ? 'text-maverick-orange bg-white/5' : 'text-gray-300 hover:bg-white/5 hover:text-white'
+                            className={`block px-4 py-3 rounded-lg min-h-[44px] touch-manipulation transition-all duration-200 ${
+                              isCurrentPath('/pricing') 
+                                ? 'text-maverick-orange bg-maverick-orange/10 border border-maverick-orange/20' 
+                                : 'text-gray-300 hover:bg-white/5 hover:text-white border border-transparent'
                             }`}
                             onClick={closeMobileMenu}
                           >
-                            <span className="text-sm">All Pricing Plans</span>
+                            <span className="text-base font-medium">All Pricing Plans</span>
                           </Link>
                           <Link 
                             href="/pricing/web" 
-                            className={`block px-3 py-2 rounded-lg min-h-[40px] touch-manipulation transition-all duration-200 ${
-                              isCurrentPath('/pricing/web') ? 'text-maverick-orange bg-white/5' : 'text-gray-300 hover:bg-white/5 hover:text-white'
+                            className={`block px-4 py-3 rounded-lg min-h-[44px] touch-manipulation transition-all duration-200 ${
+                              isCurrentPath('/pricing/web') 
+                                ? 'text-maverick-orange bg-maverick-orange/10 border border-maverick-orange/20' 
+                                : 'text-gray-300 hover:bg-white/5 hover:text-white border border-transparent'
                             }`}
                             onClick={closeMobileMenu}
                           >
-                            <span className="text-sm">Web Design & Development</span>
+                            <span className="text-base font-medium">Web Design & Development</span>
                           </Link>
                           <Link 
                             href="/pricing/marketing" 
-                            className={`block px-3 py-2 rounded-lg min-h-[40px] touch-manipulation transition-all duration-200 ${
-                              isCurrentPath('/pricing/marketing') ? 'text-maverick-orange bg-white/5' : 'text-gray-300 hover:bg-white/5 hover:text-white'
+                            className={`block px-4 py-3 rounded-lg min-h-[44px] touch-manipulation transition-all duration-200 ${
+                              isCurrentPath('/pricing/marketing') 
+                                ? 'text-maverick-orange bg-maverick-orange/10 border border-maverick-orange/20' 
+                                : 'text-gray-300 hover:bg-white/5 hover:text-white border border-transparent'
                             }`}
                             onClick={closeMobileMenu}
                           >
-                            <span className="text-sm">Marketing & Creative</span>
+                            <span className="text-base font-medium">Marketing & Creative</span>
                           </Link>
                           <Link 
                             href="/pricing/ai" 
-                            className={`block px-3 py-2 rounded-lg min-h-[40px] touch-manipulation transition-all duration-200 ${
-                              isCurrentPath('/pricing/ai') ? 'text-maverick-orange bg-white/5' : 'text-gray-300 hover:bg-white/5 hover:text-white'
+                            className={`block px-4 py-3 rounded-lg min-h-[44px] touch-manipulation transition-all duration-200 ${
+                              isCurrentPath('/pricing/ai') 
+                                ? 'text-maverick-orange bg-maverick-orange/10 border border-maverick-orange/20' 
+                                : 'text-gray-300 hover:bg-white/5 hover:text-white border border-transparent'
                             }`}
                             onClick={closeMobileMenu}
                           >
-                            <span className="text-sm">AI Integration & Automation</span>
+                            <span className="text-base font-medium">AI Integration & Automation</span>
                           </Link>
                         </motion.div>
                       )}
@@ -488,24 +519,45 @@ export default function Header() {
 
                   <Link 
                     href="/about" 
-                    className={`flex items-center px-3 py-3 rounded-lg min-h-[48px] touch-manipulation transition-all duration-200 ${
-                      isCurrentPath('/about') ? 'text-maverick-orange bg-white/5' : 'text-white hover:bg-white/5'
+                    className={`group flex items-center px-4 py-4 rounded-xl min-h-[56px] touch-manipulation transition-all duration-300 relative overflow-hidden ${
+                      isCurrentPath('/about') 
+                        ? 'text-maverick-orange bg-gradient-to-r from-maverick-orange/15 to-yellow-500/10 border border-maverick-orange/20' 
+                        : 'text-white hover:bg-white/8 hover:text-maverick-orange border border-transparent hover:border-white/10'
                     }`}
                     onClick={closeMobileMenu}
                   >
-                    <span className="text-base font-medium">About</span>
+                    {isCurrentPath('/about') && (
+                      <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-maverick-orange to-yellow-500 rounded-r-full"></div>
+                    )}
+                    <span className="text-lg font-semibold relative z-10">About</span>
+                    <ChevronRight className="w-5 h-5 ml-auto opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
                   </Link>
 
                   <Link 
                     href="/contact" 
-                    className={`flex items-center px-3 py-3 rounded-lg min-h-[48px] touch-manipulation transition-all duration-200 ${
-                      isCurrentPath('/contact') ? 'text-maverick-orange bg-white/5' : 'text-white hover:bg-white/5'
+                    className={`group flex items-center px-4 py-4 rounded-xl min-h-[56px] touch-manipulation transition-all duration-300 relative overflow-hidden ${
+                      isCurrentPath('/contact') 
+                        ? 'text-maverick-orange bg-gradient-to-r from-maverick-orange/15 to-yellow-500/10 border border-maverick-orange/20' 
+                        : 'text-white hover:bg-white/8 hover:text-maverick-orange border border-transparent hover:border-white/10'
                     }`}
                     onClick={closeMobileMenu}
                   >
-                    <span className="text-base font-medium">Contact</span>
+                    {isCurrentPath('/contact') && (
+                      <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-maverick-orange to-yellow-500 rounded-r-full"></div>
+                    )}
+                    <span className="text-lg font-semibold relative z-10">Contact</span>
+                    <ChevronRight className="w-5 h-5 ml-auto opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
                   </Link>
                 </nav>
+              </div>
+
+              {/* Footer with brand accent */}
+              <div className="p-6 border-t border-white/10">
+                <div className="flex items-center justify-center gap-2 text-gray-400">
+                  <div className="w-6 h-px bg-gradient-to-r from-transparent via-maverick-orange to-transparent"></div>
+                  <span className="text-sm font-medium">Mavericks Edge</span>
+                  <div className="w-6 h-px bg-gradient-to-r from-transparent via-maverick-orange to-transparent"></div>
+                </div>
               </div>
             </motion.div>
           </>
