@@ -344,7 +344,7 @@ export default function Header() {
                 <div className="flex items-center justify-between p-6 border-b border-white/10">
                   <div className="flex items-center gap-3">
                     <div className="w-2 h-8 bg-gradient-to-b from-maverick-orange to-yellow-500 rounded-full"></div>
-                    <h2 className="text-xl text-white font-bold tracking-wide">Navigation</h2>
+                    <h2 className="text-xl text-white font-bold tracking-wide mt-[8px] mb-[8px]">Navigation</h2>
                   </div>
                   <button
                     onClick={closeMobileMenu}
