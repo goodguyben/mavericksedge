@@ -287,7 +287,7 @@ export default function Header() {
           {/* Mobile Menu Button */}
           <button
             onClick={toggleMobileMenu}
-            className="block lg:hidden p-3 rounded-full backdrop-blur-sm border border-maverick-slate/20 hover:bg-maverick-charcoal transition-colors duration-200 min-h-[44px] min-w-[44px] touch-manipulation bg-[#1e1a1800]"
+            className="block lg:hidden p-3 rounded-full transition-colors duration-200 min-h-[44px] min-w-[44px] touch-manipulation"
             aria-label="Toggle mobile navigation menu"
             aria-expanded={isMobileMenuOpen}
           >
