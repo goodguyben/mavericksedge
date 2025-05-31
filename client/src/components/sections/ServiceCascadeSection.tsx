@@ -430,30 +430,89 @@ export default function ServiceCascadeSection() {
                 </motion.div>
               </AnimatePresence>
 
-              {/* Progress Indicators */}
-              <div className="flex items-center justify-center pt-3 sm:pt-6">
-                <div className="flex items-center gap-3 md:gap-6">
-                  <div className="flex items-center bg-gray-900/60 rounded-full px-1 py-0.5 border border-gray-700/50">
-                    {allItems.map((_, index) => (
-                      <motion.button
-                        key={index}
-                        className="relative touch-manipulation p-1 flex items-center justify-center"
-                        onClick={() => handleDotClick(index)}
-                        whileHover={{ scale: 1.15 }}
-                        whileTap={{ scale: 0.85 }}
-                      >
-                        <motion.div
-                          className="rounded-full"
-                          animate={{
-                            width: index === activeIndex ? "6px" : "2px",
-                            height: index === activeIndex ? "6px" : "2px",
-                            backgroundColor: index === activeIndex ? "#FF5A00" : "#4B5563",
-                            margin: "0px"
-                          }}
-                          transition={{ duration: 0.2, ease: "easeInOut" }}
-                        />
-                      </motion.button>
-                    ))}
+              {/* Progress Bar Navigation */}
+              <div className="flex items-center justify-center pt-4 sm:pt-8">
+                <div className="flex items-center gap-4 md:gap-8">
+                  {/* Modern segmented progress bar */}
+                  <div className="relative flex items-center">
+                    {/* Background track */}
+                    <div className="absolute inset-0 h-1 bg-gray-800 rounded-full" />
+                    
+                    {/* Progress segments */}
+                    <div className="relative flex items-center gap-0.5">
+                      {allItems.map((_, index) => (
+                        <motion.button
+                          key={index}
+                          className="relative touch-manipulation flex items-center justify-center group"
+                          onClick={() => handleDotClick(index)}
+                          whileHover={{ scale: 1.1 }}
+                          whileTap={{ scale: 0.9 }}
+                          style={{ width: `${100 / allItems.length}px` }}
+                        >
+                          {/* Individual segment */}
+                          <motion.div
+                            className="h-1 rounded-full relative overflow-hidden"
+                            style={{ width: `${100 / allItems.length - 2}px` }}
+                            animate={{
+                              backgroundColor: index <= activeIndex ? "#FF5A00" : "#374151"
+                            }}
+                            transition={{ duration: 0.4, ease: "easeInOut" }}
+                          >
+                            {/* Active segment glow */}
+                            {index === activeIndex && (
+                              <motion.div
+                                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent"
+                                animate={{
+                                  x: ["-100%", "100%"]
+                                }}
+                                transition={{
+                                  duration: 1.5,
+                                  repeat: Infinity,
+                                  repeatDelay: 2,
+                                  ease: "easeInOut"
+                                }}
+                              />
+                            )}
+                          </motion.div>
+                          
+                          {/* Hover indicator */}
+                          <motion.div
+                            className="absolute -top-2 w-2 h-2 bg-maverick-orange rounded-full opacity-0 group-hover:opacity-100"
+                            initial={{ scale: 0 }}
+                            whileHover={{ scale: 1 }}
+                            transition={{ duration: 0.2 }}
+                          />
+                          
+                          {/* Active indicator */}
+                          {index === activeIndex && (
+                            <motion.div
+                              className="absolute -top-3 w-3 h-3 border-2 border-maverick-orange bg-black rounded-full"
+                              initial={{ scale: 0, opacity: 0 }}
+                              animate={{ scale: 1, opacity: 1 }}
+                              transition={{ duration: 0.3, ease: "backOut" }}
+                            >
+                              <motion.div
+                                className="absolute inset-0.5 bg-maverick-orange rounded-full"
+                                animate={{ scale: [1, 1.2, 1] }}
+                                transition={{ duration: 2, repeat: Infinity }}
+                              />
+                            </motion.div>
+                          )}
+                        </motion.button>
+                      ))}
+                    </div>
+                    
+                    {/* Progress text */}
+                    <motion.div
+                      className="absolute -bottom-6 left-0 text-xs text-gray-400 font-medium"
+                      animate={{ 
+                        x: `${(activeIndex / (allItems.length - 1)) * 100}%`,
+                        translateX: "-50%"
+                      }}
+                      transition={{ duration: 0.4, ease: "easeInOut" }}
+                    >
+                      {activeIndex + 1} of {allItems.length}
+                    </motion.div>
                   </div>
 
                   {/* Auto-play toggle - hidden on mobile, visible on tablet+ */}
