@@ -10,9 +10,9 @@ interface LogoProps {
 
 export default function Logo({ size = "medium", showText = true, noLink = false }: LogoProps) {
   const sizeClasses = {
-    small: "w-12 h-12", 
-    medium: "w-24 h-24",
-    large: "w-32 h-32"
+    small: "w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12", 
+    medium: "w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-24 lg:h-24",
+    large: "w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 xl:w-32 xl:h-32"
   };
 
   const LogoContent = () => (
