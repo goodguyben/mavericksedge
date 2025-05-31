@@ -502,9 +502,9 @@ export default function ServiceCascadeSection() {
                       ))}
                     </div>
                     
-                    {/* Progress text */}
+                    {/* Progress text - hidden on mobile phones */}
                     <motion.div
-                      className="absolute -bottom-6 left-0 text-xs text-gray-400 font-medium"
+                      className="absolute -bottom-6 left-0 text-xs text-gray-400 font-medium hidden sm:block"
                       animate={{ 
                         x: `${(activeIndex / (allItems.length - 1)) * 100}%`,
                         translateX: "-50%"
