@@ -174,12 +174,12 @@ export default function Header() {
             transition={{ duration: 0.3, ease: "easeInOut" }}
             className="fixed top-0 right-0 h-full w-[85%] max-w-sm z-40 flex flex-col md:hidden"
             style={{
-              backdropFilter: 'blur(24px) saturate(200%)',
-              WebkitBackdropFilter: 'blur(24px) saturate(200%)',
-              background: 'linear-gradient(135deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.3) 50%, rgba(0, 0, 0, 0.35) 100%)',
-              borderLeft: '1px solid rgba(255, 255, 255, 0.15)',
-              boxShadow: '-20px 0 60px rgba(0, 0, 0, 0.6), inset 1px 0 0 rgba(255, 255, 255, 0.1)',
-              border: '1px solid rgba(255, 255, 255, 0.1)',
+              backdropFilter: 'blur(40px) saturate(180%)',
+              WebkitBackdropFilter: 'blur(40px) saturate(180%)',
+              background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.05) 50%, rgba(255, 255, 255, 0.06) 100%)',
+              borderLeft: '1px solid rgba(255, 255, 255, 0.2)',
+              boxShadow: '-20px 0 60px rgba(0, 0, 0, 0.4), inset 1px 0 0 rgba(255, 255, 255, 0.15)',
+              border: '1px solid rgba(255, 255, 255, 0.15)',
               borderRight: 'none'
             }}
             role="dialog"
