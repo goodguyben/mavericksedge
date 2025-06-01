@@ -75,14 +75,14 @@ export default function ServiceCascadeSection() {
         {
           id: "brand-strategy",
           title: "Brand Strategy & Design",
-          description: "We create compelling brand identities that resonate with your target audience and stand out in competitive markets. Our strategic approach combines visual design with market research to build memorable brand experiences.",
+          description: "We create adaptive brand strategies that connect your business with audiences across platforms through clarity and authenticity. Our services include logo design, brand guidelines, visual identity systems, and messaging frameworks, all crafted to build memorable, scalable brand experiences that evolve with your business. Every element is thoughtfully designed to build trust, inspire engagement, and reflect your brand’s true character.",
           image: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=800&h=600&fit=crop&crop=entropy",
           gradient: "from-purple-500/20 to-pink-500/20"
         },
         {
           id: "social-media",
           title: "Social Media Management",
-          description: "Build meaningful connections with your audience through strategic social media presence. Our comprehensive approach includes content creation, community management, and performance analytics to grow your brand online.",
+          description: "Social media is about more than visibility; it’s about earning attention through relevance, consistency, and trust. Services include content planning, platform native strategy, community engagement, and performance analysis, all tailored to reflect your brand’s voice and values. ",
           image: "https://images.unsplash.com/photo-1611926653458-09294b3142bf?w=800&h=600&fit=crop&crop=entropy",
           gradient: "from-blue-500/20 to-purple-500/20"
         }
