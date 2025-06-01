@@ -86,17 +86,7 @@ export default function Home() {
             </Suspense>
           </ScrollFadeSection>
 
-          <ScrollFadeSection
-            id="creative-work"
-            fadeInPoint={0.55}
-            fadeOutPoint={0.65}
-            fadeInDuration={1}
-            fadeOutDuration={1.7}
-            initialOpacity={0}
-            minOpacity={0.1}
-          >
-            <CreativeWorkSection />
-          </ScrollFadeSection>
+          
 
           <ScrollFadeSection
             id="why-choose-us"

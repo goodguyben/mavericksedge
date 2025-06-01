@@ -90,7 +90,6 @@ export default function About() {
             </div>
           </section>
           
-          <TeamSection fullPage />
           <ProcessSection />
           <ContactSection />
         </article>
