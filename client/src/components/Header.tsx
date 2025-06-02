@@ -98,7 +98,7 @@ export default function Header() {
             </Link>
 
             {/* Services Dropdown */}
-            <div className="relative">
+            <div className="relative" style={{ position: 'relative' }}>
               <button 
                 type="button"
                 aria-expanded={servicesDropdownOpen}
@@ -128,12 +128,18 @@ export default function Header() {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -8 }}
                     transition={{ duration: 0.2 }}
-                    className="absolute left-0 mt-2 w-64 z-[9999]"
+                    className="fixed left-0 mt-2 w-64"
                     onMouseEnter={() => setServicesDropdownOpen(true)}
                     onMouseLeave={() => setServicesDropdownOpen(false)}
-                    style={{ zIndex: 9999 }}
+                    style={{ 
+                      zIndex: 99999,
+                      position: 'fixed',
+                      top: '60px',
+                      left: '50%',
+                      transform: 'translateX(-50%)'
+                    }}
                   >
-                    <div className="py-2 bg-[#1A1A1A]/95 backdrop-blur-md border border-gray-800/50 rounded-lg shadow-xl" role="menu" style={{ zIndex: 9999 }}>
+                    <div className="py-2 bg-[#1A1A1A]/95 backdrop-blur-md border border-gray-800/50 rounded-lg shadow-xl" role="menu">
                       <Link 
                         href="/services" 
                         className={`block px-4 py-3 min-h-[44px] text-base touch-manipulation ${
@@ -181,7 +187,7 @@ export default function Header() {
             </div>
 
             {/* Pricing Dropdown */}
-            <div className="relative">
+            <div className="relative" style={{ position: 'relative' }}>
               <button 
                 type="button"
                 aria-expanded={pricingDropdownOpen}
@@ -211,12 +217,18 @@ export default function Header() {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -8 }}
                     transition={{ duration: 0.2 }}
-                    className="absolute left-0 mt-2 w-64 z-[9999]"
+                    className="fixed left-0 mt-2 w-64"
                     onMouseEnter={() => setPricingDropdownOpen(true)}
                     onMouseLeave={() => setPricingDropdownOpen(false)}
-                    style={{ zIndex: 9999 }}
+                    style={{ 
+                      zIndex: 99999,
+                      position: 'fixed',
+                      top: '60px',
+                      left: '50%',
+                      transform: 'translateX(-20%)'
+                    }}
                   >
-                    <div className="py-2 bg-[#1A1A1A]/95 backdrop-blur-md border border-gray-800/50 rounded-lg shadow-xl" role="menu" style={{ zIndex: 9999 }}>
+                    <div className="py-2 bg-[#1A1A1A]/95 backdrop-blur-md border border-gray-800/50 rounded-lg shadow-xl" role="menu">
                       <Link 
                         href="/pricing" 
                         className={`block px-4 py-3 min-h-[44px] text-base touch-manipulation ${
