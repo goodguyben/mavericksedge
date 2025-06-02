@@ -20,55 +20,49 @@ export default function WhyChooseUsSection() {
       id: "efficiency",
       title: "Efficiency",
       description: "We help you focus on what matters most by simplifying your workflows and letting AI take care of the rest, so you can save time, reduce costs, and drive growth.",
-      icon: <Zap className="w-8 h-8" />,
-      color: "#f59e0b",
-      gradient: "from-yellow-400 via-orange-500 to-red-500",
-      position: { x: "10%", y: "20%" }
+      icon: <Zap className="w-8 h-8 text-maverick-orange" />,
+      color: "#ff5630",
+      gradient: "from-yellow-400 via-orange-500 to-red-500"
     },
     {
       id: "transparency",
       title: "Transparency",
       description: "We believe in building strong relationships through open and honest communication, so you'll always feel supported and in control at every stage of the process.",
-      icon: <Heart className="w-8 h-8" />,
-      color: "#ec4899",
-      gradient: "from-pink-400 via-red-400 to-orange-400",
-      position: { x: "70%", y: "15%" }
+      icon: <Heart className="w-8 h-8 text-maverick-orange" />,
+      color: "#ff5630",
+      gradient: "from-pink-400 via-red-400 to-orange-400"
     },
     {
       id: "innovation",
       title: "Innovation",
       description: "We're passionate about staying ahead of the curve with the latest tech, so you can count on us to bring you innovative solutions that give you a real edge in a fast-moving world.",
-      icon: <FlaskConical className="w-8 h-8" />,
-      color: "#8b5cf6",
-      gradient: "from-purple-400 via-violet-500 to-blue-500",
-      position: { x: "15%", y: "60%" }
+      icon: <FlaskConical className="w-8 h-8 text-maverick-orange" />,
+      color: "#ff5630",
+      gradient: "from-purple-400 via-violet-500 to-blue-500"
     },
     {
       id: "research",
       title: "Research",
       description: "We take the time to really understand your market, audience, and competitors. There's no 'one size fits all' approach here. Our research allows us to develop strategies and tailored plans that are aligned with your needs.",
-      icon: <BookOpen className="w-8 h-8" />,
-      color: "#10b981",
-      gradient: "from-emerald-400 via-teal-500 to-cyan-500",
-      position: { x: "75%", y: "55%" }
+      icon: <BookOpen className="w-8 h-8 text-maverick-orange" />,
+      color: "#ff5630",
+      gradient: "from-emerald-400 via-teal-500 to-cyan-500"
     },
     {
       id: "empathy",
       title: "Empathy",
       description: "We get that things don't always go as planned, and we're here to make sure you're never left in the dark. We take the time to truly understand your needs and limitations, designing solutions that fit within your scope and budget—without the surprise fees.",
-      icon: <SmileIcon className="w-8 h-8" />,
-      color: "#06b6d4",
-      gradient: "from-cyan-400 via-blue-500 to-indigo-500",
-      position: { x: "45%", y: "85%" }
+      icon: <SmileIcon className="w-8 h-8 text-maverick-orange" />,
+      color: "#ff5630",
+      gradient: "from-cyan-400 via-blue-500 to-indigo-500"
     },
     {
       id: "partnership",
       title: "Partnership",
       description: "We see ourselves as an extension of your team, working collaboratively to achieve your business goals with trust and shared commitment to your long-term success.",
-      icon: <Users className="w-8 h-8" />,
-      color: "#6366f1",
-      gradient: "from-indigo-400 via-purple-500 to-pink-500",
-      position: { x: "20%", y: "40%" }
+      icon: <Users className="w-8 h-8 text-maverick-orange" />,
+      color: "#ff5630",
+      gradient: "from-indigo-400 via-purple-500 to-pink-500"
     }
   ];
 
@@ -184,17 +178,11 @@ export default function WhyChooseUsSection() {
         </motion.div>
 
         {/* Creative Interactive Grid Layout */}
-        <div className="relative h-[800px] md:h-[1000px]">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
           {reasons.map((reason, index) => (
             <motion.div
               key={reason.id}
-              className="absolute group cursor-pointer"
-              style={{
-                left: reason.position.x,
-                top: reason.position.y,
-                width: "320px",
-                maxWidth: "90vw"
-              }}
+              className="group cursor-pointer w-full max-w-sm mx-auto"
               initial={{ opacity: 0, scale: 0.5, rotateY: -45 }}
               whileInView={{ opacity: 1, scale: 1, rotateY: 0 }}
               viewport={{ once: true, margin: "-100px" }}
@@ -257,7 +245,6 @@ export default function WhyChooseUsSection() {
                 {/* Floating Icon */}
                 <motion.div 
                   className="flex items-center justify-center w-16 h-16 rounded-xl bg-gradient-to-br from-white/10 to-white/[0.02] border border-white/20 mb-4"
-                  style={{ color: reason.color }}
                   whileHover={{ 
                     scale: 1.1, 
                     rotate: [0, -5, 5, 0],
@@ -314,23 +301,7 @@ export default function WhyChooseUsSection() {
             </motion.div>
           ))}
 
-          {/* Interactive Center Piece */}
-          <motion.div
-            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-32 h-32 pointer-events-none"
-            animate={{ rotate: 360 }}
-            transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
-          >
-            <div className="w-full h-full rounded-full bg-gradient-to-r from-maverick-orange/10 via-purple-500/10 to-cyan-500/10 blur-2xl" />
-            <motion.div
-              className="absolute inset-4 rounded-full border border-white/10"
-              animate={{ 
-                scale: [1, 1.2, 1],
-                opacity: [0.3, 0.6, 0.3]
-              }}
-              transition={{ duration: 4, repeat: Infinity }}
-            />
-          </motion.div>
-        </div>
+          </div>
 
         {/* Bottom section with enhanced styling */}
         <motion.div
