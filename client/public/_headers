@@ -7,12 +7,19 @@
   X-XSS-Protection: 1; mode=block
   Referrer-Policy: strict-origin-when-cross-origin
 
-# Cache JavaScript and CSS bundles for 1 year (they have content hashes)
-/*.js
+# Cache JavaScript and CSS bundles with content hashes for 1 year
+/assets/*.js
   Cache-Control: public, max-age=31536000, immutable
 
-/*.css
+/assets/*.css
   Cache-Control: public, max-age=31536000, immutable
+
+# Non-hashed JS/CSS files get shorter cache (fallback)
+/*.js
+  Cache-Control: public, max-age=86400
+
+/*.css
+  Cache-Control: public, max-age=86400
 
 # Cache images for 1 year
 /images/*
