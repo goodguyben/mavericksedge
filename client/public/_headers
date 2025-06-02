@@ -1,37 +1,24 @@
 
-# Cache static assets for 1 year
-/assets/*
+/*
   Cache-Control: public, max-age=31536000, immutable
   X-Content-Type-Options: nosniff
   X-Frame-Options: DENY
   X-XSS-Protection: 1; mode=block
   Referrer-Policy: strict-origin-when-cross-origin
 
-# Cache JavaScript and CSS bundles with content hashes for 1 year
-/assets/*.js
+# Content-hashed assets get aggressive caching (1 year)
+/assets/*
   Cache-Control: public, max-age=31536000, immutable
 
-/assets/*.css
-  Cache-Control: public, max-age=31536000, immutable
-
-# Non-hashed JS/CSS files get shorter cache (fallback)
-/*.js
-  Cache-Control: public, max-age=86400
-
-/*.css
-  Cache-Control: public, max-age=86400
-
-# Cache images for 1 year
+# Images with long cache
 /images/*
   Cache-Control: public, max-age=31536000, immutable
 
 /*.webp
   Cache-Control: public, max-age=31536000, immutable
-  Content-Type: image/webp
 
 /*.avif
   Cache-Control: public, max-age=31536000, immutable
-  Content-Type: image/avif
 
 /*.png
   Cache-Control: public, max-age=31536000, immutable
@@ -42,7 +29,10 @@
 /*.jpeg
   Cache-Control: public, max-age=31536000, immutable
 
-# Cache fonts for 1 year
+/*.svg
+  Cache-Control: public, max-age=31536000, immutable
+
+# Fonts with long cache
 /*.woff2
   Cache-Control: public, max-age=31536000, immutable
 
@@ -52,29 +42,33 @@
 /*.ttf
   Cache-Control: public, max-age=31536000, immutable
 
-# Cache videos for 1 year
+# Videos with long cache
 /videos/*
   Cache-Control: public, max-age=31536000, immutable
 
 /*.mp4
   Cache-Control: public, max-age=31536000, immutable
 
-# Cache XML files (sitemaps) for 1 day
-/*.xml
-  Cache-Control: public, max-age=86400
-
-# HTML files - cache for 1 hour to allow for updates
+# HTML files - short cache to allow updates
 /*.html
   Cache-Control: public, max-age=3600
 
-# Root HTML
 /
   Cache-Control: public, max-age=3600
 
-# Favicon with longer cache
+# API routes - no cache
+/api/*
+  Cache-Control: no-cache, no-store, must-revalidate
+
+# Static files with moderate cache
+/*.xml
+  Cache-Control: public, max-age=86400
+
+/*.txt
+  Cache-Control: public, max-age=86400
+
 /favicon.ico
   Cache-Control: public, max-age=2592000
 
-# Robots.txt with moderate cache
 /robots.txt
   Cache-Control: public, max-age=86400
