@@ -128,15 +128,14 @@ export default function Header() {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -8 }}
                     transition={{ duration: 0.2 }}
-                    className="fixed left-0 mt-2 w-64"
+                    className="absolute left-0 mt-2 w-64"
                     onMouseEnter={() => setServicesDropdownOpen(true)}
                     onMouseLeave={() => setServicesDropdownOpen(false)}
                     style={{ 
                       zIndex: 99999,
-                      position: 'fixed',
-                      top: '60px',
-                      left: '50%',
-                      transform: 'translateX(-50%)'
+                      position: 'absolute',
+                      top: '100%',
+                      left: '0'
                     }}
                   >
                     <div className="py-2 bg-[#1A1A1A]/95 backdrop-blur-md border border-gray-800/50 rounded-lg shadow-xl" role="menu">
@@ -217,15 +216,14 @@ export default function Header() {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -8 }}
                     transition={{ duration: 0.2 }}
-                    className="fixed left-0 mt-2 w-64"
+                    className="absolute left-0 mt-2 w-64"
                     onMouseEnter={() => setPricingDropdownOpen(true)}
                     onMouseLeave={() => setPricingDropdownOpen(false)}
                     style={{ 
                       zIndex: 99999,
-                      position: 'fixed',
-                      top: '60px',
-                      left: '50%',
-                      transform: 'translateX(-20%)'
+                      position: 'absolute',
+                      top: '100%',
+                      left: '0'
                     }}
                   >
                     <div className="py-2 bg-[#1A1A1A]/95 backdrop-blur-md border border-gray-800/50 rounded-lg shadow-xl" role="menu">
