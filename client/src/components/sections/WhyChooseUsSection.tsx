@@ -256,15 +256,9 @@ export default function WhyChooseUsSection() {
                 </motion.div>
 
                 {/* Content */}
-                <motion.h3 
-                  className="text-2xl font-bold text-white mb-3 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:bg-clip-text"
-                  style={{ 
-                    backgroundImage: hoveredItem === reason.id ? `linear-gradient(45deg, ${reason.color}, #ffffff)` : undefined
-                  }}
-                  transition={{ duration: 0.3 }}
-                >
+                <h3 className="text-2xl font-bold text-white mb-3">
                   {reason.title}
-                </motion.h3>
+                </h3>
 
                 <motion.p 
                   className="text-gray-400 leading-relaxed text-sm group-hover:text-gray-300 mb-4"
