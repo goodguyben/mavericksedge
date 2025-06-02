@@ -99,18 +99,14 @@ export default function Header() {
             </Link>
 
             {/* Services Dropdown */}
-            <div className="relative">
+            <div className="relative" style={{ position: 'relative' }}>
               <button 
                 type="button"
                 aria-expanded={servicesDropdownOpen}
                 aria-haspopup="true"
                 onMouseEnter={() => setServicesDropdownOpen(true)}
                 onMouseLeave={() => setServicesDropdownOpen(false)}
-                onClick={(e) => {
-                  e.preventDefault();
-                  e.stopPropagation();
-                  setServicesDropdownOpen(!servicesDropdownOpen);
-                }}
+                onClick={() => setServicesDropdownOpen(!servicesDropdownOpen)}
                 className={`px-3 py-2 min-h-[44px] rounded-md text-base font-medium transition-colors duration-200 inline-flex items-center touch-manipulation ${
                   isCurrentPath('/services') || isCurrentPath('/services/web') || isCurrentPath('/services/marketing') || isCurrentPath('/services/ai') 
                     ? 'text-maverick-orange' 
@@ -130,7 +126,13 @@ export default function Header() {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -8 }}
                     transition={{ duration: 0.2 }}
-                    className="absolute left-0 top-full mt-2 w-64 z-[9999]"
+                    className="absolute left-0 top-full mt-2 w-64"
+                    style={{ 
+                      zIndex: 9999,
+                      position: 'absolute',
+                      top: '100%',
+                      left: '0'
+                    }}
                     onMouseEnter={() => setServicesDropdownOpen(true)}
                     onMouseLeave={() => setServicesDropdownOpen(false)}
                   >
@@ -182,18 +184,14 @@ export default function Header() {
             </div>
 
             {/* Pricing Dropdown */}
-            <div className="relative">
+            <div className="relative" style={{ position: 'relative' }}>
               <button 
                 type="button"
                 aria-expanded={pricingDropdownOpen}
                 aria-haspopup="true"
                 onMouseEnter={() => setPricingDropdownOpen(true)}
                 onMouseLeave={() => setPricingDropdownOpen(false)}
-                onClick={(e) => {
-                  e.preventDefault();
-                  e.stopPropagation();
-                  setPricingDropdownOpen(!pricingDropdownOpen);
-                }}
+                onClick={() => setPricingDropdownOpen(!pricingDropdownOpen)}
                 className={`px-3 py-2 min-h-[44px] rounded-md text-base font-medium transition-colors duration-200 inline-flex items-center touch-manipulation ${
                   isCurrentPath('/pricing') || isCurrentPath('/pricing/web') || isCurrentPath('/pricing/marketing') || isCurrentPath('/pricing/ai') 
                     ? 'text-maverick-orange' 
@@ -213,7 +211,13 @@ export default function Header() {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -8 }}
                     transition={{ duration: 0.2 }}
-                    className="absolute left-0 top-full mt-2 w-64 z-[9999]"
+                    className="absolute left-0 top-full mt-2 w-64"
+                    style={{ 
+                      zIndex: 9999,
+                      position: 'absolute',
+                      top: '100%',
+                      left: '0'
+                    }}
                     onMouseEnter={() => setPricingDropdownOpen(true)}
                     onMouseLeave={() => setPricingDropdownOpen(false)}
                   >
