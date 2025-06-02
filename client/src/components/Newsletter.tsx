@@ -39,7 +39,7 @@ const Newsletter = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="newsletter-content ml-[0px] mr-[0px] mt-[-86px] mb-[-86px]"
+        className="newsletter-content ml-[0px] mr-[0px] mt-[-90px] mb-[-90px]"
       >
         <motion.div 
           className="flex items-center mb-2 gap-2"
