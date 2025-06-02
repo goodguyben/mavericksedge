@@ -155,15 +155,9 @@ export default function WhyChooseUsSection() {
             transition={{ duration: 1, delay: 0.3 }}
           >
             Why Choose{" "}
-            <motion.span 
-              className="bg-gradient-to-r from-maverick-orange via-yellow-400 to-red-500 bg-clip-text text-transparent"
-              animate={{ 
-                backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"]
-              }}
-              transition={{ duration: 5, repeat: Infinity }}
-            >
+            <span className="text-maverick-orange">
               Mavericks Edge
-            </motion.span>
+            </span>
           </motion.h2>
 
           <motion.p 
@@ -261,22 +255,11 @@ export default function WhyChooseUsSection() {
                 </h3>
 
                 <motion.p 
-                  className="text-gray-400 leading-relaxed text-sm group-hover:text-gray-300 mb-4"
+                  className="text-gray-400 leading-relaxed text-sm group-hover:text-gray-300"
                   transition={{ duration: 0.3 }}
                 >
                   {reason.description}
                 </motion.p>
-
-                {/* Interactive Arrow */}
-                <motion.div
-                  className="flex items-center text-gray-500 group-hover:text-white opacity-0 group-hover:opacity-100"
-                  initial={{ x: -10 }}
-                  whileHover={{ x: 0 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <span className="text-sm mr-2">Learn more</span>
-                  <ArrowRight className="w-4 h-4" />
-                </motion.div>
 
                 {/* Decorative Corner Elements */}
                 <motion.div
