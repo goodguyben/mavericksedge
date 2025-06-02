@@ -1,164 +1,373 @@
-import { motion } from "framer-motion";
-import { Zap, Heart, FlaskConical, BookOpen, SmileIcon, Users } from "lucide-react";
+
+import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
+import { Zap, Heart, FlaskConical, BookOpen, SmileIcon, Users, Sparkles, ArrowRight } from "lucide-react";
+import { useRef, useState } from "react";
 
 export default function WhyChooseUsSection() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [hoveredItem, setHoveredItem] = useState<string | null>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"]
+  });
+
+  const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
+  const floatingY = useTransform(scrollYProgress, [0, 1], [0, -100]);
+  const rotateX = useTransform(scrollYProgress, [0, 0.5, 1], [15, 0, -15]);
+
   const reasons = [
     {
       id: "efficiency",
       title: "Efficiency",
       description: "We help you focus on what matters most by simplifying your workflows and letting AI take care of the rest, so you can save time, reduce costs, and drive growth.",
-      icon: <Zap className="w-6 h-6" />,
-      color: "#f59e0b"
+      icon: <Zap className="w-8 h-8" />,
+      color: "#f59e0b",
+      gradient: "from-yellow-400 via-orange-500 to-red-500",
+      position: { x: "10%", y: "20%" }
     },
     {
       id: "transparency",
       title: "Transparency",
       description: "We believe in building strong relationships through open and honest communication, so you'll always feel supported and in control at every stage of the process.",
-      icon: <Heart className="w-6 h-6" />,
-      color: "#ec4899"
+      icon: <Heart className="w-8 h-8" />,
+      color: "#ec4899",
+      gradient: "from-pink-400 via-red-400 to-orange-400",
+      position: { x: "70%", y: "15%" }
     },
     {
       id: "innovation",
       title: "Innovation",
       description: "We're passionate about staying ahead of the curve with the latest tech, so you can count on us to bring you innovative solutions that give you a real edge in a fast-moving world.",
-      icon: <FlaskConical className="w-6 h-6" />,
-      color: "#8b5cf6"
+      icon: <FlaskConical className="w-8 h-8" />,
+      color: "#8b5cf6",
+      gradient: "from-purple-400 via-violet-500 to-blue-500",
+      position: { x: "15%", y: "60%" }
     },
     {
       id: "research",
       title: "Research",
       description: "We take the time to really understand your market, audience, and competitors. There's no 'one size fits all' approach here. Our research allows us to develop strategies and tailored plans that are aligned with your needs.",
-      icon: <BookOpen className="w-6 h-6" />,
-      color: "#10b981"
+      icon: <BookOpen className="w-8 h-8" />,
+      color: "#10b981",
+      gradient: "from-emerald-400 via-teal-500 to-cyan-500",
+      position: { x: "75%", y: "55%" }
     },
     {
       id: "empathy",
       title: "Empathy",
       description: "We get that things don't always go as planned, and we're here to make sure you're never left in the dark. We take the time to truly understand your needs and limitations, designing solutions that fit within your scope and budget—without the surprise fees.",
-      icon: <SmileIcon className="w-6 h-6" />,
-      color: "#06b6d4"
+      icon: <SmileIcon className="w-8 h-8" />,
+      color: "#06b6d4",
+      gradient: "from-cyan-400 via-blue-500 to-indigo-500",
+      position: { x: "45%", y: "85%" }
     },
     {
       id: "partnership",
       title: "Partnership",
       description: "We see ourselves as an extension of your team, working collaboratively to achieve your business goals with trust and shared commitment to your long-term success.",
-      icon: <Users className="w-6 h-6" />,
-      color: "#6366f1"
+      icon: <Users className="w-8 h-8" />,
+      color: "#6366f1",
+      gradient: "from-indigo-400 via-purple-500 to-pink-500",
+      position: { x: "20%", y: "40%" }
     }
   ];
 
   return (
-    <section className="relative py-32 px-5 md:px-10 bg-black overflow-hidden">
-      {/* Subtle background elements */}
-      <div className="absolute inset-0">
-        <div className="absolute top-1/4 left-1/4 w-1 h-64 bg-gradient-to-b from-maverick-orange/20 to-transparent rotate-45"></div>
-        <div className="absolute bottom-1/3 right-1/3 w-1 h-48 bg-gradient-to-b from-purple-500/15 to-transparent -rotate-45"></div>
-        <div className="absolute top-1/2 right-1/4 w-px h-32 bg-gradient-to-b from-blue-500/10 to-transparent"></div>
-      </div>
+    <section ref={containerRef} className="relative py-40 px-5 md:px-10 bg-black overflow-hidden min-h-screen">
+      {/* Dynamic Floating Background Elements */}
+      <motion.div 
+        className="absolute inset-0 opacity-30"
+        style={{ y: backgroundY }}
+      >
+        {/* Animated Orbs */}
+        <motion.div
+          className="absolute w-96 h-96 rounded-full bg-gradient-to-r from-maverick-orange/10 to-purple-500/10 blur-3xl"
+          animate={{
+            x: [0, 100, 0],
+            y: [0, -50, 0],
+            scale: [1, 1.2, 1],
+          }}
+          transition={{
+            duration: 20,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+          style={{ top: "10%", left: "10%" }}
+        />
+        <motion.div
+          className="absolute w-64 h-64 rounded-full bg-gradient-to-r from-blue-500/10 to-cyan-500/10 blur-2xl"
+          animate={{
+            x: [0, -80, 0],
+            y: [0, 60, 0],
+            scale: [1, 0.8, 1],
+          }}
+          transition={{
+            duration: 15,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 2
+          }}
+          style={{ bottom: "20%", right: "15%" }}
+        />
+        
+        {/* Floating Geometric Shapes */}
+        <motion.div
+          className="absolute w-2 h-32 bg-gradient-to-b from-maverick-orange/20 to-transparent"
+          style={{ y: floatingY, rotateZ: 45 }}
+          animate={{ rotateZ: [45, 225, 45] }}
+          transition={{ duration: 25, repeat: Infinity }}
+          style={{ top: "25%", left: "80%" }}
+        />
+        <motion.div
+          className="absolute w-1 h-24 bg-gradient-to-b from-purple-500/15 to-transparent"
+          style={{ y: floatingY }}
+          animate={{ rotateZ: [0, 180, 360] }}
+          transition={{ duration: 30, repeat: Infinity }}
+          style={{ bottom: "30%", left: "5%" }}
+        />
+      </motion.div>
 
-      <div className="container mx-auto relative z-10 max-w-4xl">
+      <div className="container mx-auto relative z-10 max-w-7xl">
         {/* Header Section - keeping specified formatting */}
         <motion.div 
-          className="text-center mb-24"
-          initial={{ opacity: 0, y: 30 }}
+          className="text-center mb-32"
+          initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 1, ease: "easeOut" }}
+          style={{ rotateX }}
         >
-          <motion.h2 
-            className="text-5xl md:text-7xl font-bold mb-6 leading-tight"
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
+          <motion.div
+            className="flex items-center justify-center mb-8"
+            initial={{ scale: 0 }}
+            whileInView={{ scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
+            <motion.div
+              className="p-3 rounded-full bg-gradient-to-r from-maverick-orange/20 to-purple-500/20 backdrop-blur-sm"
+              animate={{ rotate: 360 }}
+              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+            >
+              <Sparkles className="w-8 h-8 text-maverick-orange" />
+            </motion.div>
+          </motion.div>
+
+          <motion.h2 
+            className="text-6xl md:text-8xl font-bold mb-8 leading-tight"
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1, delay: 0.3 }}
+          >
             Why Choose{" "}
-            <span className="bg-gradient-to-r from-maverick-orange via-yellow-400 to-red-500 bg-clip-text text-transparent">
+            <motion.span 
+              className="bg-gradient-to-r from-maverick-orange via-yellow-400 to-red-500 bg-clip-text text-transparent"
+              animate={{ 
+                backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"]
+              }}
+              transition={{ duration: 5, repeat: Infinity }}
+            >
               Mavericks Edge
-            </span>
+            </motion.span>
           </motion.h2>
 
           <motion.p 
-            className="text-gray-300 text-xl md:text-2xl max-w-4xl mx-auto leading-relaxed"
-            initial={{ opacity: 0, y: 20 }}
+            className="text-gray-300 text-xl md:text-2xl max-w-5xl mx-auto leading-relaxed"
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.4 }}
+            transition={{ duration: 1, delay: 0.5 }}
           >
             We partner with passionate people building meaningful work — SMBs, nonprofits, and early-stage teams doing a lot with a little. We get it: every dollar matters. That's why our services are flexible, transparent, and built around long-term sustainability.
           </motion.p>
         </motion.div>
 
-        {/* Minimalist grid layout */}
-        <div className="grid md:grid-cols-2 gap-16 mb-20">
+        {/* Creative Interactive Grid Layout */}
+        <div className="relative h-[800px] md:h-[1000px]">
           {reasons.map((reason, index) => (
             <motion.div
               key={reason.id}
-              className="group"
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
+              className="absolute group cursor-pointer"
+              style={{
+                left: reason.position.x,
+                top: reason.position.y,
+                width: "320px",
+                maxWidth: "90vw"
+              }}
+              initial={{ opacity: 0, scale: 0.5, rotateY: -45 }}
+              whileInView={{ opacity: 1, scale: 1, rotateY: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
               transition={{ 
-                duration: 0.6, 
-                delay: index * 0.1,
+                duration: 0.8, 
+                delay: index * 0.15,
                 ease: "easeOut"
               }}
+              whileHover={{ 
+                scale: 1.05, 
+                rotateY: 5,
+                z: 50,
+                transition: { duration: 0.3 }
+              }}
+              onHoverStart={() => setHoveredItem(reason.id)}
+              onHoverEnd={() => setHoveredItem(null)}
             >
-              <div className="flex items-start gap-4 mb-4">
+              {/* Floating Connection Lines */}
+              <AnimatePresence>
+                {hoveredItem === reason.id && (
+                  <motion.div
+                    className="absolute inset-0 -z-10"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                  >
+                    <motion.div
+                      className={`absolute w-px h-32 bg-gradient-to-b ${reason.gradient} opacity-50`}
+                      style={{ top: "-8rem", left: "50%" }}
+                      initial={{ scaleY: 0 }}
+                      animate={{ scaleY: 1 }}
+                      transition={{ duration: 0.5 }}
+                    />
+                    <motion.div
+                      className={`absolute w-32 h-px bg-gradient-to-r ${reason.gradient} opacity-50`}
+                      style={{ top: "50%", left: "-8rem" }}
+                      initial={{ scaleX: 0 }}
+                      animate={{ scaleX: 1 }}
+                      transition={{ duration: 0.5, delay: 0.1 }}
+                    />
+                  </motion.div>
+                )}
+              </AnimatePresence>
+
+              {/* Main Card */}
+              <motion.div 
+                className="relative p-6 rounded-2xl backdrop-blur-md border border-white/10 bg-gradient-to-br from-white/5 to-white/[0.02] overflow-hidden"
+                whileHover={{ 
+                  borderColor: reason.color + "40",
+                  boxShadow: `0 20px 40px ${reason.color}20`
+                }}
+                transition={{ duration: 0.3 }}
+              >
+                {/* Background Gradient Effect */}
+                <motion.div
+                  className={`absolute inset-0 bg-gradient-to-br ${reason.gradient} opacity-0 group-hover:opacity-5`}
+                  transition={{ duration: 0.5 }}
+                />
+
+                {/* Floating Icon */}
                 <motion.div 
-                  className="flex-shrink-0 p-3 rounded-xl bg-white/5 border border-white/10 group-hover:border-white/20 transition-all duration-300"
+                  className="flex items-center justify-center w-16 h-16 rounded-xl bg-gradient-to-br from-white/10 to-white/[0.02] border border-white/20 mb-4"
                   style={{ color: reason.color }}
-                  whileHover={{ scale: 1.05 }}
-                  transition={{ duration: 0.2 }}
+                  whileHover={{ 
+                    scale: 1.1, 
+                    rotate: [0, -5, 5, 0],
+                    boxShadow: `0 10px 30px ${reason.color}30`
+                  }}
+                  transition={{ duration: 0.3 }}
                 >
                   {reason.icon}
                 </motion.div>
 
-                <div className="flex-1 min-w-0">
-                  <motion.h3 
-                    className="text-2xl font-semibold text-white mb-3 group-hover:text-gray-100 transition-colors duration-300"
-                    whileHover={{ x: 2 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    {reason.title}
-                  </motion.h3>
+                {/* Content */}
+                <motion.h3 
+                  className="text-2xl font-bold text-white mb-3 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:bg-clip-text"
+                  style={{ 
+                    backgroundImage: hoveredItem === reason.id ? `linear-gradient(45deg, ${reason.color}, #ffffff)` : undefined
+                  }}
+                  transition={{ duration: 0.3 }}
+                >
+                  {reason.title}
+                </motion.h3>
 
-                  <p className="text-gray-400 leading-relaxed text-lg group-hover:text-gray-300 transition-colors duration-300">
-                    {reason.description}
-                  </p>
-                </div>
-              </div>
+                <motion.p 
+                  className="text-gray-400 leading-relaxed text-sm group-hover:text-gray-300 mb-4"
+                  transition={{ duration: 0.3 }}
+                >
+                  {reason.description}
+                </motion.p>
 
-              {/* Subtle underline that appears on hover */}
-              <motion.div
-                className="h-px bg-gradient-to-r from-transparent via-white/20 to-transparent"
-                initial={{ scaleX: 0 }}
-                whileInView={{ scaleX: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: 0.5 + index * 0.1 }}
-              />
+                {/* Interactive Arrow */}
+                <motion.div
+                  className="flex items-center text-gray-500 group-hover:text-white opacity-0 group-hover:opacity-100"
+                  initial={{ x: -10 }}
+                  whileHover={{ x: 0 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <span className="text-sm mr-2">Learn more</span>
+                  <ArrowRight className="w-4 h-4" />
+                </motion.div>
+
+                {/* Decorative Corner Elements */}
+                <motion.div
+                  className={`absolute top-0 right-0 w-8 h-8 bg-gradient-to-br ${reason.gradient} opacity-20 blur-xl`}
+                  animate={{ 
+                    scale: [1, 1.5, 1],
+                    opacity: [0.2, 0.4, 0.2]
+                  }}
+                  transition={{ 
+                    duration: 3, 
+                    repeat: Infinity,
+                    delay: index * 0.5
+                  }}
+                />
+              </motion.div>
             </motion.div>
           ))}
+
+          {/* Interactive Center Piece */}
+          <motion.div
+            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-32 h-32 pointer-events-none"
+            animate={{ rotate: 360 }}
+            transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
+          >
+            <div className="w-full h-full rounded-full bg-gradient-to-r from-maverick-orange/10 via-purple-500/10 to-cyan-500/10 blur-2xl" />
+            <motion.div
+              className="absolute inset-4 rounded-full border border-white/10"
+              animate={{ 
+                scale: [1, 1.2, 1],
+                opacity: [0.3, 0.6, 0.3]
+              }}
+              transition={{ duration: 4, repeat: Infinity }}
+            />
+          </motion.div>
         </div>
 
-        {/* Bottom section */}
+        {/* Bottom section with enhanced styling */}
         <motion.div
-          className="text-center pt-12"
-          initial={{ opacity: 0, y: 20 }}
+          className="text-center pt-20"
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.3 }}
+          transition={{ duration: 1, delay: 0.3 }}
         >
           <motion.div
-            className="w-16 h-px bg-gradient-to-r from-transparent via-maverick-orange to-transparent mx-auto mb-6"
+            className="flex items-center justify-center mb-8"
             initial={{ scaleX: 0 }}
             whileInView={{ scaleX: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 1, delay: 0.5 }}
-          />
-          <p className="text-gray-400 text-lg">
+            transition={{ duration: 1.5, delay: 0.5 }}
+          >
+            <div className="h-px w-32 bg-gradient-to-r from-transparent via-maverick-orange to-transparent" />
+            <motion.div
+              className="mx-4 p-2 rounded-full bg-maverick-orange/10"
+              animate={{ rotate: [0, 360] }}
+              transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+            >
+              <Sparkles className="w-5 h-5 text-maverick-orange" />
+            </motion.div>
+            <div className="h-px w-32 bg-gradient-to-r from-maverick-orange via-transparent to-transparent" />
+          </motion.div>
+          
+          <motion.p 
+            className="text-gray-400 text-xl font-medium"
+            whileHover={{ 
+              scale: 1.05,
+              color: "#ffffff"
+            }}
+            transition={{ duration: 0.3 }}
+          >
             Ready to experience the Mavericks Edge difference?
-          </p>
+          </motion.p>
         </motion.div>
       </div>
     </section>
