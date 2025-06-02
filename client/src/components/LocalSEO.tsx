@@ -20,7 +20,7 @@ export default function LocalSEO({
       "@type": "LocalBusiness",
       "name": "Mavericks Edge",
       "image": [
-        "https://mavericksedge.com/images/logo-transparent-thumb4x.png"
+        "https://mavericksedge.ca/images/logo-transparent-thumb4x.png"
       ],
       "telephone": "+1-250-883-8849",
       "email": "info@mavericksedge.com",
@@ -37,7 +37,7 @@ export default function LocalSEO({
         "latitude": 53.5461,
         "longitude": -113.4938
       },
-      "url": "https://mavericksedge.com",
+      "url": "https://mavericksedge.ca",
       "openingHoursSpecification": [
         {
           "@type": "OpeningHoursSpecification",

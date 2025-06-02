@@ -21,7 +21,7 @@ export default function SEOHead({
   title = "Mavericks Edge | Web Design, Marketing & AI Solutions for SMBs",
   description = "Mavericks Edge delivers custom web design, digital marketing, and AI integration solutions tailored specifically for small businesses and nonprofits. Transform your online presence with our affordable, results-driven digital services.",
   keywords = "web design, digital marketing, AI solutions, small business, nonprofit, web development, SEO, social media, content marketing, ecommerce, branding",
-  canonicalUrl = "https://mavericksedge.com",
+  canonicalUrl = "https://mavericksedge.ca",
   ogTitle,
   ogDescription,
   ogImage = "/images/logo-transparent-thumb4x.png",

@@ -1,4 +1,3 @@
-
 import { SERVICE_KEYWORDS } from './constants';
 
 export interface SEOConfig {
@@ -22,7 +21,7 @@ export function generateSEOTags({
   locale = "en_CA",
   siteName = "Mavericks Edge"
 }: SEOConfig) {
-  const baseUrl = "https://mavericksedge.com";
+  const baseUrl = "https://mavericksedge.ca";
   const fullCanonical = canonical ? `${baseUrl}${canonical}` : baseUrl;
   const fullImage = image.startsWith('http') ? image : `${baseUrl}${image}`;
 
@@ -58,11 +57,11 @@ export function generateOrganizationStructuredData() {
     "name": "Mavericks Edge",
     "alternateName": "Mavericks Edge Digital Solutions",
     "description": "Edmonton's premier web design, digital marketing, and AI integration company serving small businesses and nonprofits across Alberta.",
-    "url": "https://mavericksedge.com",
-    "logo": "https://mavericksedge.com/images/logo-transparent-thumb4x.png",
-    "image": "https://mavericksedge.com/images/logo-transparent-thumb4x.png",
+    "url": "https://mavericksedge.ca",
+    "logo": "https://mavericksedge.ca/images/logo-transparent-thumb4x.png",
+    "image": "https://mavericksedge.ca/images/logo-transparent-thumb4x.png",
     "telephone": "+1-250-883-8849",
-    "email": "info@mavericksedge.com",
+    "email": "info@mavericksedge.ca",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "6908 100 Ave NW, Suite B",
@@ -181,11 +180,11 @@ export function generateLocalBusinessStructuredData() {
   return {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
-    "@id": "https://mavericksedge.com/#organization",
+    "@id": "https://mavericksedge.ca/#organization",
     "name": "Mavericks Edge",
-    "image": "https://mavericksedge.com/images/logo-transparent-thumb4x.png",
+    "image": "https://mavericksedge.ca/images/logo-transparent-thumb4x.png",
     "telephone": "+1-250-883-8849",
-    "email": "info@mavericksedge.com",
+    "email": "info@mavericksedge.ca",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "6908 100 Ave NW, Suite B",
@@ -199,7 +198,7 @@ export function generateLocalBusinessStructuredData() {
       "latitude": 53.5461,
       "longitude": -113.4938
     },
-    "url": "https://mavericksedge.com",
+    "url": "https://mavericksedge.ca",
     "openingHoursSpecification": [
       {
         "@type": "OpeningHoursSpecification",
@@ -226,12 +225,12 @@ export function generateWebsiteStructuredData() {
     "@type": "WebSite",
     "name": "Mavericks Edge",
     "alternateName": "Mavericks Edge Digital Solutions",
-    "url": "https://mavericksedge.com",
+    "url": "https://mavericksedge.ca",
     "potentialAction": {
       "@type": "SearchAction",
       "target": {
         "@type": "EntryPoint",
-        "urlTemplate": "https://mavericksedge.com/search?q={search_term_string}"
+        "urlTemplate": "https://mavericksedge.ca/search?q={search_term_string}"
       },
       "query-input": "required name=search_term_string"
     },
@@ -254,7 +253,7 @@ export function generateServiceStructuredData(serviceName: string, serviceDescri
     "provider": {
       "@type": "Organization",
       "name": "Mavericks Edge",
-      "url": "https://mavericksedge.com",
+      "url": "https://mavericksedge.ca",
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "6908 100 Ave NW, Suite B",
