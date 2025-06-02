@@ -128,11 +128,12 @@ export default function Header() {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -8 }}
                     transition={{ duration: 0.2 }}
-                    className="absolute left-0 mt-2 w-64 z-50"
+                    className="absolute left-0 mt-2 w-64 z-[9999]"
                     onMouseEnter={() => setServicesDropdownOpen(true)}
                     onMouseLeave={() => setServicesDropdownOpen(false)}
+                    style={{ zIndex: 9999 }}
                   >
-                    <div className="py-2 bg-[#1A1A1A]/95 backdrop-blur-md border border-gray-800/50 rounded-lg shadow-xl" role="menu">
+                    <div className="py-2 bg-[#1A1A1A]/95 backdrop-blur-md border border-gray-800/50 rounded-lg shadow-xl" role="menu" style={{ zIndex: 9999 }}>
                       <Link 
                         href="/services" 
                         className={`block px-4 py-3 min-h-[44px] text-base touch-manipulation ${
@@ -210,11 +211,12 @@ export default function Header() {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -8 }}
                     transition={{ duration: 0.2 }}
-                    className="absolute left-0 mt-2 w-64 z-50"
+                    className="absolute left-0 mt-2 w-64 z-[9999]"
                     onMouseEnter={() => setPricingDropdownOpen(true)}
                     onMouseLeave={() => setPricingDropdownOpen(false)}
+                    style={{ zIndex: 9999 }}
                   >
-                    <div className="py-2 bg-[#1A1A1A]/95 backdrop-blur-md border border-gray-800/50 rounded-lg shadow-xl" role="menu">
+                    <div className="py-2 bg-[#1A1A1A]/95 backdrop-blur-md border border-gray-800/50 rounded-lg shadow-xl" role="menu" style={{ zIndex: 9999 }}>
                       <Link 
                         href="/pricing" 
                         className={`block px-4 py-3 min-h-[44px] text-base touch-manipulation ${
