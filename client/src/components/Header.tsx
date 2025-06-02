@@ -31,13 +31,18 @@ export default function Header() {
 
   // Close dropdowns when clicking outside
   useEffect(() => {
-    const handleClickOutside = () => {
-      setServicesDropdownOpen(false);
-      setPricingDropdownOpen(false);
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as Element;
+      if (!target.closest('.dropdown-container')) {
+        setServicesDropdownOpen(false);
+        setPricingDropdownOpen(false);
+      }
     };
 
     if (servicesDropdownOpen || pricingDropdownOpen) {
-      document.addEventListener('click', handleClickOutside);
+      setTimeout(() => {
+        document.addEventListener('click', handleClickOutside);
+      }, 0);
       return () => document.removeEventListener('click', handleClickOutside);
     }
   }, [servicesDropdownOpen, pricingDropdownOpen]);
@@ -98,7 +103,7 @@ export default function Header() {
             </Link>
 
             {/* Services Dropdown */}
-            <div className="relative">
+            <div className="relative dropdown-container">
               <button 
                 type="button"
                 aria-expanded={servicesDropdownOpen}
@@ -180,7 +185,7 @@ export default function Header() {
             </div>
 
             {/* Pricing Dropdown */}
-            <div className="relative">
+            <div className="relative dropdown-container">
               <button 
                 type="button"
                 aria-expanded={pricingDropdownOpen}
