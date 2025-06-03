@@ -148,7 +148,7 @@ export default function WhyChooseUsSection() {
           </motion.div>
 
           <motion.h2 
-            className="text-6xl md:text-8xl font-bold mb-8 leading-tight"
+            className="text-4xl md:text-5xl font-bold mb-8 leading-tight"
             initial={{ opacity: 0, scale: 0.8 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
@@ -161,7 +161,7 @@ export default function WhyChooseUsSection() {
           </motion.h2>
 
           <motion.p 
-            className="text-gray-300 text-xl md:text-2xl max-w-5xl mx-auto leading-relaxed"
+            className="text-gray-300 text-lg md:text-xl max-w-4xl mx-auto leading-relaxed"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -172,11 +172,11 @@ export default function WhyChooseUsSection() {
         </motion.div>
 
         {/* Creative Interactive Grid Layout */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12 place-items-center">
           {reasons.map((reason, index) => (
             <motion.div
               key={reason.id}
-              className="group cursor-pointer w-full max-w-sm mx-auto"
+              className="group cursor-pointer w-full max-w-sm"
               initial={{ opacity: 0, scale: 0.5, rotateY: -45 }}
               whileInView={{ opacity: 1, scale: 1, rotateY: 0 }}
               viewport={{ once: true, margin: "-100px" }}
