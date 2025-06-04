@@ -10,6 +10,8 @@ interface CascadeItem {
   description: string;
   videos?: string[];
   images?: string[];
+  videoDurations?: number[];
+  zoomEffects?: ('zoom-out' | 'zoom-in' | 'none')[];
   gradient: string;
 }
 
@@ -51,6 +53,8 @@ export default function ServiceCascadeSection() {
             "/videos/services/Custom Interactive Websites 2.mp4",
             "/videos/services/Custom Interactive Websites 3.mp4"
           ],
+          videoDurations: [11000, 7000, 11000], // 1st and 3rd extended by 4 seconds
+          zoomEffects: ['zoom-out', 'zoom-out', 'none'],
           gradient: "from-orange-500/20 to-yellow-500/20"
         },
         {
@@ -327,6 +331,8 @@ export default function ServiceCascadeSection() {
                           alt={item.title}
                           className="w-full h-full"
                           cycleDuration={7000}
+                          videoDurations={item.videoDurations}
+                          zoomEffects={item.zoomEffects}
                         />
 
                         {/* Simplified overlay for active card */}

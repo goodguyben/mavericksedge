@@ -11,6 +11,8 @@ interface CyclingVideoPlayerProps {
   muted?: boolean;
   loop?: boolean;
   cycleDuration?: number;
+  videoDurations?: number[];
+  zoomEffects?: ('zoom-out' | 'zoom-in' | 'none')[];
 }
 
 export default function CyclingVideoPlayer({
@@ -21,7 +23,9 @@ export default function CyclingVideoPlayer({
   autoPlay = true,
   muted = true,
   loop = true,
-  cycleDuration = 8000
+  cycleDuration = 8000,
+  videoDurations = [],
+  zoomEffects = []
 }: CyclingVideoPlayerProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isVideo, setIsVideo] = useState(true);
@@ -33,6 +37,13 @@ export default function CyclingVideoPlayer({
   useEffect(() => {
     if (totalMedia <= 1) return;
 
+    const getCurrentDuration = () => {
+      if (currentIndex < videos.length && videoDurations[currentIndex]) {
+        return videoDurations[currentIndex];
+      }
+      return cycleDuration;
+    };
+
     const interval = setInterval(() => {
       setCurrentIndex((prev) => {
         const nextIndex = (prev + 1) % totalMedia;
@@ -40,10 +51,10 @@ export default function CyclingVideoPlayer({
         setIsVideo(nextIsVideo);
         return nextIndex;
       });
-    }, cycleDuration);
+    }, getCurrentDuration());
 
     return () => clearInterval(interval);
-  }, [totalMedia, videos.length, cycleDuration]);
+  }, [totalMedia, videos.length, cycleDuration, videoDurations, currentIndex]);
 
   useEffect(() => {
     // Preload next video
@@ -63,36 +74,46 @@ export default function CyclingVideoPlayer({
           
           const isCurrentVideo = index < videos.length;
           
+          const zoomEffect = zoomEffects[index] || 'none';
+          const zoomClass = zoomEffect === 'zoom-out' ? 'scale-125' : zoomEffect === 'zoom-in' ? 'scale-75' : 'scale-100';
+          
           return (
             <motion.div
               key={`${media}-${index}`}
-              className="absolute inset-0"
+              className="absolute inset-0 overflow-hidden"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.5, ease: "easeInOut" }}
             >
-              {isCurrentVideo ? (
-                <video
-                  ref={(el) => { videoRefs.current[index] = el; }}
-                  className="w-full h-full object-cover"
-                  autoPlay={autoPlay}
-                  muted={muted}
-                  loop={loop}
-                  playsInline
-                  preload="metadata"
-                >
-                  <source src={media} type="video/mp4" />
-                  Your browser does not support the video tag.
-                </video>
-              ) : (
-                <img
-                  src={media}
-                  alt={alt}
-                  className="w-full h-full object-cover"
-                  loading="lazy"
-                />
-              )}
+              <motion.div
+                className={`w-full h-full ${zoomClass}`}
+                initial={{ scale: zoomEffect === 'zoom-out' ? 1.25 : zoomEffect === 'zoom-in' ? 0.75 : 1 }}
+                animate={{ scale: zoomEffect === 'zoom-out' ? 1 : zoomEffect === 'zoom-in' ? 1 : 1 }}
+                transition={{ duration: zoomEffect !== 'none' ? 2 : 0, ease: "easeOut" }}
+              >
+                {isCurrentVideo ? (
+                  <video
+                    ref={(el) => { videoRefs.current[index] = el; }}
+                    className="w-full h-full object-cover"
+                    autoPlay={autoPlay}
+                    muted={muted}
+                    loop={loop}
+                    playsInline
+                    preload="metadata"
+                  >
+                    <source src={media} type="video/mp4" />
+                    Your browser does not support the video tag.
+                  </video>
+                ) : (
+                  <img
+                    src={media}
+                    alt={alt}
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                )}
+              </motion.div>
             </motion.div>
           );
         })}
