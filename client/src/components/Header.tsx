@@ -84,14 +84,7 @@ export default function Header() {
             aria-label="Mavericks Edge Home"
           >
             <Logo size="medium-small" noLink={true} showText={false} />
-            <h1 
-              className="font-heading font-bold text-maverick-orange whitespace-nowrap text-xl sm:text-2xl md:text-3xl lg:text-2xl xl:text-3xl mt-[16px] mb-[12px] ml-[0px] mr-[0px]" 
-              style={{ 
-                letterSpacing: '-0.02em',
-                textShadow: '0 0 60px rgba(255, 86, 48, 1), 0 0 120px rgba(255, 86, 48, 1), 0 0 240px rgba(255, 86, 48, 0.8), 0 0 360px rgba(255, 86, 48, 0.6)',
-                animation: 'pulse-glow-text 3s ease-in-out infinite'
-              }}
-            >
+            <h1 className="font-heading font-bold text-maverick-orange whitespace-nowrap text-xl sm:text-2xl md:text-3xl lg:text-2xl xl:text-3xl mt-[16px] mb-[12px] ml-[0px] mr-[0px]" style={{ letterSpacing: '-0.02em' }}>
               Mavericks Edge
             </h1>
           </Link>

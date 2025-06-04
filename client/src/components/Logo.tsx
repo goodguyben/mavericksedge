@@ -21,20 +21,10 @@ export default function Logo({ size = "medium", showText = true, noLink = false 
       <img 
         src={logoPath}
         alt="Mavericks Edge Logo" 
-        className={`${sizeClasses[size]} object-contain animate-pulse`}
-        style={{
-          filter: 'drop-shadow(0 0 60px rgba(255, 86, 48, 1)) drop-shadow(0 0 120px rgba(255, 86, 48, 1)) drop-shadow(0 0 200px rgba(255, 86, 48, 0.8)) drop-shadow(0 0 300px rgba(255, 86, 48, 0.6))',
-          animation: 'pulse-glow 3s ease-in-out infinite'
-        }}
+        className={`${sizeClasses[size]} object-contain`}
       />
       {showText && (
-        <span 
-          className={`font-heading font-bold text-maverick-orange ${size === 'large' ? 'text-2xl' : 'text-xl'}`}
-          style={{
-            textShadow: '0 0 50px rgba(255, 86, 48, 1), 0 0 100px rgba(255, 86, 48, 1), 0 0 200px rgba(255, 86, 48, 0.8), 0 0 300px rgba(255, 86, 48, 0.6)',
-            animation: 'pulse-glow-text 3s ease-in-out infinite'
-          }}
-        >
+        <span className={`font-heading font-bold text-maverick-orange ${size === 'large' ? 'text-2xl' : 'text-xl'}`}>
           Mavericks Edge
         </span>
       )}
