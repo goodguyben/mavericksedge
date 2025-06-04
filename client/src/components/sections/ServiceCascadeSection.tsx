@@ -335,28 +335,7 @@ export default function ServiceCascadeSection() {
                           zoomEffects={item.zoomEffects}
                         />
 
-                        {/* Simplified overlay for active card */}
-                        {index === activeIndex && (
-                          <motion.div
-                            className="absolute inset-0 border-2 border-maverick-orange/50 rounded-2xl"
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            transition={{ duration: 0.3 }}
-                          />
-                        )}
-
-                        {/* Simplified glow effect */}
-                        {index === activeIndex && (
-                          <motion.div
-                            className="absolute inset-0 rounded-2xl pointer-events-none"
-                            style={{
-                              boxShadow: "0 0 30px rgba(255, 86, 48, 0.3)"
-                            }}
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            transition={{ duration: 0.4 }}
-                          />
-                        )}
+                        
                       </motion.div>
                     </motion.div>
                   );
