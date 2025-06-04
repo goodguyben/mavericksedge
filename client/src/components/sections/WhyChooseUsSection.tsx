@@ -1,4 +1,3 @@
-
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { Zap, Heart, FlaskConical, BookOpen, SmileIcon, Users, Sparkles, ArrowRight } from "lucide-react";
 import { useRef, useState } from "react";
@@ -103,7 +102,7 @@ export default function WhyChooseUsSection() {
           }}
           style={{ bottom: "20%", right: "15%" }}
         />
-        
+
         {/* Floating Geometric Shapes */}
         <motion.div
           className="absolute w-2 h-32 bg-gradient-to-b from-maverick-orange/20 to-transparent"
@@ -305,7 +304,7 @@ export default function WhyChooseUsSection() {
             </motion.div>
             <div className="h-px w-32 bg-gradient-to-r from-maverick-orange via-transparent to-transparent" />
           </motion.div>
-          
+
           <motion.p 
             className="text-gray-400 text-xl font-medium"
             whileHover={{ 
