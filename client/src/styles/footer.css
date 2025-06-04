@@ -112,14 +112,16 @@
 .footer-container {
   background-color: #1E1A18; /* Dark charcoal background */
   color: #F5F0EC; /* Light cream text */
-  padding: 4rem 0 2rem;
+  padding: 4rem 0 0;
   width: 100%;
+  margin-bottom: 0;
 }
 
 .footer-wrapper {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 1.5rem;
+  margin-bottom: 0;
 }
 
 .footer-top {
@@ -249,6 +251,8 @@
   align-items: center;
   flex-wrap: wrap;
   gap: 1rem;
+  padding-bottom: 1rem;
+  margin-bottom: 0;
 }
 
 .footer-copyright {
@@ -301,7 +305,7 @@
 
 @media screen and (max-width: 480px) {
   .footer-container {
-    padding: 3rem 0 1.5rem;
+    padding: 3rem 0 0;
   }
 
   .footer-logo {
