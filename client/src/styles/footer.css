@@ -89,9 +89,7 @@
 /* Newsletter responsive adjustments */
 @media (max-width: 640px) {
   .newsletter-container {
-    padding: 1rem 0.5rem;
-    margin-bottom: 0 !important;
-    margin-top: 0 !important;
+    padding: 0 0.5rem;
   }
   
   .newsletter-container:before {
@@ -99,13 +97,6 @@
     top: -10px;
     width: 100px;
     height: 100px;
-  }
-  
-  .newsletter-content {
-    margin-top: 0 !important;
-    margin-bottom: 0 !important;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
   }
 }
 
@@ -278,7 +269,7 @@
 @media screen and (max-width: 768px) {
   .footer-top {
     grid-template-columns: 1fr; /* Stack in mobile view */
-    gap: 2rem;
+    gap: 2.5rem;
   }
 
   .footer-bottom {
@@ -288,14 +279,12 @@
   }
   
   .newsletter-container {
-    margin-bottom: 1rem;
-    margin-top: 1rem;
+    margin-bottom: 0;
   }
   
   .footer-logo-section {
     align-items: center;
     text-align: center;
-    padding: 1rem 0;
   }
 }
 
