@@ -175,7 +175,7 @@ export default function WhyChooseUsSection() {
           {reasons.map((reason, index) => (
             <motion.div
               key={reason.id}
-              className="group cursor-pointer w-full max-w-sm h-96 md:h-96"
+              className="group cursor-pointer w-full max-w-sm h-[28rem] md:h-[28rem]"
               initial={{ opacity: 0, scale: 0.5, rotateY: -45 }}
               whileInView={{ opacity: 1, scale: 1, rotateY: 0 }}
               viewport={{ once: true, margin: "-100px" }}
