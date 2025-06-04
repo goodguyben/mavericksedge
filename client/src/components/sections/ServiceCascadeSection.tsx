@@ -164,43 +164,17 @@ export default function ServiceCascadeSection() {
     return unsubscribe;
   }, [scrollProgress, activeIndex, totalItems]);
 
-  // Memoized transform calculations for better performance
+  // Simplified transform for single card display
   const getCardTransform = useMemo(() => {
     return (index: number) => {
-      const diff = index - activeIndex;
-
-      if (diff === 0) {
-        return {
-          x: 0,
-          y: 0,
-          scale: 1,
-          opacity: 1,
-          rotateY: 0,
-          zIndex: 10,
-          filter: "blur(0px) brightness(1)"
-        };
-      }
-
-      if (Math.abs(diff) === 1) {
-        return {
-          x: diff > 0 ? 80 : -80,
-          y: 0,
-          scale: 0.85,
-          opacity: 0.4,
-          rotateY: diff > 0 ? -45 : 45,
-          zIndex: 5,
-          filter: "blur(1px) brightness(0.7)"
-        };
-      }
-
       return {
-        x: diff > 0 ? 120 + (diff - 1) * 20 : -120 - (Math.abs(diff) - 1) * 20,
-        y: Math.abs(diff) * 10,
-        scale: Math.max(0.5, 0.85 - Math.abs(diff) * 0.1),
-        opacity: Math.max(0, 0.4 - Math.abs(diff) * 0.15),
-        rotateY: diff > 0 ? -60 - (diff - 1) * 10 : 60 + (Math.abs(diff) - 1) * 10,
-        zIndex: Math.max(1, 5 - Math.abs(diff)),
-        filter: `blur(${Math.abs(diff)}px) brightness(${Math.max(0.3, 0.7 - Math.abs(diff) * 0.1)})`
+        x: 0,
+        y: 0,
+        scale: 1,
+        opacity: 1,
+        rotateY: 0,
+        zIndex: 10,
+        filter: "blur(0px) brightness(1)"
       };
     };
   }, [activeIndex]);
@@ -286,7 +260,7 @@ export default function ServiceCascadeSection() {
               <div className="relative w-full h-full" style={{ transformStyle: "preserve-3d" }}>
                 {allItems.map((item, index) => {
                   const transform = getCardTransform(index);
-                  const isVisible = Math.abs(index - activeIndex) <= 3;
+                  const isVisible = index === activeIndex; // Only show active card
 
                   if (!isVisible) return null;
 
@@ -299,23 +273,19 @@ export default function ServiceCascadeSection() {
                         backfaceVisibility: "hidden"
                       }}
                       animate={{
-                        x: transform.x,
-                        y: transform.y,
-                        scale: transform.scale,
-                        opacity: transform.opacity,
-                        rotateY: transform.rotateY,
-                        filter: transform.filter
+                        opacity: 1,
+                        scale: 1
                       }}
                       transition={{
                         type: "tween",
-                        duration: 0.6,
+                        duration: 0.5,
                         ease: [0.25, 0.46, 0.45, 0.94]
                       }}
                       onClick={() => handleDotClick(index)}
-                      whileHover={index === activeIndex ? { 
+                      whileHover={{ 
                         scale: 1.02,
                         transition: { duration: 0.2 }
-                      } : {}}
+                      }}
                     >
                       <motion.div 
                         className="relative w-full h-full rounded-2xl overflow-hidden"
@@ -364,7 +334,7 @@ export default function ServiceCascadeSection() {
             </div>
 
             {/* Optimized Content Area */}
-            <div className={`space-y-6 lg:space-y-8 ${
+            <div className={`space-y-6 lg:space-y-8 flex flex-col justify-center ${
               currentService.imagePosition === 'right' ? 'lg:col-start-1 lg:row-start-1' : ''
             }`}>
               <AnimatePresence mode="wait">
