@@ -1,5 +1,16 @@
 /* Footer Styles */
 
+/* Reset body and html margins to eliminate space below footer */
+html, body {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+body {
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+}
+
 /* Newsletter styles */
 .newsletter-container {
   width: 100%;
@@ -114,7 +125,8 @@
   color: #F5F0EC; /* Light cream text */
   padding: 4rem 0 0;
   width: 100%;
-  margin-bottom: 0;
+  margin: 0 !important;
+  padding-bottom: 0 !important;
 }
 
 .footer-wrapper {
