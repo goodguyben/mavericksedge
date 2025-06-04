@@ -222,14 +222,14 @@ export default function WhyChooseUsSection() {
               <motion.div 
                 className="relative p-6 rounded-2xl backdrop-blur-md border border-white/10 bg-gradient-to-br from-white/5 to-white/[0.02] overflow-hidden h-full flex flex-col justify-between"
                 whileHover={{ 
-                  borderColor: reason.color + "80",
-                  boxShadow: `0 25px 50px ${reason.color}60, 0 0 30px ${reason.color}40`
+                  borderColor: reason.color + "40",
+                  boxShadow: `0 20px 40px ${reason.color}20`
                 }}
                 transition={{ duration: 0.3 }}
               >
                 {/* Background Gradient Effect */}
                 <motion.div
-                  className={`absolute inset-0 bg-gradient-to-br ${reason.gradient} opacity-0 group-hover:opacity-15`}
+                  className={`absolute inset-0 bg-gradient-to-br ${reason.gradient} opacity-0 group-hover:opacity-5`}
                   transition={{ duration: 0.5 }}
                 />
 
@@ -239,7 +239,7 @@ export default function WhyChooseUsSection() {
                   whileHover={{ 
                     scale: 1.1, 
                     rotate: [0, -5, 5, 0],
-                    boxShadow: `0 15px 40px ${reason.color}60, 0 0 25px ${reason.color}50`
+                    boxShadow: `0 10px 30px ${reason.color}30`
                   }}
                   transition={{ duration: 0.3 }}
                 >
