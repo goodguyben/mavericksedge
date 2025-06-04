@@ -1,10 +1,11 @@
-import { lazy, Suspense, useEffect } from "react";
+import { lazy, Suspense, useEffect, useState } from "react";
 import { Route, Switch, useLocation } from "wouter";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { queryClient } from "@/lib/queryClient";
 import Layout from "@/components/Layout";
 import PageTransition from "@/components/PageTransition";
+import LoadingScreen from "@/components/ui/LoadingScreen"; // Assuming LoadingScreen is in this path
 
 
 // Lazy load pages
@@ -26,12 +27,26 @@ const PaymentConfirmed = lazy(() => import("@/pages/PaymentConfirmed"));
 
 export default function App() {
   const [location] = useLocation();
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [location]);
 
+  useEffect(() => {
+    // Simulate app initialization
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
+    <>
+    {isLoading ? (
+      <LoadingScreen />
+    ) : (
     <QueryClientProvider client={queryClient}>
       <PageTransition />
       <Layout>
@@ -57,5 +72,7 @@ export default function App() {
       </Layout>
       <Toaster />
     </QueryClientProvider>
+      )}
+      </>
   );
 }
