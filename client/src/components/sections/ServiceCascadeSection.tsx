@@ -54,7 +54,7 @@ export default function ServiceCascadeSection() {
             "/videos/services/Custom Interactive Websites 3.mp4"
           ],
           videoDurations: [11000, 7000, 11000], // 1st and 3rd extended by 4 seconds
-          zoomEffects: ['zoom-out', 'zoom-out', 'none'],
+          zoomEffects: ['zoom-out', 'none', 'zoom-out'],
           gradient: "from-orange-500/20 to-yellow-500/20"
         },
         {

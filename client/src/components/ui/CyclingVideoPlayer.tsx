@@ -75,7 +75,7 @@ export default function CyclingVideoPlayer({
           const isCurrentVideo = index < videos.length;
           
           const zoomEffect = zoomEffects[index] || 'none';
-          const zoomClass = zoomEffect === 'zoom-out' ? 'scale-125' : zoomEffect === 'zoom-in' ? 'scale-75' : 'scale-100';
+          const zoomClass = zoomEffect === 'zoom-out' ? 'scale-150' : zoomEffect === 'zoom-in' ? 'scale-75' : 'scale-100';
           
           return (
             <motion.div
@@ -88,9 +88,9 @@ export default function CyclingVideoPlayer({
             >
               <motion.div
                 className={`w-full h-full ${zoomClass}`}
-                initial={{ scale: zoomEffect === 'zoom-out' ? 1.25 : zoomEffect === 'zoom-in' ? 0.75 : 1 }}
-                animate={{ scale: zoomEffect === 'zoom-out' ? 1 : zoomEffect === 'zoom-in' ? 1 : 1 }}
-                transition={{ duration: zoomEffect !== 'none' ? 2 : 0, ease: "easeOut" }}
+                initial={{ scale: zoomEffect === 'zoom-out' ? 1.5 : zoomEffect === 'zoom-in' ? 0.75 : 1 }}
+                animate={{ scale: zoomEffect === 'zoom-out' ? 0.8 : zoomEffect === 'zoom-in' ? 1 : 1 }}
+                transition={{ duration: zoomEffect !== 'none' ? 3 : 0, ease: "easeOut" }}
               >
                 {isCurrentVideo ? (
                   <video
