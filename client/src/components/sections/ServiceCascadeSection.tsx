@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef } from "react";
-import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
+import React, { useState, useEffect, useRef, useMemo } from "react";
+import { motion, useScroll, useTransform, AnimatePresence, useMotionValue, useSpring } from "framer-motion";
 import { Code, PenTool, Brain, ChevronRight, Play, Pause } from "lucide-react";
 import TechButton from "../ui/tech-button";
 
@@ -29,6 +29,10 @@ export default function ServiceCascadeSection() {
     offset: ["start start", "end end"]
   });
 
+  // Smooth spring values for better performance
+  const springConfig = { stiffness: 100, damping: 30, mass: 0.8 };
+  const activeIndexSpring = useSpring(activeIndex, springConfig);
+
   const services: ServiceSection[] = [
     {
       id: "web-applications",
@@ -39,7 +43,7 @@ export default function ServiceCascadeSection() {
         {
           id: "websites",
           title: "Custom Interactive Websites",
-          description: "We craft custom interactive and 3D websites that engage users with motion, depth, and storytelling built to captivate and convert. Whether it’s scroll-triggered animations, immersive product showcases, or spatial design, we turn static sites into dynamic journeys.",
+          description: "We craft custom interactive and 3D websites that engage users with motion, depth, and storytelling built to captivate and convert. Whether it's scroll-triggered animations, immersive product showcases, or spatial design, we turn static sites into dynamic journeys.",
           image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop&crop=entropy",
           gradient: "from-orange-500/20 to-yellow-500/20"
         },
@@ -60,7 +64,7 @@ export default function ServiceCascadeSection() {
         {
           id: "performance",
           title: "Performance Optimization & Online Visibility",
-          description: "We enhance your website’s speed, mobile responsiveness, and Core Web Vitals to ensure a seamless user experience. Our strategies incorporate Generative Engine Optimization (GEO) to position your content in AI-generated responses across platforms like Google’s AI Overviews and ChatGPT. By focusing on structured data, semantic clarity, and user-centric design, we not only boost your search rankings but also increase visibility in AI-driven search results, driving higher engagement and conversions.",
+          description: "We enhance your website's speed, mobile responsiveness, and Core Web Vitals to ensure a seamless user experience. Our strategies incorporate Generative Engine Optimization (GEO) to position your content in AI-generated responses across platforms like Google's AI Overviews and ChatGPT. By focusing on structured data, semantic clarity, and user-centric design, we not only boost your search rankings but also increase visibility in AI-driven search results, driving higher engagement and conversions.",
           image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop&crop=entropy",
           gradient: "from-orange-500/20 to-red-500/20"
         }
@@ -75,14 +79,14 @@ export default function ServiceCascadeSection() {
         {
           id: "brand-strategy",
           title: "Brand Strategy & Design",
-          description: "We create adaptive brand strategies that connect your business with audiences across platforms through clarity and authenticity. Our services include logo design, brand guidelines, visual identity systems, and messaging frameworks, all crafted to build memorable, scalable brand experiences that evolve with your business. Every element is thoughtfully designed to build trust, inspire engagement, and reflect your brand’s true character.",
+          description: "We create adaptive brand strategies that connect your business with audiences across platforms through clarity and authenticity. Our services include logo design, brand guidelines, visual identity systems, and messaging frameworks, all crafted to build memorable, scalable brand experiences that evolve with your business. Every element is thoughtfully designed to build trust, inspire engagement, and reflect your brand's true character.",
           image: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=800&h=600&fit=crop&crop=entropy",
           gradient: "from-purple-500/20 to-pink-500/20"
         },
         {
           id: "social-media",
           title: "Social Media Management",
-          description: "Social media is about more than visibility; it’s about earning attention through relevance, consistency, and trust. Services include content planning, platform native strategy, community engagement, and performance analysis, all tailored to reflect your brand’s voice and values. ",
+          description: "Social media is about more than visibility; it's about earning attention through relevance, consistency, and trust. Services include content planning, platform native strategy, community engagement, and performance analysis, all tailored to reflect your brand's voice and values. ",
           image: "https://images.unsplash.com/photo-1611926653458-09294b3142bf?w=800&h=600&fit=crop&crop=entropy",
           gradient: "from-blue-500/20 to-purple-500/20"
         }
@@ -145,97 +149,61 @@ export default function ServiceCascadeSection() {
     }
   }, [activeIndex, services]);
 
-  // Scroll-based progression - optimized with throttling
+  // Optimized scroll-based progression
   const scrollProgress = useTransform(scrollYProgress, [0.2, 0.95], [0, totalItems - 1]);
 
   useEffect(() => {
-    let lastUpdate = 0;
     const unsubscribe = scrollProgress.on("change", (latest) => {
-      const now = Date.now();
-      if (now - lastUpdate > 16) { // Throttle to ~60fps
-        const newIndex = Math.round(latest);
-        if (newIndex !== activeIndex && newIndex >= 0 && newIndex < totalItems) {
-          setActiveIndex(newIndex);
-          setIsAutoPlaying(false);
-        }
-        lastUpdate = now;
+      const newIndex = Math.round(latest);
+      if (newIndex !== activeIndex && newIndex >= 0 && newIndex < totalItems) {
+        setActiveIndex(newIndex);
+        setIsAutoPlaying(false);
       }
     });
 
     return unsubscribe;
   }, [scrollProgress, activeIndex, totalItems]);
 
-  const getImageTransform = (index: number) => {
-    const diff = index - activeIndex;
+  // Memoized transform calculations for better performance
+  const getCardTransform = useMemo(() => {
+    return (index: number) => {
+      const diff = index - activeIndex;
 
-    if (diff === 0) {
-      // Active card - fully visible and prominent
+      if (diff === 0) {
+        return {
+          x: 0,
+          y: 0,
+          scale: 1,
+          opacity: 1,
+          rotateY: 0,
+          zIndex: 10,
+          filter: "blur(0px) brightness(1)"
+        };
+      }
+
+      if (Math.abs(diff) === 1) {
+        return {
+          x: diff > 0 ? 80 : -80,
+          y: 0,
+          scale: 0.85,
+          opacity: 0.4,
+          rotateY: diff > 0 ? -45 : 45,
+          zIndex: 5,
+          filter: "blur(1px) brightness(0.7)"
+        };
+      }
+
       return {
-        x: 0,
-        y: 0,
-        z: 0,
-        rotateY: 0,
-        rotateX: 0,
-        scale: 1,
-        opacity: 1,
-        filter: "blur(0px) brightness(1.1)",
-        zIndex: 10
+        x: diff > 0 ? 120 + (diff - 1) * 20 : -120 - (Math.abs(diff) - 1) * 20,
+        y: Math.abs(diff) * 10,
+        scale: Math.max(0.5, 0.85 - Math.abs(diff) * 0.1),
+        opacity: Math.max(0, 0.4 - Math.abs(diff) * 0.15),
+        rotateY: diff > 0 ? -60 - (diff - 1) * 10 : 60 + (Math.abs(diff) - 1) * 10,
+        zIndex: Math.max(1, 5 - Math.abs(diff)),
+        filter: `blur(${Math.abs(diff)}px) brightness(${Math.max(0.3, 0.7 - Math.abs(diff) * 0.1)})`
       };
-    } else if (diff === 1) {
-      // Next card - flipped and positioned to the right
-      return {
-        x: 100,
-        y: 0,
-        z: -200,
-        rotateY: -90,
-        rotateX: 0,
-        scale: 0.8,
-        opacity: 0.3,
-        filter: "blur(2px) brightness(0.6)",
-        zIndex: 5
-      };
-    } else if (diff === -1) {
-      // Previous card - flipped and positioned to the left
-      return {
-        x: -100,
-        y: 0,
-        z: -200,
-        rotateY: 90,
-        rotateX: 0,
-        scale: 0.8,
-        opacity: 0.3,
-        filter: "blur(2px) brightness(0.6)",
-        zIndex: 5
-      };
-    } else if (diff > 1) {
-      // Future cards - stacked to the right with increasing rotation
-      return {
-        x: 150 + (diff - 1) * 20,
-        y: (diff - 1) * 10,
-        z: -300 - (diff - 1) * 50,
-        rotateY: -120 - (diff - 1) * 15,
-        rotateX: (diff - 1) * 5,
-        scale: 0.6 - (diff - 1) * 0.1,
-        opacity: Math.max(0, 0.2 - (diff - 1) * 0.1),
-        filter: `blur(${2 + (diff - 1)}px) brightness(0.4)`,
-        zIndex: Math.max(1, 5 - diff)
-      };
-    } else {
-      // Past cards - stacked to the left with increasing rotation
-      const absDiff = Math.abs(diff);
-      return {
-        x: -150 - (absDiff - 1) * 20,
-        y: (absDiff - 1) * 10,
-        z: -300 - (absDiff - 1) * 50,
-        rotateY: 120 + (absDiff - 1) * 15,
-        rotateX: (absDiff - 1) * 5,
-        scale: 0.6 - (absDiff - 1) * 0.1,
-        opacity: Math.max(0, 0.2 - (absDiff - 1) * 0.1),
-        filter: `blur(${2 + (absDiff - 1)}px) brightness(0.4)`,
-        zIndex: Math.max(1, 5 - absDiff)
-      };
-    }
-  };
+    };
+  }, [activeIndex]);
 
   const handleDotClick = (index: number) => {
     setActiveIndex(index);
@@ -249,13 +217,23 @@ export default function ServiceCascadeSection() {
   const currentService = services[currentSection];
   const currentItem = allItems[activeIndex];
 
+  // Optimized animation variants
+  const cardVariants = {
+    hidden: { opacity: 0, rotateY: 180 },
+    visible: { opacity: 1, rotateY: 0 }
+  };
+
+  const contentVariants = {
+    hidden: { opacity: 0, x: 30 },
+    visible: { opacity: 1, x: 0 },
+    exit: { opacity: 0, x: -30 }
+  };
+
   return (
-    <div ref={containerRef} className="relative h-[400vh] sm:h-[500vh] bg-black" style={{ 
-      transformStyle: "preserve-3d" 
-    }}>
-      {/* Floating particles - reduced for performance and mobile */}
+    <div ref={containerRef} className="relative h-[400vh] sm:h-[500vh] bg-black">
+      {/* Reduced particle count for better performance */}
       <div className="absolute inset-0 pointer-events-none">
-        {[...Array(window?.innerWidth <= 768 ? 4 : 8)].map((_, i) => (
+        {[...Array(4)].map((_, i) => (
           <motion.div
             key={i}
             className="absolute w-1 h-1 bg-maverick-orange/30 rounded-full"
@@ -264,13 +242,14 @@ export default function ServiceCascadeSection() {
               top: `${Math.random() * 100}%`,
             }}
             animate={{
-              y: [-20, -100],
-              opacity: [0, 1, 0],
+              y: [-20, -80],
+              opacity: [0, 0.8, 0],
             }}
             transition={{
-              duration: 3 + Math.random() * 2,
+              duration: 4,
               repeat: Infinity,
-              delay: Math.random() * 2,
+              delay: i * 0.8,
+              ease: "easeInOut"
             }}
           />
         ))}
@@ -286,7 +265,7 @@ export default function ServiceCascadeSection() {
               key={currentSection}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
+              transition={{ duration: 0.4, ease: "easeOut" }}
               className="flex items-center justify-center gap-4 mb-4"
             >
               {currentService.icon}
@@ -300,172 +279,81 @@ export default function ServiceCascadeSection() {
             currentService.imagePosition === 'right' ? 'lg:grid-flow-col-dense' : ''
           }`}>
 
-            {/* 3D Image Stack */}
-            <div className={`relative h-48 xs:h-56 sm:h-64 md:h-72 lg:h-80 xl:h-96 2xl:h-[28rem] touch-manipulation ${
+            {/* Optimized 3D Image Stack */}
+            <div className={`relative h-48 xs:h-56 sm:h-64 md:h-72 lg:h-80 xl:h-96 2xl:h-[28rem] ${
               currentService.imagePosition === 'right' ? 'lg:col-start-2' : ''
-            }`} style={{ perspective: "1200px", perspectiveOrigin: "center center" }}>
+            }`} style={{ perspective: "1000px" }}>
               <div className="relative w-full h-full" style={{ transformStyle: "preserve-3d" }}>
                 {allItems.map((item, index) => {
-                  const transform = getImageTransform(index);
+                  const transform = getCardTransform(index);
+                  const isVisible = Math.abs(index - activeIndex) <= 3;
+
+                  if (!isVisible) return null;
 
                   return (
                     <motion.div
                       key={item.id}
-                      className="absolute inset-0 cursor-pointer"
+                      className="absolute inset-0 cursor-pointer will-change-transform"
                       style={{
-                        transformStyle: "preserve-3d",
                         zIndex: transform.zIndex,
-                        perspective: "1000px",
-                        transformOrigin: "center center",
+                        backfaceVisibility: "hidden"
                       }}
                       animate={{
                         x: transform.x,
                         y: transform.y,
-                        z: transform.z,
-                        rotateY: transform.rotateY,
-                        rotateX: transform.rotateX,
                         scale: transform.scale,
                         opacity: transform.opacity,
-                        filter: transform.filter,
+                        rotateY: transform.rotateY,
+                        filter: transform.filter
                       }}
                       transition={{
-                        type: "spring",
-                        stiffness: 120,
-                        damping: 20,
-                        mass: 1,
-                        duration: 1.2,
+                        type: "tween",
+                        duration: 0.6,
+                        ease: [0.25, 0.46, 0.45, 0.94]
                       }}
                       onClick={() => handleDotClick(index)}
                       whileHover={index === activeIndex ? { 
                         scale: 1.02,
-                        rotateY: transform.rotateY + 2,
-                        transition: { duration: 0.3 }
+                        transition: { duration: 0.2 }
                       } : {}}
                     >
                       <motion.div 
-                        className="relative w-full h-full rounded-2xl overflow-hidden group"
-                        initial={{ rotateY: 180, opacity: 0 }}
-                        animate={{ 
-                          rotateY: 0, 
-                          opacity: index === activeIndex ? 1 : transform.opacity,
-                        }}
-                        transition={{
-                          rotateY: {
-                            type: "spring",
-                            stiffness: 100,
-                            damping: 15,
-                            duration: 0.8,
-                          },
-                          opacity: {
-                            duration: 0.6,
-                            ease: "easeOut"
-                          }
-                        }}
-                        style={{
-                          transformStyle: "preserve-3d",
-                          backfaceVisibility: "hidden"
-                        }}
+                        className="relative w-full h-full rounded-2xl overflow-hidden"
+                        variants={cardVariants}
+                        initial="hidden"
+                        animate="visible"
+                        transition={{ duration: 0.5, ease: "easeOut" }}
                       >
-                        <picture>
-                          <source 
-                            srcSet={`${item.image}?fm=avif&w=800&h=600&q=90&auto=format&fit=crop&crop=entropy`}
-                            type="image/avif"
-                          />
-                          <source 
-                            srcSet={`${item.image}?fm=webp&w=800&h=600&q=90&auto=format&fit=crop&crop=entropy`}
-                            type="image/webp"
-                          />
-                          <img
-                            src={`${item.image}?w=800&h=600&q=90&auto=format&fit=crop&crop=entropy`}
-                            alt={item.title}
-                            className="w-full h-full object-cover transition-all duration-700 ease-out"
-                            style={{
-                              filter: index === activeIndex 
-                                ? 'brightness(1.1) contrast(1.05) saturate(1.1)' 
-                                : 'brightness(0.9) contrast(0.95) saturate(0.8)',
-                            }}
-                            loading={index === activeIndex ? "eager" : "lazy"}
-                            decoding="async"
-                            width="800"
-                            height="600"
-                          />
-                        </picture>
+                        <img
+                          src={`${item.image}?w=800&h=600&q=85&auto=format&fit=crop&crop=entropy`}
+                          alt={item.title}
+                          className="w-full h-full object-cover"
+                          loading={index === activeIndex ? "eager" : "lazy"}
+                          decoding="async"
+                          width="800"
+                          height="600"
+                        />
 
-                        {/* Enhanced gradient overlay with depth */}
+                        {/* Simplified overlay for active card */}
                         {index === activeIndex && (
                           <motion.div
-                            className="absolute inset-0"
-                            style={{
-                              background: `linear-gradient(135deg, 
-                                rgba(255, 86, 48, 0.1) 0%, 
-                                transparent 30%, 
-                                transparent 70%, 
-                                rgba(0, 0, 0, 0.3) 100%)`
-                            }}
+                            className="absolute inset-0 border-2 border-maverick-orange/50 rounded-2xl"
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
-                            transition={{ duration: 0.6 }}
+                            transition={{ duration: 0.3 }}
                           />
                         )}
 
-                        {/* Enhanced decorative border with glow effect */}
-                        {index === activeIndex && (
-                          <>
-                            <motion.div
-                              className="absolute inset-0 border-2 border-maverick-orange/40 rounded-2xl"
-                              initial={{ opacity: 0, scale: 0.95 }}
-                              animate={{ opacity: 1, scale: 1 }}
-                              transition={{ duration: 0.6, delay: 0.2 }}
-                            />
-                            <motion.div
-                              className="absolute inset-0 rounded-2xl"
-                              style={{
-                                boxShadow: `0 0 30px rgba(255, 86, 48, 0.3), 
-                                           inset 0 0 20px rgba(255, 215, 75, 0.1)`
-                              }}
-                              initial={{ opacity: 0 }}
-                              animate={{ opacity: 1 }}
-                              transition={{ duration: 0.8, delay: 0.3 }}
-                            />
-                          </>
-                        )}
-
-                        {/* Enhanced shimmer effect for visible cards */}
-                        {Math.abs(index - activeIndex) <= 2 && (
-                          <motion.div
-                            className="absolute inset-0 bg-gradient-to-r from-transparent via-white/8 to-transparent"
-                            style={{ transform: 'translateX(-100%)' }}
-                            animate={{ transform: 'translateX(100%)' }}
-                            transition={{
-                              duration: 2.5,
-                              repeat: Infinity,
-                              repeatDelay: index === activeIndex ? 4 : 6,
-                              ease: "easeInOut"
-                            }}
-                          />
-                        )}
-
-                        {/* Active card glow effect */}
+                        {/* Simplified glow effect */}
                         {index === activeIndex && (
                           <motion.div
                             className="absolute inset-0 rounded-2xl pointer-events-none"
                             style={{
-                              boxShadow: `0 0 40px rgba(255, 86, 48, 0.4), 
-                                         0 0 80px rgba(255, 86, 48, 0.2),
-                                         inset 0 0 40px rgba(255, 215, 75, 0.1)`
+                              boxShadow: "0 0 30px rgba(255, 86, 48, 0.3)"
                             }}
-                            animate={{
-                              boxShadow: [
-                                `0 0 40px rgba(255, 86, 48, 0.4), 0 0 80px rgba(255, 86, 48, 0.2)`,
-                                `0 0 60px rgba(255, 86, 48, 0.6), 0 0 120px rgba(255, 86, 48, 0.3)`,
-                                `0 0 40px rgba(255, 86, 48, 0.4), 0 0 80px rgba(255, 86, 48, 0.2)`
-                              ]
-                            }}
-                            transition={{
-                              duration: 3,
-                              repeat: Infinity,
-                              ease: "easeInOut"
-                            }}
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ duration: 0.4 }}
                           />
                         )}
                       </motion.div>
@@ -475,7 +363,7 @@ export default function ServiceCascadeSection() {
               </div>
             </div>
 
-            {/* Content Area */}
+            {/* Optimized Content Area */}
             <div className={`space-y-6 lg:space-y-8 ${
               currentService.imagePosition === 'right' ? 'lg:col-start-1 lg:row-start-1' : ''
             }`}>
@@ -483,36 +371,34 @@ export default function ServiceCascadeSection() {
                 <motion.div
                   key={activeIndex}
                   className="space-y-4 lg:space-y-6"
-                  initial={{ opacity: 0, x: currentService.imagePosition === 'right' ? -50 : 50 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: currentService.imagePosition === 'right' ? 50 : -50 }}
-                  transition={{ duration: 0.6, ease: "easeOut" }}
+                  variants={contentVariants}
+                  initial="hidden"
+                  animate="visible"
+                  exit="exit"
+                  transition={{ duration: 0.4, ease: "easeOut" }}
                 >
-                  {/* Title */}
                   <motion.h3
                     className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-bold text-white leading-tight"
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.1 }}
+                    transition={{ duration: 0.3, delay: 0.1 }}
                   >
                     {currentItem.title}
                   </motion.h3>
 
-                  {/* Description */}
                   <motion.p
                     className="text-sm sm:text-base lg:text-lg text-gray-300 leading-relaxed"
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.2 }}
+                    transition={{ duration: 0.3, delay: 0.15 }}
                   >
                     {currentItem.description}
                   </motion.p>
 
-                  {/* Button */}
                   <motion.div
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.3 }}
+                    transition={{ duration: 0.3, delay: 0.2 }}
                   >
                     <TechButton 
                       href={`/services/${currentService.id === 'web-applications' ? 'web-design-and-development-edmonton' : currentService.id === 'marketing-solutions' ? 'digital-marketing-edmonton' : 'ai-integration-automation-edmonton'}`}
@@ -525,95 +411,60 @@ export default function ServiceCascadeSection() {
                 </motion.div>
               </AnimatePresence>
 
-              {/* Progress Bar Navigation - hidden on mobile phones */}
+              {/* Simplified Progress Bar */}
               <div className="hidden sm:flex items-center justify-center pt-4 sm:pt-8">
                 <div className="flex items-center gap-4 md:gap-8">
-                  {/* Modern segmented progress bar */}
                   <div className="relative flex items-center">
-                    {/* Background track */}
                     <div className="absolute inset-0 h-1 bg-gray-800 rounded-full" />
-                    
-                    {/* Progress segments */}
+
                     <div className="relative flex items-center gap-0.5">
                       {allItems.map((_, index) => (
                         <motion.button
                           key={index}
-                          className="relative touch-manipulation flex items-center justify-center group"
+                          className="relative flex items-center justify-center"
                           onClick={() => handleDotClick(index)}
                           whileHover={{ scale: 1.1 }}
                           whileTap={{ scale: 0.9 }}
                           style={{ width: `${100 / allItems.length}px` }}
                         >
-                          {/* Individual segment */}
                           <motion.div
-                            className="h-1 rounded-full relative overflow-hidden"
+                            className="h-1 rounded-full"
                             style={{ width: `${100 / allItems.length - 2}px` }}
                             animate={{
                               backgroundColor: index <= activeIndex ? "#FF5A00" : "#374151"
                             }}
-                            transition={{ duration: 0.4, ease: "easeInOut" }}
-                          >
-                            {/* Active segment glow */}
-                            {index === activeIndex && (
-                              <motion.div
-                                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent"
-                                animate={{
-                                  x: ["-100%", "100%"]
-                                }}
-                                transition={{
-                                  duration: 1.5,
-                                  repeat: Infinity,
-                                  repeatDelay: 2,
-                                  ease: "easeInOut"
-                                }}
-                              />
-                            )}
-                          </motion.div>
-                          
-                          {/* Hover indicator */}
-                          <motion.div
-                            className="absolute -top-2 w-2 h-2 bg-maverick-orange rounded-full opacity-0 group-hover:opacity-100"
-                            initial={{ scale: 0 }}
-                            whileHover={{ scale: 1 }}
-                            transition={{ duration: 0.2 }}
+                            transition={{ duration: 0.3 }}
                           />
-                          
-                          {/* Active indicator */}
+
                           {index === activeIndex && (
                             <motion.div
                               className="absolute -top-3 w-3 h-3 border-2 border-maverick-orange bg-black rounded-full"
-                              initial={{ scale: 0, opacity: 0 }}
-                              animate={{ scale: 1, opacity: 1 }}
-                              transition={{ duration: 0.3, ease: "backOut" }}
+                              initial={{ scale: 0 }}
+                              animate={{ scale: 1 }}
+                              transition={{ duration: 0.2 }}
                             >
-                              <motion.div
-                                className="absolute inset-0.5 bg-maverick-orange rounded-full"
-                                animate={{ scale: [1, 1.2, 1] }}
-                                transition={{ duration: 2, repeat: Infinity }}
-                              />
+                              <div className="absolute inset-0.5 bg-maverick-orange rounded-full" />
                             </motion.div>
                           )}
                         </motion.button>
                       ))}
                     </div>
-                    
-                    {/* Progress text - hidden on mobile phones */}
+
                     <motion.div
                       className="absolute -bottom-6 left-0 text-xs text-gray-400 font-medium hidden sm:block"
                       animate={{ 
                         x: `${(activeIndex / (allItems.length - 1)) * 100}%`,
                         translateX: "-50%"
                       }}
-                      transition={{ duration: 0.4, ease: "easeInOut" }}
+                      transition={{ duration: 0.3 }}
                     >
                       {activeIndex + 1} of {allItems.length}
                     </motion.div>
                   </div>
 
-                  {/* Auto-play toggle - hidden on phones, visible on tablet+ */}
                   <motion.button
                     onClick={toggleAutoPlay}
-                    className="hidden lg:flex items-center gap-2 px-3 py-2 text-sm text-gray-400 hover:text-white transition-colors duration-200 touch-manipulation min-h-[44px] whitespace-nowrap"
+                    className="hidden lg:flex items-center gap-2 px-3 py-2 text-sm text-gray-400 hover:text-white transition-colors duration-200 min-h-[44px] whitespace-nowrap"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                   >
