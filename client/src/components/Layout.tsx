@@ -20,11 +20,12 @@ export default function Layout({ children }: LayoutProps) {
 
   // Ensure content is mounted before showing footer
   useEffect(() => {
+    setContentMounted(false);
     const timer = setTimeout(() => {
       setContentMounted(true);
-    }, 100);
+    }, 300);
     return () => clearTimeout(timer);
-  }, [children]);
+  }, [children, location]);
 
   return (
     <div className="min-h-screen flex flex-col">
