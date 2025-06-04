@@ -176,7 +176,7 @@ export default function WhyChooseUsSection() {
           {reasons.map((reason, index) => (
             <motion.div
               key={reason.id}
-              className="group cursor-pointer w-full max-w-sm"
+              className="group cursor-pointer w-full max-w-sm h-80 md:h-auto"
               initial={{ opacity: 0, scale: 0.5, rotateY: -45 }}
               whileInView={{ opacity: 1, scale: 1, rotateY: 0 }}
               viewport={{ once: true, margin: "-100px" }}
@@ -222,7 +222,7 @@ export default function WhyChooseUsSection() {
 
               {/* Main Card */}
               <motion.div 
-                className="relative p-6 rounded-2xl backdrop-blur-md border border-white/10 bg-gradient-to-br from-white/5 to-white/[0.02] overflow-hidden"
+                className="relative p-6 rounded-2xl backdrop-blur-md border border-white/10 bg-gradient-to-br from-white/5 to-white/[0.02] overflow-hidden h-full flex flex-col justify-between"
                 whileHover={{ 
                   borderColor: reason.color + "40",
                   boxShadow: `0 20px 40px ${reason.color}20`
@@ -249,16 +249,18 @@ export default function WhyChooseUsSection() {
                 </motion.div>
 
                 {/* Content */}
-                <h3 className="text-2xl font-bold text-white mb-3">
-                  {reason.title}
-                </h3>
+                <div className="flex-1">
+                  <h3 className="text-2xl font-bold text-white mb-3">
+                    {reason.title}
+                  </h3>
 
-                <motion.p 
-                  className="text-gray-400 leading-relaxed text-sm group-hover:text-gray-300"
-                  transition={{ duration: 0.3 }}
-                >
-                  {reason.description}
-                </motion.p>
+                  <motion.p 
+                    className="text-gray-400 leading-relaxed text-sm group-hover:text-gray-300"
+                    transition={{ duration: 0.3 }}
+                  >
+                    {reason.description}
+                  </motion.p>
+                </div>
 
                 {/* Decorative Corner Elements */}
                 <motion.div
