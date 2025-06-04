@@ -50,7 +50,7 @@ export default function App() {
     <QueryClientProvider client={queryClient}>
       <PageTransition />
       <Layout>
-        <Suspense fallback={<div className="h-screen w-full bg-[#121212] flex items-center justify-center">Loading...</div>}>
+        <Suspense fallback={<LoadingScreen isLoading={true} />}>
           <Switch>
             <Route path="/" component={Home} />
             <Route path="/services" component={Services} />
