@@ -16,12 +16,5 @@ export default function PageTransition() {
     }
   }, [location, prevLocation]);
 
-  return (
-    <div
-      className="page-transition"
-      style={{
-        transform: isTransitioning ? "translateY(0)" : "translateY(100%)",
-      }}
-    ></div>
-  );
+  return null;
 }
