@@ -10,20 +10,21 @@ interface LoadingScreenProps {
 export default function LoadingScreen({ 
   isLoading, 
   onLoadingComplete, 
-  minDisplayTime = 2000 
+  minDisplayTime = 3000 
 }: LoadingScreenProps) {
   const [shouldShow, setShouldShow] = useState(true);
   const [videoLoaded, setVideoLoaded] = useState(false);
 
   useEffect(() => {
-    // For Suspense fallback, show for exactly 2 seconds
-    const timer = setTimeout(() => {
-      setShouldShow(false);
-      onLoadingComplete?.();
-    }, 2000);
+    if (!isLoading && videoLoaded) {
+      const timer = setTimeout(() => {
+        setShouldShow(false);
+        onLoadingComplete?.();
+      }, minDisplayTime);
 
-    return () => clearTimeout(timer);
-  }, [onLoadingComplete]);
+      return () => clearTimeout(timer);
+    }
+  }, [isLoading, videoLoaded, minDisplayTime, onLoadingComplete]);
 
   const handleVideoLoad = () => {
     setVideoLoaded(true);
@@ -100,12 +101,12 @@ export default function LoadingScreen({
               </h1>
 
               <motion.div
-                className="w-64 h-1 bg-gray-800 rounded-full mx-auto mb-4 overflow-hidden"
+                className="w-64 h-1 bg-gray-800 rounded-full ml-auto mr-0 mb-4 overflow-hidden"
               >
                 <motion.div
                   initial={{ width: "0%" }}
                   animate={{ width: "100%" }}
-                  transition={{ duration: 2, ease: "easeInOut" }}
+                  transition={{ duration: 2.5, ease: "easeInOut" }}
                   className="h-full bg-gradient-to-r from-maverick-orange to-orange-600 rounded-full"
                 />
               </motion.div>

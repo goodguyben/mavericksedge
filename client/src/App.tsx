@@ -51,7 +51,7 @@ export default function App() {
       <QueryClientProvider client={queryClient}>
         <PageTransition />
         <Layout>
-          <Suspense fallback={<LoadingScreen isLoading={true} />}>
+          <Suspense fallback={<div />}>
             <Switch>
               <Route path="/" component={Home} />
               <Route path="/services" component={Services} />
