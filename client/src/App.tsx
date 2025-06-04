@@ -27,17 +27,31 @@ const PaymentConfirmed = lazy(() => import("@/pages/PaymentConfirmed"));
 
 export default function App() {
   const [location] = useLocation();
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [location]);
 
+  useEffect(() => {
+    // Simulate app initialization
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
+    <>
+    {isLoading ? (
+      <LoadingScreen />
+    ) : (
     <div className="min-h-screen opacity-0 animate-[fadeIn_0.3s_ease-in-out_forwards]">
       <QueryClientProvider client={queryClient}>
         <PageTransition />
         <Layout>
-          <Suspense fallback={<LoadingScreen isLoading={true} />}>
+          <Suspense fallback={<div />}>
             <Switch>
               <Route path="/" component={Home} />
               <Route path="/services" component={Services} />
@@ -60,5 +74,7 @@ export default function App() {
         <Toaster />
       </QueryClientProvider>
     </div>
+      )}
+      </>
   );
 }

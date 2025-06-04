@@ -3,40 +3,48 @@ import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 interface LoadingScreenProps {
-  isLoading?: boolean;
+  isLoading: boolean;
   onLoadingComplete?: () => void;
   minDisplayTime?: number;
 }
 
 export default function LoadingScreen({ 
-  isLoading = true, 
+  isLoading, 
   onLoadingComplete, 
-  minDisplayTime = 2000 
+  minDisplayTime = 3000 
 }: LoadingScreenProps) {
   const [shouldShow, setShouldShow] = useState(true);
-  const [startTime] = useState(Date.now());
+  const [videoLoaded, setVideoLoaded] = useState(false);
 
   useEffect(() => {
-    // For Suspense fallback, wait for minimum display time
-    const timer = setTimeout(() => {
-      setShouldShow(false);
-      onLoadingComplete?.();
-    }, minDisplayTime);
+    if (!isLoading && videoLoaded) {
+      const timer = setTimeout(() => {
+        setShouldShow(false);
+        onLoadingComplete?.();
+      }, minDisplayTime);
 
-    return () => clearTimeout(timer);
-  }, [minDisplayTime, onLoadingComplete]);
+      return () => clearTimeout(timer);
+    }
+  }, [isLoading, videoLoaded, minDisplayTime, onLoadingComplete]);
 
   const handleVideoLoad = () => {
-    // Video loaded but still respect minimum display time
+    setVideoLoaded(true);
+  };
+
+  const handleVideoEnd = () => {
+    if (!isLoading) {
+      setShouldShow(false);
+      onLoadingComplete?.();
+    }
   };
 
   return (
-    <AnimatePresence mode="wait">
+    <AnimatePresence>
       {shouldShow && (
         <motion.div
           initial={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.5, ease: "easeInOut" }}
+          transition={{ duration: 0.8, ease: "easeInOut" }}
           className="fixed inset-0 z-50 flex items-center justify-center bg-black"
         >
           {/* Background gradient */}
@@ -70,6 +78,7 @@ export default function LoadingScreen({
                 loop
                 playsInline
                 onLoadedData={handleVideoLoad}
+                onEnded={handleVideoEnd}
                 className="w-full h-full object-cover"
                 style={{ filter: 'brightness(1.1) contrast(1.1)' }}
               >
@@ -93,12 +102,15 @@ export default function LoadingScreen({
               </h1>
               
               <motion.div
+                initial={{ width: 0 }}
+                animate={{ width: "100%" }}
+                transition={{ duration: 2.5, ease: "easeInOut" }}
                 className="w-64 h-1 bg-gray-800 rounded-full mx-auto mb-4 overflow-hidden"
               >
                 <motion.div
-                  initial={{ width: "0%" }}
-                  animate={{ width: "100%" }}
-                  transition={{ duration: minDisplayTime / 1000, ease: "easeInOut" }}
+                  initial={{ x: "-100%" }}
+                  animate={{ x: "0%" }}
+                  transition={{ duration: 2.5, ease: "easeInOut" }}
                   className="h-full bg-gradient-to-r from-maverick-orange to-orange-600 rounded-full"
                 />
               </motion.div>
@@ -112,8 +124,8 @@ export default function LoadingScreen({
                 key={i}
                 className="absolute w-1 h-1 bg-maverick-orange rounded-full"
                 initial={{
-                  x: Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 800),
-                  y: typeof window !== 'undefined' ? window.innerHeight + 10 : 800,
+                  x: Math.random() * window.innerWidth,
+                  y: window.innerHeight + 10,
                   opacity: 0
                 }}
                 animate={{
