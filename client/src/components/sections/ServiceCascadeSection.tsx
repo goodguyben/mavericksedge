@@ -3,11 +3,74 @@ import { motion, useScroll, useTransform, AnimatePresence, useMotionValue, useSp
 import { Code, PenTool, Brain, ChevronRight, Play, Pause } from "lucide-react";
 import TechButton from "../ui/tech-button";
 
+// Media cycling component for multiple videos/images
+const MediaCycler = ({ mediaFiles, alt, className }: { 
+  mediaFiles: string[]; 
+  alt: string; 
+  className?: string; 
+}) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    if (mediaFiles.length <= 1) return;
+
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % mediaFiles.length);
+    }, 3000); // Change media every 3 seconds
+
+    return () => clearInterval(interval);
+  }, [mediaFiles.length]);
+
+  if (mediaFiles.length === 0) return null;
+
+  return (
+    <div className={`relative w-full h-full ${className}`}>
+      <AnimatePresence mode="wait">
+        {mediaFiles.map((file, index) => {
+          if (index !== currentIndex) return null;
+          
+          const isVideo = file.endsWith('.mp4') || file.endsWith('.mov');
+          
+          return (
+            <motion.div
+              key={file}
+              className="absolute inset-0"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.5 }}
+            >
+              {isVideo ? (
+                <video
+                  className="w-full h-full object-cover rounded-2xl"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                >
+                  <source src={file} type={`video/${file.split('.').pop()}`} />
+                </video>
+              ) : (
+                <img
+                  src={file}
+                  alt={alt}
+                  className="w-full h-full object-cover rounded-2xl"
+                  loading="lazy"
+                />
+              )}
+            </motion.div>
+          );
+        })}
+      </AnimatePresence>
+    </div>
+  );
+};
+
 interface CascadeItem {
   id: string;
   title: string;
   description: string;
-  image: string;
+  media: string[];
   gradient: string;
 }
 
@@ -44,28 +107,39 @@ export default function ServiceCascadeSection() {
           id: "websites",
           title: "Custom Interactive Websites",
           description: "We craft custom interactive and 3D websites that engage users with motion, depth, and storytelling built to captivate and convert. Whether it's scroll-triggered animations, immersive product showcases, or spatial design, we turn static sites into dynamic journeys.",
-          image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop&crop=entropy",
+          media: [
+            "/videos/services/Custom Interactive Websites 1.mp4",
+            "/videos/services/Custom Interactive Websites 2.mp4",
+            "/videos/services/Custom Interactive Websites 3.mp4"
+          ],
           gradient: "from-orange-500/20 to-yellow-500/20"
         },
         {
           id: "web-applications",
           title: "Productivity & Management Web Applications",
           description: "We develop web applications tailored to solve your unique operational challenges and streamline complex data management. From CRM software and asset management systems to interactive dashboards, our scalable, user-friendly solutions leverage AI-driven insights and low-code adaptability. Designed for seamless integration, these powerful tools empower your team to boost productivity, enhance decision-making, and accelerate business growth.",
-          image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=600&fit=crop&crop=entropy",
+          media: [
+            "/videos/services/Productivity & Management Web Applications 1.mp4",
+            "/videos/services/Productivity & Management Web Applications 2.png",
+            "/videos/services/Productivity & Management Web Applications 3.mp4"
+          ],
           gradient: "from-yellow-500/20 to-orange-500/20"
         },
         {
           id: "next-gen-ecommerce",
           title: "Next-Gen E-Commerce",
           description: "Launch and grow your online store with expertly crafted e-commerce sites on Shopify and WooCommerce. We build fast, secure storefronts with optimized checkout, seamless payment integration, inventory syncing, and built-in analytics to help you sell smarter. With AI-powered product recommendations built in, your customers discover what they want faster, boosting engagement and increasing sales.",
-          image: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800&h=600&fit=crop&crop=entropy",
+          media: [
+            "/videos/services/Next-Gen E-Commerce 1.mov",
+            "/videos/services/Next-Gen E-Commerce 2.mp4"
+          ],
           gradient: "from-emerald-500/20 to-teal-500/20"
         },
         {
           id: "performance",
           title: "Performance Optimization & Online Visibility",
           description: "We enhance your website's speed, mobile responsiveness, and Core Web Vitals to ensure a seamless user experience. Our strategies incorporate Generative Engine Optimization (GEO) to position your content in AI-generated responses across platforms like Google's AI Overviews and ChatGPT. By focusing on structured data, semantic clarity, and user-centric design, we not only boost your search rankings but also increase visibility in AI-driven search results, driving higher engagement and conversions.",
-          image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop&crop=entropy",
+          media: ["https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop&crop=entropy"],
           gradient: "from-orange-500/20 to-red-500/20"
         }
       ]
@@ -80,14 +154,14 @@ export default function ServiceCascadeSection() {
           id: "brand-strategy",
           title: "Brand Strategy & Design",
           description: "We create adaptive brand strategies that connect your business with audiences across platforms through clarity and authenticity. Our services include logo design, brand guidelines, visual identity systems, and messaging frameworks, all crafted to build memorable, scalable brand experiences that evolve with your business. Every element is thoughtfully designed to build trust, inspire engagement, and reflect your brand's true character.",
-          image: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=800&h=600&fit=crop&crop=entropy",
+          media: ["https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=800&h=600&fit=crop&crop=entropy"],
           gradient: "from-purple-500/20 to-pink-500/20"
         },
         {
           id: "social-media",
           title: "Social Media Management",
           description: "Social media is about more than visibility; it's about earning attention through relevance, consistency, and trust. Services include content planning, platform native strategy, community engagement, and performance analysis, all tailored to reflect your brand's voice and values. ",
-          image: "https://images.unsplash.com/photo-1611926653458-09294b3142bf?w=800&h=600&fit=crop&crop=entropy",
+          media: ["/videos/services/Social Media Management.mp4"],
           gradient: "from-blue-500/20 to-purple-500/20"
         }
       ]
@@ -102,21 +176,21 @@ export default function ServiceCascadeSection() {
           id: "ai-integration",
           title: "AI Integration & Automation",
           description: "Streamline your business operations with intelligent AI solutions that reduce manual work and increase efficiency. Our implementations are practical, measurable, and designed to deliver immediate ROI.",
-          image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=600&fit=crop&crop=entropy",
+          media: ["https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=600&fit=crop&crop=entropy"],
           gradient: "from-cyan-500/20 to-blue-500/20"
         },
         {
           id: "data-analytics",
           title: "AI-Powered Analytics",
           description: "Transform your business data into actionable insights with advanced AI analytics. We help you uncover hidden patterns, predict trends, and make data-driven decisions that accelerate growth.",
-          image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop&crop=entropy",
+          media: ["https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop&crop=entropy"],
           gradient: "from-green-500/20 to-cyan-500/20"
         },
         {
           id: "custom-ai",
           title: "Custom AI Solutions",
           description: "Develop bespoke AI applications tailored to your specific business challenges. From chatbots to predictive models, we create AI solutions that integrate seamlessly with your existing workflows.",
-          image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=800&h=600&fit=crop&crop=entropy",
+          media: ["https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=800&h=600&fit=crop&crop=entropy"],
           gradient: "from-indigo-500/20 to-purple-500/20"
         }
       ]
@@ -294,14 +368,10 @@ export default function ServiceCascadeSection() {
                         animate="visible"
                         transition={{ duration: 0.5, ease: "easeOut" }}
                       >
-                        <img
-                          src={`${item.image}?w=800&h=600&q=85&auto=format&fit=crop&crop=entropy`}
+                        <MediaCycler
+                          mediaFiles={item.media}
                           alt={item.title}
-                          className="w-full h-full object-cover"
-                          loading={index === activeIndex ? "eager" : "lazy"}
-                          decoding="async"
-                          width="800"
-                          height="600"
+                          className="w-full h-full"
                         />
 
                         {/* Simplified overlay for active card */}
