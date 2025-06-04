@@ -114,11 +114,7 @@ export default function Header() {
                   e.stopPropagation();
                   setServicesDropdownOpen(!servicesDropdownOpen);
                 }}
-                className={`px-3 py-2 min-h-[44px] rounded-md text-base font-medium transition-colors duration-200 inline-flex items-center touch-manipulation ${
-                  isCurrentPath('/services') || isCurrentPath('/services/web') || isCurrentPath('/services/marketing') || isCurrentPath('/services/ai') 
-                    ? 'text-maverick-orange' 
-                    : 'text-white hover:text-maverick-orange'
-                }`}
+                className="px-3 py-2 min-h-[44px] rounded-md text-base font-medium transition-colors duration-200 inline-flex items-center touch-manipulation text-maverick-orange hover:text-maverick-orange"
               >
                 <span>Services</span>
                 <ChevronDown className={`ml-2 h-4 w-4 transition-transform duration-200 ${
@@ -196,11 +192,7 @@ export default function Header() {
                   e.stopPropagation();
                   setPricingDropdownOpen(!pricingDropdownOpen);
                 }}
-                className={`px-3 py-2 min-h-[44px] rounded-md text-base font-medium transition-colors duration-200 inline-flex items-center touch-manipulation ${
-                  isCurrentPath('/pricing') || isCurrentPath('/pricing/web') || isCurrentPath('/pricing/marketing') || isCurrentPath('/pricing/ai') 
-                    ? 'text-maverick-orange' 
-                    : 'text-white hover:text-maverick-orange'
-                }`}
+                className="px-3 py-2 min-h-[44px] rounded-md text-base font-medium transition-colors duration-200 inline-flex items-center touch-manipulation text-maverick-orange hover:text-maverick-orange"
               >
                 <span>Pricing</span>
                 <ChevronDown className={`ml-2 h-4 w-4 transition-transform duration-200 ${
