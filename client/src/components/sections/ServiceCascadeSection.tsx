@@ -330,16 +330,22 @@ export default function ServiceCascadeSection() {
                       }}
                       transition={{
                         type: "spring",
-                        stiffness: 120,
-                        damping: 20,
-                        mass: 1,
-                        duration: 1.2,
+                        stiffness: 80,
+                        damping: 25,
+                        mass: 0.8,
+                        duration: 1.6,
+                        ease: "easeInOut"
                       }}
                       onClick={() => handleDotClick(index)}
                       whileHover={index === activeIndex ? { 
                         scale: 1.02,
                         rotateY: transform.rotateY + 2,
-                        transition: { duration: 0.3 }
+                        transition: { 
+                          type: "spring",
+                          stiffness: 300,
+                          damping: 30,
+                          duration: 0.4 
+                        }
                       } : {}}
                     >
                       <motion.div 
@@ -352,13 +358,14 @@ export default function ServiceCascadeSection() {
                         transition={{
                           rotateY: {
                             type: "spring",
-                            stiffness: 100,
-                            damping: 15,
-                            duration: 0.8,
+                            stiffness: 60,
+                            damping: 20,
+                            mass: 0.7,
+                            duration: 1.2,
                           },
                           opacity: {
-                            duration: 0.6,
-                            ease: "easeOut"
+                            duration: 0.8,
+                            ease: "easeInOut"
                           }
                         }}
                         style={{
@@ -486,7 +493,10 @@ export default function ServiceCascadeSection() {
                   initial={{ opacity: 0, x: currentService.imagePosition === 'right' ? -50 : 50 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: currentService.imagePosition === 'right' ? 50 : -50 }}
-                  transition={{ duration: 0.6, ease: "easeOut" }}
+                  transition={{ 
+                    duration: 0.8, 
+                    ease: [0.25, 0.46, 0.45, 0.94]
+                  }}
                 >
                   {/* Title */}
                   <motion.h3
@@ -551,7 +561,10 @@ export default function ServiceCascadeSection() {
                             animate={{
                               backgroundColor: index <= activeIndex ? "#FF5A00" : "#374151"
                             }}
-                            transition={{ duration: 0.4, ease: "easeInOut" }}
+                            transition={{ 
+                              duration: 0.6, 
+                              ease: [0.25, 0.46, 0.45, 0.94]
+                            }}
                           >
                             {/* Active segment glow */}
                             {index === activeIndex && (
