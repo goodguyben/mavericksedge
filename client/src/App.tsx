@@ -27,12 +27,26 @@ const PaymentConfirmed = lazy(() => import("@/pages/PaymentConfirmed"));
 
 export default function App() {
   const [location] = useLocation();
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [location]);
 
+  useEffect(() => {
+    // Simulate app initialization
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
+    <>
+    {isLoading ? (
+      <LoadingScreen />
+    ) : (
     <QueryClientProvider client={queryClient}>
       <PageTransition />
       <Layout>
@@ -58,5 +72,7 @@ export default function App() {
       </Layout>
       <Toaster />
     </QueryClientProvider>
+      )}
+      </>
   );
 }
