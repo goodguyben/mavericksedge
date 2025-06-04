@@ -114,14 +114,6 @@ export default function LoadingScreen({
                   className="h-full bg-gradient-to-r from-maverick-orange to-orange-600 rounded-full"
                 />
               </motion.div>
-              
-              <motion.p
-                animate={{ opacity: [0.5, 1, 0.5] }}
-                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                className="text-gray-400 text-sm"
-              >
-                Preparing your experience...
-              </motion.p>
             </motion.div>
           </motion.div>
 
