@@ -330,16 +330,20 @@ export default function ServiceCascadeSection() {
                       }}
                       transition={{
                         type: "spring",
-                        stiffness: 120,
-                        damping: 20,
-                        mass: 1,
-                        duration: 1.2,
+                        stiffness: 160,
+                        damping: 25,
+                        mass: 0.8,
+                        duration: 0.8,
+                        ease: [0.23, 1, 0.32, 1],
                       }}
                       onClick={() => handleDotClick(index)}
                       whileHover={index === activeIndex ? { 
                         scale: 1.02,
                         rotateY: transform.rotateY + 2,
-                        transition: { duration: 0.3 }
+                        transition: { 
+                          duration: 0.2,
+                          ease: [0.25, 0.46, 0.45, 0.94]
+                        }
                       } : {}}
                     >
                       <motion.div 
@@ -352,13 +356,13 @@ export default function ServiceCascadeSection() {
                         transition={{
                           rotateY: {
                             type: "spring",
-                            stiffness: 100,
-                            damping: 15,
-                            duration: 0.8,
+                            stiffness: 140,
+                            damping: 18,
+                            duration: 0.6,
                           },
                           opacity: {
-                            duration: 0.6,
-                            ease: "easeOut"
+                            duration: 0.4,
+                            ease: [0.4, 0, 0.2, 1]
                           }
                         }}
                         style={{
@@ -483,10 +487,14 @@ export default function ServiceCascadeSection() {
                 <motion.div
                   key={activeIndex}
                   className="space-y-4 lg:space-y-6"
-                  initial={{ opacity: 0, x: currentService.imagePosition === 'right' ? -50 : 50 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: currentService.imagePosition === 'right' ? 50 : -50 }}
-                  transition={{ duration: 0.6, ease: "easeOut" }}
+                  initial={{ opacity: 0, x: currentService.imagePosition === 'right' ? -30 : 30, y: 10 }}
+                  animate={{ opacity: 1, x: 0, y: 0 }}
+                  exit={{ opacity: 0, x: currentService.imagePosition === 'right' ? 30 : -30, y: -10 }}
+                  transition={{ 
+                    duration: 0.4, 
+                    ease: [0.25, 0.46, 0.45, 0.94],
+                    staggerChildren: 0.1
+                  }}
                 >
                   {/* Title */}
                   <motion.h3
