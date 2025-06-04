@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import '../styles/footer.css';
 import Newsletter from './Newsletter';
 import SEOFooter from './sections/SEOFooter';
@@ -6,14 +6,8 @@ import SEOFooter from './sections/SEOFooter';
 // Define a simple Footer component that uses the same Logo component as the header
 export default function FooterWrapper() {
   const footerRef = useRef<HTMLDivElement>(null);
-  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    // Ensure footer only becomes visible after a delay to prevent rendering before hero
-    const timer = setTimeout(() => {
-      setIsVisible(true);
-    }, 500);
-
     if (footerRef.current) {
       // Update year in footer
       const currentYearElement = footerRef.current.querySelector('#currentYear');
@@ -21,23 +15,15 @@ export default function FooterWrapper() {
         currentYearElement.textContent = new Date().getFullYear().toString();
       }
     }
-
-    return () => clearTimeout(timer);
   }, []);
 
   return (
-    <footer 
-      ref={footerRef} 
-      className={`footer-container transition-opacity duration-500 ${isVisible ? 'opacity-100' : 'opacity-0'}`}
-      role="contentinfo" 
-      aria-label="Site Footer"
-      style={{ visibility: isVisible ? 'visible' : 'hidden' }}
-    >
+    <footer ref={footerRef} className="footer-container" role="contentinfo" aria-label="Site Footer">
       <div className="footer-wrapper">
         <div className="footer-top">
           {/* Newsletter Subscription Section */}
           <div className="footer-logo-section">
-            {isVisible && <Newsletter />}
+            <Newsletter />
           </div>
 
           {/* Navigation Links Container - wraps the three nav sections */}

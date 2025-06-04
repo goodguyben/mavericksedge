@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -48,7 +49,7 @@ export default function LoadingScreen({
         >
           {/* Background gradient */}
           <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black" />
-
+          
           {/* Animated background effects */}
           <motion.div
             className="absolute inset-0 opacity-20"
@@ -84,7 +85,7 @@ export default function LoadingScreen({
                 <source src="/videos/logo_animation.mp4" type="video/mp4" />
                 Your browser does not support the video tag.
               </video>
-
+              
               {/* Glow effect overlay */}
               <div className="absolute inset-0 bg-gradient-to-br from-maverick-orange/20 via-transparent to-transparent rounded-full" />
             </div>
@@ -99,13 +100,16 @@ export default function LoadingScreen({
               <h1 className="text-2xl md:text-3xl font-bold text-white mb-4 font-heading">
                 Mavericks Edge
               </h1>
-
+              
               <motion.div
-                className="w-64 h-1 bg-gray-800 rounded-full ml-auto mr-0 mb-4 overflow-hidden"
+                initial={{ width: 0 }}
+                animate={{ width: "100%" }}
+                transition={{ duration: 2.5, ease: "easeInOut" }}
+                className="w-64 h-1 bg-gray-800 rounded-full mx-auto mb-4 overflow-hidden"
               >
                 <motion.div
-                  initial={{ width: "0%" }}
-                  animate={{ width: "100%" }}
+                  initial={{ x: "-100%" }}
+                  animate={{ x: "0%" }}
                   transition={{ duration: 2.5, ease: "easeInOut" }}
                   className="h-full bg-gradient-to-r from-maverick-orange to-orange-600 rounded-full"
                 />
