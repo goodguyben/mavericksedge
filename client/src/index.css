@@ -510,8 +510,21 @@ img {
 
 /* Optimize non-composited animations */
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px) translateZ(0); }
-  to { opacity: 1; transform: translateY(0) translateZ(0); }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    filter: drop-shadow(0 0 20px rgba(255, 86, 48, 0.6)) drop-shadow(0 0 40px rgba(255, 86, 48, 0.3));
+  }
+  50% {
+    filter: drop-shadow(0 0 30px rgba(255, 86, 48, 0.8)) drop-shadow(0 0 60px rgba(255, 86, 48, 0.5));
+  }
 }
 
 .fade-in {
@@ -580,7 +593,7 @@ img {
     letter-spacing: -0.01em;
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1, h2, h3, h4, h5, h5 {
     @apply font-heading font-bold tracking-tight text-maverick-cream;
     letter-spacing: -0.03em;
   }
