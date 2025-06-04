@@ -51,6 +51,7 @@ export default function App() {
       <QueryClientProvider client={queryClient}>
         <PageTransition />
         <Layout>
+          <Suspense fallback={<div />}>
             <Switch>
               <Route path="/" component={Home} />
               <Route path="/services" component={Services} />
@@ -68,6 +69,7 @@ export default function App() {
               <Route path="/payment-confirmed" component={PaymentConfirmed} />
               <Route component={NotFound} />
             </Switch>
+          </Suspense>
         </Layout>
         <Toaster />
       </QueryClientProvider>
@@ -76,4 +78,3 @@ export default function App() {
       </>
   );
 }
-```
