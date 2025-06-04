@@ -254,7 +254,7 @@ export default function ServiceCascadeSection() {
           }`}>
 
             {/* Optimized 3D Image Stack */}
-            <div className={`relative h-48 xs:h-56 sm:h-64 md:h-72 lg:h-80 xl:h-96 2xl:h-[28rem] ${
+            <div className={`relative aspect-[4/3] w-full ${
               currentService.imagePosition === 'right' ? 'lg:col-start-2' : ''
             }`} style={{ perspective: "1000px" }}>
               <div className="relative w-full h-full" style={{ transformStyle: "preserve-3d" }}>
@@ -334,7 +334,7 @@ export default function ServiceCascadeSection() {
             </div>
 
             {/* Optimized Content Area */}
-            <div className={`space-y-6 lg:space-y-8 flex flex-col justify-center items-start h-48 xs:h-56 sm:h-64 md:h-72 lg:h-80 xl:h-96 2xl:h-[28rem] ${
+            <div className={`space-y-6 lg:space-y-8 flex flex-col justify-center items-start ${
               currentService.imagePosition === 'right' ? 'lg:col-start-1 lg:row-start-1' : ''
             }`}>
               <AnimatePresence mode="wait">
