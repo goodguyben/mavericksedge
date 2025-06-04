@@ -120,7 +120,6 @@ export default function WhyChooseUsSection() {
           style={{ bottom: "30%", left: "5%" }}
         />
       </motion.div>
-
       <div className="container mx-auto relative z-10 max-w-7xl">
         {/* Header Section - keeping specified formatting */}
         <motion.div 
@@ -172,7 +171,7 @@ export default function WhyChooseUsSection() {
         </motion.div>
 
         {/* Creative Interactive Grid Layout */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12 place-items-center">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12 place-items-center pl-[0px] pr-[0px] ml-[-32px] mr-[-32px]">
           {reasons.map((reason, index) => (
             <motion.div
               key={reason.id}
