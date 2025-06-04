@@ -23,7 +23,7 @@ export default function Logo({ size = "medium", showText = true, noLink = false 
         alt="Mavericks Edge Logo" 
         className={`${sizeClasses[size]} object-contain animate-pulse`}
         style={{
-          filter: 'drop-shadow(0 0 30px rgba(255, 86, 48, 0.8)) drop-shadow(0 0 60px rgba(255, 86, 48, 0.5))',
+          filter: 'drop-shadow(0 0 40px rgba(255, 86, 48, 1)) drop-shadow(0 0 80px rgba(255, 86, 48, 0.8)) drop-shadow(0 0 120px rgba(255, 86, 48, 0.4))',
           animation: 'pulse-glow 3s ease-in-out infinite'
         }}
       />
@@ -31,7 +31,7 @@ export default function Logo({ size = "medium", showText = true, noLink = false 
         <span 
           className={`font-heading font-bold text-maverick-orange ${size === 'large' ? 'text-2xl' : 'text-xl'}`}
           style={{
-            textShadow: '0 0 20px rgba(255, 86, 48, 0.8), 0 0 40px rgba(255, 86, 48, 0.5)',
+            textShadow: '0 0 30px rgba(255, 86, 48, 1), 0 0 60px rgba(255, 86, 48, 0.8), 0 0 100px rgba(255, 86, 48, 0.4)',
             animation: 'pulse-glow-text 3s ease-in-out infinite'
           }}
         >
