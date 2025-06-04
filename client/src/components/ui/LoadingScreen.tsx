@@ -11,7 +11,7 @@ interface LoadingScreenProps {
 export default function LoadingScreen({ 
   isLoading, 
   onLoadingComplete, 
-  minDisplayTime = 3000 
+  minDisplayTime = 5000 
 }: LoadingScreenProps) {
   const [shouldShow, setShouldShow] = useState(true);
   const [videoLoaded, setVideoLoaded] = useState(false);
