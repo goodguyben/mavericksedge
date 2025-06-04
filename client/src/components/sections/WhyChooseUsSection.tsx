@@ -1,4 +1,3 @@
-
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { Zap, Heart, FlaskConical, BookOpen, SmileIcon, Users, Sparkles, ArrowRight } from "lucide-react";
 import { useRef, useState } from "react";
@@ -103,7 +102,7 @@ export default function WhyChooseUsSection() {
           }}
           style={{ bottom: "20%", right: "15%" }}
         />
-        
+
         {/* Floating Geometric Shapes */}
         <motion.div
           className="absolute w-2 h-32 bg-gradient-to-b from-maverick-orange/20 to-transparent"
@@ -120,7 +119,6 @@ export default function WhyChooseUsSection() {
           style={{ bottom: "30%", left: "5%" }}
         />
       </motion.div>
-
       <div className="container mx-auto relative z-10 max-w-7xl">
         {/* Header Section - keeping specified formatting */}
         <motion.div 
@@ -172,17 +170,16 @@ export default function WhyChooseUsSection() {
         </motion.div>
 
         {/* Creative Interactive Grid Layout */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12 place-items-center">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12 place-items-center pl-[0px] pr-[0px] ml-[-32px] mr-[-32px]">
           {reasons.map((reason, index) => (
             <motion.div
               key={reason.id}
-              className="group cursor-pointer w-full max-w-sm"
+              className="group cursor-pointer w-full max-w-sm h-[28rem] md:h-[28rem]"
               initial={{ opacity: 0, scale: 0.5, rotateY: -45 }}
               whileInView={{ opacity: 1, scale: 1, rotateY: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ 
                 duration: 0.8, 
-                delay: index * 0.15,
                 ease: "easeOut"
               }}
               whileHover={{ 
@@ -223,7 +220,7 @@ export default function WhyChooseUsSection() {
 
               {/* Main Card */}
               <motion.div 
-                className="relative p-6 rounded-2xl backdrop-blur-md border border-white/10 bg-gradient-to-br from-white/5 to-white/[0.02] overflow-hidden"
+                className="relative p-6 rounded-2xl backdrop-blur-md border border-white/10 bg-gradient-to-br from-white/5 to-white/[0.02] overflow-hidden h-full flex flex-col justify-between"
                 whileHover={{ 
                   borderColor: reason.color + "40",
                   boxShadow: `0 20px 40px ${reason.color}20`
@@ -250,16 +247,18 @@ export default function WhyChooseUsSection() {
                 </motion.div>
 
                 {/* Content */}
-                <h3 className="text-2xl font-bold text-white mb-3">
-                  {reason.title}
-                </h3>
+                <div className="flex-1">
+                  <h3 className="text-2xl font-bold text-white mb-3">
+                    {reason.title}
+                  </h3>
 
-                <motion.p 
-                  className="text-gray-400 leading-relaxed text-sm group-hover:text-gray-300"
-                  transition={{ duration: 0.3 }}
-                >
-                  {reason.description}
-                </motion.p>
+                  <motion.p 
+                    className="text-gray-400 leading-relaxed text-sm group-hover:text-gray-300"
+                    transition={{ duration: 0.3 }}
+                  >
+                    {reason.description}
+                  </motion.p>
+                </div>
 
                 {/* Decorative Corner Elements */}
                 <motion.div
@@ -305,7 +304,7 @@ export default function WhyChooseUsSection() {
             </motion.div>
             <div className="h-px w-32 bg-gradient-to-r from-maverick-orange via-transparent to-transparent" />
           </motion.div>
-          
+
           <motion.p 
             className="text-gray-400 text-xl font-medium"
             whileHover={{ 
