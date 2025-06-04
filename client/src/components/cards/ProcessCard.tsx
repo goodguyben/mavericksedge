@@ -14,28 +14,6 @@ interface ProcessCardProps {
 export default function ProcessCard({ step }: ProcessCardProps) {
   const stepFormatted = step.step.toString().padStart(2, '0');
   const [animationState, setAnimationState] = useState(false);
-  const [isHovered, setIsHovered] = useState(false);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-
-  useEffect(() => {
-    let rafId: number;
-
-    const handleMouseMove = (e: MouseEvent) => {
-      cancelAnimationFrame(rafId);
-      rafId = requestAnimationFrame(() => {
-        setMousePosition({ x: e.clientX, y: e.clientY });
-      });
-    };
-
-    if (isHovered) {
-      window.addEventListener('mousemove', handleMouseMove, { passive: true });
-    }
-
-    return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
-      cancelAnimationFrame(rafId);
-    };
-  }, [isHovered]);
 
   // Start animation after a delay based on the step number
   useEffect(() => {
