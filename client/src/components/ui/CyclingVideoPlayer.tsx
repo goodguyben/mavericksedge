@@ -21,7 +21,7 @@ export default function CyclingVideoPlayer({
   autoPlay = true,
   muted = true,
   loop = true,
-  cycleDuration = 4000
+  cycleDuration = 8000
 }: CyclingVideoPlayerProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isVideo, setIsVideo] = useState(true);

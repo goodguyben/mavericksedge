@@ -326,7 +326,7 @@ export default function ServiceCascadeSection() {
                           images={item.images || []}
                           alt={item.title}
                           className="w-full h-full"
-                          cycleDuration={3000}
+                          cycleDuration={7000}
                         />
 
                         {/* Simplified overlay for active card */}
