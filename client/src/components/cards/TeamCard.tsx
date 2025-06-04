@@ -12,7 +12,16 @@ interface TeamCardProps {
 
 export default function TeamCard({ member }: TeamCardProps) {
   return (
-    <div className="team-card text-center">
+    <motion.div 
+      className="team-card text-center"
+      whileHover={{ 
+        scale: 1.03, 
+        y: -5,
+        boxShadow: "0 15px 30px rgba(255, 86, 48, 0.1)"
+      }}
+      whileTap={{ scale: 0.98 }}
+      transition={{ duration: 0.3 }}
+    >
       <div className="rounded-xl overflow-hidden mb-4 relative service-card">
         <motion.img
           src={member.image}
@@ -24,6 +33,6 @@ export default function TeamCard({ member }: TeamCardProps) {
       </div>
       <h3 className="text-xl font-semibold">{member.name}</h3>
       <p className="text-[#AAAAAA]">{member.position}</p>
-    </div>
+    </motion.div>
   );
 }

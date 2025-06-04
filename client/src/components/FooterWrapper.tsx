@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import '../styles/footer.css';
 import Newsletter from './Newsletter';
 import SEOFooter from './sections/SEOFooter';
+import { motion } from 'framer-motion';
 
 // Define a simple Footer component that uses the same Logo component as the header
 export default function FooterWrapper() {

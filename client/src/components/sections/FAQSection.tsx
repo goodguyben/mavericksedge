@@ -1,4 +1,6 @@
-
+Adding micro-animations to FAQ items and chevron icons for enhanced user experience.
+```
+```replit_final_file
 import { motion } from "framer-motion";
 import { ChevronDown, ChevronUp, HelpCircle } from "lucide-react";
 import { useState } from "react";
@@ -59,7 +61,7 @@ export default function FAQSection() {
           {JSON.stringify(faqSchema)}
         </script>
       </Helmet>
-      
+
       <section className="py-24 px-5 md:px-10 bg-[#1A1A1A]">
         <div className="container mx-auto max-w-4xl">
           <motion.div
@@ -82,13 +84,20 @@ export default function FAQSection() {
             {faqs.map((faq, index) => (
               <motion.div
                 key={index}
+                className="bg-gradient-to-br from-gray-900 to-gray-800 border border-gray-700 rounded-lg overflow-hidden"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="bg-[#222222] rounded-lg border border-gray-800"
+                transition={{ delay: index * 0.1 }}
+                whileHover={{ 
+                  borderColor: "#ff5630",
+                  boxShadow: "0 5px 15px rgba(255, 86, 48, 0.1)"
+                }}
               >
-                <button
+                <motion.button
+                  whileHover={{ backgroundColor: "rgba(255, 86, 48, 0.05)" }}
+                  whileTap={{ scale: 0.98 }}
+                  transition={{ duration: 0.2 }}
                   onClick={() => toggleFAQ(index)}
                   className="w-full p-6 text-left flex justify-between items-center hover:bg-[#2A2A2A] transition-colors"
                 >
@@ -98,7 +107,7 @@ export default function FAQSection() {
                   ) : (
                     <ChevronDown className="w-5 h-5 text-maverick-orange flex-shrink-0" />
                   )}
-                </button>
+                </motion.button>
                 {openFAQ === index && (
                   <motion.div
                     initial={{ height: 0, opacity: 0 }}

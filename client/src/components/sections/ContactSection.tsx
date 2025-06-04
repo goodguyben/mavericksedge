@@ -140,7 +140,7 @@ export default function ContactSection({ fullPage = false }: ContactSectionProps
                     </FormItem>
                   )}
                 />
-                
+
                 <FormField
                   control={form.control}
                   name="phone"

@@ -92,15 +92,21 @@ export default function Header() {
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center space-x-6 xl:space-x-8" role="navigation" aria-label="Main Navigation">
             {/* Home Link */}
-            <Link 
-              href="/" 
-              className={`px-3 py-2 min-h-[44px] rounded-md text-base font-medium transition-colors duration-200 touch-manipulation flex items-center ${
-                isCurrentPath('/') ? 'text-maverick-orange' : 'text-white hover:text-maverick-orange'
-              }`} 
-              aria-current={isCurrentPath('/') ? 'page' : undefined}
-            >
-              Home
-            </Link>
+            <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ duration: 0.2 }}
+              >
+                <Link 
+                  href="/" 
+                  className={`px-3 py-2 min-h-[44px] rounded-md text-base font-medium transition-colors duration-200 touch-manipulation flex items-center ${
+                    isCurrentPath('/') ? 'text-maverick-orange' : 'text-white hover:text-maverick-orange'
+                  }`} 
+                  aria-current={isCurrentPath('/') ? 'page' : undefined}
+                >
+                  Home
+                </Link>
+              </motion.div>
 
             {/* Services Dropdown */}
             <div className="relative dropdown-container">
@@ -259,26 +265,38 @@ export default function Header() {
             </div>
 
             {/* About Link */}
-            <Link 
-              href="/about" 
-              className={`px-3 py-2 min-h-[44px] rounded-md text-base font-medium transition-colors duration-200 touch-manipulation flex items-center ${
-                isCurrentPath('/about') ? 'text-maverick-orange' : 'text-white hover:text-maverick-orange'
-              }`} 
-              aria-current={isCurrentPath('/about') ? 'page' : undefined}
-            >
-              About
-            </Link>
+            <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ duration: 0.2 }}
+              >
+                <Link 
+                  href="/about" 
+                  className={`px-3 py-2 min-h-[44px] rounded-md text-base font-medium transition-colors duration-200 touch-manipulation flex items-center ${
+                    isCurrentPath('/about') ? 'text-maverick-orange' : 'text-white hover:text-maverick-orange'
+                  }`} 
+                  aria-current={isCurrentPath('/about') ? 'page' : undefined}
+                >
+                  About
+                </Link>
+              </motion.div>
 
             {/* Contact Link */}
-            <Link 
-              href="/contact" 
-              className={`px-3 py-2 min-h-[44px] rounded-md text-base font-medium transition-colors duration-200 touch-manipulation flex items-center ${
-                isCurrentPath('/contact') ? 'text-maverick-orange' : 'text-white hover:text-maverick-orange'
-              }`} 
-              aria-current={isCurrentPath('/contact') ? 'page' : undefined}
-            >
-              Contact
-            </Link>
+            <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ duration: 0.2 }}
+              >
+                <Link 
+                  href="/contact" 
+                  className={`px-3 py-2 min-h-[44px] rounded-md text-base font-medium transition-colors duration-200 touch-manipulation flex items-center ${
+                    isCurrentPath('/contact') ? 'text-maverick-orange' : 'text-white hover:text-maverick-orange'
+                  }`} 
+                  aria-current={isCurrentPath('/contact') ? 'page' : undefined}
+                >
+                  Contact
+                </Link>
+              </motion.div>
           </nav>
 
           {/* Mobile Menu Button */}
