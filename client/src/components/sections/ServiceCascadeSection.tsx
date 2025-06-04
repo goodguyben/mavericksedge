@@ -175,22 +175,64 @@ export default function ServiceCascadeSection() {
         y: 0,
         z: 0,
         rotateY: 0,
+        rotateX: 0,
         scale: 1,
         opacity: 1,
-        filter: "blur(0px) brightness(1)",
+        filter: "blur(0px) brightness(1.1)",
         zIndex: 10
       };
-    } else {
-      // All non-active cards - completely hidden
+    } else if (diff === 1) {
+      // Next card - flipped and positioned to the right
       return {
-        x: 0,
+        x: 100,
         y: 0,
-        z: 0,
-        rotateY: 0,
-        scale: 1,
-        opacity: 0,
-        filter: "blur(0px) brightness(1)",
-        zIndex: 1
+        z: -200,
+        rotateY: -90,
+        rotateX: 0,
+        scale: 0.8,
+        opacity: 0.3,
+        filter: "blur(2px) brightness(0.6)",
+        zIndex: 5
+      };
+    } else if (diff === -1) {
+      // Previous card - flipped and positioned to the left
+      return {
+        x: -100,
+        y: 0,
+        z: -200,
+        rotateY: 90,
+        rotateX: 0,
+        scale: 0.8,
+        opacity: 0.3,
+        filter: "blur(2px) brightness(0.6)",
+        zIndex: 5
+      };
+    } else if (diff > 1) {
+      // Future cards - stacked to the right with increasing rotation
+      return {
+        x: 150 + (diff - 1) * 20,
+        y: (diff - 1) * 10,
+        z: -300 - (diff - 1) * 50,
+        rotateY: -120 - (diff - 1) * 15,
+        rotateX: (diff - 1) * 5,
+        scale: 0.6 - (diff - 1) * 0.1,
+        opacity: Math.max(0, 0.2 - (diff - 1) * 0.1),
+        filter: `blur(${2 + (diff - 1)}px) brightness(0.4)`,
+        zIndex: Math.max(1, 5 - diff)
+      };
+    } else {
+      // Past cards - stacked to the left with increasing rotation
+      const absDiff = Math.abs(diff);
+      return {
+        x: -150 - (absDiff - 1) * 20,
+        y: (absDiff - 1) * 10,
+        z: -300 - (absDiff - 1) * 50,
+        rotateY: 120 + (absDiff - 1) * 15,
+        rotateX: (absDiff - 1) * 5,
+        scale: 0.6 - (absDiff - 1) * 0.1,
+        opacity: Math.max(0, 0.2 - (absDiff - 1) * 0.1),
+        filter: `blur(${2 + (absDiff - 1)}px) brightness(0.4)`,
+        zIndex: Math.max(1, 5 - absDiff)
       };
     }
   };
@@ -208,7 +250,9 @@ export default function ServiceCascadeSection() {
   const currentItem = allItems[activeIndex];
 
   return (
-    <div ref={containerRef} className="relative h-[400vh] sm:h-[500vh] bg-black">
+    <div ref={containerRef} className="relative h-[400vh] sm:h-[500vh] bg-black" style={{ 
+      transformStyle: "preserve-3d" 
+    }}>
       {/* Floating particles - reduced for performance and mobile */}
       <div className="absolute inset-0 pointer-events-none">
         {[...Array(window?.innerWidth <= 768 ? 4 : 8)].map((_, i) => (
@@ -257,10 +301,10 @@ export default function ServiceCascadeSection() {
           }`}>
 
             {/* 3D Image Stack */}
-            <div className={`relative h-48 xs:h-56 sm:h-64 md:h-72 lg:h-80 xl:h-96 2xl:h-[28rem] perspective-1000 touch-manipulation ${
+            <div className={`relative h-48 xs:h-56 sm:h-64 md:h-72 lg:h-80 xl:h-96 2xl:h-[28rem] touch-manipulation ${
               currentService.imagePosition === 'right' ? 'lg:col-start-2' : ''
-            }`}>
-              <div className="relative w-full h-full preserve-3d">
+            }`} style={{ perspective: "1200px", perspectiveOrigin: "center center" }}>
+              <div className="relative w-full h-full" style={{ transformStyle: "preserve-3d" }}>
                 {allItems.map((item, index) => {
                   const transform = getImageTransform(index);
 
@@ -271,23 +315,57 @@ export default function ServiceCascadeSection() {
                       style={{
                         transformStyle: "preserve-3d",
                         zIndex: transform.zIndex,
+                        perspective: "1000px",
+                        transformOrigin: "center center",
                       }}
                       animate={{
                         x: transform.x,
                         y: transform.y,
                         z: transform.z,
                         rotateY: transform.rotateY,
+                        rotateX: transform.rotateX,
                         scale: transform.scale,
                         opacity: transform.opacity,
                         filter: transform.filter,
                       }}
                       transition={{
-                        duration: 1.5,
-                        ease: [0.25, 0.46, 0.45, 0.94],
+                        type: "spring",
+                        stiffness: 120,
+                        damping: 20,
+                        mass: 1,
+                        duration: 1.2,
                       }}
                       onClick={() => handleDotClick(index)}
+                      whileHover={index === activeIndex ? { 
+                        scale: 1.02,
+                        rotateY: transform.rotateY + 2,
+                        transition: { duration: 0.3 }
+                      } : {}}
                     >
-                      <div className="relative w-full h-full rounded-2xl overflow-hidden group">
+                      <motion.div 
+                        className="relative w-full h-full rounded-2xl overflow-hidden group"
+                        initial={{ rotateY: 180, opacity: 0 }}
+                        animate={{ 
+                          rotateY: 0, 
+                          opacity: index === activeIndex ? 1 : transform.opacity,
+                        }}
+                        transition={{
+                          rotateY: {
+                            type: "spring",
+                            stiffness: 100,
+                            damping: 15,
+                            duration: 0.8,
+                          },
+                          opacity: {
+                            duration: 0.6,
+                            ease: "easeOut"
+                          }
+                        }}
+                        style={{
+                          transformStyle: "preserve-3d",
+                          backfaceVisibility: "hidden"
+                        }}
+                      >
                         <picture>
                           <source 
                             srcSet={`${item.image}?fm=avif&w=800&h=600&q=90&auto=format&fit=crop&crop=entropy`}
@@ -352,21 +430,45 @@ export default function ServiceCascadeSection() {
                           </>
                         )}
 
-                        {/* Subtle shimmer effect for non-active cards */}
-                        {index !== activeIndex && Math.abs(index - activeIndex) <= 2 && (
+                        {/* Enhanced shimmer effect for visible cards */}
+                        {Math.abs(index - activeIndex) <= 2 && (
                           <motion.div
-                            className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent"
+                            className="absolute inset-0 bg-gradient-to-r from-transparent via-white/8 to-transparent"
                             style={{ transform: 'translateX(-100%)' }}
                             animate={{ transform: 'translateX(100%)' }}
                             transition={{
-                              duration: 2,
+                              duration: 2.5,
                               repeat: Infinity,
-                              repeatDelay: 3,
+                              repeatDelay: index === activeIndex ? 4 : 6,
                               ease: "easeInOut"
                             }}
                           />
                         )}
-                      </div>
+
+                        {/* Active card glow effect */}
+                        {index === activeIndex && (
+                          <motion.div
+                            className="absolute inset-0 rounded-2xl pointer-events-none"
+                            style={{
+                              boxShadow: `0 0 40px rgba(255, 86, 48, 0.4), 
+                                         0 0 80px rgba(255, 86, 48, 0.2),
+                                         inset 0 0 40px rgba(255, 215, 75, 0.1)`
+                            }}
+                            animate={{
+                              boxShadow: [
+                                `0 0 40px rgba(255, 86, 48, 0.4), 0 0 80px rgba(255, 86, 48, 0.2)`,
+                                `0 0 60px rgba(255, 86, 48, 0.6), 0 0 120px rgba(255, 86, 48, 0.3)`,
+                                `0 0 40px rgba(255, 86, 48, 0.4), 0 0 80px rgba(255, 86, 48, 0.2)`
+                              ]
+                            }}
+                            transition={{
+                              duration: 3,
+                              repeat: Infinity,
+                              ease: "easeInOut"
+                            }}
+                          />
+                        )}
+                      </motion.div>
                     </motion.div>
                   );
                 })}
