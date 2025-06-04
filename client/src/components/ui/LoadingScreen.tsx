@@ -15,26 +15,39 @@ export default function LoadingScreen({
 }: LoadingScreenProps) {
   const [shouldShow, setShouldShow] = useState(true);
   const [videoLoaded, setVideoLoaded] = useState(false);
+  const [minTimeElapsed, setMinTimeElapsed] = useState(false);
 
   useEffect(() => {
-    if (!isLoading && videoLoaded) {
-      const timer = setTimeout(() => {
-        setShouldShow(false);
-        onLoadingComplete?.();
-      }, minDisplayTime);
+    // Start minimum time countdown immediately
+    const minTimeTimer = setTimeout(() => {
+      setMinTimeElapsed(true);
+    }, minDisplayTime);
 
-      return () => clearTimeout(timer);
+    return () => clearTimeout(minTimeTimer);
+  }, [minDisplayTime]);
+
+  useEffect(() => {
+    // Only hide loading screen if both conditions are met:
+    // 1. Actual loading is complete
+    // 2. Minimum display time has elapsed
+    if (!isLoading && minTimeElapsed && videoLoaded) {
+      setShouldShow(false);
+      onLoadingComplete?.();
     }
-  }, [isLoading, videoLoaded, minDisplayTime, onLoadingComplete]);
+  }, [isLoading, minTimeElapsed, videoLoaded, onLoadingComplete]);
 
   const handleVideoLoad = () => {
     setVideoLoaded(true);
   };
 
   const handleVideoEnd = () => {
-    if (!isLoading) {
-      setShouldShow(false);
-      onLoadingComplete?.();
+    // Video ended but still loading or min time not elapsed - restart video
+    if (isLoading || !minTimeElapsed) {
+      const video = document.querySelector('video') as HTMLVideoElement;
+      if (video) {
+        video.currentTime = 0;
+        video.play();
+      }
     }
   };
 
@@ -75,7 +88,7 @@ export default function LoadingScreen({
               <video
                 autoPlay
                 muted
-                loop
+                loop={isLoading || !minTimeElapsed} // Loop if still loading or min time not elapsed
                 playsInline
                 onLoadedData={handleVideoLoad}
                 onEnded={handleVideoEnd}
@@ -101,19 +114,45 @@ export default function LoadingScreen({
                 Mavericks Edge
               </h1>
               
+              {/* Dynamic progress bar based on minimum time */}
               <motion.div
                 initial={{ width: 0 }}
                 animate={{ width: "100%" }}
-                transition={{ duration: 2.5, ease: "easeInOut" }}
+                transition={{ 
+                  duration: minDisplayTime / 1000, 
+                  ease: "easeInOut",
+                  repeat: (!minTimeElapsed || isLoading) ? Infinity : 0,
+                  repeatType: "restart"
+                }}
                 className="w-64 h-1 bg-gray-800 rounded-full mx-auto mb-4 overflow-hidden"
               >
                 <motion.div
                   initial={{ x: "-100%" }}
                   animate={{ x: "0%" }}
-                  transition={{ duration: 2.5, ease: "easeInOut" }}
+                  transition={{ 
+                    duration: minDisplayTime / 1000, 
+                    ease: "easeInOut",
+                    repeat: (!minTimeElapsed || isLoading) ? Infinity : 0,
+                    repeatType: "restart"
+                  }}
                   className="h-full bg-gradient-to-r from-maverick-orange to-orange-600 rounded-full"
                 />
               </motion.div>
+
+              {/* Status text */}
+              <motion.p
+                animate={{
+                  opacity: [0.5, 1, 0.5],
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+                className="text-sm text-gray-400"
+              >
+                {!minTimeElapsed ? "Loading Experience..." : isLoading ? "Finalizing..." : "Ready!"}
+              </motion.p>
             </motion.div>
           </motion.div>
 
@@ -124,8 +163,8 @@ export default function LoadingScreen({
                 key={i}
                 className="absolute w-1 h-1 bg-maverick-orange rounded-full"
                 initial={{
-                  x: Math.random() * window.innerWidth,
-                  y: window.innerHeight + 10,
+                  x: Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1000),
+                  y: (typeof window !== 'undefined' ? window.innerHeight : 1000) + 10,
                   opacity: 0
                 }}
                 animate={{
