@@ -334,7 +334,7 @@ export default function ServiceCascadeSection() {
             </div>
 
             {/* Optimized Content Area */}
-            <div className={`space-y-6 lg:space-y-8 flex flex-col justify-center ${
+            <div className={`space-y-6 lg:space-y-8 flex flex-col justify-center items-start h-full ${
               currentService.imagePosition === 'right' ? 'lg:col-start-1 lg:row-start-1' : ''
             }`}>
               <AnimatePresence mode="wait">
