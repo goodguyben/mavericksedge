@@ -520,10 +520,19 @@ img {
 
 @keyframes pulse-glow {
   0%, 100% {
-    filter: drop-shadow(0 0 20px rgba(255, 86, 48, 0.6)) drop-shadow(0 0 40px rgba(255, 86, 48, 0.3));
+    filter: drop-shadow(0 0 30px rgba(255, 86, 48, 0.8)) drop-shadow(0 0 60px rgba(255, 86, 48, 0.5));
   }
   50% {
-    filter: drop-shadow(0 0 30px rgba(255, 86, 48, 0.8)) drop-shadow(0 0 60px rgba(255, 86, 48, 0.5));
+    filter: drop-shadow(0 0 45px rgba(255, 86, 48, 1)) drop-shadow(0 0 80px rgba(255, 86, 48, 0.7));
+  }
+}
+
+@keyframes pulse-glow-text {
+  0%, 100% {
+    text-shadow: 0 0 20px rgba(255, 86, 48, 0.8), 0 0 40px rgba(255, 86, 48, 0.5);
+  }
+  50% {
+    text-shadow: 0 0 30px rgba(255, 86, 48, 1), 0 0 60px rgba(255, 86, 48, 0.7);
   }
 }
 
