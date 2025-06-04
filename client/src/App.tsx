@@ -51,7 +51,7 @@ export default function App() {
       <QueryClientProvider client={queryClient}>
         <PageTransition />
         <Layout>
-          <Suspense fallback={<div />}>
+          <Suspense fallback={<div className="min-h-screen bg-black" />}>
             <Switch>
               <Route path="/" component={Home} />
               <Route path="/services" component={Services} />
