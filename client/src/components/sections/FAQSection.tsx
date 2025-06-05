@@ -1,4 +1,6 @@
-
+Adding micro-animations to FAQ items and chevron icons for enhanced user experience.
+```
+```replit_final_file
 import { motion } from "framer-motion";
 import { ChevronDown, ChevronUp, HelpCircle } from "lucide-react";
 import { useState } from "react";

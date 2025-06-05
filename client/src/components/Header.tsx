@@ -66,7 +66,11 @@ export default function Header() {
   return (
     <>
       <motion.header 
-        className="fixed top-0 left-0 w-full py-3 px-4 sm:px-6 lg:px-8 z-[9999] transition-all duration-300 backdrop-blur-md border-b border-maverick-orange/10 bg-black/80"
+        className={`fixed top-0 left-0 w-full py-3 px-4 sm:px-6 lg:px-8 z-[9999] transition-all duration-300 backdrop-blur-lg border-b border-maverick-orange/20 ${
+          isScrolled 
+            ? 'bg-[#121212]/95 shadow-lg shadow-black/20' 
+            : 'bg-[#121212]/80'
+        }`}
         role="banner"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -75,7 +79,7 @@ export default function Header() {
           delay: isHomePage ? 4.0 : 0,
           ease: "easeInOut"
         }}
-        style={{
+        style={{ 
           position: 'fixed',
           top: 0,
           left: 0,
