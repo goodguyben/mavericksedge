@@ -747,6 +747,39 @@ img {
   animation: color-shift 3s ease infinite;
 }
 
+/* Enhanced gradient animations */
+@keyframes gradient-x {
+  0%, 100% {
+    background-size: 200% 200%;
+    background-position: left center;
+  }
+  50% {
+    background-size: 200% 200%;
+    background-position: right center;
+  }
+}
+
+.animate-gradient-x {
+  animation: gradient-x 3s ease infinite;
+}
+
+.bg-size-200 {
+  background-size: 200% 200%;
+}
+
+/* Enhanced typography utilities */
+.font-black {
+  font-weight: 900;
+}
+
+.tracking-tighter {
+  letter-spacing: -0.05em;
+}
+
+.leading-none {
+  line-height: 1;
+}
+
 /* Improved contrast for accessibility */
 .text-improved-contrast {
   color: #DDDDDD; /* Provides better contrast against dark backgrounds */
