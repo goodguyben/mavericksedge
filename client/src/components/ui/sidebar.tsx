@@ -242,7 +242,7 @@ const Sidebar = React.forwardRef<
         />
         <div
           className={cn(
-            "z-50 hidden h-svh w-[--sidebar-width] transition-[left,right,width] duration-200 ease-linear md:flex",
+            "fixed inset-y-0 z-10 hidden h-svh w-[--sidebar-width] transition-[left,right,width] duration-200 ease-linear md:flex",
             side === "left"
               ? "left-0 group-data-[collapsible=offcanvas]:left-[calc(var(--sidebar-width)*-1)]"
               : "right-0 group-data-[collapsible=offcanvas]:right-[calc(var(--sidebar-width)*-1)]",
@@ -252,26 +252,11 @@ const Sidebar = React.forwardRef<
               : "group-data-[collapsible=icon]:w-[--sidebar-width-icon] group-data-[side=left]:border-r group-data-[side=right]:border-l",
             className
           )}
-          style={{ 
-            position: 'fixed', 
-            top: 0, 
-            bottom: 0, 
-            height: '100vh',
-            zIndex: 9999
-          }}
           {...props}
         >
           <div
             data-sidebar="sidebar"
             className="flex h-full w-full flex-col bg-sidebar group-data-[variant=floating]:rounded-lg group-data-[variant=floating]:border group-data-[variant=floating]:border-sidebar-border group-data-[variant=floating]:shadow"
-            style={{ 
-              position: 'fixed',
-              top: 0,
-              bottom: 0,
-              height: '100vh', 
-              overflow: 'hidden',
-              overflowY: 'auto'
-            }}
           >
             {children}
           </div>
@@ -430,13 +415,6 @@ const SidebarContent = React.forwardRef<
         "flex min-h-0 flex-1 flex-col gap-2 overflow-auto group-data-[collapsible=icon]:overflow-hidden",
         className
       )}
-      style={{ 
-        position: 'relative', 
-        height: '100%',
-        maxHeight: '100vh',
-        overflowY: 'auto',
-        overflowX: 'hidden'
-      }}
       {...props}
     />
   )
