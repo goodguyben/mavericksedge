@@ -28,35 +28,29 @@ const PaymentConfirmed = lazy(() => import("@/pages/PaymentConfirmed"));
 
 export default function App() {
   const [location] = useLocation();
-  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [location]);
 
-  useEffect(() => {
-    // Simulate app initialization
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 2000);
-
-    return () => clearTimeout(timer);
-  }, []);
+  // Simple fallback component for suspense
+  const SimpleFallback = () => (
+    <div className="min-h-screen flex items-center justify-center bg-black">
+      <div className="text-center">
+        <h2 className="text-2xl font-bold text-white mb-4">Loading...</h2>
+        <div className="w-32 h-1 bg-gray-800 rounded-full mx-auto overflow-hidden">
+          <div className="h-full w-full bg-maverick-orange rounded-full" />
+        </div>
+      </div>
+    </div>
+  );
 
   return (
-    <>
-    {isLoading ? (
-      <LoadingScreen />
-    ) : (
-    <div className="min-h-screen opacity-0 animate-[fadeIn_0.3s_ease-in-out_forwards]">
+    <div className="min-h-screen">
       <QueryClientProvider client={queryClient}>
         <PageTransition />
         <Layout>
-          <Suspense fallback={
-            <div className="min-h-screen flex items-center justify-center bg-black">
-              <div className="text-white text-xl">Loading...</div>
-            </div>
-          }>
+          <Suspense fallback={<SimpleFallback />}>
             <Switch>
               <Route path="/" component={Home} />
               <Route path="/services" component={Services} />
@@ -79,7 +73,5 @@ export default function App() {
         <Toaster />
       </QueryClientProvider>
     </div>
-      )}
-      </>
   );
 }
