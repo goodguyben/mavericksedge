@@ -19,11 +19,11 @@
 
   body {
     margin: 0;
-    display: flex;
-    place-items: center;
-    min-width: 320px;
-    min-height: 100vh;
-    padding-top: 80px !important;
+    padding: 0;
+    background-color: #121212;
+    color: white;
+    font-family: 'Inter', system-ui, sans-serif;
+    line-height: 1.6;
   }
 
   * {
@@ -747,7 +747,7 @@ img {
   animation: color-shift 3s ease infinite;
 }
 
-/*/* Improved contrast for accessibility */
+/* Improved contrast for accessibility */
 .text-improved-contrast {
   color: #DDDDDD; /* Provides better contrast against dark backgrounds */
 }
