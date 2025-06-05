@@ -89,8 +89,8 @@ export default function SuspenseFallback() {
                 key={i}
                 className="absolute w-1 h-1 bg-maverick-orange rounded-full"
                 initial={{
-                  x: Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1000),
-                  y: (typeof window !== 'undefined' ? window.innerHeight : 800) + 10,
+                  x: Math.random() * 1000,
+                  y: 810,
                   opacity: 0
                 }}
                 animate={{
