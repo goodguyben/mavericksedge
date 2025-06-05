@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 
@@ -20,7 +19,7 @@ export default function ParallaxLayers() {
   const scale2 = useTransform(scrollY, [0, 800], [1, 0.8]);
 
   return (
-    <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+    <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden relative">
       {/* Layer 1 - Floating orbs */}
       <motion.div
         style={{ y: layer1Y, rotate: rotate1 }}
@@ -30,7 +29,7 @@ export default function ParallaxLayers() {
         style={{ y: layer1Y, rotate: rotate2 }}
         className="absolute top-40 right-20 w-24 h-24 rounded-full bg-gradient-to-r from-blue-500/10 to-cyan-500/10 blur-lg"
       />
-      
+
       {/* Layer 2 - Geometric shapes */}
       <motion.div
         style={{ y: layer2Y, scale: scale1 }}

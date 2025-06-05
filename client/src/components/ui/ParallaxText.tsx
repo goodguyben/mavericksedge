@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 
@@ -16,11 +15,11 @@ export default function ParallaxText({
   effect = 'slide' 
 }: ParallaxTextProps) {
   const { scrollY } = useScroll();
-  
+
   const y = useTransform(scrollY, [0, 1000], [0, 1000 * speed]);
   const scale = useTransform(scrollY, [0, 500], [1, 1.2]);
   const rotate = useTransform(scrollY, [0, 1000], [0, 360]);
-  
+
   const getEffectStyle = () => {
     switch (effect) {
       case 'zoom':
@@ -41,7 +40,7 @@ export default function ParallaxText({
   return (
     <motion.div
       style={getEffectStyle()}
-      className={className}
+      className={`relative ${className}`}
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       transition={{ duration: 0.8 }}
