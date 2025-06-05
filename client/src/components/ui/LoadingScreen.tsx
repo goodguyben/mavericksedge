@@ -94,7 +94,7 @@ export default function LoadingScreen({
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5, duration: 0.8 }}
-              className="mt-8 text-center"
+              className="mt-4 text-center"
             >
               <h1 className="text-2xl md:text-3xl font-bold text-maverick-orange mb-4 font-heading">
                 Mavericks Edge
