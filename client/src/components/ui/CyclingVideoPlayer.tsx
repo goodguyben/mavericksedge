@@ -57,12 +57,24 @@ export default function CyclingVideoPlayer({
   }, [totalMedia, videos.length, cycleDuration, videoDurations, currentIndex]);
 
   useEffect(() => {
-    // Preload next video
-    const nextIndex = (currentIndex + 1) % totalMedia;
-    if (nextIndex < videos.length && videoRefs.current[nextIndex]) {
-      videoRefs.current[nextIndex]?.load();
+    // Preload all videos for better cycling experience
+    videos.forEach((_, index) => {
+      if (videoRefs.current[index]) {
+        videoRefs.current[index]?.load();
+      }
+    });
+  }, [videos]);
+
+  useEffect(() => {
+    // Ensure current video plays when it becomes active
+    if (isVideo && currentIndex < videos.length && videoRefs.current[currentIndex]) {
+      const currentVideo = videoRefs.current[currentIndex];
+      if (currentVideo && autoPlay) {
+        currentVideo.currentTime = 0;
+        currentVideo.play().catch(console.warn);
+      }
     }
-  }, [currentIndex, totalMedia, videos.length]);
+  }, [currentIndex, isVideo, autoPlay, videos.length]);
 
   if (totalMedia === 0) return null;
 
@@ -100,7 +112,16 @@ export default function CyclingVideoPlayer({
                     muted={muted}
                     loop={loop}
                     playsInline
-                    preload="metadata"
+                    preload="auto"
+                    onLoadedData={() => {
+                      // Ensure video starts playing when loaded and active
+                      if (index === currentIndex && autoPlay && videoRefs.current[index]) {
+                        videoRefs.current[index]?.play().catch(console.warn);
+                      }
+                    }}
+                    onError={(e) => {
+                      console.warn(`Video failed to load: ${media}`, e);
+                    }}
                   >
                     <source src={media} type="video/mp4" />
                     Your browser does not support the video tag.
