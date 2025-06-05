@@ -4,10 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, ChevronDown, X, ChevronRight } from "lucide-react";
 import Logo from "./Logo";
 
-// Add body padding for fixed header
-if (typeof document !== 'undefined') {
-  document.body.style.paddingTop = '80px';
-}
+
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -67,11 +64,11 @@ export default function Header() {
       <header 
         role="banner"
         style={{
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          right: 0,
-          width: '100%',
+          position: 'fixed !important' as any,
+          top: '0 !important',
+          left: '0 !important',
+          right: '0 !important',
+          width: '100% !important',
           zIndex: 9999,
           padding: '0.75rem 1rem',
           backdropFilter: 'blur(16px)',
