@@ -253,11 +253,11 @@ const Sidebar = React.forwardRef<
             className
           )}
           style={{ 
-            position: 'fixed !important', 
+            position: 'fixed', 
             top: 0, 
             bottom: 0, 
             height: '100vh',
-            transform: 'none !important'
+            zIndex: 9999
           }}
           {...props}
         >
@@ -265,11 +265,12 @@ const Sidebar = React.forwardRef<
             data-sidebar="sidebar"
             className="flex h-full w-full flex-col bg-sidebar group-data-[variant=floating]:rounded-lg group-data-[variant=floating]:border group-data-[variant=floating]:border-sidebar-border group-data-[variant=floating]:shadow"
             style={{ 
-              position: 'relative', 
+              position: 'fixed',
+              top: 0,
+              bottom: 0,
               height: '100vh', 
-              overflow: 'auto',
-              transform: 'none !important',
-              willChange: 'auto'
+              overflow: 'hidden',
+              overflowY: 'auto'
             }}
           >
             {children}
@@ -429,7 +430,13 @@ const SidebarContent = React.forwardRef<
         "flex min-h-0 flex-1 flex-col gap-2 overflow-auto group-data-[collapsible=icon]:overflow-hidden",
         className
       )}
-      style={{ position: 'relative', height: '100%' }}
+      style={{ 
+        position: 'relative', 
+        height: '100%',
+        maxHeight: '100vh',
+        overflowY: 'auto',
+        overflowX: 'hidden'
+      }}
       {...props}
     />
   )
