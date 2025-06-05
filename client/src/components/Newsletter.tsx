@@ -74,7 +74,7 @@ const Newsletter = () => {
         </motion.div>
 
         <motion.p 
-          className="text-gray-300 mb-5 max-w-lg font-serif"
+          className="text-gray-300 mb-5 max-w-lg font-serif text-left"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.3, duration: 0.5 }}
