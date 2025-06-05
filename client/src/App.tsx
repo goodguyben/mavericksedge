@@ -5,7 +5,8 @@ import { Toaster } from "@/components/ui/toaster";
 import { queryClient } from "@/lib/queryClient";
 import Layout from "@/components/Layout";
 import PageTransition from "@/components/PageTransition";
-import LoadingScreen from "@/components/ui/LoadingScreen"; // Assuming LoadingScreen is in this path
+import LoadingScreen from "@/components/ui/LoadingScreen";
+import SuspenseFallback from "@/components/ui/SuspenseFallback";
 import { ErrorBoundary } from "react";
 
 
@@ -52,7 +53,7 @@ export default function App() {
       <QueryClientProvider client={queryClient}>
         <PageTransition />
         <Layout>
-          <Suspense fallback={<LoadingScreen />}>
+          <Suspense fallback={<SuspenseFallback />}>
             <Switch>
               <Route path="/" component={Home} />
               <Route path="/services" component={Services} />
