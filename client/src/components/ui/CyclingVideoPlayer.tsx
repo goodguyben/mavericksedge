@@ -67,7 +67,7 @@ export default function CyclingVideoPlayer({
   if (totalMedia === 0) return null;
 
   return (
-    <div className={`sticky top-0 z-10 relative w-full h-full ${className}`}>
+    <div className={`relative w-full h-full ${className}`}>
       <AnimatePresence mode="wait">
         {allMedia.map((media, index) => {
           if (index !== currentIndex) return null;
