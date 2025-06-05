@@ -335,7 +335,7 @@ export default function ServiceCascadeSection() {
                           zoomEffects={item.zoomEffects}
                         />
 
-                        
+
                       </motion.div>
                     </motion.div>
                   );
