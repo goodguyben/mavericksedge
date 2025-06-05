@@ -4,6 +4,11 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, ChevronDown, X, ChevronRight } from "lucide-react";
 import Logo from "./Logo";
 
+// Add body padding for fixed header
+if (typeof document !== 'undefined') {
+  document.body.style.paddingTop = '80px';
+}
+
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false);
@@ -60,9 +65,6 @@ export default function Header() {
   return (
     <>
       <header 
-        className={`py-3 px-4 sm:px-6 lg:px-8 transition-all duration-300 backdrop-blur-md border-b border-maverick-orange/10 ${
-          isScrolled ? 'bg-[#121212]/95' : 'bg-[#12121261]'
-        }`}
         role="banner"
         style={{
           position: 'fixed',
@@ -71,9 +73,14 @@ export default function Header() {
           right: 0,
           width: '100%',
           zIndex: 9999,
-          transform: 'none'
+          padding: '0.75rem 1rem',
+          backdropFilter: 'blur(16px)',
+          borderBottom: '1px solid rgba(255, 86, 0, 0.1)',
+          background: isScrolled ? 'rgba(18, 18, 18, 0.95)' : 'rgba(18, 18, 18, 0.38)',
+          transition: 'background-color 0.3s ease',
+          transform: 'translateZ(0)'
         }}
-      >
+      ></header>
         <div className="container mx-auto flex justify-between items-center max-w-7xl">
           {/* Logo */}
           <Link 
