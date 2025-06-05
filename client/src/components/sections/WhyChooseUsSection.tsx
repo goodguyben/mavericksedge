@@ -106,17 +106,15 @@ export default function WhyChooseUsSection() {
         {/* Floating Geometric Shapes */}
         <motion.div
           className="absolute w-2 h-32 bg-gradient-to-b from-maverick-orange/20 to-transparent"
-          style={{ y: floatingY, rotateZ: 45 }}
+          style={{ y: floatingY, rotateZ: 45, top: "25%", left: "80%" }}
           animate={{ rotateZ: [45, 225, 45] }}
           transition={{ duration: 25, repeat: Infinity }}
-          style={{ top: "25%", left: "80%" }}
         />
         <motion.div
           className="absolute w-1 h-24 bg-gradient-to-b from-purple-500/15 to-transparent"
-          style={{ y: floatingY }}
+          style={{ y: floatingY, bottom: "30%", left: "5%" }}
           animate={{ rotateZ: [0, 180, 360] }}
           transition={{ duration: 30, repeat: Infinity }}
-          style={{ bottom: "30%", left: "5%" }}
         />
       </motion.div>
       <div className="container mx-auto relative z-10 max-w-7xl">
