@@ -70,3 +70,19 @@ export const setCacheHeaders = () => {
   // Static assets should have cache headers like:
   // Cache-Control: public, max-age=31536000, immutable
 };
+
+// Production optimizations
+export const initializeProductionOptimizations = () => {
+  if (process.env.NODE_ENV === 'production') {
+    // Preload critical resources
+    preloadResource('/videos/logo_animation.mp4', 'video');
+    preloadResource('/assets/logo-transparent-thumb4x.png', 'image');
+    
+    // Enable service worker for caching (if available)
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/sw.js').catch(() => {
+        // Service worker registration failed, continue without it
+      });
+    }
+  }
+};

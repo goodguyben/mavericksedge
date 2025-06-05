@@ -10,12 +10,12 @@ const enablePerformanceOptimizations = () => {
   if ('paintWorklet' in CSS) {
     // CSS Paint API optimizations can be added here
   }
-  
+
   // Optimize images loading
   if ('loading' in HTMLImageElement.prototype) {
     document.documentElement.classList.add('native-lazy-loading');
   }
-  
+
   // Reduce motion for accessibility
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     document.documentElement.style.setProperty('--motion-reduce', '1');
