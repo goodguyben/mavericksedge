@@ -80,7 +80,7 @@ export default function Header() {
           transition: 'background-color 0.3s ease',
           transform: 'translateZ(0)'
         }}
-      ></header>
+      >
         <div className="container mx-auto flex justify-between items-center max-w-7xl">
           {/* Logo */}
           <Link 
