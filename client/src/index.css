@@ -587,6 +587,7 @@ img {
   body {
     @apply font-sans antialiased bg-maverick-charcoal text-maverick-cream overflow-x-hidden;
     letter-spacing: -0.01em;
+    padding-top: 80px;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -744,7 +745,7 @@ img {
 .pricing-highlight {
   background: linear-gradient(90deg, rgba(241, 90, 41, 0.2), rgba(241, 90, 41, 0.1), rgba(241, 90, 41, 0.2));
   background-size: 200% 100%;
-  animation: color-shift 3s ease infinite;
+The CSS code is modified to add padding to the body to account for the fixed header, ensuring content doesn't scroll underneath it.  animation: color-shift 3s ease infinite;
 }
 
 /* Improved contrast for accessibility */
