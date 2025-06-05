@@ -66,7 +66,7 @@ export default function Header() {
   return (
     <>
       <motion.header 
-        className="fixed top-0 left-0 w-full py-3 px-4 sm:px-6 lg:px-8 z-50 transition-all duration-300 backdrop-blur-md border-b border-maverick-orange/10 bg-[#12121226]"
+        className="fixed top-0 left-0 w-full py-3 px-4 sm:px-6 lg:px-8 z-[9999] transition-all duration-300 backdrop-blur-md border-b border-maverick-orange/10 bg-black/80"
         role="banner"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -74,6 +74,13 @@ export default function Header() {
           duration: 0.6,
           delay: isHomePage ? 4.0 : 0,
           ease: "easeInOut"
+        }}
+        style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          zIndex: 9999
         }}
       >
         <div className="container mx-auto flex justify-between items-center max-w-7xl">
