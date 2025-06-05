@@ -259,7 +259,6 @@ export default function ServiceCascadeSection() {
           />
         ))}
       </div>
-
       {/* Sticky content container */}
       <div className="sticky top-0 h-screen flex items-center justify-center bg-black z-10 pt-12 sm:pt-16 md:pt-20 lg:pt-24 relative">
         <div className="container mx-auto px-4 sm:px-6 md:px-8">
@@ -274,7 +273,7 @@ export default function ServiceCascadeSection() {
               className="flex items-center justify-center gap-4 mb-4"
             >
               {currentService.icon}
-              <h2 className="text-3xl lg:text-4xl xl:text-5xl font-bold text-white">
+              <h2 className="text-3xl lg:text-4xl xl:text-5xl font-bold text-white mt-[11px] mb-[11px]">
                 {currentService.title}
               </h2>
             </motion.div>
