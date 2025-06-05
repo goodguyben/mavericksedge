@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -28,9 +29,8 @@ export default function CyclingVideoPlayer({
 }: CyclingVideoPlayerProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isVideo, setIsVideo] = useState(true);
-    const [isLoaded, setIsLoaded] = useState(false); // Add a loading state
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
-
+  
   const allMedia = [...videos, ...images];
   const totalMedia = allMedia.length;
 
@@ -71,12 +71,12 @@ export default function CyclingVideoPlayer({
       <AnimatePresence mode="wait">
         {allMedia.map((media, index) => {
           if (index !== currentIndex) return null;
-
+          
           const isCurrentVideo = index < videos.length;
-
+          
           const zoomEffect = zoomEffects[index] || 'none';
           const zoomClass = zoomEffect === 'zoom-out' ? 'scale-110' : zoomEffect === 'zoom-in' ? 'scale-75' : 'scale-100';
-
+          
           return (
             <motion.div
               key={`${media}-${index}`}
@@ -100,9 +100,7 @@ export default function CyclingVideoPlayer({
                     muted={muted}
                     loop={loop}
                     playsInline
-                    onLoadedData={() => setIsLoaded(true)}
-                    onError={(e) => console.error('Video loading error:', e)}
-                    aria-label={alt || `Service video ${index + 1}`}
+                    preload="metadata"
                   >
                     <source src={media} type="video/mp4" />
                     Your browser does not support the video tag.
@@ -113,7 +111,6 @@ export default function CyclingVideoPlayer({
                     alt={alt}
                     className="w-full h-full object-contain"
                     loading="lazy"
-                    onError={(e) => console.error('Image loading error:', e)}
                   />
                 )}
               </motion.div>
@@ -121,7 +118,7 @@ export default function CyclingVideoPlayer({
           );
         })}
       </AnimatePresence>
-
+      
       {/* Optional indicators */}
       {totalMedia > 1 && (
         <div className="absolute bottom-2 right-2 flex gap-1">
