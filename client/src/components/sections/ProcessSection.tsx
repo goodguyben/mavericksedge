@@ -9,7 +9,7 @@ const processSteps = [
     title: "Discovery",
     description: "We start by understanding your business goals, audience, and challenges to develop a comprehensive strategy.",
     icon: <Search className="h-8 w-8" />,
-    color: "#FF5630"
+    color: "#FF8A50"
   },
   {
     id: "strategy",
@@ -17,7 +17,7 @@ const processSteps = [
     title: "Strategy",
     description: "Based on our findings, we create a tailored strategy and roadmap to achieve your specific objectives.",
     icon: <Target className="h-8 w-8" />,
-    color: "#36B37E"
+    color: "#FFD74B"
   },
   {
     id: "planning",
@@ -25,7 +25,7 @@ const processSteps = [
     title: "Planning",
     description: "We develop detailed project plans with timelines, milestones, and resource allocation to ensure efficient execution.",
     icon: <Settings className="h-8 w-8" />,
-    color: "#6554C0"
+    color: "#FFC43D"
   },
   {
     id: "design-development",
@@ -33,7 +33,7 @@ const processSteps = [
     title: "Design & Development",
     description: "Our team creates visually appealing designs and builds robust, scalable solutions using the latest technologies.",
     icon: <Code className="h-8 w-8" />,
-    color: "#FFAB00"
+    color: "#AE6A4D"
   },
   {
     id: "launch",
@@ -99,7 +99,7 @@ export default function ProcessSection() {
           <div className="absolute left-8 top-0 h-full w-1 bg-gray-700 rounded-full overflow-hidden">
             {/* Animated fill line */}
             <motion.div
-              className="absolute top-0 left-0 w-full bg-gradient-to-b from-maverick-orange via-[#FFAB00] to-[#36B37E] rounded-full origin-top"
+              className="absolute top-0 left-0 w-full bg-gradient-to-b from-maverick-orange via-maverick-light-orange to-maverick-yellow rounded-full origin-top"
               style={{
                 height: lineProgress,
               }}
@@ -185,14 +185,80 @@ export default function ProcessSection() {
           {/* Completion indicator */}
           <motion.div
             className="text-center mt-16"
-            initial={{ opacity: 0 }}
-            animate={visibleSteps.size === processSteps.length ? { opacity: 1 } : {}}
-            transition={{ duration: 0.5 }}
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={visibleSteps.size === processSteps.length ? { 
+              opacity: 1, 
+              scale: 1,
+            } : { opacity: 0, scale: 0.8 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
           >
-            <div className="inline-flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-maverick-orange/10 to-green-500/10 border border-maverick-orange/30 rounded-full">
-              <CheckCircle className="h-5 w-5 text-green-400" />
-              <span className="text-maverick-orange font-semibold">Process Complete</span>
-            </div>
+            <motion.div
+              className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-maverick-orange/20 to-maverick-yellow/20 border-2 rounded-full relative overflow-hidden"
+              animate={visibleSteps.size === processSteps.length ? {
+                borderColor: ["#FF5630", "#FFD74B", "#FF8A50", "#FF5630"],
+                boxShadow: [
+                  "0 0 20px rgba(255, 86, 48, 0.3)",
+                  "0 0 30px rgba(255, 215, 75, 0.4)",
+                  "0 0 25px rgba(255, 138, 80, 0.35)",
+                  "0 0 20px rgba(255, 86, 48, 0.3)"
+                ]
+              } : {}}
+              transition={{ 
+                duration: 2, 
+                repeat: visibleSteps.size === processSteps.length ? Infinity : 0,
+                ease: "easeInOut"
+              }}
+            >
+              {/* Animated background glow */}
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-r from-maverick-orange/10 via-maverick-yellow/10 to-maverick-light-orange/10"
+                animate={visibleSteps.size === processSteps.length ? {
+                  background: [
+                    "linear-gradient(90deg, rgba(255, 86, 48, 0.1) 0%, rgba(255, 215, 75, 0.1) 50%, rgba(255, 138, 80, 0.1) 100%)",
+                    "linear-gradient(90deg, rgba(255, 215, 75, 0.1) 0%, rgba(255, 138, 80, 0.1) 50%, rgba(255, 86, 48, 0.1) 100%)",
+                    "linear-gradient(90deg, rgba(255, 138, 80, 0.1) 0%, rgba(255, 86, 48, 0.1) 50%, rgba(255, 215, 75, 0.1) 100%)"
+                  ]
+                } : {}}
+                transition={{ 
+                  duration: 3, 
+                  repeat: visibleSteps.size === processSteps.length ? Infinity : 0,
+                  ease: "linear"
+                }}
+              />
+              
+              <motion.div
+                animate={visibleSteps.size === processSteps.length ? {
+                  rotate: [0, 360],
+                  scale: [1, 1.1, 1]
+                } : {}}
+                transition={{ 
+                  duration: 2, 
+                  repeat: visibleSteps.size === processSteps.length ? Infinity : 0,
+                  ease: "easeInOut"
+                }}
+              >
+                <CheckCircle className="h-6 w-6 text-maverick-orange relative z-10" />
+              </motion.div>
+              
+              <motion.span 
+                className="text-maverick-orange font-bold text-lg relative z-10"
+                animate={visibleSteps.size === processSteps.length ? {
+                  textShadow: [
+                    "0 0 10px rgba(255, 86, 48, 0.5)",
+                    "0 0 20px rgba(255, 215, 75, 0.6)",
+                    "0 0 15px rgba(255, 138, 80, 0.5)",
+                    "0 0 10px rgba(255, 86, 48, 0.5)"
+                  ]
+                } : {}}
+                transition={{ 
+                  duration: 2, 
+                  repeat: visibleSteps.size === processSteps.length ? Infinity : 0,
+                  ease: "easeInOut"
+                }}
+              >
+                Process Complete
+              </motion.span>
+            </motion.div>
           </motion.div>
         </div>
       </div>
