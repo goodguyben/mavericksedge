@@ -79,13 +79,7 @@ export default function Header() {
           delay: isHomePage ? 4.0 : 0,
           ease: "easeInOut"
         }}
-        style={{ 
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          right: 0,
-          zIndex: 9999
-        }}
+        style={{ position: 'fixed' }}
       >
         <div className="container mx-auto flex justify-between items-center max-w-7xl">
           {/* Logo */}
