@@ -66,7 +66,7 @@ export default function Header() {
   return (
     <>
       <motion.header 
-        className="sticky top-0 left-0 w-full py-3 px-4 sm:px-6 lg:px-8 z-50 transition-all duration-300 backdrop-blur-md border-b border-maverick-orange/10 bg-[#12121226]"
+        className="sticky top-0 left-0 w-full py-3 px-4 sm:px-6 lg:px-8 z-50 transition-all duration-300 backdrop-blur-md border-b border-maverick-orange/10 bg-[#12121226] mt-[-44px] mb-[-44px]"
         role="banner"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
