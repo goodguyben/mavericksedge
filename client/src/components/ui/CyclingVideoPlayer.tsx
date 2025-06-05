@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -30,7 +29,7 @@ export default function CyclingVideoPlayer({
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isVideo, setIsVideo] = useState(true);
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
-  
+
   const allMedia = [...videos, ...images];
   const totalMedia = allMedia.length;
 
@@ -78,17 +77,40 @@ export default function CyclingVideoPlayer({
 
   if (totalMedia === 0) return null;
 
+  const getOptimizedPath = (media: string, isVideo: boolean) => {
+    const base = media.substring(0, media.lastIndexOf('.'));
+    const ext = media.substring(media.lastIndexOf('.') + 1);
+
+    if (isVideo) {
+      return {
+        webm: `${base}.webm`,
+        mp4: `${base}.mp4`,
+        fallback: media,
+      };
+    } else {
+      return {
+        webp: `${base}.webp`,
+        fallback: media,
+      };
+    }
+  };
+
+  const getZoomClass = (index: number) => {
+    const zoomEffect = zoomEffects[index] || 'none';
+    return zoomEffect === 'zoom-out' ? 'scale-110' : zoomEffect === 'zoom-in' ? 'scale-75' : 'scale-100';
+  };
+
   return (
     <div className={`relative w-full h-full ${className}`}>
       <AnimatePresence mode="wait">
         {allMedia.map((media, index) => {
           if (index !== currentIndex) return null;
-          
+
           const isCurrentVideo = index < videos.length;
-          
+
           const zoomEffect = zoomEffects[index] || 'none';
           const zoomClass = zoomEffect === 'zoom-out' ? 'scale-110' : zoomEffect === 'zoom-in' ? 'scale-75' : 'scale-100';
-          
+
           return (
             <motion.div
               key={`${media}-${index}`}
@@ -123,7 +145,16 @@ export default function CyclingVideoPlayer({
                       console.warn(`Video failed to load: ${media}`, e);
                     }}
                   >
-                    <source src={media} type="video/mp4" />
+                    {(() => {
+                      const sources = getOptimizedPath(media, true);
+                      return (
+                        <>
+                          <source src={sources.webm} type="video/webm" />
+                          <source src={sources.mp4} type="video/mp4" />
+                          <source src={sources.fallback} type="video/mp4" />
+                        </>
+                      );
+                    })()}
                     Your browser does not support the video tag.
                   </video>
                 ) : (
@@ -139,7 +170,7 @@ export default function CyclingVideoPlayer({
           );
         })}
       </AnimatePresence>
-      
+
       {/* Optional indicators */}
       {totalMedia > 1 && (
         <div className="absolute bottom-2 right-2 flex gap-1">
