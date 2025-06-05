@@ -66,9 +66,8 @@ export default function Header() {
   return (
     <>
       <motion.header 
-        className="fixed top-0 left-0 w-full py-3 px-4 sm:px-6 lg:px-8 z-[9999] transition-all duration-300 backdrop-blur-md border-b border-maverick-orange/10 bg-[#12121226]"
+        className="fixed top-0 left-0 w-full py-3 px-4 sm:px-6 lg:px-8 z-50 transition-all duration-300 backdrop-blur-md border-b border-maverick-orange/10 bg-[#12121226]"
         role="banner"
-        style={{ position: 'fixed' }}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ 
@@ -397,11 +396,11 @@ export default function Header() {
                   <div className="space-y-2">
                     <button 
                       onClick={() => setServicesDropdownOpen(!servicesDropdownOpen)}
-                      className="group flex items-center justify-between w-full px-4 py-4 rounded-xl min-h-[56px] touch-manipulation transition-all duration-300 text-maverick-orange hover:bg-white/8 border border-transparent hover:border-white/10"
+                      className="group flex items-center justify-between w-full px-4 py-4 rounded-xl min-h-[56px] touch-manipulation transition-all duration-300 text-white hover:bg-white/8 hover:text-maverick-orange border border-transparent hover:border-white/10"
                     >
                       <span className="text-lg font-semibold">Services</span>
                       <ChevronDown className={`w-5 h-5 transition-all duration-300 ${
-                        servicesDropdownOpen ? 'rotate-180 text-maverick-orange' : 'text-maverick-orange'
+                        servicesDropdownOpen ? 'rotate-180 text-maverick-orange' : 'group-hover:text-maverick-orange'
                       }`} />
                     </button>
 
@@ -467,11 +466,11 @@ export default function Header() {
                   <div className="space-y-2">
                     <button 
                       onClick={() => setPricingDropdownOpen(!pricingDropdownOpen)}
-                      className="group flex items-center justify-between w-full px-4 py-4 rounded-xl min-h-[56px] touch-manipulation transition-all duration-300 text-maverick-orange hover:bg-white/8 border border-transparent hover:border-white/10"
+                      className="group flex items-center justify-between w-full px-4 py-4 rounded-xl min-h-[56px] touch-manipulation transition-all duration-300 text-white hover:bg-white/8 hover:text-maverick-orange border border-transparent hover:border-white/10"
                     >
                       <span className="text-lg font-semibold">Pricing</span>
                       <ChevronDown className={`w-5 h-5 transition-all duration-300 ${
-                        pricingDropdownOpen ? 'rotate-180 text-maverick-orange' : 'text-maverick-orange'
+                        pricingDropdownOpen ? 'rotate-180 text-maverick-orange' : 'group-hover:text-maverick-orange'
                       }`} />
                     </button>
 
