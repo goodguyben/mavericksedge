@@ -2,32 +2,21 @@ import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 interface LoadingScreenProps {
-  isLoading?: boolean;
+  isLoading: boolean;
   onLoadingComplete?: () => void;
   minDisplayTime?: number;
-  fixedDuration?: number;
 }
 
 export default function LoadingScreen({ 
-  isLoading = true, 
+  isLoading, 
   onLoadingComplete, 
-  minDisplayTime = 3000,
-  fixedDuration 
+  minDisplayTime = 3000 
 }: LoadingScreenProps) {
   const [shouldShow, setShouldShow] = useState(true);
   const [videoLoaded, setVideoLoaded] = useState(false);
 
   useEffect(() => {
-    if (fixedDuration) {
-      // For fixed duration mode (like Suspense fallback)
-      const timer = setTimeout(() => {
-        setShouldShow(false);
-        onLoadingComplete?.();
-      }, fixedDuration);
-
-      return () => clearTimeout(timer);
-    } else if (!isLoading && videoLoaded) {
-      // For normal loading mode
+    if (!isLoading && videoLoaded) {
       const timer = setTimeout(() => {
         setShouldShow(false);
         onLoadingComplete?.();
@@ -35,7 +24,7 @@ export default function LoadingScreen({
 
       return () => clearTimeout(timer);
     }
-  }, [isLoading, videoLoaded, minDisplayTime, onLoadingComplete, fixedDuration]);
+  }, [isLoading, videoLoaded, minDisplayTime, onLoadingComplete]);
 
   const handleVideoLoad = () => {
     setVideoLoaded(true);
