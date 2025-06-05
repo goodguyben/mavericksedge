@@ -30,7 +30,7 @@ export default function ScrollFadeSection({
   initialOpacity = 0,
 }: ScrollFadeSectionProps) {
   const sectionRef = useRef<HTMLDivElement>(null);
-
+  
   // Use our custom hook to calculate opacity based on scroll position
   const opacity = useScrollFade(sectionRef, {
     minOpacity,
@@ -45,7 +45,7 @@ export default function ScrollFadeSection({
     <motion.section
       id={id}
       ref={sectionRef}
-      className={`relative ${className || ''}`}
+      className="relative pt-[0px] pb-[0px]"
       style={{ opacity }}
       initial={{ opacity: initialOpacity }}
       animate={{ opacity }}

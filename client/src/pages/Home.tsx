@@ -11,7 +11,6 @@ import ProcessSection from '../components/sections/ProcessSection';
 import ScrollFadeSection from '../components/ui/scroll-fade-section';
 import SEOHead from '../components/SEOHead';
 import StructuredData, { organizationSchema, localBusinessSchema, websiteSchema, faqSchema } from '../components/StructuredData';
-import ParallaxContainer from '../components/ui/ParallaxContainer';
 
 // Lazy load non-critical components
 const ServiceCascadeSection = lazy(() => import("../components/sections/ServiceCascadeSection"));
@@ -59,7 +58,7 @@ export default function Home() {
           {/* Main hero section - H1 heading for SEO is inside this component */}
           <Hero />
 
-          {/* Main site sections - Enhanced with creative parallax effects */}
+          {/* Main site sections - Reordered and wrapped with scroll fade effect */}
           <ScrollFadeSection
             id="what-we-do"
             fadeInPoint={0.5}
@@ -68,11 +67,8 @@ export default function Home() {
             fadeOutDuration={1.8}
             initialOpacity={0}
             minOpacity={0.1}
-            className="relative"
           >
-            <ParallaxContainer speed={0.4} direction="right" scale={true}>
-              <WhatWeDoSection />
-            </ParallaxContainer>
+            <WhatWeDoSection />
           </ScrollFadeSection>
 
           {/* Service Cascade Section */}
@@ -85,11 +81,9 @@ export default function Home() {
             initialOpacity={0}
             minOpacity={0.1}
           >
-            <ParallaxContainer speed={-0.3} direction="left" rotate={true}>
-              <Suspense fallback={<div className="h-96 bg-gray-900 animate-pulse" />}>
-                <ServiceCascadeSection />
-              </Suspense>
-            </ParallaxContainer>
+            <Suspense fallback={<div className="h-96 bg-gray-900 animate-pulse" />}>
+              <ServiceCascadeSection />
+            </Suspense>
           </ScrollFadeSection>
 
           
@@ -103,11 +97,9 @@ export default function Home() {
             initialOpacity={0}
             minOpacity={0.1}
           >
-            <ParallaxContainer speed={0.6} direction="up" scale={true} blur={true}>
-              <Suspense fallback={<div className="h-64 bg-gray-900 animate-pulse" />}>
-                <WhyChooseUsSection />
-              </Suspense>
-            </ParallaxContainer>
+            <Suspense fallback={<div className="h-64 bg-gray-900 animate-pulse" />}>
+              <WhyChooseUsSection />
+            </Suspense>
           </ScrollFadeSection>
 
           <ScrollFadeSection
@@ -119,11 +111,9 @@ export default function Home() {
             initialOpacity={0}
             minOpacity={0.1}
           >
-            <ParallaxContainer speed={-0.2} direction="down" rotate={true}>
-              <Suspense fallback={<div className="h-64 bg-gray-900 animate-pulse" />}>
-                <ProcessSection />
-              </Suspense>
-            </ParallaxContainer>
+            <Suspense fallback={<div className="h-64 bg-gray-900 animate-pulse" />}>
+              <ProcessSection />
+            </Suspense>
           </ScrollFadeSection>
 
           <ScrollFadeSection
@@ -135,11 +125,9 @@ export default function Home() {
             initialOpacity={0}
             minOpacity={0.1}
           >
-            <ParallaxContainer speed={0.4} direction="right" scale={true}>
-              <Suspense fallback={<div className="h-96 bg-gray-900 animate-pulse" />}>
-                <ContactSection />
-              </Suspense>
-            </ParallaxContainer>
+            <Suspense fallback={<div className="h-96 bg-gray-900 animate-pulse" />}>
+              <ContactSection />
+            </Suspense>
           </ScrollFadeSection>
         </article>
       </motion.div>
