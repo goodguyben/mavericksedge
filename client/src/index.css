@@ -933,7 +933,12 @@ header[role="banner"] {
   z-index: 9999 !important;
   transform: none !important;
   will-change: auto !important;
-  backface-visibility: hidden;
+  backface-visibility: hidden !important;
+}
+
+/* Ensure body has top padding for fixed header */
+body {
+  padding-top: 80px !important;
 }
 
 /* Background grid pattern */
