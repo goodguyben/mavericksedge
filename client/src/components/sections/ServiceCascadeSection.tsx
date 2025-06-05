@@ -283,22 +283,6 @@ export default function ServiceCascadeSection() {
           {/* Fixed Layout Container */}
           <div className="relative min-h-[60vh] lg:min-h-[70vh] flex flex-col">
             
-            {/* Fixed Title Position */}
-            <div className="text-center mb-6 lg:mb-8">
-              <AnimatePresence mode="wait">
-                <motion.h3
-                  key={activeIndex}
-                  className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-bold text-white leading-tight px-4"
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  {currentItem.title}
-                </motion.h3>
-              </AnimatePresence>
-            </div>
-
             {/* Main Content Area */}
             <div className={`flex flex-col ${currentService.imagePosition === 'right' ? 'lg:flex-row-reverse' : 'lg:flex-row'} gap-8 lg:gap-12 flex-1`}>
               
@@ -369,6 +353,15 @@ export default function ServiceCascadeSection() {
                     exit="exit"
                     transition={{ duration: 0.4, ease: "easeOut" }}
                   >
+                    <motion.h3
+                      className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-bold text-white leading-tight"
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      {currentItem.title}
+                    </motion.h3>
+
                     <motion.p
                       className="text-sm sm:text-base lg:text-lg text-gray-300 leading-relaxed"
                       initial={{ opacity: 0, y: 10 }}
