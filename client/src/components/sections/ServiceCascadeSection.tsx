@@ -280,185 +280,188 @@ export default function ServiceCascadeSection() {
             </motion.div>
           </div>
 
-          {/* Fixed Layout Container */}
-          <div className="relative min-h-[60vh] lg:min-h-[70vh] flex flex-col">
-            
-            {/* Main Content Area */}
-            <div className={`flex flex-col ${currentService.imagePosition === 'right' ? 'lg:flex-row-reverse' : 'lg:flex-row'} gap-8 lg:gap-12 flex-1`}>
-              
-              {/* Media Section */}
-              <div className="w-full lg:w-1/2" style={{ perspective: "1000px" }}>
-                <div className="relative w-full aspect-[4/3]" style={{ transformStyle: "preserve-3d" }}>
-                  {allItems.map((item, index) => {
-                    const transform = getCardTransform(index);
-                    const isVisible = index === activeIndex;
+          <div className={`grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 md:gap-10 lg:gap-12 xl:gap-16 items-center px-4 sm:px-6 md:px-8 lg:px-0 ${
+            currentService.imagePosition === 'right' ? 'lg:grid-flow-col-dense' : ''
+          }`}>
 
-                    if (!isVisible) return null;
+            {/* Optimized 3D Image Stack */}
+            <div className={`relative aspect-[4/3] w-full ${
+              currentService.imagePosition === 'right' ? 'lg:col-start-2' : ''
+            }`} style={{ perspective: "1000px" }}>
+              <div className="relative w-full h-full" style={{ transformStyle: "preserve-3d" }}>
+                {allItems.map((item, index) => {
+                  const transform = getCardTransform(index);
+                  const isVisible = index === activeIndex; // Only show active card
 
-                    return (
-                      <motion.div
-                        key={item.id}
-                        className="absolute inset-0 cursor-pointer will-change-transform"
-                        style={{
-                          zIndex: transform.zIndex,
-                          backfaceVisibility: "hidden"
-                        }}
-                        animate={{
-                          opacity: 1,
-                          scale: 1
-                        }}
-                        transition={{
-                          type: "tween",
-                          duration: 0.5,
-                          ease: [0.25, 0.46, 0.45, 0.94]
-                        }}
-                        onClick={() => handleDotClick(index)}
-                        whileHover={{ 
-                          scale: 1.02,
-                          transition: { duration: 0.2 }
-                        }}
-                      >
-                        <motion.div 
-                          className="relative w-full h-full rounded-2xl overflow-hidden"
-                          variants={cardVariants}
-                          initial="hidden"
-                          animate="visible"
-                          transition={{ duration: 0.5, ease: "easeOut" }}
-                        >
-                          <CyclingVideoPlayer
-                            videos={item.videos || []}
-                            images={item.images || []}
-                            alt={item.title}
-                            className="w-full h-full"
-                            cycleDuration={7000}
-                            videoDurations={item.videoDurations}
-                            zoomEffects={item.zoomEffects}
-                          />
-                        </motion.div>
-                      </motion.div>
-                    );
-                  })}
-                </div>
-              </div>
+                  if (!isVisible) return null;
 
-              {/* Content Section */}
-              <div className="w-full lg:w-1/2 flex flex-col justify-center">
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={activeIndex}
-                    className="space-y-4 lg:space-y-6"
-                    variants={contentVariants}
-                    initial="hidden"
-                    animate="visible"
-                    exit="exit"
-                    transition={{ duration: 0.4, ease: "easeOut" }}
-                  >
-                    <motion.h3
-                      className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-bold text-white leading-tight"
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.3 }}
-                    >
-                      {currentItem.title}
-                    </motion.h3>
-
-                    <motion.p
-                      className="text-sm sm:text-base lg:text-lg text-gray-300 leading-relaxed"
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.3, delay: 0.1 }}
-                    >
-                      {currentItem.description}
-                    </motion.p>
-
+                  return (
                     <motion.div
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.3, delay: 0.15 }}
+                      key={item.id}
+                      className="absolute inset-0 cursor-pointer will-change-transform"
+                      style={{
+                        zIndex: transform.zIndex,
+                        backfaceVisibility: "hidden"
+                      }}
+                      animate={{
+                        opacity: 1,
+                        scale: 1
+                      }}
+                      transition={{
+                        type: "tween",
+                        duration: 0.5,
+                        ease: [0.25, 0.46, 0.45, 0.94]
+                      }}
+                      onClick={() => handleDotClick(index)}
+                      whileHover={{ 
+                        scale: 1.02,
+                        transition: { duration: 0.2 }
+                      }}
                     >
-                      <TechButton 
-                        href={`/services/${currentService.id === 'web-applications' ? 'web-design-and-development-edmonton' : currentService.id === 'marketing-solutions' ? 'digital-marketing-edmonton' : 'ai-integration-automation-edmonton'}`}
-                        className="inline-flex items-center"
-                        asButton={true}
+                      <motion.div 
+                        className="relative w-full h-full rounded-2xl overflow-hidden"
+                        variants={cardVariants}
+                        initial="hidden"
+                        animate="visible"
+                        transition={{ duration: 0.5, ease: "easeOut" }}
                       >
-                        Learn More
-                      </TechButton>
+                        <CyclingVideoPlayer
+                          videos={item.videos || []}
+                          images={item.images || []}
+                          alt={item.title}
+                          className="w-full h-full"
+                          cycleDuration={7000}
+                          videoDurations={item.videoDurations}
+                          zoomEffects={item.zoomEffects}
+                        />
+
+                        
+                      </motion.div>
                     </motion.div>
-                  </motion.div>
-                </AnimatePresence>
+                  );
+                })}
               </div>
             </div>
-          </div>
 
-          {/* Fixed Progress Bar at Bottom */}
-          <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 hidden sm:flex items-center justify-center">
-            <div className="flex items-center gap-4 md:gap-8">
-              <div className="relative flex items-center">
-                <div className="absolute inset-0 h-1 bg-gray-800 rounded-full" />
-
-                <div className="relative flex items-center gap-0.5">
-                  {allItems.map((_, index) => (
-                    <motion.button
-                      key={index}
-                      className="relative flex items-center justify-center"
-                      onClick={() => handleDotClick(index)}
-                      whileHover={{ scale: 1.1 }}
-                      whileTap={{ scale: 0.9 }}
-                      style={{ width: `${100 / allItems.length}px` }}
-                    >
-                      <motion.div
-                        className="h-1 rounded-full"
-                        style={{ width: `${100 / allItems.length - 2}px` }}
-                        animate={{
-                          backgroundColor: index <= activeIndex ? "#FF5A00" : "#374151"
-                        }}
-                        transition={{ duration: 0.3 }}
-                      />
-
-                      {index === activeIndex && (
-                        <motion.div
-                          className="absolute -top-3 w-3 h-3 border-2 border-maverick-orange bg-black rounded-full"
-                          initial={{ scale: 0 }}
-                          animate={{ scale: 1 }}
-                          transition={{ duration: 0.2 }}
-                        >
-                          <div className="absolute inset-0.5 bg-maverick-orange rounded-full" />
-                        </motion.div>
-                      )}
-                    </motion.button>
-                  ))}
-                </div>
-
+            {/* Optimized Content Area */}
+            <div className={`space-y-6 lg:space-y-8 flex flex-col justify-center items-start ${
+              currentService.imagePosition === 'right' ? 'lg:col-start-1 lg:row-start-1' : ''
+            }`}>
+              <AnimatePresence mode="wait">
                 <motion.div
-                  className="absolute -bottom-6 left-0 text-xs text-gray-400 font-medium hidden sm:block"
-                  animate={{ 
-                    x: `${(activeIndex / (allItems.length - 1)) * 100}%`,
-                    translateX: "-50%"
-                  }}
-                  transition={{ duration: 0.3 }}
+                  key={activeIndex}
+                  className="space-y-4 lg:space-y-6"
+                  variants={contentVariants}
+                  initial="hidden"
+                  animate="visible"
+                  exit="exit"
+                  transition={{ duration: 0.4, ease: "easeOut" }}
                 >
-                  {activeIndex + 1} of {allItems.length}
-                </motion.div>
-              </div>
+                  <motion.h3
+                    className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-bold text-white leading-tight"
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.3, delay: 0.1 }}
+                  >
+                    {currentItem.title}
+                  </motion.h3>
 
-              <motion.button
-                onClick={toggleAutoPlay}
-                className="hidden lg:flex items-center gap-2 px-3 py-2 text-sm text-gray-400 hover:text-white transition-colors duration-200 min-h-[44px] whitespace-nowrap"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                {isAutoPlaying ? (
-                  <>
-                    <Pause className="w-3 h-3 md:w-4 md:h-4" />
-                    <span className="hidden lg:inline">Auto-play ON</span>
-                  </>
-                ) : (
-                  <>
-                    <Play className="w-3 h-3 md:w-4 md:h-4" />
-                    <span className="hidden lg:inline">Auto-play OFF</span>
-                  </>
-                )}
-              </motion.button>
+                  <motion.p
+                    className="text-sm sm:text-base lg:text-lg text-gray-300 leading-relaxed"
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.3, delay: 0.15 }}
+                  >
+                    {currentItem.description}
+                  </motion.p>
+
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.3, delay: 0.2 }}
+                  >
+                    <TechButton 
+                      href={`/services/${currentService.id === 'web-applications' ? 'web-design-and-development-edmonton' : currentService.id === 'marketing-solutions' ? 'digital-marketing-edmonton' : 'ai-integration-automation-edmonton'}`}
+                      className="inline-flex items-center"
+                      asButton={true}
+                    >
+                      Learn More
+                    </TechButton>
+                  </motion.div>
+                </motion.div>
+              </AnimatePresence>
+
+              {/* Simplified Progress Bar */}
+              <div className="hidden sm:flex items-center justify-center pt-4 sm:pt-8">
+                <div className="flex items-center gap-4 md:gap-8">
+                  <div className="relative flex items-center">
+                    <div className="absolute inset-0 h-1 bg-gray-800 rounded-full" />
+
+                    <div className="relative flex items-center gap-0.5">
+                      {allItems.map((_, index) => (
+                        <motion.button
+                          key={index}
+                          className="relative flex items-center justify-center"
+                          onClick={() => handleDotClick(index)}
+                          whileHover={{ scale: 1.1 }}
+                          whileTap={{ scale: 0.9 }}
+                          style={{ width: `${100 / allItems.length}px` }}
+                        >
+                          <motion.div
+                            className="h-1 rounded-full"
+                            style={{ width: `${100 / allItems.length - 2}px` }}
+                            animate={{
+                              backgroundColor: index <= activeIndex ? "#FF5A00" : "#374151"
+                            }}
+                            transition={{ duration: 0.3 }}
+                          />
+
+                          {index === activeIndex && (
+                            <motion.div
+                              className="absolute -top-3 w-3 h-3 border-2 border-maverick-orange bg-black rounded-full"
+                              initial={{ scale: 0 }}
+                              animate={{ scale: 1 }}
+                              transition={{ duration: 0.2 }}
+                            >
+                              <div className="absolute inset-0.5 bg-maverick-orange rounded-full" />
+                            </motion.div>
+                          )}
+                        </motion.button>
+                      ))}
+                    </div>
+
+                    <motion.div
+                      className="absolute -bottom-6 left-0 text-xs text-gray-400 font-medium hidden sm:block"
+                      animate={{ 
+                        x: `${(activeIndex / (allItems.length - 1)) * 100}%`,
+                        translateX: "-50%"
+                      }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      {activeIndex + 1} of {allItems.length}
+                    </motion.div>
+                  </div>
+
+                  <motion.button
+                    onClick={toggleAutoPlay}
+                    className="hidden lg:flex items-center gap-2 px-3 py-2 text-sm text-gray-400 hover:text-white transition-colors duration-200 min-h-[44px] whitespace-nowrap"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    {isAutoPlaying ? (
+                      <>
+                        <Pause className="w-3 h-3 md:w-4 md:h-4" />
+                        <span className="hidden lg:inline">Auto-play ON</span>
+                      </>
+                    ) : (
+                      <>
+                        <Play className="w-3 h-3 md:w-4 md:h-4" />
+                        <span className="hidden lg:inline">Auto-play OFF</span>
+                      </>
+                    )}
+                  </motion.button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
