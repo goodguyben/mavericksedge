@@ -184,6 +184,7 @@ export default function Hero() {
             </div>
           </motion.div>
         </motion.div>
+        </ParallaxContainer>
       </div>
       <motion.div
         className="scroll-indicator cursor-pointer absolute bottom-10 left-1/2 transform -translate-x-1/2 z-30 pointer-events-auto"
