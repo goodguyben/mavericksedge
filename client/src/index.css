@@ -96,6 +96,24 @@ html {
   }
 }
 
+/* Force hardware acceleration for animations */
+.motion-div,
+[data-framer-motion] {
+  transform: translateZ(0);
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+/* Optimize composited layers */
+.parallax-layer,
+.floating-element,
+.transform-gpu {
+  transform: translateZ(0);
+  will-change: transform;
+  backface-visibility: hidden;
+  contain: layout style paint;
+}
+
 /* Performance optimizations */
 * {
   box-sizing: border-box;

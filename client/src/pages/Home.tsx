@@ -68,6 +68,7 @@ export default function Home() {
             fadeOutDuration={1.8}
             initialOpacity={0}
             minOpacity={0.1}
+            className="relative"
           >
             <ParallaxContainer speed={0.4} direction="right" scale={true}>
               <WhatWeDoSection />

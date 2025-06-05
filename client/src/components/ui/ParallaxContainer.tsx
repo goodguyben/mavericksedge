@@ -24,7 +24,8 @@ export default function ParallaxContainer({
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ["start end", "end start"]
+    offset: ["start end", "end start"],
+    layoutEffect: false
   });
 
   // Create smooth spring animations
@@ -61,7 +62,7 @@ export default function ParallaxContainer({
   return (
     <motion.div
       ref={ref}
-      className={className}
+      className={`relative ${className}`}
       style={getTransformStyle()}
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}

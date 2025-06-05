@@ -174,7 +174,7 @@ export default function WhyChooseUsSection() {
           {reasons.map((reason, index) => (
             <motion.div
               key={reason.id}
-              className="group cursor-pointer w-full max-w-sm h-[28rem] md:h-[28rem]"
+              className="group cursor-pointer w-full max-w-sm h-[28rem] md:h-[28rem] relative"
               initial={{ opacity: 0, scale: 0.5, rotateY: -45 }}
               whileInView={{ opacity: 1, scale: 1, rotateY: 0 }}
               viewport={{ once: true, margin: "-100px" }}
@@ -188,8 +188,8 @@ export default function WhyChooseUsSection() {
                 z: 50,
                 transition: { duration: 0.3 }
               }}
-              onHoverStart={() => setHoveredItem(reason.id)}
-              onHoverEnd={() => setHoveredItem(null)}
+              onMouseEnter={() => setHoveredItem(reason.id)}
+              onMouseLeave={() => setHoveredItem(null)}
             >
               {/* Floating Connection Lines */}
               <AnimatePresence>

@@ -45,7 +45,7 @@ export default function Hero() {
       
       {/* Video Background with Parallax */}
       <motion.div 
-        className="absolute top-0 left-0 w-full h-full overflow-hidden z-10"
+        className="absolute top-0 left-0 w-full h-full overflow-hidden z-10 transform-gpu"
         style={{ 
           y: backgroundY,
           scale: videoScale,
@@ -166,18 +166,22 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 3.2 }}
             className="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4 justify-center items-center px-4"
           >
-            <Button 
-              href="/services" 
-              variant="primary"
-            >
-              Explore Services
-            </Button>
-            <Button 
-              href="/contact" 
-              variant="outline"
-            >
-              Book Free Consultation
-            </Button>
+            <div>
+              <Button 
+                href="/services" 
+                variant="primary"
+              >
+                Explore Services
+              </Button>
+            </div>
+            <div>
+              <Button 
+                href="/contact" 
+                variant="outline"
+              >
+                Book Free Consultation
+              </Button>
+            </div>
           </motion.div>
         </motion.div>
       </div>
