@@ -281,10 +281,10 @@ export default function ServiceCascadeSection() {
           </div>
 
           {/* Fixed Layout Container */}
-          <div className="relative h-[60vh] lg:h-[70vh]">
+          <div className="relative min-h-[60vh] lg:min-h-[70vh] flex flex-col">
             
             {/* Fixed Title Position */}
-            <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-full text-center z-20">
+            <div className="text-center mb-6 lg:mb-8">
               <AnimatePresence mode="wait">
                 <motion.h3
                   key={activeIndex}
@@ -299,101 +299,101 @@ export default function ServiceCascadeSection() {
               </AnimatePresence>
             </div>
 
-            {/* Fixed Media Position */}
-            <div className={`absolute top-16 ${
-              currentService.imagePosition === 'right' ? 'right-0 lg:right-8' : 'left-0 lg:left-8'
-            } w-full lg:w-1/2 aspect-[4/3] px-4 lg:px-0`} style={{ perspective: "1000px" }}>
-              <div className="relative w-full h-full" style={{ transformStyle: "preserve-3d" }}>
-                {allItems.map((item, index) => {
-                  const transform = getCardTransform(index);
-                  const isVisible = index === activeIndex;
+            {/* Main Content Area */}
+            <div className={`flex flex-col ${currentService.imagePosition === 'right' ? 'lg:flex-row-reverse' : 'lg:flex-row'} gap-8 lg:gap-12 flex-1`}>
+              
+              {/* Media Section */}
+              <div className="w-full lg:w-1/2" style={{ perspective: "1000px" }}>
+                <div className="relative w-full aspect-[4/3]" style={{ transformStyle: "preserve-3d" }}>
+                  {allItems.map((item, index) => {
+                    const transform = getCardTransform(index);
+                    const isVisible = index === activeIndex;
 
-                  if (!isVisible) return null;
+                    if (!isVisible) return null;
 
-                  return (
-                    <motion.div
-                      key={item.id}
-                      className="absolute inset-0 cursor-pointer will-change-transform"
-                      style={{
-                        zIndex: transform.zIndex,
-                        backfaceVisibility: "hidden"
-                      }}
-                      animate={{
-                        opacity: 1,
-                        scale: 1
-                      }}
-                      transition={{
-                        type: "tween",
-                        duration: 0.5,
-                        ease: [0.25, 0.46, 0.45, 0.94]
-                      }}
-                      onClick={() => handleDotClick(index)}
-                      whileHover={{ 
-                        scale: 1.02,
-                        transition: { duration: 0.2 }
-                      }}
-                    >
-                      <motion.div 
-                        className="relative w-full h-full rounded-2xl overflow-hidden"
-                        variants={cardVariants}
-                        initial="hidden"
-                        animate="visible"
-                        transition={{ duration: 0.5, ease: "easeOut" }}
+                    return (
+                      <motion.div
+                        key={item.id}
+                        className="absolute inset-0 cursor-pointer will-change-transform"
+                        style={{
+                          zIndex: transform.zIndex,
+                          backfaceVisibility: "hidden"
+                        }}
+                        animate={{
+                          opacity: 1,
+                          scale: 1
+                        }}
+                        transition={{
+                          type: "tween",
+                          duration: 0.5,
+                          ease: [0.25, 0.46, 0.45, 0.94]
+                        }}
+                        onClick={() => handleDotClick(index)}
+                        whileHover={{ 
+                          scale: 1.02,
+                          transition: { duration: 0.2 }
+                        }}
                       >
-                        <CyclingVideoPlayer
-                          videos={item.videos || []}
-                          images={item.images || []}
-                          alt={item.title}
-                          className="w-full h-full"
-                          cycleDuration={7000}
-                          videoDurations={item.videoDurations}
-                          zoomEffects={item.zoomEffects}
-                        />
+                        <motion.div 
+                          className="relative w-full h-full rounded-2xl overflow-hidden"
+                          variants={cardVariants}
+                          initial="hidden"
+                          animate="visible"
+                          transition={{ duration: 0.5, ease: "easeOut" }}
+                        >
+                          <CyclingVideoPlayer
+                            videos={item.videos || []}
+                            images={item.images || []}
+                            alt={item.title}
+                            className="w-full h-full"
+                            cycleDuration={7000}
+                            videoDurations={item.videoDurations}
+                            zoomEffects={item.zoomEffects}
+                          />
+                        </motion.div>
                       </motion.div>
-                    </motion.div>
-                  );
-                })}
+                    );
+                  })}
+                </div>
               </div>
-            </div>
 
-            {/* Fixed Content Area */}
-            <div className={`absolute bottom-0 ${
-              currentService.imagePosition === 'right' ? 'left-0 lg:left-8' : 'right-0 lg:right-8'
-            } w-full lg:w-1/2 px-4 lg:px-0`}>
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={activeIndex}
-                  className="space-y-4 lg:space-y-6"
-                  variants={contentVariants}
-                  initial="hidden"
-                  animate="visible"
-                  exit="exit"
-                  transition={{ duration: 0.4, ease: "easeOut" }}
-                >
-                  <motion.p
-                    className="text-sm sm:text-base lg:text-lg text-gray-300 leading-relaxed"
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.3, delay: 0.1 }}
-                  >
-                    {currentItem.description}
-                  </motion.p>
-
+              {/* Content Section */}
+              <div className="w-full lg:w-1/2 flex flex-col justify-center">
+                <AnimatePresence mode="wait">
                   <motion.div
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.3, delay: 0.15 }}
+                    key={activeIndex}
+                    className="space-y-4 lg:space-y-6"
+                    variants={contentVariants}
+                    initial="hidden"
+                    animate="visible"
+                    exit="exit"
+                    transition={{ duration: 0.4, ease: "easeOut" }}
                   >
-                    <TechButton 
-                      href={`/services/${currentService.id === 'web-applications' ? 'web-design-and-development-edmonton' : currentService.id === 'marketing-solutions' ? 'digital-marketing-edmonton' : 'ai-integration-automation-edmonton'}`}
-                      className="inline-flex items-center"
-                      asButton={true}
+                    <motion.p
+                      className="text-sm sm:text-base lg:text-lg text-gray-300 leading-relaxed"
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.3, delay: 0.1 }}
                     >
-                      Learn More
-                    </TechButton>
+                      {currentItem.description}
+                    </motion.p>
+
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.3, delay: 0.15 }}
+                    >
+                      <TechButton 
+                        href={`/services/${currentService.id === 'web-applications' ? 'web-design-and-development-edmonton' : currentService.id === 'marketing-solutions' ? 'digital-marketing-edmonton' : 'ai-integration-automation-edmonton'}`}
+                        className="inline-flex items-center"
+                        asButton={true}
+                      >
+                        Learn More
+                      </TechButton>
+                    </motion.div>
                   </motion.div>
-                </motion.div>
-              </AnimatePresence>
+                </AnimatePresence>
+              </div>
             </div>
           </div>
 
