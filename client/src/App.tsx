@@ -52,7 +52,11 @@ export default function App() {
       <QueryClientProvider client={queryClient}>
         <PageTransition />
         <Layout>
-          <Suspense fallback={<LoadingScreen />}>
+          <Suspense fallback={
+            <div className="min-h-screen flex items-center justify-center bg-black">
+              <div className="text-white text-xl">Loading...</div>
+            </div>
+          }>
             <Switch>
               <Route path="/" component={Home} />
               <Route path="/services" component={Services} />
