@@ -9,7 +9,7 @@ const processSteps = [
     title: "Discovery",
     description: "We start by understanding your business goals, audience, and challenges to develop a comprehensive strategy.",
     icon: <Search className="h-8 w-8" />,
-    color: "#E04500"
+    color: "#FFB899"
   },
   {
     id: "strategy",
@@ -17,7 +17,7 @@ const processSteps = [
     title: "Strategy",
     description: "Based on our findings, we create a tailored strategy and roadmap to achieve your specific objectives.",
     icon: <Target className="h-8 w-8" />,
-    color: "#F15A29"
+    color: "#FF8A50"
   },
   {
     id: "planning",
@@ -25,7 +25,7 @@ const processSteps = [
     title: "Planning",
     description: "We develop detailed project plans with timelines, milestones, and resource allocation to ensure efficient execution.",
     icon: <Settings className="h-8 w-8" />,
-    color: "#FF8A50"
+    color: "#F15A29"
   },
   {
     id: "design-development",
@@ -33,7 +33,7 @@ const processSteps = [
     title: "Design & Development",
     description: "Our team creates visually appealing designs and builds robust, scalable solutions using the latest technologies.",
     icon: <Code className="h-8 w-8" />,
-    color: "#E57B00"
+    color: "#E04500"
   },
   {
     id: "launch",
@@ -41,7 +41,7 @@ const processSteps = [
     title: "Launch & Support",
     description: "We deploy your solution and provide ongoing support to ensure optimal performance and user satisfaction.",
     icon: <Rocket className="h-8 w-8" />,
-    color: "#E04500"
+    color: "#CC3300"
   }
 ];
 
@@ -99,7 +99,7 @@ export default function ProcessSection() {
           <div className="absolute left-8 top-0 h-full w-1 bg-gray-700 rounded-full overflow-hidden">
             {/* Animated fill line */}
             <motion.div
-              className="absolute top-0 left-0 w-full bg-gradient-to-b from-[#E04500] via-[#F15A29] to-[#FF8A50] rounded-full origin-top"
+              className="absolute top-0 left-0 w-full bg-gradient-to-b from-[#FFB899] via-[#FF8A50] via-[#F15A29] via-[#E04500] to-[#CC3300] rounded-full origin-top"
               style={{
                 height: lineProgress,
               }}
