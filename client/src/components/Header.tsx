@@ -66,7 +66,17 @@ export default function Header() {
   return (
     <>
       <motion.header 
-        className="fixed top-0 left-0 w-full py-3 px-4 sm:px-6 lg:px-8 z-50 transition-all duration-300 backdrop-blur-md border-b border-maverick-orange/10 bg-[#12121226]"
+        className="py-3 px-4 sm:px-6 lg:px-8 transition-all duration-300 backdrop-blur-md border-b border-maverick-orange/10 bg-[#12121226]"
+        style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          width: '100%',
+          zIndex: 9999,
+          transform: 'none',
+          willChange: 'auto'
+        }}
         role="banner"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -325,7 +335,18 @@ export default function Header() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
-              className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40 lg:hidden"
+              className="bg-black/50 backdrop-blur-sm lg:hidden"
+              style={{
+                position: 'fixed',
+                top: 0,
+                left: 0,
+                right: 0,
+                bottom: 0,
+                width: '100vw',
+                height: '100vh',
+                zIndex: 9997,
+                transform: 'none'
+              }}
               onClick={closeMobileMenu}
             />
 
@@ -340,8 +361,13 @@ export default function Header() {
                 stiffness: 250,
                 duration: 0.5 
               }}
-              className="fixed top-0 right-0 h-full w-[85%] max-w-sm z-50 flex flex-col lg:hidden"
+              className="w-[85%] max-w-sm flex flex-col lg:hidden"
               style={{
+                position: 'fixed',
+                top: 0,
+                right: 0,
+                height: '100vh',
+                zIndex: 9998,
                 backdropFilter: 'blur(32px) saturate(200%)',
                 WebkitBackdropFilter: 'blur(32px) saturate(200%)',
                 background: 'linear-gradient(135deg, rgba(18, 18, 18, 0.98) 0%, rgba(20, 20, 20, 0.95) 100%)',
@@ -349,6 +375,8 @@ export default function Header() {
                 boxShadow: `-20px 0 80px rgba(0, 0, 0, 0.6), 
                            inset 1px 0 0 rgba(255, 255, 255, 0.08),
                            0 0 40px rgba(255, 86, 0, 0.1)`,
+                transform: 'none',
+                willChange: 'auto'
               }}
               role="dialog"
               aria-modal="true"
