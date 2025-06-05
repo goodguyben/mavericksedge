@@ -280,18 +280,33 @@ export default function ServiceCascadeSection() {
             </motion.div>
           </div>
 
-          <div className={`grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 md:gap-10 lg:gap-12 xl:gap-16 items-center px-4 sm:px-6 md:px-8 lg:px-0 ${
-            currentService.imagePosition === 'right' ? 'lg:grid-flow-col-dense' : ''
-          }`}>
+          {/* Fixed Layout Container */}
+          <div className="relative h-[60vh] lg:h-[70vh]">
+            
+            {/* Fixed Title Position */}
+            <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-full text-center z-20">
+              <AnimatePresence mode="wait">
+                <motion.h3
+                  key={activeIndex}
+                  className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-bold text-white leading-tight px-4"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  {currentItem.title}
+                </motion.h3>
+              </AnimatePresence>
+            </div>
 
-            {/* Optimized 3D Image Stack */}
-            <div className={`relative aspect-[4/3] w-full ${
-              currentService.imagePosition === 'right' ? 'lg:col-start-2' : ''
-            }`} style={{ perspective: "1000px" }}>
+            {/* Fixed Media Position */}
+            <div className={`absolute top-16 ${
+              currentService.imagePosition === 'right' ? 'right-0 lg:right-8' : 'left-0 lg:left-8'
+            } w-full lg:w-1/2 aspect-[4/3] px-4 lg:px-0`} style={{ perspective: "1000px" }}>
               <div className="relative w-full h-full" style={{ transformStyle: "preserve-3d" }}>
                 {allItems.map((item, index) => {
                   const transform = getCardTransform(index);
-                  const isVisible = index === activeIndex; // Only show active card
+                  const isVisible = index === activeIndex;
 
                   if (!isVisible) return null;
 
@@ -334,8 +349,6 @@ export default function ServiceCascadeSection() {
                           videoDurations={item.videoDurations}
                           zoomEffects={item.zoomEffects}
                         />
-
-                        
                       </motion.div>
                     </motion.div>
                   );
@@ -343,10 +356,10 @@ export default function ServiceCascadeSection() {
               </div>
             </div>
 
-            {/* Optimized Content Area */}
-            <div className={`space-y-6 lg:space-y-8 flex flex-col justify-center items-start ${
-              currentService.imagePosition === 'right' ? 'lg:col-start-1 lg:row-start-1' : ''
-            }`}>
+            {/* Fixed Content Area */}
+            <div className={`absolute bottom-0 ${
+              currentService.imagePosition === 'right' ? 'left-0 lg:left-8' : 'right-0 lg:right-8'
+            } w-full lg:w-1/2 px-4 lg:px-0`}>
               <AnimatePresence mode="wait">
                 <motion.div
                   key={activeIndex}
@@ -357,20 +370,11 @@ export default function ServiceCascadeSection() {
                   exit="exit"
                   transition={{ duration: 0.4, ease: "easeOut" }}
                 >
-                  <motion.h3
-                    className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-bold text-white leading-tight"
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.3, delay: 0.1 }}
-                  >
-                    {currentItem.title}
-                  </motion.h3>
-
                   <motion.p
                     className="text-sm sm:text-base lg:text-lg text-gray-300 leading-relaxed"
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.3, delay: 0.15 }}
+                    transition={{ duration: 0.3, delay: 0.1 }}
                   >
                     {currentItem.description}
                   </motion.p>
@@ -378,7 +382,7 @@ export default function ServiceCascadeSection() {
                   <motion.div
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.3, delay: 0.2 }}
+                    transition={{ duration: 0.3, delay: 0.15 }}
                   >
                     <TechButton 
                       href={`/services/${currentService.id === 'web-applications' ? 'web-design-and-development-edmonton' : currentService.id === 'marketing-solutions' ? 'digital-marketing-edmonton' : 'ai-integration-automation-edmonton'}`}
@@ -390,78 +394,78 @@ export default function ServiceCascadeSection() {
                   </motion.div>
                 </motion.div>
               </AnimatePresence>
+            </div>
+          </div>
 
-              {/* Simplified Progress Bar */}
-              <div className="hidden sm:flex items-center justify-center pt-4 sm:pt-8">
-                <div className="flex items-center gap-4 md:gap-8">
-                  <div className="relative flex items-center">
-                    <div className="absolute inset-0 h-1 bg-gray-800 rounded-full" />
+          {/* Fixed Progress Bar at Bottom */}
+          <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 hidden sm:flex items-center justify-center">
+            <div className="flex items-center gap-4 md:gap-8">
+              <div className="relative flex items-center">
+                <div className="absolute inset-0 h-1 bg-gray-800 rounded-full" />
 
-                    <div className="relative flex items-center gap-0.5">
-                      {allItems.map((_, index) => (
-                        <motion.button
-                          key={index}
-                          className="relative flex items-center justify-center"
-                          onClick={() => handleDotClick(index)}
-                          whileHover={{ scale: 1.1 }}
-                          whileTap={{ scale: 0.9 }}
-                          style={{ width: `${100 / allItems.length}px` }}
-                        >
-                          <motion.div
-                            className="h-1 rounded-full"
-                            style={{ width: `${100 / allItems.length - 2}px` }}
-                            animate={{
-                              backgroundColor: index <= activeIndex ? "#FF5A00" : "#374151"
-                            }}
-                            transition={{ duration: 0.3 }}
-                          />
-
-                          {index === activeIndex && (
-                            <motion.div
-                              className="absolute -top-3 w-3 h-3 border-2 border-maverick-orange bg-black rounded-full"
-                              initial={{ scale: 0 }}
-                              animate={{ scale: 1 }}
-                              transition={{ duration: 0.2 }}
-                            >
-                              <div className="absolute inset-0.5 bg-maverick-orange rounded-full" />
-                            </motion.div>
-                          )}
-                        </motion.button>
-                      ))}
-                    </div>
-
-                    <motion.div
-                      className="absolute -bottom-6 left-0 text-xs text-gray-400 font-medium hidden sm:block"
-                      animate={{ 
-                        x: `${(activeIndex / (allItems.length - 1)) * 100}%`,
-                        translateX: "-50%"
-                      }}
-                      transition={{ duration: 0.3 }}
+                <div className="relative flex items-center gap-0.5">
+                  {allItems.map((_, index) => (
+                    <motion.button
+                      key={index}
+                      className="relative flex items-center justify-center"
+                      onClick={() => handleDotClick(index)}
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.9 }}
+                      style={{ width: `${100 / allItems.length}px` }}
                     >
-                      {activeIndex + 1} of {allItems.length}
-                    </motion.div>
-                  </div>
+                      <motion.div
+                        className="h-1 rounded-full"
+                        style={{ width: `${100 / allItems.length - 2}px` }}
+                        animate={{
+                          backgroundColor: index <= activeIndex ? "#FF5A00" : "#374151"
+                        }}
+                        transition={{ duration: 0.3 }}
+                      />
 
-                  <motion.button
-                    onClick={toggleAutoPlay}
-                    className="hidden lg:flex items-center gap-2 px-3 py-2 text-sm text-gray-400 hover:text-white transition-colors duration-200 min-h-[44px] whitespace-nowrap"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    {isAutoPlaying ? (
-                      <>
-                        <Pause className="w-3 h-3 md:w-4 md:h-4" />
-                        <span className="hidden lg:inline">Auto-play ON</span>
-                      </>
-                    ) : (
-                      <>
-                        <Play className="w-3 h-3 md:w-4 md:h-4" />
-                        <span className="hidden lg:inline">Auto-play OFF</span>
-                      </>
-                    )}
-                  </motion.button>
+                      {index === activeIndex && (
+                        <motion.div
+                          className="absolute -top-3 w-3 h-3 border-2 border-maverick-orange bg-black rounded-full"
+                          initial={{ scale: 0 }}
+                          animate={{ scale: 1 }}
+                          transition={{ duration: 0.2 }}
+                        >
+                          <div className="absolute inset-0.5 bg-maverick-orange rounded-full" />
+                        </motion.div>
+                      )}
+                    </motion.button>
+                  ))}
                 </div>
+
+                <motion.div
+                  className="absolute -bottom-6 left-0 text-xs text-gray-400 font-medium hidden sm:block"
+                  animate={{ 
+                    x: `${(activeIndex / (allItems.length - 1)) * 100}%`,
+                    translateX: "-50%"
+                  }}
+                  transition={{ duration: 0.3 }}
+                >
+                  {activeIndex + 1} of {allItems.length}
+                </motion.div>
               </div>
+
+              <motion.button
+                onClick={toggleAutoPlay}
+                className="hidden lg:flex items-center gap-2 px-3 py-2 text-sm text-gray-400 hover:text-white transition-colors duration-200 min-h-[44px] whitespace-nowrap"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                {isAutoPlaying ? (
+                  <>
+                    <Pause className="w-3 h-3 md:w-4 md:h-4" />
+                    <span className="hidden lg:inline">Auto-play ON</span>
+                  </>
+                ) : (
+                  <>
+                    <Play className="w-3 h-3 md:w-4 md:h-4" />
+                    <span className="hidden lg:inline">Auto-play OFF</span>
+                  </>
+                )}
+              </motion.button>
             </div>
           </div>
         </div>
