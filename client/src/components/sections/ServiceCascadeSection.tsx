@@ -260,7 +260,7 @@ export default function ServiceCascadeSection() {
         ))}
       </div>
       {/* Sticky content container */}
-      <div className="sticky top-0 h-screen flex items-center justify-center bg-black z-10 pt-12 sm:pt-16 md:pt-20 lg:pt-24 relative">
+      <div className="top-0 h-screen flex items-center justify-center bg-black z-10 pt-12 sm:pt-16 md:pt-20 lg:pt-24 relative mt-[-38px] mb-[-38px]">
         {/* Fixed Section Title */}
         <div className="absolute top-16 sm:top-20 md:top-24 lg:top-28 left-0 right-0 z-20">
           <div className="container mx-auto px-4 sm:px-6 md:px-8 text-center">
