@@ -9,7 +9,7 @@ const processSteps = [
     title: "Discovery",
     description: "We start by understanding your business goals, audience, and challenges to develop a comprehensive strategy.",
     icon: <Search className="h-8 w-8" />,
-    color: "#FF8A65"
+    color: "#FF5630"
   },
   {
     id: "strategy",
@@ -17,7 +17,7 @@ const processSteps = [
     title: "Strategy",
     description: "Based on our findings, we create a tailored strategy and roadmap to achieve your specific objectives.",
     icon: <Target className="h-8 w-8" />,
-    color: "#81C784"
+    color: "#36B37E"
   },
   {
     id: "planning",
@@ -25,7 +25,7 @@ const processSteps = [
     title: "Planning",
     description: "We develop detailed project plans with timelines, milestones, and resource allocation to ensure efficient execution.",
     icon: <Settings className="h-8 w-8" />,
-    color: "#9575CD"
+    color: "#6554C0"
   },
   {
     id: "design-development",
@@ -33,7 +33,7 @@ const processSteps = [
     title: "Design & Development",
     description: "Our team creates visually appealing designs and builds robust, scalable solutions using the latest technologies.",
     icon: <Code className="h-8 w-8" />,
-    color: "#FFB74D"
+    color: "#FFAB00"
   },
   {
     id: "launch",
@@ -41,7 +41,7 @@ const processSteps = [
     title: "Launch & Support",
     description: "We deploy your solution and provide ongoing support to ensure optimal performance and user satisfaction.",
     icon: <Rocket className="h-8 w-8" />,
-    color: "#64B5F6"
+    color: "#FF5630"
   }
 ];
 
@@ -96,10 +96,10 @@ export default function ProcessSection() {
 
         <div className="relative max-w-4xl mx-auto">
           {/* Vertical Line with Fill Effect */}
-          <div className="absolute left-8 top-0 h-full w-1 bg-gray-700/40 rounded-full overflow-hidden">
+          <div className="absolute left-8 top-0 h-full w-1 bg-gray-700 rounded-full overflow-hidden">
             {/* Animated fill line */}
             <motion.div
-              className="absolute top-0 left-0 w-full bg-gradient-to-b from-[#FF8A65]/80 via-[#FFB74D]/60 to-[#64B5F6]/70 rounded-full origin-top"
+              className="absolute top-0 left-0 w-full bg-gradient-to-b from-maverick-orange via-[#FFAB00] to-[#36B37E] rounded-full origin-top"
               style={{
                 height: lineProgress,
               }}
@@ -123,47 +123,32 @@ export default function ProcessSection() {
                 <motion.div
                   className="relative z-10 flex items-center justify-center w-16 h-16 rounded-full border-2 bg-[#121212] transition-all duration-300"
                   style={{
-                    borderColor: visibleSteps.has(step.step) ? `${step.color}80` : "#374151",
-                    backgroundColor: visibleSteps.has(step.step) ? `${step.color}20` : "#121212",
+                    borderColor: visibleSteps.has(step.step) ? step.color : "#374151",
+                    backgroundColor: visibleSteps.has(step.step) ? step.color : "#121212",
                   }}
                   whileHover={{ scale: 1.05 }}
                 >
-                  <motion.div
+                  <div
                     style={{
-                      color: visibleSteps.has(step.step) ? step.color : `${step.color}80`
-                    }}
-                    animate={visibleSteps.has(step.step) ? {
-                      scale: [1, 1.1, 1],
-                      rotate: step.id === "discovery" ? [0, 10, -10, 0] :
-                              step.id === "strategy" ? [0, -5, 5, 0] :
-                              step.id === "planning" ? [0, 360] :
-                              step.id === "design-development" ? [0, 15, -15, 0] :
-                              [0, 20, 0]
-                    } : {}}
-                    transition={{
-                      duration: step.id === "planning" ? 2 : 1.5,
-                      repeat: Infinity,
-                      repeatDelay: 3,
-                      ease: "easeInOut"
+                      color: visibleSteps.has(step.step) ? "#FFFFFF" : step.color
                     }}
                   >
                     {step.icon}
-                  </motion.div>
+                  </div>
                 </motion.div>
 
                 {/* Content Card */}
                 <motion.div
-                  className="flex-1 bg-gradient-to-br from-[#121212] to-[#1a1a1a] p-6 rounded-xl border border-gray-800/60 relative overflow-hidden"
+                  className="flex-1 bg-gradient-to-br from-[#121212] to-[#1a1a1a] p-6 rounded-xl border border-gray-800 relative overflow-hidden"
                   whileHover={{ 
                     y: -4,
-                    borderColor: `${step.color}60`,
-                    backgroundColor: `${step.color}05`
+                    borderColor: step.color,
                   }}
                   transition={{ duration: 0.2 }}
                 >
                   {/* Step Number */}
                   <span
-                    className="absolute top-4 right-6 text-6xl font-bold opacity-[0.08]"
+                    className="absolute top-4 right-6 text-6xl font-bold opacity-10"
                     style={{ color: step.color }}
                   >
                     {step.step.toString().padStart(2, '0')}
@@ -173,7 +158,7 @@ export default function ProcessSection() {
                     <h3
                       className="text-2xl font-semibold mb-3 font-heading transition-colors duration-300"
                       style={{
-                        color: visibleSteps.has(step.step) ? `${step.color}E6` : "#FFFFFF"
+                        color: visibleSteps.has(step.step) ? step.color : "#FFFFFF"
                       }}
                     >
                       {step.title}
@@ -185,108 +170,29 @@ export default function ProcessSection() {
                   </div>
                 </motion.div>
 
-                </motion.div>
+                {/* Simple arrow connector */}
+                {index < processSteps.length - 1 && (
+                  <div className="absolute left-8 -bottom-8 flex justify-center z-20">
+                    <ArrowDown 
+                      className="h-5 w-5 text-gray-600" 
+                    />
+                  </div>
+                )}
+              </motion.div>
             ))}
           </div>
 
-          {/* Creative Process Completion Animation */}
+          {/* Completion indicator */}
           <motion.div
             className="text-center mt-16"
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={visibleSteps.size === processSteps.length ? { 
-              opacity: 1, 
-              scale: 1,
-            } : { opacity: 0, scale: 0.8 }}
-            transition={{ duration: 0.8, type: "spring", bounce: 0.3 }}
+            initial={{ opacity: 0 }}
+            animate={visibleSteps.size === processSteps.length ? { opacity: 1 } : {}}
+            transition={{ duration: 0.5 }}
           >
-            <motion.div
-              className="relative inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-[#FF8A65]/10 via-[#81C784]/10 to-[#64B5F6]/10 border-2 rounded-full overflow-hidden"
-              style={{
-                borderColor: visibleSteps.size === processSteps.length ? "#81C784" : "transparent"
-              }}
-              animate={visibleSteps.size === processSteps.length ? {
-                boxShadow: [
-                  "0 0 0 rgba(129, 199, 132, 0)",
-                  "0 0 20px rgba(129, 199, 132, 0.3)",
-                  "0 0 40px rgba(129, 199, 132, 0.2)",
-                  "0 0 20px rgba(129, 199, 132, 0.3)",
-                  "0 0 0 rgba(129, 199, 132, 0)"
-                ]
-              } : {}}
-              transition={{ 
-                duration: 2, 
-                repeat: Infinity,
-                ease: "easeInOut"
-              }}
-            >
-              {/* Animated background pulse */}
-              <motion.div
-                className="absolute inset-0 bg-gradient-to-r from-[#81C784]/20 via-[#64B5F6]/20 to-[#FF8A65]/20 rounded-full"
-                animate={visibleSteps.size === processSteps.length ? {
-                  scale: [1, 1.05, 1],
-                  opacity: [0.3, 0.6, 0.3]
-                } : {}}
-                transition={{
-                  duration: 1.5,
-                  repeat: Infinity,
-                  ease: "easeInOut"
-                }}
-              />
-              
-              {/* Completion icon with animation */}
-              <motion.div
-                animate={visibleSteps.size === processSteps.length ? {
-                  rotate: [0, 360],
-                  scale: [1, 1.2, 1]
-                } : {}}
-                transition={{
-                  duration: 1,
-                  repeat: Infinity,
-                  repeatDelay: 2,
-                  ease: "easeInOut"
-                }}
-              >
-                <CheckCircle className="h-6 w-6 text-[#81C784] relative z-10" />
-              </motion.div>
-              
-              {/* Text with subtle animation */}
-              <motion.span
-                className="text-[#81C784] font-semibold text-lg relative z-10"
-                animate={visibleSteps.size === processSteps.length ? {
-                  scale: [1, 1.02, 1]
-                } : {}}
-                transition={{
-                  duration: 2,
-                  repeat: Infinity,
-                  ease: "easeInOut"
-                }}
-              >
-                Process Complete
-              </motion.span>
-              
-              {/* Particle effects */}
-              {[...Array(6)].map((_, i) => (
-                <motion.div
-                  key={i}
-                  className="absolute w-1 h-1 bg-[#81C784] rounded-full"
-                  style={{
-                    left: `${20 + i * 12}%`,
-                    top: `${30 + (i % 2) * 40}%`
-                  }}
-                  animate={visibleSteps.size === processSteps.length ? {
-                    y: [-10, -20, -10],
-                    opacity: [0, 1, 0],
-                    scale: [0, 1, 0]
-                  } : {}}
-                  transition={{
-                    duration: 1.5,
-                    repeat: Infinity,
-                    delay: i * 0.2,
-                    ease: "easeOut"
-                  }}
-                />
-              ))}
-            </motion.div>
+            <div className="inline-flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-maverick-orange/10 to-green-500/10 border border-maverick-orange/30 rounded-full">
+              <CheckCircle className="h-5 w-5 text-green-400" />
+              <span className="text-maverick-orange font-semibold">Process Complete</span>
+            </div>
           </motion.div>
         </div>
       </div>
