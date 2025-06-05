@@ -99,7 +99,7 @@ export default function ProcessSection() {
           <div className="absolute left-8 top-0 h-full w-1 bg-gray-700 rounded-full overflow-hidden">
             {/* Animated fill line */}
             <motion.div
-              className="absolute top-0 left-0 w-full bg-gradient-to-b from-[#FF8A50] via-[#F15A29] to-[#E04500] rounded-full origin-top"
+              className="absolute top-0 left-0 w-full bg-gradient-to-b from-[#E04500] via-[#F15A29] to-[#FF8A50] rounded-full origin-top"
               style={{
                 height: lineProgress,
               }}
