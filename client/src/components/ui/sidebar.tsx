@@ -258,6 +258,7 @@ const Sidebar = React.forwardRef<
           <div
             data-sidebar="sidebar"
             className="flex h-full w-full flex-col bg-sidebar group-data-[variant=floating]:rounded-lg group-data-[variant=floating]:border group-data-[variant=floating]:border-sidebar-border group-data-[variant=floating]:shadow"
+            style={{ position: 'relative', height: '100vh', overflow: 'auto' }}
           >
             {children}
           </div>
@@ -416,6 +417,7 @@ const SidebarContent = React.forwardRef<
         "flex min-h-0 flex-1 flex-col gap-2 overflow-auto group-data-[collapsible=icon]:overflow-hidden",
         className
       )}
+      style={{ position: 'relative', height: '100%' }}
       {...props}
     />
   )
