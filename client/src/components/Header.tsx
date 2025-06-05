@@ -66,16 +66,24 @@ export default function Header() {
   return (
     <>
       <motion.header 
-        className="py-3 px-4 sm:px-6 lg:px-8 transition-all duration-300 backdrop-blur-md border-b border-maverick-orange/10 bg-[#12121226]"
+        className="backdrop-blur-md border-b border-maverick-orange/10 bg-[#12121226]"
         style={{
           position: 'fixed',
-          top: 0,
-          left: 0,
-          right: 0,
-          width: '100%',
+          top: '0px',
+          left: '0px',
+          right: '0px',
+          width: '100vw',
+          height: 'auto',
           zIndex: 9999,
-          transform: 'none',
-          willChange: 'auto'
+          transform: 'translate3d(0, 0, 0)',
+          willChange: 'transform',
+          backfaceVisibility: 'hidden',
+          WebkitBackfaceVisibility: 'hidden',
+          padding: '12px 16px',
+          transition: 'all 0.3s ease',
+          WebkitTransform: 'translate3d(0, 0, 0)',
+          MozTransform: 'translate3d(0, 0, 0)',
+          msTransform: 'translate3d(0, 0, 0)'
         }}
         role="banner"
         initial={{ opacity: 0 }}
@@ -86,7 +94,13 @@ export default function Header() {
           ease: "easeInOut"
         }}
       >
-        <div className="container mx-auto flex justify-between items-center max-w-7xl">
+        <div 
+          className="container mx-auto flex justify-between items-center max-w-7xl"
+          style={{
+            padding: '0 16px',
+            margin: '0 auto'
+          }}
+        >
           {/* Logo */}
           <Link 
             href="/" 
