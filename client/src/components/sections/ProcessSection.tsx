@@ -127,14 +127,42 @@ export default function ProcessSection() {
                     backgroundColor: visibleSteps.has(step.step) ? step.color : "#121212",
                   }}
                   whileHover={{ scale: 1.05 }}
+                  initial={{ scale: 0.8, opacity: 0 }}
+                  whileInView={{ scale: 1, opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
                 >
-                  <div
+                  <motion.div
                     style={{
                       color: visibleSteps.has(step.step) ? "#FFFFFF" : step.color
                     }}
+                    initial={{ rotate: -180, scale: 0 }}
+                    whileInView={{ rotate: 0, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ 
+                      duration: 0.6, 
+                      delay: index * 0.1 + 0.3,
+                      type: "spring",
+                      stiffness: 200,
+                      damping: 15
+                    }}
+                    whileHover={{ 
+                      rotate: [0, -10, 10, 0],
+                      scale: [1, 1.1, 1],
+                      transition: { duration: 0.5 }
+                    }}
+                    animate={visibleSteps.has(step.step) ? {
+                      y: [0, -2, 0],
+                      transition: {
+                        duration: 2,
+                        repeat: Infinity,
+                        repeatType: "reverse",
+                        ease: "easeInOut"
+                      }
+                    } : {}}
                   >
                     {step.icon}
-                  </div>
+                  </motion.div>
                 </motion.div>
 
                 {/* Content Card */}
