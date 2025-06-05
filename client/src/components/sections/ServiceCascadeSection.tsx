@@ -260,26 +260,24 @@ export default function ServiceCascadeSection() {
         ))}
       </div>
       {/* Sticky content container */}
-      <div className="top-0 h-screen flex items-center justify-center bg-black z-10 pt-12 sm:pt-16 md:pt-20 lg:pt-24 relative mt-[-38px] mb-[-38px]">
-        {/* Fixed Section Title */}
-        <div className="absolute top-16 sm:top-20 md:top-24 lg:top-28 left-0 right-0 z-20">
-          <div className="container mx-auto px-4 sm:px-6 md:px-8 text-center">
+      <div className="sticky top-0 h-screen flex items-center justify-center bg-black z-10 pt-12 sm:pt-16 md:pt-20 lg:pt-24 relative">
+        <div className="container mx-auto px-4 sm:px-6 md:px-8">
+
+          {/* Section Title */}
+          <div className="text-center mb-8 lg:mb-12">
             <motion.div
               key={currentSection}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, ease: "easeOut" }}
-              className="flex items-center justify-center gap-4"
+              className="flex items-center justify-center gap-4 mb-4"
             >
               {currentService.icon}
-              <h2 className="text-3xl lg:text-4xl xl:text-5xl font-bold text-white">
+              <h2 className="text-3xl lg:text-4xl xl:text-5xl font-bold text-white mt-[11px] mb-[11px]">
                 {currentService.title}
               </h2>
             </motion.div>
           </div>
-        </div>
-
-        <div className="container mx-auto px-4 sm:px-6 md:px-8 mt-20 lg:mt-24">
 
           <div className={`grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 md:gap-10 lg:gap-12 xl:gap-16 items-center px-4 sm:px-6 md:px-8 lg:px-0 ${
             currentService.imagePosition === 'right' ? 'lg:grid-flow-col-dense' : ''
