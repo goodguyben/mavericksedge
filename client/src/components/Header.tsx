@@ -57,16 +57,12 @@ export default function Header() {
 
   const isCurrentPath = (path: string) => location === path;
 
-  const getHeaderClasses = () => {
-    return `fixed top-0 left-0 w-full py-3 px-4 sm:px-6 lg:px-8 z-50 transition-all duration-300 backdrop-blur-md border-b border-maverick-orange/10 ${
-      isScrolled ? 'bg-[#121212]/95' : 'bg-[#12121261]'
-    }`;
-  };
-
   return (
     <>
       <header 
-        className="py-3 px-4 sm:px-6 lg:px-8 transition-all duration-300 backdrop-blur-md border-b border-maverick-orange/10 bg-black/80"
+        className={`py-3 px-4 sm:px-6 lg:px-8 transition-all duration-300 backdrop-blur-md border-b border-maverick-orange/10 ${
+          isScrolled ? 'bg-[#121212]/95' : 'bg-[#12121261]'
+        }`}
         role="banner"
         style={{
           position: 'fixed',
@@ -75,8 +71,7 @@ export default function Header() {
           right: 0,
           width: '100%',
           zIndex: 9999,
-          transform: 'none',
-          willChange: 'auto'
+          transform: 'none'
         }}
       >
         <div className="container mx-auto flex justify-between items-center max-w-7xl">
