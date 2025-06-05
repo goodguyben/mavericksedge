@@ -1,7 +1,7 @@
 
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
-import { Search, Settings, Paintbrush, Code, Shield, ArrowDown, CheckCircle, Lightbulb, Rocket } from "lucide-react";
+import { Search, Settings, Paintbrush, Code, Shield, ArrowDown, CheckCircle, Lightbulb, Rocket, Target, Users, TrendingUp } from "lucide-react";
 
 const processSteps = [
   {
@@ -9,40 +9,45 @@ const processSteps = [
     step: 1,
     title: "Discovery",
     description: "We start by understanding your business goals, audience, and challenges to develop a comprehensive strategy.",
-    icon: <Search className="h-8 w-8 text-maverick-orange" />,
-    graphic: <Lightbulb className="h-16 w-16 text-maverick-orange/30" />
+    icon: <Search className="h-8 w-8" />,
+    graphic: <Lightbulb className="h-20 w-20" />,
+    color: "#FF5630"
   },
   {
     id: "strategy",
     step: 2,
     title: "Strategy",
     description: "Based on our findings, we create a tailored strategy and roadmap to achieve your specific objectives.",
-    icon: <Settings className="h-8 w-8 text-maverick-orange" />,
-    graphic: <Settings className="h-16 w-16 text-maverick-orange/30" />
+    icon: <Target className="h-8 w-8" />,
+    graphic: <Target className="h-20 w-20" />,
+    color: "#36B37E"
   },
   {
     id: "planning",
     step: 3,
     title: "Planning",
     description: "We develop detailed project plans with timelines, milestones, and resource allocation to ensure efficient execution.",
-    icon: <Paintbrush className="h-8 w-8 text-maverick-orange" />,
-    graphic: <CheckCircle className="h-16 w-16 text-maverick-orange/30" />
+    icon: <Settings className="h-8 w-8" />,
+    graphic: <Settings className="h-20 w-20" />,
+    color: "#6554C0"
   },
   {
     id: "design-development",
     step: 4,
     title: "Design & Development",
     description: "Our team creates visually appealing designs and builds robust, scalable solutions using the latest technologies.",
-    icon: <Code className="h-8 w-8 text-maverick-orange" />,
-    graphic: <Code className="h-16 w-16 text-maverick-orange/30" />
+    icon: <Code className="h-8 w-8" />,
+    graphic: <Code className="h-20 w-20" />,
+    color: "#FFAB00"
   },
   {
     id: "launch",
     step: 5,
     title: "Launch & Support",
     description: "We deploy your solution and provide ongoing support to ensure optimal performance and user satisfaction.",
-    icon: <Shield className="h-8 w-8 text-maverick-orange" />,
-    graphic: <Rocket className="h-16 w-16 text-maverick-orange/30" />
+    icon: <Rocket className="h-8 w-8" />,
+    graphic: <Rocket className="h-20 w-20" />,
+    color: "#FF5630"
   }
 ];
 
@@ -55,7 +60,18 @@ export default function ProcessSection() {
     offset: ["start center", "end center"]
   });
 
-  const lineProgress = useTransform(scrollYProgress, [0, 1], [0, 100]);
+  // Smooth spring animation for the line progress
+  const lineProgress = useSpring(
+    useTransform(scrollYProgress, [0, 1], [0, 100]),
+    { stiffness: 100, damping: 30, restDelta: 0.001 }
+  );
+
+  // Create individual step progress values
+  const stepProgressValues = processSteps.map((_, index) => {
+    const stepStart = index / processSteps.length;
+    const stepEnd = (index + 1) / processSteps.length;
+    return useTransform(scrollYProgress, [stepStart, stepEnd], [0, 1]);
+  });
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -67,7 +83,7 @@ export default function ProcessSection() {
           }
         });
       },
-      { threshold: 0.6 }
+      { threshold: 0.3 }
     );
 
     const stepElements = containerRef.current?.querySelectorAll('[data-step]');
@@ -95,19 +111,33 @@ export default function ProcessSection() {
         </motion.div>
 
         <div className="relative max-w-4xl mx-auto">
-          {/* Animated Progress Line */}
-          <div className="absolute left-8 top-0 bottom-0 w-1 bg-gray-700 rounded-full overflow-hidden">
+          {/* Enhanced Animated Progress Line */}
+          <div className="absolute left-8 top-0 h-full w-2 rounded-full overflow-hidden">
+            {/* Background line */}
+            <div className="absolute inset-0 bg-gradient-to-b from-gray-700 via-gray-600 to-gray-700 rounded-full opacity-50" />
+            
+            {/* Animated progress line */}
             <motion.div
-              className="absolute top-0 left-0 w-full bg-gradient-to-b from-maverick-orange to-orange-400 rounded-full origin-top"
+              className="absolute top-0 left-0 w-full rounded-full origin-top"
               style={{
-                height: `${lineProgress.get()}%`
+                height: lineProgress,
+                background: "linear-gradient(180deg, #FF5630 0%, #FFAB00 25%, #6554C0 50%, #36B37E 75%, #FF5630 100%)"
               }}
-              initial={{ height: "0%" }}
+            />
+            
+            {/* Glowing effect */}
+            <motion.div
+              className="absolute top-0 left-0 w-full rounded-full origin-top blur-sm"
+              style={{
+                height: lineProgress,
+                background: "linear-gradient(180deg, #FF5630 0%, #FFAB00 25%, #6554C0 50%, #36B37E 75%, #FF5630 100%)",
+                opacity: 0.6
+              }}
             />
           </div>
 
           {/* Process Steps */}
-          <div className="space-y-16">
+          <div className="space-y-20">
             {processSteps.map((step, index) => (
               <motion.div
                 key={step.id}
@@ -116,65 +146,106 @@ export default function ProcessSection() {
                 initial={{ opacity: 0, x: -50 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
+                transition={{ duration: 0.8, delay: index * 0.1, ease: "easeOut" }}
               >
-                {/* Step Circle with Icon */}
+                {/* Enhanced Step Circle with Icon */}
                 <motion.div
-                  className="relative z-10 flex items-center justify-center w-16 h-16 bg-[#121212] border-4 border-gray-700 rounded-full"
+                  className="relative z-10 flex items-center justify-center w-16 h-16 rounded-full border-4 transition-all duration-500"
+                  style={{
+                    backgroundColor: visibleSteps.has(step.step) ? step.color : "#121212",
+                    borderColor: visibleSteps.has(step.step) ? step.color : "#374151",
+                    boxShadow: visibleSteps.has(step.step) ? `0 0 20px ${step.color}40` : "none"
+                  }}
                   animate={visibleSteps.has(step.step) ? {
-                    borderColor: "#FF5630",
-                    backgroundColor: "#FF5630",
                     scale: [1, 1.1, 1],
+                    rotate: [0, 180, 360]
                   } : {}}
-                  transition={{ duration: 0.5 }}
+                  transition={{ duration: 1, delay: 0.2 }}
                 >
                   <motion.div
+                    style={{
+                      color: visibleSteps.has(step.step) ? "#FFFFFF" : step.color
+                    }}
                     animate={visibleSteps.has(step.step) ? {
-                      color: "#FFFFFF",
-                      scale: [1, 1.2, 1],
-                      rotate: [0, 360]
+                      scale: [1, 1.2, 1]
                     } : {}}
-                    transition={{ duration: 0.8, delay: 0.2 }}
+                    transition={{ duration: 0.8, delay: 0.4 }}
                   >
                     {step.icon}
                   </motion.div>
+
+                  {/* Pulse rings */}
+                  {visibleSteps.has(step.step) && (
+                    <>
+                      {[1, 2, 3].map((ring) => (
+                        <motion.div
+                          key={ring}
+                          className="absolute inset-0 rounded-full border-2 opacity-0"
+                          style={{ borderColor: step.color }}
+                          animate={{
+                            scale: [1, 2, 3],
+                            opacity: [0.8, 0.4, 0]
+                          }}
+                          transition={{
+                            duration: 2,
+                            repeat: Infinity,
+                            delay: ring * 0.4,
+                            ease: "easeOut"
+                          }}
+                        />
+                      ))}
+                    </>
+                  )}
                 </motion.div>
 
-                {/* Content Card */}
+                {/* Enhanced Content Card */}
                 <motion.div
-                  className="flex-1 bg-[#121212] p-8 rounded-xl border border-gray-800 relative group"
+                  className="flex-1 bg-gradient-to-br from-[#121212] to-[#1a1a1a] p-8 rounded-2xl border border-gray-800 relative group overflow-hidden"
                   whileHover={{ 
-                    y: -5,
-                    borderColor: "#FF5630",
-                    boxShadow: "0 10px 30px rgba(255, 86, 48, 0.1)"
+                    y: -8,
+                    borderColor: step.color,
+                    boxShadow: `0 20px 40px ${step.color}20`
                   }}
-                  transition={{ duration: 0.3 }}
+                  transition={{ duration: 0.4, ease: "easeOut" }}
                 >
+                  {/* Animated background gradient */}
+                  <motion.div
+                    className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500"
+                    style={{
+                      background: `radial-gradient(circle at 70% 30%, ${step.color}40, transparent 50%)`
+                    }}
+                  />
+
                   {/* Step Number */}
                   <motion.span
-                    className="absolute top-4 right-4 text-6xl font-bold text-maverick-orange opacity-10"
+                    className="absolute top-6 right-6 text-7xl font-bold opacity-10 transition-all duration-500"
+                    style={{ color: step.color }}
                     animate={visibleSteps.has(step.step) ? {
                       opacity: 0.2,
-                      scale: [1, 1.2, 1]
+                      scale: [1, 1.1, 1],
+                      rotate: [0, 5, 0]
                     } : {}}
-                    transition={{ duration: 0.5, delay: 0.3 }}
+                    transition={{ duration: 1, delay: 0.3 }}
                   >
                     {step.step.toString().padStart(2, '0')}
                   </motion.span>
 
-                  {/* Animated Graphic */}
+                  {/* Enhanced Animated Graphic */}
                   <motion.div
-                    className="absolute top-6 right-20 opacity-20"
+                    className="absolute top-8 right-24 opacity-20 transition-all duration-500"
+                    style={{ color: step.color }}
                     animate={visibleSteps.has(step.step) ? {
-                      opacity: 0.4,
+                      opacity: 0.6,
                       rotate: [0, 10, -10, 0],
-                      scale: [1, 1.1, 1]
+                      scale: [1, 1.2, 1],
+                      y: [0, -10, 0]
                     } : {}}
                     transition={{ 
-                      duration: 2,
+                      duration: 4,
                       repeat: visibleSteps.has(step.step) ? Infinity : 0,
                       repeatType: "reverse",
-                      delay: 0.5
+                      delay: 0.5,
+                      ease: "easeInOut"
                     }}
                   >
                     {step.graphic}
@@ -182,12 +253,14 @@ export default function ProcessSection() {
 
                   <div className="relative z-10">
                     <motion.h3
-                      className="text-2xl font-semibold mb-4 font-heading"
+                      className="text-2xl font-semibold mb-4 font-heading transition-colors duration-500"
+                      style={{
+                        color: visibleSteps.has(step.step) ? step.color : "#FFFFFF"
+                      }}
                       animate={visibleSteps.has(step.step) ? {
-                        color: "#FF5630",
                         x: [0, 10, 0]
                       } : {}}
-                      transition={{ duration: 0.5, delay: 0.4 }}
+                      transition={{ duration: 0.8, delay: 0.4 }}
                     >
                       {step.title}
                     </motion.h3>
@@ -198,50 +271,55 @@ export default function ProcessSection() {
                         opacity: [0.7, 1],
                         y: [0, -5, 0]
                       } : {}}
-                      transition={{ duration: 0.5, delay: 0.6 }}
+                      transition={{ duration: 0.8, delay: 0.6 }}
                     >
                       {step.description}
                     </motion.p>
 
-                    {/* Progress indicator for current step */}
+                    {/* Enhanced progress indicator */}
                     <motion.div
-                      className="mt-6 h-1 bg-gray-700 rounded-full overflow-hidden"
+                      className="mt-6 h-2 bg-gray-700 rounded-full overflow-hidden"
                       initial={{ opacity: 0 }}
                       animate={visibleSteps.has(step.step) ? { opacity: 1 } : {}}
                       transition={{ duration: 0.3, delay: 0.8 }}
                     >
                       <motion.div
-                        className="h-full bg-gradient-to-r from-maverick-orange to-orange-400 rounded-full"
+                        className="h-full rounded-full"
+                        style={{
+                          background: `linear-gradient(90deg, ${step.color}, ${step.color}80)`
+                        }}
                         initial={{ width: "0%" }}
                         animate={visibleSteps.has(step.step) ? { width: "100%" } : {}}
-                        transition={{ duration: 1.5, delay: 1, ease: "easeOut" }}
+                        transition={{ duration: 2, delay: 1, ease: "easeOut" }}
                       />
                     </motion.div>
                   </div>
 
-                  {/* Particle effect for active step */}
+                  {/* Enhanced particle effects */}
                   {visibleSteps.has(step.step) && (
                     <motion.div
-                      className="absolute inset-0 pointer-events-none"
+                      className="absolute inset-0 pointer-events-none overflow-hidden"
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       transition={{ duration: 0.5 }}
                     >
-                      {[...Array(5)].map((_, i) => (
+                      {[...Array(8)].map((_, i) => (
                         <motion.div
                           key={i}
-                          className="absolute w-2 h-2 bg-maverick-orange rounded-full"
+                          className="absolute w-1 h-1 rounded-full"
                           style={{
-                            left: `${20 + i * 15}%`,
-                            top: `${30 + i * 10}%`,
+                            backgroundColor: step.color,
+                            left: `${10 + i * 10}%`,
+                            top: `${20 + (i % 3) * 20}%`,
                           }}
                           animate={{
-                            scale: [0, 1, 0],
-                            opacity: [0, 0.6, 0],
-                            y: [0, -20, -40]
+                            scale: [0, 1.5, 0],
+                            opacity: [0, 0.8, 0],
+                            y: [0, -30, -60],
+                            x: [0, Math.sin(i) * 20, Math.sin(i) * 40]
                           }}
                           transition={{
-                            duration: 2,
+                            duration: 3,
                             repeat: Infinity,
                             delay: i * 0.2,
                             ease: "easeOut"
@@ -252,55 +330,61 @@ export default function ProcessSection() {
                   )}
                 </motion.div>
 
-                {/* Arrow connector for non-last steps */}
+                {/* Enhanced arrow connector */}
                 {index < processSteps.length - 1 && (
                   <motion.div
-                    className="absolute left-8 -bottom-8 flex justify-center"
+                    className="absolute left-8 -bottom-10 flex justify-center z-20"
                     animate={visibleSteps.has(step.step) ? {
-                      y: [0, 5, 0],
-                      opacity: [0.5, 1, 0.5]
+                      y: [0, 8, 0],
+                      opacity: [0.6, 1, 0.6],
+                      scale: [1, 1.1, 1]
                     } : {}}
                     transition={{
-                      duration: 1.5,
+                      duration: 2,
                       repeat: Infinity,
-                      delay: 1
+                      delay: 1,
+                      ease: "easeInOut"
                     }}
                   >
-                    <ArrowDown className="h-6 w-6 text-maverick-orange" />
+                    <ArrowDown 
+                      className="h-6 w-6 drop-shadow-lg" 
+                      style={{ color: processSteps[index + 1]?.color || "#FF5630" }}
+                    />
                   </motion.div>
                 )}
               </motion.div>
             ))}
           </div>
 
-          {/* Completion indicator */}
+          {/* Enhanced completion indicator */}
           <motion.div
-            className="text-center mt-16"
+            className="text-center mt-20"
             initial={{ opacity: 0, y: 20 }}
             animate={visibleSteps.size === processSteps.length ? {
               opacity: 1,
               y: 0
             } : {}}
-            transition={{ duration: 0.8, delay: 0.5 }}
+            transition={{ duration: 1, delay: 0.5 }}
           >
             <motion.div
-              className="inline-flex items-center gap-3 px-6 py-3 bg-maverick-orange bg-opacity-10 border border-maverick-orange rounded-full"
+              className="inline-flex items-center gap-4 px-8 py-4 bg-gradient-to-r from-maverick-orange/10 to-green-500/10 border border-maverick-orange rounded-full backdrop-blur-sm"
               animate={visibleSteps.size === processSteps.length ? {
                 scale: [1, 1.05, 1],
                 boxShadow: [
                   "0 0 0 rgba(255, 86, 48, 0)",
-                  "0 0 20px rgba(255, 86, 48, 0.3)",
+                  "0 0 30px rgba(255, 86, 48, 0.4)",
                   "0 0 0 rgba(255, 86, 48, 0)"
                 ]
               } : {}}
               transition={{
-                duration: 2,
+                duration: 3,
                 repeat: Infinity,
                 delay: 1
               }}
             >
-              <CheckCircle className="h-5 w-5 text-maverick-orange" />
-              <span className="text-maverick-orange font-medium">Process Complete</span>
+              <CheckCircle className="h-6 w-6 text-green-400" />
+              <span className="text-maverick-orange font-semibold text-lg">Process Complete</span>
+              <TrendingUp className="h-5 w-5 text-green-400" />
             </motion.div>
           </motion.div>
         </div>
