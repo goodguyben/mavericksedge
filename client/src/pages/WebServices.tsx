@@ -112,7 +112,7 @@ export default function WebServices() {
             <div className="relative">
               <div className="bg-[#1A1A1A] p-1 rounded-lg border border-gray-800">
                 <img 
-                  src="https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+                  src="/assets/logo-transparent-thumb4x.png" 
                   alt="Web Development" 
                   className="rounded-lg w-full h-auto" 
                 />

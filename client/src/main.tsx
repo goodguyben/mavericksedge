@@ -4,6 +4,22 @@ import App from "./App";
 import "./index.css";
 import { AnimatePresence } from "framer-motion";
 
+// Global error handler for cross-origin errors
+window.addEventListener('error', (event) => {
+  if (event.message === 'Script error.' || event.message.includes('cross-origin')) {
+    event.preventDefault();
+    return false;
+  }
+});
+
+// Handle unhandled promise rejections
+window.addEventListener('unhandledrejection', (event) => {
+  if (event.reason?.message?.includes('cross-origin')) {
+    event.preventDefault();
+    return false;
+  }
+});
+
 // Performance optimizations
 const enablePerformanceOptimizations = () => {
   // Enable paint optimization
