@@ -25,7 +25,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden opacity-0 animate-[fadeIn_0.5s_ease-in-out_0.2s_forwards]">
+    <section className="relative min-h-screen flex items-center overflow-hidden pt-16 sm:pt-20 md:pt-32 opacity-0 animate-[fadeIn_0.5s_ease-in-out_0.2s_forwards]">
       {/* Video Background */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-10">
         <video

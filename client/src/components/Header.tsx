@@ -58,7 +58,7 @@ export default function Header() {
   const isCurrentPath = (path: string) => location === path;
 
   const getHeaderClasses = () => {
-    return `sticky top-0 left-0 w-full py-3 px-4 sm:px-6 lg:px-8 z-50 transition-all duration-300 backdrop-blur-md border-b border-maverick-orange/10 ${
+    return `fixed top-0 left-0 w-full py-3 px-4 sm:px-6 lg:px-8 z-50 transition-all duration-300 backdrop-blur-md border-b border-maverick-orange/10 ${
       isScrolled ? 'bg-[#121212]/95' : 'bg-[#12121261]'
     }`;
   };
@@ -66,7 +66,7 @@ export default function Header() {
   return (
     <>
       <motion.header 
-        className="sticky top-0 left-0 w-full py-3 px-4 sm:px-6 lg:px-8 z-50 transition-all duration-300 backdrop-blur-md border-b border-maverick-orange/10 bg-[#12121226] mt-[-44px] mb-[-44px]"
+        className="fixed top-0 left-0 w-full py-3 px-4 sm:px-6 lg:px-8 z-50 transition-all duration-300 backdrop-blur-md border-b border-maverick-orange/10 bg-[#12121226]"
         role="banner"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -170,18 +170,16 @@ export default function Header() {
                       >
                         Marketing & Creative
                       </Link>
-                      <div 
-                        className={`block px-4 py-3 min-h-[44px] text-base touch-manipulation cursor-pointer ${
+                      <Link 
+                        href="/services/ai" 
+                        className={`block px-4 py-3 min-h-[44px] text-base touch-manipulation ${
                           isCurrentPath('/services/ai') ? 'text-maverick-orange bg-maverick-orange/10' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'
                         }`} 
                         role="menuitem"
-                        onClick={() => {
-                          setServicesDropdownOpen(false);
-                          window.location.href = '/services/ai';
-                        }}
+                        onClick={() => setServicesDropdownOpen(false)}
                       >
-                        AI Solutions
-                      </div>
+                        AI Integration & Automation
+                      </Link>
                     </div>
                   </motion.div>
                 )}
@@ -448,19 +446,17 @@ export default function Header() {
                           >
                             <span className="text-base font-medium">Marketing & Creative</span>
                           </Link>
-                          <div 
+                          <Link 
+                            href="/services/ai" 
                             className={`block px-4 py-3 rounded-lg min-h-[44px] touch-manipulation transition-all duration-200 ${
                               isCurrentPath('/services/ai') 
                                 ? 'text-maverick-orange bg-maverick-orange/10 border border-maverick-orange/20' 
                                 : 'text-gray-300 hover:bg-white/5 hover:text-white border border-transparent'
                             }`}
-                            onClick={() => {
-                              closeMobileMenu();
-                              window.location.href = '/services/ai';
-                            }}
+                            onClick={closeMobileMenu}
                           >
                             <span className="text-base font-medium">AI Integration & Automation</span>
-                          </div>
+                          </Link>
                         </motion.div>
                       )}
                     </AnimatePresence>

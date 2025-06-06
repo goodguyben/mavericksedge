@@ -4,52 +4,6 @@ import App from "./App";
 import "./index.css";
 import { AnimatePresence } from "framer-motion";
 
-// Comprehensive error suppression for cross-origin and development errors
-const suppressCrossOriginErrors = () => {
-  // Prevent React's cross-origin error from being thrown
-  const originalError = window.onerror;
-  window.onerror = (message, source, lineno, colno, error) => {
-    if (typeof message === 'string' && (
-      message.includes('Script error') ||
-      message.includes('cross-origin') ||
-      message.includes('ResizeObserver loop limit exceeded')
-    )) {
-      return true; // Prevent default browser error handling
-    }
-    if (originalError) {
-      return originalError(message, source, lineno, colno, error);
-    }
-    return false;
-  };
-
-  // Handle unhandled promise rejections
-  window.addEventListener('unhandledrejection', (event) => {
-    const message = event.reason?.message || '';
-    if (message.includes('cross-origin') || 
-        message.includes('Script error') ||
-        message.includes('ResizeObserver loop limit exceeded')) {
-      event.preventDefault();
-      return;
-    }
-  });
-
-  // Override console.error to filter out React development warnings
-  const originalConsoleError = console.error;
-  console.error = (...args) => {
-    const message = args[0]?.toString() || '';
-    if (message.includes('cross-origin') ||
-        message.includes('Script error') ||
-        message.includes('React doesn\'t have access to the actual error object') ||
-        message.includes('ResizeObserver loop limit exceeded')) {
-      return;
-    }
-    originalConsoleError.apply(console, args);
-  };
-};
-
-// Initialize error suppression immediately
-suppressCrossOriginErrors();
-
 // Performance optimizations
 const enablePerformanceOptimizations = () => {
   // Enable paint optimization

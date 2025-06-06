@@ -367,7 +367,7 @@ export default function WebPricing() {
         id="projects"
         className="py-24 px-5 md:px-10 bg-[#151515] relative"
       >
-        <div className="container mx-auto relative">
+        <div className="container mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -503,7 +503,7 @@ export default function WebPricing() {
         id="care"
         className="py-24 px-5 md:px-10 bg-gradient-to-b from-[#121212] to-[#151515]"
       >
-        <div className="container mx-auto relative">
+        <div className="container mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -634,7 +634,7 @@ export default function WebPricing() {
                   <tr>
                     <td className="p-4 border-b border-gray-800 text-[#DDDDDD]">Analytics Reports</td>
                     <td className="p-4 text-center border-b border-gray-800">
-                      <div className="inline-flex items-center justify-center h-5 w-5bg-red-500/10 rounded-full">
+                      <div className="inline-flex items-center justify-center h-5 w-5 bg-red-500/10 rounded-full">
                         <span className="block h-2 w-2 bg-red-500 rounded-full"></span>
                       </div>
                     </td>
@@ -660,7 +660,7 @@ export default function WebPricing() {
 
       {/* Benefits Section */}
       <section className="py-24 px-5 md:px-10 bg-[#121212]">
-        <div className="container mx-auto relative">
+        <div className="container mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -728,7 +728,7 @@ export default function WebPricing() {
 
       {/* Process Section */}
       <section className="py-24 px-5 md:px-10 bg-[#151515]">
-        <div className="container mx-auto relative">
+        <div className="container mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -805,7 +805,7 @@ export default function WebPricing() {
 
       {/* FAQ Section */}
       <section className="py-24 px-5 md:px-10 bg-[#121212]">
-        <div className="container mx-auto relative">
+        <div className="container mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -867,7 +867,7 @@ export default function WebPricing() {
 
       {/* Nonprofit Section */}
       <section className="py-16 px-5 md:px-10 bg-[#151515]">
-        <div className="container mx-auto relative">
+        <div className="container mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -901,7 +901,7 @@ export default function WebPricing() {
 
       {/* CTA Section */}
       <section className="py-20 px-5 md:px-10 bg-gradient-to-b from-[#151515] to-[#121212]">
-        <div className="container mx-auto relative">
+        <div className="container mx-auto">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}

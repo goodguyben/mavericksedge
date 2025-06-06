@@ -589,7 +589,7 @@ img {
     letter-spacing: -0.01em;
   }
 
-  h1, h2, h3, h4, h5, h5 {
+  h1, h2, h3, h4, h5, h6 {
     @apply font-heading font-bold tracking-tight text-maverick-cream;
     letter-spacing: -0.03em;
   }

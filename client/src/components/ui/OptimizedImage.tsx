@@ -47,14 +47,7 @@ export const OptimizedImage: React.FC<OptimizedImageProps> = ({
   };
 
   const handleLoad = () => setImageLoaded(true);
-  const handleError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
-    // Don't log cross-origin image errors
-    if (e.currentTarget.src.includes('unsplash.com') || 
-        e.currentTarget.src.includes('third-party-domain')) {
-      e.preventDefault();
-    }
-    setImageError(true);
-  };
+  const handleError = () => setImageError(true);
 
   if (imageError) {
     return (

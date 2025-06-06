@@ -6,7 +6,6 @@ import { queryClient } from "@/lib/queryClient";
 import Layout from "@/components/Layout";
 import PageTransition from "@/components/PageTransition";
 import LoadingScreen from "@/components/ui/LoadingScreen"; // Assuming LoadingScreen is in this path
-import ErrorBoundary from '@/components/ErrorBoundary';
 
 
 // Lazy load pages
@@ -44,38 +43,38 @@ export default function App() {
   }, []);
 
   return (
-    <ErrorBoundary>
-      {isLoading ? (
-        <LoadingScreen isLoading={isLoading} onLoadingComplete={() => setIsLoading(false)} />
-      ) : (
-        <div className="min-h-screen opacity-0 animate-[fadeIn_0.3s_ease-in-out_forwards]">
-          <QueryClientProvider client={queryClient}>
-            <PageTransition />
-            <Layout>
-              <Suspense fallback={<div />}>
-                <Switch>
-                  <Route path="/" component={Home} />
-                  <Route path="/services" component={Services} />
-                  <Route path="/services/web" component={WebServices} />
-                  <Route path="/services/marketing" component={MarketingServices} />
-                  <Route path="/services/ai" component={AIServices} />
-                  <Route path="/pricing" component={Pricing} />
-                  <Route path="/pricing/web" component={WebPricing} />
-                  <Route path="/pricing/marketing" component={MarketingPricing} />
-                  <Route path="/pricing/ai" component={AIPricing} />
-                  <Route path="/work" component={Work} />
-                  <Route path="/about" component={About} />
-                  <Route path="/contact" component={Contact} />
-                  {/* Private route without header/footer */}
-                  <Route path="/payment-confirmed" component={PaymentConfirmed} />
-                  <Route component={NotFound} />
-                </Switch>
-              </Suspense>
-            </Layout>
-            <Toaster />
-          </QueryClientProvider>
-        </div>
+    <>
+    {isLoading ? (
+      <LoadingScreen />
+    ) : (
+    <div className="min-h-screen opacity-0 animate-[fadeIn_0.3s_ease-in-out_forwards]">
+      <QueryClientProvider client={queryClient}>
+        <PageTransition />
+        <Layout>
+          <Suspense fallback={<div />}>
+            <Switch>
+              <Route path="/" component={Home} />
+              <Route path="/services" component={Services} />
+              <Route path="/services/web" component={WebServices} />
+              <Route path="/services/marketing" component={MarketingServices} />
+              <Route path="/services/ai" component={AIServices} />
+              <Route path="/pricing" component={Pricing} />
+              <Route path="/pricing/web" component={WebPricing} />
+              <Route path="/pricing/marketing" component={MarketingPricing} />
+              <Route path="/pricing/ai" component={AIPricing} />
+              <Route path="/work" component={Work} />
+              <Route path="/about" component={About} />
+              <Route path="/contact" component={Contact} />
+              {/* Private route without header/footer */}
+              <Route path="/payment-confirmed" component={PaymentConfirmed} />
+              <Route component={NotFound} />
+            </Switch>
+          </Suspense>
+        </Layout>
+        <Toaster />
+      </QueryClientProvider>
+    </div>
       )}
-    </ErrorBoundary>
+      </>
   );
 }
