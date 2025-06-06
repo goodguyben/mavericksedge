@@ -77,8 +77,8 @@ export default function ProcessSection() {
   }, []);
 
   return (
-    <section className="py-24 px-5 md:px-10 bg-[#1E1E1E] overflow-hidden" ref={containerRef}>
-      <div className="container mx-auto">
+    <section className="py-24 px-5 md:px-10 bg-[#1E1E1E] overflow-hidden" >
+      <div ref={containerRef} className="container mx-auto max-w-4xl relative">
         <motion.div 
           className="text-center mb-20"
           initial={{ opacity: 0, y: 20 }}
@@ -198,7 +198,7 @@ export default function ProcessSection() {
                   </div>
                 </motion.div>
 
-                
+
               </motion.div>
             ))}
           </div>

@@ -3,7 +3,6 @@ import React, { Component, ErrorInfo, ReactNode } from 'react';
 
 interface Props {
   children: ReactNode;
-  fallback?: ReactNode;
 }
 
 interface State {
@@ -21,24 +20,24 @@ class ErrorBoundary extends Component<Props, State> {
   }
 
   public componentDidCatch(error: Error, errorInfo: ErrorInfo) {
-    // Don't log cross-origin errors to avoid console spam
-    if (error.message.includes('cross-origin') || 
-        error.message === 'Script error.' ||
-        error.message.includes('ResizeObserver loop limit exceeded') ||
-        error.message.includes('Non-Error promise rejection captured')) {
-      return;
-    }
-    
-    console.error('Error boundary caught an error:', error, errorInfo);
+    console.error('ErrorBoundary caught an error:', error, errorInfo);
   }
 
   public render() {
     if (this.state.hasError) {
-      return this.props.fallback || (
-        <div className="flex items-center justify-center min-h-[200px] text-center">
-          <div>
-            <h2 className="text-xl font-semibold mb-2">Something went wrong</h2>
-            <p className="text-gray-600">Please refresh the page or try again later.</p>
+      return (
+        <div className="min-h-screen bg-[#0A0A0A] flex items-center justify-center p-4">
+          <div className="text-center max-w-md">
+            <h2 className="text-2xl font-bold text-white mb-4">Something went wrong</h2>
+            <p className="text-gray-400 mb-6">
+              We're sorry, but something unexpected happened. Please refresh the page to try again.
+            </p>
+            <button
+              onClick={() => window.location.reload()}
+              className="bg-maverick-orange hover:bg-maverick-orange/90 text-white px-6 py-3 rounded-lg font-medium transition-colors"
+            >
+              Refresh Page
+            </button>
           </div>
         </div>
       );

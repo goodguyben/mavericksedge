@@ -3,12 +3,28 @@ import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { contactSubmissionSchema } from "@shared/schema";
 import { z } from "zod";
-import express from "express";
+import express, { type Request, Response, NextFunction } from "express";
 import path from "path";
 import { sendEmail, formatContactEmail } from "./email";
 import { sendEmailWithNodemailer } from "./nodemailer";
 
 export async function registerRoutes(app: Express): Promise<Server> {
+  // CORS middleware
+  app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
+    if (req.method === 'OPTIONS') {
+      res.sendStatus(200);
+    } else {
+      next();
+    }
+  });
+
+  // Middleware for parsing JSON and URL-encoded data
+  app.use(express.json({ limit: "50mb" }));
+  app.use(express.urlencoded({ extended: true, limit: "50mb" }));
+
   // SEO Routes - Serve robots.txt and sitemap.xml with proper headers
   app.get('/robots.txt', (req, res) => {
     res.type('text/plain');
@@ -26,7 +42,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
   // Serve static files from the public directory
   app.use(express.static(path.resolve(process.cwd(), "public")));
-  
+
   // Route to check if the video file exists and is accessible
   app.get("/api/check-video", (req, res) => {
     const videoPath = path.resolve(process.cwd(), "public/videos/background.mp4");
@@ -46,7 +62,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       // Validate request body
       const validatedData = contactSubmissionSchema.parse(req.body);
-      
+
       // Create contact submission
       const submission = await storage.createContactSubmission({
         name: validatedData.name,
@@ -55,7 +71,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         service: validatedData.service,
         message: validatedData.message
       });
-      
+
       // Format the email content
       const { text, html } = formatContactEmail(
         validatedData.name,
@@ -64,7 +80,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         validatedData.message,
         validatedData.phone
       );
-      
+
       try {
         // First try with Resend
         try {
@@ -74,11 +90,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
             text,
             html
           );
-          
+
           console.log('Email sent with Resend to bezal.john@gmail.com');
         } catch (error: any) {
           console.log('Resend failed, trying Nodemailer instead:', error?.message || 'Unknown error');
-          
+
           // Fallback to Nodemailer if Resend fails
           const result = await sendEmailWithNodemailer(
             'info@mavericksedge.ca', // This will create a test message viewable at preview URL
@@ -86,7 +102,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
             text,
             html
           );
-          
+
           // If successful, log the preview URL
           if (result.previewURL) {
             console.log('Nodemailer test email sent! View it here:', result.previewURL);
@@ -98,7 +114,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         console.error('Failed to send email notification with all methods:', emailError);
         // We'll still return success to the user as their submission was saved
       }
-      
+
       res.status(201).json({ success: true, message: "Thank you for your message! We will get back to you soon." });
     } catch (error) {
       if (error instanceof z.ZodError) {
@@ -108,7 +124,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
           errors: error.errors 
         });
       }
-      
+
       console.error("Error saving contact submission:", error);
       res.status(500).json({ 
         success: false, 

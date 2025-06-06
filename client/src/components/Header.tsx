@@ -170,16 +170,18 @@ export default function Header() {
                       >
                         Marketing & Creative
                       </Link>
-                      <Link 
-                        href="/services/ai" 
-                        className={`block px-4 py-3 min-h-[44px] text-base touch-manipulation ${
+                      <div 
+                        className={`block px-4 py-3 min-h-[44px] text-base touch-manipulation cursor-pointer ${
                           isCurrentPath('/services/ai') ? 'text-maverick-orange bg-maverick-orange/10' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'
                         }`} 
                         role="menuitem"
-                        onClick={() => setServicesDropdownOpen(false)}
+                        onClick={() => {
+                          setServicesDropdownOpen(false);
+                          window.location.href = '/services/ai';
+                        }}
                       >
-                        AI Integration & Automation
-                      </Link>
+                        AI Solutions
+                      </div>
                     </div>
                   </motion.div>
                 )}
@@ -446,17 +448,19 @@ export default function Header() {
                           >
                             <span className="text-base font-medium">Marketing & Creative</span>
                           </Link>
-                          <Link 
-                            href="/services/ai" 
+                          <div 
                             className={`block px-4 py-3 rounded-lg min-h-[44px] touch-manipulation transition-all duration-200 ${
                               isCurrentPath('/services/ai') 
                                 ? 'text-maverick-orange bg-maverick-orange/10 border border-maverick-orange/20' 
                                 : 'text-gray-300 hover:bg-white/5 hover:text-white border border-transparent'
                             }`}
-                            onClick={closeMobileMenu}
+                            onClick={() => {
+                              closeMobileMenu();
+                              window.location.href = '/services/ai';
+                            }}
                           >
                             <span className="text-base font-medium">AI Integration & Automation</span>
-                          </Link>
+                          </div>
                         </motion.div>
                       )}
                     </AnimatePresence>

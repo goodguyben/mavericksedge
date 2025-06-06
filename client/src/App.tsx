@@ -6,6 +6,7 @@ import { queryClient } from "@/lib/queryClient";
 import Layout from "@/components/Layout";
 import PageTransition from "@/components/PageTransition";
 import LoadingScreen from "@/components/ui/LoadingScreen"; // Assuming LoadingScreen is in this path
+import ErrorBoundary from '@/components/ErrorBoundary';
 
 
 // Lazy load pages

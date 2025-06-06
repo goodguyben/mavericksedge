@@ -84,10 +84,10 @@ export default function WebServices() {
         ogImage="https://mavericksedge.ca/logo.png"
         ogType="website"
       />
-      
+
       <StructuredData data={webDevelopmentServiceSchema} />
       <StructuredData data={generateBreadcrumbSchema(breadcrumbs)} />
-      
+
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -292,7 +292,7 @@ export default function WebServices() {
               </motion.div>
             ))}
           </div>
-          
+
           <div className="mt-12 text-center">
             <Link href="/work">
               <a className="maverick-button maverick-button-outline inline-flex items-center justify-center px-6 py-2 text-base font-medium rounded-md md:py-3 md:text-lg md:px-8">
