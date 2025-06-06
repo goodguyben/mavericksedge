@@ -16,11 +16,22 @@ class ErrorBoundary extends Component<Props, State> {
   };
 
   public static getDerivedStateFromError(error: Error): State {
+    // Filter out cross-origin errors to prevent unnecessary error boundaries
+    if (error.message?.includes('cross-origin') || 
+        error.message === 'Script error.' ||
+        error.name === 'ChunkLoadError') {
+      return { hasError: false };
+    }
     return { hasError: true, error };
   }
 
   public componentDidCatch(error: Error, errorInfo: ErrorInfo) {
-    console.error('ErrorBoundary caught an error:', error, errorInfo);
+    // Only log real application errors, not cross-origin or development warnings
+    if (!error.message?.includes('cross-origin') && 
+        error.message !== 'Script error.' &&
+        !error.message?.includes('React doesn\'t have access to the actual error object')) {
+      console.error('ErrorBoundary caught an error:', error, errorInfo);
+    }
   }
 
   public render() {

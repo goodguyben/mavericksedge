@@ -2,40 +2,26 @@ import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 interface LoadingScreenProps {
-  isLoading: boolean;
+  isLoading?: boolean;
   onLoadingComplete?: () => void;
   minDisplayTime?: number;
 }
 
 export default function LoadingScreen({ 
-  isLoading, 
+  isLoading = true, 
   onLoadingComplete, 
-  minDisplayTime = 3000 
+  minDisplayTime = 2000 
 }: LoadingScreenProps) {
   const [shouldShow, setShouldShow] = useState(true);
-  const [videoLoaded, setVideoLoaded] = useState(false);
 
   useEffect(() => {
-    if (!isLoading && videoLoaded) {
-      const timer = setTimeout(() => {
-        setShouldShow(false);
-        onLoadingComplete?.();
-      }, minDisplayTime);
-
-      return () => clearTimeout(timer);
-    }
-  }, [isLoading, videoLoaded, minDisplayTime, onLoadingComplete]);
-
-  const handleVideoLoad = () => {
-    setVideoLoaded(true);
-  };
-
-  const handleVideoEnd = () => {
-    if (!isLoading) {
+    const timer = setTimeout(() => {
       setShouldShow(false);
       onLoadingComplete?.();
-    }
-  };
+    }, minDisplayTime);
+
+    return () => clearTimeout(timer);
+  }, [minDisplayTime, onLoadingComplete]);
 
   return (
     <AnimatePresence>
@@ -76,8 +62,6 @@ export default function LoadingScreen({
                 muted
                 loop
                 playsInline
-                onLoadedData={handleVideoLoad}
-                onEnded={handleVideoEnd}
                 className="w-full h-full object-cover"
                 style={{ filter: 'brightness(1.1) contrast(1.1)' }}
               >

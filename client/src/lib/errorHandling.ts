@@ -6,25 +6,33 @@ export const setupGlobalErrorHandling = () => {
     // Prevent cross-origin errors from being logged
     if (event.reason?.message?.includes('cross-origin') ||
         event.reason?.message === 'Script error.' ||
-        event.reason?.message?.includes('ResizeObserver loop limit exceeded')) {
+        event.reason?.message?.includes('ResizeObserver loop limit exceeded') ||
+        event.reason?.name === 'ChunkLoadError') {
       event.preventDefault();
-      return;
+      return false;
     }
     
     console.warn('Unhandled promise rejection:', event.reason);
   });
 
-  // Handle global JavaScript errors
+  // Handle global JavaScript errors with more comprehensive filtering
   window.addEventListener('error', (event) => {
-    // Prevent cross-origin errors from being logged
-    if (event.message.includes('cross-origin') ||
+    // Prevent cross-origin errors and development-only errors from being logged
+    if (event.message?.includes('cross-origin') ||
         event.message === 'Script error.' ||
-        event.message.includes('ResizeObserver loop limit exceeded')) {
+        event.message?.includes('ResizeObserver loop limit exceeded') ||
+        event.message?.includes('React doesn\'t have access to the actual error object') ||
+        event.filename?.includes('chrome-extension://') ||
+        event.filename?.includes('moz-extension://')) {
       event.preventDefault();
-      return;
+      event.stopPropagation();
+      return false;
     }
     
-    console.error('Global error:', event.error);
+    // Only log actual application errors in development
+    if (process.env.NODE_ENV === 'development') {
+      console.error('Application error:', event.error);
+    }
   });
 
   // Handle resource loading errors
@@ -32,11 +40,31 @@ export const setupGlobalErrorHandling = () => {
     if (event.target !== window) {
       const target = event.target as HTMLElement;
       if (target.tagName === 'IMG' || target.tagName === 'VIDEO' || target.tagName === 'SCRIPT') {
-        console.warn(`Failed to load ${target.tagName}:`, target);
+        // Silently handle resource loading failures in production
+        if (process.env.NODE_ENV === 'development') {
+          console.warn(`Failed to load ${target.tagName}:`, target);
+        }
         event.preventDefault();
+        return false;
       }
     }
   }, true);
+
+  // Override console.error to filter out React development warnings
+  const originalConsoleError = console.error;
+  console.error = (...args) => {
+    const message = args[0]?.toString() || '';
+    
+    // Filter out React development warnings and cross-origin errors
+    if (message.includes('cross-origin') ||
+        message.includes('Script error') ||
+        message.includes('React doesn\'t have access to the actual error object') ||
+        message.includes('ResizeObserver loop limit exceeded')) {
+      return;
+    }
+    
+    originalConsoleError.apply(console, args);
+  };
 };
 
 // Suppress ResizeObserver errors
