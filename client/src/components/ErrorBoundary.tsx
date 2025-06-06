@@ -21,12 +21,15 @@ class ErrorBoundary extends Component<Props, State> {
   }
 
   public componentDidCatch(error: Error, errorInfo: ErrorInfo) {
-    console.error('Error boundary caught an error:', error, errorInfo);
-    
     // Don't log cross-origin errors to avoid console spam
-    if (error.message.includes('cross-origin') || error.message === 'Script error.') {
+    if (error.message.includes('cross-origin') || 
+        error.message === 'Script error.' ||
+        error.message.includes('ResizeObserver loop limit exceeded') ||
+        error.message.includes('Non-Error promise rejection captured')) {
       return;
     }
+    
+    console.error('Error boundary caught an error:', error, errorInfo);
   }
 
   public render() {
