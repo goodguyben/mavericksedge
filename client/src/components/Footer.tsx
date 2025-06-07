@@ -60,6 +60,9 @@ export default function Footer() {
                 <div className="py-3 pl-4 space-y-3">
                   <div><Link href="/privacy" className="text-[#AAAAAA] hover:text-maverick-orange transition-colors">Privacy Policy</Link></div>
                   <div><Link href="/terms" className="text-[#AAAAAA] hover:text-maverick-orange transition-colors">Terms of Service</Link></div>
+                  <div><Link href="/cookie-policy" className="text-[#AAAAAA] hover:text-maverick-orange transition-colors">Cookie Policy</Link></div>
+                  <div><Link href="/gdpr-compliance" className="text-[#AAAAAA] hover:text-maverick-orange transition-colors">GDPR Compliance</Link></div>
+                  <div><Link href="/accessibility" className="text-[#AAAAAA] hover:text-maverick-orange transition-colors">Accessibility</Link></div>
                 </div>
               )}
             </div>
@@ -86,6 +89,9 @@ export default function Footer() {
               <ul className="space-y-3">
                 <li><Link href="/privacy" className="text-[#AAAAAA] hover:text-maverick-orange transition-colors">Privacy Policy</Link></li>
                 <li><Link href="/terms" className="text-[#AAAAAA] hover:text-maverick-orange transition-colors">Terms of Service</Link></li>
+                  <li><Link href="/cookie-policy" className="text-[#AAAAAA] hover:text-maverick-orange transition-colors">Cookie Policy</Link></li>
+                  <li><Link href="/gdpr-compliance" className="text-[#AAAAAA] hover:text-maverick-orange transition-colors">GDPR Compliance</Link></li>
+                  <li><Link href="/accessibility" className="text-[#AAAAAA] hover:text-maverick-orange transition-colors">Accessibility</Link></li>
               </ul>
             </div>
           </div>
