@@ -35,6 +35,30 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Custom scrollbar for navigation */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 2px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #E04500, #E57B00);
+  border-radius: 2px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, #FF4500, #FFA500);
+}
+
+/* Shadow glow utility */
+.shadow-glow {
+  box-shadow: 0 0 10px rgba(224, 69, 0, 0.3);
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;
