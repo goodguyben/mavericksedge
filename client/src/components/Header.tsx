@@ -29,6 +29,26 @@ export default function Header() {
     setPricingDropdownOpen(false);
   }, [location]);
 
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+      document.body.style.position = 'fixed';
+      document.body.style.width = '100%';
+    } else {
+      document.body.style.overflow = 'unset';
+      document.body.style.position = 'unset';
+      document.body.style.width = 'unset';
+    }
+
+    // Cleanup on unmount
+    return () => {
+      document.body.style.overflow = 'unset';
+      document.body.style.position = 'unset';
+      document.body.style.width = 'unset';
+    };
+  }, [isMobileMenuOpen]);
+
   // Close dropdowns when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -325,7 +345,18 @@ export default function Header() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
-              className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40 lg:hidden"
+              className="fixed inset-0 bg-black/50 backdrop-blur-sm lg:hidden"
+              style={{
+                position: 'fixed',
+                top: 0,
+                left: 0,
+                right: 0,
+                bottom: 0,
+                zIndex: 99998,
+                height: '100vh',
+                height: '100dvh',
+                width: '100vw'
+              }}
               onClick={closeMobileMenu}
             />
 
@@ -340,8 +371,12 @@ export default function Header() {
                 stiffness: 250,
                 duration: 0.5 
               }}
-              className="fixed top-0 right-0 h-full w-[85%] max-w-sm z-50 flex flex-col lg:hidden"
+              className="fixed top-0 right-0 h-screen w-[85%] max-w-sm flex flex-col lg:hidden"
               style={{
+                position: 'fixed',
+                zIndex: 99999,
+                height: '100vh',
+                height: '100dvh',
                 backdropFilter: 'blur(32px) saturate(200%)',
                 WebkitBackdropFilter: 'blur(32px) saturate(200%)',
                 background: 'linear-gradient(135deg, rgba(18, 18, 18, 0.98) 0%, rgba(20, 20, 20, 0.95) 100%)',
