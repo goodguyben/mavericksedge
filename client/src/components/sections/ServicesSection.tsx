@@ -1,4 +1,7 @@
+The code modifies the "Get Started" button's styling in the ServicesSection component to match the EdgeBrand Identity design, enhancing its visual appeal and interactivity.
+```
 
+```replit_final_file
 import { motion } from "framer-motion";
 import ServiceCard from "@/components/cards/ServiceCard";
 import { Monitor, PieChart, Zap, Layout, Globe, ShieldCheck, BarChart2, PenTool, Calendar, Brain, Database, Workflow } from "lucide-react";
@@ -85,12 +88,21 @@ export default function ServicesSection({ fullPage = false }: ServicesSectionPro
             </motion.div>
           ))}
         </div>
-        
+
         {fullPage && (
           <div className="mt-16 text-center">
-            <Link href="/contact" className="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-maverick-orange hover:bg-maverick-orange/90 md:py-4 md:text-lg md:px-10 transition-all duration-200">
-              Let's discuss your project
-            </Link>
+            <motion.a 
+              href="/contact"
+              className="inline-flex items-center justify-center px-6 py-3 border border-maverick-orange text-maverick-orange font-medium rounded-lg hover:bg-maverick-orange hover:bg-opacity-10 transition-all duration-300"
+              whileHover={{ 
+                scale: 1.05, 
+                boxShadow: "0 10px 30px rgba(255, 86, 48, 0.3)"
+              }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ duration: 0.2 }}
+            >
+              Get Started
+            </motion.a>
           </div>
         )}
       </div>

@@ -120,8 +120,7 @@ export default function PricingCard({ plan }: PricingCardProps) {
             className="inline-flex items-center justify-center w-full py-3 px-6 rounded-lg font-medium transition-all duration-300 border border-maverick-orange text-maverick-orange hover:bg-maverick-orange hover:bg-opacity-10"
             whileHover={{ 
               scale: 1.05, 
-              boxShadow: "0 10px 30px rgba(255, 86, 48, 0.3)",
-              backgroundColor: "#ff4500"
+              boxShadow: "0 10px 30px rgba(255, 86, 48, 0.3)"
             }}
             whileTap={{ scale: 0.95 }}
             transition={{ duration: 0.2 }}
