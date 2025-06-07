@@ -76,7 +76,7 @@ export default function Privacy() {
                   </div>
                 </section>
 
-                <section>
+                <section className="pt-[0px] pb-[0px]">
                   <h2 className="text-2xl font-semibold text-maverick-orange mb-4">Information Sharing</h2>
                   <div className="text-gray-300 space-y-4">
                     <p>We do not sell, trade, or otherwise transfer your personal information to third parties except:</p>
