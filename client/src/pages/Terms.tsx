@@ -142,7 +142,7 @@ export default function Terms() {
                   </div>
                 </section>
 
-                <section>
+                <section className="pt-[0px] pb-[0px]">
                   <h2 className="text-2xl font-semibold text-maverick-orange mb-4">Governing Law</h2>
                   <div className="text-gray-300 space-y-4">
                     <p>These terms are governed by the laws of Alberta, Canada. Any disputes will be resolved in the courts of Alberta.</p>
