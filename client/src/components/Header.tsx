@@ -334,23 +334,17 @@ export default function Header() {
               initial={{ 
                 scale: 0,
                 rotate: -180,
-                opacity: 0,
-                x: "50%",
-                y: "-50%"
+                opacity: 0
               }}
               animate={{ 
                 scale: 1,
                 rotate: 0,
-                opacity: 1,
-                x: "0%",
-                y: "0%"
+                opacity: 1
               }}
               exit={{ 
                 scale: 0,
                 rotate: 180,
-                opacity: 0,
-                x: "50%",
-                y: "-50%"
+                opacity: 0
               }}
               transition={{ 
                 type: "spring", 
@@ -359,17 +353,23 @@ export default function Header() {
                 duration: 0.6,
                 ease: [0.25, 0.46, 0.45, 0.94]
               }}
-              className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[90%] max-w-md h-[80vh] flex flex-col lg:hidden rounded-3xl overflow-hidden"
+              className="fixed inset-4 lg:hidden rounded-3xl flex flex-col overflow-hidden"
               style={{
-                zIndex: 9999,
+                zIndex: 99999,
+                top: '10vh',
+                bottom: '10vh',
+                left: '5vw',
+                right: '5vw',
+                maxWidth: '400px',
+                margin: '0 auto',
                 backdropFilter: 'blur(32px) saturate(200%)',
                 WebkitBackdropFilter: 'blur(32px) saturate(200%)',
-                background: 'linear-gradient(135deg, rgba(18, 18, 18, 0.98) 0%, rgba(26, 26, 26, 0.99) 50%, rgba(18, 18, 18, 0.98) 100%)',
-                border: '2px solid rgba(255, 86, 0, 0.5)',
-                boxShadow: `0 25px 50px -12px rgba(0, 0, 0, 0.9), 
-                           0 0 0 1px rgba(255, 255, 255, 0.1),
-                           inset 0 1px 0 rgba(255, 255, 255, 0.15),
-                           0 0 60px rgba(255, 86, 0, 0.3)`,
+                background: 'linear-gradient(135deg, rgba(18, 18, 18, 0.99) 0%, rgba(26, 26, 26, 0.99) 50%, rgba(18, 18, 18, 0.99) 100%)',
+                border: '3px solid rgba(255, 86, 0, 0.8)',
+                boxShadow: `0 25px 50px -12px rgba(0, 0, 0, 0.95), 
+                           0 0 0 1px rgba(255, 255, 255, 0.2),
+                           inset 0 1px 0 rgba(255, 255, 255, 0.2),
+                           0 0 80px rgba(255, 86, 0, 0.5)`,
               }}
               role="dialog"
               aria-modal="true"
