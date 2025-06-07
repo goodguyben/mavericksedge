@@ -76,6 +76,7 @@ export default function App() {
               <Route path="/privacy" component={Privacy} />
               <Route path="/terms" component={Terms} />
               <Route path="/cookie-policy" component={CookiePolicy} />
+              <Route path="/gdpr" component={GDPRCompliance} />
               <Route path="/gdpr-compliance" component={GDPRCompliance} />
               <Route path="/compliance" component={Compliance} />
               <Route path="/accessibility" component={Accessibility} />
