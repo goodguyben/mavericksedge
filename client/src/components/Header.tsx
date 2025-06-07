@@ -353,7 +353,6 @@ export default function Header() {
                 right: 0,
                 bottom: 0,
                 zIndex: 99998,
-                height: '100vh',
                 height: '100dvh',
                 width: '100vw'
               }}
@@ -375,7 +374,6 @@ export default function Header() {
               style={{
                 position: 'fixed',
                 zIndex: 99999,
-                height: '100vh',
                 height: '100dvh',
                 backdropFilter: 'blur(32px) saturate(200%)',
                 WebkitBackdropFilter: 'blur(32px) saturate(200%)',
