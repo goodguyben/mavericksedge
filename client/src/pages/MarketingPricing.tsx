@@ -301,13 +301,17 @@ const PricingCard = ({ plan }: { plan: PricingPackage }) => {
         )}
 
         <Link href="/contact">
-          <a className={`inline-flex items-center justify-center w-full py-3 px-6 rounded-lg font-medium transition-all duration-300 ${
-            plan.popular 
-              ? 'bg-maverick-orange hover:bg-opacity-90 text-white' 
-              : 'border border-maverick-orange text-maverick-orange hover:bg-maverick-orange hover:bg-opacity-10'
-          }`}>
+          <motion.a 
+            className="inline-flex items-center justify-center w-full py-3 px-6 rounded-lg font-medium transition-all duration-300 border border-maverick-orange text-maverick-orange hover:bg-maverick-orange hover:bg-opacity-10"
+            whileHover={{ 
+              scale: 1.05, 
+              boxShadow: "0 10px 30px rgba(255, 86, 48, 0.3)"
+            }}
+            whileTap={{ scale: 0.95 }}
+            transition={{ duration: 0.2 }}
+          >
             Get Started
-          </a>
+          </motion.a>
         </Link>
       </div>
     </motion.div>
@@ -656,13 +660,17 @@ export default function MarketingPricing() {
                   </ul>
 
                   <Link href="/contact">
-                    <a className={`block text-center w-full py-3 px-6 rounded-lg font-medium transition-all duration-300 ${
-                      plan.popular 
-                        ? 'bg-maverick-orange hover:bg-opacity-90 text-white' 
-                        : 'border border-maverick-orange text-maverick-orange hover:bg-maverick-orange hover:bg-opacity-10'
-                    }`}>
+                    <motion.a 
+                      className="inline-flex items-center justify-center w-full py-3 px-6 rounded-lg font-medium transition-all duration-300 border border-maverick-orange text-maverick-orange hover:bg-maverick-orange hover:bg-opacity-10"
+                      whileHover={{ 
+                        scale: 1.05, 
+                        boxShadow: "0 10px 30px rgba(255, 86, 48, 0.3)"
+                      }}
+                      whileTap={{ scale: 0.95 }}
+                      transition={{ duration: 0.2 }}
+                    >
                       Get Started
-                    </a>
+                    </motion.a>
                   </Link>
                 </div>
               </motion.div>
@@ -880,9 +888,17 @@ export default function MarketingPricing() {
               Let's create authentic connections with your audience and drive meaningful growth for your organization.
             </p>
             <Link href="/contact">
-              <a className="inline-flex items-center justify-center px-8 py-4 bg-maverick-orange hover:bg-opacity-90 text-white rounded-lg font-medium transition-all duration-300">
+              <motion.a 
+                className="inline-flex items-center justify-center px-8 py-4 border border-maverick-orange text-maverick-orange font-medium rounded-lg hover:bg-maverick-orange hover:bg-opacity-10 transition-all duration-300"
+                whileHover={{ 
+                  scale: 1.05, 
+                  boxShadow: "0 10px 30px rgba(255, 86, 48, 0.3)"
+                }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ duration: 0.2 }}
+              >
                 Start Your Marketing Journey
-              </a>
+              </motion.a>
             </Link>
           </motion.div>
         </div>
