@@ -181,9 +181,20 @@ export default function Services() {
                     </li>
                   ))}
                 </ul>
-                <a href={category.linkHref} className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-maverick-orange hover:bg-maverick-orange/90 transition-all duration-200">
+                <motion.button
+                  className="px-6 py-3 rounded-lg font-medium flex items-center gap-2 transition-all duration-300"
+                  style={{
+                    background: `linear-gradient(90deg, #E04500 0%, #E57B00 100%)`,
+                  }}
+                  whileHover={{
+                    scale: 1.05,
+                    boxShadow: `0 10px 25px -5px rgba(224, 69, 0, 0.4)`,
+                  }}
+                  whileTap={{ scale: 0.98 }}
+                  onClick={() => window.location.href = category.linkHref}
+                >
                   Learn more about {category.title}
-                </a>
+                </motion.button>
               </div>
               <div className={`relative ${index % 2 === 1 ? 'order-2 lg:order-1' : ''}`}>
                 <div className="bg-[#121212] p-1 rounded-lg border border-gray-800">
