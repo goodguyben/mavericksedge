@@ -47,23 +47,23 @@ export default function FooterWrapper() {
             <nav className="footer-nav" aria-label="Services Navigation">
               <h2 className="footer-heading">Services</h2>
               <ul className="footer-links">
-                <li className="footer-link"><a href="/services/web-design-and-development-edmonton" title="Edmonton Web Design & Development Services">Web Development</a></li>
-                <li className="footer-link"><a href="/services/digital-marketing-edmonton" title="Edmonton Digital Marketing Services">Digital Marketing</a></li>
-                <li className="footer-link"><a href="/services/ai-integration-automation-edmonton" title="Edmonton AI Integration & Automation Services">AI Integration</a></li>
-                <li className="footer-link"><a href="/services/content-creation-strategy-edmonton" title="Edmonton Content Creation & Strategy Services">Content Creation</a></li>
-                <li className="footer-link"><a href="/services/seo-optimization-edmonton" title="Edmonton SEO Optimization Services">SEO Optimization</a></li>
+                <li className="footer-link"><a href="/services/web" title="Edmonton Web Design & Development Services">Web Development</a></li>
+                <li className="footer-link"><a href="/services/marketing" title="Edmonton Digital Marketing Services">Digital Marketing</a></li>
+                <li className="footer-link"><a href="/services/ai" title="Edmonton AI Integration & Automation Services">AI Integration</a></li>
+                <li className="footer-link"><a href="/services" title="All Services">All Services</a></li>
+                <li className="footer-link"><a href="/pricing" title="Service Pricing">Pricing</a></li>
               </ul>
             </nav>
 
             {/* Resources Links */}
             <nav className="footer-nav" aria-label="Resources Navigation">
-              <h2 className="footer-heading">Resources</h2>
+              <h2 className="footer-heading">Company</h2>
               <ul className="footer-links">
-                <li className="footer-link"><a href="/blog-digital-marketing-web-development" title="Digital Marketing & Web Development Blog - Edmonton">Blog</a></li>
-                <li className="footer-link"><a href="/case-studies-edmonton-clients" title="Edmonton Client Success Stories & Case Studies">Case Studies</a></li>
-                <li className="footer-link"><a href="/free-guides-digital-marketing-seo" title="Free Digital Marketing & SEO Guides">Guides</a></li>
-                <li className="footer-link"><a href="/frequently-asked-questions-web-design" title="Web Design & Marketing FAQ - Edmonton">FAQ</a></li>
-                <li className="footer-link"><a href="/customer-support-edmonton" title="Edmonton Customer Support & Help">Support</a></li>
+                <li className="footer-link"><a href="/about" title="About Mavericks Edge">About Us</a></li>
+                <li className="footer-link"><a href="/work" title="Our Work & Portfolio">Our Work</a></li>
+                <li className="footer-link"><a href="/contact" title="Contact Mavericks Edge">Contact</a></li>
+                <li className="footer-link"><a href="/pricing" title="Service Pricing">Pricing</a></li>
+                <li className="footer-link"><a href="/compliance" title="Compliance & Standards">Compliance</a></li>
               </ul>
             </nav>
 
@@ -71,11 +71,11 @@ export default function FooterWrapper() {
             <nav className="footer-nav" aria-label="Legal Navigation">
               <h2 className="footer-heading">Legal</h2>
               <ul className="footer-links">
-                <li className="footer-link"><a href="/privacy-policy-mavericks-edge" title="Mavericks Edge Privacy Policy">Privacy Policy</a></li>
-                <li className="footer-link"><a href="/terms-of-service-web-design" title="Web Design Services Terms of Service">Terms of Service</a></li>
-                <li className="footer-link"><a href="/cookie-policy-website-tracking" title="Website Cookie Policy & Tracking Information">Cookie Policy</a></li>
-                <li className="footer-link"><a href="/gdpr-compliance-data-protection" title="GDPR Compliance & Data Protection">GDPR Compliance</a></li>
-                <li className="footer-link"><a href="/website-accessibility-statement" title="Website Accessibility Statement & Compliance">Accessibility</a></li>
+                <li className="footer-link"><a href="/privacy" title="Mavericks Edge Privacy Policy">Privacy Policy</a></li>
+                <li className="footer-link"><a href="/terms" title="Web Design Services Terms of Service">Terms of Service</a></li>
+                <li className="footer-link"><a href="/cookie-policy" title="Website Cookie Policy & Tracking Information">Cookie Policy</a></li>
+                <li className="footer-link"><a href="/gdpr-compliance" title="GDPR Compliance & Data Protection">GDPR Compliance</a></li>
+                <li className="footer-link"><a href="/accessibility" title="Website Accessibility Statement & Compliance">Accessibility</a></li>
               </ul>
             </nav>
           </div>
