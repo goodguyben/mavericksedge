@@ -329,47 +329,26 @@ export default function Header() {
               onClick={closeMobileMenu}
             />
 
-            {/* Mobile Navigation Card */}
+            {/* Navigation Panel */}
             <motion.div
-              initial={{ 
-                scale: 0,
-                rotate: -180,
-                opacity: 0
-              }}
-              animate={{ 
-                scale: 1,
-                rotate: 0,
-                opacity: 1
-              }}
-              exit={{ 
-                scale: 0,
-                rotate: 180,
-                opacity: 0
-              }}
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
               transition={{ 
                 type: "spring", 
-                damping: 20, 
-                stiffness: 300,
-                duration: 0.6,
-                ease: [0.25, 0.46, 0.45, 0.94]
+                damping: 25, 
+                stiffness: 250,
+                duration: 0.5 
               }}
-              className="fixed inset-4 lg:hidden rounded-3xl flex flex-col overflow-hidden"
+              className="fixed top-0 right-0 h-full w-[85%] max-w-sm z-50 flex flex-col lg:hidden"
               style={{
-                zIndex: 99999,
-                top: '10vh',
-                bottom: '10vh',
-                left: '5vw',
-                right: '5vw',
-                maxWidth: '400px',
-                margin: '0 auto',
                 backdropFilter: 'blur(32px) saturate(200%)',
                 WebkitBackdropFilter: 'blur(32px) saturate(200%)',
-                background: 'linear-gradient(135deg, rgba(18, 18, 18, 0.99) 0%, rgba(26, 26, 26, 0.99) 50%, rgba(18, 18, 18, 0.99) 100%)',
-                border: '3px solid rgba(255, 86, 0, 0.8)',
-                boxShadow: `0 25px 50px -12px rgba(0, 0, 0, 0.95), 
-                           0 0 0 1px rgba(255, 255, 255, 0.2),
-                           inset 0 1px 0 rgba(255, 255, 255, 0.2),
-                           0 0 80px rgba(255, 86, 0, 0.5)`,
+                background: 'linear-gradient(135deg, rgba(18, 18, 18, 0.98) 0%, rgba(20, 20, 20, 0.95) 100%)',
+                borderLeft: '1px solid rgba(255, 86, 0, 0.4)',
+                boxShadow: `-20px 0 80px rgba(0, 0, 0, 0.6), 
+                           inset 1px 0 0 rgba(255, 255, 255, 0.08),
+                           0 0 40px rgba(255, 86, 0, 0.1)`,
               }}
               role="dialog"
               aria-modal="true"
