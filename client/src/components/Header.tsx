@@ -359,16 +359,17 @@ export default function Header() {
                 duration: 0.6,
                 ease: [0.25, 0.46, 0.45, 0.94]
               }}
-              className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[90%] max-w-md h-[80vh] z-50 flex flex-col lg:hidden rounded-3xl overflow-hidden"
+              className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[90%] max-w-md h-[80vh] flex flex-col lg:hidden rounded-3xl overflow-hidden"
               style={{
+                zIndex: 9999,
                 backdropFilter: 'blur(32px) saturate(200%)',
                 WebkitBackdropFilter: 'blur(32px) saturate(200%)',
-                background: 'linear-gradient(135deg, rgba(18, 18, 18, 0.95) 0%, rgba(26, 26, 26, 0.98) 50%, rgba(18, 18, 18, 0.95) 100%)',
-                border: '2px solid rgba(255, 86, 0, 0.3)',
-                boxShadow: `0 25px 50px -12px rgba(0, 0, 0, 0.8), 
-                           0 0 0 1px rgba(255, 255, 255, 0.05),
-                           inset 0 1px 0 rgba(255, 255, 255, 0.1),
-                           0 0 60px rgba(255, 86, 0, 0.2)`,
+                background: 'linear-gradient(135deg, rgba(18, 18, 18, 0.98) 0%, rgba(26, 26, 26, 0.99) 50%, rgba(18, 18, 18, 0.98) 100%)',
+                border: '2px solid rgba(255, 86, 0, 0.5)',
+                boxShadow: `0 25px 50px -12px rgba(0, 0, 0, 0.9), 
+                           0 0 0 1px rgba(255, 255, 255, 0.1),
+                           inset 0 1px 0 rgba(255, 255, 255, 0.15),
+                           0 0 60px rgba(255, 86, 0, 0.3)`,
               }}
               role="dialog"
               aria-modal="true"
