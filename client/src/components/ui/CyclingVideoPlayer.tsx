@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { VideoErrorBoundary } from "./VideoErrorBoundary";
 
 interface CyclingVideoPlayerProps {
   videos: string[];
@@ -126,6 +127,7 @@ export default function CyclingVideoPlayer({
                 animate={{ scale: zoomEffect === 'zoom-out' ? 0.95 : zoomEffect === 'zoom-in' ? 1 : 1 }}
                 transition={{ duration: zoomEffect !== 'none' ? 2.5 : 0, ease: "easeOut" }}
               >
+                <VideoErrorBoundary>
                 {isCurrentVideo ? (
                   <video
                     ref={(el) => { videoRefs.current[index] = el; }}
@@ -134,27 +136,30 @@ export default function CyclingVideoPlayer({
                     muted={muted}
                     loop={loop}
                     playsInline
-                    preload="auto"
+                    preload="metadata"
                     onLoadedData={() => {
                       // Ensure video starts playing when loaded and active
                       if (index === currentIndex && autoPlay && videoRefs.current[index]) {
-                        videoRefs.current[index]?.play().catch(console.warn);
+                        const video = videoRefs.current[index];
+                        if (video) {
+                          video.currentTime = 0;
+                          video.play().catch((error) => {
+                            console.warn(`Failed to play video: ${media}`, error);
+                          });
+                        }
                       }
                     }}
                     onError={(e) => {
-                      console.warn(`Video failed to load: ${media}`, e);
+                      console.error(`Video failed to load: ${media}`, e);
+                      // Hide failed video and show next one
+                      const video = e.currentTarget;
+                      video.style.display = 'none';
+                    }}
+                    onCanPlayThrough={() => {
+                      console.log(`Video ready to play: ${media}`);
                     }}
                   >
-                    {(() => {
-                      const sources = getOptimizedPath(media, true);
-                      return (
-                        <>
-                          <source src={sources.webm} type="video/webm" />
-                          <source src={sources.mp4} type="video/mp4" />
-                          <source src={sources.fallback} type="video/mp4" />
-                        </>
-                      );
-                    })()}
+                    <source src={media} type="video/mp4" />
                     Your browser does not support the video tag.
                   </video>
                 ) : (
@@ -165,6 +170,7 @@ export default function CyclingVideoPlayer({
                     loading="lazy"
                   />
                 )}
+                </VideoErrorBoundary>
               </motion.div>
             </motion.div>
           );

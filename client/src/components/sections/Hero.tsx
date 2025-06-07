@@ -33,16 +33,30 @@ export default function Hero() {
           muted
           loop
           playsInline
-          preload="metadata"
+          preload="auto"
           className="w-full h-full object-cover"
           style={{
-            objectPosition: window?.innerWidth <= 768 ? 'center center' : 'center center'
+            objectPosition: 'center center'
+          }}
+          onError={(e) => {
+            console.warn('Hero video failed to load:', e);
+            // Fallback to a solid background
+            e.currentTarget.style.display = 'none';
+          }}
+          onLoadStart={() => {
+            console.log('Hero video loading started');
+          }}
+          onCanPlay={() => {
+            console.log('Hero video can play');
           }}
         >
           <source src="/videos/background.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
         </video>
         {/* Dark overlay for better text readability */}
         <div className="absolute inset-0 bg-black/60 sm:bg-black/50 mt-[-2px] mb-[-2px]" />
+        {/* Fallback background in case video fails */}
+        <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-800" style={{ zIndex: -1 }} />
       </div>
       <div className="container mx-auto px-3 xs:px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 2xl:px-16 z-20 flex justify-center items-center w-full pointer-events-none">
         <motion.div

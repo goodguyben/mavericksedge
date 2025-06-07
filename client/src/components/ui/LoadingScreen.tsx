@@ -76,14 +76,40 @@ export default function LoadingScreen({
                 muted
                 loop
                 playsInline
+                preload="auto"
                 onLoadedData={handleVideoLoad}
                 onEnded={handleVideoEnd}
+                onError={(e) => {
+                  console.error('Logo animation video failed to load:', e);
+                  // Fallback to static logo
+                  setVideoLoaded(true);
+                }}
+                onCanPlay={() => {
+                  console.log('Logo animation video ready');
+                  handleVideoLoad();
+                }}
                 className="w-full h-full object-cover"
                 style={{ filter: 'brightness(1.1) contrast(1.1)' }}
               >
                 <source src="/videos/logo_animation.mp4" type="video/mp4" />
                 Your browser does not support the video tag.
               </video>
+
+              {/* Fallback static logo */}
+              <img
+                src="/assets/logo-transparent-thumb4x.png"
+                alt="Mavericks Edge Logo"
+                className="absolute inset-0 w-full h-full object-contain p-8"
+                style={{ display: 'none' }}
+                onError={(e) => {
+                  // Show fallback if video fails
+                  const video = e.currentTarget.parentElement?.querySelector('video');
+                  if (video && video.error) {
+                    e.currentTarget.style.display = 'block';
+                    video.style.display = 'none';
+                  }
+                }}
+              />
 
               {/* Glow effect overlay */}
               <div className="absolute inset-0 bg-gradient-to-br from-maverick-orange/20 via-transparent to-transparent rounded-full" />
