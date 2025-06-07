@@ -123,7 +123,7 @@ export default function Terms() {
                   </div>
                 </section>
 
-                <section>
+                <section className="pt-[0px] pb-[0px]">
                   <h2 className="text-2xl font-semibold text-maverick-orange mb-4">Termination</h2>
                   <div className="text-gray-300 space-y-4">
                     <p>Either party may terminate services with written notice. Upon termination:</p>
