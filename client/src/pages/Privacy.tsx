@@ -49,7 +49,7 @@ export default function Privacy() {
               transition={{ duration: 0.6, delay: 0.4 }}
             >
               <div className="space-y-12">
-                <section className="mt-[0px] mb-[0px] pt-[10px] pb-[10px]">
+                <section className="mt-[0px] mb-[0px] pt-[0px] pb-[0px]">
                   <h2 className="text-2xl font-semibold text-maverick-orange mb-4">Information We Collect</h2>
                   <div className="text-gray-300 space-y-4">
                     <p>We collect information you provide directly to us, such as when you:</p>
