@@ -71,7 +71,7 @@ export default function Terms() {
                   </div>
                 </section>
 
-                <section>
+                <section className="pt-[0px] pb-[0px]">
                   <h2 className="text-2xl font-semibold text-maverick-orange mb-4">Client Responsibilities</h2>
                   <div className="text-gray-300 space-y-4">
                     <p>As a client, you agree to:</p>
