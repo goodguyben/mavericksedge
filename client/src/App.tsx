@@ -21,8 +21,10 @@ const AIPricing = lazy(() => import("@/pages/AIPricing"));
 const Work = lazy(() => import("@/pages/Work"));
 const About = lazy(() => import("@/pages/About"));
 const Contact = lazy(() => import("@/pages/Contact"));
-const NotFound = lazy(() => import("@/pages/not-found"));
 const PaymentConfirmed = lazy(() => import("@/pages/PaymentConfirmed"));
+const Privacy = lazy(() => import("@/pages/Privacy"));
+const Terms = lazy(() => import("@/pages/Terms"));
+const NotFound = lazy(() => import("@/pages/not-found"));
 
 
 export default function App() {
@@ -67,6 +69,8 @@ export default function App() {
               <Route path="/contact" component={Contact} />
               {/* Private route without header/footer */}
               <Route path="/payment-confirmed" component={PaymentConfirmed} />
+              <Route path="/privacy" component={Privacy} />
+              <Route path="/terms" component={Terms} />
               <Route component={NotFound} />
             </Switch>
           </Suspense>
