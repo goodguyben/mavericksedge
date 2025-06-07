@@ -49,7 +49,7 @@ export default function Terms() {
               transition={{ duration: 0.6, delay: 0.4 }}
             >
               <div className="space-y-12">
-                <section>
+                <section className="pt-[0px] pb-[0px]">
                   <h2 className="text-2xl font-semibold text-maverick-orange mb-4">Acceptance of Terms</h2>
                   <div className="text-gray-300 space-y-4">
                     <p>By accessing and using our services, you accept and agree to be bound by the terms and provision of this agreement. If you do not agree to abide by the above, please do not use this service.</p>
