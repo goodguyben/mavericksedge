@@ -59,28 +59,70 @@ export default function App() {
         <Layout>
           <Suspense fallback={<div />}>
             <Switch>
-              <Route path="/" component={Home} />
-              <Route path="/services" component={Services} />
-              <Route path="/services/web" component={WebServices} />
-              <Route path="/services/marketing" component={MarketingServices} />
-              <Route path="/services/ai" component={AIServices} />
-              <Route path="/pricing" component={Pricing} />
-              <Route path="/pricing/web" component={WebPricing} />
-              <Route path="/pricing/marketing" component={MarketingPricing} />
-              <Route path="/pricing/ai" component={AIPricing} />
-              <Route path="/work" component={Work} />
-              <Route path="/about" component={About} />
-              <Route path="/contact" component={Contact} />
+              <Route path="/">
+                <Home />
+              </Route>
+              <Route path="/services">
+                <Services />
+              </Route>
+              <Route path="/services/web">
+                <WebServices />
+              </Route>
+              <Route path="/services/marketing">
+                <MarketingServices />
+              </Route>
+              <Route path="/services/ai">
+                <AIServices />
+              </Route>
+              <Route path="/pricing">
+                <Pricing />
+              </Route>
+              <Route path="/pricing/web">
+                <WebPricing />
+              </Route>
+              <Route path="/pricing/marketing">
+                <MarketingPricing />
+              </Route>
+              <Route path="/pricing/ai">
+                <AIPricing />
+              </Route>
+              <Route path="/work">
+                <Work />
+              </Route>
+              <Route path="/about">
+                <About />
+              </Route>
+              <Route path="/contact">
+                <Contact />
+              </Route>
               {/* Private route without header/footer */}
-              <Route path="/payment-confirmed" component={PaymentConfirmed} />
-              <Route path="/privacy" component={Privacy} />
-              <Route path="/terms" component={Terms} />
-              <Route path="/cookie-policy" component={CookiePolicy} />
-              <Route path="/gdpr" component={GDPRCompliance} />
-              <Route path="/gdpr-compliance" component={GDPRCompliance} />
-              <Route path="/compliance" component={Compliance} />
-              <Route path="/accessibility" component={Accessibility} />
-              <Route component={NotFound} />
+              <Route path="/payment-confirmed">
+                <PaymentConfirmed />
+              </Route>
+              <Route path="/privacy">
+                <Privacy />
+              </Route>
+              <Route path="/terms">
+                <Terms />
+              </Route>
+              <Route path="/cookie-policy">
+                <CookiePolicy />
+              </Route>
+              <Route path="/gdpr">
+                <GDPRCompliance />
+              </Route>
+              <Route path="/gdpr-compliance">
+                <GDPRCompliance />
+              </Route>
+              <Route path="/compliance">
+                <Compliance />
+              </Route>
+              <Route path="/accessibility">
+                <Accessibility />
+              </Route>
+              <Route>
+                <NotFound />
+              </Route>
             </Switch>
           </Suspense>
         </Layout>
