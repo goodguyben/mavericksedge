@@ -13,7 +13,7 @@ export default function Privacy() {
       <SEOHead 
         title="Privacy Policy - Mavericks Edge"
         description="Our privacy policy outlines how we collect, use, and protect your personal information when you use our services."
-        canonical="/privacy"
+        canonicalUrl="/privacy"
       />
       <div className="min-h-screen bg-[#0D0D0D] text-white">
         <motion.div 

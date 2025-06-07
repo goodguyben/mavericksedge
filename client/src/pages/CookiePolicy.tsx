@@ -13,7 +13,7 @@ export default function CookiePolicy() {
       <SEOHead 
         title="Cookie Policy - Mavericks Edge"
         description="Learn about how Mavericks Edge uses cookies and tracking technologies on our website to improve your browsing experience."
-        canonical="/cookie-policy"
+        canonicalUrl="/cookie-policy"
       />
       <div className="min-h-screen bg-[#0D0D0D] text-white">
         <motion.div 

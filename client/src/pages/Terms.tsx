@@ -13,7 +13,7 @@ export default function Terms() {
       <SEOHead 
         title="Terms of Service - Mavericks Edge"
         description="Our terms of service outline the rules and regulations for using our web development and digital marketing services."
-        canonical="/terms"
+        canonicalUrl="/terms"
       />
       <div className="min-h-screen bg-[#0D0D0D] text-white">
         <motion.div 
@@ -135,7 +135,7 @@ export default function Terms() {
                   </div>
                 </section>
 
-                <section>
+                <section className="pt-[0px] pb-[0px]">
                   <h2 className="text-2xl font-semibold text-maverick-orange mb-4">Warranty and Support</h2>
                   <div className="text-gray-300 space-y-4">
                     <p>We provide a 30-day warranty on custom development work for defects in functionality as originally specified. Support terms vary by project and will be outlined in individual agreements.</p>
