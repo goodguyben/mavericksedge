@@ -26,6 +26,7 @@ const Privacy = lazy(() => import("@/pages/Privacy"));
 const Terms = lazy(() => import("@/pages/Terms"));
 const CookiePolicy = lazy(() => import("@/pages/CookiePolicy"));
 const GDPRCompliance = lazy(() => import("@/pages/GDPRCompliance"));
+const Compliance = lazy(() => import("@/pages/Compliance"));
 const Accessibility = lazy(() => import("@/pages/Accessibility"));
 const NotFound = lazy(() => import("@/pages/not-found"));
 
@@ -76,6 +77,7 @@ export default function App() {
               <Route path="/terms" component={Terms} />
               <Route path="/cookie-policy" component={CookiePolicy} />
               <Route path="/gdpr-compliance" component={GDPRCompliance} />
+              <Route path="/compliance" component={Compliance} />
               <Route path="/accessibility" component={Accessibility} />
               <Route component={NotFound} />
             </Switch>
