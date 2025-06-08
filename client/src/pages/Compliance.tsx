@@ -48,7 +48,7 @@ export default function Compliance() {
               </section>
 
               {/* Security Compliance */}
-              <section>
+              <section className="pt-[0px] pb-[0px]">
                 <h2 className="text-2xl font-semibold mb-6 text-maverick-orange">Security & Privacy Compliance</h2>
                 <div className="space-y-4 text-gray-300">
                   <p>
