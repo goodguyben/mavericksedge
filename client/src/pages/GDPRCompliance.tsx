@@ -142,8 +142,8 @@ export default function GDPRCompliance() {
                   <div className="text-gray-300 space-y-4">
                     <p>To exercise any of your GDPR rights, please contact us using the information below. We will respond to your request within 30 days.</p>
                     <div className="bg-gray-800/50 p-6 rounded-lg">
-                      <p><strong>Data Protection Officer:</strong> <a href="mailto:dpo@mavericksedge.com" className="text-maverick-orange hover:underline">dpo@mavericksedge.com</a></p>
-                      <p><strong>General Inquiries:</strong> <a href="mailto:privacy@mavericksedge.com" className="text-maverick-orange hover:underline">privacy@mavericksedge.com</a></p>
+                  
+                      <p><strong>General Inquiries:</strong> <a href="mailto:support@mavericksedge.com" className="text-maverick-orange hover:underline">support@mavericksedge.com</a></p>
                       <p><strong>Phone:</strong> <a href="tel:+12508838849" className="text-maverick-orange hover:underline">+1 (250) 883-8849</a></p>
                       <p><strong>Address:</strong> 6908 100 Ave NW, Suite B, Edmonton, AB T6A 0G2, Canada</p>
                     </div>
@@ -162,7 +162,7 @@ export default function GDPRCompliance() {
                   <div className="text-gray-300 space-y-4">
                     <p>For questions about GDPR compliance or to exercise your data protection rights, please contact us:</p>
                     <div className="bg-gray-800/50 p-6 rounded-lg">
-                      <p><strong>Data Protection Officer:</strong> <a href="mailto:support@mavericksedge.ca" className="text-maverick-orange hover:underline">support@mavericksedge.ca</a></p>
+                      <p><strong>Data Protection Support:</strong> <a href="mailto:support@mavericksedge.ca" className="text-maverick-orange hover:underline">support@mavericksedge.ca</a></p>
                       <p><strong>Phone:</strong> <a href="tel:+12508838849" className="text-maverick-orange hover:underline">+1 (250) 883-8849</a></p>
                       <p><strong>Address:</strong> 6908 100 Ave NW, Suite B, Edmonton, AB T6A 0G2, Canada</p>
                     </div>
