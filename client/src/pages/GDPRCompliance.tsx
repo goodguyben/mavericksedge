@@ -49,7 +49,7 @@ export default function GDPRCompliance() {
               transition={{ duration: 0.6, delay: 0.4 }}
             >
               <div className="space-y-12">
-                <section>
+                <section className="pt-[0px] pb-[0px]">
                   <h2 className="text-2xl font-semibold text-maverick-orange mb-4">Our GDPR Commitment</h2>
                   <div className="text-gray-300 space-y-4">
                     <p>Mavericks Edge is committed to protecting your personal data and respecting your privacy rights under the General Data Protection Regulation (GDPR). This applies to all residents of the European Union, regardless of where they are located when using our services.</p>
