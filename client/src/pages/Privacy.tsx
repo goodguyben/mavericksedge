@@ -25,7 +25,7 @@ export default function Privacy() {
           <div className="max-w-4xl mx-auto">
             {/* Header */}
             <motion.div 
-              className="text-center mb-16"
+              className="text-center pt-[0px] pb-[0px] mt-[46px] mb-[46px]"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}

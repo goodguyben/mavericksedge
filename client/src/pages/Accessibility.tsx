@@ -148,7 +148,6 @@ export default function Accessibility() {
                   <div className="text-gray-300 space-y-4">
                     <p>We welcome your feedback on the accessibility of our website. If you encounter any accessibility barriers or have suggestions for improvement, please contact us:</p>
                     <div className="bg-gray-800/50 p-6 rounded-lg">
-                      <p><strong>Accessibility Coordinator:</strong> <a href="mailto:support@mavericksedge.ca" className="text-maverick-orange hover:underline">support@mavericksedge.ca</a></p>
                       <p><strong>General Contact:</strong> <a href="mailto:info@mavericksedge.ca" className="text-maverick-orange hover:underline">info@mavericksedge.ca</a></p>
                       <p><strong>Phone:</strong> <a href="tel:+12508838849" className="text-maverick-orange hover:underline">+1 (250) 883-8849</a></p>
                       <p><strong>Address:</strong> 6908 100 Ave NW, Suite B, Edmonton, AB T6A 0G2, Canada</p>
