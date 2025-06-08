@@ -13,7 +13,7 @@ export default function Accessibility() {
       <SEOHead 
         title="Website Accessibility Statement - Mavericks Edge"
         description="Mavericks Edge is committed to making our website accessible to all users. Learn about our accessibility features and compliance efforts."
-        canonical="/accessibility"
+        canonicalUrl="/accessibility"
       />
       <div className="min-h-screen bg-[#0D0D0D] text-white">
         <motion.div 
