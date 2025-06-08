@@ -156,6 +156,18 @@ export default function GDPRCompliance() {
                     <p>If you believe we have not adequately addressed your concerns, you have the right to lodge a complaint with your local supervisory authority or the Information Commissioner's Office (ICO) in the UK.</p>
                   </div>
                 </section>
+
+                <section>
+                  <h2 className="text-2xl font-semibold text-maverick-orange mb-4">Contact Us</h2>
+                  <div className="text-gray-300 space-y-4">
+                    <p>For questions about GDPR compliance or to exercise your data protection rights, please contact us:</p>
+                    <div className="bg-gray-800/50 p-6 rounded-lg">
+                      <p><strong>Data Protection Officer:</strong> <a href="mailto:support@mavericksedge.ca" className="text-maverick-orange hover:underline">support@mavericksedge.ca</a></p>
+                      <p><strong>Phone:</strong> <a href="tel:+12508838849" className="text-maverick-orange hover:underline">+1 (250) 883-8849</a></p>
+                      <p><strong>Address:</strong> 6908 100 Ave NW, Suite B, Edmonton, AB T6A 0G2, Canada</p>
+                    </div>
+                  </div>
+                </section>
               </div>
             </motion.div>
           </div>
