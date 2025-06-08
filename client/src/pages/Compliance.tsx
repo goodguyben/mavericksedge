@@ -14,7 +14,6 @@ export default function Compliance() {
         title="Compliance & Standards | Mavericks Edge"
         description="Learn about Mavericks Edge's compliance standards, industry certifications, and commitment to maintaining the highest levels of security and quality in our web development, marketing, and AI services."
       />
-      
       <div className="min-h-screen bg-maverick-black text-maverick-cream">
         <div className="container mx-auto px-4 py-16 pt-32">
           <motion.div
@@ -33,7 +32,7 @@ export default function Compliance() {
 
             <div className="space-y-12">
               {/* Industry Standards */}
-              <section>
+              <section className="pt-[0px] pb-[0px]">
                 <h2 className="text-2xl font-semibold mb-6 text-maverick-orange">Industry Standards & Certifications</h2>
                 <div className="space-y-4 text-gray-300">
                   <p>
