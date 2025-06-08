@@ -116,7 +116,7 @@ export default function Accessibility() {
                   </div>
                 </section>
 
-                <section>
+                <section className="pt-[0px] pb-[0px]">
                   <h2 className="text-2xl font-semibold text-maverick-orange mb-4">Ongoing Efforts</h2>
                   <div className="text-gray-300 space-y-4">
                     <p>We are continuously working to improve the accessibility of our website and services:</p>
