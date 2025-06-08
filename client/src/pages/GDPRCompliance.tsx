@@ -130,7 +130,7 @@ export default function GDPRCompliance() {
                   </div>
                 </section>
 
-                <section>
+                <section className="pt-[0px] pb-[0px]">
                   <h2 className="text-2xl font-semibold text-maverick-orange mb-4">International Data Transfers</h2>
                   <div className="text-gray-300 space-y-4">
                     <p>We are based in Canada, which has been recognized by the European Commission as providing adequate protection for personal data. Any international transfers are conducted with appropriate safeguards in place.</p>
