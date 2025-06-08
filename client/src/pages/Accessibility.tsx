@@ -49,7 +49,7 @@ export default function Accessibility() {
               transition={{ duration: 0.6, delay: 0.4 }}
             >
               <div className="space-y-12">
-                <section>
+                <section className="pt-[0px] pb-[0px]">
                   <h2 className="text-2xl font-semibold text-maverick-orange mb-4">Our Commitment</h2>
                   <div className="text-gray-300 space-y-4">
                     <p>Mavericks Edge is committed to making our website accessible to all users, including those with disabilities. We believe that everyone should have equal access to information and functionality, and we strive to provide an inclusive digital experience for all our visitors.</p>
