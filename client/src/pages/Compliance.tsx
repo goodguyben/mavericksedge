@@ -82,7 +82,7 @@ export default function Compliance() {
               </section>
 
               {/* AI & Data Ethics */}
-              <section>
+              <section className="pt-[0px] pb-[0px]">
                 <h2 className="text-2xl font-semibold mb-6 text-maverick-orange">AI Ethics & Responsible Data Use</h2>
                 <div className="space-y-4 text-gray-300">
                   <p>
