@@ -1,4 +1,3 @@
-
 import { useEffect } from 'react';
 import SEOHead from '@/components/SEOHead';
 import { motion } from 'framer-motion';
