@@ -116,7 +116,7 @@ export default function Compliance() {
               </section>
 
               {/* Continuous Improvement */}
-              <section>
+              <section className="pt-[0px] pb-[0px]">
                 <h2 className="text-2xl font-semibold mb-6 text-maverick-orange">Continuous Improvement & Updates</h2>
                 <div className="space-y-4 text-gray-300">
                   <p>
