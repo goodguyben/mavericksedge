@@ -150,7 +150,7 @@ export default function GDPRCompliance() {
                   </div>
                 </section>
 
-                <section>
+                <section className="pt-[0px] pb-[0px]">
                   <h2 className="text-2xl font-semibold text-maverick-orange mb-4">Supervisory Authority</h2>
                   <div className="text-gray-300 space-y-4">
                     <p>If you believe we have not adequately addressed your concerns, you have the right to lodge a complaint with your local supervisory authority or the Information Commissioner's Office (ICO) in the UK.</p>
