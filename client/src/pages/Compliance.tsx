@@ -65,7 +65,7 @@ export default function Compliance() {
               </section>
 
               {/* Development Standards */}
-              <section>
+              <section className="pt-[0px] pb-[0px]">
                 <h2 className="text-2xl font-semibold mb-6 text-maverick-orange">Development & Project Standards</h2>
                 <div className="space-y-4 text-gray-300">
                   <p>
