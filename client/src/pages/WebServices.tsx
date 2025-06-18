@@ -84,10 +84,8 @@ export default function WebServices() {
         ogImage="https://mavericksedge.ca/logo.png"
         ogType="website"
       />
-      
       <StructuredData data={webDevelopmentServiceSchema} />
       <StructuredData data={generateBreadcrumbSchema(breadcrumbs)} />
-      
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -99,7 +97,7 @@ export default function WebServices() {
         <div className="container mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
-              <h1 className="text-5xl md:text-7xl font-bold mb-6 font-heading">Web & Digital Solutions</h1>
+              <h1 className="text-5xl md:text-7xl font-bold mb-6 font-heading">Edmonton Web Design & Development</h1>
               <p className="text-xl text-[#AAAAAA] max-w-3xl mb-8">
                 Elevate your online presence with our comprehensive web development and digital solutions tailored specifically for SMBs and nonprofits.
               </p>
