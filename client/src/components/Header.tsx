@@ -4,21 +4,11 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, ChevronDown, X, ChevronRight } from "lucide-react";
 import Logo from "./Logo";
 
-const transition = {
-  type: "spring",
-  mass: 0.5,
-  damping: 11.5,
-  stiffness: 100,
-  restDelta: 0.001,
-  restSpeed: 0.001,
-};
-
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false);
   const [pricingDropdownOpen, setPricingDropdownOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [activeMenuItem, setActiveMenuItem] = useState<string | null>(null);
   const [location] = useLocation();
   const isHomePage = location === '/';
 
@@ -120,139 +110,97 @@ export default function Header() {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav 
-            className="hidden lg:flex items-center space-x-6 xl:space-x-8" 
-            role="navigation" 
-            aria-label="Main Navigation"
-            onMouseLeave={() => setActiveMenuItem(null)}
-          >
+          <nav className="hidden lg:flex items-center space-x-6 xl:space-x-8" role="navigation" aria-label="Main Navigation">
             {/* Home Link */}
             <motion.div
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              transition={transition}
-              onMouseEnter={() => setActiveMenuItem('home')}
-            >
-              <Link 
-                href="/" 
-                className={`px-3 py-2 min-h-[44px] rounded-md text-base font-medium transition-all duration-300 touch-manipulation flex items-center relative ${
-                  isCurrentPath('/') ? 'text-maverick-orange' : 'text-white hover:text-maverick-orange'
-                }`} 
-                aria-current={isCurrentPath('/') ? 'page' : undefined}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ duration: 0.2 }}
               >
-                Home
-                {activeMenuItem === 'home' && (
-                  <motion.div
-                    className="absolute -bottom-1 left-0 right-0 h-0.5 bg-maverick-orange"
-                    layoutId="activeIndicator"
-                    initial={{ opacity: 0, scaleX: 0 }}
-                    animate={{ opacity: 1, scaleX: 1 }}
-                    exit={{ opacity: 0, scaleX: 0 }}
-                    transition={transition}
-                  />
-                )}
-              </Link>
-            </motion.div>
+                <Link 
+                  href="/" 
+                  className={`px-3 py-2 min-h-[44px] rounded-md text-base font-medium transition-colors duration-200 touch-manipulation flex items-center ${
+                    isCurrentPath('/') ? 'text-maverick-orange' : 'text-white hover:text-maverick-orange'
+                  }`} 
+                  aria-current={isCurrentPath('/') ? 'page' : undefined}
+                >
+                  Home
+                </Link>
+              </motion.div>
 
             {/* Services Dropdown */}
             <div className="relative dropdown-container">
-              <motion.button 
+              <button 
                 type="button"
                 aria-expanded={servicesDropdownOpen}
                 aria-haspopup="true"
-                onMouseEnter={() => {
-                  setServicesDropdownOpen(true);
-                  setActiveMenuItem('services');
-                }}
+                onMouseEnter={() => setServicesDropdownOpen(true)}
                 onMouseLeave={() => setServicesDropdownOpen(false)}
                 onClick={(e) => {
                   e.stopPropagation();
                   setServicesDropdownOpen(!servicesDropdownOpen);
                 }}
-                className="px-3 py-2 min-h-[44px] rounded-md text-base font-medium transition-all duration-300 inline-flex items-center touch-manipulation text-maverick-orange hover:text-maverick-orange relative"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                transition={transition}
+                className="px-3 py-2 min-h-[44px] rounded-md text-base font-medium transition-colors duration-200 inline-flex items-center touch-manipulation text-maverick-orange hover:text-maverick-orange"
               >
                 <span>Services</span>
-                <motion.div
-                  animate={{ rotate: servicesDropdownOpen ? 180 : 0 }}
-                  transition={transition}
-                >
-                  <ChevronDown className="ml-2 h-4 w-4" />
-                </motion.div>
-                {activeMenuItem === 'services' && (
-                  <motion.div
-                    className="absolute -bottom-1 left-0 right-0 h-0.5 bg-maverick-orange"
-                    layoutId="activeIndicator"
-                    initial={{ opacity: 0, scaleX: 0 }}
-                    animate={{ opacity: 1, scaleX: 1 }}
-                    exit={{ opacity: 0, scaleX: 0 }}
-                    transition={transition}
-                  />
-                )}
-              </motion.button>
+                <ChevronDown className={`ml-2 h-4 w-4 transition-transform duration-200 ${
+                  servicesDropdownOpen ? 'rotate-180' : ''
+                }`} />
+              </button>
 
               <AnimatePresence>
                 {servicesDropdownOpen && (
                   <motion.div 
-                    initial={{ opacity: 0, scale: 0.85, y: 10 }}
-                    animate={{ opacity: 1, scale: 1, y: 0 }}
-                    exit={{ opacity: 0, scale: 0.85, y: 10 }}
-                    transition={transition}
-                    className="absolute left-1/2 transform -translate-x-1/2 mt-4 w-72 z-50"
+                    initial={{ opacity: 0, y: -8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -8 }}
+                    transition={{ duration: 0.2 }}
+                    className="absolute left-0 mt-2 w-64 z-50"
                     onMouseEnter={() => setServicesDropdownOpen(true)}
                     onMouseLeave={() => setServicesDropdownOpen(false)}
                   >
-                    <motion.div 
-                      className="py-2 bg-[#1A1A1A]/95 backdrop-blur-md border border-gray-800/50 rounded-2xl shadow-xl overflow-hidden" 
-                      role="menu"
-                      layout
-                      layoutId="servicesDropdown"
-                    >
-                      <motion.div layout className="p-2">
-                        <Link 
-                          href="/services" 
-                          className={`block px-4 py-3 min-h-[44px] text-base touch-manipulation rounded-lg transition-all duration-200 ${
-                            isCurrentPath('/services') ? 'text-maverick-orange bg-maverick-orange/10' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'
-                          }`} 
-                          role="menuitem"
-                          onClick={() => setServicesDropdownOpen(false)}
-                        >
-                          All Services
-                        </Link>
-                        <Link 
-                          href="/services/web" 
-                          className={`block px-4 py-3 min-h-[44px] text-base touch-manipulation rounded-lg transition-all duration-200 ${
-                            isCurrentPath('/services/web') ? 'text-maverick-orange bg-maverick-orange/10' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'
-                          }`} 
-                          role="menuitem"
-                          onClick={() => setServicesDropdownOpen(false)}
-                        >
-                          Web Design & Development
-                        </Link>
-                        <Link 
-                          href="/services/marketing" 
-                          className={`block px-4 py-3 min-h-[44px] text-base touch-manipulation rounded-lg transition-all duration-200 ${
-                            isCurrentPath('/services/marketing') ? 'text-maverick-orange bg-maverick-orange/10' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'
-                          }`} 
-                          role="menuitem"
-                          onClick={() => setServicesDropdownOpen(false)}
-                        >
-                          Marketing & Creative
-                        </Link>
-                        <Link 
-                          href="/services/ai" 
-                          className={`block px-4 py-3 min-h-[44px] text-base touch-manipulation rounded-lg transition-all duration-200 ${
-                            isCurrentPath('/services/ai') ? 'text-maverick-orange bg-maverick-orange/10' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'
-                          }`} 
-                          role="menuitem"
-                          onClick={() => setServicesDropdownOpen(false)}
-                        >
-                          AI Integration & Automation
-                        </Link>
-                      </motion.div>
-                    </motion.div>
+                    <div className="py-2 bg-[#1A1A1A]/95 backdrop-blur-md border border-gray-800/50 rounded-lg shadow-xl" role="menu">
+                      <Link 
+                        href="/services" 
+                        className={`block px-4 py-3 min-h-[44px] text-base touch-manipulation ${
+                          isCurrentPath('/services') ? 'text-maverick-orange bg-maverick-orange/10' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'
+                        }`} 
+                        role="menuitem"
+                        onClick={() => setServicesDropdownOpen(false)}
+                      >
+                        All Services
+                      </Link>
+                      <Link 
+                        href="/services/web" 
+                        className={`block px-4 py-3 min-h-[44px] text-base touch-manipulation ${
+                          isCurrentPath('/services/web') ? 'text-maverick-orange bg-maverick-orange/10' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'
+                        }`} 
+                        role="menuitem"
+                        onClick={() => setServicesDropdownOpen(false)}
+                      >
+                        Web Design & Development
+                      </Link>
+                      <Link 
+                        href="/services/marketing" 
+                        className={`block px-4 py-3 min-h-[44px] text-base touch-manipulation ${
+                          isCurrentPath('/services/marketing') ? 'text-maverick-orange bg-maverick-orange/10' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'
+                        }`} 
+                        role="menuitem"
+                        onClick={() => setServicesDropdownOpen(false)}
+                      >
+                        Marketing & Creative
+                      </Link>
+                      <Link 
+                        href="/services/ai" 
+                        className={`block px-4 py-3 min-h-[44px] text-base touch-manipulation ${
+                          isCurrentPath('/services/ai') ? 'text-maverick-orange bg-maverick-orange/10' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'
+                        }`} 
+                        role="menuitem"
+                        onClick={() => setServicesDropdownOpen(false)}
+                      >
+                        AI Integration & Automation
+                      </Link>
+                    </div>
                   </motion.div>
                 )}
               </AnimatePresence>
@@ -260,103 +208,77 @@ export default function Header() {
 
             {/* Pricing Dropdown */}
             <div className="relative dropdown-container">
-              <motion.button 
+              <button 
                 type="button"
                 aria-expanded={pricingDropdownOpen}
                 aria-haspopup="true"
-                onMouseEnter={() => {
-                  setPricingDropdownOpen(true);
-                  setActiveMenuItem('pricing');
-                }}
+                onMouseEnter={() => setPricingDropdownOpen(true)}
                 onMouseLeave={() => setPricingDropdownOpen(false)}
                 onClick={(e) => {
                   e.stopPropagation();
                   setPricingDropdownOpen(!pricingDropdownOpen);
                 }}
-                className="px-3 py-2 min-h-[44px] rounded-md text-base font-medium transition-all duration-300 inline-flex items-center touch-manipulation text-maverick-orange hover:text-maverick-orange relative"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                transition={transition}
+                className="px-3 py-2 min-h-[44px] rounded-md text-base font-medium transition-colors duration-200 inline-flex items-center touch-manipulation text-maverick-orange hover:text-maverick-orange"
               >
                 <span>Pricing</span>
-                <motion.div
-                  animate={{ rotate: pricingDropdownOpen ? 180 : 0 }}
-                  transition={transition}
-                >
-                  <ChevronDown className="ml-2 h-4 w-4" />
-                </motion.div>
-                {activeMenuItem === 'pricing' && (
-                  <motion.div
-                    className="absolute -bottom-1 left-0 right-0 h-0.5 bg-maverick-orange"
-                    layoutId="activeIndicator"
-                    initial={{ opacity: 0, scaleX: 0 }}
-                    animate={{ opacity: 1, scaleX: 1 }}
-                    exit={{ opacity: 0, scaleX: 0 }}
-                    transition={transition}
-                  />
-                )}
-              </motion.button>
+                <ChevronDown className={`ml-2 h-4 w-4 transition-transform duration-200 ${
+                  pricingDropdownOpen ? 'rotate-180' : ''
+                }`} />
+              </button>
 
               <AnimatePresence>
                 {pricingDropdownOpen && (
                   <motion.div 
-                    initial={{ opacity: 0, scale: 0.85, y: 10 }}
-                    animate={{ opacity: 1, scale: 1, y: 0 }}
-                    exit={{ opacity: 0, scale: 0.85, y: 10 }}
-                    transition={transition}
-                    className="absolute left-1/2 transform -translate-x-1/2 mt-4 w-72 z-50"
+                    initial={{ opacity: 0, y: -8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -8 }}
+                    transition={{ duration: 0.2 }}
+                    className="absolute left-0 mt-2 w-64 z-50"
                     onMouseEnter={() => setPricingDropdownOpen(true)}
                     onMouseLeave={() => setPricingDropdownOpen(false)}
                   >
-                    <motion.div 
-                      className="py-2 bg-[#1A1A1A]/95 backdrop-blur-md border border-gray-800/50 rounded-2xl shadow-xl overflow-hidden" 
-                      role="menu"
-                      layout
-                      layoutId="pricingDropdown"
-                    >
-                      <motion.div layout className="p-2">
-                        <Link 
-                          href="/pricing" 
-                          className={`block px-4 py-3 min-h-[44px] text-base touch-manipulation rounded-lg transition-all duration-200 ${
-                            isCurrentPath('/pricing') ? 'text-maverick-orange bg-maverick-orange/10' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'
-                          }`} 
-                          role="menuitem"
-                          onClick={() => setPricingDropdownOpen(false)}
-                        >
-                          All Pricing Plans
-                        </Link>
-                        <Link 
-                          href="/pricing/web" 
-                          className={`block px-4 py-3 min-h-[44px] text-base touch-manipulation rounded-lg transition-all duration-200 ${
-                            isCurrentPath('/pricing/web') ? 'text-maverick-orange bg-maverick-orange/10' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'
-                          }`} 
-                          role="menuitem"
-                          onClick={() => setPricingDropdownOpen(false)}
-                        >
-                          Web Design & Development
-                        </Link>
-                        <Link 
-                          href="/pricing/marketing" 
-                          className={`block px-4 py-3 min-h-[44px] text-base touch-manipulation rounded-lg transition-all duration-200 ${
-                            isCurrentPath('/pricing/marketing') ? 'text-maverick-orange bg-maverick-orange/10' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'
-                          }`} 
-                          role="menuitem"
-                          onClick={() => setPricingDropdownOpen(false)}
-                        >
-                          Marketing & Creative
-                        </Link>
-                        <Link 
-                          href="/pricing/ai" 
-                          className={`block px-4 py-3 min-h-[44px] text-base touch-manipulation rounded-lg transition-all duration-200 ${
-                            isCurrentPath('/pricing/ai') ? 'text-maverick-orange bg-maverick-orange/10' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'
-                          }`} 
-                          role="menuitem"
-                          onClick={() => setPricingDropdownOpen(false)}
-                        >
-                          AI Integration & Automation
-                        </Link>
-                      </motion.div>
-                    </motion.div>
+                    <div className="py-2 bg-[#1A1A1A]/95 backdrop-blur-md border border-gray-800/50 rounded-lg shadow-xl" role="menu">
+                      <Link 
+                        href="/pricing" 
+                        className={`block px-4 py-3 min-h-[44px] text-base touch-manipulation ${
+                          isCurrentPath('/pricing') ? 'text-maverick-orange bg-maverick-orange/10' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'
+                        }`} 
+                        role="menuitem"
+                        onClick={() => setPricingDropdownOpen(false)}
+                      >
+                        All Pricing Plans
+                      </Link>
+                      <Link 
+                        href="/pricing/web" 
+                        className={`block px-4 py-3 min-h-[44px] text-base touch-manipulation ${
+                          isCurrentPath('/pricing/web') ? 'text-maverick-orange bg-maverick-orange/10' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'
+                        }`} 
+                        role="menuitem"
+                        onClick={() => setPricingDropdownOpen(false)}
+                      >
+                        Web Design & Development
+                      </Link>
+                      <Link 
+                        href="/pricing/marketing" 
+                        className={`block px-4 py-3 min-h-[44px] text-base touch-manipulation ${
+                          isCurrentPath('/pricing/marketing') ? 'text-maverick-orange bg-maverick-orange/10' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'
+                        }`} 
+                        role="menuitem"
+                        onClick={() => setPricingDropdownOpen(false)}
+                      >
+                        Marketing & Creative
+                      </Link>
+                      <Link 
+                        href="/pricing/ai" 
+                        className={`block px-4 py-3 min-h-[44px] text-base touch-manipulation ${
+                          isCurrentPath('/pricing/ai') ? 'text-maverick-orange bg-maverick-orange/10' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'
+                        }`} 
+                        role="menuitem"
+                        onClick={() => setPricingDropdownOpen(false)}
+                      >
+                        AI Integration & Automation
+                      </Link>
+                    </div>
                   </motion.div>
                 )}
               </AnimatePresence>
@@ -364,59 +286,37 @@ export default function Header() {
 
             {/* About Link */}
             <motion.div
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              transition={transition}
-              onMouseEnter={() => setActiveMenuItem('about')}
-            >
-              <Link 
-                href="/about" 
-                className={`px-3 py-2 min-h-[44px] rounded-md text-base font-medium transition-all duration-300 touch-manipulation flex items-center relative ${
-                  isCurrentPath('/about') ? 'text-maverick-orange' : 'text-white hover:text-maverick-orange'
-                }`} 
-                aria-current={isCurrentPath('/about') ? 'page' : undefined}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ duration: 0.2 }}
               >
-                About
-                {activeMenuItem === 'about' && (
-                  <motion.div
-                    className="absolute -bottom-1 left-0 right-0 h-0.5 bg-maverick-orange"
-                    layoutId="activeIndicator"
-                    initial={{ opacity: 0, scaleX: 0 }}
-                    animate={{ opacity: 1, scaleX: 1 }}
-                    exit={{ opacity: 0, scaleX: 0 }}
-                    transition={transition}
-                  />
-                )}
-              </Link>
-            </motion.div>
+                <Link 
+                  href="/about" 
+                  className={`px-3 py-2 min-h-[44px] rounded-md text-base font-medium transition-colors duration-200 touch-manipulation flex items-center ${
+                    isCurrentPath('/about') ? 'text-maverick-orange' : 'text-white hover:text-maverick-orange'
+                  }`} 
+                  aria-current={isCurrentPath('/about') ? 'page' : undefined}
+                >
+                  About
+                </Link>
+              </motion.div>
 
             {/* Contact Link */}
             <motion.div
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              transition={transition}
-              onMouseEnter={() => setActiveMenuItem('contact')}
-            >
-              <Link 
-                href="/contact" 
-                className={`px-3 py-2 min-h-[44px] rounded-md text-base font-medium transition-all duration-300 touch-manipulation flex items-center relative ${
-                  isCurrentPath('/contact') ? 'text-maverick-orange' : 'text-white hover:text-maverick-orange'
-                }`} 
-                aria-current={isCurrentPath('/contact') ? 'page' : undefined}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ duration: 0.2 }}
               >
-                Contact
-                {activeMenuItem === 'contact' && (
-                  <motion.div
-                    className="absolute -bottom-1 left-0 right-0 h-0.5 bg-maverick-orange"
-                    layoutId="activeIndicator"
-                    initial={{ opacity: 0, scaleX: 0 }}
-                    animate={{ opacity: 1, scaleX: 1 }}
-                    exit={{ opacity: 0, scaleX: 0 }}
-                    transition={transition}
-                  />
-                )}
-              </Link>
-            </motion.div>
+                <Link 
+                  href="/contact" 
+                  className={`px-3 py-2 min-h-[44px] rounded-md text-base font-medium transition-colors duration-200 touch-manipulation flex items-center ${
+                    isCurrentPath('/contact') ? 'text-maverick-orange' : 'text-white hover:text-maverick-orange'
+                  }`} 
+                  aria-current={isCurrentPath('/contact') ? 'page' : undefined}
+                >
+                  Contact
+                </Link>
+              </motion.div>
           </nav>
 
           {/* Mobile Menu Button */}
