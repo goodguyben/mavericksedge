@@ -1,11 +1,9 @@
-
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
-import { Zap, Heart, FlaskConical, BookOpen, SmileIcon, Users, Sparkles, ArrowRight, Code, PenTool, Brain } from "lucide-react";
+import { Zap, Heart, FlaskConical, BookOpen, SmileIcon, Users, Sparkles, ArrowRight } from "lucide-react";
 import { useRef, useState } from "react";
 import GradientText from "@/components/ui/GradientText";
 
-// Web Applications Section
-function WebApplicationsSection() {
+export default function WhyChooseUsSection() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [hoveredItem, setHoveredItem] = useState<string | null>(null);
   const { scrollYProgress } = useScroll({
@@ -33,6 +31,38 @@ function WebApplicationsSection() {
       icon: <Heart className="w-8 h-8 text-maverick-orange" />,
       color: "#ff5630",
       gradient: "from-pink-400 via-red-400 to-orange-400"
+    },
+    {
+      id: "innovation",
+      title: "Innovation",
+      description: "We're passionate about staying ahead of the curve with the latest tech, so you can count on us to bring you innovative solutions that give you a real edge in a fast-moving world.",
+      icon: <FlaskConical className="w-8 h-8 text-maverick-orange" />,
+      color: "#ff5630",
+      gradient: "from-purple-400 via-violet-500 to-blue-500"
+    },
+    {
+      id: "research",
+      title: "Research",
+      description: "We take the time to really understand your market, audience, and competitors. There's no 'one size fits all' approach here. Our research allows us to develop strategies and tailored plans that are aligned with your needs.",
+      icon: <BookOpen className="w-8 h-8 text-maverick-orange" />,
+      color: "#ff5630",
+      gradient: "from-emerald-400 via-teal-500 to-cyan-500"
+    },
+    {
+      id: "empathy",
+      title: "Empathy",
+      description: "We get that things don't always go as planned, and we're here to make sure you're never left in the dark. We take the time to truly understand your needs and limitations, designing solutions that fit within your scope and budget—without the surprise fees.",
+      icon: <SmileIcon className="w-8 h-8 text-maverick-orange" />,
+      color: "#ff5630",
+      gradient: "from-cyan-400 via-blue-500 to-indigo-500"
+    },
+    {
+      id: "partnership",
+      title: "Partnership",
+      description: "We see ourselves as an extension of your team, working collaboratively to achieve your business goals with trust and shared commitment to your long-term success.",
+      icon: <Users className="w-8 h-8 text-maverick-orange" />,
+      color: "#ff5630",
+      gradient: "from-indigo-400 via-purple-500 to-pink-500"
     }
   ];
 
@@ -89,7 +119,7 @@ function WebApplicationsSection() {
         />
       </motion.div>
       <div className="container mx-auto relative z-10 max-w-7xl">
-        {/* Header Section */}
+        {/* Header Section - keeping specified formatting */}
         <motion.div 
           className="text-center mb-32"
           initial={{ opacity: 0, y: 50 }}
@@ -110,7 +140,7 @@ function WebApplicationsSection() {
               animate={{ rotate: 360 }}
               transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
             >
-              <Code className="w-8 h-8 text-maverick-orange" />
+              <Sparkles className="w-8 h-8 text-maverick-orange" />
             </motion.div>
           </motion.div>
 
@@ -121,12 +151,12 @@ function WebApplicationsSection() {
             viewport={{ once: true }}
             transition={{ duration: 1, delay: 0.3 }}
           >
-            Web Applications{" "}
+            Why Choose{" "}
             <GradientText 
               colors={["#FF5630", "#FF8A50", "#FFB899", "#FF5630"]}
               animationSpeed={5}
             >
-              Excellence
+              Mavericks Edge
             </GradientText>
           </motion.h2>
 
@@ -137,12 +167,12 @@ function WebApplicationsSection() {
             viewport={{ once: true }}
             transition={{ duration: 1, delay: 0.5 }}
           >
-            Custom digital experiences that engage audiences and drive results with responsive websites, e-commerce platforms, and web applications built for your business goals.
+            We partner with passionate people building meaningful work — SMBs, nonprofits, and early-stage teams doing a lot with a little. We get it: every dollar matters. That's why our services are flexible, transparent, and built around long-term sustainability.
           </motion.p>
         </motion.div>
 
         {/* Creative Interactive Grid Layout */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 place-items-center pl-[0px] pr-[0px] ml-[-32px] mr-[-32px]">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12 place-items-center pl-[0px] pr-[0px] ml-[-32px] mr-[-32px]">
           {reasons.map((reason, index) => (
             <motion.div
               key={reason.id}
@@ -248,507 +278,8 @@ function WebApplicationsSection() {
               </motion.div>
             </motion.div>
           ))}
-        </div>
-      </div>
-    </section>
-  );
-}
 
-// Marketing Solutions Section
-function MarketingSolutionsSection() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [hoveredItem, setHoveredItem] = useState<string | null>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "end start"]
-  });
-
-  const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
-  const floatingY = useTransform(scrollYProgress, [0, 1], [0, -100]);
-  const rotateX = useTransform(scrollYProgress, [0, 0.5, 1], [15, 0, -15]);
-
-  const reasons = [
-    {
-      id: "innovation",
-      title: "Innovation",
-      description: "We're passionate about staying ahead of the curve with the latest tech, so you can count on us to bring you innovative solutions that give you a real edge in a fast-moving world.",
-      icon: <FlaskConical className="w-8 h-8 text-maverick-orange" />,
-      color: "#ff5630",
-      gradient: "from-purple-400 via-violet-500 to-blue-500"
-    },
-    {
-      id: "research",
-      title: "Research",
-      description: "We take the time to really understand your market, audience, and competitors. There's no 'one size fits all' approach here. Our research allows us to develop strategies and tailored plans that are aligned with your needs.",
-      icon: <BookOpen className="w-8 h-8 text-maverick-orange" />,
-      color: "#ff5630",
-      gradient: "from-emerald-400 via-teal-500 to-cyan-500"
-    }
-  ];
-
-  return (
-    <section ref={containerRef} className="relative py-40 px-5 md:px-10 bg-[#0A0A0A] overflow-hidden min-h-screen">
-      {/* Dynamic Floating Background Elements */}
-      <motion.div 
-        className="absolute inset-0 opacity-30"
-        style={{ y: backgroundY }}
-      >
-        {/* Animated Orbs */}
-        <motion.div
-          className="absolute w-96 h-96 rounded-full bg-gradient-to-r from-purple-500/10 to-blue-500/10 blur-3xl"
-          animate={{
-            x: [0, -100, 0],
-            y: [0, 50, 0],
-            scale: [1, 1.3, 1],
-          }}
-          transition={{
-            duration: 18,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-          style={{ top: "15%", right: "10%" }}
-        />
-        <motion.div
-          className="absolute w-64 h-64 rounded-full bg-gradient-to-r from-green-500/10 to-teal-500/10 blur-2xl"
-          animate={{
-            x: [0, 80, 0],
-            y: [0, -60, 0],
-            scale: [1, 0.9, 1],
-          }}
-          transition={{
-            duration: 16,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 1
-          }}
-          style={{ bottom: "25%", left: "15%" }}
-        />
-
-        {/* Floating Geometric Shapes */}
-        <motion.div
-          className="absolute w-2 h-32 bg-gradient-to-b from-purple-500/20 to-transparent"
-          style={{ y: floatingY, rotateZ: -45, top: "30%", right: "80%" }}
-          animate={{ rotateZ: [-45, 135, -45] }}
-          transition={{ duration: 22, repeat: Infinity }}
-        />
-        <motion.div
-          className="absolute w-1 h-24 bg-gradient-to-b from-teal-500/15 to-transparent"
-          style={{ y: floatingY, bottom: "35%", right: "5%" }}
-          animate={{ rotateZ: [0, -180, -360] }}
-          transition={{ duration: 28, repeat: Infinity }}
-        />
-      </motion.div>
-      <div className="container mx-auto relative z-10 max-w-7xl">
-        {/* Header Section */}
-        <motion.div 
-          className="text-center mb-32"
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1, ease: "easeOut" }}
-          style={{ rotateX }}
-        >
-          <motion.div
-            className="flex items-center justify-center mb-8"
-            initial={{ scale: 0 }}
-            whileInView={{ scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
-            <motion.div
-              className="p-3 rounded-full bg-gradient-to-r from-purple-500/20 to-teal-500/20 backdrop-blur-sm"
-              animate={{ rotate: 360 }}
-              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-            >
-              <PenTool className="w-8 h-8 text-maverick-orange" />
-            </motion.div>
-          </motion.div>
-
-          <motion.h2 
-            className="text-4xl md:text-5xl font-bold mb-8 leading-tight"
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1, delay: 0.3 }}
-          >
-            Marketing{" "}
-            <GradientText 
-              colors={["#8B5CF6", "#06B6D4", "#10B981", "#8B5CF6"]}
-              animationSpeed={5}
-            >
-              Solutions
-            </GradientText>
-          </motion.h2>
-
-          <motion.p 
-            className="text-gray-300 text-lg md:text-xl max-w-4xl mx-auto leading-relaxed"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1, delay: 0.5 }}
-          >
-            Strategic marketing that connects with your audience and delivers measurable ROI through compelling brand stories, targeted content, and data-driven campaigns.
-          </motion.p>
-        </motion.div>
-
-        {/* Creative Interactive Grid Layout */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 place-items-center pl-[0px] pr-[0px] ml-[-32px] mr-[-32px]">
-          {reasons.map((reason, index) => (
-            <motion.div
-              key={reason.id}
-              className="group cursor-pointer w-full max-w-sm h-[28rem] md:h-[28rem]"
-              initial={{ opacity: 0, scale: 0.5, rotateY: -45 }}
-              whileInView={{ opacity: 1, scale: 1, rotateY: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ 
-                duration: 0.8, 
-                ease: "easeOut"
-              }}
-              whileHover={{ 
-                scale: 1.05, 
-                rotateY: 5,
-                z: 50,
-                transition: { duration: 0.3 }
-              }}
-              onHoverStart={() => setHoveredItem(reason.id)}
-              onHoverEnd={() => setHoveredItem(null)}
-            >
-              {/* Floating Connection Lines */}
-              <AnimatePresence>
-                {hoveredItem === reason.id && (
-                  <motion.div
-                    className="absolute inset-0 -z-10"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                  >
-                    <motion.div
-                      className={`absolute w-px h-32 bg-gradient-to-b ${reason.gradient} opacity-50`}
-                      style={{ top: "-8rem", left: "50%" }}
-                      initial={{ scaleY: 0 }}
-                      animate={{ scaleY: 1 }}
-                      transition={{ duration: 0.5 }}
-                    />
-                    <motion.div
-                      className={`absolute w-32 h-px bg-gradient-to-r ${reason.gradient} opacity-50`}
-                      style={{ top: "50%", left: "-8rem" }}
-                      initial={{ scaleX: 0 }}
-                      animate={{ scaleX: 1 }}
-                      transition={{ duration: 0.5, delay: 0.1 }}
-                    />
-                  </motion.div>
-                )}
-              </AnimatePresence>
-
-              {/* Main Card */}
-              <motion.div 
-                className="relative p-6 rounded-2xl backdrop-blur-md border border-white/10 bg-gradient-to-br from-white/5 to-white/[0.02] overflow-hidden h-full flex flex-col justify-between"
-                whileHover={{ 
-                  borderColor: reason.color + "40",
-                  boxShadow: `0 20px 40px ${reason.color}20`
-                }}
-                transition={{ duration: 0.3 }}
-              >
-                {/* Background Gradient Effect */}
-                <motion.div
-                  className={`absolute inset-0 bg-gradient-to-br ${reason.gradient} opacity-0 group-hover:opacity-5`}
-                  transition={{ duration: 0.5 }}
-                />
-
-                {/* Floating Icon */}
-                <motion.div 
-                  className="flex items-center justify-center w-16 h-16 rounded-xl bg-gradient-to-br from-white/10 to-white/[0.02] border border-white/20 mb-4"
-                  whileHover={{ 
-                    scale: 1.1, 
-                    rotate: [0, -5, 5, 0],
-                    boxShadow: `0 10px 30px ${reason.color}30`
-                  }}
-                  transition={{ duration: 0.3 }}
-                >
-                  {reason.icon}
-                </motion.div>
-
-                {/* Content */}
-                <div className="flex-1">
-                  <h3 className="text-2xl font-bold text-white mb-3">
-                    {reason.title}
-                  </h3>
-
-                  <motion.p 
-                    className="text-gray-400 leading-relaxed text-sm group-hover:text-gray-300"
-                    transition={{ duration: 0.3 }}
-                  >
-                    {reason.description}
-                  </motion.p>
-                </div>
-
-                {/* Decorative Corner Elements */}
-                <motion.div
-                  className={`absolute top-0 right-0 w-8 h-8 bg-gradient-to-br ${reason.gradient} opacity-20 blur-xl`}
-                  animate={{ 
-                    scale: [1, 1.5, 1],
-                    opacity: [0.2, 0.4, 0.2]
-                  }}
-                  transition={{ 
-                    duration: 3, 
-                    repeat: Infinity,
-                    delay: index * 0.5
-                  }}
-                />
-              </motion.div>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-// AI Applications Section
-function AIApplicationsSection() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [hoveredItem, setHoveredItem] = useState<string | null>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "end start"]
-  });
-
-  const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
-  const floatingY = useTransform(scrollYProgress, [0, 1], [0, -100]);
-  const rotateX = useTransform(scrollYProgress, [0, 0.5, 1], [15, 0, -15]);
-
-  const reasons = [
-    {
-      id: "empathy",
-      title: "Empathy",
-      description: "We get that things don't always go as planned, and we're here to make sure you're never left in the dark. We take the time to truly understand your needs and limitations, designing solutions that fit within your scope and budget—without the surprise fees.",
-      icon: <SmileIcon className="w-8 h-8 text-maverick-orange" />,
-      color: "#ff5630",
-      gradient: "from-cyan-400 via-blue-500 to-indigo-500"
-    },
-    {
-      id: "partnership",
-      title: "Partnership",
-      description: "We see ourselves as an extension of your team, working collaboratively to achieve your business goals with trust and shared commitment to your long-term success.",
-      icon: <Users className="w-8 h-8 text-maverick-orange" />,
-      color: "#ff5630",
-      gradient: "from-indigo-400 via-purple-500 to-pink-500"
-    }
-  ];
-
-  return (
-    <section ref={containerRef} className="relative py-40 px-5 md:px-10 bg-[#050505] overflow-hidden min-h-screen">
-      {/* Dynamic Floating Background Elements */}
-      <motion.div 
-        className="absolute inset-0 opacity-30"
-        style={{ y: backgroundY }}
-      >
-        {/* Animated Orbs */}
-        <motion.div
-          className="absolute w-96 h-96 rounded-full bg-gradient-to-r from-blue-500/10 to-indigo-500/10 blur-3xl"
-          animate={{
-            x: [0, 120, 0],
-            y: [0, -40, 0],
-            scale: [1, 1.4, 1],
-          }}
-          transition={{
-            duration: 24,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-          style={{ top: "20%", left: "5%" }}
-        />
-        <motion.div
-          className="absolute w-64 h-64 rounded-full bg-gradient-to-r from-purple-500/10 to-pink-500/10 blur-2xl"
-          animate={{
-            x: [0, -90, 0],
-            y: [0, 70, 0],
-            scale: [1, 0.7, 1],
-          }}
-          transition={{
-            duration: 14,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 3
-          }}
-          style={{ bottom: "15%", right: "10%" }}
-        />
-
-        {/* Floating Geometric Shapes */}
-        <motion.div
-          className="absolute w-2 h-32 bg-gradient-to-b from-blue-500/20 to-transparent"
-          style={{ y: floatingY, rotateZ: 90, top: "20%", left: "75%" }}
-          animate={{ rotateZ: [90, 270, 90] }}
-          transition={{ duration: 26, repeat: Infinity }}
-        />
-        <motion.div
-          className="absolute w-1 h-24 bg-gradient-to-b from-pink-500/15 to-transparent"
-          style={{ y: floatingY, bottom: "40%", left: "10%" }}
-          animate={{ rotateZ: [0, 270, 540] }}
-          transition={{ duration: 32, repeat: Infinity }}
-        />
-      </motion.div>
-      <div className="container mx-auto relative z-10 max-w-7xl">
-        {/* Header Section */}
-        <motion.div 
-          className="text-center mb-32"
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1, ease: "easeOut" }}
-          style={{ rotateX }}
-        >
-          <motion.div
-            className="flex items-center justify-center mb-8"
-            initial={{ scale: 0 }}
-            whileInView={{ scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
-            <motion.div
-              className="p-3 rounded-full bg-gradient-to-r from-blue-500/20 to-pink-500/20 backdrop-blur-sm"
-              animate={{ rotate: 360 }}
-              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-            >
-              <Brain className="w-8 h-8 text-maverick-orange" />
-            </motion.div>
-          </motion.div>
-
-          <motion.h2 
-            className="text-4xl md:text-5xl font-bold mb-8 leading-tight"
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1, delay: 0.3 }}
-          >
-            AI{" "}
-            <GradientText 
-              colors={["#3B82F6", "#8B5CF6", "#EC4899", "#3B82F6"]}
-              animationSpeed={5}
-            >
-              Applications
-            </GradientText>
-          </motion.h2>
-
-          <motion.p 
-            className="text-gray-300 text-lg md:text-xl max-w-4xl mx-auto leading-relaxed"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1, delay: 0.5 }}
-          >
-            Harness the power of artificial intelligence to streamline operations and enhance customer experiences with AI readiness assessments, custom integrations, and workflow automation.
-          </motion.p>
-        </motion.div>
-
-        {/* Creative Interactive Grid Layout */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 place-items-center pl-[0px] pr-[0px] ml-[-32px] mr-[-32px]">
-          {reasons.map((reason, index) => (
-            <motion.div
-              key={reason.id}
-              className="group cursor-pointer w-full max-w-sm h-[28rem] md:h-[28rem]"
-              initial={{ opacity: 0, scale: 0.5, rotateY: -45 }}
-              whileInView={{ opacity: 1, scale: 1, rotateY: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ 
-                duration: 0.8, 
-                ease: "easeOut"
-              }}
-              whileHover={{ 
-                scale: 1.05, 
-                rotateY: 5,
-                z: 50,
-                transition: { duration: 0.3 }
-              }}
-              onHoverStart={() => setHoveredItem(reason.id)}
-              onHoverEnd={() => setHoveredItem(null)}
-            >
-              {/* Floating Connection Lines */}
-              <AnimatePresence>
-                {hoveredItem === reason.id && (
-                  <motion.div
-                    className="absolute inset-0 -z-10"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                  >
-                    <motion.div
-                      className={`absolute w-px h-32 bg-gradient-to-b ${reason.gradient} opacity-50`}
-                      style={{ top: "-8rem", left: "50%" }}
-                      initial={{ scaleY: 0 }}
-                      animate={{ scaleY: 1 }}
-                      transition={{ duration: 0.5 }}
-                    />
-                    <motion.div
-                      className={`absolute w-32 h-px bg-gradient-to-r ${reason.gradient} opacity-50`}
-                      style={{ top: "50%", left: "-8rem" }}
-                      initial={{ scaleX: 0 }}
-                      animate={{ scaleX: 1 }}
-                      transition={{ duration: 0.5, delay: 0.1 }}
-                    />
-                  </motion.div>
-                )}
-              </AnimatePresence>
-
-              {/* Main Card */}
-              <motion.div 
-                className="relative p-6 rounded-2xl backdrop-blur-md border border-white/10 bg-gradient-to-br from-white/5 to-white/[0.02] overflow-hidden h-full flex flex-col justify-between"
-                whileHover={{ 
-                  borderColor: reason.color + "40",
-                  boxShadow: `0 20px 40px ${reason.color}20`
-                }}
-                transition={{ duration: 0.3 }}
-              >
-                {/* Background Gradient Effect */}
-                <motion.div
-                  className={`absolute inset-0 bg-gradient-to-br ${reason.gradient} opacity-0 group-hover:opacity-5`}
-                  transition={{ duration: 0.5 }}
-                />
-
-                {/* Floating Icon */}
-                <motion.div 
-                  className="flex items-center justify-center w-16 h-16 rounded-xl bg-gradient-to-br from-white/10 to-white/[0.02] border border-white/20 mb-4"
-                  whileHover={{ 
-                    scale: 1.1, 
-                    rotate: [0, -5, 5, 0],
-                    boxShadow: `0 10px 30px ${reason.color}30`
-                  }}
-                  transition={{ duration: 0.3 }}
-                >
-                  {reason.icon}
-                </motion.div>
-
-                {/* Content */}
-                <div className="flex-1">
-                  <h3 className="text-2xl font-bold text-white mb-3">
-                    {reason.title}
-                  </h3>
-
-                  <motion.p 
-                    className="text-gray-400 leading-relaxed text-sm group-hover:text-gray-300"
-                    transition={{ duration: 0.3 }}
-                  >
-                    {reason.description}
-                  </motion.p>
-                </div>
-
-                {/* Decorative Corner Elements */}
-                <motion.div
-                  className={`absolute top-0 right-0 w-8 h-8 bg-gradient-to-br ${reason.gradient} opacity-20 blur-xl`}
-                  animate={{ 
-                    scale: [1, 1.5, 1],
-                    opacity: [0.2, 0.4, 0.2]
-                  }}
-                  transition={{ 
-                    duration: 3, 
-                    repeat: Infinity,
-                    delay: index * 0.5
-                  }}
-                />
-              </motion.div>
-            </motion.div>
-          ))}
-        </div>
+          </div>
 
         {/* Bottom section with enhanced styling */}
         <motion.div
@@ -789,15 +320,5 @@ function AIApplicationsSection() {
         </motion.div>
       </div>
     </section>
-  );
-}
-
-export default function WhyChooseUsSection() {
-  return (
-    <>
-      <WebApplicationsSection />
-      <MarketingSolutionsSection />
-      <AIApplicationsSection />
-    </>
   );
 }
