@@ -214,7 +214,6 @@ export default function WhatWeDoSection() {
         </header>
 
         {isMobile ? (
-          // Mobile/Tablet version - Mimics desktop layout with graphics
           (<motion.div className="relative min-h-[500px]" style={{ opacity, y }}>
             {/* Service Navigation */}
             <div className="mb-8">
@@ -719,11 +718,14 @@ export default function WhatWeDoSection() {
                           </div>
                         </motion.div>
                       </motion.div>
-                    ),
+                    )
                 )}
               </AnimatePresence>
             </div>
-          </motion.div>)
+          </motion.div>
+        ) : (
+          // Desktop version
+          <></>
         )}
       </div>
     </section>
