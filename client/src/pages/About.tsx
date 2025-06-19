@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet';
 import TeamSection from "@/components/sections/TeamSection";
 import ProcessSection from "@/components/sections/ProcessSection";
 import ContactSection from "@/components/sections/ContactSection";
+import SplitText from "@/components/ui/SplitText";
 import { useEffect } from "react";
 
 export default function About() {
@@ -79,12 +80,35 @@ export default function About() {
         <article>
           <section className="pt-44 md:pt-48 pb-16 px-5 md:px-10 bg-[#121212]">
             <div className="container mx-auto pl-0 md:pl-8">
-              <h1 className="text-5xl md:text-7xl font-bold mb-6">About Us</h1>
+              <h1 className="text-5xl md:text-7xl font-bold mb-6">
+                <SplitText
+                  text="About Us"
+                  className="text-5xl md:text-7xl font-bold"
+                  delay={200}
+                  duration={0.6}
+                  ease="power3.out"
+                  splitType="chars"
+                  from={{ opacity: 0, y: 40 }}
+                  to={{ opacity: 1, y: 0 }}
+                  threshold={0.1}
+                  rootMargin="-100px"
+                />
+              </h1>
               <div className="text-xl text-[#AAAAAA] max-w-3xl" itemScope itemType="https://schema.org/Organization">
                 <p>
-                  <span itemProp="name">Mavericks Edge</span> is a digital solutions agency specializing in 
-                  <span itemProp="description"> web development, marketing, and AI integration services for SMBs and nonprofits</span>.
-                  Our mission is to provide accessible, high-quality digital services that empower businesses to thrive in the digital landscape.
+                  <SplitText
+                    text="Mavericks Edge is a digital solutions agency specializing in web development, marketing, and AI integration services for SMBs and nonprofits. Our mission is to provide accessible, high-quality digital services that empower businesses to thrive in the digital landscape."
+                    className="text-xl text-[#AAAAAA]"
+                    delay={500}
+                    duration={0.4}
+                    ease="power3.out"
+                    splitType="words"
+                    from={{ opacity: 0, y: 20 }}
+                    to={{ opacity: 1, y: 0 }}
+                    threshold={0.1}
+                    rootMargin="-100px"
+                    stagger={0.03}
+                  />
                 </p>
               </div>
             </div>

@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Code, Monitor, Database, Layout as LayoutIcon, ShoppingCart, Globe, Shield, Gauge, Bookmark, Users } from "lucide-react";
 import ContactSection from "@/components/sections/ContactSection";
+import SplitText from "@/components/ui/SplitText";
 import { Link } from "wouter";
 import { useEffect } from "react";
 import SEOHead from "@/components/SEOHead";
@@ -97,10 +98,35 @@ export default function WebServices() {
         <div className="container mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
-              <h1 className="text-5xl md:text-7xl font-bold mb-6 font-heading">Edmonton Web Design & Development</h1>
-              <p className="text-xl text-[#AAAAAA] max-w-3xl mb-8">
-                Elevate your online presence with our comprehensive web development and digital solutions tailored specifically for SMBs and nonprofits.
-              </p>
+              <h1 className="text-5xl md:text-7xl font-bold mb-6 font-heading">
+                <SplitText
+                  text="Edmonton Web Design & Development"
+                  className="text-5xl md:text-7xl font-bold font-heading"
+                  delay={200}
+                  duration={0.6}
+                  ease="power3.out"
+                  splitType="chars"
+                  from={{ opacity: 0, y: 40 }}
+                  to={{ opacity: 1, y: 0 }}
+                  threshold={0.1}
+                  rootMargin="-100px"
+                />
+              </h1>
+              <div className="text-xl text-[#AAAAAA] max-w-3xl mb-8">
+                <SplitText
+                  text="Elevate your online presence with our comprehensive web development and digital solutions tailored specifically for SMBs and nonprofits."
+                  className="text-xl text-[#AAAAAA]"
+                  delay={500}
+                  duration={0.4}
+                  ease="power3.out"
+                  splitType="words"
+                  from={{ opacity: 0, y: 20 }}
+                  to={{ opacity: 1, y: 0 }}
+                  threshold={0.1}
+                  rootMargin="-100px"
+                  stagger={0.03}
+                />
+              </div>
               <Link href="/contact">
                 <a className="maverick-button maverick-button-primary inline-flex items-center justify-center px-8 py-3 text-base font-medium rounded-md md:py-4 md:text-lg md:px-10">
                   Get a free consultation

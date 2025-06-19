@@ -4,6 +4,7 @@ import { Code, Monitor, PieChart, Zap, BarChart2, PenTool, Calendar, Brain, Data
 import ServicesSection from "@/components/sections/ServicesSection";
 import ProcessSection from "@/components/sections/ProcessSection";
 import ContactSection from "@/components/sections/ContactSection";
+import SplitText from "@/components/ui/SplitText";
 import { Link } from "wouter";
 import { useEffect } from "react";
 
@@ -140,11 +141,35 @@ export default function Services() {
       <div className="pt-44 md:pt-48 pb-16 px-5 md:px-10 bg-[#121212]">
         <div className="container mx-auto">
           <div className="max-w-3xl">
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 font-heading">Our Services</h1>
-            <p className="text-xl text-[#AAAAAA] max-w-3xl">
-              Comprehensive digital solutions designed to help your business thrive in the digital landscape.
-              From web development to marketing and AI integration, we've got you covered.
-            </p>
+            <h1 className="text-5xl md:text-7xl font-bold mb-6 font-heading">
+              <SplitText
+                text="Our Services"
+                className="text-5xl md:text-7xl font-bold font-heading"
+                delay={200}
+                duration={0.6}
+                ease="power3.out"
+                splitType="chars"
+                from={{ opacity: 0, y: 40 }}
+                to={{ opacity: 1, y: 0 }}
+                threshold={0.1}
+                rootMargin="-100px"
+              />
+            </h1>
+            <div className="text-xl text-[#AAAAAA] max-w-3xl">
+              <SplitText
+                text="Comprehensive digital solutions designed to help your business thrive in the digital landscape. From web development to marketing and AI integration, we've got you covered."
+                className="text-xl text-[#AAAAAA]"
+                delay={500}
+                duration={0.4}
+                ease="power3.out"
+                splitType="words"
+                from={{ opacity: 0, y: 20 }}
+                to={{ opacity: 1, y: 0 }}
+                threshold={0.1}
+                rootMargin="-100px"
+                stagger={0.03}
+              />
+            </div>
           </div>
         </div>
       </div>
@@ -168,7 +193,20 @@ export default function Services() {
                   <div className="p-4 bg-maverick-orange bg-opacity-10 rounded-lg mr-6">
                     {category.icon}
                   </div>
-                  <h2 className="text-3xl md:text-4xl font-bold font-heading">{category.title}</h2>
+                  <h2 className="text-3xl md:text-4xl font-bold font-heading">
+              <SplitText
+                text={category.title}
+                className="text-3xl md:text-4xl font-bold font-heading"
+                delay={300}
+                duration={0.6}
+                ease="power3.out"
+                splitType="chars"
+                from={{ opacity: 0, y: 30 }}
+                to={{ opacity: 1, y: 0 }}
+                threshold={0.1}
+                rootMargin="-100px"
+              />
+            </h2>
                 </div>
                 <p className="text-lg text-[#AAAAAA] mb-6">{category.description}</p>
                 <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-3 mb-8">
@@ -230,10 +268,35 @@ export default function Services() {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 font-heading">Industries We Serve</h2>
-            <p className="text-[#AAAAAA] text-xl max-w-2xl mx-auto">
-              We specialize in providing digital solutions for various industries, with a focus on SMBs and nonprofits
-            </p>
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 font-heading">
+              <SplitText
+                text="Industries We Serve"
+                className="text-4xl md:text-5xl font-bold font-heading"
+                delay={200}
+                duration={0.6}
+                ease="power3.out"
+                splitType="chars"
+                from={{ opacity: 0, y: 40 }}
+                to={{ opacity: 1, y: 0 }}
+                threshold={0.1}
+                rootMargin="-100px"
+              />
+            </h2>
+            <div className="text-[#AAAAAA] text-xl max-w-2xl mx-auto">
+              <SplitText
+                text="We specialize in providing digital solutions for various industries, with a focus on SMBs and nonprofits"
+                className="text-[#AAAAAA] text-xl"
+                delay={500}
+                duration={0.4}
+                ease="power3.out"
+                splitType="words"
+                from={{ opacity: 0, y: 20 }}
+                to={{ opacity: 1, y: 0 }}
+                threshold={0.1}
+                rootMargin="-100px"
+                stagger={0.03}
+              />
+            </div>
           </motion.div>
 
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
