@@ -30,13 +30,12 @@ export function Button({
     className
   ].filter(Boolean).join(' ');
 
-  // Determine if this is an orange button that should have gradient text
-  const isOrangeButton = variant === "primary" || buttonClasses.includes('maverick-orange') || buttonClasses.includes('bg-maverick-orange');
-  const shouldUseGradient = useGradientText || isOrangeButton;
+  // Only use gradient text when explicitly requested
+  const shouldUseGradient = useGradientText;
 
   const buttonContent = shouldUseGradient ? (
     <GradientText 
-      colors={["#FF5630", "#FF8A50", "#FFB899", "#FF5630"]}
+      colors={["#E65F34", "#FF5630", "#FF8A50", "#E65F34"]}
       animationSpeed={4}
     >
       {children}
