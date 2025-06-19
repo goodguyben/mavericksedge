@@ -27,9 +27,10 @@ interface ServiceSection {
 interface SingleServiceSectionProps {
   service: ServiceSection;
   sectionHeight?: string;
+  sectionStart?: number;
 }
 
-function SingleServiceSection({ service, sectionHeight = "400vh" }: SingleServiceSectionProps) {
+function SingleServiceSection({ service, sectionHeight = "400vh", sectionStart = 0 }: SingleServiceSectionProps) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -38,10 +39,6 @@ function SingleServiceSection({ service, sectionHeight = "400vh" }: SingleServic
     target: containerRef,
     offset: ["start start", "end end"]
   });
-
-  // Smooth spring values for better performance
-  const springConfig = { stiffness: 100, damping: 30, mass: 0.8 };
-  const activeIndexSpring = useSpring(activeIndex, springConfig);
 
   const totalItems = service.items.length;
 
@@ -56,13 +53,13 @@ function SingleServiceSection({ service, sectionHeight = "400vh" }: SingleServic
     return () => clearInterval(interval);
   }, [isAutoPlaying, totalItems]);
 
-  // Optimized scroll-based progression
-  const scrollProgress = useTransform(scrollYProgress, [0.2, 0.95], [0, totalItems - 1]);
+  // Enhanced scroll-based progression with section awareness
+  const scrollProgress = useTransform(scrollYProgress, [0.1, 0.9], [0, totalItems - 1]);
 
   useEffect(() => {
     const unsubscribe = scrollProgress.on("change", (latest) => {
-      const newIndex = Math.round(latest);
-      if (newIndex !== activeIndex && newIndex >= 0 && newIndex < totalItems) {
+      const newIndex = Math.round(Math.max(0, Math.min(latest, totalItems - 1)));
+      if (newIndex !== activeIndex) {
         setActiveIndex(newIndex);
         setIsAutoPlaying(false);
       }
@@ -110,7 +107,7 @@ function SingleServiceSection({ service, sectionHeight = "400vh" }: SingleServic
   };
 
   return (
-    <div ref={containerRef} className={`relative ${sectionHeight} bg-black`}>
+    <div ref={containerRef} className={`relative bg-black`} style={{ height: sectionHeight }}>
       {/* Reduced particle count for better performance */}
       <div className="absolute inset-0 pointer-events-none">
         {[...Array(4)].map((_, i) => (
@@ -460,15 +457,24 @@ export default function ServiceCascadeSection() {
     }
   ];
 
+  // Calculate total height needed for all sections
+  const totalHeight = services.reduce((acc, service) => acc + (service.items.length * 100), 0);
+
   return (
-    <div>
-      {services.map((service, index) => (
-        <SingleServiceSection 
-          key={service.id} 
-          service={service} 
-          sectionHeight={index === 0 ? "400vh sm:500vh" : "400vh"}
-        />
-      ))}
+    <div className={`relative`} style={{ height: `${totalHeight}vh` }}>
+      {services.map((service, serviceIndex) => {
+        const sectionStart = services.slice(0, serviceIndex).reduce((acc, s) => acc + (s.items.length * 100), 0);
+        const sectionHeight = service.items.length * 100;
+        
+        return (
+          <SingleServiceSection 
+            key={service.id} 
+            service={service} 
+            sectionHeight={`${sectionHeight}vh`}
+            sectionStart={sectionStart}
+          />
+        );
+      })}
     </div>
   );
 }
