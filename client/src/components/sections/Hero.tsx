@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { ChevronDown } from "lucide-react";
 import { scrollToSection } from "@/lib/scroll";
 import { Button } from "@/components/ui/custom-button";
-import RotatingText from "@/components/ui/RotatingText";
 
 
 export default function Hero() {
@@ -69,19 +68,31 @@ export default function Hero() {
         >
           <h1 className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-heading font-extrabold tracking-wide leading-tight text-maverick-cream text-center px-2">
             <div className="inline-block">
-              {/* Rotating text animation for the heading */}
-              <RotatingText
-                texts={['Designing websites', 'Creating Online Presence', 'Automating Workflows', 'Building resilience']}
-                mainClassName="px-2 sm:px-2 md:px-3 bg-maverick-orange text-black overflow-hidden py-0.5 sm:py-1 md:py-2 justify-center rounded-lg mr-2"
-                staggerFrom="last"
-                initial={{ y: "100%" }}
-                animate={{ y: 0 }}
-                exit={{ y: "-120%" }}
-                staggerDuration={0.025}
-                splitLevelClassName="overflow-hidden pb-0.5 sm:pb-1 md:pb-1"
-                transition={{ type: "spring", damping: 30, stiffness: 400 }}
-                rotationInterval={2000}
-              />
+              {/* Word-by-word animation for the heading */}
+              <motion.span 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.7, delay: 0.4 }}
+                className="inline-block mr-2"
+              >
+                Building
+              </motion.span>
+              <span className="text-maverick-orange relative inline-block">
+                <motion.span
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.7, delay: 0.8 }}
+                  className="mr-2"
+                >
+                  resilience
+                </motion.span>
+                <motion.span 
+                  className="absolute -bottom-1 left-0 h-1 bg-maverick-orange"
+                  initial={{ width: 0 }}
+                  animate={{ width: "100%" }}
+                  transition={{ delay: 1.2, duration: 0.8 }}
+                />
+              </span>
               {" "}
               <motion.span 
                 initial={{ opacity: 0 }}
