@@ -4,6 +4,7 @@ import { ChevronDown } from "lucide-react";
 import { scrollToSection } from "@/lib/scroll";
 import { Button } from "@/components/ui/custom-button";
 import GradientText from "@/components/ui/GradientText";
+import ScrollReveal from "@/components/ui/ScrollReveal";
 
 
 export default function Hero() {
@@ -67,83 +68,83 @@ export default function Hero() {
           transition={{ duration: 0.1 }}
           style={{ opacity: heroOpacity }}
         >
-          <h1 className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-heading font-extrabold tracking-wide leading-tight text-maverick-cream text-center px-2">
-            <div className="inline-block">
-              {/* Word-by-word animation for the heading */}
-              <motion.span 
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.7, delay: 0.4 }}
-                className="inline-block mr-2"
-              >
-                Building
-              </motion.span>
-              <span className="relative inline-block">
-                <motion.span
+          <ScrollReveal baseOpacity={0} enableBlur={true} baseRotation={5} blurStrength={10} delay={0.4}>
+            <h1 className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-heading font-extrabold tracking-wide leading-tight text-maverick-cream text-center px-2">
+              <div className="inline-block">
+                {/* Word-by-word animation for the heading */}
+                <motion.span 
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  transition={{ duration: 0.7, delay: 0.8 }}
-                  className="mr-2"
+                  transition={{ duration: 0.7, delay: 0.4 }}
+                  className="inline-block mr-2"
                 >
-                  <GradientText 
-                    colors={["#E65F34", "#FF5630", "#FFB899", "#E65F34"]}
-                    animationSpeed={6}
-                  >
-                    resilience
-                  </GradientText>
+                  Building
                 </motion.span>
+                <span className="relative inline-block">
+                  <motion.span
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.7, delay: 0.8 }}
+                    className="mr-2"
+                  >
+                    <GradientText 
+                      colors={["#E65F34", "#FF5630", "#FFB899", "#E65F34"]}
+                      animationSpeed={6}
+                    >
+                      resilience
+                    </GradientText>
+                  </motion.span>
+                  <motion.span 
+                    className="absolute -bottom-1 left-0 h-1 bg-maverick-orange"
+                    initial={{ width: 0 }}
+                    animate={{ width: "100%" }}
+                    transition={{ delay: 1.2, duration: 0.8 }}
+                  />
+                </span>
+                {" "}
                 <motion.span 
-                  className="absolute -bottom-1 left-0 h-1 bg-maverick-orange"
-                  initial={{ width: 0 }}
-                  animate={{ width: "100%" }}
-                  transition={{ delay: 1.2, duration: 0.8 }}
-                />
-              </span>
-              {" "}
-              <motion.span 
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.7, delay: 1.2 }}
-                className="inline-block mr-1"
-              >
-                with
-              </motion.span>
-              {" "}
-              <motion.span 
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.7, delay: 1.6 }}
-                className="inline-block mr-1"
-              >
-                innovation
-              </motion.span>
-              {" "}
-              <motion.span 
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.7, delay: 2.0 }}
-                className="inline-block mr-1"
-              >
-                and
-              </motion.span>
-              {" "}
-              <motion.span 
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.7, delay: 2.4 }}
-                className="inline-block"
-              >
-                heart
-              </motion.span>
-            </div>
-          </h1>
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 2.8 }}
-            className="hero-tagline text-sm xs:text-base sm:text-lg md:text-xl lg:text-xl xl:text-2xl 2xl:text-3xl text-maverick-cream/80 mt-3 xs:mt-4 sm:mt-5 md:mt-6 lg:mt-8 xl:mt-10 mb-6 xs:mb-8 sm:mb-10 md:mb-12 lg:mb-14 xl:mb-16 font-sans leading-relaxed mx-auto text-center"
-          >
-            We're Edmonton-based creators who design beautiful websites, improve your online visibility, and offer smart AI Integration so you can focus on growing your business          </motion.p>
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.7, delay: 1.2 }}
+                  className="inline-block mr-1"
+                >
+                  with
+                </motion.span>
+                {" "}
+                <motion.span 
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.7, delay: 1.6 }}
+                  className="inline-block mr-1"
+                >
+                  innovation
+                </motion.span>
+                {" "}
+                <motion.span 
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.7, delay: 2.0 }}
+                  className="inline-block mr-1"
+                >
+                  and
+                </motion.span>
+                {" "}
+                <motion.span 
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.7, delay: 2.4 }}
+                  className="inline-block"
+                >
+                  heart
+                </motion.span>
+              </div>
+            </h1>
+          </ScrollReveal>
+          <ScrollReveal baseOpacity={0} enableBlur={true} baseRotation={3} blurStrength={8} delay={0.6}>
+            <p className="hero-tagline text-sm xs:text-base sm:text-lg md:text-xl lg:text-xl xl:text-2xl 2xl:text-3xl text-maverick-cream/80 mt-3 xs:mt-4 sm:mt-5 md:mt-6 lg:mt-8 xl:mt-10 mb-6 xs:mb-8 sm:mb-10 md:mb-12 lg:mb-14 xl:mb-16 font-sans leading-relaxed mx-auto text-center">
+              We're Edmonton-based creators who design beautiful websites, improve your online visibility, and offer smart AI Integration so you can focus on growing your business
+            </p>
+          </ScrollReveal>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}

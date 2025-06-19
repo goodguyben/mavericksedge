@@ -2,6 +2,7 @@ import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion"
 import { Zap, Heart, FlaskConical, BookOpen, SmileIcon, Users, Sparkles, ArrowRight } from "lucide-react";
 import { useRef, useState } from "react";
 import GradientText from "@/components/ui/GradientText";
+import ScrollReveal from "@/components/ui/ScrollReveal";
 
 export default function WhyChooseUsSection() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -144,31 +145,23 @@ export default function WhyChooseUsSection() {
             </motion.div>
           </motion.div>
 
-          <motion.h2 
-            className="text-4xl md:text-5xl font-bold mb-8 leading-tight"
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1, delay: 0.3 }}
-          >
-            Why Choose{" "}
-            <GradientText 
-              colors={["#E65F34", "#FF5630", "#FFB899", "#E65F34"]}
-              animationSpeed={5}
-            >
-              Mavericks Edge
-            </GradientText>
-          </motion.h2>
+          <ScrollReveal baseOpacity={0} enableBlur={true} baseRotation={5} blurStrength={10} delay={0.3}>
+            <h2 className="text-4xl md:text-5xl font-bold mb-8 leading-tight">
+              Why Choose{" "}
+              <GradientText 
+                colors={["#E65F34", "#FF5630", "#FFB899", "#E65F34"]}
+                animationSpeed={5}
+              >
+                Mavericks Edge
+              </GradientText>
+            </h2>
+          </ScrollReveal>
 
-          <motion.p 
-            className="text-gray-300 text-lg md:text-xl max-w-4xl mx-auto leading-relaxed"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1, delay: 0.5 }}
-          >
-            We partner with passionate people building meaningful work — SMBs, nonprofits, and early-stage teams doing a lot with a little. We get it: every dollar matters. That's why our services are flexible, transparent, and built around long-term sustainability.
-          </motion.p>
+          <ScrollReveal baseOpacity={0} enableBlur={true} baseRotation={3} blurStrength={8} delay={0.5}>
+            <p className="text-gray-300 text-lg md:text-xl max-w-4xl mx-auto leading-relaxed">
+              We partner with passionate people building meaningful work — SMBs, nonprofits, and early-stage teams doing a lot with a little. We get it: every dollar matters. That's why our services are flexible, transparent, and built around long-term sustainability.
+            </p>
+          </ScrollReveal>
         </motion.div>
 
         {/* Creative Interactive Grid Layout */}
@@ -250,16 +243,17 @@ export default function WhyChooseUsSection() {
 
                 {/* Content */}
                 <div className="flex-1">
-                  <h3 className="text-2xl font-bold text-white mb-3">
-                    {reason.title}
-                  </h3>
+                  <ScrollReveal baseOpacity={0} enableBlur={true} baseRotation={2} blurStrength={5} delay={index * 0.1}>
+                    <h3 className="text-2xl font-bold text-white mb-3">
+                      {reason.title}
+                    </h3>
+                  </ScrollReveal>
 
-                  <motion.p 
-                    className="text-gray-400 leading-relaxed text-sm group-hover:text-gray-300"
-                    transition={{ duration: 0.3 }}
-                  >
-                    {reason.description}
-                  </motion.p>
+                  <ScrollReveal baseOpacity={0} enableBlur={true} baseRotation={1} blurStrength={4} delay={index * 0.1 + 0.2}>
+                    <p className="text-gray-400 leading-relaxed text-sm group-hover:text-gray-300 transition-colors duration-300">
+                      {reason.description}
+                    </p>
+                  </ScrollReveal>
                 </div>
 
                 {/* Decorative Corner Elements */}
@@ -307,16 +301,11 @@ export default function WhyChooseUsSection() {
             <div className="h-px w-32 bg-gradient-to-r from-maverick-orange via-transparent to-transparent" />
           </motion.div>
 
-          <motion.p 
-            className="text-gray-400 text-xl font-medium"
-            whileHover={{ 
-              scale: 1.05,
-              color: "#ffffff"
-            }}
-            transition={{ duration: 0.3 }}
-          >
-            Ready to experience the Mavericks Edge difference?
-          </motion.p>
+          <ScrollReveal baseOpacity={0} enableBlur={true} baseRotation={2} blurStrength={6}>
+            <p className="text-gray-400 text-xl font-medium hover:scale-105 hover:text-white transition-all duration-300">
+              Ready to experience the Mavericks Edge difference?
+            </p>
+          </ScrollReveal>
         </motion.div>
       </div>
     </section>
