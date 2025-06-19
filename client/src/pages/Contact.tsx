@@ -35,14 +35,14 @@ export default function Contact() {
               "name": "Mavericks Edge",
               "image": "https://mavericksedge.com/images/logo-transparent-thumb4x.png",
               "url": "https://mavericksedge.com",
-              "telephone": "+1-555-123-4567",
+              "telephone": "+1-250-883-8849",
               "address": {
                 "@type": "PostalAddress",
                 "streetAddress": "123 Digital Way",
                 "addressLocality": "Tech City",
                 "addressRegion": "CA",
                 "postalCode": "94103",
-                "addressCountry": "US"
+                "addressCountry": "CA"
               },
               "geo": {
                 "@type": "GeoCoordinates",

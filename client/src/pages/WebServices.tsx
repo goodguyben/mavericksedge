@@ -581,14 +581,14 @@ export default function WebServices() {
                     <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                   </motion.div>
                 </Link>
-                <a href="tel:+1-780-123-4567">
+                <a href="tel:+1-250-883-8849">
                   <motion.div
                     className="maverick-button maverick-button-outline inline-flex items-center justify-center px-8 py-4 text-lg font-medium rounded-lg"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                   >
                     <Phone className="mr-2 h-5 w-5" />
-                    Call Us Directly: (780) 123-4567
+                    Call Us Directly: (250) 883-8849
                   </motion.div>
                 </a>
               </div>

@@ -56,7 +56,7 @@ export default function About() {
               "contactPoint": {
                 "@type": "ContactPoint",
                 "contactType": "customer service",
-                "telephone": "+1-555-123-4567",
+                "telephone": "+1-250-883-8849",
                 "email": "info@mavericksedge.com"
               },
               "sameAs": [
