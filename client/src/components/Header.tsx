@@ -1,117 +1,13 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "wouter";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { Menu, ChevronDown, X, ChevronRight } from "lucide-react";
 import Logo from "./Logo";
-
-const transition = {
-  type: "spring",
-  mass: 0.5,
-  damping: 11.5,
-  stiffness: 100,
-  restDelta: 0.001,
-  restSpeed: 0.001,
-};
-
-const MenuItem = ({
-  setActive,
-  active,
-  item,
-  children,
-}: {
-  setActive: (item: string) => void;
-  active: string | null;
-  item: string;
-  children?: React.ReactNode;
-}) => {
-  return (
-    <div onMouseEnter={() => setActive(item)} className="relative">
-      <motion.p
-        transition={{ duration: 0.3 }}
-        className="cursor-pointer text-white hover:text-maverick-orange transition-colors duration-200 px-3 py-2 text-base font-medium"
-      >
-        {item}
-      </motion.p>
-      {active !== null && (
-        <motion.div
-          initial={{ opacity: 0, scale: 0.85, y: 10 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={transition}
-        >
-          {active === item && (
-            <div className="absolute top-[calc(100%_+_1.2rem)] left-1/2 transform -translate-x-1/2 pt-4">
-              <motion.div
-                transition={transition}
-                layoutId="active"
-                className="bg-[#1A1A1A]/95 backdrop-blur-md rounded-2xl overflow-hidden border border-gray-800/50 shadow-xl"
-              >
-                <motion.div
-                  layout
-                  className="w-max h-full p-4"
-                >
-                  {children}
-                </motion.div>
-              </motion.div>
-            </div>
-          )}
-        </motion.div>
-      )}
-    </div>
-  );
-};
-
-const NavMenu = ({
-  setActive,
-  children,
-}: {
-  setActive: (item: string | null) => void;
-  children: React.ReactNode;
-}) => {
-  return (
-    <nav
-      onMouseLeave={() => setActive(null)}
-      className="relative rounded-full border border-white/10 bg-black/20 backdrop-blur-md shadow-xl flex justify-center space-x-4 px-8 py-3"
-    >
-      {children}
-    </nav>
-  );
-};
-
-const NavLink = ({ href, children, isActive }: { href: string; children: React.ReactNode; isActive: boolean }) => {
-  return (
-    <Link href={href}>
-      <motion.span
-        className={`cursor-pointer px-3 py-2 text-base font-medium transition-colors duration-200 ${
-          isActive ? 'text-maverick-orange' : 'text-white hover:text-maverick-orange'
-        }`}
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-        transition={{ duration: 0.2 }}
-      >
-        {children}
-      </motion.span>
-    </Link>
-  );
-};
-
-const DropdownLink = ({ href, children, onClick }: { href: string; children: React.ReactNode; onClick?: () => void }) => {
-  return (
-    <Link href={href}>
-      <motion.div
-        className="block px-4 py-3 text-white hover:text-maverick-orange hover:bg-maverick-orange/10 rounded-lg transition-all duration-200 cursor-pointer"
-        onClick={onClick}
-        whileHover={{ x: 4 }}
-        transition={{ duration: 0.2 }}
-      >
-        {children}
-      </motion.div>
-    </Link>
-  );
-};
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [active, setActive] = useState<string | null>(null);
+  const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false);
+  const [pricingDropdownOpen, setPricingDropdownOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [location] = useLocation();
   const isHomePage = location === '/';
@@ -129,7 +25,8 @@ export default function Header() {
   // Close mobile menu when location changes
   useEffect(() => {
     setIsMobileMenuOpen(false);
-    setActive(null);
+    setServicesDropdownOpen(false);
+    setPricingDropdownOpen(false);
   }, [location]);
 
   // Prevent body scroll when mobile menu is open
@@ -144,12 +41,31 @@ export default function Header() {
       document.body.style.width = 'unset';
     }
 
+    // Cleanup on unmount
     return () => {
       document.body.style.overflow = 'unset';
       document.body.style.position = 'unset';
       document.body.style.width = 'unset';
     };
   }, [isMobileMenuOpen]);
+
+  // Close dropdowns when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as Element;
+      if (!target.closest('.dropdown-container')) {
+        setServicesDropdownOpen(false);
+        setPricingDropdownOpen(false);
+      }
+    };
+
+    if (servicesDropdownOpen || pricingDropdownOpen) {
+      setTimeout(() => {
+        document.addEventListener('click', handleClickOutside);
+      }, 0);
+      return () => document.removeEventListener('click', handleClickOutside);
+    }
+  }, [servicesDropdownOpen, pricingDropdownOpen]);
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -161,10 +77,16 @@ export default function Header() {
 
   const isCurrentPath = (path: string) => location === path;
 
+  const getHeaderClasses = () => {
+    return `sticky top-0 left-0 w-full py-3 px-4 sm:px-6 lg:px-8 z-50 transition-all duration-300 backdrop-blur-md border-b border-maverick-orange/10 ${
+      isScrolled ? 'bg-[#121212]/95' : 'bg-[#12121261]'
+    }`;
+  };
+
   return (
     <>
       <motion.header 
-        className="sticky top-0 left-0 w-full py-3 px-4 sm:px-6 lg:px-8 z-50 transition-all duration-300 backdrop-blur-md border-b border-maverick-orange/10 bg-[#12121226]"
+        className="sticky top-0 left-0 w-full py-3 px-4 sm:px-6 lg:px-8 z-50 transition-all duration-300 backdrop-blur-md border-b border-maverick-orange/10 bg-[#12121226] mt-[-44px] mb-[-44px]"
         role="banner"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -188,55 +110,214 @@ export default function Header() {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center">
-            <NavMenu setActive={setActive}>
-              <NavLink href="/" isActive={isCurrentPath('/')}>
-                Home
-              </NavLink>
+          <nav className="hidden lg:flex items-center space-x-6 xl:space-x-8" role="navigation" aria-label="Main Navigation">
+            {/* Home Link */}
+            <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ duration: 0.2 }}
+              >
+                <Link 
+                  href="/" 
+                  className={`px-3 py-2 min-h-[44px] rounded-md text-base font-medium transition-colors duration-200 touch-manipulation flex items-center ${
+                    isCurrentPath('/') ? 'text-maverick-orange' : 'text-white hover:text-maverick-orange'
+                  }`} 
+                  aria-current={isCurrentPath('/') ? 'page' : undefined}
+                >
+                  Home
+                </Link>
+              </motion.div>
 
-              <MenuItem setActive={setActive} active={active} item="Services">
-                <div className="flex flex-col space-y-2 min-w-[240px]">
-                  <DropdownLink href="/services" onClick={() => setActive(null)}>
-                    All Services
-                  </DropdownLink>
-                  <DropdownLink href="/services/web" onClick={() => setActive(null)}>
-                    Web Design & Development
-                  </DropdownLink>
-                  <DropdownLink href="/services/marketing" onClick={() => setActive(null)}>
-                    Marketing & Creative
-                  </DropdownLink>
-                  <DropdownLink href="/services/ai" onClick={() => setActive(null)}>
-                    AI Integration & Automation
-                  </DropdownLink>
-                </div>
-              </MenuItem>
+            {/* Services Dropdown */}
+            <div className="relative dropdown-container">
+              <button 
+                type="button"
+                aria-expanded={servicesDropdownOpen}
+                aria-haspopup="true"
+                onMouseEnter={() => setServicesDropdownOpen(true)}
+                onMouseLeave={() => setServicesDropdownOpen(false)}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setServicesDropdownOpen(!servicesDropdownOpen);
+                }}
+                className="px-3 py-2 min-h-[44px] rounded-md text-base font-medium transition-colors duration-200 inline-flex items-center touch-manipulation text-maverick-orange hover:text-maverick-orange"
+              >
+                <span>Services</span>
+                <ChevronDown className={`ml-2 h-4 w-4 transition-transform duration-200 ${
+                  servicesDropdownOpen ? 'rotate-180' : ''
+                }`} />
+              </button>
 
-              <MenuItem setActive={setActive} active={active} item="Pricing">
-                <div className="flex flex-col space-y-2 min-w-[240px]">
-                  <DropdownLink href="/pricing" onClick={() => setActive(null)}>
-                    All Pricing Plans
-                  </DropdownLink>
-                  <DropdownLink href="/pricing/web" onClick={() => setActive(null)}>
-                    Web Design & Development
-                  </DropdownLink>
-                  <DropdownLink href="/pricing/marketing" onClick={() => setActive(null)}>
-                    Marketing & Creative
-                  </DropdownLink>
-                  <DropdownLink href="/pricing/ai" onClick={() => setActive(null)}>
-                    AI Integration & Automation
-                  </DropdownLink>
-                </div>
-              </MenuItem>
+              <AnimatePresence>
+                {servicesDropdownOpen && (
+                  <motion.div 
+                    initial={{ opacity: 0, y: -8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -8 }}
+                    transition={{ duration: 0.2 }}
+                    className="absolute left-0 mt-2 w-64 z-50"
+                    onMouseEnter={() => setServicesDropdownOpen(true)}
+                    onMouseLeave={() => setServicesDropdownOpen(false)}
+                  >
+                    <div className="py-2 bg-[#1A1A1A]/95 backdrop-blur-md border border-gray-800/50 rounded-lg shadow-xl" role="menu">
+                      <Link 
+                        href="/services" 
+                        className={`block px-4 py-3 min-h-[44px] text-base touch-manipulation ${
+                          isCurrentPath('/services') ? 'text-maverick-orange bg-maverick-orange/10' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'
+                        }`} 
+                        role="menuitem"
+                        onClick={() => setServicesDropdownOpen(false)}
+                      >
+                        All Services
+                      </Link>
+                      <Link 
+                        href="/services/web" 
+                        className={`block px-4 py-3 min-h-[44px] text-base touch-manipulation ${
+                          isCurrentPath('/services/web') ? 'text-maverick-orange bg-maverick-orange/10' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'
+                        }`} 
+                        role="menuitem"
+                        onClick={() => setServicesDropdownOpen(false)}
+                      >
+                        Web Design & Development
+                      </Link>
+                      <Link 
+                        href="/services/marketing" 
+                        className={`block px-4 py-3 min-h-[44px] text-base touch-manipulation ${
+                          isCurrentPath('/services/marketing') ? 'text-maverick-orange bg-maverick-orange/10' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'
+                        }`} 
+                        role="menuitem"
+                        onClick={() => setServicesDropdownOpen(false)}
+                      >
+                        Marketing & Creative
+                      </Link>
+                      <Link 
+                        href="/services/ai" 
+                        className={`block px-4 py-3 min-h-[44px] text-base touch-manipulation ${
+                          isCurrentPath('/services/ai') ? 'text-maverick-orange bg-maverick-orange/10' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'
+                        }`} 
+                        role="menuitem"
+                        onClick={() => setServicesDropdownOpen(false)}
+                      >
+                        AI Integration & Automation
+                      </Link>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
 
-              <NavLink href="/about" isActive={isCurrentPath('/about')}>
-                About
-              </NavLink>
+            {/* Pricing Dropdown */}
+            <div className="relative dropdown-container">
+              <button 
+                type="button"
+                aria-expanded={pricingDropdownOpen}
+                aria-haspopup="true"
+                onMouseEnter={() => setPricingDropdownOpen(true)}
+                onMouseLeave={() => setPricingDropdownOpen(false)}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setPricingDropdownOpen(!pricingDropdownOpen);
+                }}
+                className="px-3 py-2 min-h-[44px] rounded-md text-base font-medium transition-colors duration-200 inline-flex items-center touch-manipulation text-maverick-orange hover:text-maverick-orange"
+              >
+                <span>Pricing</span>
+                <ChevronDown className={`ml-2 h-4 w-4 transition-transform duration-200 ${
+                  pricingDropdownOpen ? 'rotate-180' : ''
+                }`} />
+              </button>
 
-              <NavLink href="/contact" isActive={isCurrentPath('/contact')}>
-                Contact
-              </NavLink>
-            </NavMenu>
-          </div>
+              <AnimatePresence>
+                {pricingDropdownOpen && (
+                  <motion.div 
+                    initial={{ opacity: 0, y: -8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -8 }}
+                    transition={{ duration: 0.2 }}
+                    className="absolute left-0 mt-2 w-64 z-50"
+                    onMouseEnter={() => setPricingDropdownOpen(true)}
+                    onMouseLeave={() => setPricingDropdownOpen(false)}
+                  >
+                    <div className="py-2 bg-[#1A1A1A]/95 backdrop-blur-md border border-gray-800/50 rounded-lg shadow-xl" role="menu">
+                      <Link 
+                        href="/pricing" 
+                        className={`block px-4 py-3 min-h-[44px] text-base touch-manipulation ${
+                          isCurrentPath('/pricing') ? 'text-maverick-orange bg-maverick-orange/10' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'
+                        }`} 
+                        role="menuitem"
+                        onClick={() => setPricingDropdownOpen(false)}
+                      >
+                        All Pricing Plans
+                      </Link>
+                      <Link 
+                        href="/pricing/web" 
+                        className={`block px-4 py-3 min-h-[44px] text-base touch-manipulation ${
+                          isCurrentPath('/pricing/web') ? 'text-maverick-orange bg-maverick-orange/10' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'
+                        }`} 
+                        role="menuitem"
+                        onClick={() => setPricingDropdownOpen(false)}
+                      >
+                        Web Design & Development
+                      </Link>
+                      <Link 
+                        href="/pricing/marketing" 
+                        className={`block px-4 py-3 min-h-[44px] text-base touch-manipulation ${
+                          isCurrentPath('/pricing/marketing') ? 'text-maverick-orange bg-maverick-orange/10' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'
+                        }`} 
+                        role="menuitem"
+                        onClick={() => setPricingDropdownOpen(false)}
+                      >
+                        Marketing & Creative
+                      </Link>
+                      <Link 
+                        href="/pricing/ai" 
+                        className={`block px-4 py-3 min-h-[44px] text-base touch-manipulation ${
+                          isCurrentPath('/pricing/ai') ? 'text-maverick-orange bg-maverick-orange/10' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'
+                        }`} 
+                        role="menuitem"
+                        onClick={() => setPricingDropdownOpen(false)}
+                      >
+                        AI Integration & Automation
+                      </Link>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+
+            {/* About Link */}
+            <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ duration: 0.2 }}
+              >
+                <Link 
+                  href="/about" 
+                  className={`px-3 py-2 min-h-[44px] rounded-md text-base font-medium transition-colors duration-200 touch-manipulation flex items-center ${
+                    isCurrentPath('/about') ? 'text-maverick-orange' : 'text-white hover:text-maverick-orange'
+                  }`} 
+                  aria-current={isCurrentPath('/about') ? 'page' : undefined}
+                >
+                  About
+                </Link>
+              </motion.div>
+
+            {/* Contact Link */}
+            <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ duration: 0.2 }}
+              >
+                <Link 
+                  href="/contact" 
+                  className={`px-3 py-2 min-h-[44px] rounded-md text-base font-medium transition-colors duration-200 touch-manipulation flex items-center ${
+                    isCurrentPath('/contact') ? 'text-maverick-orange' : 'text-white hover:text-maverick-orange'
+                  }`} 
+                  aria-current={isCurrentPath('/contact') ? 'page' : undefined}
+                >
+                  Contact
+                </Link>
+              </motion.div>
+          </nav>
 
           {/* Mobile Menu Button */}
           <button
@@ -254,7 +335,6 @@ export default function Header() {
           </button>
         </div>
       </motion.header>
-
       {/* Mobile Navigation Panel */}
       <AnimatePresence>
         {isMobileMenuOpen && (
@@ -307,7 +387,7 @@ export default function Header() {
               aria-modal="true"
               aria-label="Mobile Navigation Menu"
             >
-              {/* Header */}
+              {/* Header with improved design */}
               <div className="relative">
                 <div className="flex items-center justify-between p-6 border-b border-white/10">
                   <div className="flex items-center gap-3 mt-[16px] mb-[16px]">
@@ -322,10 +402,11 @@ export default function Header() {
                     <X className="w-5 h-5 group-hover:rotate-90 transition-transform duration-200" />
                   </button>
                 </div>
+                {/* Subtle gradient line */}
                 <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-maverick-orange/30 to-transparent"></div>
               </div>
 
-              {/* Navigation Items */}
+              {/* Navigation Items with improved spacing */}
               <div className="flex-1 overflow-y-auto py-8 px-6">
                 <nav className="space-y-2 mt-[23px] mb-[23px]">
                   <Link 
@@ -341,37 +422,148 @@ export default function Header() {
                       <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-maverick-orange to-yellow-500 rounded-r-full"></div>
                     )}
                     <span className="text-lg font-semibold relative z-10">Home</span>
+                    <ChevronRight className="w-5 h-5 ml-auto opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
                   </Link>
 
-                  <Link 
-                    href="/services" 
-                    className={`group flex items-center px-4 py-4 rounded-xl min-h-[56px] touch-manipulation transition-all duration-300 relative overflow-hidden ${
-                      isCurrentPath('/services') 
-                        ? 'text-maverick-orange bg-gradient-to-r from-maverick-orange/15 to-yellow-500/10 border border-maverick-orange/20' 
-                        : 'text-white hover:bg-white/8 hover:text-maverick-orange border border-transparent hover:border-white/10'
-                    }`}
-                    onClick={closeMobileMenu}
-                  >
-                    {isCurrentPath('/services') && (
-                      <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-maverick-orange to-yellow-500 rounded-r-full"></div>
-                    )}
-                    <span className="text-lg font-semibold relative z-10">Services</span>
-                  </Link>
+                  {/* Services Dropdown with enhanced design */}
+                  <div className="space-y-2">
+                    <button 
+                      onClick={() => setServicesDropdownOpen(!servicesDropdownOpen)}
+                      className="group flex items-center justify-between w-full px-4 py-4 rounded-xl min-h-[56px] touch-manipulation transition-all duration-300 text-maverick-orange hover:bg-white/8 border border-transparent hover:border-white/10"
+                    >
+                      <span className="text-lg font-semibold">Services</span>
+                      <ChevronDown className={`w-5 h-5 transition-all duration-300 ${
+                        servicesDropdownOpen ? 'rotate-180 text-maverick-orange' : 'text-maverick-orange'
+                      }`} />
+                    </button>
 
-                  <Link 
-                    href="/pricing" 
-                    className={`group flex items-center px-4 py-4 rounded-xl min-h-[56px] touch-manipulation transition-all duration-300 relative overflow-hidden ${
-                      isCurrentPath('/pricing') 
-                        ? 'text-maverick-orange bg-gradient-to-r from-maverick-orange/15 to-yellow-500/10 border border-maverick-orange/20' 
-                        : 'text-white hover:bg-white/8 hover:text-maverick-orange border border-transparent hover:border-white/10'
-                    }`}
-                    onClick={closeMobileMenu}
-                  >
-                    {isCurrentPath('/pricing') && (
-                      <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-maverick-orange to-yellow-500 rounded-r-full"></div>
-                    )}
-                    <span className="text-lg font-semibold relative z-10">Pricing</span>
-                  </Link>
+                    <AnimatePresence>
+                      {servicesDropdownOpen && (
+                        <motion.div
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: "auto" }}
+                          exit={{ opacity: 0, height: 0 }}
+                          transition={{ duration: 0.3, ease: "easeInOut" }}
+                          className="ml-6 space-y-1 overflow-hidden border-l border-white/10 pl-4"
+                        >
+                          <Link 
+                            href="/services" 
+                            className={`block px-4 py-3 rounded-lg min-h-[44px] touch-manipulation transition-all duration-200 ${
+                              isCurrentPath('/services') 
+                                ? 'text-maverick-orange bg-maverick-orange/10 border border-maverick-orange/20' 
+                                : 'text-gray-300 hover:bg-white/5 hover:text-white border border-transparent'
+                            }`}
+                            onClick={closeMobileMenu}
+                          >
+                            <span className="text-base font-medium">All Services</span>
+                          </Link>
+                          <Link 
+                            href="/services/web" 
+                            className={`block px-4 py-3 rounded-lg min-h-[44px] touch-manipulation transition-all duration-200 ${
+                              isCurrentPath('/services/web') 
+                                ? 'text-maverick-orange bg-maverick-orange/10 border border-maverick-orange/20' 
+                                : 'text-gray-300 hover:bg-white/5 hover:text-white border border-transparent'
+                            }`}
+                            onClick={closeMobileMenu}
+                          >
+                            <span className="text-base font-medium">Web Design & Development</span>
+                          </Link>
+                          <Link 
+                            href="/services/marketing" 
+                            className={`block px-4 py-3 rounded-lg min-h-[44px] touch-manipulation transition-all duration-200 ${
+                              isCurrentPath('/services/marketing') 
+                                ? 'text-maverick-orange bg-maverick-orange/10 border border-maverick-orange/20' 
+                                : 'text-gray-300 hover:bg-white/5 hover:text-white border border-transparent'
+                            }`}
+                            onClick={closeMobileMenu}
+                          >
+                            <span className="text-base font-medium">Marketing & Creative</span>
+                          </Link>
+                          <Link 
+                            href="/services/ai" 
+                            className={`block px-4 py-3 rounded-lg min-h-[44px] touch-manipulation transition-all duration-200 ${
+                              isCurrentPath('/services/ai') 
+                                ? 'text-maverick-orange bg-maverick-orange/10 border border-maverick-orange/20' 
+                                : 'text-gray-300 hover:bg-white/5 hover:text-white border border-transparent'
+                            }`}
+                            onClick={closeMobileMenu}
+                          >
+                            <span className="text-base font-medium">AI Integration & Automation</span>
+                          </Link>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+
+                  {/* Pricing Dropdown with enhanced design */}
+                  <div className="space-y-2">
+                    <button 
+                      onClick={() => setPricingDropdownOpen(!pricingDropdownOpen)}
+                      className="group flex items-center justify-between w-full px-4 py-4 rounded-xl min-h-[56px] touch-manipulation transition-all duration-300 text-maverick-orange hover:bg-white/8 border border-transparent hover:border-white/10"
+                    >
+                      <span className="text-lg font-semibold">Pricing</span>
+                      <ChevronDown className={`w-5 h-5 transition-all duration-300 ${
+                        pricingDropdownOpen ? 'rotate-180 text-maverick-orange' : 'text-maverick-orange'
+                      }`} />
+                    </button>
+
+                    <AnimatePresence>
+                      {pricingDropdownOpen && (
+                        <motion.div
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: "auto" }}
+                          exit={{ opacity: 0, height: 0 }}
+                          transition={{ duration: 0.3, ease: "easeInOut" }}
+                          className="ml-6 space-y-1 overflow-hidden border-l border-white/10 pl-4"
+                        >
+                          <Link 
+                            href="/pricing" 
+                            className={`block px-4 py-3 rounded-lg min-h-[44px] touch-manipulation transition-all duration-200 ${
+                              isCurrentPath('/pricing') 
+                                ? 'text-maverick-orange bg-maverick-orange/10 border border-maverick-orange/20' 
+                                : 'text-gray-300 hover:bg-white/5 hover:text-white border border-transparent'
+                            }`}
+                            onClick={closeMobileMenu}
+                          >
+                            <span className="text-base font-medium">All Pricing Plans</span>
+                          </Link>
+                          <Link 
+                            href="/pricing/web" 
+                            className={`block px-4 py-3 rounded-lg min-h-[44px] touch-manipulation transition-all duration-200 ${
+                              isCurrentPath('/pricing/web') 
+                                ? 'text-maverick-orange bg-maverick-orange/10 border border-maverick-orange/20' 
+                                : 'text-gray-300 hover:bg-white/5 hover:text-white border border-transparent'
+                            }`}
+                            onClick={closeMobileMenu}
+                          >
+                            <span className="text-base font-medium">Web Design & Development</span>
+                          </Link>
+                          <Link 
+                            href="/pricing/marketing" 
+                            className={`block px-4 py-3 rounded-lg min-h-[44px] touch-manipulation transition-all duration-200 ${
+                              isCurrentPath('/pricing/marketing') 
+                                ? 'text-maverick-orange bg-maverick-orange/10 border border-maverick-orange/20' 
+                                : 'text-gray-300 hover:bg-white/5 hover:text-white border border-transparent'
+                            }`}
+                            onClick={closeMobileMenu}
+                          >
+                            <span className="text-base font-medium">Marketing & Creative</span>
+                          </Link>
+                          <Link 
+                            href="/pricing/ai" 
+                            className={`block px-4 py-3 rounded-lg min-h-[44px] touch-manipulation transition-all duration-200 ${
+                              isCurrentPath('/pricing/ai') 
+                                ? 'text-maverick-orange bg-maverick-orange/10 border border-maverick-orange/20' 
+                                : 'text-gray-300 hover:bg-white/5 hover:text-white border border-transparent'
+                            }`}
+                            onClick={closeMobileMenu}
+                          >
+                            <span className="text-base font-medium">AI Integration & Automation</span>
+                          </Link>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
 
                   <Link 
                     href="/about" 
@@ -386,6 +578,7 @@ export default function Header() {
                       <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-maverick-orange to-yellow-500 rounded-r-full"></div>
                     )}
                     <span className="text-lg font-semibold relative z-10">About</span>
+                    <ChevronRight className="w-5 h-5 ml-auto opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
                   </Link>
 
                   <Link 
@@ -401,11 +594,12 @@ export default function Header() {
                       <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-maverick-orange to-yellow-500 rounded-r-full"></div>
                     )}
                     <span className="text-lg font-semibold relative z-10">Contact</span>
+                    <ChevronRight className="w-5 h-5 ml-auto opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
                   </Link>
                 </nav>
               </div>
 
-              {/* Footer */}
+              {/* Footer with brand accent */}
               <div className="p-6 border-t border-white/10">
                 <div className="flex items-center justify-center gap-2 text-gray-400">
                   <div className="w-6 h-px bg-gradient-to-r from-transparent via-maverick-orange to-transparent"></div>
