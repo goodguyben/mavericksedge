@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { ChevronDown } from "lucide-react";
 import { scrollToSection } from "@/lib/scroll";
 import { Button } from "@/components/ui/custom-button";
-import GradientText from "./GradientText";
+import GradientText from "@/components/ui/GradientText";
 
 export default function Hero() {
   const [scrolled, setScrolled] = useState(false);
