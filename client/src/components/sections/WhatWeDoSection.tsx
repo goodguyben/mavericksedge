@@ -644,7 +644,8 @@ export default function WhatWeDoSection() {
                             {service.animationElements === "support" && (
                               <div className="absolute inset-3 rounded-lg border border-gray-700 bg-gradient-to-br from-[#121212]/95 to-[#1A1A1A]/95 overflow-hidden">
                                 <div className="h-6 bg-gradient-to-r from-[#222]/90 to-[#333]/80 flex items-center px-2 justify-between border-b border-gray-700/50">
-                                  <div className="text-[9px] text-white font-medium flex items-center<Brain className="w-2.5 h-2.5 mr-1 text-maverick-orange" />
+                                  <div className="text-[9px] text-white font-medium flex items-center">
+                                    <Brain className="w-2.5 h-2.5 mr-1 text-maverick-orange" />
                                     System Monitor
                                   </div>
                                   <div className="text-[7px] bg-green-500/20 text-green-400 px-1 py-0.5 rounded-sm">
