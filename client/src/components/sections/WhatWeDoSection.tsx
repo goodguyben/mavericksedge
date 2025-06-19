@@ -188,19 +188,13 @@ export default function WhatWeDoSection() {
                 threshold={0.1}
                 rootMargin="-100px"
               />
-              <span className="text-maverick-orange relative inline-block">
-                <SplitText
-                  text="Do"
-                  className="inline-block"
-                  delay={400}
-                  duration={0.6}
-                  ease="power3.out"
-                  splitType="chars"
-                  from={{ opacity: 0, y: 40 }}
-                  to={{ opacity: 1, y: 0 }}
-                  threshold={0.1}
-                  rootMargin="-100px"
-                />
+              <span className="relative inline-block">
+                <GradientText
+                  colors={["#ff5630", "#ffab00", "#ff5630", "#ffab00", "#ff5630"]}
+                  animationSpeed={6}
+                >
+                  Do
+                </GradientText>
                 <motion.span
                   className="absolute -bottom-2 left-0 w-full h-1 bg-maverick-orange"
                   initial={{ scaleX: 0, originX: 0 }}

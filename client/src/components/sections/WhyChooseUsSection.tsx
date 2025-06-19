@@ -158,20 +158,12 @@ export default function WhyChooseUsSection() {
               threshold={0.1}
               rootMargin="-100px"
             />
-            <span className="text-maverick-orange">
-              <SplitText
-                text="Mavericks Edge"
-                className="inline-block"
-                delay={500}
-                duration={0.6}
-                ease="power3.out"
-                splitType="chars"
-                from={{ opacity: 0, y: 40 }}
-                to={{ opacity: 1, y: 0 }}
-                threshold={0.1}
-                rootMargin="-100px"
-              />
-            </span>
+            <GradientText
+              colors={["#ff5630", "#ffab00", "#ff5630", "#ffab00", "#ff5630"]}
+              animationSpeed={6}
+            >
+              Mavericks Edge
+            </GradientText>
           </h2>
 
           <div className="text-gray-300 text-lg md:text-xl max-w-4xl mx-auto leading-relaxed">
