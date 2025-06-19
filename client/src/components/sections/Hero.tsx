@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { ChevronDown } from "lucide-react";
 import { scrollToSection } from "@/lib/scroll";
 import { Button } from "@/components/ui/custom-button";
+import TypewriterText from "@/components/ui/TypewriterText";
 
 
 export default function Hero() {
@@ -68,31 +69,15 @@ export default function Hero() {
         >
           <h1 className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-heading font-extrabold tracking-wide leading-tight text-maverick-cream text-center px-2">
             <div className="inline-block">
-              {/* Word-by-word animation for the heading */}
-              <motion.span 
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.7, delay: 0.4 }}
-                className="inline-block mr-2"
-              >
-                Building
-              </motion.span>
-              <span className="text-maverick-orange relative inline-block">
-                <motion.span
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 0.7, delay: 0.8 }}
-                  className="mr-2"
-                >
-                  resilience
-                </motion.span>
-                <motion.span 
-                  className="absolute -bottom-1 left-0 h-1 bg-maverick-orange"
-                  initial={{ width: 0 }}
-                  animate={{ width: "100%" }}
-                  transition={{ delay: 1.2, duration: 0.8 }}
-                />
-              </span>
+              {/* Typewriter animation for rotating phrases */}
+              <TypewriterText 
+                phrases={[
+                  "Designing websites",
+                  "Elevating brands", 
+                  "Automating workflows",
+                  "Building resilience"
+                ]}
+              />
               {" "}
               <motion.span 
                 initial={{ opacity: 0 }}
