@@ -71,7 +71,6 @@ export default function Contact() {
           `}
         </script>
       </Helmet>
-      
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -88,7 +87,10 @@ export default function Contact() {
             </div>
           </section>
           
-          <section itemScope itemType="https://schema.org/Organization">
+          <section
+            itemScope
+            itemType="https://schema.org/Organization"
+            className="pt-[0px] pb-[0px]">
             <meta itemProp="name" content="Mavericks Edge" />
             <ContactSection fullPage />
           </section>
