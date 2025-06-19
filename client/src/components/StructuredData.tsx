@@ -24,14 +24,16 @@ export const organizationSchema = {
   "description": "Professional web development, digital marketing, and AI solutions in Edmonton, Alberta. Custom websites, marketing strategies, and intelligent automation for modern businesses.",
   "address": {
     "@type": "PostalAddress",
+    "streetAddress": "6908 100 Ave NW, Suite B",
     "addressLocality": "Edmonton",
-    "addressRegion": "AB",
-    "addressCountry": "CA"
+    "addressRegion": "Alberta",
+    "postalCode": "T6A 0G2",
+    "addressCountry": "Canada"
   },
   "contactPoint": {
     "@type": "ContactPoint",
     "contactType": "Customer Service",
-    "email": "hello@mavericksedge.ca"
+    "email": "info@mavericksedge.ca"
   },
   "sameAs": [
     "https://www.linkedin.com/company/mavericksedge",
@@ -52,8 +54,10 @@ export const localBusinessSchema = {
   "description": "Leading web development, digital marketing, and AI solutions provider in Edmonton, Alberta. Specializing in custom websites, strategic marketing, and intelligent business automation.",
   "address": {
     "@type": "PostalAddress",
+    "streetAddress": "6908 100 Ave NW, Suite B",
     "addressLocality": "Edmonton",
     "addressRegion": "Alberta",
+    "postalCode": "T6A 0G2",
     "addressCountry": "Canada"
   },
   "geo": {

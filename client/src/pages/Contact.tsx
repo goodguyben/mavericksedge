@@ -16,14 +16,14 @@ export default function Contact() {
       <Helmet>
         <title>Contact Mavericks Edge | Request a Free Consultation</title>
         <meta name="description" content="Get in touch with Mavericks Edge to discuss your web design, digital marketing, or AI integration needs. Request a free consultation and take the first step toward transforming your online presence." />
-        <link rel="canonical" href="https://mavericksedge.com/contact" />
+        <link rel="canonical" href="https://mavericksedge.ca/contact" />
         <meta name="keywords" content="contact digital agency, web design consultation, request quote, SMB digital solutions, affordable web services" />
         
         {/* Open Graph data */}
         <meta property="og:title" content="Contact Mavericks Edge | Request a Free Consultation" />
         <meta property="og:description" content="Reach out to our team for a free consultation on your web design, digital marketing, or AI integration project. We're here to answer your questions and help you succeed online." />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://mavericksedge.com/contact" />
+        <meta property="og:url" content="https://mavericksedge.ca/contact" />
         <meta property="og:image" content="/images/logo-transparent-thumb4x.png" />
         
         {/* Structured data for LocalBusiness */}
@@ -33,16 +33,16 @@ export default function Contact() {
               "@context": "https://schema.org",
               "@type": "LocalBusiness",
               "name": "Mavericks Edge",
-              "image": "https://mavericksedge.com/images/logo-transparent-thumb4x.png",
-              "url": "https://mavericksedge.com",
+              "image": "https://mavericksedge.ca/images/logo-transparent-thumb4x.png",
+              "url": "https://mavericksedge.ca",
               "telephone": "+1-250-883-8849",
               "address": {
                 "@type": "PostalAddress",
-                "streetAddress": "123 Digital Way",
-                "addressLocality": "Tech City",
-                "addressRegion": "CA",
-                "postalCode": "94103",
-                "addressCountry": "CA"
+                "streetAddress": "6908 100 Ave NW, Suite B",
+                "addressLocality": "Edmonton",
+                "addressRegion": "Alberta",
+                "postalCode": "T6A 0G2",
+                "addressCountry": "Canada"
               },
               "geo": {
                 "@type": "GeoCoordinates",

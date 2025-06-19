@@ -226,7 +226,7 @@ export function generateWebsiteStructuredData() {
     "name": "Mavericks Edge",
     "alternateName": "Mavericks Edge Digital Solutions",
     "url": "https://mavericksedge.ca",
-    
+
     "sameAs": [
       "https://www.facebook.com/mavericksedge",
       "https://www.linkedin.com/company/mavericksedge",

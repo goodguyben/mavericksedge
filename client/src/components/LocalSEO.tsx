@@ -23,7 +23,7 @@ export default function LocalSEO({
         "https://mavericksedge.ca/images/logo-transparent-thumb4x.png"
       ],
       "telephone": "+1-250-883-8849",
-      "email": "info@mavericksedge.com",
+      "email": "info@mavericksedge.ca",
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "6908 100 Ave NW, Suite B",

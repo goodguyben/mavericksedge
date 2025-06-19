@@ -21,10 +21,10 @@ export const services = [
 
 export const contactInfo = {
   phone: "+1 (250) 883-8849",
-  email: "info@mavericksedge.com",
+  email: "info@mavericksedge.ca",
   address: {
     line1: "6908 100 Ave NW, Suite B",
-    line2: "Edmonton, AB T6A 0G2, Canada"
+    line2: "Edmonton, Alberta, T6A 0G2, Canada"
   },
   social: {
     facebook: "#",
