@@ -3,6 +3,7 @@ import { Link, useLocation } from "wouter";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, ChevronDown, X, ChevronRight } from "lucide-react";
 import Logo from "./Logo";
+import GradientText from "./ui/GradientText";
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -104,8 +105,13 @@ export default function Header() {
             aria-label="Mavericks Edge Home"
           >
             <Logo size="medium-small" noLink={true} showText={false} />
-            <h1 className="font-heading font-bold text-maverick-orange whitespace-nowrap text-xl sm:text-2xl md:text-3xl lg:text-2xl xl:text-3xl ml-[0px] mr-[0px] mt-[16px] mb-[16px]" style={{ letterSpacing: '-0.02em' }}>
-              Mavericks Edge
+            <h1 className="font-heading font-bold whitespace-nowrap text-xl sm:text-2xl md:text-3xl lg:text-2xl xl:text-3xl ml-[0px] mr-[0px] mt-[16px] mb-[16px]" style={{ letterSpacing: '-0.02em' }}>
+              <GradientText
+                colors={["#ff5630", "#ffab00", "#ff5630", "#ffab00", "#ff5630"]}
+                animationSpeed={6}
+              >
+                Mavericks Edge
+              </GradientText>
             </h1>
           </Link>
 
