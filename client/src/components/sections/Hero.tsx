@@ -84,7 +84,7 @@ export default function Hero() {
                   transition={{ duration: 0.7, delay: 0.8 }}
                   className="mr-2"
                 >
-                  <GradientText colors={["#F15A29", "#E57B00", "#FF6B35", "#F15A29"]} animationSpeed={6}>resilience</GradientText>
+                  <GradientText colors={["#F15A29", "#E57B00", "#FF6B35", "#F15A29"]}>resilience</GradientText>
                 </motion.span>
                 <motion.span 
                   className="absolute -bottom-1 left-0 h-1 bg-maverick-orange"
@@ -147,7 +147,6 @@ export default function Hero() {
             <Button 
               href="/services" 
               variant="primary"
-              gradientText={true}
             >
               Explore Services
             </Button>
