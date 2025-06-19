@@ -127,7 +127,7 @@ const SplitText: React.FC<SplitTextProps> = ({
           }}
           style={{
             display: element.content === ' ' ? 'inline' : 'inline-block',
-            whiteSpace: element.content === ' ' ? 'pre' : 'normal',
+            whiteSpace: element.content === ' ' ? 'pre' : (splitType === 'words' && !element.isSpace ? 'nowrap' : 'normal'),
           }}
         >
           {element.content === '\n' ? <br /> : element.content}
