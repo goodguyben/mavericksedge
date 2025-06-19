@@ -25,31 +25,31 @@ export default function WebServices() {
     {
       icon: <LayoutIcon className="h-10 w-10 text-maverick-orange" />,
       title: "Custom Website Design & Development",
-      description: "Professional Edmonton web design services that create stunning, responsive websites tailored to your brand. Our custom websites drive conversions and establish credibility in the competitive Edmonton market.",
+      description: "Professional web design services that create stunning, responsive websites tailored to your brand. Our custom websites drive conversions and establish credibility in the competitive local market.",
       features: ["Mobile-responsive design", "Custom UI/UX", "Brand integration", "Performance optimization"]
     },
     {
       icon: <ShoppingCart className="h-10 w-10 text-maverick-orange" />,
-      title: "E-commerce Development Edmonton",
-      description: "Complete e-commerce solutions for Edmonton businesses. From Shopify to WooCommerce, we build online stores that sell 24/7 and compete with major retailers.",
+      title: "E-commerce Development",
+      description: "Complete e-commerce solutions for local businesses. From Shopify to WooCommerce, we build online stores that sell 24/7 and compete with major retailers.",
       features: ["Shopify & WooCommerce", "Payment integration", "Inventory management", "Local delivery setup"]
     },
     {
       icon: <Code className="h-10 w-10 text-maverick-orange" />,
       title: "Custom Web Application Development",
-      description: "Bespoke web applications for Edmonton companies looking to streamline operations. We build scalable solutions that grow with your business.",
+      description: "Bespoke web applications for companies looking to streamline operations. We build scalable solutions that grow with your business.",
       features: ["Custom functionality", "Database integration", "User management", "API development"]
     },
     {
       icon: <Search className="h-10 w-10 text-maverick-orange" />,
-      title: "Edmonton SEO Web Design",
-      description: "SEO-optimized websites built for Edmonton search visibility. We combine technical SEO with user experience to rank higher on Google and attract local customers.",
+      title: "SEO Web Design",
+      description: "SEO-optimized websites built for local search visibility. We combine technical SEO with user experience to rank higher on Google and attract local customers.",
       features: ["Local SEO optimization", "Google My Business integration", "Schema markup", "Core Web Vitals"]
     },
     {
       icon: <Smartphone className="h-10 w-10 text-maverick-orange" />,
       title: "Mobile-First Web Design",
-      description: "Mobile-optimized websites that perform flawlessly on all devices. With mobile traffic dominating, ensure your Edmonton customers have a perfect experience.",
+      description: "Mobile-optimized websites that perform flawlessly on all devices. With mobile traffic dominating, ensure your customers have a perfect experience.",
       features: ["Responsive design", "Touch optimization", "Fast loading", "App-like experience"]
     },
     {
@@ -67,7 +67,7 @@ export default function WebServices() {
     {
       icon: <Shield className="h-10 w-10 text-maverick-orange" />,
       title: "Website Security & Maintenance",
-      description: "Comprehensive security and maintenance services to keep your Edmonton business website secure, updated, and performing optimally.",
+      description: "Comprehensive security and maintenance services to keep your business website secure, updated, and performing optimally.",
       features: ["Security monitoring", "Regular updates", "Backup solutions", "Performance monitoring"]
     },
     {
@@ -79,7 +79,7 @@ export default function WebServices() {
     {
       icon: <Zap className="h-10 w-10 text-maverick-orange" />,
       title: "Landing Page Development",
-      description: "High-converting landing pages for Edmonton marketing campaigns. Designed to capture leads and drive specific business objectives.",
+      description: "High-converting landing pages for marketing campaigns. Designed to capture leads and drive specific business objectives.",
       features: ["Conversion-focused design", "A/B testing ready", "Lead capture forms", "Analytics integration"]
     }
   ];
@@ -87,8 +87,8 @@ export default function WebServices() {
   const edmontonBenefits = [
     {
       icon: <MapPin className="h-8 w-8 text-maverick-orange" />,
-      title: "Local Edmonton Expertise",
-      description: "We understand the Edmonton market, local business needs, and what drives success in Alberta's capital city."
+      title: "Local Market Expertise",
+      description: "We understand the local market, business needs, and what drives success in Alberta's capital city."
     },
     {
       icon: <Clock className="h-8 w-8 text-maverick-orange" />,
@@ -98,7 +98,7 @@ export default function WebServices() {
     {
       icon: <Award className="h-8 w-8 text-maverick-orange" />,
       title: "Proven Track Record",
-      description: "Successfully helped 100+ Edmonton businesses establish their online presence and grow their revenue."
+      description: "Successfully helped 100+ local businesses establish their online presence and grow their revenue."
     },
     {
       icon: <CheckCircle className="h-8 w-8 text-maverick-orange" />,
@@ -110,38 +110,38 @@ export default function WebServices() {
   const processSteps = [
     {
       number: "01",
-      title: "Edmonton Market Discovery",
-      description: "We analyze your Edmonton target market, competitors, and industry landscape to create a strategic web design plan.",
+      title: "Market Discovery",
+      description: "We analyze your target market, competitors, and industry landscape to create a strategic web design plan.",
       timeline: "Week 1"
     },
     {
       number: "02",
       title: "Custom Design & Prototyping",
-      description: "Our Edmonton design team creates wireframes and visual designs that resonate with your local audience.",
+      description: "Our design team creates wireframes and visual designs that resonate with your local audience.",
       timeline: "Week 2-3"
     },
     {
       number: "03",
       title: "Development & SEO Integration",
-      description: "Expert development with built-in Edmonton SEO optimization to ensure local search visibility from day one.",
+      description: "Expert development with built-in SEO optimization to ensure local search visibility from day one.",
       timeline: "Week 4-6"
     },
     {
       number: "04",
       title: "Testing & Quality Assurance",
-      description: "Rigorous testing across devices and browsers to ensure flawless performance for Edmonton users.",
+      description: "Rigorous testing across devices and browsers to ensure flawless performance for users.",
       timeline: "Week 7"
     },
     {
       number: "05",
       title: "Launch & Local Optimization",
-      description: "Strategic launch with Google My Business integration and local directory submissions for maximum Edmonton visibility.",
+      description: "Strategic launch with Google My Business integration and local directory submissions for maximum local visibility.",
       timeline: "Week 8"
     },
     {
       number: "06",
       title: "Growth & Maintenance",
-      description: "Ongoing optimization, security updates, and digital marketing support to grow your Edmonton business online.",
+      description: "Ongoing optimization, security updates, and digital marketing support to grow your business online.",
       timeline: "Ongoing"
     }
   ];
@@ -149,42 +149,42 @@ export default function WebServices() {
   const portfolioProjects = [
     {
       image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      title: "Edmonton Restaurant Website",
+      title: "Local Restaurant Website",
       category: "Hospitality",
       description: "Custom restaurant website with online ordering and reservation system",
       results: "40% increase in online orders"
     },
     {
       image: "https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      title: "Edmonton Nonprofit Platform",
+      title: "Nonprofit Platform",
       category: "Community Services",
       description: "Comprehensive nonprofit website with donation system and volunteer portal",
       results: "300% increase in online donations"
     },
     {
       image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      title: "Edmonton Law Firm Website",
+      title: "Law Firm Website",
       category: "Professional Services",
       description: "Professional legal website with client portal and case management",
       results: "150% increase in qualified leads"
     },
     {
       image: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      title: "Edmonton E-commerce Store",
+      title: "E-commerce Store",
       category: "Retail",
       description: "Full-featured online store with local delivery integration",
       results: "200% increase in online sales"
     },
     {
       image: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      title: "Edmonton Medical Practice",
+      title: "Medical Practice Website",
       category: "Healthcare",
       description: "HIPAA-compliant medical website with patient portal",
       results: "80% reduction in admin calls"
     },
     {
       image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      title: "Edmonton Construction Company",
+      title: "Construction Company Website",
       category: "Construction",
       description: "Project showcase website with client testimonials and quote system",
       results: "120% increase in project inquiries"
@@ -194,31 +194,31 @@ export default function WebServices() {
   const faqs = [
     {
       question: "How much does web design cost in Edmonton?",
-      answer: "Our Edmonton web design services start at $2,500 for basic business websites and go up to $15,000+ for complex e-commerce or custom applications. We offer transparent pricing and work with budgets of all sizes. Every project includes mobile optimization, basic SEO, and one year of support."
+      answer: "Our web design services start at $2,500 for basic business websites and go up to $15,000+ for complex e-commerce or custom applications. We offer transparent pricing and work with budgets of all sizes. Every project includes mobile optimization, basic SEO, and one year of support."
     },
     {
-      question: "How long does it take to build a website in Edmonton?",
-      answer: "Most Edmonton business websites are completed within 4-8 weeks. Simple brochure sites can be done in 3-4 weeks, while complex e-commerce or custom applications may take 8-12 weeks. We provide detailed timelines during our initial consultation and keep you updated throughout the process."
+      question: "How long does it take to build a website?",
+      answer: "Most business websites are completed within 4-8 weeks. Simple brochure sites can be done in 3-4 weeks, while complex e-commerce or custom applications may take 8-12 weeks. We provide detailed timelines during our initial consultation and keep you updated throughout the process."
     },
     {
-      question: "Do you provide Edmonton SEO services with web design?",
-      answer: "Yes! All our Edmonton web design projects include fundamental SEO optimization: local keyword research, Google My Business integration, schema markup, and technical SEO. We also offer comprehensive SEO services for businesses looking to dominate Edmonton search results."
+      question: "Do you provide SEO services with web design?",
+      answer: "Yes! All our web design projects include fundamental SEO optimization: local keyword research, Google My Business integration, schema markup, and technical SEO. We also offer comprehensive SEO services for businesses looking to dominate local search results."
     },
     {
-      question: "Can you redesign my existing Edmonton business website?",
-      answer: "Absolutely! We specialize in website redesigns for Edmonton businesses. Our redesign process improves user experience, search rankings, and conversion rates while maintaining your existing SEO value. We've helped dozens of Edmonton companies modernize their online presence."
+      question: "Can you redesign my existing business website?",
+      answer: "Absolutely! We specialize in website redesigns for local businesses. Our redesign process improves user experience, search rankings, and conversion rates while maintaining your existing SEO value. We've helped dozens of companies modernize their online presence."
     },
     {
-      question: "Do you work with Edmonton small businesses and startups?",
-      answer: "Yes, we're passionate about helping Edmonton small businesses and startups succeed online. We offer flexible payment plans, startup-friendly pricing, and scalable solutions that grow with your business. Many of our clients started as small Edmonton businesses and have grown significantly with our support."
+      question: "Do you work with small businesses and startups?",
+      answer: "Yes, we're passionate about helping small businesses and startups succeed online. We offer flexible payment plans, startup-friendly pricing, and scalable solutions that grow with your business. Many of our clients started as small local businesses and have grown significantly with our support."
     },
     {
-      question: "What makes your Edmonton web design different from competitors?",
-      answer: "Our deep understanding of the Edmonton market sets us apart. We know local consumer behavior, seasonal trends, and what works for Edmonton businesses. Plus, we provide ongoing support, not just a one-time build. Our clients see measurable results: increased traffic, leads, and revenue."
+      question: "What makes your web design different from competitors?",
+      answer: "Our deep understanding of the local market sets us apart. We know local consumer behavior, seasonal trends, and what works for Alberta businesses. Plus, we provide ongoing support, not just a one-time build. Our clients see measurable results: increased traffic, leads, and revenue."
     },
     {
-      question: "Do you provide website hosting and maintenance for Edmonton businesses?",
-      answer: "Yes, we offer comprehensive hosting and maintenance packages specifically designed for Edmonton businesses. Our services include security monitoring, regular updates, backups, performance optimization, and local support. We keep your website running smoothly so you can focus on your business."
+      question: "Do you provide website hosting and maintenance?",
+      answer: "Yes, we offer comprehensive hosting and maintenance packages specifically designed for local businesses. Our services include security monitoring, regular updates, backups, performance optimization, and local support. We keep your website running smoothly so you can focus on your business."
     }
   ];
 
@@ -258,7 +258,7 @@ export default function WebServices() {
                 #1 Edmonton Web Design & Development
               </h1>
               <p className="text-xl text-[#AAAAAA] mb-8 leading-relaxed">
-                Professional web design and development services for Edmonton businesses. We've helped 100+ Alberta companies grow their online presence with custom websites that convert visitors into customers.
+                Professional web design and development services for local businesses. We've helped 100+ Alberta companies grow their online presence with custom websites that convert visitors into customers.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 mb-8">
                 <Link href="/contact-edmonton-web-design">
@@ -531,9 +531,9 @@ export default function WebServices() {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 font-heading">Ready to Dominate Edmonton's Digital Landscape?</h2>
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 font-heading">Ready to Dominate the Digital Landscape?</h2>
             <p className="text-xl text-[#AAAAAA] max-w-3xl mx-auto mb-8">
-              Join 100+ successful Edmonton businesses who've transformed their online presence with our web design expertise. Get your free consultation and project quote today.
+              Join 100+ successful local businesses who've transformed their online presence with our web design expertise. Get your free consultation and project quote today.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/contact-edmonton-web-design">
