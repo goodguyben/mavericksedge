@@ -3,6 +3,7 @@ import { motion, useScroll, useTransform, AnimatePresence, useMotionValue, useSp
 import { Code, PenTool, Brain, ChevronRight, Play, Pause } from "lucide-react";
 import TechButton from "../ui/tech-button";
 import CyclingVideoPlayer from "../ui/CyclingVideoPlayer";
+import SplitText from "@/components/ui/SplitText";
 
 interface CascadeItem {
   id: string;
@@ -47,7 +48,7 @@ export default function ServiceCascadeSection() {
         {
           id: "websites",
           title: "Custom Interactive Websites",
-          description: "We craft custom interactive and 3D websites that engage users with motion, depth, and storytelling built to captivate and convert. Whether it's scroll-triggered animations, immersive product showcases, or spatial design, we turn static sites into dynamic journeys.",
+          description: "We craft custom interactive and 3D websites that engage users with motion, depth, and storytelling built to captivate and convert. Whether it's scroll-triggered animations, immersive product showcases, or spatial design, we turn static sites into dynamic journeys. Whether it's scroll-triggered animations, immersive product showcases, or spatial design, we turn static sites into dynamic journeys.",
           videos: [
             "/videos/services/Custom Interactive Websites 1.mp4",
             "/videos/services/Custom Interactive Websites 2.mp4",
@@ -335,7 +336,7 @@ export default function ServiceCascadeSection() {
                           zoomEffects={item.zoomEffects}
                         />
 
-                        
+
                       </motion.div>
                     </motion.div>
                   );

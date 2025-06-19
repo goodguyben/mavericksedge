@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import SEOHead from '@/components/SEOHead';
+import SplitText from '@/components/ui/SplitText';
 import { motion } from 'framer-motion';
 
 export default function GDPRCompliance() {
@@ -12,7 +13,7 @@ export default function GDPRCompliance() {
       <SEOHead 
         title="GDPR Compliance & Data Protection - Mavericks Edge"
         description="Learn about Mavericks Edge's commitment to GDPR compliance and data protection for our web development and digital marketing services."
-        canonicalUrl="/gdpr-compliance"
+        canonical="/gdpr-compliance"
       />
       <div className="min-h-screen bg-[#0D0D0D] text-white">
         <motion.div 
@@ -30,11 +31,48 @@ export default function GDPRCompliance() {
               transition={{ duration: 0.6, delay: 0.2 }}
             >
               <h1 className="text-4xl md:text-6xl font-bold mb-6">
-                GDPR <span className="text-maverick-orange">Compliance</span>
+                <SplitText
+                  text="GDPR"
+                  className="inline-block mr-4"
+                  delay={200}
+                  duration={0.6}
+                  ease="power3.out"
+                  splitType="chars"
+                  from={{ opacity: 0, y: 40 }}
+                  to={{ opacity: 1, y: 0 }}
+                  threshold={0.1}
+                  rootMargin="-100px"
+                />
+                <span className="text-maverick-orange">
+                  <SplitText
+                    text="Compliance"
+                    className="inline-block"
+                    delay={400}
+                    duration={0.6}
+                    ease="power3.out"
+                    splitType="chars"
+                    from={{ opacity: 0, y: 40 }}
+                    to={{ opacity: 1, y: 0 }}
+                    threshold={0.1}
+                    rootMargin="-100px"
+                  />
+                </span>
               </h1>
-              <p className="text-lg text-gray-300 max-w-2xl mx-auto">
-                Our commitment to protecting your personal data and ensuring GDPR compliance in all our web development and digital marketing services.
-              </p>
+              <div className="text-lg text-gray-300 max-w-2xl mx-auto">
+                <SplitText
+                  text="Our commitment to protecting your personal data and ensuring GDPR compliance in all our web development and digital marketing services."
+                  className="text-lg text-gray-300"
+                  delay={600}
+                  duration={0.4}
+                  ease="power3.out"
+                  splitType="words"
+                  from={{ opacity: 0, y: 20 }}
+                  to={{ opacity: 1, y: 0 }}
+                  threshold={0.1}
+                  rootMargin="-100px"
+                  stagger={0.03}
+                />
+              </div>
               <p className="text-sm text-gray-400 mt-4">
                 Last updated: January 1, 2025
               </p>
@@ -48,14 +86,14 @@ export default function GDPRCompliance() {
               transition={{ duration: 0.6, delay: 0.4 }}
             >
               <div className="space-y-12">
-                <div className="pt-[0px] pb-[0px]">
+                <section className="pt-[0px] pb-[0px]">
                   <h2 className="text-2xl font-semibold text-maverick-orange mb-4">Our GDPR Commitment</h2>
                   <div className="text-gray-300 space-y-4">
                     <p>Mavericks Edge is committed to protecting your personal data and respecting your privacy rights under the General Data Protection Regulation (GDPR). This applies to all residents of the European Union, regardless of where they are located when using our services.</p>
                   </div>
-                </div>
+                </section>
 
-                <div className="pt-[0px] pb-[0px]">
+                <section className="pt-[0px] pb-[0px]">
                   <h2 className="text-2xl font-semibold text-maverick-orange mb-4">Your Rights Under GDPR</h2>
                   <div className="text-gray-300 space-y-4">
                     <p>Under GDPR, you have the following rights regarding your personal data:</p>
@@ -86,7 +124,7 @@ export default function GDPRCompliance() {
                       </div>
                     </div>
                   </div>
-                </div>
+                </section>
 
                 <section className="pt-[0px] pb-[0px]">
                   <h2 className="text-2xl font-semibold text-maverick-orange mb-4">How We Protect Your Data</h2>

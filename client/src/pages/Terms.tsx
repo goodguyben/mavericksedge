@@ -1,6 +1,7 @@
 
 import { useEffect } from 'react';
 import SEOHead from '@/components/SEOHead';
+import SplitText from '@/components/ui/SplitText';
 import { motion } from 'framer-motion';
 
 export default function Terms() {
@@ -31,11 +32,48 @@ export default function Terms() {
               transition={{ duration: 0.6, delay: 0.2 }}
             >
               <h1 className="text-4xl md:text-6xl font-bold mb-6">
-                Terms of <span className="text-maverick-orange">Service</span>
+                <SplitText
+                  text="Terms of"
+                  className="inline-block mr-4"
+                  delay={200}
+                  duration={0.6}
+                  ease="power3.out"
+                  splitType="chars"
+                  from={{ opacity: 0, y: 40 }}
+                  to={{ opacity: 1, y: 0 }}
+                  threshold={0.1}
+                  rootMargin="-100px"
+                />
+                <span className="text-maverick-orange">
+                  <SplitText
+                    text="Service"
+                    className="inline-block"
+                    delay={400}
+                    duration={0.6}
+                    ease="power3.out"
+                    splitType="chars"
+                    from={{ opacity: 0, y: 40 }}
+                    to={{ opacity: 1, y: 0 }}
+                    threshold={0.1}
+                    rootMargin="-100px"
+                  />
+                </span>
               </h1>
-              <p className="text-lg text-gray-300 max-w-2xl mx-auto">
-                These terms govern your use of our services and establish the legal relationship between you and Mavericks Edge.
-              </p>
+              <div className="text-lg text-gray-300 max-w-2xl mx-auto">
+                <SplitText
+                  text="These terms govern your use of our services and establish the legal relationship between you and Mavericks Edge."
+                  className="text-lg text-gray-300"
+                  delay={600}
+                  duration={0.4}
+                  ease="power3.out"
+                  splitType="words"
+                  from={{ opacity: 0, y: 20 }}
+                  to={{ opacity: 1, y: 0 }}
+                  threshold={0.1}
+                  rootMargin="-100px"
+                  stagger={0.03}
+                />
+              </div>
               <p className="text-sm text-gray-400 mt-4">
                 Last updated: January 1, 2025
               </p>

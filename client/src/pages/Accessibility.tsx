@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import SEOHead from '@/components/SEOHead';
+import SplitText from '@/components/ui/SplitText';
 import { motion } from 'framer-motion';
 
 export default function Accessibility() {
@@ -30,11 +31,48 @@ export default function Accessibility() {
               transition={{ duration: 0.6, delay: 0.2 }}
             >
               <h1 className="text-4xl md:text-6xl font-bold mb-6">
-                Website <span className="text-maverick-orange">Accessibility</span>
+                <SplitText
+                  text="Website"
+                  className="inline-block mr-4"
+                  delay={200}
+                  duration={0.6}
+                  ease="power3.out"
+                  splitType="chars"
+                  from={{ opacity: 0, y: 40 }}
+                  to={{ opacity: 1, y: 0 }}
+                  threshold={0.1}
+                  rootMargin="-100px"
+                />
+                <span className="text-maverick-orange">
+                  <SplitText
+                    text="Accessibility"
+                    className="inline-block"
+                    delay={400}
+                    duration={0.6}
+                    ease="power3.out"
+                    splitType="chars"
+                    from={{ opacity: 0, y: 40 }}
+                    to={{ opacity: 1, y: 0 }}
+                    threshold={0.1}
+                    rootMargin="-100px"
+                  />
+                </span>
               </h1>
-              <p className="text-lg text-gray-300 max-w-2xl mx-auto">
-                Mavericks Edge is committed to ensuring digital accessibility for people with disabilities and continuously improving the user experience for everyone.
-              </p>
+              <div className="text-lg text-gray-300 max-w-2xl mx-auto">
+                <SplitText
+                  text="Mavericks Edge is committed to ensuring digital accessibility for people with disabilities and continuously improving the user experience for everyone."
+                  className="text-lg text-gray-300"
+                  delay={600}
+                  duration={0.4}
+                  ease="power3.out"
+                  splitType="words"
+                  from={{ opacity: 0, y: 20 }}
+                  to={{ opacity: 1, y: 0 }}
+                  threshold={0.1}
+                  rootMargin="-100px"
+                  stagger={0.03}
+                />
+              </div>
               <p className="text-sm text-gray-400 mt-4">
                 Last updated: January 1, 2025
               </p>
