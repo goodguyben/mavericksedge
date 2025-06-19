@@ -1,4 +1,5 @@
 import React from "react";
+import GradientText from "./GradientText";
 
 interface ButtonProps {
   children: React.ReactNode;
@@ -8,6 +9,7 @@ interface ButtonProps {
   className?: string;
   disabled?: boolean;
   type?: "button" | "submit" | "reset";
+  useGradientText?: boolean;
 }
 
 export function Button({
@@ -18,6 +20,7 @@ export function Button({
   className = "",
   disabled = false,
   type = "button",
+  useGradientText = false,
 }: ButtonProps) {
   // Build the class names based on the variant
   const buttonClasses = [
@@ -27,11 +30,24 @@ export function Button({
     className
   ].filter(Boolean).join(' ');
 
+  // Determine if this is an orange button that should have gradient text
+  const isOrangeButton = variant === "primary" || buttonClasses.includes('maverick-orange') || buttonClasses.includes('bg-maverick-orange');
+  const shouldUseGradient = useGradientText || isOrangeButton;
+
+  const buttonContent = shouldUseGradient ? (
+    <GradientText 
+      colors={["#FF5630", "#FF8A50", "#FFB899", "#FF5630"]}
+      animationSpeed={4}
+    >
+      {children}
+    </GradientText>
+  ) : children;
+
   // If href is provided, render a link with our CSS classes
   if (href) {
     return (
       <a href={href} className={buttonClasses}>
-        {children}
+        {buttonContent}
       </a>
     );
   }
@@ -44,7 +60,7 @@ export function Button({
       disabled={disabled}
       className={buttonClasses}
     >
-      {children}
+      {buttonContent}
     </button>
   );
 }
