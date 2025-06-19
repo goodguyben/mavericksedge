@@ -43,7 +43,7 @@ export default function App() {
     // Simulate app initialization
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 2000);
+    }, 500);
 
     return () => clearTimeout(timer);
   }, []);

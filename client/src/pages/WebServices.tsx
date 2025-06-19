@@ -5,6 +5,7 @@ import {
   Star, MapPin, Clock, TrendingUp, Building, Heart, Lightbulb
 } from "lucide-react";
 import ContactSection from "@/components/sections/ContactSection";
+import PortfolioSection from "@/components/sections/PortfolioSection";
 import { Link } from "wouter";
 import { useEffect } from "react";
 import SEOHead from "@/components/SEOHead";
@@ -591,6 +592,9 @@ export default function WebServices() {
             </div>
           </div>
         </section>
+
+        {/* Portfolio Section */}
+        <PortfolioSection />
 
         {/* Contact Section */}
         <ContactSection />
