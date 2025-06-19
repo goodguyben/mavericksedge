@@ -69,51 +69,79 @@ export default function Hero() {
         >
           <h1 className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-heading font-extrabold tracking-wide leading-tight text-maverick-cream text-center px-2">
             <div className="inline-block">
-              {/* Typewriter animation for rotating phrases */}
-              <TypewriterText 
-                phrases={[
-                  "Designing websites",
-                  "Elevating brands", 
-                  "Automating workflows",
-                  "Building resilience"
-                ]}
-              />
-              {" "}
+              <motion.span 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.7, delay: 0.4 }}
+                className="inline-block mr-2"
+              >
+                You
+              </motion.span>
+              <motion.span 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.7, delay: 0.8 }}
+                className="inline-block mr-2"
+              >
+                hold
+              </motion.span>
               <motion.span 
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.7, delay: 1.2 }}
-                className="inline-block mr-1"
+                className="inline-block mr-2"
               >
-                with
+                the
               </motion.span>
-              {" "}
               <motion.span 
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.7, delay: 1.6 }}
-                className="inline-block mr-1"
+                className="inline-block mr-2"
               >
-                innovation
+                vision,
               </motion.span>
-              {" "}
               <motion.span 
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.7, delay: 2.0 }}
-                className="inline-block mr-1"
+                className="inline-block mr-2"
               >
-                and
+                we
               </motion.span>
-              {" "}
               <motion.span 
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.7, delay: 2.4 }}
-                className="inline-block"
+                className="inline-block mr-2"
               >
-                heart
+                nurture
               </motion.span>
+              <motion.span 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.7, delay: 2.8 }}
+                className="inline-block mr-2"
+              >
+                it
+              </motion.span>
+              <motion.span 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.7, delay: 3.2 }}
+                className="inline-block mr-2"
+              >
+                by
+              </motion.span>
+              {/* Typewriter animation for rotating phrases */}
+              <TypewriterText 
+                phrases={[
+                  "designing websites",
+                  "elevating your brand", 
+                  "automating workflows",
+                  "building resilience"
+                ]}
+              />
             </div>
           </h1>
           <motion.p

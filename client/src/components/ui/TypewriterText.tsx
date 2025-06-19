@@ -17,7 +17,7 @@ export default function TypewriterText({ phrases, className = '' }: TypewriterTe
     // Start the animation after a brief delay
     const startTimer = setTimeout(() => {
       setIsVisible(true);
-    }, 2400); // Start after the initial "Building" animation
+    }, 3600); // Start after all the initial text animations
 
     return () => clearTimeout(startTimer);
   }, []);
