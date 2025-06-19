@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import TeamCard from "@/components/cards/TeamCard";
 import SplitText from "@/components/ui/SplitText";
+import GradientText from "./GradientText";
 
 interface TeamSectionProps {
   fullPage?: boolean;
@@ -44,18 +45,25 @@ export default function TeamSection({ fullPage = false }: TeamSectionProps) {
         {!fullPage && (
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold mb-4">
-              <SplitText
-                text="Our Team"
-                className="inline-block"
-                delay={100}
-                duration={0.6}
-                ease="power3.out"
-                splitType="chars"
-                from={{ opacity: 0, y: 40 }}
-                to={{ opacity: 1, y: 0 }}
-                threshold={0.1}
-                rootMargin="-100px"
-              />
+              <span className="relative inline-block">
+              <GradientText
+                colors={["#ff5630", "#ffab00", "#ff5630", "#ffab00", "#ff5630"]}
+                animationSpeed={6}
+              >
+                <SplitText
+                  text="Team"
+                  className="inline-block"
+                  delay={400}
+                  duration={0.6}
+                  ease="power3.out"
+                  splitType="chars"
+                  from={{ opacity: 0, y: 40 }}
+                  to={{ opacity: 1, y: 0 }}
+                  threshold={0.1}
+                  rootMargin="-100px"
+                />
+              </GradientText>
+            </span>
             </h2>
             <div className="text-[#AAAAAA] text-xl max-w-2xl mx-auto">
               <SplitText

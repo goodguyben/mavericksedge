@@ -4,6 +4,7 @@ import TeamSection from "@/components/sections/TeamSection";
 import ProcessSection from "@/components/sections/ProcessSection";
 import ContactSection from "@/components/sections/ContactSection";
 import SplitText from "@/components/ui/SplitText";
+import GradientText from "@/components/ui/GradientText";
 import { useEffect } from "react";
 
 export default function About() {
@@ -20,14 +21,14 @@ export default function About() {
         <meta name="description" content="Mavericks Edge is a digital solutions agency specializing in web development, marketing, and AI integration for SMBs and nonprofits. Meet our expert team and learn about our mission." />
         <link rel="canonical" href="https://mavericksedge.com/about" />
         <meta name="keywords" content="digital agency team, web development experts, marketing professionals, AI integration specialists, SMB digital solutions" />
-        
+
         {/* Open Graph data */}
         <meta property="og:title" content="About Mavericks Edge | Our Team & Mission" />
         <meta property="og:description" content="Meet the team behind Mavericks Edge and learn about our mission to empower small businesses and nonprofits with accessible digital solutions." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://mavericksedge.com/about" />
         <meta property="og:image" content="/images/logo-transparent-thumb4x.png" />
-        
+
         {/* Structured data for Organization */}
         <script type="application/ld+json">
           {`
@@ -70,7 +71,7 @@ export default function About() {
           `}
         </script>
       </Helmet>
-      
+
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -113,7 +114,7 @@ export default function About() {
               </div>
             </div>
           </section>
-          
+
           <ProcessSection />
           <ContactSection />
         </article>
