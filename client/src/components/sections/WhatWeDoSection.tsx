@@ -6,6 +6,7 @@ import {
   AnimatePresence,
 } from "framer-motion";
 import { useIsMobile } from "@/hooks/use-mobile";
+import GradientText from "@/components/ui/GradientText";
 import {
   Code,
   PenTool,
@@ -183,7 +184,7 @@ export default function WhatWeDoSection() {
             >
               What We{" "}
               <span className="text-maverick-orange relative inline-block">
-                Do
+                <GradientText colors={["#F15A29", "#E57B00", "#FF6B35", "#F15A29"]} animationSpeed={6}>Do</GradientText>
                 <motion.span
                   className="absolute -bottom-2 left-0 w-full h-1 bg-maverick-orange"
                   initial={{ scaleX: 0, originX: 0 }}
@@ -811,7 +812,9 @@ export default function WhatWeDoSection() {
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.8 }}
                           >
-                            Learn more <ArrowRight className="w-4 h-4" />
+                            <GradientText colors={["#FFFFFF", "#FFE4E1", "#FFFFFF", "#FFE4E1"]} animationSpeed={4}>
+                              Learn more
+                            </GradientText> <ArrowRight className="w-4 h-4" />
                           </motion.button>
                         </motion.div>
                       </motion.div>
@@ -1029,7 +1032,9 @@ export default function WhatWeDoSection() {
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.6 }}
                           >
-                            Learn more <ArrowRight className="w-4 h-4" />
+                            <GradientText colors={["#FFFFFF", "#FFE4E1", "#FFFFFF", "#FFE4E1"]} animationSpeed={4}>
+                              Learn more
+                            </GradientText> <ArrowRight className="w-4 h-4" />
                           </motion.button>
                         </motion.div>
 
