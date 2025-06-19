@@ -1,6 +1,6 @@
 
 import { motion } from "framer-motion";
-import { Code, Monitor, Database, Layout as LayoutIcon, ShoppingCart, Globe, Shield, Gauge, Bookmark, Users, Smartphone, Search, Zap, Award, Star, MapPin, Clock, CheckCircle } from "lucide-react";
+import { Code, Monitor, Database, Layout as LayoutIcon, ShoppingCart, Globe, Shield, Gauge, Bookmark, Users, Smartphone, Search, Zap, Award, Star, MapPin, Clock, CheckCircle, ArrowRight, Lightbulb, Rocket, Handshake, TrendingUp, Phone } from "lucide-react";
 import ContactSection from "@/components/sections/ContactSection";
 import { Link } from "wouter";
 import { useEffect } from "react";
@@ -21,216 +21,174 @@ export default function WebServices() {
     { name: "Web Development", url: "https://mavericksedge.ca/web-design-services-edmonton" }
   ];
 
-  const services = [
+  const painPoints = [
+    "Outdated aesthetics that deter potential customers",
+    "Poor mobile performance leading to lost sales",
+    "Difficulty being found on Google by local clients",
+    "Lack of clear calls-to-action hindering conversions",
+    "Generic online presence that doesn't reflect your brand's unique value",
+    "Feeling overwhelmed by the technical complexities of online growth"
+  ];
+
+  const solutions = [
     {
-      icon: <LayoutIcon className="h-10 w-10 text-maverick-orange" />,
-      title: "Custom Website Design & Development",
-      description: "Professional web design services that create stunning, responsive websites tailored to your brand. Our custom websites drive conversions and establish credibility in the competitive local market.",
-      features: ["Mobile-responsive design", "Custom UI/UX", "Brand integration", "Performance optimization"]
+      title: "Digital Foundations: Custom Web Design & Development",
+      subtitle: "Crafting Visually Stunning & High-Performing Websites",
+      description: "Beyond aesthetics, we build robust, secure, and lightning-fast websites tailored to your brand's unique identity and business goals. From engaging user experiences to intuitive navigation, every element is designed to convert visitors into loyal customers.",
+      offerings: [
+        "Responsive Web Design (Mobile-First Approach)",
+        "Custom Website Development (WordPress, etc.)",
+        "UI/UX Design & User Flow Optimization",
+        "Website Redesigns & Updates",
+        "E-commerce Solutions (Online Stores)"
+      ],
+      icon: <LayoutIcon className="h-12 w-12 text-maverick-orange" />
     },
     {
-      icon: <ShoppingCart className="h-10 w-10 text-maverick-orange" />,
-      title: "E-commerce Development",
-      description: "Complete e-commerce solutions for local businesses. From Shopify to WooCommerce, we build online stores that sell 24/7 and compete with major retailers.",
-      features: ["Shopify & WooCommerce", "Payment integration", "Inventory management", "Local delivery setup"]
+      title: "Online Visibility & Growth: SEO & Digital Strategy",
+      subtitle: "Ensuring Your Business Gets Found Online",
+      description: "A beautiful website is only effective if people can find it. We implement strategic SEO and digital marketing practices to boost your search rankings, drive targeted traffic, and expand your online reach specifically within the Edmonton market.",
+      offerings: [
+        "Local SEO Optimization",
+        "Keyword Research & Content Strategy",
+        "Technical SEO Audits",
+        "Google My Business Optimization",
+        "Digital Marketing Consulting"
+      ],
+      icon: <Search className="h-12 w-12 text-maverick-orange" />
     },
     {
-      icon: <Code className="h-10 w-10 text-maverick-orange" />,
-      title: "Custom Web Application Development",
-      description: "Bespoke web applications for companies looking to streamline operations. We build scalable solutions that grow with your business.",
-      features: ["Custom functionality", "Database integration", "User management", "API development"]
-    },
-    {
-      icon: <Search className="h-10 w-10 text-maverick-orange" />,
-      title: "SEO Web Design",
-      description: "SEO-optimized websites built for local search visibility. We combine technical SEO with user experience to rank higher on Google and attract local customers.",
-      features: ["Local SEO optimization", "Google My Business integration", "Schema markup", "Core Web Vitals"]
-    },
-    {
-      icon: <Smartphone className="h-10 w-10 text-maverick-orange" />,
-      title: "Mobile-First Web Design",
-      description: "Mobile-optimized websites that perform flawlessly on all devices. With mobile traffic dominating, ensure your customers have a perfect experience.",
-      features: ["Responsive design", "Touch optimization", "Fast loading", "App-like experience"]
-    },
-    {
-      icon: <Database className="h-10 w-10 text-maverick-orange" />,
-      title: "CMS Development & Training",
-      description: "Easy-to-manage content management systems with comprehensive training. Take control of your website content without technical knowledge.",
-      features: ["WordPress expertise", "Custom CMS", "Content training", "Admin dashboards"]
-    },
-    {
-      icon: <Globe className="h-10 w-10 text-maverick-orange" />,
-      title: "Website Redesign Services",
-      description: "Transform your outdated website into a modern, high-performing digital asset. Our redesigns increase conversions and improve user engagement.",
-      features: ["Modern design trends", "Performance improvements", "SEO enhancement", "Conversion optimization"]
-    },
-    {
-      icon: <Shield className="h-10 w-10 text-maverick-orange" />,
-      title: "Website Security & Maintenance",
-      description: "Comprehensive security and maintenance services to keep your business website secure, updated, and performing optimally.",
-      features: ["Security monitoring", "Regular updates", "Backup solutions", "Performance monitoring"]
-    },
-    {
-      icon: <Gauge className="h-10 w-10 text-maverick-orange" />,
-      title: "Website Speed Optimization",
-      description: "Lightning-fast websites that improve user experience and search rankings. Speed optimization that reduces bounce rates and increases conversions.",
-      features: ["Core Web Vitals", "Image optimization", "Code optimization", "CDN implementation"]
-    },
-    {
-      icon: <Zap className="h-10 w-10 text-maverick-orange" />,
-      title: "Landing Page Development",
-      description: "High-converting landing pages for marketing campaigns. Designed to capture leads and drive specific business objectives.",
-      features: ["Conversion-focused design", "A/B testing ready", "Lead capture forms", "Analytics integration"]
+      title: "Ongoing Support & Evolution: Maintenance & Security",
+      subtitle: "Keeping Your Digital Presence Secure and Up-to-Date",
+      description: "Your website is an active asset. We provide continuous maintenance, security monitoring, and performance optimization services to ensure your site remains fast, secure, and always performing at its peak, protecting your investment.",
+      offerings: [
+        "Website Hosting & Domain Management",
+        "Security Updates & Malware Removal",
+        "Performance Optimization & Speed Enhancements",
+        "Regular Backups & Disaster Recovery"
+      ],
+      icon: <Shield className="h-12 w-12 text-maverick-orange" />
     }
   ];
 
-  const edmontonBenefits = [
+  const whyUsPoints = [
     {
-      icon: <MapPin className="h-8 w-8 text-maverick-orange" />,
-      title: "Local Market Expertise",
-      description: "We understand the local market, business needs, and what drives success in Alberta's capital city."
+      title: "Local Expertise, Global Standards",
+      description: "As a proud Edmonton-based company, we understand the local market nuances. We combine this local insight with global best practices in web design and development to give you a competitive edge.",
+      icon: <MapPin className="h-8 w-8 text-maverick-orange" />
     },
     {
-      icon: <Clock className="h-8 w-8 text-maverick-orange" />,
-      title: "Fast Turnaround Times",
-      description: "Quick project delivery without compromising quality. Most websites completed within 4-8 weeks."
+      title: "Results-Driven Approach",
+      description: "Your success is our success. We don't just build websites; we build digital assets designed to deliver tangible results: more leads, better engagement, and a stronger online presence.",
+      icon: <TrendingUp className="h-8 w-8 text-maverick-orange" />
     },
     {
-      icon: <Award className="h-8 w-8 text-maverick-orange" />,
-      title: "Proven Track Record",
-      description: "Successfully helped 100+ local businesses establish their online presence and grow their revenue."
+      title: "Transparent Communication & Support",
+      description: "No jargon, no surprises. We believe in clear, consistent communication throughout the entire process, providing dedicated support and guidance every step of the way.",
+      icon: <Users className="h-8 w-8 text-maverick-orange" />
     },
     {
-      icon: <CheckCircle className="h-8 w-8 text-maverick-orange" />,
-      title: "Ongoing Support",
-      description: "Comprehensive post-launch support including updates, maintenance, and digital marketing guidance."
+      title: "Tailored & Future-Proof Solutions",
+      description: "Cookie-cutter doesn't cut it. We craft custom solutions that align perfectly with your specific business goals, ensuring your website is scalable and adaptable for future growth.",
+      icon: <Zap className="h-8 w-8 text-maverick-orange" />
+    },
+    {
+      title: "Full-Service Partnership",
+      description: "From initial concept to launch and ongoing maintenance, we offer a comprehensive suite of services, becoming your long-term digital growth partner.",
+      icon: <Handshake className="h-8 w-8 text-maverick-orange" />
     }
   ];
 
   const processSteps = [
     {
-      number: "01",
-      title: "Market Discovery",
-      description: "We analyze your target market, competitors, and industry landscape to create a strategic web design plan.",
-      timeline: "Week 1"
+      step: "01",
+      title: "Discovery & Strategy",
+      description: "We start by understanding your vision, goals, and target audience. This collaborative phase lays the foundation for a truly effective digital strategy.",
+      icon: <Lightbulb className="h-8 w-8 text-maverick-orange" />
     },
     {
-      number: "02",
-      title: "Custom Design & Prototyping",
-      description: "Our design team creates wireframes and visual designs that resonate with your local audience.",
-      timeline: "Week 2-3"
+      step: "02", 
+      title: "Design & Development",
+      description: "Bringing your vision to life! We create intuitive designs and robust code, ensuring your website is both beautiful and highly functional.",
+      icon: <Code className="h-8 w-8 text-maverick-orange" />
     },
     {
-      number: "03",
-      title: "Development & SEO Integration",
-      description: "Expert development with built-in SEO optimization to ensure local search visibility from day one.",
-      timeline: "Week 4-6"
+      step: "03",
+      title: "Review & Refine",
+      description: "Your feedback is crucial. We present our progress, incorporate your insights, and fine-tune every detail to perfection.",
+      icon: <CheckCircle className="h-8 w-8 text-maverick-orange" />
     },
     {
-      number: "04",
-      title: "Testing & Quality Assurance",
-      description: "Rigorous testing across devices and browsers to ensure flawless performance for users.",
-      timeline: "Week 7"
+      step: "04",
+      title: "Launch & Optimize",
+      description: "The exciting moment! We securely launch your new website and implement SEO best practices to ensure it's ready to attract and engage your audience.",
+      icon: <Rocket className="h-8 w-8 text-maverick-orange" />
     },
     {
-      number: "05",
-      title: "Launch & Local Optimization",
-      description: "Strategic launch with Google My Business integration and local directory submissions for maximum local visibility.",
-      timeline: "Week 8"
-    },
-    {
-      number: "06",
-      title: "Growth & Maintenance",
-      description: "Ongoing optimization, security updates, and digital marketing support to grow your business online.",
-      timeline: "Ongoing"
+      step: "05",
+      title: "Support & Grow",
+      description: "Our partnership continues beyond launch. We provide ongoing maintenance, security, and strategic advice to ensure your site continues to thrive.",
+      icon: <TrendingUp className="h-8 w-8 text-maverick-orange" />
     }
   ];
 
-  const portfolioProjects = [
+  const testimonials = [
     {
-      image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      title: "Local Restaurant Website",
-      category: "Hospitality",
-      description: "Custom restaurant website with online ordering and reservation system",
-      results: "40% increase in online orders"
+      quote: "Working with Mavericks Edge was a game-changer for our restaurant in Edmonton. Our new website has significantly increased our online orders by 40%!",
+      client: "Sarah Johnson",
+      company: "Local Restaurant Owner",
+      industry: "Hospitality"
     },
     {
-      image: "https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      title: "Nonprofit Platform",
-      category: "Community Services",
-      description: "Comprehensive nonprofit website with donation system and volunteer portal",
-      results: "300% increase in online donations"
+      quote: "The team delivered exactly what we needed - a professional website that showcases our services and generates quality leads consistently.",
+      client: "Mike Thompson",
+      company: "Thompson Law Firm", 
+      industry: "Legal Services"
     },
     {
-      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      title: "Law Firm Website",
-      category: "Professional Services",
-      description: "Professional legal website with client portal and case management",
-      results: "150% increase in qualified leads"
-    },
-    {
-      image: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      title: "E-commerce Store",
-      category: "Retail",
-      description: "Full-featured online store with local delivery integration",
-      results: "200% increase in online sales"
-    },
-    {
-      image: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      title: "Medical Practice Website",
-      category: "Healthcare",
-      description: "HIPAA-compliant medical website with patient portal",
-      results: "80% reduction in admin calls"
-    },
-    {
-      image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      title: "Construction Company Website",
-      category: "Construction",
-      description: "Project showcase website with client testimonials and quote system",
-      results: "120% increase in project inquiries"
+      quote: "Our e-commerce site built by Mavericks Edge has transformed our business. Online sales have doubled in just 6 months!",
+      client: "Lisa Chen",
+      company: "Edmonton Boutique",
+      industry: "Retail"
     }
   ];
 
   const faqs = [
     {
-      question: "How much does web design cost in Edmonton?",
-      answer: "Our web design services start at $2,500 for basic business websites and go up to $15,000+ for complex e-commerce or custom applications. We offer transparent pricing and work with budgets of all sizes. Every project includes mobile optimization, basic SEO, and one year of support."
-    },
-    {
       question: "How long does it take to build a website?",
-      answer: "Most business websites are completed within 4-8 weeks. Simple brochure sites can be done in 3-4 weeks, while complex e-commerce or custom applications may take 8-12 weeks. We provide detailed timelines during our initial consultation and keep you updated throughout the process."
+      answer: "Most business websites are completed within 4-8 weeks. Simple brochure sites can be done in 3-4 weeks, while complex e-commerce or custom applications may take 8-12 weeks. We provide detailed timelines during our initial consultation."
     },
     {
-      question: "Do you provide SEO services with web design?",
-      answer: "Yes! All our web design projects include fundamental SEO optimization: local keyword research, Google My Business integration, schema markup, and technical SEO. We also offer comprehensive SEO services for businesses looking to dominate local search results."
+      question: "How much does a professional website cost in Edmonton?",
+      answer: "Our web design services start at $2,500 for basic business websites and go up to $15,000+ for complex e-commerce or custom applications. Factors influencing cost include complexity, features, and customization level. We offer free consultations to provide accurate estimates."
     },
     {
-      question: "Can you redesign my existing business website?",
-      answer: "Absolutely! We specialize in website redesigns for local businesses. Our redesign process improves user experience, search rankings, and conversion rates while maintaining your existing SEO value. We've helped dozens of companies modernize their online presence."
+      question: "Do you provide website maintenance services after launch?",
+      answer: "Yes! We offer comprehensive maintenance packages including security monitoring, regular updates, backups, performance optimization, and ongoing support to keep your website running smoothly."
     },
     {
-      question: "Do you work with small businesses and startups?",
-      answer: "Yes, we're passionate about helping small businesses and startups succeed online. We offer flexible payment plans, startup-friendly pricing, and scalable solutions that grow with your business. Many of our clients started as small local businesses and have grown significantly with our support."
+      question: "What is responsive web design?",
+      answer: "Responsive web design ensures your website looks and functions perfectly on all devices - desktops, tablets, and smartphones. With mobile traffic dominating, this is essential for user experience and search rankings."
     },
     {
-      question: "What makes your web design different from competitors?",
-      answer: "Our deep understanding of the local market sets us apart. We know local consumer behavior, seasonal trends, and what works for Alberta businesses. Plus, we provide ongoing support, not just a one-time build. Our clients see measurable results: increased traffic, leads, and revenue."
+      question: "Why is SEO important for my Edmonton business?",
+      answer: "SEO helps your business get found online by potential customers in Edmonton and surrounding areas. Good SEO increases visibility in Google searches, drives targeted traffic, and helps you compete effectively in local markets."
     },
     {
-      question: "Do you provide website hosting and maintenance?",
-      answer: "Yes, we offer comprehensive hosting and maintenance packages specifically designed for local businesses. Our services include security monitoring, regular updates, backups, performance optimization, and local support. We keep your website running smoothly so you can focus on your business."
+      question: "Can I update the website myself?",
+      answer: "Yes! We build websites on user-friendly content management systems like WordPress, and provide comprehensive training so you can easily update content, add pages, and manage your site independently."
     }
   ];
 
   return (
     <div>
       <SEOHead 
-        title="Edmonton Web Design & Development | #1 Web Design Company Alberta | Mavericks Edge"
-        description="Premier Edmonton web design and development services. Custom websites, e-commerce, and web applications for Alberta businesses. 100+ successful projects. Get your free consultation today!"
-        keywords="Edmonton web design, web development Edmonton, website design Edmonton Alberta, custom websites Edmonton, e-commerce development Edmonton, responsive web design Alberta, SEO web design Edmonton, Edmonton website company, professional web design Edmonton, small business web design Edmonton"
+        title="Transform Your Vision into a Thriving Digital Presence | Edmonton Web Design & Development"
+        description="Edmonton's trusted web design partner for growth-focused businesses. We build more than websites - we craft powerful online experiences that attract customers and elevate your brand."
+        keywords="Edmonton web design, web development Edmonton, website design Edmonton Alberta, custom websites Edmonton, digital growth partner Edmonton, professional web design Edmonton, Edmonton website company"
         canonicalUrl="https://mavericksedge.ca/web-design-services-edmonton"
-        ogTitle="Edmonton Web Design & Development | #1 Web Design Company Alberta | Mavericks Edge"
-        ogDescription="Premier Edmonton web design and development services. Custom websites, e-commerce, and web applications for Alberta businesses. 100+ successful projects."
+        ogTitle="Transform Your Vision into a Thriving Digital Presence | Edmonton Web Design"
+        ogDescription="Edmonton's trusted web design partner for growth-focused businesses. We craft powerful online experiences that drive real results."
         ogImage="https://mavericksedge.ca/logo.png"
         ogType="website"
       />
@@ -244,371 +202,404 @@ export default function WebServices() {
         exit={{ opacity: 0 }}
         transition={{ duration: 0.5 }}
       >
-      {/* Hero Section */}
-      <div className="pt-44 md:pt-48 pb-20 px-5 md:px-10 bg-[#121212] relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-maverick-orange/5 to-transparent"></div>
-        <div className="container mx-auto relative">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div className="max-w-2xl">
-              <div className="flex items-center gap-3 mb-6">
-                <MapPin className="h-6 w-6 text-maverick-orange" />
-                <span className="text-maverick-orange font-semibold">Edmonton Web Design Experts</span>
-              </div>
-              <h1 className="text-5xl md:text-7xl font-bold mb-6 font-heading leading-tight">
-                #1 Edmonton Web Design & Development
-              </h1>
-              <p className="text-xl text-[#AAAAAA] mb-8 leading-relaxed">
-                Professional web design and development services for local businesses. We've helped 100+ Alberta companies grow their online presence with custom websites that convert visitors into customers.
+        {/* Section 1: Hero Section - The Problem & The Promise */}
+        <section className="pt-44 md:pt-48 pb-24 px-5 md:px-10 bg-gradient-to-br from-[#121212] via-[#1A1A1A] to-[#121212] relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-maverick-orange/10 via-transparent to-purple-500/5"></div>
+          <div className="container mx-auto relative z-10">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+              <motion.div 
+                className="max-w-2xl"
+                initial={{ opacity: 0, x: -50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8 }}
+              >
+                <div className="flex items-center gap-3 mb-6">
+                  <MapPin className="h-6 w-6 text-maverick-orange" />
+                  <span className="text-maverick-orange font-semibold">Your Digital Growth Partner in Edmonton</span>
+                </div>
+                <h1 className="text-5xl md:text-7xl font-bold mb-6 font-heading leading-tight">
+                  Transform Your Vision into a <span className="text-maverick-orange">Thriving Digital Presence</span>
+                </h1>
+                <p className="text-xl text-gray-300 mb-6 leading-relaxed">
+                  We build more than websites; we craft powerful online experiences that attract customers and elevate your brand in Edmonton and beyond.
+                </p>
+                <p className="text-lg text-gray-400 mb-8 leading-relaxed">
+                  Frustrated with an outdated website? Struggling to stand out online? We partner with Edmonton businesses to create bespoke, high-performing websites that drive real results – from increased leads to enhanced brand authority.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4 mb-8">
+                  <Link href="/contact-edmonton-web-design">
+                    <motion.div
+                      className="maverick-button maverick-button-primary inline-flex items-center justify-center px-8 py-4 text-lg font-medium rounded-lg group"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      Launch Your Digital Success - Get Free Consultation!
+                      <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                    </motion.div>
+                  </Link>
+                  <Link href="/portfolio-edmonton-web-design">
+                    <motion.div
+                      className="maverick-button maverick-button-outline inline-flex items-center justify-center px-8 py-4 text-lg font-medium rounded-lg"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      Explore Our Work
+                    </motion.div>
+                  </Link>
+                </div>
+                <div className="flex items-center gap-6 text-sm text-gray-400">
+                  <div className="flex items-center gap-2">
+                    <Star className="h-5 w-5 text-yellow-500 fill-current" />
+                    <span>5.0 Rating</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <CheckCircle className="h-5 w-5 text-green-500" />
+                    <span>100+ Projects</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Clock className="h-5 w-5 text-blue-500" />
+                    <span>4-8 Week Delivery</span>
+                  </div>
+                </div>
+              </motion.div>
+              
+              <motion.div 
+                className="relative"
+                initial={{ opacity: 0, x: 50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+              >
+                <div className="bg-gradient-to-br from-[#1A1A1A] to-[#2A2A2A] p-1 rounded-2xl border border-gray-700 shadow-2xl">
+                  <img 
+                    src="https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+                    alt="Edmonton Web Development Success" 
+                    className="rounded-xl w-full h-auto" 
+                  />
+                </div>
+                <div className="absolute -bottom-8 -right-8 w-32 h-32 bg-maverick-orange rounded-full z-0 blur-[80px] opacity-40"></div>
+                <div className="absolute -top-8 -left-8 w-24 h-24 bg-purple-500 rounded-full z-0 blur-[60px] opacity-30"></div>
+              </motion.div>
+            </div>
+          </div>
+        </section>
+
+        {/* Section 2: The Core Challenge */}
+        <section className="py-24 px-5 md:px-10 bg-[#1E1E1E]">
+          <div className="container mx-auto">
+            <motion.div 
+              className="text-center mb-16"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 font-heading">
+                Is Your Website Working Hard Enough for Your Edmonton Business?
+              </h2>
+              <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-12">
+                Many Edmonton businesses struggle with these common online challenges:
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 mb-8">
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+                {painPoints.map((point, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    className="bg-gradient-to-br from-red-500/10 to-orange-500/10 border border-red-500/20 rounded-lg p-6"
+                  >
+                    <p className="text-gray-300">{point}</p>
+                  </motion.div>
+                ))}
+              </div>
+              
+              <motion.p 
+                className="text-lg text-maverick-orange font-medium mt-8"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.8 }}
+              >
+                If any of these resonate, you're in the right place.
+              </motion.p>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* Section 3: Your Strategic Solutions */}
+        <section className="py-24 px-5 md:px-10 bg-[#121212]">
+          <div className="container mx-auto">
+            <motion.div 
+              className="text-center mb-16"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 font-heading">
+                Tailored Web Solutions Designed for Edmonton's Business Landscape
+              </h2>
+            </motion.div>
+
+            <div className="space-y-20">
+              {solutions.map((solution, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 50 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.8, delay: index * 0.2 }}
+                  className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center ${index % 2 === 1 ? 'lg:grid-flow-col-dense' : ''}`}
+                >
+                  <div className={index % 2 === 1 ? 'lg:col-start-2' : ''}>
+                    <div className="p-6 bg-maverick-orange bg-opacity-10 rounded-xl inline-block mb-6">
+                      {solution.icon}
+                    </div>
+                    <h3 className="text-3xl font-bold mb-4 font-heading">{solution.title}</h3>
+                    <h4 className="text-xl text-maverick-orange mb-4">{solution.subtitle}</h4>
+                    <p className="text-lg text-gray-300 mb-6 leading-relaxed">{solution.description}</p>
+                    <ul className="space-y-3">
+                      {solution.offerings.map((offering, offeringIndex) => (
+                        <li key={offeringIndex} className="flex items-center text-gray-300">
+                          <CheckCircle className="h-5 w-5 text-maverick-orange mr-3 flex-shrink-0" />
+                          {offering}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div className={`relative ${index % 2 === 1 ? 'lg:col-start-1' : ''}`}>
+                    <div className="bg-gradient-to-br from-[#1A1A1A] to-[#2A2A2A] p-1 rounded-2xl border border-gray-700 shadow-2xl">
+                      <img 
+                        src={`https://images.unsplash.com/photo-${index === 0 ? '1547658719-da2b51169166' : index === 1 ? '1460925895917-afdab827c52f' : '1563013544-824ae1b704d3'}?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80`}
+                        alt={solution.title}
+                        className="rounded-xl w-full h-auto"
+                      />
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Section 4: Why Us */}
+        <section className="py-24 px-5 md:px-10 bg-[#1E1E1E]">
+          <div className="container mx-auto">
+            <motion.div 
+              className="text-center mb-16"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 font-heading">
+                Why Edmonton Businesses Trust Mavericks Edge for Their Digital Future
+              </h2>
+            </motion.div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {whyUsPoints.map((point, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  className="bg-gradient-to-br from-[#121212] to-[#1A1A1A] rounded-xl p-6 border border-gray-800 hover:border-maverick-orange/50 transition-all duration-300"
+                >
+                  <div className="p-4 bg-maverick-orange bg-opacity-10 rounded-lg inline-block mb-4">
+                    {point.icon}
+                  </div>
+                  <h3 className="text-xl font-semibold mb-3">{point.title}</h3>
+                  <p className="text-gray-400 leading-relaxed">{point.description}</p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Section 5: Our Proven Process */}
+        <section className="py-24 px-5 md:px-10 bg-[#121212]">
+          <div className="container mx-auto">
+            <motion.div 
+              className="text-center mb-16"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 font-heading">
+                Our Simplified Path to Your Online Success
+              </h2>
+            </motion.div>
+
+            <div className="relative">
+              <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-px bg-gradient-to-b from-maverick-orange via-maverick-orange/50 to-transparent hidden lg:block"></div>
+              
+              <div className="space-y-16">
+                {processSteps.map((step, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8, delay: index * 0.2 }}
+                    className={`grid grid-cols-1 lg:grid-cols-2 gap-8 items-center ${index % 2 === 1 ? 'lg:grid-flow-col-dense' : ''}`}
+                  >
+                    <div className={`relative ${index % 2 === 1 ? 'lg:col-start-2 lg:text-left' : 'lg:text-right'}`}>
+                      <div className="bg-gradient-to-br from-[#1A1A1A] to-[#2A2A2A] rounded-xl p-8 border border-gray-700 relative">
+                        <div className="text-5xl font-bold text-maverick-orange/30 mb-4">{step.step}</div>
+                        <div className="flex items-center gap-4 mb-4">
+                          <div className="p-3 bg-maverick-orange bg-opacity-10 rounded-lg">
+                            {step.icon}
+                          </div>
+                          <h3 className="text-2xl font-semibold">{step.title}</h3>
+                        </div>
+                        <p className="text-gray-300 leading-relaxed">{step.description}</p>
+                      </div>
+                    </div>
+                    <div className={index % 2 === 1 ? 'lg:col-start-1' : ''}></div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Section 6: Client Success Stories */}
+        <section className="py-24 px-5 md:px-10 bg-[#1E1E1E]">
+          <div className="container mx-auto">
+            <motion.div 
+              className="text-center mb-16"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 font-heading">
+                Edmonton Businesses Thriving Online, Thanks to Mavericks Edge
+              </h2>
+            </motion.div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {testimonials.map((testimonial, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  className="bg-gradient-to-br from-[#121212] to-[#1A1A1A] rounded-xl p-6 border border-gray-800"
+                >
+                  <div className="flex items-center gap-2 mb-4">
+                    {[...Array(5)].map((_, i) => (
+                      <Star key={i} className="h-5 w-5 text-yellow-500 fill-current" />
+                    ))}
+                  </div>
+                  <p className="text-gray-300 italic mb-4 leading-relaxed">"{testimonial.quote}"</p>
+                  <div>
+                    <p className="font-semibold text-white">{testimonial.client}</p>
+                    <p className="text-sm text-gray-400">{testimonial.company}</p>
+                    <p className="text-xs text-maverick-orange">{testimonial.industry}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+
+            <div className="mt-12 text-center">
+              <Link href="/portfolio-edmonton-web-design">
+                <motion.div
+                  className="maverick-button maverick-button-outline inline-flex items-center justify-center px-8 py-3 text-lg font-medium rounded-lg"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  See More of Our Work
+                </motion.div>
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        {/* Section 7: FAQ */}
+        <section className="py-24 px-5 md:px-10 bg-[#121212]">
+          <div className="container mx-auto">
+            <motion.div 
+              className="text-center mb-16"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 font-heading">
+                Your Questions, Answered: Insights into Web Design & Development
+              </h2>
+            </motion.div>
+
+            <div className="max-w-4xl mx-auto space-y-6">
+              {faqs.map((faq, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  className="bg-gradient-to-br from-[#1A1A1A] to-[#2A2A2A] rounded-xl p-6 border border-gray-700 hover:border-maverick-orange/50 transition-all duration-300"
+                >
+                  <h3 className="text-xl font-semibold mb-3 text-maverick-orange">{faq.question}</h3>
+                  <p className="text-gray-300 leading-relaxed">{faq.answer}</p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Section 8: Final CTA */}
+        <section className="py-24 px-5 md:px-10 bg-gradient-to-br from-maverick-orange/10 via-transparent to-purple-500/10">
+          <div className="container mx-auto text-center">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 font-heading">
+                Your Digital Journey Starts Here. Let's Build Something Remarkable.
+              </h2>
+              <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-8">
+                Whether you're starting fresh or looking to revitalize your online presence, our Edmonton team is ready to help your business thrive.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center mb-6">
                 <Link href="/contact-edmonton-web-design">
                   <motion.div
-                    className="maverick-button maverick-button-primary inline-flex items-center justify-center px-8 py-4 text-lg font-medium rounded-lg"
+                    className="maverick-button maverick-button-primary inline-flex items-center justify-center px-8 py-4 text-lg font-medium rounded-lg group"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                   >
-                    Get Free Consultation
+                    Schedule Your Free Digital Strategy Session!
+                    <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                   </motion.div>
                 </Link>
-                <Link href="/portfolio-edmonton-web-design">
+                <a href="tel:+1-780-123-4567">
                   <motion.div
                     className="maverick-button maverick-button-outline inline-flex items-center justify-center px-8 py-4 text-lg font-medium rounded-lg"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                   >
-                    View Our Work
+                    <Phone className="mr-2 h-5 w-5" />
+                    Call Us Directly: (780) 123-4567
                   </motion.div>
-                </Link>
+                </a>
               </div>
-              <div className="flex items-center gap-6 text-sm text-[#AAAAAA]">
-                <div className="flex items-center gap-2">
-                  <Star className="h-5 w-5 text-yellow-500 fill-current" />
-                  <span>5.0 Rating</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle className="h-5 w-5 text-green-500" />
-                  <span>100+ Projects</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Clock className="h-5 w-5 text-blue-500" />
-                  <span>4-8 Week Delivery</span>
-                </div>
-              </div>
-            </div>
-            <div className="relative">
-              <div className="bg-[#1A1A1A] p-1 rounded-xl border border-gray-800 shadow-2xl">
-                <img 
-                  src="https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
-                  alt="Edmonton Web Development Services" 
-                  className="rounded-lg w-full h-auto" 
-                />
-              </div>
-              <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-maverick-orange rounded-full z-0 blur-[80px] opacity-40"></div>
-              <div className="absolute -top-6 -left-6 w-24 h-24 bg-blue-500 rounded-full z-0 blur-[60px] opacity-30"></div>
-            </div>
+              <p className="text-sm text-gray-400">
+                Free consultation • No obligation • Fast response within 24 hours
+              </p>
+            </motion.div>
           </div>
-        </div>
-      </div>
+        </section>
 
-      {/* Edmonton Benefits Section */}
-      <section className="py-20 px-5 md:px-10 bg-[#1E1E1E]">
-        <div className="container mx-auto">
-          <motion.div 
-            className="text-center mb-16"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 font-heading">Why Choose Edmonton's Premier Web Design Agency?</h2>
-            <p className="text-[#AAAAAA] text-xl max-w-3xl mx-auto">
-              We're not just another web design company. We're Edmonton business growth partners who understand the local market and deliver results.
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {edmontonBenefits.map((benefit, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="text-center"
-              >
-                <div className="p-4 bg-maverick-orange bg-opacity-10 rounded-xl inline-block mb-4">
-                  {benefit.icon}
-                </div>
-                <h3 className="text-xl font-semibold mb-2">{benefit.title}</h3>
-                <p className="text-[#AAAAAA]">{benefit.description}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Services Grid */}
-      <section className="py-24 px-5 md:px-10 bg-[#121212]">
-        <div className="container mx-auto">
-          <motion.div 
-            className="text-center mb-16"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 font-heading">Complete Edmonton Web Design Services</h2>
-            <p className="text-[#AAAAAA] text-xl max-w-3xl mx-auto">
-              From simple business websites to complex e-commerce platforms, we provide comprehensive web solutions for every Edmonton business need.
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {services.map((service, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="bg-[#1E1E1E] rounded-xl p-6 border border-gray-800 hover:border-maverick-orange transition-all duration-300 group h-full flex flex-col"
-              >
-                <div className="p-4 bg-maverick-orange bg-opacity-10 rounded-lg inline-block mb-6 group-hover:bg-opacity-20 transition-all duration-300">
-                  {service.icon}
-                </div>
-                <h3 className="text-xl font-semibold mb-3 font-heading">{service.title}</h3>
-                <p className="text-[#AAAAAA] group-hover:text-[#DDDDDD] transition-all duration-300 mb-4 flex-grow">{service.description}</p>
-                <ul className="space-y-2">
-                  {service.features.map((feature, featureIndex) => (
-                    <li key={featureIndex} className="flex items-center text-sm text-[#CCCCCC]">
-                      <CheckCircle className="h-4 w-4 text-maverick-orange mr-2" />
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-              </motion.div>
-            ))}
-          </div>
-
-          <div className="mt-12 text-center">
-            <Link href="/web-design-pricing-edmonton">
-              <motion.div
-                className="maverick-button maverick-button-outline inline-flex items-center justify-center px-8 py-3 text-lg font-medium rounded-lg"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                View Pricing & Packages
-              </motion.div>
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Process Section */}
-      <section className="py-24 px-5 md:px-10 bg-[#1E1E1E]">
-        <div className="container mx-auto">
-          <motion.div 
-            className="text-center mb-16"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 font-heading">Our Proven Edmonton Web Design Process</h2>
-            <p className="text-[#AAAAAA] text-xl max-w-2xl mx-auto">
-              A systematic approach refined through 100+ successful Edmonton web projects. Transparent, efficient, and results-driven.
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-12">
-            {processSteps.map((step, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="relative"
-              >
-                <div className="flex items-start gap-6">
-                  <div className="text-4xl font-bold text-maverick-orange opacity-70">{step.number}</div>
-                  <div className="flex-1">
-                    <div className="flex items-center justify-between mb-2">
-                      <h3 className="text-2xl font-semibold">{step.title}</h3>
-                      <span className="text-sm text-maverick-orange bg-maverick-orange bg-opacity-10 px-3 py-1 rounded-full">
-                        {step.timeline}
-                      </span>
-                    </div>
-                    <p className="text-[#AAAAAA]">{step.description}</p>
-                  </div>
-                </div>
-                {index < processSteps.length - 1 && (
-                  <div className="absolute left-4 top-16 h-full w-px bg-gradient-to-b from-maverick-orange to-transparent opacity-30 md:block hidden"></div>
-                )}
-              </motion.div>
-            ))}
-          </div>
-
-          <div className="mt-16 text-center">
-            <Link href="/contact-edmonton-web-design">
-              <motion.div
-                className="maverick-button maverick-button-primary inline-flex items-center justify-center px-8 py-4 text-lg font-medium rounded-lg"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                Start Your Project Today
-              </motion.div>
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Portfolio Section */}
-      <section className="py-24 px-5 md:px-10 bg-[#121212]">
-        <div className="container mx-auto">
-          <motion.div 
-            className="text-center mb-16"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 font-heading">Successful Edmonton Web Projects</h2>
-            <p className="text-[#AAAAAA] text-xl max-w-2xl mx-auto">
-              Real results for real Edmonton businesses. See how our web design and development services have transformed local companies.
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {portfolioProjects.map((project, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="group cursor-pointer"
-              >
-                <div className="relative overflow-hidden rounded-xl bg-[#1E1E1E] border border-gray-800 group-hover:border-maverick-orange transition-all duration-300">
-                  <div className="aspect-video">
-                    <img 
-                      src={project.image} 
-                      alt={project.title} 
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" 
-                    />
-                  </div>
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-6">
-                    <span className="text-maverick-orange text-sm mb-1">{project.category}</span>
-                    <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
-                    <p className="text-sm text-[#CCCCCC] mb-2">{project.description}</p>
-                    <div className="text-sm font-semibold text-green-400">{project.results}</div>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-          
-          <div className="mt-12 text-center">
-            <Link href="/portfolio-edmonton-web-design">
-              <motion.div
-                className="maverick-button maverick-button-outline inline-flex items-center justify-center px-8 py-3 text-lg font-medium rounded-lg"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                View Complete Portfolio
-              </motion.div>
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-20 px-5 md:px-10 bg-gradient-to-r from-maverick-orange/10 to-maverick-orange/5">
-        <div className="container mx-auto text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 font-heading">Ready to Dominate the Digital Landscape?</h2>
-            <p className="text-xl text-[#AAAAAA] max-w-3xl mx-auto mb-8">
-              Join 100+ successful local businesses who've transformed their online presence with our web design expertise. Get your free consultation and project quote today.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/contact-edmonton-web-design">
-                <motion.div
-                  className="maverick-button maverick-button-primary inline-flex items-center justify-center px-8 py-4 text-lg font-medium rounded-lg"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  Get Free Consultation
-                </motion.div>
-              </Link>
-              <Link href="tel:+1-780-123-4567">
-                <motion.div
-                  className="maverick-button maverick-button-outline inline-flex items-center justify-center px-8 py-4 text-lg font-medium rounded-lg"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  Call (780) 123-4567
-                </motion.div>
-              </Link>
-            </div>
-            <p className="text-sm text-[#AAAAAA] mt-4">
-              Free consultation • No obligation • Fast response within 24 hours
-            </p>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* FAQ Section */}
-      <section className="py-24 px-5 md:px-10 bg-[#1E1E1E]">
-        <div className="container mx-auto">
-          <motion.div 
-            className="text-center mb-16"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 font-heading">Edmonton Web Design FAQs</h2>
-            <p className="text-[#AAAAAA] text-xl max-w-2xl mx-auto">
-              Common questions about our Edmonton web design and development services, pricing, and process.
-            </p>
-          </motion.div>
-
-          <div className="max-w-4xl mx-auto">
-            {faqs.map((faq, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="mb-8 border border-gray-800 rounded-xl p-6 hover:border-maverick-orange transition-all duration-300"
-              >
-                <h3 className="text-xl font-semibold mb-3 text-maverick-orange">{faq.question}</h3>
-                <p className="text-[#AAAAAA] leading-relaxed">{faq.answer}</p>
-              </motion.div>
-            ))}
-          </div>
-
-          <div className="mt-12 text-center">
-            <Link href="/contact-edmonton-web-design">
-              <motion.div
-                className="maverick-button maverick-button-primary inline-flex items-center justify-center px-8 py-4 text-lg font-medium rounded-lg"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                Ask Your Question
-              </motion.div>
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      <ContactSection />
+        <ContactSection />
       </motion.div>
     </div>
   );
