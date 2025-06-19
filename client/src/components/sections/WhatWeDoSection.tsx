@@ -7,6 +7,7 @@ import {
 } from "framer-motion";
 import { useIsMobile } from "@/hooks/use-mobile";
 import SplitText from "@/components/ui/SplitText";
+import GradientText from "@/components/ui/GradientText";
 import {
   Code,
   PenTool,
