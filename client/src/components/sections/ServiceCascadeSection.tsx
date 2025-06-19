@@ -1,7 +1,6 @@
-
-import React, { useState, useEffect, useRef } from "react";
-import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
-import { Code, PenTool, Brain, Play, Pause } from "lucide-react";
+import React, { useState, useEffect, useRef, useMemo } from "react";
+import { motion, useScroll, useTransform, AnimatePresence, useMotionValue, useSpring } from "framer-motion";
+import { Code, PenTool, Brain, ChevronRight, Play, Pause } from "lucide-react";
 import TechButton from "../ui/tech-button";
 import CyclingVideoPlayer from "../ui/CyclingVideoPlayer";
 
@@ -25,15 +24,18 @@ interface ServiceSection {
 }
 
 export default function ServiceCascadeSection() {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(false);
+  const [currentSection, setCurrentSection] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
-  const [activeSection, setActiveSection] = useState(0);
-  const [activeIndexes, setActiveIndexes] = useState({ 0: 0, 1: 0, 2: 0 });
-  const [isAutoPlaying, setIsAutoPlaying] = useState({ 0: false, 1: false, 2: false });
-
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"]
   });
+
+  // Smooth spring values for better performance
+  const springConfig = { stiffness: 100, damping: 30, mass: 0.8 };
+  const activeIndexSpring = useSpring(activeIndex, springConfig);
 
   const services: ServiceSection[] = [
     {
@@ -51,7 +53,7 @@ export default function ServiceCascadeSection() {
             "/videos/services/Custom Interactive Websites 2.mp4",
             "/videos/services/Custom Interactive Websites 3.mp4"
           ],
-          videoDurations: [11000, 7000, 11000],
+          videoDurations: [11000, 7000, 11000], // 1st and 3rd extended by 4 seconds
           zoomEffects: ['zoom-out', 'zoom-out', 'zoom-out'],
           gradient: "from-orange-500/20 to-yellow-500/20"
         },
@@ -107,7 +109,7 @@ export default function ServiceCascadeSection() {
         {
           id: "social-media",
           title: "Social Media Management",
-          description: "Social media is about more than visibility; it's about earning attention through relevance, consistency, and trust. Services include content planning, platform native strategy, community engagement, and performance analysis, all tailored to reflect your brand's voice and values.",
+          description: "Social media is about more than visibility; it's about earning attention through relevance, consistency, and trust. Services include content planning, platform native strategy, community engagement, and performance analysis, all tailored to reflect your brand's voice and values. ",
           videos: [
             "/videos/services/Social Media Management.mp4"
           ],
@@ -152,59 +154,91 @@ export default function ServiceCascadeSection() {
     }
   ];
 
-  // Calculate which section should be active based on scroll
+  const allItems = services.flatMap(service => service.items);
+  const totalItems = allItems.length;
+
+  // Auto-play functionality
   useEffect(() => {
-    const unsubscribe = scrollYProgress.on("change", (latest) => {
-      const sectionIndex = Math.floor(latest * services.length);
-      const clampedIndex = Math.max(0, Math.min(services.length - 1, sectionIndex));
-      setActiveSection(clampedIndex);
-    });
+    if (!isAutoPlaying) return;
 
-    return () => unsubscribe();
-  }, [scrollYProgress, services.length]);
+    const interval = setInterval(() => {
+      setActiveIndex(prev => (prev + 1) % totalItems);
+    }, 4000);
 
-  // Auto-play functionality for each section
+    return () => clearInterval(interval);
+  }, [isAutoPlaying, totalItems]);
+
+  // Update current section based on active index
   useEffect(() => {
-    const intervals: NodeJS.Timeout[] = [];
+    let itemCount = 0;
+    for (let i = 0; i < services.length; i++) {
+      itemCount += services[i].items.length;
+      if (activeIndex < itemCount) {
+        setCurrentSection(i);
+        break;
+      }
+    }
+  }, [activeIndex, services]);
 
-    services.forEach((_, sectionIndex) => {
-      if (isAutoPlaying[sectionIndex]) {
-        const interval = setInterval(() => {
-          setActiveIndexes(prev => ({
-            ...prev,
-            [sectionIndex]: (prev[sectionIndex] + 1) % services[sectionIndex].items.length
-          }));
-        }, 4000);
-        intervals.push(interval);
+  // Optimized scroll-based progression
+  const scrollProgress = useTransform(scrollYProgress, [0.2, 0.95], [0, totalItems - 1]);
+
+  useEffect(() => {
+    const unsubscribe = scrollProgress.on("change", (latest) => {
+      const newIndex = Math.round(latest);
+      if (newIndex !== activeIndex && newIndex >= 0 && newIndex < totalItems) {
+        setActiveIndex(newIndex);
+        setIsAutoPlaying(false);
       }
     });
 
-    return () => intervals.forEach(interval => clearInterval(interval));
-  }, [isAutoPlaying, services]);
+    return unsubscribe;
+  }, [scrollProgress, activeIndex, totalItems]);
 
-  const handleDotClick = (sectionIndex: number, itemIndex: number) => {
-    setActiveIndexes(prev => ({
-      ...prev,
-      [sectionIndex]: itemIndex
-    }));
-    setIsAutoPlaying(prev => ({
-      ...prev,
-      [sectionIndex]: false
-    }));
+  // Simplified transform for single card display
+  const getCardTransform = useMemo(() => {
+    return (index: number) => {
+      return {
+        x: 0,
+        y: 0,
+        scale: 1,
+        opacity: 1,
+        rotateY: 0,
+        zIndex: 10,
+        filter: "blur(0px) brightness(1)"
+      };
+    };
+  }, [activeIndex]);
+
+  const handleDotClick = (index: number) => {
+    setActiveIndex(index);
+    setIsAutoPlaying(false);
   };
 
-  const toggleAutoPlay = (sectionIndex: number) => {
-    setIsAutoPlaying(prev => ({
-      ...prev,
-      [sectionIndex]: !prev[sectionIndex]
-    }));
+  const toggleAutoPlay = () => {
+    setIsAutoPlaying(!isAutoPlaying);
+  };
+
+  const currentService = services[currentSection];
+  const currentItem = allItems[activeIndex];
+
+  // Optimized animation variants
+  const cardVariants = {
+    hidden: { opacity: 0, rotateY: 180 },
+    visible: { opacity: 1, rotateY: 0 }
+  };
+
+  const contentVariants = {
+    hidden: { opacity: 0, x: 30 },
+    visible: { opacity: 1, x: 0 },
+    exit: { opacity: 0, x: -30 }
   };
 
   return (
-    <div ref={containerRef} className="relative bg-black" style={{ height: `${services.length * 100}vh` }}>
-      {/* Particle effects */}
-      <div className="fixed inset-0 pointer-events-none z-10">
-        {[...Array(6)].map((_, i) => (
+    <div ref={containerRef} className="relative h-[400vh] sm:h-[500vh] bg-black">
+      {/* Reduced particle count for better performance */}
+      <div className="absolute inset-0 pointer-events-none">
+        {[...Array(4)].map((_, i) => (
           <motion.div
             key={i}
             className="absolute w-1 h-1 bg-maverick-orange/30 rounded-full"
@@ -226,187 +260,211 @@ export default function ServiceCascadeSection() {
         ))}
       </div>
 
-      {/* Fixed content container */}
-      <div className="fixed inset-0 z-20">
-        <section className="h-screen py-24 px-4 sm:px-6 md:px-8 flex items-center">
-          <div className="container mx-auto">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={activeSection}
-                initial={{ opacity: 0, y: 50 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -50 }}
-                transition={{ duration: 0.6, ease: "easeOut" }}
-              >
-                {/* Section Title */}
-                <div className="text-center mb-12">
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.4, ease: "easeOut" }}
-                    className="flex items-center justify-center gap-4 mb-4"
-                  >
-                    {services[activeSection].icon}
-                    <h2 className="text-3xl lg:text-4xl xl:text-5xl font-bold text-white">
-                      {services[activeSection].title}
-                    </h2>
-                  </motion.div>
-                </div>
+      {/* Sticky content container */}
+      <div className="sticky top-0 h-screen flex items-center justify-center bg-black z-10 pt-12 sm:pt-16 md:pt-20 lg:pt-24 relative">
+        <div className="container mx-auto px-4 sm:px-6 md:px-8">
 
-                <div className={`grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center ${
-                  services[activeSection].imagePosition === 'right' ? 'lg:grid-flow-col-dense' : ''
-                }`}>
+          {/* Section Title */}
+          <div className="text-center mb-8 lg:mb-12">
+            <motion.div
+              key={currentSection}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, ease: "easeOut" }}
+              className="flex items-center justify-center gap-4 mb-4"
+            >
+              {currentService.icon}
+              <h2 className="text-3xl lg:text-4xl xl:text-5xl font-bold text-white">
+                {currentService.title}
+              </h2>
+            </motion.div>
+          </div>
 
-                  {/* Media Display */}
-                  <div className={`relative aspect-[4/3] w-full ${
-                    services[activeSection].imagePosition === 'right' ? 'lg:col-start-2' : ''
-                  }`}>
-                    <AnimatePresence mode="wait">
-                      <motion.div
-                        key={`${activeSection}-${activeIndexes[activeSection]}`}
+          <div className={`grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 md:gap-10 lg:gap-12 xl:gap-16 items-center px-4 sm:px-6 md:px-8 lg:px-0 ${
+            currentService.imagePosition === 'right' ? 'lg:grid-flow-col-dense' : ''
+          }`}>
+
+            {/* Optimized 3D Image Stack */}
+            <div className={`relative aspect-[4/3] w-full ${
+              currentService.imagePosition === 'right' ? 'lg:col-start-2' : ''
+            }`} style={{ perspective: "1000px" }}>
+              <div className="relative w-full h-full" style={{ transformStyle: "preserve-3d" }}>
+                {allItems.map((item, index) => {
+                  const transform = getCardTransform(index);
+                  const isVisible = index === activeIndex; // Only show active card
+
+                  if (!isVisible) return null;
+
+                  return (
+                    <motion.div
+                      key={item.id}
+                      className="absolute inset-0 cursor-pointer will-change-transform"
+                      style={{
+                        zIndex: transform.zIndex,
+                        backfaceVisibility: "hidden"
+                      }}
+                      animate={{
+                        opacity: 1,
+                        scale: 1
+                      }}
+                      transition={{
+                        type: "tween",
+                        duration: 0.5,
+                        ease: [0.25, 0.46, 0.45, 0.94]
+                      }}
+                      onClick={() => handleDotClick(index)}
+                      whileHover={{ 
+                        scale: 1.02,
+                        transition: { duration: 0.2 }
+                      }}
+                    >
+                      <motion.div 
                         className="relative w-full h-full rounded-2xl overflow-hidden"
-                        initial={{ opacity: 0, scale: 0.95 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        exit={{ opacity: 0, scale: 1.05 }}
+                        variants={cardVariants}
+                        initial="hidden"
+                        animate="visible"
                         transition={{ duration: 0.5, ease: "easeOut" }}
                       >
                         <CyclingVideoPlayer
-                          videos={services[activeSection].items[activeIndexes[activeSection]].videos || []}
-                          images={services[activeSection].items[activeIndexes[activeSection]].images || []}
-                          alt={services[activeSection].items[activeIndexes[activeSection]].title}
+                          videos={item.videos || []}
+                          images={item.images || []}
+                          alt={item.title}
                           className="w-full h-full"
                           cycleDuration={7000}
-                          videoDurations={services[activeSection].items[activeIndexes[activeSection]].videoDurations}
-                          zoomEffects={services[activeSection].items[activeIndexes[activeSection]].zoomEffects}
+                          videoDurations={item.videoDurations}
+                          zoomEffects={item.zoomEffects}
                         />
+
+                        
                       </motion.div>
-                    </AnimatePresence>
-                  </div>
+                    </motion.div>
+                  );
+                })}
+              </div>
+            </div>
 
-                  {/* Content Area */}
-                  <div className={`space-y-6 lg:space-y-8 flex flex-col justify-center items-start ${
-                    services[activeSection].imagePosition === 'right' ? 'lg:col-start-1 lg:row-start-1' : ''
-                  }`}>
-                    <AnimatePresence mode="wait">
-                      <motion.div
-                        key={`content-${activeSection}-${activeIndexes[activeSection]}`}
-                        className="space-y-4 lg:space-y-6"
-                        initial={{ opacity: 0, x: 30 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        exit={{ opacity: 0, x: -30 }}
-                        transition={{ duration: 0.4, ease: "easeOut" }}
-                      >
-                        <motion.h3
-                          className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-bold text-white leading-tight"
-                          initial={{ opacity: 0, y: 10 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ duration: 0.3, delay: 0.1 }}
+            {/* Optimized Content Area */}
+            <div className={`space-y-6 lg:space-y-8 flex flex-col justify-center items-start ${
+              currentService.imagePosition === 'right' ? 'lg:col-start-1 lg:row-start-1' : ''
+            }`}>
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeIndex}
+                  className="space-y-4 lg:space-y-6"
+                  variants={contentVariants}
+                  initial="hidden"
+                  animate="visible"
+                  exit="exit"
+                  transition={{ duration: 0.4, ease: "easeOut" }}
+                >
+                  <motion.h3
+                    className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-bold text-white leading-tight"
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.3, delay: 0.1 }}
+                  >
+                    {currentItem.title}
+                  </motion.h3>
+
+                  <motion.p
+                    className="text-sm sm:text-base lg:text-lg text-gray-300 leading-relaxed"
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.3, delay: 0.15 }}
+                  >
+                    {currentItem.description}
+                  </motion.p>
+
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.3, delay: 0.2 }}
+                  >
+                    <TechButton 
+                      href={`/services/${currentService.id === 'web-applications' ? 'web-design-and-development-edmonton' : currentService.id === 'marketing-solutions' ? 'digital-marketing-edmonton' : 'ai-integration-automation-edmonton'}`}
+                      className="inline-flex items-center"
+                      asButton={true}
+                    >
+                      Learn More
+                    </TechButton>
+                  </motion.div>
+                </motion.div>
+              </AnimatePresence>
+
+              {/* Simplified Progress Bar */}
+              <div className="hidden sm:flex items-center justify-center pt-4 sm:pt-8">
+                <div className="flex items-center gap-4 md:gap-8">
+                  <div className="relative flex items-center">
+                    <div className="absolute inset-0 h-1 bg-gray-800 rounded-full" />
+
+                    <div className="relative flex items-center gap-0.5">
+                      {allItems.map((_, index) => (
+                        <motion.button
+                          key={index}
+                          className="relative flex items-center justify-center"
+                          onClick={() => handleDotClick(index)}
+                          whileHover={{ scale: 1.1 }}
+                          whileTap={{ scale: 0.9 }}
+                          style={{ width: `${100 / allItems.length}px` }}
                         >
-                          {services[activeSection].items[activeIndexes[activeSection]].title}
-                        </motion.h3>
-
-                        <motion.p
-                          className="text-sm sm:text-base lg:text-lg text-gray-300 leading-relaxed"
-                          initial={{ opacity: 0, y: 10 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ duration: 0.3, delay: 0.15 }}
-                        >
-                          {services[activeSection].items[activeIndexes[activeSection]].description}
-                        </motion.p>
-
-                        <motion.div
-                          initial={{ opacity: 0, y: 10 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ duration: 0.3, delay: 0.2 }}
-                        >
-                          <TechButton 
-                            href={`/services/${services[activeSection].id === 'web-applications' ? 'web-design-and-development-edmonton' : services[activeSection].id === 'marketing-solutions' ? 'digital-marketing-edmonton' : 'ai-integration-automation-edmonton'}`}
-                            className="inline-flex items-center"
-                            asButton={true}
-                          >
-                            Learn More
-                          </TechButton>
-                        </motion.div>
-                      </motion.div>
-                    </AnimatePresence>
-
-                    {/* Progress Controls */}
-                    <div className="flex items-center justify-center pt-4 sm:pt-8 w-full">
-                      <div className="flex items-center gap-4 md:gap-8">
-                        <div className="relative flex items-center">
-                          <div className="absolute inset-0 h-1 bg-gray-800 rounded-full" />
-
-                          <div className="relative flex items-center gap-0.5">
-                            {services[activeSection].items.map((_, index) => (
-                              <motion.button
-                                key={index}
-                                className="relative flex items-center justify-center"
-                                onClick={() => handleDotClick(activeSection, index)}
-                                whileHover={{ scale: 1.1 }}
-                                whileTap={{ scale: 0.9 }}
-                                style={{ width: `${100 / services[activeSection].items.length}px` }}
-                              >
-                                <motion.div
-                                  className="h-1 rounded-full"
-                                  style={{ width: `${100 / services[activeSection].items.length - 2}px` }}
-                                  animate={{
-                                    backgroundColor: index <= activeIndexes[activeSection] ? "#FF5A00" : "#374151"
-                                  }}
-                                  transition={{ duration: 0.3 }}
-                                />
-
-                                {index === activeIndexes[activeSection] && (
-                                  <motion.div
-                                    className="absolute -top-3 w-3 h-3 border-2 border-maverick-orange bg-black rounded-full"
-                                    initial={{ scale: 0 }}
-                                    animate={{ scale: 1 }}
-                                    transition={{ duration: 0.2 }}
-                                  >
-                                    <div className="absolute inset-0.5 bg-maverick-orange rounded-full" />
-                                  </motion.div>
-                                )}
-                              </motion.button>
-                            ))}
-                          </div>
-
                           <motion.div
-                            className="absolute -bottom-6 left-0 text-xs text-gray-400 font-medium hidden sm:block"
-                            animate={{ 
-                              x: `${(activeIndexes[activeSection] / (services[activeSection].items.length - 1)) * 100}%`,
-                              translateX: "-50%"
+                            className="h-1 rounded-full"
+                            style={{ width: `${100 / allItems.length - 2}px` }}
+                            animate={{
+                              backgroundColor: index <= activeIndex ? "#FF5A00" : "#374151"
                             }}
                             transition={{ duration: 0.3 }}
-                          >
-                            {activeIndexes[activeSection] + 1} of {services[activeSection].items.length}
-                          </motion.div>
-                        </div>
+                          />
 
-                        <motion.button
-                          onClick={() => toggleAutoPlay(activeSection)}
-                          className="hidden lg:flex items-center gap-2 px-3 py-2 text-sm text-gray-400 hover:text-white transition-colors duration-200 min-h-[44px] whitespace-nowrap"
-                          whileHover={{ scale: 1.05 }}
-                          whileTap={{ scale: 0.95 }}
-                        >
-                          {isAutoPlaying[activeSection] ? (
-                            <>
-                              <Pause className="w-3 h-3 md:w-4 md:h-4" />
-                              <span className="hidden lg:inline">Auto-play ON</span>
-                            </>
-                          ) : (
-                            <>
-                              <Play className="w-3 h-3 md:w-4 md:h-4" />
-                              <span className="hidden lg:inline">Auto-play OFF</span>
-                            </>
+                          {index === activeIndex && (
+                            <motion.div
+                              className="absolute -top-3 w-3 h-3 border-2 border-maverick-orange bg-black rounded-full"
+                              initial={{ scale: 0 }}
+                              animate={{ scale: 1 }}
+                              transition={{ duration: 0.2 }}
+                            >
+                              <div className="absolute inset-0.5 bg-maverick-orange rounded-full" />
+                            </motion.div>
                           )}
                         </motion.button>
-                      </div>
+                      ))}
                     </div>
+
+                    <motion.div
+                      className="absolute -bottom-6 left-0 text-xs text-gray-400 font-medium hidden sm:block"
+                      animate={{ 
+                        x: `${(activeIndex / (allItems.length - 1)) * 100}%`,
+                        translateX: "-50%"
+                      }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      {activeIndex + 1} of {allItems.length}
+                    </motion.div>
                   </div>
+
+                  <motion.button
+                    onClick={toggleAutoPlay}
+                    className="hidden lg:flex items-center gap-2 px-3 py-2 text-sm text-gray-400 hover:text-white transition-colors duration-200 min-h-[44px] whitespace-nowrap"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    {isAutoPlaying ? (
+                      <>
+                        <Pause className="w-3 h-3 md:w-4 md:h-4" />
+                        <span className="hidden lg:inline">Auto-play ON</span>
+                      </>
+                    ) : (
+                      <>
+                        <Play className="w-3 h-3 md:w-4 md:h-4" />
+                        <span className="hidden lg:inline">Auto-play OFF</span>
+                      </>
+                    )}
+                  </motion.button>
                 </div>
-              </motion.div>
-            </AnimatePresence>
+              </div>
+            </div>
           </div>
-        </section>
+        </div>
       </div>
     </div>
   );
