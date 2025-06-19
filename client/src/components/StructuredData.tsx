@@ -62,8 +62,8 @@ export const localBusinessSchema = {
     "longitude": "-113.4909"
   },
   "url": "https://mavericksedge.ca",
-  "telephone": "+1-780-000-0000",
-  "email": "hello@mavericksedge.ca",
+  "telephone": "+1-250-883-8849",
+  "email": "info@mavericksedge.ca",
   "priceRange": "$$",
   "openingHours": "Mo-Fr 09:00-17:00",
   "serviceArea": {
@@ -113,7 +113,7 @@ export const webDevelopmentServiceSchema = {
   "offers": {
     "@type": "Offer",
     "availability": "https://schema.org/InStock",
-    "priceRange": "$2,500 - $25,000"
+    "priceRange": "$750 - $25,000"
   }
 };
 
@@ -134,7 +134,7 @@ export const marketingServiceSchema = {
   "offers": {
     "@type": "Offer",
     "availability": "https://schema.org/InStock",
-    "priceRange": "$1,500 - $15,000"
+    "priceRange": "$400 - $15,000"
   }
 };
 
@@ -155,7 +155,7 @@ export const aiServiceSchema = {
   "offers": {
     "@type": "Offer",
     "availability": "https://schema.org/InStock",
-    "priceRange": "$5,000 - $50,000"
+    "priceRange": "$1,000 - $50,000"
   }
 };
 

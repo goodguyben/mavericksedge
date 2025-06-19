@@ -548,7 +548,7 @@ export default function WebServices() {
                   </div>
                 </Link>
                 <a href="tel:+1-780-123-4567" className="maverick-button maverick-button-outline inline-flex items-center justify-center px-8 py-4 text-lg font-medium rounded-md">
-                  Call (780) 123-4567
+                  Call (250) 883-8849
                 </a>
               </div>
             </motion.div>
