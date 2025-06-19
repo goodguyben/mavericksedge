@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import PricingSection from "@/components/sections/PricingSection";
 import ContactSection from "@/components/sections/ContactSection";
 import SplitText from "@/components/ui/SplitText";
+import GradientText from "@/components/ui/GradientText";
 
 export default function Pricing() {
   return (
@@ -14,18 +15,25 @@ export default function Pricing() {
       <div className="pt-44 md:pt-48 pb-16 px-5 md:px-10 bg-[#121212]">
         <div className="container mx-auto pl-0 md:pl-8">
           <h1 className="text-5xl md:text-7xl font-bold mb-6">
-            <SplitText
-              text="Pricing"
-              className="text-5xl md:text-7xl font-bold"
-              delay={200}
-              duration={0.6}
-              ease="power3.out"
-              splitType="chars"
-              from={{ opacity: 0, y: 40 }}
-              to={{ opacity: 1, y: 0 }}
-              threshold={0.1}
-              rootMargin="-100px"
-            />
+            <span className="relative inline-block">
+              <GradientText
+                colors={["#ff5630", "#ffab00", "#ff5630", "#ffab00", "#ff5630"]}
+                animationSpeed={6}
+              >
+                <SplitText
+                  text="Pricing"
+                  className="inline-block"
+                  delay={400}
+                  duration={0.6}
+                  ease="power3.out"
+                  splitType="chars"
+                  from={{ opacity: 0, y: 40 }}
+                  to={{ opacity: 1, y: 0 }}
+                  threshold={0.1}
+                  rootMargin="-100px"
+                />
+              </GradientText>
+            </span>
           </h1>
           <div className="text-xl text-[#AAAAAA] max-w-3xl">
             <SplitText
@@ -44,7 +52,7 @@ export default function Pricing() {
           </div>
         </div>
       </div>
-      
+
       <PricingSection fullPage />
       <ContactSection />
     </motion.div>

@@ -2,6 +2,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
 import { Search, Settings, Paintbrush, Code, Shield, ArrowDown, CheckCircle, Lightbulb, Rocket, Target, Users, TrendingUp } from "lucide-react";
 import SplitText from "@/components/ui/SplitText";
+import GradientText from "@/components/ui/GradientText";
 
 const processSteps = [
   {
@@ -94,19 +95,24 @@ export default function ProcessSection() {
               threshold={0.1}
               rootMargin="-100px"
             />
-            <span className="text-maverick-orange">
-              <SplitText
-                text="Process"
-                className="inline-block"
-                delay={300}
-                duration={0.6}
-                ease="power3.out"
-                splitType="chars"
-                from={{ opacity: 0, y: 40 }}
-                to={{ opacity: 1, y: 0 }}
-                threshold={0.1}
-                rootMargin="-100px"
-              />
+            <span className="relative inline-block">
+              <GradientText
+                colors={["#ff5630", "#ffab00", "#ff5630", "#ffab00", "#ff5630"]}
+                animationSpeed={6}
+              >
+                <SplitText
+                  text="Process"
+                  className="inline-block"
+                  delay={300}
+                  duration={0.6}
+                  ease="power3.out"
+                  splitType="chars"
+                  from={{ opacity: 0, y: 40 }}
+                  to={{ opacity: 1, y: 0 }}
+                  threshold={0.1}
+                  rootMargin="-100px"
+                />
+              </GradientText>
             </span>
           </h2>
           <div className="text-[#AAAAAA] text-xl max-w-2xl mx-auto">
@@ -230,7 +236,7 @@ export default function ProcessSection() {
                   </div>
                 </motion.div>
 
-                
+
               </motion.div>
             ))}
           </div>

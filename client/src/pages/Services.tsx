@@ -7,6 +7,7 @@ import ContactSection from "@/components/sections/ContactSection";
 import SplitText from "@/components/ui/SplitText";
 import { Link } from "wouter";
 import { useEffect } from "react";
+import GradientText from "@/components/ui/GradientText";
 
 export default function Services() {
   // Track page view for analytics
@@ -69,14 +70,14 @@ export default function Services() {
         <meta name="description" content="Explore Mavericks Edge's comprehensive digital solutions including web development, marketing services, and AI integration for small businesses and nonprofits." />
         <link rel="canonical" href="https://mavericksedge.com/services" />
         <meta name="keywords" content="web development services, digital marketing solutions, AI integration, SMB services, nonprofit digital solutions" />
-        
+
         {/* Open Graph data */}
         <meta property="og:title" content="Services | Web Development, Marketing & AI Solutions | Mavericks Edge" />
         <meta property="og:description" content="Explore our comprehensive digital solutions including web development, marketing services, and AI integration for small businesses and nonprofits." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://mavericksedge.com/services" />
         <meta property="og:image" content="/images/logo-transparent-thumb4x.png" />
-        
+
         {/* Structured data for Service List */}
         <script type="application/ld+json">
           {`
@@ -131,7 +132,7 @@ export default function Services() {
           `}
         </script>
       </Helmet>
-      
+
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}

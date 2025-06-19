@@ -4,6 +4,7 @@ import ContactSection from "@/components/sections/ContactSection";
 import SplitText from "@/components/ui/SplitText";
 import { useEffect } from "react";
 import { contactInfo } from "@/lib/constants";
+import GradientText from "@/components/ui/GradientText";
 
 export default function Contact() {
   // Track page view for analytics
@@ -19,14 +20,14 @@ export default function Contact() {
         <meta name="description" content="Get in touch with Mavericks Edge to discuss your web design, digital marketing, or AI integration needs. Request a free consultation and take the first step toward transforming your online presence." />
         <link rel="canonical" href="https://mavericksedge.com/contact" />
         <meta name="keywords" content="contact digital agency, web design consultation, request quote, SMB digital solutions, affordable web services" />
-        
+
         {/* Open Graph data */}
         <meta property="og:title" content="Contact Mavericks Edge | Request a Free Consultation" />
         <meta property="og:description" content="Reach out to our team for a free consultation on your web design, digital marketing, or AI integration project. We're here to answer your questions and help you succeed online." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://mavericksedge.com/contact" />
         <meta property="og:image" content="/images/logo-transparent-thumb4x.png" />
-        
+
         {/* Structured data for LocalBusiness */}
         <script type="application/ld+json">
           {`
@@ -72,7 +73,7 @@ export default function Contact() {
           `}
         </script>
       </Helmet>
-      
+
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -83,10 +84,15 @@ export default function Contact() {
           <section className="pt-44 md:pt-48 pb-16 px-5 md:px-10 bg-[#121212]">
             <div className="container mx-auto pl-0 md:pl-8">
               <h1 className="text-5xl md:text-7xl font-bold mb-6">
+                Get in <span className="relative inline-block">
+              <GradientText
+                colors={["#ff5630", "#ffab00", "#ff5630", "#ffab00", "#ff5630"]}
+                animationSpeed={6}
+              >
                 <SplitText
-                  text="Get in Touch"
-                  className="text-5xl md:text-7xl font-bold"
-                  delay={200}
+                  text="Touch"
+                  className="inline-block"
+                  delay={400}
                   duration={0.6}
                   ease="power3.out"
                   splitType="chars"
@@ -95,7 +101,8 @@ export default function Contact() {
                   threshold={0.1}
                   rootMargin="-100px"
                 />
-              </h1>
+              </GradientText>
+</h1>
               <div className="text-3xl text-[#AAAAAA] max-w-3xl">
                 <SplitText
                   text="We'd love to know more about your goals and how we can design and build a solution that meets your needs."
@@ -113,7 +120,7 @@ export default function Contact() {
               </div>
             </div>
           </section>
-          
+
           <section itemScope itemType="https://schema.org/Organization">
             <meta itemProp="name" content="Mavericks Edge" />
             <ContactSection fullPage />
