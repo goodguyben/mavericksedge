@@ -110,7 +110,7 @@ const SplitText: React.FC<SplitTextProps> = ({
     <div 
       ref={ref} 
       className={`inline-block ${className}`}
-      style={{ textAlign }}
+      style={{ textAlign, whiteSpace: 'nowrap' }}
     >
       {textElements.map((element, index) => (
         <motion.span
