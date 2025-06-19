@@ -6,8 +6,6 @@ import {
   AnimatePresence,
 } from "framer-motion";
 import { useIsMobile } from "@/hooks/use-mobile";
-import SplitText from "@/components/ui/SplitText";
-import GradientText from "@/components/ui/GradientText";
 import {
   Code,
   PenTool,
@@ -176,52 +174,35 @@ export default function WhatWeDoSection() {
               </div>
             </motion.div>
 
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-              <SplitText
-                text="What We"
-                className="inline-block mr-4"
-                delay={200}
-                duration={0.6}
-                ease="power3.out"
-                splitType="chars"
-                from={{ opacity: 0, y: 40 }}
-                to={{ opacity: 1, y: 0 }}
-                threshold={0.1}
-                rootMargin="-100px"
-                preventWrap={true}
-              />
-              <span className="relative inline-block">
-                <GradientText
-                  colors={["#ff5630", "#ffab00", "#ff5630", "#ffab00", "#ff5630"]}
-                  animationSpeed={6}
-                >
-                  Do
-                </GradientText>
+            <motion.h2
+              className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+            >
+              What We{" "}
+              <span className="text-maverick-orange relative inline-block">
+                Do
                 <motion.span
                   className="absolute -bottom-2 left-0 w-full h-1 bg-maverick-orange"
                   initial={{ scaleX: 0, originX: 0 }}
                   whileInView={{ scaleX: 1 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.8 }}
+                  transition={{ duration: 0.6, delay: 0.5 }}
                 />
               </span>
-            </h2>
+            </motion.h2>
 
-            <div className="text-[#AAAAAA] text-xl max-w-3xl mx-auto">
-              <SplitText
-                text="We offer a range of services, from building and optimizing websites and e-commerce platforms to developing strategic marketing campaigns and integrating AI solutions for automation. Our goal is to provide customized, impactful solutions that drive results."
-                className="text-[#AAAAAA] text-xl"
-                delay={600}
-                duration={0.4}
-                ease="power3.out"
-                splitType="words"
-                from={{ opacity: 0, y: 20 }}
-                to={{ opacity: 1, y: 0 }}
-                threshold={0.1}
-                rootMargin="-100px"
-                stagger={0.03}
-              />
-            </div>
+            <motion.p
+              className="text-[#AAAAAA] text-xl max-w-3xl mx-auto"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+            >
+              We offer a range of services, from building and optimizing websites and e-commerce platforms to developing strategic marketing campaigns and integrating AI solutions for automation. Our goal is to provide customized, impactful solutions that drive results.
+            </motion.p>
           </motion.div>
         </header>
 

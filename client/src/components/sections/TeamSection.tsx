@@ -1,7 +1,5 @@
 import { motion } from "framer-motion";
 import TeamCard from "@/components/cards/TeamCard";
-import SplitText from "@/components/ui/SplitText";
-import GradientText from "./GradientText";
 
 interface TeamSectionProps {
   fullPage?: boolean;
@@ -43,44 +41,18 @@ export default function TeamSection({ fullPage = false }: TeamSectionProps) {
     <section id="about" className="py-24 px-5 md:px-10 bg-[#1E1E1E]">
       <div className="container mx-auto">
         {!fullPage && (
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">
-              <span className="relative inline-block">
-              <GradientText
-                colors={["#ff5630", "#ffab00", "#ff5630", "#ffab00", "#ff5630"]}
-                animationSpeed={6}
-              >
-                <SplitText
-                  text="Team"
-                  className="inline-block"
-                  delay={400}
-                  duration={0.6}
-                  ease="power3.out"
-                  splitType="chars"
-                  from={{ opacity: 0, y: 40 }}
-                  to={{ opacity: 1, y: 0 }}
-                  threshold={0.1}
-                  rootMargin="-100px"
-                />
-              </GradientText>
-            </span>
-            </h2>
-            <div className="text-[#AAAAAA] text-xl max-w-2xl mx-auto">
-              <SplitText
-                text="Meet the experts behind Mavericks Edge"
-                className="text-[#AAAAAA] text-xl"
-                delay={300}
-                duration={0.4}
-                ease="power3.out"
-                splitType="words"
-                from={{ opacity: 0, y: 20 }}
-                to={{ opacity: 1, y: 0 }}
-                threshold={0.1}
-                rootMargin="-100px"
-                stagger={0.03}
-              />
-            </div>
-          </div>
+          <motion.div 
+            className="text-center mb-16"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">Our Team</h2>
+            <p className="text-[#AAAAAA] text-xl max-w-2xl mx-auto">
+              Meet the experts behind Mavericks Edge
+            </p>
+          </motion.div>
         )}
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
