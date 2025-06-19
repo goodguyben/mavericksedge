@@ -161,9 +161,9 @@ export default function Header() {
                   >
                     <div className="py-2 bg-[#1A1A1A]/95 backdrop-blur-md border border-gray-800/50 rounded-lg shadow-xl" role="menu">
                       <Link 
-                        href="/services" 
+                        href="/services-edmonton-alberta" 
                         className={`block px-4 py-3 min-h-[44px] text-base touch-manipulation ${
-                          isCurrentPath('/services') ? 'text-maverick-orange bg-maverick-orange/10' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'
+                          isCurrentPath('/services-edmonton-alberta') ? 'text-maverick-orange bg-maverick-orange/10' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'
                         }`} 
                         role="menuitem"
                         onClick={() => setServicesDropdownOpen(false)}
@@ -171,9 +171,9 @@ export default function Header() {
                         All Services
                       </Link>
                       <Link 
-                        href="/services/web" 
+                        href="/web-design-services-edmonton" 
                         className={`block px-4 py-3 min-h-[44px] text-base touch-manipulation ${
-                          isCurrentPath('/services/web') ? 'text-maverick-orange bg-maverick-orange/10' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'
+                          isCurrentPath('/web-design-services-edmonton') ? 'text-maverick-orange bg-maverick-orange/10' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'
                         }`} 
                         role="menuitem"
                         onClick={() => setServicesDropdownOpen(false)}
@@ -181,9 +181,9 @@ export default function Header() {
                         Web Design & Development
                       </Link>
                       <Link 
-                        href="/services/marketing" 
+                        href="/digital-marketing-services-edmonton" 
                         className={`block px-4 py-3 min-h-[44px] text-base touch-manipulation ${
-                          isCurrentPath('/services/marketing') ? 'text-maverick-orange bg-maverick-orange/10' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'
+                          isCurrentPath('/digital-marketing-services-edmonton') ? 'text-maverick-orange bg-maverick-orange/10' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'
                         }`} 
                         role="menuitem"
                         onClick={() => setServicesDropdownOpen(false)}
@@ -191,9 +191,9 @@ export default function Header() {
                         Marketing & Creative
                       </Link>
                       <Link 
-                        href="/services/ai" 
+                        href="/ai-automation-services-edmonton" 
                         className={`block px-4 py-3 min-h-[44px] text-base touch-manipulation ${
-                          isCurrentPath('/services/ai') ? 'text-maverick-orange bg-maverick-orange/10' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'
+                          isCurrentPath('/ai-automation-services-edmonton') ? 'text-maverick-orange bg-maverick-orange/10' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'
                         }`} 
                         role="menuitem"
                         onClick={() => setServicesDropdownOpen(false)}
@@ -239,9 +239,9 @@ export default function Header() {
                   >
                     <div className="py-2 bg-[#1A1A1A]/95 backdrop-blur-md border border-gray-800/50 rounded-lg shadow-xl" role="menu">
                       <Link 
-                        href="/pricing" 
+                        href="/pricing-edmonton-web-design-marketing" 
                         className={`block px-4 py-3 min-h-[44px] text-base touch-manipulation ${
-                          isCurrentPath('/pricing') ? 'text-maverick-orange bg-maverick-orange/10' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'
+                          isCurrentPath('/pricing-edmonton-web-design-marketing') ? 'text-maverick-orange bg-maverick-orange/10' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'
                         }`} 
                         role="menuitem"
                         onClick={() => setPricingDropdownOpen(false)}
@@ -249,9 +249,9 @@ export default function Header() {
                         All Pricing Plans
                       </Link>
                       <Link 
-                        href="/pricing/web" 
+                        href="/web-design-pricing-edmonton" 
                         className={`block px-4 py-3 min-h-[44px] text-base touch-manipulation ${
-                          isCurrentPath('/pricing/web') ? 'text-maverick-orange bg-maverick-orange/10' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'
+                          isCurrentPath('/web-design-pricing-edmonton') ? 'text-maverick-orange bg-maverick-orange/10' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'
                         }`} 
                         role="menuitem"
                         onClick={() => setPricingDropdownOpen(false)}
@@ -259,9 +259,9 @@ export default function Header() {
                         Web Design & Development
                       </Link>
                       <Link 
-                        href="/pricing/marketing" 
+                        href="/digital-marketing-pricing-edmonton" 
                         className={`block px-4 py-3 min-h-[44px] text-base touch-manipulation ${
-                          isCurrentPath('/pricing/marketing') ? 'text-maverick-orange bg-maverick-orange/10' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'
+                          isCurrentPath('/digital-marketing-pricing-edmonton') ? 'text-maverick-orange bg-maverick-orange/10' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'
                         }`} 
                         role="menuitem"
                         onClick={() => setPricingDropdownOpen(false)}
@@ -269,9 +269,9 @@ export default function Header() {
                         Marketing & Creative
                       </Link>
                       <Link 
-                        href="/pricing/ai" 
+                        href="/ai-automation-pricing-edmonton" 
                         className={`block px-4 py-3 min-h-[44px] text-base touch-manipulation ${
-                          isCurrentPath('/pricing/ai') ? 'text-maverick-orange bg-maverick-orange/10' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'
+                          isCurrentPath('/ai-automation-pricing-edmonton') ? 'text-maverick-orange bg-maverick-orange/10' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'
                         }`} 
                         role="menuitem"
                         onClick={() => setPricingDropdownOpen(false)}
@@ -291,11 +291,11 @@ export default function Header() {
                 transition={{ duration: 0.2 }}
               >
                 <Link 
-                  href="/about" 
+                  href="/about-edmonton-web-design-company" 
                   className={`px-3 py-2 min-h-[44px] rounded-md text-base font-medium transition-colors duration-200 touch-manipulation flex items-center ${
-                    isCurrentPath('/about') ? 'text-maverick-orange' : 'text-white hover:text-maverick-orange'
+                    isCurrentPath('/about-edmonton-web-design-company') ? 'text-maverick-orange' : 'text-white hover:text-maverick-orange'
                   }`} 
-                  aria-current={isCurrentPath('/about') ? 'page' : undefined}
+                  aria-current={isCurrentPath('/about-edmonton-web-design-company') ? 'page' : undefined}
                 >
                   About
                 </Link>
@@ -308,11 +308,11 @@ export default function Header() {
                 transition={{ duration: 0.2 }}
               >
                 <Link 
-                  href="/contact" 
+                  href="/contact-edmonton-web-design" 
                   className={`px-3 py-2 min-h-[44px] rounded-md text-base font-medium transition-colors duration-200 touch-manipulation flex items-center ${
-                    isCurrentPath('/contact') ? 'text-maverick-orange' : 'text-white hover:text-maverick-orange'
+                    isCurrentPath('/contact-edmonton-web-design') ? 'text-maverick-orange' : 'text-white hover:text-maverick-orange'
                   }`} 
-                  aria-current={isCurrentPath('/contact') ? 'page' : undefined}
+                  aria-current={isCurrentPath('/contact-edmonton-web-design') ? 'page' : undefined}
                 >
                   Contact
                 </Link>
@@ -447,9 +447,9 @@ export default function Header() {
                           className="ml-6 space-y-1 overflow-hidden border-l border-white/10 pl-4"
                         >
                           <Link 
-                            href="/services" 
+                            href="/services-edmonton-alberta" 
                             className={`block px-4 py-3 rounded-lg min-h-[44px] touch-manipulation transition-all duration-200 ${
-                              isCurrentPath('/services') 
+                              isCurrentPath('/services-edmonton-alberta') 
                                 ? 'text-maverick-orange bg-maverick-orange/10 border border-maverick-orange/20' 
                                 : 'text-gray-300 hover:bg-white/5 hover:text-white border border-transparent'
                             }`}
@@ -458,9 +458,9 @@ export default function Header() {
                             <span className="text-base font-medium">All Services</span>
                           </Link>
                           <Link 
-                            href="/services/web" 
+                            href="/web-design-services-edmonton" 
                             className={`block px-4 py-3 rounded-lg min-h-[44px] touch-manipulation transition-all duration-200 ${
-                              isCurrentPath('/services/web') 
+                              isCurrentPath('/web-design-services-edmonton') 
                                 ? 'text-maverick-orange bg-maverick-orange/10 border border-maverick-orange/20' 
                                 : 'text-gray-300 hover:bg-white/5 hover:text-white border border-transparent'
                             }`}
@@ -469,9 +469,9 @@ export default function Header() {
                             <span className="text-base font-medium">Web Design & Development</span>
                           </Link>
                           <Link 
-                            href="/services/marketing" 
+                            href="/digital-marketing-services-edmonton" 
                             className={`block px-4 py-3 rounded-lg min-h-[44px] touch-manipulation transition-all duration-200 ${
-                              isCurrentPath('/services/marketing') 
+                              isCurrentPath('/digital-marketing-services-edmonton') 
                                 ? 'text-maverick-orange bg-maverick-orange/10 border border-maverick-orange/20' 
                                 : 'text-gray-300 hover:bg-white/5 hover:text-white border border-transparent'
                             }`}
@@ -480,9 +480,9 @@ export default function Header() {
                             <span className="text-base font-medium">Marketing & Creative</span>
                           </Link>
                           <Link 
-                            href="/services/ai" 
+                            href="/ai-automation-services-edmonton" 
                             className={`block px-4 py-3 rounded-lg min-h-[44px] touch-manipulation transition-all duration-200 ${
-                              isCurrentPath('/services/ai') 
+                              isCurrentPath('/ai-automation-services-edmonton') 
                                 ? 'text-maverick-orange bg-maverick-orange/10 border border-maverick-orange/20' 
                                 : 'text-gray-300 hover:bg-white/5 hover:text-white border border-transparent'
                             }`}
@@ -517,9 +517,9 @@ export default function Header() {
                           className="ml-6 space-y-1 overflow-hidden border-l border-white/10 pl-4"
                         >
                           <Link 
-                            href="/pricing" 
+                            href="/pricing-edmonton-web-design-marketing" 
                             className={`block px-4 py-3 rounded-lg min-h-[44px] touch-manipulation transition-all duration-200 ${
-                              isCurrentPath('/pricing') 
+                              isCurrentPath('/pricing-edmonton-web-design-marketing') 
                                 ? 'text-maverick-orange bg-maverick-orange/10 border border-maverick-orange/20' 
                                 : 'text-gray-300 hover:bg-white/5 hover:text-white border border-transparent'
                             }`}
@@ -528,9 +528,9 @@ export default function Header() {
                             <span className="text-base font-medium">All Pricing Plans</span>
                           </Link>
                           <Link 
-                            href="/pricing/web" 
+                            href="/web-design-pricing-edmonton" 
                             className={`block px-4 py-3 rounded-lg min-h-[44px] touch-manipulation transition-all duration-200 ${
-                              isCurrentPath('/pricing/web') 
+                              isCurrentPath('/web-design-pricing-edmonton') 
                                 ? 'text-maverick-orange bg-maverick-orange/10 border border-maverick-orange/20' 
                                 : 'text-gray-300 hover:bg-white/5 hover:text-white border border-transparent'
                             }`}
@@ -539,9 +539,9 @@ export default function Header() {
                             <span className="text-base font-medium">Web Design & Development</span>
                           </Link>
                           <Link 
-                            href="/pricing/marketing" 
+                            href="/digital-marketing-pricing-edmonton" 
                             className={`block px-4 py-3 rounded-lg min-h-[44px] touch-manipulation transition-all duration-200 ${
-                              isCurrentPath('/pricing/marketing') 
+                              isCurrentPath('/digital-marketing-pricing-edmonton') 
                                 ? 'text-maverick-orange bg-maverick-orange/10 border border-maverick-orange/20' 
                                 : 'text-gray-300 hover:bg-white/5 hover:text-white border border-transparent'
                             }`}
@@ -550,9 +550,9 @@ export default function Header() {
                             <span className="text-base font-medium">Marketing & Creative</span>
                           </Link>
                           <Link 
-                            href="/pricing/ai" 
+                            href="/ai-automation-pricing-edmonton" 
                             className={`block px-4 py-3 rounded-lg min-h-[44px] touch-manipulation transition-all duration-200 ${
-                              isCurrentPath('/pricing/ai') 
+                              isCurrentPath('/ai-automation-pricing-edmonton') 
                                 ? 'text-maverick-orange bg-maverick-orange/10 border border-maverick-orange/20' 
                                 : 'text-gray-300 hover:bg-white/5 hover:text-white border border-transparent'
                             }`}
@@ -566,15 +566,15 @@ export default function Header() {
                   </div>
 
                   <Link 
-                    href="/about" 
+                    href="/about-edmonton-web-design-company" 
                     className={`group flex items-center px-4 py-4 rounded-xl min-h-[56px] touch-manipulation transition-all duration-300 relative overflow-hidden ${
-                      isCurrentPath('/about') 
+                      isCurrentPath('/about-edmonton-web-design-company') 
                         ? 'text-maverick-orange bg-gradient-to-r from-maverick-orange/15 to-yellow-500/10 border border-maverick-orange/20' 
                         : 'text-white hover:bg-white/8 hover:text-maverick-orange border border-transparent hover:border-white/10'
                     }`}
                     onClick={closeMobileMenu}
                   >
-                    {isCurrentPath('/about') && (
+                    {isCurrentPath('/about-edmonton-web-design-company') && (
                       <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-maverick-orange to-yellow-500 rounded-r-full"></div>
                     )}
                     <span className="text-lg font-semibold relative z-10">About</span>
@@ -582,15 +582,15 @@ export default function Header() {
                   </Link>
 
                   <Link 
-                    href="/contact" 
+                    href="/contact-edmonton-web-design" 
                     className={`group flex items-center px-4 py-4 rounded-xl min-h-[56px] touch-manipulation transition-all duration-300 relative overflow-hidden ${
-                      isCurrentPath('/contact') 
+                      isCurrentPath('/contact-edmonton-web-design') 
                         ? 'text-maverick-orange bg-gradient-to-r from-maverick-orange/15 to-yellow-500/10 border border-maverick-orange/20' 
                         : 'text-white hover:bg-white/8 hover:text-maverick-orange border border-transparent hover:border-white/10'
                     }`}
                     onClick={closeMobileMenu}
                   >
-                    {isCurrentPath('/contact') && (
+                    {isCurrentPath('/contact-edmonton-web-design') && (
                       <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-maverick-orange to-yellow-500 rounded-r-full"></div>
                     )}
                     <span className="text-lg font-semibold relative z-10">Contact</span>

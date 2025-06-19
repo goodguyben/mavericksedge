@@ -16,8 +16,8 @@ export default function WebServices() {
 
   const breadcrumbs = [
     { name: "Home", url: "https://mavericksedge.ca/" },
-    { name: "Services", url: "https://mavericksedge.ca/services" },
-    { name: "Web Development", url: "https://mavericksedge.ca/services/web" }
+    { name: "Services", url: "https://mavericksedge.ca/services-edmonton-alberta" },
+    { name: "Web Development", url: "https://mavericksedge.ca/web-design-services-edmonton" }
   ];
   const services = [
     {
@@ -78,7 +78,7 @@ export default function WebServices() {
         title="Web Development Services Edmonton | Custom Website Design | Mavericks Edge"
         description="Professional web design and development services in Edmonton, Alberta. Custom websites, e-commerce solutions, and web applications for SMBs and nonprofits."
         keywords="Edmonton web development, custom website design Edmonton, web development services Alberta, responsive web design Edmonton, e-commerce development Edmonton, CMS development Alberta"
-        canonicalUrl="https://mavericksedge.ca/services/web"
+        canonicalUrl="https://mavericksedge.ca/web-design-services-edmonton"
         ogTitle="Web Development Services Edmonton | Custom Website Design | Mavericks Edge"
         ogDescription="Professional web design and development services in Edmonton, Alberta. Custom websites, e-commerce solutions, and web applications for SMBs and nonprofits."
         ogImage="https://mavericksedge.ca/logo.png"
@@ -103,7 +103,7 @@ export default function WebServices() {
               <p className="text-xl text-[#AAAAAA] max-w-3xl mb-8">
                 Elevate your online presence with our comprehensive web development and digital solutions tailored specifically for SMBs and nonprofits.
               </p>
-              <Link href="/contact">
+              <Link href="/contact-edmonton-web-design">
                 <a className="maverick-button maverick-button-primary inline-flex items-center justify-center px-8 py-3 text-base font-medium rounded-md md:py-4 md:text-lg md:px-10">
                   Get a free consultation
                 </a>
@@ -294,7 +294,7 @@ export default function WebServices() {
           </div>
           
           <div className="mt-12 text-center">
-            <Link href="/work">
+            <Link href="/portfolio-edmonton-web-design">
               <a className="maverick-button maverick-button-outline inline-flex items-center justify-center px-6 py-2 text-base font-medium rounded-md md:py-3 md:text-lg md:px-8">
                 View all projects
               </a>

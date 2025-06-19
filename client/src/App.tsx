@@ -62,37 +62,37 @@ export default function App() {
               <Route path="/">
                 <Home />
               </Route>
-              <Route path="/services">
+              <Route path="/services-edmonton-alberta">
                 <Services />
               </Route>
-              <Route path="/services/web">
+              <Route path="/web-design-services-edmonton">
                 <WebServices />
               </Route>
-              <Route path="/services/marketing">
+              <Route path="/digital-marketing-services-edmonton">
                 <MarketingServices />
               </Route>
-              <Route path="/services/ai">
+              <Route path="/ai-automation-services-edmonton">
                 <AIServices />
               </Route>
-              <Route path="/pricing">
+              <Route path="/pricing-edmonton-web-design-marketing">
                 <Pricing />
               </Route>
-              <Route path="/pricing/web">
+              <Route path="/web-design-pricing-edmonton">
                 <WebPricing />
               </Route>
-              <Route path="/pricing/marketing">
+              <Route path="/digital-marketing-pricing-edmonton">
                 <MarketingPricing />
               </Route>
-              <Route path="/pricing/ai">
+              <Route path="/ai-automation-pricing-edmonton">
                 <AIPricing />
               </Route>
-              <Route path="/work">
+              <Route path="/portfolio-edmonton-web-design">
                 <Work />
               </Route>
-              <Route path="/about">
+              <Route path="/about-edmonton-web-design-company">
                 <About />
               </Route>
-              <Route path="/contact">
+              <Route path="/contact-edmonton-web-design">
                 <Contact />
               </Route>
               {/* Private route without header/footer */}

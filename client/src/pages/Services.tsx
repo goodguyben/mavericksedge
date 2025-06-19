@@ -18,7 +18,7 @@ export default function Services() {
       title: "Web & Digital Solutions",
       description: "Custom websites, web applications, and digital platforms tailored to your unique business needs",
       icon: <Monitor className="h-12 w-12 text-maverick-orange" />,
-      linkHref: "/services/web",
+      linkHref: "/web-design-services-edmonton",
       subServices: [
         "Custom Website Design & Development",
         "CMS Development & Customization",
@@ -33,7 +33,7 @@ export default function Services() {
       title: "Marketing & Creative Services",
       description: "Strategic marketing solutions to boost your brand visibility and drive engagement",
       icon: <PieChart className="h-12 w-12 text-maverick-orange" />,
-      linkHref: "/services/marketing",
+      linkHref: "/digital-marketing-services-edmonton",
       subServices: [
         "Digital Marketing Strategy",
         "Brand & Identity Development",
@@ -48,7 +48,7 @@ export default function Services() {
       title: "AI Integration & Automation",
       description: "Harness the power of artificial intelligence to streamline operations and enhance customer experiences",
       icon: <Zap className="h-12 w-12 text-maverick-orange" />,
-      linkHref: "/services/ai",
+      linkHref: "/ai-automation-services-edmonton",
       subServices: [
         "AI Readiness Assessment",
         "Custom AI Integration Roadmap",
