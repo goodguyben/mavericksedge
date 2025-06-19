@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { ChevronDown } from "lucide-react";
 import { scrollToSection } from "@/lib/scroll";
 import { Button } from "@/components/ui/custom-button";
-
+import GradientText from "./GradientText";
 
 export default function Hero() {
   const [scrolled, setScrolled] = useState(false);
@@ -84,7 +84,7 @@ export default function Hero() {
                   transition={{ duration: 0.7, delay: 0.8 }}
                   className="mr-2"
                 >
-                  resilience
+                  <GradientText colors={["#F15A29", "#E57B00", "#FF6B35", "#F15A29"]}>resilience</GradientText>
                 </motion.span>
                 <motion.span 
                   className="absolute -bottom-1 left-0 h-1 bg-maverick-orange"
