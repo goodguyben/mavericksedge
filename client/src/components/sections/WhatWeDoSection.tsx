@@ -21,7 +21,6 @@ import {
   Play,
   Pause,
 } from "lucide-react";
-import GradientText from "../ui/GradientText";
 
 export default function WhatWeDoSection() {
   const isMobile = useIsMobile();
@@ -183,10 +182,8 @@ export default function WhatWeDoSection() {
               transition={{ duration: 0.5, delay: 0.2 }}
             >
               What We{" "}
-              <span className="relative inline-block">
-                <GradientText colors={["#FF5A00", "#FFA030", "#FF8C00", "#FFC060"]}>
-                  Do
-                </GradientText>
+              <span className="text-maverick-orange relative inline-block">
+                Do
                 <motion.span
                   className="absolute -bottom-2 left-0 w-full h-1 bg-maverick-orange"
                   initial={{ scaleX: 0, originX: 0 }}

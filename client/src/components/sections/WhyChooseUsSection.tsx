@@ -1,7 +1,6 @@
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { Zap, Heart, FlaskConical, BookOpen, SmileIcon, Users, Sparkles, ArrowRight } from "lucide-react";
 import { useRef, useState } from "react";
-import GradientText from "../ui/GradientText";
 
 export default function WhyChooseUsSection() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -152,9 +151,9 @@ export default function WhyChooseUsSection() {
             transition={{ duration: 1, delay: 0.3 }}
           >
             Why Choose{" "}
-            <GradientText colors={["#FF5A00", "#FFA030", "#FF8C00", "#FFC060"]}>
+            <span className="text-maverick-orange">
               Mavericks Edge
-            </GradientText>
+            </span>
           </motion.h2>
 
           <motion.p 

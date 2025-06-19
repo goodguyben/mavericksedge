@@ -1,3 +1,4 @@
+
 /* Button styles */
 .maverick-button {
   display: inline-flex;
@@ -13,12 +14,14 @@
 
 /* Primary button */
 .maverick-button-primary {
-  background: linear-gradient(90deg, #FF5A00, #FFA030, #FF8C00, #FFC060);
-  background-size: 200% auto;
-  color: white;
-  font-weight: 600;
+  background: linear-gradient(90deg, #E04500 0%, #E57B00 100%);
+  color: #FFFFFF !important; /* Force white text */
+  border: none;
+  border-radius: 9999px; /* Full rounded like non-orange buttons */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   transition: all 0.3s ease;
-  animation: gradient 3s ease infinite;
 }
 
 .maverick-button-primary:hover {
@@ -77,21 +80,8 @@
 }
 
 /* Disabled state for all buttons */
-.maverick-button:disabled,
 .maverick-button-disabled {
   opacity: 0.5;
   cursor: not-allowed;
   pointer-events: none;
-}
-
-@keyframes gradient {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
 }

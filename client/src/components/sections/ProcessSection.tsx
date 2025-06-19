@@ -1,7 +1,6 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
 import { Search, Settings, Paintbrush, Code, Shield, ArrowDown, CheckCircle, Lightbulb, Rocket, Target, Users, TrendingUp } from "lucide-react";
-import GradientText from "../ui/GradientText";
 
 const processSteps = [
   {
@@ -88,7 +87,7 @@ export default function ProcessSection() {
           transition={{ duration: 0.5 }}
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-4 font-heading">
-            Our <GradientText colors={["#FF5A00", "#FFA030", "#FF8C00", "#FFC060"]}><span>Process</span></GradientText>
+            Our <span className="text-maverick-orange">Process</span>
           </h2>
           <p className="text-[#AAAAAA] text-xl max-w-2xl mx-auto">
             A collaborative approach to delivering exceptional results for your business
