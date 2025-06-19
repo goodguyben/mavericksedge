@@ -226,14 +226,7 @@ export function generateWebsiteStructuredData() {
     "name": "Mavericks Edge",
     "alternateName": "Mavericks Edge Digital Solutions",
     "url": "https://mavericksedge.ca",
-    "potentialAction": {
-      "@type": "SearchAction",
-      "target": {
-        "@type": "EntryPoint",
-        "urlTemplate": "https://mavericksedge.ca/search?q={search_term_string}"
-      },
-      "query-input": "required name=search_term_string"
-    },
+    
     "sameAs": [
       "https://www.facebook.com/mavericksedge",
       "https://www.linkedin.com/company/mavericksedge",
