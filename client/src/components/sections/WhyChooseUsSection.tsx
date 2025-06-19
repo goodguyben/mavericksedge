@@ -1,7 +1,7 @@
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { Zap, Heart, FlaskConical, BookOpen, SmileIcon, Users, Sparkles, ArrowRight } from "lucide-react";
 import { useRef, useState } from "react";
-import GradientText from "@/components/ui/GradientText";
+import SplitText from "@/components/ui/SplitText";
 
 export default function WhyChooseUsSection() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -145,14 +145,48 @@ export default function WhyChooseUsSection() {
           </motion.div>
 
           <h2 className="text-4xl md:text-5xl font-bold mb-8 leading-tight">
-            Why Choose
+            <SplitText
+              text="Why Choose"
+              className="inline-block mr-4"
+              delay={300}
+              duration={0.6}
+              ease="power3.out"
+              splitType="chars"
+              from={{ opacity: 0, y: 40 }}
+              to={{ opacity: 1, y: 0 }}
+              threshold={0.1}
+              rootMargin="-100px"
+            />
             <span className="text-maverick-orange">
-              Mavericks Edge
+              <SplitText
+                text="Mavericks Edge"
+                className="inline-block"
+                delay={500}
+                duration={0.6}
+                ease="power3.out"
+                splitType="chars"
+                from={{ opacity: 0, y: 40 }}
+                to={{ opacity: 1, y: 0 }}
+                threshold={0.1}
+                rootMargin="-100px"
+              />
             </span>
           </h2>
 
           <div className="text-gray-300 text-lg md:text-xl max-w-4xl mx-auto leading-relaxed">
-            We partner with passionate people building meaningful work — SMBs, nonprofits, and early-stage teams doing a lot with a little. We get it: every dollar matters. That's why our services are flexible, transparent, and built around long-term sustainability.
+            <SplitText
+              text="We partner with passionate people building meaningful work — SMBs, nonprofits, and early-stage teams doing a lot with a little. We get it: every dollar matters. That's why our services are flexible, transparent, and built around long-term sustainability."
+              className="text-gray-300 text-lg md:text-xl"
+              delay={700}
+              duration={0.4}
+              ease="power3.out"
+              splitType="words"
+              from={{ opacity: 0, y: 20 }}
+              to={{ opacity: 1, y: 0 }}
+              threshold={0.1}
+              rootMargin="-100px"
+              stagger={0.03}
+            />
           </div>
         </motion.div>
 

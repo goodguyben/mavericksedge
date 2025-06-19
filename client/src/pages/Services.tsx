@@ -4,9 +4,9 @@ import { Code, Monitor, PieChart, Zap, BarChart2, PenTool, Calendar, Brain, Data
 import ServicesSection from "@/components/sections/ServicesSection";
 import ProcessSection from "@/components/sections/ProcessSection";
 import ContactSection from "@/components/sections/ContactSection";
+import SplitText from "@/components/ui/SplitText";
 import { Link } from "wouter";
 import { useEffect } from "react";
-import GradientText from "@/components/ui/GradientText";
 
 export default function Services() {
   // Track page view for analytics
@@ -69,14 +69,14 @@ export default function Services() {
         <meta name="description" content="Explore Mavericks Edge's comprehensive digital solutions including web development, marketing services, and AI integration for small businesses and nonprofits." />
         <link rel="canonical" href="https://mavericksedge.com/services" />
         <meta name="keywords" content="web development services, digital marketing solutions, AI integration, SMB services, nonprofit digital solutions" />
-
+        
         {/* Open Graph data */}
         <meta property="og:title" content="Services | Web Development, Marketing & AI Solutions | Mavericks Edge" />
         <meta property="og:description" content="Explore our comprehensive digital solutions including web development, marketing services, and AI integration for small businesses and nonprofits." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://mavericksedge.com/services" />
         <meta property="og:image" content="/images/logo-transparent-thumb4x.png" />
-
+        
         {/* Structured data for Service List */}
         <script type="application/ld+json">
           {`
@@ -131,7 +131,7 @@ export default function Services() {
           `}
         </script>
       </Helmet>
-
+      
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -142,10 +142,33 @@ export default function Services() {
         <div className="container mx-auto">
           <div className="max-w-3xl">
             <h1 className="text-5xl md:text-7xl font-bold mb-6 font-heading">
-              Our Services
+              <SplitText
+                text="Our Services"
+                className="text-5xl md:text-7xl font-bold font-heading"
+                delay={200}
+                duration={0.6}
+                ease="power3.out"
+                splitType="chars"
+                from={{ opacity: 0, y: 40 }}
+                to={{ opacity: 1, y: 0 }}
+                threshold={0.1}
+                rootMargin="-100px"
+              />
             </h1>
             <div className="text-xl text-[#AAAAAA] max-w-3xl">
-              Comprehensive digital solutions designed to help your business thrive in the digital landscape. From web development to marketing and AI integration, we've got you covered.
+              <SplitText
+                text="Comprehensive digital solutions designed to help your business thrive in the digital landscape. From web development to marketing and AI integration, we've got you covered."
+                className="text-xl text-[#AAAAAA]"
+                delay={500}
+                duration={0.4}
+                ease="power3.out"
+                splitType="words"
+                from={{ opacity: 0, y: 20 }}
+                to={{ opacity: 1, y: 0 }}
+                threshold={0.1}
+                rootMargin="-100px"
+                stagger={0.03}
+              />
             </div>
           </div>
         </div>
@@ -171,7 +194,18 @@ export default function Services() {
                     {category.icon}
                   </div>
                   <h2 className="text-3xl md:text-4xl font-bold font-heading">
-              {category.title}
+              <SplitText
+                text={category.title}
+                className="text-3xl md:text-4xl font-bold font-heading"
+                delay={300}
+                duration={0.6}
+                ease="power3.out"
+                splitType="chars"
+                from={{ opacity: 0, y: 30 }}
+                to={{ opacity: 1, y: 0 }}
+                threshold={0.1}
+                rootMargin="-100px"
+              />
             </h2>
                 </div>
                 <p className="text-lg text-[#AAAAAA] mb-6">{category.description}</p>
@@ -235,10 +269,33 @@ export default function Services() {
             transition={{ duration: 0.5 }}
           >
             <h2 className="text-4xl md:text-5xl font-bold mb-4 font-heading">
-              Industries We Serve
+              <SplitText
+                text="Industries We Serve"
+                className="text-4xl md:text-5xl font-bold font-heading"
+                delay={200}
+                duration={0.6}
+                ease="power3.out"
+                splitType="chars"
+                from={{ opacity: 0, y: 40 }}
+                to={{ opacity: 1, y: 0 }}
+                threshold={0.1}
+                rootMargin="-100px"
+              />
             </h2>
             <div className="text-[#AAAAAA] text-xl max-w-2xl mx-auto">
-              We specialize in providing digital solutions for various industries, with a focus on SMBs and nonprofits
+              <SplitText
+                text="We specialize in providing digital solutions for various industries, with a focus on SMBs and nonprofits"
+                className="text-[#AAAAAA] text-xl"
+                delay={500}
+                duration={0.4}
+                ease="power3.out"
+                splitType="words"
+                from={{ opacity: 0, y: 20 }}
+                to={{ opacity: 1, y: 0 }}
+                threshold={0.1}
+                rootMargin="-100px"
+                stagger={0.03}
+              />
             </div>
           </motion.div>
 
