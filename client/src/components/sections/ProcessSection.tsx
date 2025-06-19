@@ -89,7 +89,7 @@ export default function ProcessSection() {
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-4 font-heading">
             Our <GradientText 
-              colors={["#E65F34", "#FF5630", "#FFB899", "#E65F34"]}
+              colors={["#FF5630", "#FF8A50", "#FFB899", "#FF5630"]}
               animationSpeed={5}
             >
               Process

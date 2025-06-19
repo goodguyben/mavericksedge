@@ -131,10 +131,7 @@ export default function WhatWeDoSection() {
     return () => clearInterval(interval);
   }, [activeService, services, isAutoPlaying]);
 
-  import ScrollReveal from '@/components/ui/ScrollReveal';
-import TextReveal from '@/components/ui/TextReveal';
-
-return (
+  return (
     <section
       ref={sectionRef}
       className="py-28 md:py-32 px-5 md:px-10 bg-[#121212] relative overflow-hidden"
@@ -188,7 +185,7 @@ return (
               What We{" "}
               <span className="relative inline-block">
                 <GradientText 
-                  colors={["#E65F34", "#FF5630", "#FFB899", "#E65F34"]}
+                  colors={["#FF5630", "#FF8A50", "#FFB899", "#FF5630"]}
                   animationSpeed={5}
                 >
                   Do

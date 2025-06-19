@@ -6,7 +6,6 @@ import ProcessSection from "@/components/sections/ProcessSection";
 import ContactSection from "@/components/sections/ContactSection";
 import { Link } from "wouter";
 import { useEffect } from "react";
-import ScrollReveal from "@/components/ui/ScrollReveal";
 
 export default function Services() {
   // Track page view for analytics
@@ -69,14 +68,14 @@ export default function Services() {
         <meta name="description" content="Explore Mavericks Edge's comprehensive digital solutions including web development, marketing services, and AI integration for small businesses and nonprofits." />
         <link rel="canonical" href="https://mavericksedge.com/services" />
         <meta name="keywords" content="web development services, digital marketing solutions, AI integration, SMB services, nonprofit digital solutions" />
-
+        
         {/* Open Graph data */}
         <meta property="og:title" content="Services | Web Development, Marketing & AI Solutions | Mavericks Edge" />
         <meta property="og:description" content="Explore our comprehensive digital solutions including web development, marketing services, and AI integration for small businesses and nonprofits." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://mavericksedge.com/services" />
         <meta property="og:image" content="/images/logo-transparent-thumb4x.png" />
-
+        
         {/* Structured data for Service List */}
         <script type="application/ld+json">
           {`
@@ -131,7 +130,7 @@ export default function Services() {
           `}
         </script>
       </Helmet>
-
+      
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -140,7 +139,6 @@ export default function Services() {
       >
       <div className="pt-44 md:pt-48 pb-16 px-5 md:px-10 bg-[#121212]">
         <div className="container mx-auto">
-          <ScrollReveal>
           <div className="max-w-3xl">
             <h1 className="text-5xl md:text-7xl font-bold mb-6 font-heading">Our Services</h1>
             <p className="text-xl text-[#AAAAAA] max-w-3xl">
@@ -148,7 +146,6 @@ export default function Services() {
               From web development to marketing and AI integration, we've got you covered.
             </p>
           </div>
-          </ScrollReveal>
         </div>
       </div>
 
@@ -167,7 +164,6 @@ export default function Services() {
               }`}
             >
               <div className={index % 2 === 1 ? 'order-1 lg:order-2' : ''}>
-                 <ScrollReveal>
                 <div className="flex items-center mb-6">
                   <div className="p-4 bg-maverick-orange bg-opacity-10 rounded-lg mr-6">
                     {category.icon}
@@ -199,7 +195,6 @@ export default function Services() {
                 >
                   Learn more about {category.title}
                 </motion.button>
-                </ScrollReveal>
               </div>
               <div className={`relative ${index % 2 === 1 ? 'order-2 lg:order-1' : ''}`}>
                 <div className="bg-[#121212] p-1 rounded-lg border border-gray-800">
@@ -228,7 +223,6 @@ export default function Services() {
       {/* Industries Section */}
       <section className="py-24 px-5 md:px-10 bg-[#1E1E1E]">
         <div className="container mx-auto">
-           <ScrollReveal>
           <motion.div 
             className="text-center mb-16"
             initial={{ opacity: 0, y: 20 }}
@@ -241,7 +235,6 @@ export default function Services() {
               We specialize in providing digital solutions for various industries, with a focus on SMBs and nonprofits
             </p>
           </motion.div>
-          </ScrollReveal>
 
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {[
@@ -262,7 +255,7 @@ export default function Services() {
                 transition={{ duration: 0.3, delay: index * 0.05 }}
                 className="bg-[#121212] p-6 rounded-lg border border-gray-800 hover:border-maverick-orange transition-all duration-300 text-center"
               >
-                <ScrollReveal><span className="text-lg font-medium">{industry}</span></ScrollReveal>
+                <span className="text-lg font-medium">{industry}</span>
               </motion.div>
             ))}
           </div>

@@ -11,7 +11,6 @@ import ProcessSection from '../components/sections/ProcessSection';
 import ScrollFadeSection from '../components/ui/scroll-fade-section';
 import SEOHead from '../components/SEOHead';
 import StructuredData, { organizationSchema, localBusinessSchema, websiteSchema, faqSchema } from '../components/StructuredData';
-import ScrollReveal from '../components/ui/ScrollReveal';
 
 // Lazy load non-critical components
 const ServiceCascadeSection = lazy(() => import("../components/sections/ServiceCascadeSection"));
