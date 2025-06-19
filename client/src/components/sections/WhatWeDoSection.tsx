@@ -185,7 +185,7 @@ export default function WhatWeDoSection() {
               What We{" "}
               <span className="relative inline-block">
                 <GradientText 
-                  colors={["#FF5630", "#FF8A50", "#FFB899", "#FF5630"]}
+                  colors={["#E65F34", "#FF5630", "#FFB899", "#E65F34"]}
                   animationSpeed={5}
                 >
                   Do
