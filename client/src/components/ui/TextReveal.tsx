@@ -4,53 +4,65 @@ import ScrollReveal from './ScrollReveal';
 
 interface TextRevealProps {
   children: React.ReactNode;
-  as?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'span' | 'div';
-  className?: string;
+  variant?: 'heading' | 'subheading' | 'body' | 'small';
   delay?: number;
-  intensity?: 'light' | 'medium' | 'strong';
+  className?: string;
 }
 
-export default function TextReveal({ 
-  children, 
-  as: Component = 'div',
-  className = '',
+export default function TextReveal({
+  children,
+  variant = 'body',
   delay = 0,
-  intensity = 'medium'
+  className = ''
 }: TextRevealProps) {
-  const intensitySettings = {
-    light: {
-      baseOpacity: 0.2,
-      enableBlur: true,
-      baseRotation: 2,
-      blurStrength: 5
-    },
-    medium: {
-      baseOpacity: 0,
-      enableBlur: true,
-      baseRotation: 5,
-      blurStrength: 10
-    },
-    strong: {
-      baseOpacity: 0,
-      enableBlur: true,
-      baseRotation: 8,
-      blurStrength: 15
+  const getVariantSettings = () => {
+    switch (variant) {
+      case 'heading':
+        return {
+          baseRotation: 8,
+          blurStrength: 12,
+          duration: 1.0
+        };
+      case 'subheading':
+        return {
+          baseRotation: 5,
+          blurStrength: 10,
+          duration: 0.9
+        };
+      case 'body':
+        return {
+          baseRotation: 3,
+          blurStrength: 8,
+          duration: 0.8
+        };
+      case 'small':
+        return {
+          baseRotation: 2,
+          blurStrength: 6,
+          duration: 0.7
+        };
+      default:
+        return {
+          baseRotation: 3,
+          blurStrength: 8,
+          duration: 0.8
+        };
     }
   };
 
-  const settings = intensitySettings[intensity];
+  const settings = getVariantSettings();
 
   return (
-    <ScrollReveal 
-      baseOpacity={settings.baseOpacity}
-      enableBlur={settings.enableBlur}
+    <ScrollReveal
+      baseOpacity={0}
+      enableBlur={true}
       baseRotation={settings.baseRotation}
       blurStrength={settings.blurStrength}
       delay={delay}
+      duration={settings.duration}
+      className={className}
     >
-      <Component className={className}>
-        {children}
-      </Component>
+      {children}
     </ScrollReveal>
   );
 }

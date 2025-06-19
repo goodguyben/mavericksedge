@@ -68,7 +68,13 @@ export default function Hero() {
           transition={{ duration: 0.1 }}
           style={{ opacity: heroOpacity }}
         >
-          <ScrollReveal baseOpacity={0} enableBlur={true} baseRotation={5} blurStrength={10} delay={0.4}>
+          <ScrollReveal
+            baseOpacity={0}
+            enableBlur={true}
+            baseRotation={5}
+            blurStrength={10}
+            delay={0.4}
+          >
             <h1 className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-heading font-extrabold tracking-wide leading-tight text-maverick-cream text-center px-2">
               <div className="inline-block">
                 {/* Word-by-word animation for the heading */}
@@ -140,7 +146,14 @@ export default function Hero() {
               </div>
             </h1>
           </ScrollReveal>
-          <ScrollReveal baseOpacity={0} enableBlur={true} baseRotation={3} blurStrength={8} delay={0.6}>
+          
+          <ScrollReveal
+            baseOpacity={0}
+            enableBlur={true}
+            baseRotation={3}
+            blurStrength={8}
+            delay={2.8}
+          >
             <p className="hero-tagline text-sm xs:text-base sm:text-lg md:text-xl lg:text-xl xl:text-2xl 2xl:text-3xl text-maverick-cream/80 mt-3 xs:mt-4 sm:mt-5 md:mt-6 lg:mt-8 xl:mt-10 mb-6 xs:mb-8 sm:mb-10 md:mb-12 lg:mb-14 xl:mb-16 font-sans leading-relaxed mx-auto text-center">
               We're Edmonton-based creators who design beautiful websites, improve your online visibility, and offer smart AI Integration so you can focus on growing your business
             </p>
