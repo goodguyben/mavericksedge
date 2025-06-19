@@ -2,7 +2,6 @@ import { motion } from "framer-motion";
 import { Helmet } from 'react-helmet';
 import { Brain, Database, Workflow, Shield, FileCode, Users, Gauge, Zap, Activity, LineChart } from "lucide-react";
 import ContactSection from "@/components/sections/ContactSection";
-import SplitText from "@/components/ui/SplitText";
 import { Link } from "wouter";
 import { useEffect } from "react";
 
@@ -71,7 +70,7 @@ export default function AIServices() {
         <meta name="description" content="Transform your business with AI integration and automation solutions. Streamline operations, enhance decision-making, and improve customer experiences with our tailored AI services." />
         <link rel="canonical" href="https://mavericksedge.com/services/ai" />
         <meta name="keywords" content="AI integration, business automation, AI readiness assessment, workflow automation, AI implementation, custom API integration, AI data governance, small business AI solutions" />
-        
+
         {/* Open Graph data */}
         <meta property="og:title" content="AI Integration Services | Business Automation Solutions | Mavericks Edge" />
         <meta property="og:description" content="Transform your business with AI integration and automation solutions. Streamline operations, enhance decision-making, and improve customer experiences." />
@@ -79,7 +78,7 @@ export default function AIServices() {
         <meta property="og:url" content="https://mavericksedge.com/services/ai" />
         <meta property="og:image" content="/images/logo-transparent-thumb4x.png" />
       </Helmet>
-      
+
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -92,33 +91,10 @@ export default function AIServices() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <h1 className="text-5xl md:text-7xl font-bold mb-6 font-heading">
-                <SplitText
-                  text="AI Integration & Automation"
-                  className="text-5xl md:text-7xl font-bold font-heading"
-                  delay={200}
-                  duration={0.6}
-                  ease="power3.out"
-                  splitType="chars"
-                  from={{ opacity: 0, y: 40 }}
-                  to={{ opacity: 1, y: 0 }}
-                  threshold={0.1}
-                  rootMargin="-100px"
-                />
+                AI Integration & Automation
               </h1>
               <div className="text-xl text-[#AAAAAA] max-w-3xl mb-8">
-                <SplitText
-                  text="Harness the transformative power of artificial intelligence to streamline operations, enhance decision-making, and create exceptional customer experiences."
-                  className="text-xl text-[#AAAAAA]"
-                  delay={500}
-                  duration={0.4}
-                  ease="power3.out"
-                  splitType="words"
-                  from={{ opacity: 0, y: 20 }}
-                  to={{ opacity: 1, y: 0 }}
-                  threshold={0.1}
-                  rootMargin="-100px"
-                  stagger={0.03}
-                />
+                Harness the transformative power of artificial intelligence to streamline operations, enhance decision-making, and create exceptional customer experiences.
               </div>
               <Link href="/contact">
                 <a className="maverick-button maverick-button-primary inline-flex items-center justify-center px-8 py-3 text-base font-medium rounded-md md:py-4 md:text-lg md:px-10">
@@ -250,7 +226,7 @@ export default function AIServices() {
 
           <div className="relative">
             <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-0.5 bg-gray-800 transform -translate-x-1/2"></div>
-            
+
             {[
               {
                 title: "Discovery & Analysis",
@@ -275,7 +251,7 @@ export default function AIServices() {
               {
                 title: "Training & Change Management",
                 description: "We provide comprehensive training to ensure your team can effectively utilize and manage the new AI tools.",
-                image: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+                image: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
               },
               {
                 title: "Monitoring & Optimization",
@@ -373,7 +349,7 @@ export default function AIServices() {
               </motion.div>
             ))}
           </div>
-          
+
           <div className="mt-12 text-center">
             <Link href="/work">
               <a className="maverick-button maverick-button-outline inline-flex items-center justify-center px-6 py-2 text-base font-medium rounded-md md:py-3 md:text-lg md:px-8">

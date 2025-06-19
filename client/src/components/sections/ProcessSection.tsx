@@ -1,7 +1,6 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
 import { Search, Settings, Paintbrush, Code, Shield, ArrowDown, CheckCircle, Lightbulb, Rocket, Target, Users, TrendingUp } from "lucide-react";
-import SplitText from "@/components/ui/SplitText";
 import GradientText from "@/components/ui/GradientText";
 
 const processSteps = [
@@ -83,52 +82,18 @@ export default function ProcessSection() {
       <div className="container mx-auto">
         <div className="text-center mb-20">
           <h2 className="text-4xl md:text-5xl font-bold mb-4 font-heading">
-            <SplitText
-              text="Our"
-              className="inline-block mr-4"
-              delay={100}
-              duration={0.6}
-              ease="power3.out"
-              splitType="chars"
-              from={{ opacity: 0, y: 40 }}
-              to={{ opacity: 1, y: 0 }}
-              threshold={0.1}
-              rootMargin="-100px"
-            />
+            Our
             <span className="relative inline-block">
               <GradientText
                 colors={["#ff5630", "#ffab00", "#ff5630", "#ffab00", "#ff5630"]}
                 animationSpeed={6}
               >
-                <SplitText
-                  text="Process"
-                  className="inline-block"
-                  delay={300}
-                  duration={0.6}
-                  ease="power3.out"
-                  splitType="chars"
-                  from={{ opacity: 0, y: 40 }}
-                  to={{ opacity: 1, y: 0 }}
-                  threshold={0.1}
-                  rootMargin="-100px"
-                />
+                Process
               </GradientText>
             </span>
           </h2>
           <div className="text-[#AAAAAA] text-xl max-w-2xl mx-auto">
-            <SplitText
-              text="A collaborative approach to delivering exceptional results for your business"
-              className="text-[#AAAAAA] text-xl"
-              delay={500}
-              duration={0.4}
-              ease="power3.out"
-              splitType="words"
-              from={{ opacity: 0, y: 20 }}
-              to={{ opacity: 1, y: 0 }}
-              threshold={0.1}
-              rootMargin="-100px"
-              stagger={0.03}
-            />
+            A collaborative approach to delivering exceptional results for your business
           </div>
         </div>
 

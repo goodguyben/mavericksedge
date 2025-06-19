@@ -1,7 +1,6 @@
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { Zap, Heart, FlaskConical, BookOpen, SmileIcon, Users, Sparkles, ArrowRight } from "lucide-react";
 import { useRef, useState } from "react";
-import SplitText from "@/components/ui/SplitText";
 import GradientText from "@/components/ui/GradientText";
 
 export default function WhyChooseUsSection() {
@@ -146,48 +145,14 @@ export default function WhyChooseUsSection() {
           </motion.div>
 
           <h2 className="text-4xl md:text-5xl font-bold mb-8 leading-tight">
-            <SplitText
-              text="Why Choose"
-              className="inline-block mr-4"
-              delay={300}
-              duration={0.6}
-              ease="power3.out"
-              splitType="chars"
-              from={{ opacity: 0, y: 40 }}
-              to={{ opacity: 1, y: 0 }}
-              threshold={0.1}
-              rootMargin="-100px"
-            />
+            Why Choose
             <span className="text-maverick-orange">
-              <SplitText
-                text="Mavericks Edge"
-                className="inline-block"
-                delay={500}
-                duration={0.6}
-                ease="power3.out"
-                splitType="chars"
-                from={{ opacity: 0, y: 40 }}
-                to={{ opacity: 1, y: 0 }}
-                threshold={0.1}
-                rootMargin="-100px"
-              />
+              Mavericks Edge
             </span>
           </h2>
 
           <div className="text-gray-300 text-lg md:text-xl max-w-4xl mx-auto leading-relaxed">
-            <SplitText
-              text="We partner with passionate people building meaningful work — SMBs, nonprofits, and early-stage teams doing a lot with a little. We get it: every dollar matters. That's why our services are flexible, transparent, and built around long-term sustainability."
-              className="text-gray-300 text-lg md:text-xl"
-              delay={700}
-              duration={0.4}
-              ease="power3.out"
-              splitType="words"
-              from={{ opacity: 0, y: 20 }}
-              to={{ opacity: 1, y: 0 }}
-              threshold={0.1}
-              rootMargin="-100px"
-              stagger={0.03}
-            />
+            We partner with passionate people building meaningful work — SMBs, nonprofits, and early-stage teams doing a lot with a little. We get it: every dollar matters. That's why our services are flexible, transparent, and built around long-term sustainability.
           </div>
         </motion.div>
 

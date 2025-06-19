@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import { Helmet } from 'react-helmet';
 import ContactSection from "@/components/sections/ContactSection";
-import SplitText from "@/components/ui/SplitText";
 import { useEffect } from "react";
 import { contactInfo } from "@/lib/constants";
 import GradientText from "@/components/ui/GradientText";
@@ -89,35 +88,12 @@ export default function Contact() {
                 colors={["#ff5630", "#ffab00", "#ff5630", "#ffab00", "#ff5630"]}
                 animationSpeed={6}
               >
-                <SplitText
-                  text="Touch"
-                  className="inline-block"
-                  delay={400}
-                  duration={0.6}
-                  ease="power3.out"
-                  splitType="chars"
-                  from={{ opacity: 0, y: 40 }}
-                  to={{ opacity: 1, y: 0 }}
-                  threshold={0.1}
-                  rootMargin="-100px"
-                />
+                Touch
               </GradientText>
-</h1>
+</span>
+              </h1>
               <div className="text-3xl text-[#AAAAAA] max-w-3xl">
-                <SplitText
-                  text="We'd love to know more about your goals and how we can design and build a solution that meets your needs."
-                  className="text-3xl text-[#AAAAAA]"
-                  delay={500}
-                  duration={0.4}
-                  ease="power3.out"
-                  splitType="words"
-                  from={{ opacity: 0, y: 20 }}
-                  to={{ opacity: 1, y: 0 }}
-                  threshold={0.1}
-                  rootMargin="-100px"
-                  stagger={0.03}
-                />
-              </div>
+                We'd love to know more about your goals and how we can design and build a solution that meets your needs.</div>
             </div>
           </section>
 
