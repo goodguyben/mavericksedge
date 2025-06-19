@@ -188,6 +188,7 @@ export default function WhatWeDoSection() {
                 to={{ opacity: 1, y: 0 }}
                 threshold={0.1}
                 rootMargin="-100px"
+                preventWrap={true}
               />
               <span className="relative inline-block">
                 <GradientText

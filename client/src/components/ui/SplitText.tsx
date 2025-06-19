@@ -32,6 +32,7 @@ interface SplitTextProps {
   textAlign?: 'left' | 'center' | 'right';
   onLetterAnimationComplete?: () => void;
   stagger?: number;
+  preventWrap?: boolean;
 }
 
 const SplitText: React.FC<SplitTextProps> = ({
@@ -47,7 +48,8 @@ const SplitText: React.FC<SplitTextProps> = ({
   rootMargin = '-100px',
   textAlign = 'left',
   onLetterAnimationComplete,
-  stagger = 0.02
+  stagger = 0.02,
+  preventWrap = false
 }) => {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { 
@@ -110,7 +112,7 @@ const SplitText: React.FC<SplitTextProps> = ({
     <div 
       ref={ref} 
       className={`inline-block ${className}`}
-      style={{ textAlign, whiteSpace: 'nowrap' }}
+      style={{ textAlign, whiteSpace: preventWrap ? 'nowrap' : 'normal' }}
     >
       {textElements.map((element, index) => (
         <motion.span

@@ -157,6 +157,7 @@ export default function WhyChooseUsSection() {
               to={{ opacity: 1, y: 0 }}
               threshold={0.1}
               rootMargin="-100px"
+              preventWrap={true}
             />
             <GradientText
               colors={["#ff5630", "#ffab00", "#ff5630", "#ffab00", "#ff5630"]}
