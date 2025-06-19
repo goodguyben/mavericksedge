@@ -1,7 +1,7 @@
 User-agent: *
 Allow: /
 
-# Sitemaps
+# Sitemap Index
 Sitemap: https://mavericksedge.ca/sitemap.xml
 
 # Block access to admin areas and sensitive files
