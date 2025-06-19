@@ -1,6 +1,7 @@
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { Zap, Heart, FlaskConical, BookOpen, SmileIcon, Users, Sparkles, ArrowRight } from "lucide-react";
 import { useRef, useState } from "react";
+import SplitText from "@/components/ui/SplitText";
 
 export default function WhyChooseUsSection() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -143,28 +144,50 @@ export default function WhyChooseUsSection() {
             </motion.div>
           </motion.div>
 
-          <motion.h2 
-            className="text-4xl md:text-5xl font-bold mb-8 leading-tight"
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1, delay: 0.3 }}
-          >
-            Why Choose{" "}
+          <h2 className="text-4xl md:text-5xl font-bold mb-8 leading-tight">
+            <SplitText
+              text="Why Choose"
+              className="inline-block mr-4"
+              delay={300}
+              duration={0.6}
+              ease="power3.out"
+              splitType="chars"
+              from={{ opacity: 0, y: 40 }}
+              to={{ opacity: 1, y: 0 }}
+              threshold={0.1}
+              rootMargin="-100px"
+            />
             <span className="text-maverick-orange">
-              Mavericks Edge
+              <SplitText
+                text="Mavericks Edge"
+                className="inline-block"
+                delay={500}
+                duration={0.6}
+                ease="power3.out"
+                splitType="chars"
+                from={{ opacity: 0, y: 40 }}
+                to={{ opacity: 1, y: 0 }}
+                threshold={0.1}
+                rootMargin="-100px"
+              />
             </span>
-          </motion.h2>
+          </h2>
 
-          <motion.p 
-            className="text-gray-300 text-lg md:text-xl max-w-4xl mx-auto leading-relaxed"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1, delay: 0.5 }}
-          >
-            We partner with passionate people building meaningful work — SMBs, nonprofits, and early-stage teams doing a lot with a little. We get it: every dollar matters. That's why our services are flexible, transparent, and built around long-term sustainability.
-          </motion.p>
+          <div className="text-gray-300 text-lg md:text-xl max-w-4xl mx-auto leading-relaxed">
+            <SplitText
+              text="We partner with passionate people building meaningful work — SMBs, nonprofits, and early-stage teams doing a lot with a little. We get it: every dollar matters. That's why our services are flexible, transparent, and built around long-term sustainability."
+              className="text-gray-300 text-lg md:text-xl"
+              delay={700}
+              duration={0.4}
+              ease="power3.out"
+              splitType="words"
+              from={{ opacity: 0, y: 20 }}
+              to={{ opacity: 1, y: 0 }}
+              threshold={0.1}
+              rootMargin="-100px"
+              stagger={0.03}
+            />
+          </div>
         </motion.div>
 
         {/* Creative Interactive Grid Layout */}
