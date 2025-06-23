@@ -54,11 +54,13 @@ export default function App() {
     {isLoading ? (
       <LoadingScreen />
     ) : (
-    <div className="min-h-screen opacity-0 animate-[fadeIn_0.3s_ease-in-out_forwards]">
+    <div className="min-h-screen animate-[fadeIn_0.5s_ease-in-out_forwards]">
       <QueryClientProvider client={queryClient}>
         <PageTransition />
         <Layout>
-          <Suspense fallback={<div />}>
+          <Suspense fallback={<div className="min-h-screen bg-[#121212] flex items-center justify-center">
+            <div className="text-white">Loading...</div>
+          </div>}>
             <Switch>
               <Route path="/">
                 <Home />
