@@ -184,8 +184,8 @@ export default function WebServices() {
     <div>
       <SEOHead 
         title="Transform Your Vision into a Thriving Digital Presence | Edmonton Web Design & Development"
-        description="Edmonton's trusted web design partner for growth-focused businesses. We build more than websites. We craft powerful online experiences that attract customers and elevate your brand."
-        keywords="Edmonton web design, web development Edmonton, website design Edmonton, custom websites Edmonton, web design Edmonton, Edmonton website design, Edmonton website builders, Edmonton SEO, 
+        description="Edmonton's trusted web design partner for growth-focused businesses. We build more than websites - we craft powerful online experiences that attract customers and elevate your brand."
+        keywords="Edmonton web design, web development Edmonton, website design Edmonton Alberta, custom websites Edmonton, digital growth partner Edmonton, professional web design Edmonton, Edmonton website company"
         canonicalUrl="https://mavericksedge.ca/web-design-services-edmonton"
         ogTitle="Transform Your Vision into a Thriving Digital Presence | Edmonton Web Design"
         ogDescription="Edmonton's trusted web design partner for growth-focused businesses. We craft powerful online experiences that drive real results."
