@@ -189,7 +189,7 @@ export default function WebServices() {
         canonicalUrl="https://mavericksedge.ca/web-design-services-edmonton"
         ogTitle="Transform Your Vision into a Thriving Digital Presence | Edmonton Web Design"
         ogDescription="Edmonton's trusted web design partner for growth-focused businesses. We craft powerful online experiences that drive real results."
-        ogImage="https://mavericksedge.ca/logo.png"
+        ogImage="https://mavericksedge.ca/assets/logo-transparent-thumb4x.png"
         ogType="website"
       />
       
@@ -204,6 +204,12 @@ export default function WebServices() {
       >
         {/* Section 1: Hero Section - The Problem & The Promise */}
         <section className="pt-44 md:pt-48 pb-24 px-5 md:px-10 bg-gradient-to-br from-[#121212] via-[#1A1A1A] to-[#121212] relative overflow-hidden">
+          {/* Background Elements */}
+          <div className="absolute inset-0 overflow-hidden">
+            <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-maverick-orange/5 rounded-full blur-3xl animate-pulse"></div>
+            <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-blue-500/5 rounded-full blur-3xl animate-pulse delay-1000"></div>
+            <div className="absolute top-1/2 left-1/2 w-32 h-32 bg-purple-500/10 rounded-full blur-2xl animate-pulse delay-500"></div>
+          </div>
           <div className="absolute inset-0 bg-gradient-to-br from-maverick-orange/10 via-transparent to-purple-500/5"></div>
           <div className="container mx-auto relative z-10">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
@@ -218,13 +224,14 @@ export default function WebServices() {
                   <span className="text-maverick-orange font-semibold">Your Digital Growth Partner in Edmonton</span>
                 </div>
                 <h1 className="text-5xl md:text-7xl font-bold mb-6 font-heading leading-tight">
-                  Transform Your Vision into a <span className="text-maverick-orange">Thriving Digital Presence</span>
+                  Stop Losing Customers to 
+                  <span className="text-maverick-orange block">Outdated Websites</span>
                 </h1>
                 <p className="text-xl text-gray-300 mb-6 leading-relaxed">
-                  We build more than websites; we craft powerful online experiences that attract customers and elevate your brand in Edmonton and beyond.
+                  Your website should be your best salesperson, not your biggest obstacle. We help Edmonton small businesses and nonprofits transform their online presence with fast, accessible, conversion-focused websites that actually work for real people.
                 </p>
                 <p className="text-lg text-gray-400 mb-8 leading-relaxed">
-                  Frustrated with an outdated website? Struggling to stand out online? We partner with Edmonton businesses to create bespoke, high-performing websites that drive real results – from increased leads to enhanced brand authority.
+                  Tired of watching potential customers leave your site within seconds? Fed up with websites that look great but don't convert? We specialize in human-centric design that turns visitors into customers - with lightning-fast turnaround and ongoing Edmonton support.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 mb-8">
                   <Link href="/contact-edmonton-web-design">
@@ -233,17 +240,17 @@ export default function WebServices() {
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                     >
-                      Launch Your Digital Success - Get Free Consultation!
+                      Get Your Free Website Strategy Session
                       <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                     </motion.div>
                   </Link>
-                  <Link href="/portfolio-edmonton-web-design">
+                  <Link href="#success-stories">
                     <motion.div
                       className="maverick-button maverick-button-outline inline-flex items-center justify-center px-8 py-4 text-lg font-medium rounded-lg"
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                     >
-                      Explore Our Work
+                      See What's Possible
                     </motion.div>
                   </Link>
                 </div>

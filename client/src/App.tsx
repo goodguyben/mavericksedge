@@ -12,6 +12,7 @@ import LoadingScreen from "@/components/ui/LoadingScreen"; // Assuming LoadingSc
 const Home = lazy(() => import("@/pages/Home"));
 const Services = lazy(() => import("@/pages/Services"));
 const WebServices = lazy(() => import("@/pages/WebServices"));
+const SEOServices = lazy(() => import("@/pages/SEOServices"));
 const MarketingServices = lazy(() => import("@/pages/MarketingServices"));
 const AIServices = lazy(() => import("@/pages/AIServices"));
 const Pricing = lazy(() => import("@/pages/Pricing"));
