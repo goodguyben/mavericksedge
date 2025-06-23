@@ -68,6 +68,11 @@ export default function App() {
               <Route path="/web-design-services-edmonton">
                 <WebServices />
               </Route>
+              <Route path="/seo-services-edmonton">
+                <Suspense fallback={<LoadingScreen />}>
+                  <lazy(() => import('./pages/SEOServices')) />
+                </Suspense>
+              </Route>
               <Route path="/digital-marketing-services-edmonton">
                 <MarketingServices />
               </Route>
