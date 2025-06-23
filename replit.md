@@ -89,8 +89,28 @@ Mavericks Edge is a full-stack web application built for a digital marketing age
 - **Caching**: Static asset caching and query optimization
 - **SEO**: Server-side meta tags, structured data, sitemap generation
 
+## Recent Changes
+- **June 23, 2025**: Complete rebuild of Web Design & Development Services page
+  - Enhanced conversion-focused copy based on competitor analysis
+  - Added human-centric design messaging and accessibility-first approach
+  - Integrated local Edmonton SEO keywords naturally throughout content
+  - Added success stories with real business impact metrics
+  - Implemented FAQ section addressing common customer concerns
+- **June 23, 2025**: Created new SEO Services page (/seo-services-edmonton)
+  - Comprehensive SEO service offerings for Edmonton businesses
+  - Local search optimization focus with Edmonton-specific strategies
+  - Client testimonials and case studies showing real results
+  - Interactive FAQ section with expansion/collapse functionality
+  - Strong call-to-action sections with free audit offers
+- **June 23, 2025**: Fixed logo URL issue in og:image tags
+  - Updated from non-working logo.png to working assets/logo-transparent-thumb4x.png
+  - Ensures proper social media sharing with correct logo display
+- **June 23, 2025**: Enhanced navigation to include SEO Services
+  - Added SEO Services link to main navigation and mobile menu
+  - Improved service discovery for potential customers
+
 ## Changelog
-- June 23, 2025. Initial setup
+- June 23, 2025: Initial setup and major content overhaul
 
 ## User Preferences
 

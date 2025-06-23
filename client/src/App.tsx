@@ -69,6 +69,9 @@ export default function App() {
               <Route path="/web-design-services-edmonton">
                 <WebServices />
               </Route>
+              <Route path="/seo-services-edmonton">
+                <SEOServices />
+              </Route>
               <Route path="/digital-marketing-services-edmonton">
                 <MarketingServices />
               </Route>
