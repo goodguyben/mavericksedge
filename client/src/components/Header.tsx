@@ -181,16 +181,6 @@ export default function Header() {
                         Web Design & Development
                       </Link>
                       <Link 
-                        href="/seo-services-edmonton" 
-                        className={`block px-4 py-3 min-h-[44px] text-base touch-manipulation ${
-                          isCurrentPath('/seo-services-edmonton') ? 'text-maverick-orange bg-maverick-orange/10' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'
-                        }`} 
-                        role="menuitem"
-                        onClick={() => setServicesDropdownOpen(false)}
-                      >
-                        SEO Services
-                      </Link>
-                      <Link 
                         href="/digital-marketing-services-edmonton" 
                         className={`block px-4 py-3 min-h-[44px] text-base touch-manipulation ${
                           isCurrentPath('/digital-marketing-services-edmonton') ? 'text-maverick-orange bg-maverick-orange/10' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'

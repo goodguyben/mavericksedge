@@ -12,7 +12,6 @@ import LoadingScreen from "@/components/ui/LoadingScreen"; // Assuming LoadingSc
 const Home = lazy(() => import("@/pages/Home"));
 const Services = lazy(() => import("@/pages/Services"));
 const WebServices = lazy(() => import("@/pages/WebServices"));
-const SEOServices = lazy(() => import("@/pages/SEOServices"));
 const MarketingServices = lazy(() => import("@/pages/MarketingServices"));
 const AIServices = lazy(() => import("@/pages/AIServices"));
 const Pricing = lazy(() => import("@/pages/Pricing"));
@@ -54,13 +53,11 @@ export default function App() {
     {isLoading ? (
       <LoadingScreen />
     ) : (
-    <div className="min-h-screen animate-[fadeIn_0.5s_ease-in-out_forwards]">
+    <div className="min-h-screen opacity-0 animate-[fadeIn_0.3s_ease-in-out_forwards]">
       <QueryClientProvider client={queryClient}>
         <PageTransition />
         <Layout>
-          <Suspense fallback={<div className="min-h-screen bg-[#121212] flex items-center justify-center">
-            <div className="text-white">Loading...</div>
-          </div>}>
+          <Suspense fallback={<div />}>
             <Switch>
               <Route path="/">
                 <Home />
@@ -70,9 +67,6 @@ export default function App() {
               </Route>
               <Route path="/web-design-services-edmonton">
                 <WebServices />
-              </Route>
-              <Route path="/seo-services-edmonton">
-                <SEOServices />
               </Route>
               <Route path="/digital-marketing-services-edmonton">
                 <MarketingServices />
