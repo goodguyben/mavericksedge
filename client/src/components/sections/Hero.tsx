@@ -33,46 +33,44 @@ const IMAGES_3 = [
 export default function Hero() {
   return (
     <div className="relative mt-[-4px] mb-[-4px] bg-[#000000]">
-      <ContainerStagger className="relative z-[9999] -mb-12 place-self-center px-6 pt-32 md:pt-40 lg:pt-48 text-center min-h-screen flex flex-col justify-center">
-        <div className="flex-1 flex flex-col justify-center">
-          <ContainerAnimated>
-            <h1 className="font-serif text-4xl md:text-5xl mb-2 font-semibold">
-              <span className="text-white px-2 py-1 rounded bg-[#ff563100] font-semibold">Building</span>{" "}
-              <span className="underline decoration-maverick-orange font-semibold">
-                <GradientText 
-                  colors={["#FF5630", "#FF8A50", "#FFB899", "#FF5630"]}
-                  animationSpeed={5}
-                >
-                  resilience
-                </GradientText>
-              </span> with
-            </h1>
-          </ContainerAnimated>
-          <ContainerAnimated>
-            <h1 className="font-serif text-4xl md:text-5xl mb-6 font-semibold">
-              innovation and heart
-            </h1>
-          </ContainerAnimated>
+      <ContainerStagger className="relative z-[9999] -mb-12 place-self-center px-6 pt-12 text-center">
+        <ContainerAnimated>
+          <h1 className="font-serif text-4xl md:text-5xl mb-2 font-semibold">
+            <span className="text-white px-2 py-1 rounded bg-[#ff563100] font-semibold">Building</span>{" "}
+            <span className="underline decoration-maverick-orange font-semibold">
+              <GradientText 
+                colors={["#FF5630", "#FF8A50", "#FFB899", "#FF5630"]}
+                animationSpeed={5}
+              >
+                resilience
+              </GradientText>
+            </span> with
+          </h1>
+        </ContainerAnimated>
+        <ContainerAnimated>
+          <h1 className="font-serif text-4xl md:text-5xl mb-6 font-semibold">
+            innovation and heart
+          </h1>
+        </ContainerAnimated>
 
-          <ContainerAnimated className="mb-8">
-            <p className="text-xl text-[#AAAAAA] leading-relaxed tracking-tight max-w-4xl mx-auto">
-              We're Edmonton-based creators who design beautiful websites, improve
-              <br />your online visibility, and offer smart AI integration so you can focus on
-              <br />growing your business
-            </p>
-          </ContainerAnimated>
+        <ContainerAnimated className="mb-8">
+          <p className="text-xl text-[#AAAAAA] leading-relaxed tracking-tight max-w-4xl mx-auto">
+            We're Edmonton-based creators who design beautiful websites, improve
+            <br />your online visibility, and offer smart AI integration so you can focus on
+            <br />growing your business
+          </p>
+        </ContainerAnimated>
 
-          <ContainerAnimated>
-            <div className="flex flex-wrap justify-center gap-4">
-              <Button className="px-8 py-3 bg-maverick-orange hover:bg-maverick-orange/90 text-white font-medium rounded-full">
-                Explore Services
-              </Button>
-              <Button variant="outline" className="px-8 py-3 border-maverick-orange text-maverick-orange hover:bg-maverick-orange/10 font-medium rounded-full">
-                Book Free Consultation
-              </Button>
-            </div>
-          </ContainerAnimated>
-        </div>
+        <ContainerAnimated>
+          <div className="flex flex-wrap justify-center gap-4">
+            <Button className="px-8 py-3 bg-maverick-orange hover:bg-maverick-orange/90 text-white font-medium rounded-full">
+              Explore Services
+            </Button>
+            <Button variant="outline" className="px-8 py-3 border-maverick-orange text-maverick-orange hover:bg-maverick-orange/10 font-medium rounded-full">
+              Book Free Consultation
+            </Button>
+          </div>
+        </ContainerAnimated>
       </ContainerStagger>
       <div className="pointer-events-none absolute z-10 h-[70vh] w-full"
         style={{
