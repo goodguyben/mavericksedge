@@ -34,19 +34,19 @@ export default function Hero() {
     <div className="relative mt-[-4px] mb-[-4px] bg-[#000000]">
       <ContainerStagger className="relative z-[9999] -mb-12 place-self-center px-6 pt-12 text-center">
         <ContainerAnimated>
-          <h1 className="font-serif text-4xl font-extralight md:text-5xl">
+          <h1 className="font-serif text-4xl font-extralight md:text-5xl mb-2">
             <span className="bg-maverick-orange text-white px-2 py-1 rounded">Building</span>{" "}
             <span className="underline decoration-maverick-orange">resilience</span> with
           </h1>
         </ContainerAnimated>
         <ContainerAnimated>
-          <h1 className="font-serif text-4xl font-extralight md:text-5xl">
+          <h1 className="font-serif text-4xl font-extralight md:text-5xl mb-6">
             innovation and heart
           </h1>
         </ContainerAnimated>
 
-        <ContainerAnimated className="my-4">
-          <p className="leading-normal tracking-tight text-muted-foreground">
+        <ContainerAnimated className="mb-8">
+          <p className="text-xl text-[#AAAAAA] leading-relaxed tracking-tight max-w-4xl mx-auto">
             We're Edmonton-based creators who design beautiful websites, improve
             <br />your online visibility, and offer smart AI integration so you can focus on
             <br />growing your business
@@ -54,12 +54,14 @@ export default function Hero() {
         </ContainerAnimated>
 
         <ContainerAnimated>
-          <Button className="gap-1 bg-maverick-orange hover:bg-maverick-orange/90">
-            Explore Services
-          </Button>
-          <Button variant="outline" className="border-maverick-orange text-maverick-orange hover:bg-maverick-orange/10">
-            Book Free Consultation
-          </Button>
+          <div className="flex flex-wrap justify-center gap-4">
+            <Button className="px-8 py-3 bg-maverick-orange hover:bg-maverick-orange/90 text-white font-medium rounded-full">
+              Explore Services
+            </Button>
+            <Button variant="outline" className="px-8 py-3 border-maverick-orange text-maverick-orange hover:bg-maverick-orange/10 font-medium rounded-full">
+              Book Free Consultation
+            </Button>
+          </div>
         </ContainerAnimated>
       </ContainerStagger>
       <div className="pointer-events-none absolute z-10 h-[70vh] w-full"
