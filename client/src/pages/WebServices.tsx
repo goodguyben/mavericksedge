@@ -935,7 +935,7 @@ export default function WebServices() {
                 >
                   <div className="w-full h-full flex items-center justify-center">
                     <img 
-                      src="/attached_assets/telus-1-logo-svg-vector.svg" 
+                      src="/images/telus-logo.svg" 
                       alt="Telus Logo" 
                       className="max-w-full max-h-full object-contain"
                       loading="lazy"
@@ -988,7 +988,7 @@ export default function WebServices() {
                 >
                   <div className="w-full h-full flex items-center justify-center">
                     <img 
-                      src="/attached_assets/Manus-ai-logo.svg" 
+                      src="/images/manus-ai-logo.svg" 
                       alt="Manus AI Logo" 
                       className="max-w-full max-h-full object-contain"
                       loading="lazy"
