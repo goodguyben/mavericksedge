@@ -1,111 +1,181 @@
-import { ContainerAnimated,
-  ContainerScroll,
-  ContainerStagger,
-  ContainerSticky,
-  GalleryCol,
-  GalleryContainer } from "@/components/blocks/animated-gallery"
-import { Button } from "@/components/ui/button"
-import { VideoIcon } from "lucide-react"
+import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
+import { ChevronDown } from "lucide-react";
+import { scrollToSection } from "@/lib/scroll";
+import { Button } from "@/components/ui/custom-button";
+import GradientText from "@/components/ui/GradientText";
 
-const IMAGES_1 = [
-  "https://images.unsplash.com/photo-1529218402470-5dec8fea0761?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fGFkfGVufDB8fDB8fHww",
-  "https://images.unsplash.com/photo-1542051841857-5f90071e7989?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fHRva3lvfGVufDB8MHwwfHx8Mg%3D%3D",
-  "https://images.unsplash.com/photo-1604928141064-207cea6f571f?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8dG9reW98ZW58MHwwfDB8fHwy",
-  "https://images.unsplash.com/photo-1573455494060-c5595004fb6c?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8dG9reW98ZW58MHwwfDB8fHwy",
-]
-const IMAGES_2 = [
-  "https://images.unsplash.com/photo-1542052125323-e69ad37a47c2?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjJ8fHRva3lvfGVufDB8MHwwfHx8Mg%3D%3D",
-  "https://images.unsplash.com/photo-1564284369929-026ba231f89b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  "https://images.unsplash.com/photo-1532236204992-f5e85c024202?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjF8fHRva3lvfGVufDB8MHwwfHx8Mg%3D%3D",
-  "https://images.unsplash.com/photo-1493515322954-4fa727e97985?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fHRva3lvfGVufDB8MHwwfHx8Mg%3D%3D",
-]
-const IMAGES_3 = [
-  "https://images.unsplash.com/photo-1528361237150-8a9a7df33035?q=80&w=2340&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  "https://images.unsplash.com/photo-1493515322954-4fa727e97985?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  "https://images.unsplash.com/photo-1542051841857-5f9 করেও71e7989?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fHRva3lvfGVufDB8MHwwfHx8Mg%3D%3D",
-  "https://images.unsplash.com/photo-1608875004752-2fdb6a39ba4c?q=80&w=2340&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-]
 
 export default function Hero() {
+  const [scrolled, setScrolled] = useState(false);
+  const [heroOpacity, setHeroOpacity] = useState(1);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+
+      // Calculate opacity based on scroll position
+      const scrollY = window.scrollY;
+      const maxFade = 400; // Distance in pixels to complete fade
+      const opacity = Math.max(0, 1 - (scrollY / maxFade));
+      setHeroOpacity(opacity);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <div className="relative bg-white ">
-      <ContainerStagger className="relative z-[9999] -mb-12 place-self-center px-6 pt-12 text-center">
-        <ContainerAnimated>
-          <h1 className="font-serif text-4xl font-extralight  md:text-5xl">
-            Your{" "}
-            <span className=" font-serif font-extralight text-indigo-600">
-              one source
-            </span>
-          </h1>
-        </ContainerAnimated>
-        <ContainerAnimated>
-          <h1 className="font-serif text-4xl font-extralight md:text-5xl">
-            for all your designs
-          </h1>
-        </ContainerAnimated>
-
-        <ContainerAnimated className="my-4">
-          <p className="leading-normal tracking-tight text-muted-foreground">
-            No waste of time and money, we provide you with
-            <br /> collection of designs to plan your next project.
-          </p>
-        </ContainerAnimated>
-
-        <ContainerAnimated>
-          <Button
-            className="gap-1 bg-indigo-700"
-          >
-            Book free call <VideoIcon className="size-4  " />
-          </Button>
-          <Button variant={"link"} className="text-sencondary">
-            About Us
-          </Button>
-        </ContainerAnimated>
-      </ContainerStagger>
-      <div className="pointer-events-none absolute z-10 h-[70vh] w-full "
-      style={{
-            background: "linear-gradient(to right, gray, rebeccapurple, blue)",
-            filter: "blur(84px)",
-            mixBlendMode: "screen",
+    <section className="relative min-h-screen flex items-center overflow-hidden opacity-0 animate-[fadeIn_0.5s_ease-in-out_0.2s_forwards]">
+      {/* Video Background */}
+      <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-10">
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          className="w-full h-full object-cover"
+          style={{
+            objectPosition: 'center center'
           }}
-      />
-
-      <ContainerScroll className="relative h-[350vh]">
-        <ContainerSticky className="h-svh">
-          <GalleryContainer className="">
-            <GalleryCol yRange={["-10%", "2%"]} className="-mt-2">
-              {IMAGES_1.map((imageUrl, index) => (
-                <img
-                  key={index}
-                  className="aspect-video block h-auto max-h-full w-full  rounded-md  object-cover shadow"
-                  src={imageUrl}
-                  alt="gallery item"
+          onError={(e) => {
+            console.warn('Hero video failed to load:', e);
+            // Fallback to a solid background
+            e.currentTarget.style.display = 'none';
+          }}
+          onLoadStart={() => {
+            console.log('Hero video loading started');
+          }}
+          onCanPlay={() => {
+            console.log('Hero video can play');
+          }}
+        >
+          <source src="/videos/background.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+        {/* Dark overlay for better text readability */}
+        <div className="absolute inset-0 bg-black/60 sm:bg-black/50 mt-[-2px] mb-[-2px]" />
+        {/* Fallback background in case video fails */}
+        <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-800" style={{ zIndex: -1 }} />
+      </div>
+      <div className="container mx-auto px-3 xs:px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 2xl:px-16 z-20 flex justify-center items-center w-full pointer-events-none">
+        <motion.div
+          className="max-w-xs xs:max-w-sm sm:max-w-2xl md:max-w-3xl lg:max-w-4xl xl:max-w-5xl 2xl:max-w-6xl text-center w-full pointer-events-auto relative"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: heroOpacity, y: 0 }}
+          transition={{ duration: 0.1 }}
+          style={{ opacity: heroOpacity }}
+        >
+          <h1 className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-heading font-extrabold tracking-wide leading-tight text-maverick-cream text-center px-2">
+            <div className="inline-block">
+              {/* Word-by-word animation for the heading */}
+              <motion.span 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.7, delay: 0.4 }}
+                className="inline-block mr-2"
+              >
+                Building
+              </motion.span>
+              <span className="relative inline-block">
+                <motion.span
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.7, delay: 0.8 }}
+                  className="mr-2"
+                >
+                  <GradientText 
+                    colors={["#FF5630", "#FF8A50", "#FFB899", "#FF5630"]}
+                    animationSpeed={6}
+                  >
+                    resilience
+                  </GradientText>
+                </motion.span>
+                <motion.span 
+                  className="absolute -bottom-1 left-0 h-1 bg-maverick-orange"
+                  initial={{ width: 0 }}
+                  animate={{ width: "100%" }}
+                  transition={{ delay: 1.2, duration: 0.8 }}
                 />
-              ))}
-            </GalleryCol>
-            <GalleryCol className="mt-[-50%]" yRange={["15%", "5%"]}>
-              {IMAGES_2.map((imageUrl, index) => (
-                <img
-                  key={index}
-                  className="aspect-video block h-auto max-h-full w-full  rounded-md  object-cover shadow"
-                  src={imageUrl}
-                  alt="gallery item"
-                />
-              ))}
-            </GalleryCol>
-            <GalleryCol yRange={["-10%", "2%"]} className="-mt-2">
-              {IMAGES_3.map((imageUrl, index) => (
-                <img
-                  key={index}
-                  className="aspect-video block h-auto max-h-full w-full  rounded-md  object-cover shadow"
-                  src={imageUrl}
-                  alt="gallery item"
-                />
-              ))}
-            </GalleryCol>
-          </GalleryContainer>
-        </ContainerSticky>
-      </ContainerScroll>
-    </div>
-  )
+              </span>
+              {" "}
+              <motion.span 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.7, delay: 1.2 }}
+                className="inline-block mr-1"
+              >
+                with
+              </motion.span>
+              {" "}
+              <motion.span 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.7, delay: 1.6 }}
+                className="inline-block mr-1"
+              >
+                innovation
+              </motion.span>
+              {" "}
+              <motion.span 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.7, delay: 2.0 }}
+                className="inline-block mr-1"
+              >
+                and
+              </motion.span>
+              {" "}
+              <motion.span 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.7, delay: 2.4 }}
+                className="inline-block"
+              >
+                heart
+              </motion.span>
+            </div>
+          </h1>
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 2.8 }}
+            className="hero-tagline text-sm xs:text-base sm:text-lg md:text-xl lg:text-xl xl:text-2xl 2xl:text-3xl text-maverick-cream/80 mt-3 xs:mt-4 sm:mt-5 md:mt-6 lg:mt-8 xl:mt-10 mb-6 xs:mb-8 sm:mb-10 md:mb-12 lg:mb-14 xl:mb-16 font-sans leading-relaxed mx-auto text-center"
+          >
+            We're Edmonton-based creators who design beautiful websites, improve your online visibility, and offer smart AI Integration so you can focus on growing your business          </motion.p>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 3.2 }}
+            className="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4 justify-center items-center px-4"
+          >
+            <Button 
+              href="/services" 
+              variant="primary"
+            >
+              Explore Services
+            </Button>
+            <Button 
+              href="/contact" 
+              variant="outline"
+            >
+              Book Free Consultation
+            </Button>
+          </motion.div>
+        </motion.div>
+      </div>
+      <motion.div
+        className="scroll-indicator cursor-pointer absolute bottom-10 left-1/2 transform -translate-x-1/2 z-30 pointer-events-auto"
+        animate={{ 
+          opacity: scrolled ? 0 : 1,
+          y: scrolled ? 10 : 0 
+        }}
+        transition={{ duration: 0.3 }}
+        onClick={() => scrollToSection("services")}
+      >
+        <ChevronDown className="h-6 w-6 animate-bounce text-maverick-orange" />
+      </motion.div>
+    </section>
+  );
 }
