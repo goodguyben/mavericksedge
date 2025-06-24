@@ -36,7 +36,7 @@ export default function Hero() {
         <ContainerAnimated>
           <h1 className="font-serif text-4xl font-extralight md:text-5xl mb-2">
             <span className="text-white px-2 py-1 rounded bg-[#ff563100] font-semibold">Building</span>{" "}
-            <span className="underline decoration-maverick-orange">resilience</span> with
+            <span className="underline decoration-maverick-orange font-semibold">resilience</span> with
           </h1>
         </ContainerAnimated>
         <ContainerAnimated>
