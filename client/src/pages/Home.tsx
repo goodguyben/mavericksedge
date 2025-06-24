@@ -15,7 +15,7 @@ import StructuredData, { organizationSchema, localBusinessSchema, websiteSchema,
 // Lazy load non-critical components
 const ServiceCascadeSection = lazy(() => import("../components/sections/ServiceCascadeSection"));
 const WhyChooseUsSection = lazy(() => import("../components/sections/WhyChooseUsSection"));
-import ContactSection from "../components/sections/ContactSection";
+const ContactSection = lazy(() => import("../components/sections/ContactSection"));
 
 export default function Home() {
   // Track page view for analytics purposes
@@ -125,7 +125,9 @@ export default function Home() {
             initialOpacity={0}
             minOpacity={0.1}
           >
-            <ContactSection />
+            <Suspense fallback={<div className="h-96 bg-gray-900 animate-pulse" />}>
+              <ContactSection />
+            </Suspense>
           </ScrollFadeSection>
         </article>
       </motion.div>
