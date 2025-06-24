@@ -81,7 +81,7 @@ export default function Hero() {
           mixBlendMode: "screen",
         }}
       />
-      <ContainerScroll className="relative h-[350vh]">
+      <ContainerScroll className="relative h-[280vh]">
         <ContainerSticky className="h-svh bg-[#0000009e]">
           <GalleryContainer className="">
             <GalleryCol yRange={["-10%", "2%"]} className="-mt-2">
