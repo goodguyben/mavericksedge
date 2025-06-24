@@ -14,6 +14,7 @@ const Services = lazy(() => import("@/pages/Services"));
 const WebServices = lazy(() => import("@/pages/WebServices"));
 const MarketingServices = lazy(() => import("@/pages/MarketingServices"));
 const AIServices = lazy(() => import("@/pages/AIServices"));
+const SEOServices = lazy(() => import("@/pages/SEOServices"));
 const Pricing = lazy(() => import("@/pages/Pricing"));
 const WebPricing = lazy(() => import("@/pages/WebPricing"));
 const MarketingPricing = lazy(() => import("@/pages/MarketingPricing"));
@@ -73,6 +74,9 @@ export default function App() {
               </Route>
               <Route path="/ai-automation-services-edmonton">
                 <AIServices />
+              </Route>
+              <Route path="/seo-services-edmonton">
+                <SEOServices />
               </Route>
               <Route path="/pricing-edmonton-web-design-marketing">
                 <Pricing />
