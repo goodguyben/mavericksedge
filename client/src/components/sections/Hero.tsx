@@ -81,10 +81,10 @@ export default function Hero() {
           mixBlendMode: "screen",
         }}
       />
-      <ContainerScroll className="relative h-[280vh]">
-        <ContainerSticky className="h-svh bg-[#0000009e]">
+      <ContainerScroll className="relative h-[200vh]">
+        <ContainerSticky className="h-svh bg-[#0000009e] -mt-32 md:-mt-40 lg:-mt-48">
           <GalleryContainer className="">
-            <GalleryCol yRange={["-10%", "2%"]} className="-mt-2">
+            <GalleryCol yRange={["-15%", "5%"]} className="-mt-8">
               {VIDEOS_1.map((videoUrl, index) => (
                 <video
                   key={index}
@@ -104,7 +104,7 @@ export default function Hero() {
                 </video>
               ))}
             </GalleryCol>
-            <GalleryCol className="mt-[-50%]" yRange={["15%", "5%"]}>
+            <GalleryCol className="mt-[-45%]" yRange={["10%", "0%"]}>
               {VIDEOS_2.map((videoUrl, index) => (
                 <video
                   key={index}
@@ -124,7 +124,7 @@ export default function Hero() {
                 </video>
               ))}
             </GalleryCol>
-            <GalleryCol yRange={["-10%", "2%"]} className="-mt-2">
+            <GalleryCol yRange={["-15%", "5%"]} className="-mt-8">
               {IMAGES_3.map((imageUrl, index) => (
                 <img
                   key={index}
