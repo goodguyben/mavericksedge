@@ -6,6 +6,7 @@ import { ContainerAnimated,
   GalleryContainer } from "@/components/blocks/animated-gallery"
 import { Button } from "@/components/ui/button"
 import { VideoIcon } from "lucide-react"
+import GradientText from "@/components/ui/GradientText"
 
 // Using your attached videos and images from public directory
 const VIDEOS_1 = [
@@ -36,7 +37,14 @@ export default function Hero() {
         <ContainerAnimated>
           <h1 className="font-serif text-4xl md:text-5xl mb-2 font-semibold">
             <span className="text-white px-2 py-1 rounded bg-[#ff563100] font-semibold">Building</span>{" "}
-            <span className="underline decoration-maverick-orange font-semibold">resilience</span> with
+            <span className="underline decoration-maverick-orange font-semibold">
+              <GradientText 
+                colors={["#FF5630", "#FF8A50", "#FFB899", "#FF5630"]}
+                animationSpeed={5}
+              >
+                resilience
+              </GradientText>
+            </span> with
           </h1>
         </ContainerAnimated>
         <ContainerAnimated>
