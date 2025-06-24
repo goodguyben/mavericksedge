@@ -17,7 +17,8 @@ import {
   ArrowRight,
   Star,
   Clock,
-  Target
+  Target,
+  Brain
 } from "lucide-react";
 import ContactSection from "@/components/sections/ContactSection";
 import { Link } from "wouter";
@@ -462,10 +463,10 @@ export default function WebServices() {
                         </div>
                       </div>
                     </div>
-                    
+
                     <h3 className="text-3xl font-bold mb-4">{step.title}</h3>
                     <p className="text-lg text-[#AAAAAA] mb-6 leading-relaxed">{step.description}</p>
-                    
+
                     <div className="grid grid-cols-2 gap-3">
                       {step.details.map((detail, idx) => (
                         <motion.div
@@ -645,7 +646,7 @@ export default function WebServices() {
                 >
                   {/* Animated background elements */}
                   <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br opacity-10 rounded-full -translate-y-10 translate-x-10 group-hover:scale-150 transition-transform duration-500"></div>
-                  
+
                   {/* Stats badge */}
                   <motion.div 
                     className={`absolute top-4 right-4 bg-gradient-to-r ${reason.color} px-3 py-1 rounded-full text-white text-xs font-bold`}
