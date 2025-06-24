@@ -1,3 +1,4 @@
+
 import { Helmet } from "react-helmet-async";
 
 interface SEOHeadProps {
@@ -23,7 +24,7 @@ export default function SEOHead({
   canonicalUrl = "https://mavericksedge.ca",
   ogTitle,
   ogDescription,
-  ogImage = "https://mavericksedge.ca/images/logo-transparent-thumb4x.png",
+  ogImage = "/images/logo-transparent-thumb4x.png",
   ogType = "website",
   twitterTitle,
   twitterDescription,
@@ -31,7 +32,7 @@ export default function SEOHead({
   structuredData,
   noindex = false
 }: SEOHeadProps) {
-
+  
   const finalOgTitle = ogTitle || title;
   const finalOgDescription = ogDescription || description;
   const finalTwitterTitle = twitterTitle || title;
@@ -44,10 +45,10 @@ export default function SEOHead({
       <meta name="description" content={description} />
       <meta name="keywords" content={keywords} />
       <link rel="canonical" href={canonicalUrl} />
-
+      
       {noindex && <meta name="robots" content="noindex, nofollow" />}
       {!noindex && <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />}
-
+      
       {/* Open Graph */}
       <meta property="og:title" content={finalOgTitle} />
       <meta property="og:description" content={finalOgDescription} />
@@ -56,7 +57,7 @@ export default function SEOHead({
       <meta property="og:image" content={ogImage} />
       <meta property="og:site_name" content="Mavericks Edge" />
       <meta property="og:locale" content="en_CA" />
-
+      
       {/* Twitter */}
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={finalTwitterTitle} />
@@ -64,14 +65,14 @@ export default function SEOHead({
       <meta name="twitter:image" content={finalTwitterImage} />
       <meta name="twitter:site" content="@mavericksedge" />
       <meta name="twitter:creator" content="@mavericksedge" />
-
+      
       {/* Additional SEO tags */}
       <meta name="author" content="Mavericks Edge" />
       <meta name="language" content="en-CA" />
       <meta name="revisit-after" content="7 days" />
       <meta name="rating" content="general" />
       <meta name="distribution" content="global" />
-
+      
       {/* Structured Data */}
       {structuredData && (
         <script type="application/ld+json">
