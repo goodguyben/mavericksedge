@@ -771,7 +771,7 @@ export default function WebServices() {
                   transition={{ duration: 0.3 }}
                 >
                   <img 
-                    src="/client/src/assets/telus-logo.png" 
+                    src="/src/assets/telus-logo.png" 
                     alt="TELUS Logo" 
                     className="h-16 w-auto object-contain"
                   />
@@ -828,7 +828,7 @@ export default function WebServices() {
                   transition={{ duration: 0.3 }}
                 >
                   <img 
-                    src="/client/src/assets/manus-ai-logo.png" 
+                    src="/src/assets/manus-ai-logo.png" 
                     alt="Manus AI Logo" 
                     className="h-16 w-auto object-contain"
                   />
