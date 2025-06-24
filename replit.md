@@ -1,126 +1,99 @@
-# Mavericks Edge - Web Development & Digital Marketing Platform
+# Mavericks Edge Web Application
 
 ## Overview
 
-Mavericks Edge is a full-stack web application for a digital marketing agency specializing in web development, marketing services, and AI integration for small and medium businesses (SMBs) and nonprofits. The platform features a modern React frontend with a Node.js/Express backend, PostgreSQL database, and comprehensive business service offerings.
+This is a full-stack web application for Mavericks Edge, a digital solutions agency specializing in web development, marketing, and AI integration services for SMBs and nonprofits. The application features a React frontend with a Node.js backend, utilizing modern web technologies and best practices.
 
 ## System Architecture
 
 ### Frontend Architecture
 - **Framework**: React 18 with TypeScript
-- **Routing**: Wouter for client-side routing
+- **Build Tool**: Vite for fast development and optimized builds
+- **Routing**: Wouter for lightweight client-side routing
+- **State Management**: React Query (TanStack Query) for server state management
 - **Styling**: Tailwind CSS with custom design system
-- **UI Components**: Radix UI primitives with shadcn/ui
-- **Animations**: Framer Motion for smooth transitions
-- **State Management**: TanStack Query for server state
-- **Build Tool**: Vite for development and production builds
+- **UI Components**: Radix UI primitives with shadcn/ui components
+- **Animations**: Framer Motion for smooth page transitions and interactions
 
 ### Backend Architecture
 - **Runtime**: Node.js with TypeScript
-- **Framework**: Express.js for REST API
-- **Database**: PostgreSQL with Drizzle ORM
-- **Email Service**: Resend API with Nodemailer fallback
-- **File Processing**: FFmpeg integration for media optimization
-- **Development**: Hot reload with tsx
+- **Framework**: Express.js for RESTful API endpoints
+- **Database**: PostgreSQL with Drizzle ORM for type-safe database operations
+- **Email Service**: Resend API for transactional emails with fallback to Nodemailer
+- **Validation**: Zod for schema validation and type safety
 
-### Key Design Decisions
-1. **Monorepo Structure**: Client, server, and shared code in single repository for easier development
-2. **TypeScript Throughout**: Full type safety across frontend, backend, and shared schemas
-3. **Performance-First**: Lazy loading, image optimization, and code splitting implemented
-4. **SEO Optimized**: Comprehensive meta tags, structured data, and sitemap generation
-5. **Responsive Design**: Mobile-first approach with custom breakpoints
+### Database Schema
+- **Users Table**: Basic user management with username/password authentication
+- **Contact Submissions Table**: Stores contact form submissions with timestamps
+- **Schema Management**: Drizzle Kit for migrations and schema synchronization
 
 ## Key Components
 
-### Database Schema
-- **Users**: Authentication and user management
-- **Contact Submissions**: Lead capture and management
-- Defined in `shared/schema.ts` with Zod validation
+### Frontend Components
+1. **Layout System**: Responsive layout with header, footer, and page transitions
+2. **Service Sections**: Modular sections for different service offerings
+3. **Contact Forms**: Form handling with validation and submission to backend
+4. **SEO Components**: Meta tags, structured data, and local SEO optimization
+5. **Performance Optimizations**: Lazy loading, image optimization, and code splitting
 
-### API Endpoints
-- **POST /api/contact**: Contact form submissions with email notifications
-- **GET /api/check-video**: Media file verification
-- Static file serving for robots.txt, sitemap.xml, favicon
+### Backend Services
+1. **Contact API**: Handles form submissions and email notifications
+2. **Static File Serving**: Serves optimized assets and media files
+3. **SEO Routes**: Robots.txt, sitemap.xml for search engine optimization
+4. **Error Handling**: Centralized error handling and logging
 
-### UI Component System
-- Custom button components with multiple variants
-- Reusable card components with hover effects
-- Pricing cards with feature comparisons
-- Contact forms with validation
-- Mobile-responsive navigation with dropdown menus
-
-### Page Structure
-- **Home**: Hero, services overview, process, testimonials, contact
-- **Services**: Web development, marketing, AI integration details
-- **Pricing**: Tiered pricing for each service category
-- **About**: Team information and company mission
-- **Contact**: Contact form and business information
-- **Legal**: Privacy policy, terms, accessibility, compliance pages
+### Third-Party Integrations
+1. **Email Services**: Resend for production emails, Nodemailer for development
+2. **Database**: Neon serverless PostgreSQL for production
+3. **Media Processing**: FFmpeg for video/audio optimization
+4. **Analytics**: Structured data and SEO tracking
 
 ## Data Flow
 
-### Contact Form Processing
-1. Client submits form with Zod validation
-2. Backend validates data against schema
-3. Stores submission in PostgreSQL database
-4. Sends notification email via Resend API
-5. Returns success/error response to client
-
-### Media Handling
-1. Static files served from `/public` directory
-2. Video files optimized with FFmpeg
-3. Image optimization with WebP/AVIF support
-4. Lazy loading implemented for performance
-
-### SEO Data Flow
-1. Structured data generated for each page type
-2. Dynamic meta tags based on page content
-3. Sitemap automatically includes all routes
-4. Local SEO data for Edmonton market
+1. **User Interaction**: Client-side routing and form interactions
+2. **API Requests**: React Query manages API calls to Express backend
+3. **Data Validation**: Zod schemas validate incoming data
+4. **Database Operations**: Drizzle ORM handles database queries
+5. **Email Notifications**: Automated emails sent via Resend/Nodemailer
+6. **Response Handling**: Standardized API responses with error handling
 
 ## External Dependencies
 
-### Core Dependencies
-- **@neondatabase/serverless**: PostgreSQL connection (can be replaced with standard pg)
-- **drizzle-orm**: Database ORM and migrations
-- **@sendgrid/mail**: Email service integration
-- **@radix-ui/***: UI component primitives
-- **framer-motion**: Animation library
-- **@tanstack/react-query**: Server state management
+### Production Dependencies
+- **Database**: @neondatabase/serverless for PostgreSQL connectivity
+- **Email**: @sendgrid/mail and Resend for email services
+- **UI Libraries**: Radix UI components for accessible interfaces
+- **Validation**: Zod for runtime type checking
+- **Animations**: Framer Motion for smooth transitions
 
-### Development Tools
-- **tsx**: TypeScript execution for development
-- **esbuild**: Production server bundling
-- **vite**: Frontend build tool and dev server
-- **tailwindcss**: Utility-first CSS framework
-
-### Media Processing
-- **@ffmpeg-installer/ffmpeg**: Video processing capabilities
-- **@vidstack/react**: Video player components
+### Development Dependencies
+- **Build Tools**: Vite, TypeScript, ESBuild for development and production builds
+- **Styling**: Tailwind CSS with PostCSS for styling
+- **Code Quality**: TypeScript for type safety
 
 ## Deployment Strategy
 
-### Production Build
-1. Frontend: `vite build` creates optimized static assets
-2. Backend: `esbuild` bundles server code for production
-3. Database: Drizzle migrations applied via `db:push`
+### Development Environment
+- **Run Command**: `npm run dev` starts both frontend (port 5173) and backend (port 5000)
+- **Database**: Uses environment variables for database connection
+- **Hot Reload**: Vite provides instant feedback during development
+
+### Production Deployment
+- **Build Process**: `npm run build` creates optimized production bundle
+- **Server**: `npm run start` runs the production server
+- **Database**: Requires DATABASE_URL environment variable
+- **Email**: Requires RESEND_API_KEY for email functionality
+- **Autoscaling**: Configured for automatic scaling based on traffic
 
 ### Environment Configuration
-- **Development**: Uses `.env.development` with local database
-- **Production**: Uses `.env.production` with environment variables
-- **Database**: Requires `DATABASE_URL` environment variable
+- **Development**: Uses local development server with hot reload
+- **Production**: Optimized build with environment-specific configurations
+- **Database**: Drizzle migrations handle schema updates
 
-### Replit Configuration
-- **Modules**: nodejs-20, web, postgresql-16
-- **Ports**: 5000 (backend), 5173 (frontend dev)
-- **Deployment**: Autoscale with build and run commands configured
-- **Development**: Parallel workflows for full-stack development
+## Changelog
+
+- June 24, 2025. Initial setup
 
 ## User Preferences
 
 Preferred communication style: Simple, everyday language.
-
-## Changelog
-
-Changelog:
-- June 24, 2025. Initial setup
