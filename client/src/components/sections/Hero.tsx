@@ -62,7 +62,7 @@ export default function Hero() {
         </ContainerAnimated>
 
         <ContainerAnimated>
-          <div className="flex flex-wrap justify-center gap-4">
+          <div className="flex flex-wrap justify-center gap-4 pl-[0px] pr-[0px] ml-[80px] mr-[80px]">
             <Button className="px-8 py-3 bg-maverick-orange hover:bg-maverick-orange/90 text-white font-medium rounded-full">
               Explore Services
             </Button>
