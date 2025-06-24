@@ -63,13 +63,70 @@ export default function Hero() {
           </ContainerAnimated>
 
           <ContainerAnimated>
-            <div className="flex flex-wrap justify-center gap-4">
+            <div className="flex flex-wrap justify-center gap-4 mb-16">
               <Button className="px-8 py-3 bg-maverick-orange hover:bg-maverick-orange/90 text-white font-medium rounded-full">
                 Explore Services
               </Button>
               <Button variant="outline" className="px-8 py-3 border-maverick-orange text-maverick-orange hover:bg-maverick-orange/10 font-medium rounded-full">
                 Book Free Consultation
               </Button>
+            </div>
+          </ContainerAnimated>
+          
+          <ContainerAnimated>
+            <div className="relative max-w-6xl mx-auto">
+              <div className="grid grid-cols-3 gap-4 bg-[#0000009e] rounded-2xl p-6">
+                <div className="flex flex-col gap-3">
+                  {VIDEOS_1.map((videoUrl, index) => (
+                    <video
+                      key={index}
+                      className="aspect-video w-full rounded-lg object-cover shadow-lg"
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      onCanPlay={() => {
+                        console.log(`Video ready to play: ${videoUrl}`);
+                      }}
+                      onError={(e) => {
+                        console.warn(`Failed to play video: ${videoUrl}`, e);
+                      }}
+                    >
+                      <source src={videoUrl} type="video/mp4" />
+                    </video>
+                  ))}
+                </div>
+                <div className="flex flex-col gap-3 mt-8">
+                  {VIDEOS_2.map((videoUrl, index) => (
+                    <video
+                      key={index}
+                      className="aspect-video w-full rounded-lg object-cover shadow-lg"
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      onCanPlay={() => {
+                        console.log(`Video ready to play: ${videoUrl}`);
+                      }}
+                      onError={(e) => {
+                        console.warn(`Failed to play video: ${videoUrl}`, e);
+                      }}
+                    >
+                      <source src={videoUrl} type="video/mp4" />
+                    </video>
+                  ))}
+                </div>
+                <div className="flex flex-col gap-3">
+                  {IMAGES_3.map((imageUrl, index) => (
+                    <img
+                      key={index}
+                      className="aspect-video w-full rounded-lg object-cover shadow-lg"
+                      src={imageUrl}
+                      alt="gallery item"
+                    />
+                  ))}
+                </div>
+              </div>
             </div>
           </ContainerAnimated>
         </div>
@@ -82,62 +139,6 @@ export default function Hero() {
           mixBlendMode: "screen",
         }}
       />
-      <ContainerScroll className="relative h-[280vh] -mt-32">
-        <ContainerSticky className="h-svh bg-[#0000009e]">
-          <GalleryContainer className="">
-            <GalleryCol yRange={["-10%", "2%"]} className="-mt-2">
-              {VIDEOS_1.map((videoUrl, index) => (
-                <video
-                  key={index}
-                  className="aspect-video block h-auto max-h-full w-full rounded-md object-cover shadow"
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  onCanPlay={() => {
-                    console.log(`Video ready to play: ${videoUrl}`);
-                  }}
-                  onError={(e) => {
-                    console.warn(`Failed to play video: ${videoUrl}`, e);
-                  }}
-                >
-                  <source src={videoUrl} type="video/mp4" />
-                </video>
-              ))}
-            </GalleryCol>
-            <GalleryCol className="mt-[-50%]" yRange={["15%", "5%"]}>
-              {VIDEOS_2.map((videoUrl, index) => (
-                <video
-                  key={index}
-                  className="aspect-video block h-auto max-h-full w-full rounded-md object-cover shadow"
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  onCanPlay={() => {
-                    console.log(`Video ready to play: ${videoUrl}`);
-                  }}
-                  onError={(e) => {
-                    console.warn(`Failed to play video: ${videoUrl}`, e);
-                  }}
-                >
-                  <source src={videoUrl} type="video/mp4" />
-                </video>
-              ))}
-            </GalleryCol>
-            <GalleryCol yRange={["-10%", "2%"]} className="-mt-2">
-              {IMAGES_3.map((imageUrl, index) => (
-                <img
-                  key={index}
-                  className="aspect-video block h-auto max-h-full w-full rounded-md object-cover shadow"
-                  src={imageUrl}
-                  alt="gallery item"
-                />
-              ))}
-            </GalleryCol>
-          </GalleryContainer>
-        </ContainerSticky>
-      </ContainerScroll>
     </div>
   );
 }
