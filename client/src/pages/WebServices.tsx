@@ -929,7 +929,7 @@ export default function WebServices() {
                 className="flex flex-col items-center group relative"
               >
                 <motion.div
-                  className="w-40 h-40 bg-white rounded-2xl flex items-center justify-center mb-6 shadow-lg overflow-hidden p-4"
+                  className="w-32 h-32 bg-white rounded-2xl flex items-center justify-center mb-6 shadow-lg overflow-hidden p-6"
                   whileHover={{ scale: 1.05, rotate: -2 }}
                   transition={{ type: "spring", stiffness: 300 }}
                 >
@@ -937,7 +937,7 @@ export default function WebServices() {
                     <img 
                       src="/images/telus-logo.png" 
                       alt="Telus Logo" 
-                      className="w-full h-auto object-contain"
+                      className="max-w-full max-h-full object-contain"
                       loading="lazy"
                       onError={(e) => {
                         console.log("Telus logo failed to load, showing fallback");
@@ -950,7 +950,7 @@ export default function WebServices() {
                       onLoad={() => console.log("Telus logo loaded successfully")}
                     />
                     <div 
-                      className="w-full h-full bg-gradient-to-br from-green-600 to-blue-600 rounded-lg flex items-center justify-center text-white font-bold text-xl"
+                      className="w-full h-full bg-gradient-to-br from-green-600 to-blue-600 rounded-lg flex items-center justify-center text-white font-bold text-lg"
                       style={{ display: 'none' }}
                     >
                       TELUS
@@ -982,7 +982,7 @@ export default function WebServices() {
                 className="flex flex-col items-center group relative"
               >
                 <motion.div
-                  className="w-40 h-40 bg-white rounded-2xl flex items-center justify-center mb-6 shadow-lg p-4"
+                  className="w-32 h-32 bg-white rounded-2xl flex items-center justify-center mb-6 shadow-lg p-6"
                   whileHover={{ scale: 1.05, rotate: 2 }}
                   transition={{ type: "spring", stiffness: 300 }}
                 >
@@ -990,7 +990,7 @@ export default function WebServices() {
                     <img 
                       src="/images/manus-ai-logo.png" 
                       alt="Manus AI Logo" 
-                      className="w-full h-auto object-contain"
+                      className="max-w-full max-h-full object-contain"
                       loading="lazy"
                       onError={(e) => {
                         console.log("Manus AI logo failed to load, showing fallback");
@@ -1003,7 +1003,7 @@ export default function WebServices() {
                       onLoad={() => console.log("Manus AI logo loaded successfully")}
                     />
                     <div 
-                      className="w-full h-full bg-gradient-to-br from-purple-600 to-pink-600 rounded-lg flex items-center justify-center text-white font-bold text-lg text-center"
+                      className="w-full h-full bg-gradient-to-br from-purple-600 to-pink-600 rounded-lg flex items-center justify-center text-white font-bold text-sm text-center"
                       style={{ display: 'none' }}
                     >
                       MANUS AI
