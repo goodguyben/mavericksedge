@@ -35,7 +35,7 @@ export default function Hero() {
       <ContainerStagger className="relative z-[9999] -mb-12 place-self-center px-6 pt-12 text-center">
         <ContainerAnimated>
           <h1 className="font-serif text-4xl font-extralight md:text-5xl mb-2">
-            <span className="text-white px-2 py-1 rounded bg-[#ff563100]">Building</span>{" "}
+            <span className="text-white px-2 py-1 rounded bg-[#ff563100] font-semibold">Building</span>{" "}
             <span className="underline decoration-maverick-orange">resilience</span> with
           </h1>
         </ContainerAnimated>
