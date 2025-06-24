@@ -770,10 +770,11 @@ export default function WebServices() {
                   whileHover={{ rotate: [0, -5, 5, 0] }}
                   transition={{ duration: 0.5 }}
                 >
-                  <svg className="h-20 w-auto" viewBox="0 0 200 60" fill="none">
-                    <rect x="10" y="15" width="30" height="30" rx="15" fill="#6E2C6E"/>
-                    <text x="50" y="35" fill="#6E2C6E" fontSize="24" fontWeight="bold" fontFamily="Arial">TELUS</text>
-                  </svg>
+                  <img 
+                    src="/client/assets/telus-logo.svg" 
+                    alt="TELUS Logo" 
+                    className="h-20 w-auto"
+                  />
                 </motion.div>
                 <h3 className="text-xl font-bold mb-3 group-hover:text-[#6E2C6E] transition-colors">
                   TELUS Business Solutions
@@ -837,9 +838,11 @@ export default function WebServices() {
                       ease: "linear"
                     }}
                   >
-                    <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-maverick-orange to-orange-600 flex items-center justify-center">
-                      <Brain className="h-8 w-8 text-white" />
-                    </div>
+                    <img 
+                      src="/client/assets/Manus-ai-logo.svg" 
+                      alt="Manus AI Logo" 
+                      className="h-16 w-auto"
+                    />
                   </motion.div>
                 </motion.div>
                 <h3 className="text-xl font-bold mb-3 group-hover:text-maverick-orange transition-colors">
