@@ -75,14 +75,14 @@ export default function Hero() {
         </div>
       </ContainerStagger>
       
-      <div className="pointer-events-none absolute z-10 h-[70vh] w-full -mt-20"
+      <div className="pointer-events-none absolute z-10 h-[70vh] w-full mt-10"
         style={{
           background: "linear-gradient(to right, gray, rebeccapurple, blue)",
           filter: "blur(84px)",
           mixBlendMode: "screen",
         }}
       />
-      <ContainerScroll className="relative h-[280vh] -mt-32">
+      <ContainerScroll className="relative h-[280vh] -mt-16">
         <ContainerSticky className="h-svh bg-[#0000009e]">
           <GalleryContainer className="">
             <GalleryCol yRange={["-10%", "2%"]} className="-mt-2">
