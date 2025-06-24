@@ -929,21 +929,33 @@ export default function WebServices() {
                 className="flex flex-col items-center group relative"
               >
                 <motion.div
-                  className="w-32 h-32 bg-white rounded-2xl flex items-center justify-center mb-6 shadow-lg overflow-hidden p-4"
+                  className="w-32 h-32 bg-white rounded-2xl flex items-center justify-center mb-6 shadow-lg overflow-hidden p-6"
                   whileHover={{ scale: 1.05, rotate: -2 }}
                   transition={{ type: "spring", stiffness: 300 }}
                 >
-                  <img 
-                    src="/images/telus-logo.png" 
-                    alt="Telus Logo" 
-                    className="w-full h-full object-contain"
-                    loading="lazy"
-                    onError={(e) => {
-                      console.log("Telus logo failed to load");
-                      e.currentTarget.style.display = 'none';
-                    }}
-                    onLoad={() => console.log("Telus logo loaded successfully")}
-                  />
+                  <div className="w-full h-full flex items-center justify-center">
+                    <img 
+                      src="/images/telus-logo.png" 
+                      alt="Telus Logo" 
+                      className="max-w-full max-h-full object-contain"
+                      loading="lazy"
+                      onError={(e) => {
+                        console.log("Telus logo failed to load, showing fallback");
+                        const fallback = e.currentTarget.nextElementSibling as HTMLElement;
+                        if (fallback) {
+                          e.currentTarget.style.display = 'none';
+                          fallback.style.display = 'flex';
+                        }
+                      }}
+                      onLoad={() => console.log("Telus logo loaded successfully")}
+                    />
+                    <div 
+                      className="w-full h-full bg-gradient-to-br from-green-600 to-blue-600 rounded-lg flex items-center justify-center text-white font-bold text-lg"
+                      style={{ display: 'none' }}
+                    >
+                      TELUS
+                    </div>
+                  </div>
                 </motion.div>
                 <h3 className="text-xl font-bold mb-2 group-hover:text-maverick-orange transition-colors">Telus</h3>
                 <p className="text-[#AAAAAA] text-center text-sm">Telecommunications & Connectivity</p>
@@ -970,21 +982,33 @@ export default function WebServices() {
                 className="flex flex-col items-center group relative"
               >
                 <motion.div
-                  className="w-32 h-32 bg-white rounded-2xl flex items-center justify-center mb-6 shadow-lg p-4"
+                  className="w-32 h-32 bg-white rounded-2xl flex items-center justify-center mb-6 shadow-lg p-6"
                   whileHover={{ scale: 1.05, rotate: 2 }}
                   transition={{ type: "spring", stiffness: 300 }}
                 >
-                  <img 
-                    src="/images/manus-ai-logo.png" 
-                    alt="Manus AI Logo" 
-                    className="w-full h-full object-contain"
-                    loading="lazy"
-                    onError={(e) => {
-                      console.log("Manus AI logo failed to load");
-                      e.currentTarget.style.display = 'none';
-                    }}
-                    onLoad={() => console.log("Manus AI logo loaded successfully")}
-                  />
+                  <div className="w-full h-full flex items-center justify-center">
+                    <img 
+                      src="/images/manus-ai-logo.png" 
+                      alt="Manus AI Logo" 
+                      className="max-w-full max-h-full object-contain"
+                      loading="lazy"
+                      onError={(e) => {
+                        console.log("Manus AI logo failed to load, showing fallback");
+                        const fallback = e.currentTarget.nextElementSibling as HTMLElement;
+                        if (fallback) {
+                          e.currentTarget.style.display = 'none';
+                          fallback.style.display = 'flex';
+                        }
+                      }}
+                      onLoad={() => console.log("Manus AI logo loaded successfully")}
+                    />
+                    <div 
+                      className="w-full h-full bg-gradient-to-br from-purple-600 to-pink-600 rounded-lg flex items-center justify-center text-white font-bold text-sm text-center"
+                      style={{ display: 'none' }}
+                    >
+                      MANUS AI
+                    </div>
+                  </div>
                 </motion.div>
                 <h3 className="text-xl font-bold mb-2 group-hover:text-maverick-orange transition-colors">Manus AI</h3>
                 <p className="text-[#AAAAAA] text-center text-sm">Artificial Intelligence Solutions</p>
