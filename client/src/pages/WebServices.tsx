@@ -23,6 +23,8 @@ import {
 import ContactSection from "@/components/sections/ContactSection";
 import { Link } from "wouter";
 import { generateSEOTags, generateServiceStructuredData } from "@/lib/seo";
+import telusLogo from "@/assets/telus-logo.png";
+import manusAiLogo from "@/assets/manus-ai-logo.png";
 
 export default function WebServices() {
   const seoConfig = generateSEOTags({
@@ -771,7 +773,7 @@ export default function WebServices() {
                   transition={{ duration: 0.3 }}
                 >
                   <img 
-                    src="/src/assets/telus-logo.png" 
+                    src={telusLogo} 
                     alt="TELUS Logo" 
                     className="h-16 w-auto object-contain"
                   />
@@ -828,7 +830,7 @@ export default function WebServices() {
                   transition={{ duration: 0.3 }}
                 >
                   <img 
-                    src="/src/assets/manus-ai-logo.png" 
+                    src={manusAiLogo} 
                     alt="Manus AI Logo" 
                     className="h-16 w-auto object-contain"
                   />
