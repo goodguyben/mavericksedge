@@ -7,39 +7,26 @@ import { ContainerAnimated,
 import { Button } from "@/components/ui/button"
 import { VideoIcon } from "lucide-react"
 
-import customWebsite1 from "@assets/Custom Interactive Websites 1.mp4"
-import customWebsite2 from "@assets/Custom Interactive Websites 2.mp4"
-import customWebsite3 from "@assets/Custom Interactive Websites 3.mp4"
-import ecommerce1 from "@assets/Next-Gen E-Commerce 1.mp4"
-import ecommerce2 from "@assets/Next-Gen E-Commerce 2.mp4"
-import productivity1 from "@assets/Productivity & Management Web Applications 1.mp4"
-import productivity3 from "@assets/Productivity & Management Web Applications 3.mp4"
-import socialMedia from "@assets/Social Media Management.mp4"
-import aiSolutions from "@assets/Custom AI Solutions.jpg"
-import productivity2 from "@assets/Productivity & Management Web Applications 2.png"
-import screenshot1 from "@assets/Screenshot 2025-04-22 at 2.22.40 PM.png"
-import screenshot2 from "@assets/Screenshot 2025-04-27 at 4.24.12 PM.png"
-
-// Using your attached videos and images
+// Using your attached videos and images from public directory
 const VIDEOS_1 = [
-  customWebsite1,
-  ecommerce1,
-  productivity1,
-  socialMedia,
+  "/videos/custom-website-1.mp4",
+  "/videos/ecommerce-1.mp4",
+  "/videos/productivity-1.mp4",
+  "/videos/social-media.mp4",
 ]
 
 const VIDEOS_2 = [
-  customWebsite2,
-  ecommerce2,
-  customWebsite3,
-  productivity3,
+  "/videos/custom-website-2.mp4",
+  "/videos/ecommerce-2.mp4",
+  "/videos/custom-website-3.mp4",
+  "/videos/productivity-3.mp4",
 ]
 
 const IMAGES_3 = [
-  aiSolutions,
-  productivity2,
-  screenshot1,
-  screenshot2,
+  "/images/ai-solutions.jpg",
+  "/images/productivity-2.png",
+  "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&auto=format&fit=crop&q=60",
+  "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&auto=format&fit=crop&q=60",
 ]
 
 export default function Hero() {
