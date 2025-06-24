@@ -937,7 +937,7 @@ export default function WebServices() {
                     <img 
                       src="/images/telus-logo.png" 
                       alt="Telus Logo" 
-                      className="max-w-full max-h-full object-contain"
+                      className="w-full h-full object-contain scale-125"
                       loading="lazy"
                       onError={(e) => {
                         console.log("Telus logo failed to load, showing fallback");
@@ -990,7 +990,7 @@ export default function WebServices() {
                     <img 
                       src="/images/manus-ai-logo.png" 
                       alt="Manus AI Logo" 
-                      className="max-w-full max-h-full object-contain"
+                      className="w-full h-full object-contain scale-125"
                       loading="lazy"
                       onError={(e) => {
                         console.log("Manus AI logo failed to load, showing fallback");
