@@ -31,7 +31,7 @@ const IMAGES_3 = [
 
 export default function Hero() {
   return (
-    <div className="relative bg-white">
+    <div className="relative bg-white mt-[-4px] mb-[-4px]">
       <ContainerStagger className="relative z-[9999] -mb-12 place-self-center px-6 pt-12 text-center">
         <ContainerAnimated>
           <h1 className="font-serif text-4xl font-extralight md:text-5xl">
@@ -65,7 +65,6 @@ export default function Hero() {
           </Button>
         </ContainerAnimated>
       </ContainerStagger>
-      
       <div className="pointer-events-none absolute z-10 h-[70vh] w-full"
         style={{
           background: "linear-gradient(to right, gray, rebeccapurple, blue)",
@@ -73,7 +72,6 @@ export default function Hero() {
           mixBlendMode: "screen",
         }}
       />
-
       <ContainerScroll className="relative h-[350vh]">
         <ContainerSticky className="h-svh">
           <GalleryContainer className="">
@@ -131,5 +129,5 @@ export default function Hero() {
         </ContainerSticky>
       </ContainerScroll>
     </div>
-  )
+  );
 }
