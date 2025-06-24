@@ -1,6 +1,3 @@
-
-"use client" 
-
 import * as React from "react"
 
 import {
@@ -26,7 +23,6 @@ const SPRING_CONFIG = {
   restDelta: 0.005,
   duration: 0.3,
 }
-
 const blurVariants: Variants = {
   hidden: {
     filter: "blur(10px)",
@@ -41,7 +37,6 @@ const blurVariants: Variants = {
 const ContainerScrollContext = React.createContext<
   ContainerScrollContextValue | undefined
 >(undefined)
-
 function useContainerScrollContext() {
   const context = React.useContext(ContainerScrollContext)
   if (!context) {
@@ -51,13 +46,12 @@ function useContainerScrollContext() {
   }
   return context
 }
-
 export const ContainerScroll = ({
   children,
   className,
   style,
   ...props
-}: React.HTMLAttributes<HTMLDivElement>) => {
+}: React.HtmlHTMLAttributes<HTMLDivElement>) => {
   const scrollRef = React.useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({
     target: scrollRef,
@@ -81,7 +75,6 @@ export const ContainerScroll = ({
   )
 }
 ContainerScroll.displayName = "ContainerScroll"
-
 export const ContainerSticky = ({
   className,
   style,
@@ -161,47 +154,37 @@ GalleryCol.displayName = "GalleryCol"
 
 export const ContainerStagger = React.forwardRef<
   HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement> & HTMLMotionProps<"div"> & {
-    viewport?: any
-    transition?: any
-  }
->(({ children, className, viewport, transition, ...props }, ref) => {
+  HTMLMotionProps<"div">
+>(({ className, viewport, transition, ...props }, ref) => {
   return (
     <motion.div
+      className={cn("relative", className)}
       ref={ref}
-      className={className}
       initial="hidden"
-      whileInView="visible"
+      whileInView={"visible"}
       viewport={{ once: true || viewport?.once, ...viewport }}
       transition={{
         staggerChildren: transition?.staggerChildren || 0.2,
         ...transition,
       }}
       {...props}
-    >
-      {children}
-    </motion.div>
+    />
   )
 })
 ContainerStagger.displayName = "ContainerStagger"
 
-export const GalleryItem = ({
-  children,
-  className,
-  ...props
-}: React.HTMLAttributes<HTMLDivElement> & HTMLMotionProps<"div">) => {
+export const ContainerAnimated = React.forwardRef<
+  HTMLDivElement,
+  HTMLMotionProps<"div">
+>(({ className, transition, ...props }, ref) => {
   return (
     <motion.div
-      className={cn(
-        "relative overflow-hidden rounded-lg bg-gray-100 dark:bg-gray-800",
-        className
-      )}
+      ref={ref}
+      className={cn(className)}
       variants={blurVariants}
-      transition={SPRING_CONFIG}
+      transition={SPRING_CONFIG || transition}
       {...props}
-    >
-      {children}
-    </motion.div>
+    />
   )
-}
-GalleryItem.displayName = "GalleryItem"
+})
+ContainerAnimated.displayName = "ContainerAnimated"
