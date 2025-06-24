@@ -151,7 +151,7 @@ export default function WhatWeDoSection() {
           y: useTransform(scrollYProgress, [0, 0.5, 1], [50, -50, 50]),
         }}
       />
-      <div className="absolute inset-0 bg-[url('/images/noise.png')] opacity-[0.03] mix-blend-soft-light"></div>
+      <div className="absolute inset-0 bg-[url('/images/noise.png')] opacity-[0.03] mix-blend-soft-light mt-[60px] mb-[60px]"></div>
       <div className="container mx-auto relative z-10">
         <header className="text-center mt-[-16px] mb-[-16px]">
           <motion.div
