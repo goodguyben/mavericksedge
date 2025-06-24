@@ -1059,47 +1059,7 @@ export default function WebServices() {
               </motion.div>
             </div>
 
-            {/* Partnership Benefits */}
-            <motion.div
-              className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-8"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.5 }}
-            >
-              <div className="text-center">
-                <motion.div
-                  className="w-16 h-16 bg-gradient-to-br from-blue-500 to-green-500 rounded-2xl flex items-center justify-center mx-auto mb-4"
-                  whileHover={{ scale: 1.1, rotate: 5 }}
-                >
-                  <Globe className="h-8 w-8 text-white" />
-                </motion.div>
-                <h4 className="text-lg font-bold mb-2">Enterprise-Grade Infrastructure</h4>
-                <p className="text-[#AAAAAA] text-sm">Leveraging world-class platforms for maximum reliability and performance</p>
-              </div>
-              
-              <div className="text-center">
-                <motion.div
-                  className="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center mx-auto mb-4"
-                  whileHover={{ scale: 1.1, rotate: -5 }}
-                >
-                  <Zap className="h-8 w-8 text-white" />
-                </motion.div>
-                <h4 className="text-lg font-bold mb-2">Cutting-Edge Innovation</h4>
-                <p className="text-[#AAAAAA] text-sm">Access to the latest technologies and AI-powered solutions</p>
-              </div>
-              
-              <div className="text-center">
-                <motion.div
-                  className="w-16 h-16 bg-gradient-to-br from-orange-500 to-red-500 rounded-2xl flex items-center justify-center mx-auto mb-4"
-                  whileHover={{ scale: 1.1, rotate: 5 }}
-                >
-                  <Shield className="h-8 w-8 text-white" />
-                </motion.div>
-                <h4 className="text-lg font-bold mb-2">Enhanced Security</h4>
-                <p className="text-[#AAAAAA] text-sm">Bank-level security protocols and compliance standards</p>
-              </div>
-            </motion.div>
+            
           </div>
         </section>
 
