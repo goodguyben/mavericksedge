@@ -766,14 +766,14 @@ export default function WebServices() {
                 className="bg-[#1E1E1E] p-8 rounded-2xl border border-gray-800 hover:border-[#6E2C6E] transition-all duration-300 group"
               >
                 <motion.div
-                  className="flex items-center justify-center mb-6"
-                  whileHover={{ rotate: [0, -5, 5, 0] }}
-                  transition={{ duration: 0.5 }}
+                  className="flex items-center justify-center mb-6 bg-white rounded-lg p-4"
+                  whileHover={{ scale: 1.1 }}
+                  transition={{ duration: 0.3 }}
                 >
                   <img 
-                    src="/client/assets/telus-logo.svg" 
+                    src="/client/src/assets/telus-logo.png" 
                     alt="TELUS Logo" 
-                    className="h-20 w-auto"
+                    className="h-16 w-auto object-contain"
                   />
                 </motion.div>
                 <h3 className="text-xl font-bold mb-3 group-hover:text-[#6E2C6E] transition-colors">
@@ -823,27 +823,15 @@ export default function WebServices() {
                 className="bg-[#1E1E1E] p-8 rounded-2xl border border-gray-800 hover:border-maverick-orange transition-all duration-300 group"
               >
                 <motion.div
-                  className="flex items-center justify-center mb-6"
-                  whileHover={{ scale: [1, 1.1, 1] }}
-                  transition={{ duration: 0.5 }}
+                  className="flex items-center justify-center mb-6 bg-white rounded-lg p-4"
+                  whileHover={{ scale: 1.1 }}
+                  transition={{ duration: 0.3 }}
                 >
-                  <motion.div
-                    className="relative"
-                    animate={{
-                      rotate: [0, 360]
-                    }}
-                    transition={{
-                      duration: 20,
-                      repeat: Infinity,
-                      ease: "linear"
-                    }}
-                  >
-                    <img 
-                      src="/client/assets/Manus-ai-logo.svg" 
-                      alt="Manus AI Logo" 
-                      className="h-16 w-auto"
-                    />
-                  </motion.div>
+                  <img 
+                    src="/client/src/assets/manus-ai-logo.png" 
+                    alt="Manus AI Logo" 
+                    className="h-16 w-auto object-contain"
+                  />
                 </motion.div>
                 <h3 className="text-xl font-bold mb-3 group-hover:text-maverick-orange transition-colors">
                   Manus AI
