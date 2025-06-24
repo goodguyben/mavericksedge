@@ -70,7 +70,7 @@ export default function Hero() {
         }}
       />
       <ContainerScroll className="relative h-[350vh]">
-        <ContainerSticky className="h-svh">
+        <ContainerSticky className="h-svh bg-[#0000009e]">
           <GalleryContainer className="">
             <GalleryCol yRange={["-10%", "2%"]} className="-mt-2">
               {VIDEOS_1.map((videoUrl, index) => (
