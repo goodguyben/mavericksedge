@@ -36,7 +36,7 @@ export default function Hero() {
       <ContainerStagger className="relative z-[9999] place-self-center px-6 pt-12 text-center mt-[130px] mb-[130px]">
         <ContainerAnimated>
           <h1 className="font-serif text-4xl md:text-5xl mb-2 font-semibold">
-            <span className="text-white px-2 py-1 rounded bg-[#ff563100] font-semibold text-[52px]">Building</span>{" "}
+            <span className="text-white px-2 py-1 rounded bg-[#ff563100] font-semibold">Building</span>{" "}
             <span className="underline decoration-maverick-orange font-semibold">
               <GradientText 
                 colors={["#FF5630", "#FF8A50", "#FFB899", "#FF5630"]}
