@@ -35,7 +35,7 @@ export default function Hero() {
     <div className="relative mt-[-4px] mb-[-4px] bg-[#000000] pt-[1px] pb-[1px]">
       <ContainerStagger className="relative z-[9999] place-self-center px-6 pt-12 text-center mt-[130px] mb-[130px]">
         <ContainerAnimated>
-          <h1 className="font-serif text-4xl md:text-5xl mb-2 font-semibold">
+          <h1 className="font-serif text-5xl md:text-6xl lg:text-7xl mb-2 font-semibold">
             <span className="text-white px-2 py-1 rounded bg-[#ff563100] font-semibold">Building</span>{" "}
             <span className="underline decoration-maverick-orange font-semibold">
               <GradientText 
@@ -48,7 +48,7 @@ export default function Hero() {
           </h1>
         </ContainerAnimated>
         <ContainerAnimated>
-          <h1 className="font-serif text-4xl md:text-5xl mb-6 font-semibold">
+          <h1 className="font-serif text-5xl md:text-6xl lg:text-7xl mb-6 font-semibold">
             innovation and heart
           </h1>
         </ContainerAnimated>
@@ -62,7 +62,7 @@ export default function Hero() {
         </ContainerAnimated>
 
         <ContainerAnimated className="text-right">
-          <div className="flex flex-wrap justify-end gap-4 pt-[0px] pb-[0px] pl-[110px] pr-[110px]">
+          <div className="flex flex-wrap justify-end gap-4 pt-[0px] pb-[0px] pl-[120px] pr-[120px]">
             <Button className="px-8 py-3 bg-maverick-orange hover:bg-maverick-orange/90 text-white font-medium rounded-full">
               Explore Services
             </Button>
