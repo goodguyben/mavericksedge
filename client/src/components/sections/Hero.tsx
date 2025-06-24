@@ -34,23 +34,23 @@ export default function Hero() {
     <div className="relative bg-white mt-[-4px] mb-[-4px]">
       <ContainerStagger className="relative z-[9999] -mb-12 place-self-center px-6 pt-12 text-center">
         <ContainerAnimated>
-          <h1 className="font-serif text-4xl font-extralight md:text-5xl">
+          <h1 className="font-serif text-4xl font-extralight  md:text-5xl">
             Your{" "}
-            <span className="font-serif font-extralight text-indigo-600">
+            <span className=" font-serif font-extralight text-indigo-600">
               one source
             </span>
           </h1>
         </ContainerAnimated>
         <ContainerAnimated>
           <h1 className="font-serif text-4xl font-extralight md:text-5xl">
-            for all your digital solutions
+            for all your designs
           </h1>
         </ContainerAnimated>
 
         <ContainerAnimated className="my-4">
           <p className="leading-normal tracking-tight text-muted-foreground">
-            We design beautiful websites, improve your online visibility,
-            <br /> and offer smart AI integration for your business growth.
+            No waste of time and money, we provide you with
+            <br /> collection of designs to plan your next project.
           </p>
         </ContainerAnimated>
 
@@ -58,9 +58,9 @@ export default function Hero() {
           <Button
             className="gap-1 bg-indigo-700"
           >
-            Book free call <VideoIcon className="size-4" />
+            Book free call <VideoIcon className="size-4  " />
           </Button>
-          <Button variant={"link"} className="text-secondary">
+          <Button variant={"link"} className="text-sencondary">
             About Us
           </Button>
         </ContainerAnimated>
