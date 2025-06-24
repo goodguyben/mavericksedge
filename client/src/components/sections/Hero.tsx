@@ -32,7 +32,7 @@ const IMAGES_3 = [
 
 export default function Hero() {
   return (
-    <div className="relative mt-[-4px] mb-[-4px] bg-[#000000]">
+    <div className="relative mt-[-4px] mb-[-4px] bg-[#000000] pt-[1px] pb-[1px]">
       <ContainerStagger className="relative z-[9999] place-self-center px-6 pt-12 text-center mt-[130px] mb-[130px]">
         <ContainerAnimated>
           <h1 className="font-serif text-4xl md:text-5xl mb-2 font-semibold">
