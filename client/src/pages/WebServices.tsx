@@ -929,14 +929,20 @@ export default function WebServices() {
                 className="flex flex-col items-center group relative"
               >
                 <motion.div
-                  className="w-32 h-32 bg-white rounded-2xl flex items-center justify-center mb-6 shadow-lg overflow-hidden"
+                  className="w-32 h-32 bg-white rounded-2xl flex items-center justify-center mb-6 shadow-lg overflow-hidden p-4"
                   whileHover={{ scale: 1.05, rotate: -2 }}
                   transition={{ type: "spring", stiffness: 300 }}
                 >
                   <img 
                     src="/images/telus-logo.png" 
-                    alt="Telus" 
-                    className="w-24 h-auto object-contain"
+                    alt="Telus Logo" 
+                    className="w-full h-full object-contain"
+                    loading="lazy"
+                    onError={(e) => {
+                      console.log("Telus logo failed to load");
+                      e.currentTarget.style.display = 'none';
+                    }}
+                    onLoad={() => console.log("Telus logo loaded successfully")}
                   />
                 </motion.div>
                 <h3 className="text-xl font-bold mb-2 group-hover:text-maverick-orange transition-colors">Telus</h3>
@@ -964,14 +970,20 @@ export default function WebServices() {
                 className="flex flex-col items-center group relative"
               >
                 <motion.div
-                  className="w-32 h-32 bg-white rounded-2xl flex items-center justify-center mb-6 shadow-lg"
+                  className="w-32 h-32 bg-white rounded-2xl flex items-center justify-center mb-6 shadow-lg p-4"
                   whileHover={{ scale: 1.05, rotate: 2 }}
                   transition={{ type: "spring", stiffness: 300 }}
                 >
                   <img 
                     src="/images/manus-ai-logo.png" 
-                    alt="Manus AI" 
-                    className="w-24 h-auto object-contain"
+                    alt="Manus AI Logo" 
+                    className="w-full h-full object-contain"
+                    loading="lazy"
+                    onError={(e) => {
+                      console.log("Manus AI logo failed to load");
+                      e.currentTarget.style.display = 'none';
+                    }}
+                    onLoad={() => console.log("Manus AI logo loaded successfully")}
                   />
                 </motion.div>
                 <h3 className="text-xl font-bold mb-2 group-hover:text-maverick-orange transition-colors">Manus AI</h3>
