@@ -17,7 +17,8 @@ import {
   ArrowRight,
   Star,
   Clock,
-  Target
+  Target,
+  Brain
 } from "lucide-react";
 import ContactSection from "@/components/sections/ContactSection";
 import { Link } from "wouter";
@@ -287,48 +288,29 @@ export default function WebServices() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0 }}
-                className="bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-sm p-6 rounded-2xl border border-white/20 relative overflow-hidden group hover:border-white/40 transition-all duration-300"
+                className="bg-gradient-to-br from-amber-500/20 to-yellow-600/20 p-6 rounded-xl border border-amber-500/30 relative overflow-hidden"
               >
-                {/* Animated background elements */}
-                <div className="absolute inset-0 bg-gradient-to-br from-[#4285F4]/10 via-[#EA4335]/10 to-[#FBBC05]/10 opacity-50"></div>
-                <div className="absolute top-2 right-2 w-8 h-8 bg-gradient-to-br from-[#4285F4] to-[#34A853] rounded-lg flex items-center justify-center">
-                  <svg className="w-5 h-5 text-white" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
-                    <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
-                    <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
-                    <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
-                  </svg>
-                </div>
-                
-                <div className="relative z-10">
-                  <div className="flex items-center justify-center mb-4">
-                    <div className="flex items-center">
-                      {[...Array(5)].map((_, i) => (
-                        <motion.div
-                          key={i}
-                          initial={{ scale: 0, rotate: -180 }}
-                          whileInView={{ scale: 1, rotate: 0 }}
-                          viewport={{ once: true }}
-                          transition={{ delay: 0.1 + i * 0.1, type: "spring", stiffness: 200 }}
-                        >
-                          <Star className="h-5 w-5 text-[#FBBC05] fill-current mx-0.5" />
-                        </motion.div>
-                      ))}
-                    </div>
-                  </div>
-                  <div className="text-center">
-                    <motion.div 
-                      className="text-4xl font-bold text-white mb-2"
-                      initial={{ scale: 0 }}
-                      whileInView={{ scale: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: 0.3, type: "spring", stiffness: 200 }}
+                <div className="absolute top-0 right-0 w-16 h-16 bg-amber-400/10 rounded-full -translate-y-8 translate-x-8"></div>
+                <div className="flex items-center justify-center mb-3">
+                  <div className="flex items-center">
+                    <motion.svg 
+                      className="h-5 w-5 mr-2"
+                      whileHover={{ scale: 1.1 }}
+                      transition={{ type: "spring", stiffness: 300 }}
+                      viewBox="0 0 24 24"
                     >
-                      5.0
-                    </motion.div>
-                    <div className="text-sm text-gray-300 mb-1 font-medium">Google Reviews</div>
-                    <div className="text-xs text-gray-400">37 verified reviews</div>
+                      <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                      <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                      <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                      <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+                    </motion.svg>
+                    <Star className="h-6 w-6 text-amber-400 fill-current" />
+                    <span className="text-3xl font-bold text-amber-400 ml-2">5.0</span>
                   </div>
+                </div>
+                <div className="text-center">
+                  <div className="text-sm text-amber-300 mb-1">Google Rating</div>
+                  <div className="text-xs text-amber-200/80">37 Reviews</div>
                 </div>
               </motion.div>
 
@@ -338,54 +320,15 @@ export default function WebServices() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.1 }}
-                className="bg-gradient-to-br from-emerald-500/20 to-green-600/20 backdrop-blur-sm p-6 rounded-2xl border border-emerald-500/30 relative overflow-hidden group hover:border-emerald-400 transition-all duration-300"
+                className="bg-gradient-to-br from-green-500/20 to-emerald-600/20 p-6 rounded-xl border border-green-500/30 relative overflow-hidden"
               >
-                {/* Animated background pattern */}
-                <div className="absolute inset-0">
-                  {Array.from({ length: 6 }).map((_, i) => (
-                    <motion.div
-                      key={i}
-                      className="absolute w-2 h-2 bg-emerald-400/20 rounded-full"
-                      style={{
-                        left: `${20 + i * 15}%`,
-                        top: `${20 + (i % 2) * 30}%`,
-                      }}
-                      animate={{
-                        scale: [1, 1.5, 1],
-                        opacity: [0.3, 0.7, 0.3],
-                      }}
-                      transition={{
-                        duration: 2,
-                        repeat: Infinity,
-                        delay: i * 0.3,
-                      }}
-                    />
-                  ))}
+                <div className="absolute top-0 right-0 w-16 h-16 bg-green-400/10 rounded-full -translate-y-8 translate-x-8"></div>
+                <div className="flex items-center justify-center mb-3">
+                  <CheckCircle className="h-6 w-6 text-green-400" />
+                  <span className="text-3xl font-bold text-green-400 ml-2">350+</span>
                 </div>
-                
-                <div className="relative z-10">
-                  <div className="flex items-center justify-center mb-4">
-                    <motion.div
-                      className="w-16 h-16 bg-gradient-to-br from-emerald-400 to-green-500 rounded-2xl flex items-center justify-center"
-                      whileHover={{ rotate: 5, scale: 1.1 }}
-                      transition={{ type: "spring", stiffness: 300 }}
-                    >
-                      <CheckCircle className="h-8 w-8 text-white" />
-                    </motion.div>
-                  </div>
-                  <div className="text-center">
-                    <motion.div 
-                      className="text-4xl font-bold text-emerald-400 mb-2"
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: 0.3 }}
-                    >
-                      350+
-                    </motion.div>
-                    <div className="text-sm text-emerald-300 font-medium">Websites Built</div>
-                    <div className="text-xs text-emerald-200/70">Successfully delivered</div>
-                  </div>
+                <div className="text-center">
+                  <div className="text-sm text-green-300">Websites Built</div>
                 </div>
               </motion.div>
 
@@ -395,43 +338,15 @@ export default function WebServices() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.2 }}
-                className="bg-gradient-to-br from-blue-500/20 to-cyan-600/20 backdrop-blur-sm p-6 rounded-2xl border border-blue-500/30 relative overflow-hidden group hover:border-blue-400 transition-all duration-300"
+                className="bg-gradient-to-br from-blue-500/20 to-cyan-600/20 p-6 rounded-xl border border-blue-500/30 relative overflow-hidden"
               >
-                {/* Clock animation */}
-                <div className="absolute top-4 right-4">
-                  <motion.div
-                    className="w-12 h-12 rounded-full border-2 border-blue-400/30 relative"
-                    animate={{ rotate: 360 }}
-                    transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                  >
-                    <div className="absolute top-1 left-1/2 w-0.5 h-4 bg-blue-400 origin-bottom -translate-x-0.5"></div>
-                    <div className="absolute top-2 left-1/2 w-0.5 h-3 bg-blue-300 origin-bottom -translate-x-0.5"></div>
-                  </motion.div>
+                <div className="absolute top-0 right-0 w-16 h-16 bg-blue-400/10 rounded-full -translate-y-8 translate-x-8"></div>
+                <div className="flex items-center justify-center mb-3">
+                  <Clock className="h-6 w-6 text-blue-400" />
+                  <span className="text-3xl font-bold text-blue-400 ml-2">2-8</span>
                 </div>
-                
-                <div className="relative z-10">
-                  <div className="flex items-center justify-center mb-4">
-                    <motion.div
-                      className="w-16 h-16 bg-gradient-to-br from-blue-400 to-cyan-500 rounded-2xl flex items-center justify-center"
-                      whileHover={{ scale: 1.1 }}
-                      transition={{ type: "spring", stiffness: 300 }}
-                    >
-                      <Clock className="h-8 w-8 text-white" />
-                    </motion.div>
-                  </div>
-                  <div className="text-center">
-                    <motion.div 
-                      className="text-4xl font-bold text-blue-400 mb-2"
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: 0.3 }}
-                    >
-                      2-8
-                    </motion.div>
-                    <div className="text-sm text-blue-300 font-medium">Week Delivery</div>
-                    <div className="text-xs text-blue-200/70">Fast turnaround</div>
-                  </div>
+                <div className="text-center">
+                  <div className="text-sm text-blue-300">Week Delivery</div>
                 </div>
               </motion.div>
 
@@ -441,47 +356,15 @@ export default function WebServices() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.3 }}
-                className="bg-gradient-to-br from-purple-500/20 to-violet-600/20 backdrop-blur-sm p-6 rounded-2xl border border-purple-500/30 relative overflow-hidden group hover:border-purple-400 transition-all duration-300"
+                className="bg-gradient-to-br from-purple-500/20 to-violet-600/20 p-6 rounded-xl border border-purple-500/30 relative overflow-hidden"
               >
-                {/* Pulse animation */}
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-                  <motion.div
-                    className="w-20 h-20 rounded-full bg-purple-400/10"
-                    animate={{
-                      scale: [1, 1.2, 1],
-                      opacity: [0.3, 0.1, 0.3],
-                    }}
-                    transition={{
-                      duration: 2,
-                      repeat: Infinity,
-                      ease: "easeInOut",
-                    }}
-                  />
+                <div className="absolute top-0 right-0 w-16 h-16 bg-purple-400/10 rounded-full -translate-y-8 translate-x-8"></div>
+                <div className="flex items-center justify-center mb-3">
+                  <Shield className="h-6 w-6 text-purple-400" />
+                  <span className="text-3xl font-bold text-purple-400 ml-2">24/7</span>
                 </div>
-                
-                <div className="relative z-10">
-                  <div className="flex items-center justify-center mb-4">
-                    <motion.div
-                      className="w-16 h-16 bg-gradient-to-br from-purple-400 to-violet-500 rounded-2xl flex items-center justify-center"
-                      whileHover={{ scale: 1.1 }}
-                      transition={{ type: "spring", stiffness: 300 }}
-                    >
-                      <Shield className="h-8 w-8 text-white" />
-                    </motion.div>
-                  </div>
-                  <div className="text-center">
-                    <motion.div 
-                      className="text-4xl font-bold text-purple-400 mb-2"
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: 0.3 }}
-                    >
-                      24/7
-                    </motion.div>
-                    <div className="text-sm text-purple-300 font-medium">Support Available</div>
-                    <div className="text-xs text-purple-200/70">Always here to help</div>
-                  </div>
+                <div className="text-center">
+                  <div className="text-sm text-purple-300">Support Available</div>
                 </div>
               </motion.div>
             </div>
@@ -580,10 +463,10 @@ export default function WebServices() {
                         </div>
                       </div>
                     </div>
-                    
+
                     <h3 className="text-3xl font-bold mb-4">{step.title}</h3>
                     <p className="text-lg text-[#AAAAAA] mb-6 leading-relaxed">{step.description}</p>
-                    
+
                     <div className="grid grid-cols-2 gap-3">
                       {step.details.map((detail, idx) => (
                         <motion.div
@@ -763,7 +646,7 @@ export default function WebServices() {
                 >
                   {/* Animated background elements */}
                   <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br opacity-10 rounded-full -translate-y-10 translate-x-10 group-hover:scale-150 transition-transform duration-500"></div>
-                  
+
                   {/* Stats badge */}
                   <motion.div 
                     className={`absolute top-4 right-4 bg-gradient-to-r ${reason.color} px-3 py-1 rounded-full text-white text-xs font-bold`}
@@ -855,122 +738,74 @@ export default function WebServices() {
         {/* Technology Partners Section */}
         <section className="py-24 px-5 md:px-10 bg-[#121212] relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-r from-maverick-orange/5 via-transparent to-maverick-orange/5"></div>
-          <div className="container mx-auto relative">
+          <div className="container mx-auto text-center relative">
             <motion.div
-              className="text-center mb-16"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="mb-16"
             >
               <h2 className="text-4xl md:text-5xl font-bold mb-6 font-heading">
-                Trusted Technology 
-                <span className="bg-gradient-to-r from-maverick-orange to-orange-600 bg-clip-text text-transparent"> Partners</span>
+                Trusted by Leading 
+                <span className="bg-gradient-to-r from-maverick-orange to-orange-600 bg-clip-text text-transparent"> Technology Partners</span>
               </h2>
               <p className="text-xl text-[#AAAAAA] max-w-3xl mx-auto">
-                We collaborate with industry leaders to deliver cutting-edge solutions 
-                that power Edmonton's most successful businesses.
+                We collaborate with industry-leading technology companies to deliver cutting-edge solutions for our Edmonton clients.
               </p>
             </motion.div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-12 items-center">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-4xl mx-auto">
+              {/* TELUS */}
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0 }}
+                whileHover={{ scale: 1.05, y: -10 }}
+                className="bg-[#1E1E1E] p-8 rounded-2xl border border-gray-800 hover:border-[#6E2C6E] transition-all duration-300 group"
+              >
+                <motion.div
+                  className="flex items-center justify-center"
+                  whileHover={{ scale: 1.1 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <h3 className="text-3xl font-bold text-[#6E2C6E] group-hover:text-white transition-colors">
+                    TELUS
+                  </h3>
+                </motion.div>
+                <p className="text-center text-sm text-gray-400 mt-4">
+                  Business Solutions
+                </p>
+              </motion.div>
+
               {/* Google */}
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.1 }}
-                className="flex flex-col items-center group"
+                transition={{ duration: 0.5, delay: 0.1 }}
+                whileHover={{ scale: 1.05, y: -10 }}
+                className="bg-[#1E1E1E] p-8 rounded-2xl border border-gray-800 hover:border-blue-500 transition-all duration-300 group"
               >
                 <motion.div
-                  className="w-32 h-32 bg-white rounded-2xl flex items-center justify-center mb-6 shadow-lg"
-                  whileHover={{ scale: 1.05, rotate: 2 }}
-                  transition={{ type: "spring", stiffness: 300 }}
+                  className="flex items-center justify-center mb-4"
+                  whileHover={{ rotate: [0, 5, -5, 0] }}
+                  transition={{ duration: 0.5 }}
                 >
-                  <svg className="w-20 h-20" viewBox="0 0 24 24">
+                  <svg className="h-12 w-auto" viewBox="0 0 24 24">
                     <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
                     <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
                     <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
                     <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
                   </svg>
                 </motion.div>
-                <h3 className="text-xl font-bold mb-2 group-hover:text-maverick-orange transition-colors">Google</h3>
-                <p className="text-[#AAAAAA] text-center text-sm">Cloud Platform & Analytics</p>
-                
-                {/* Floating particles */}
-                <div className="absolute inset-0 pointer-events-none">
-                  {Array.from({ length: 4 }).map((_, i) => (
-                    <motion.div
-                      key={i}
-                      className="absolute w-2 h-2 bg-gradient-to-r from-blue-400 to-green-400 rounded-full opacity-20"
-                      style={{
-                        left: `${20 + i * 20}%`,
-                        top: `${30 + (i % 2) * 40}%`,
-                      }}
-                      animate={{
-                        y: [-10, 10, -10],
-                        opacity: [0.2, 0.5, 0.2],
-                      }}
-                      transition={{
-                        duration: 3,
-                        repeat: Infinity,
-                        delay: i * 0.5,
-                      }}
-                    />
-                  ))}
-                </div>
-              </motion.div>
-
-              {/* Telus */}
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                className="flex flex-col items-center group relative"
-              >
-                <motion.div
-                  className="w-32 h-32 bg-white rounded-2xl flex items-center justify-center mb-6 shadow-lg overflow-hidden p-6"
-                  whileHover={{ scale: 1.05, rotate: -2 }}
-                  transition={{ type: "spring", stiffness: 300 }}
-                >
-                  <div className="w-full h-full flex items-center justify-center">
-                    <img 
-                      src="/images/telus-logo.svg" 
-                      alt="Telus Logo" 
-                      className="max-w-full max-h-full object-contain"
-                      loading="lazy"
-                      onError={(e) => {
-                        console.log("Telus logo failed to load, showing fallback");
-                        const fallback = e.currentTarget.nextElementSibling as HTMLElement;
-                        if (fallback) {
-                          e.currentTarget.style.display = 'none';
-                          fallback.style.display = 'flex';
-                        }
-                      }}
-                      onLoad={() => console.log("Telus logo loaded successfully")}
-                    />
-                    <div 
-                      className="w-full h-full bg-gradient-to-br from-green-600 to-blue-600 rounded-lg flex items-center justify-center text-white font-bold text-lg"
-                      style={{ display: 'none' }}
-                    >
-                      TELUS
-                    </div>
-                  </div>
-                </motion.div>
-                <h3 className="text-xl font-bold mb-2 group-hover:text-maverick-orange transition-colors">Telus</h3>
-                <p className="text-[#AAAAAA] text-center text-sm">Telecommunications & Connectivity</p>
-                
-                {/* Network effect animation */}
-                <div className="absolute inset-0 pointer-events-none">
-                  <motion.div
-                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
-                    animate={{ rotate: 360 }}
-                    transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                  >
-                    <div className="w-40 h-40 border border-blue-500/20 rounded-full"></div>
-                    <div className="w-32 h-32 border border-green-500/20 rounded-full absolute top-4 left-4"></div>
-                  </motion.div>
-                </div>
+                <h3 className="text-2xl font-bold text-blue-500 group-hover:text-white transition-colors text-center">
+                  Google
+                </h3>
+                <p className="text-center text-sm text-gray-400 mt-2">
+                  Cloud Platform
+                </p>
               </motion.div>
 
               {/* Manus AI */}
@@ -978,128 +813,54 @@ export default function WebServices() {
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-                className="flex flex-col items-center group relative"
+                transition={{ duration: 0.5, delay: 0.2 }}
+                whileHover={{ scale: 1.05, y: -10 }}
+                className="bg-[#1E1E1E] p-8 rounded-2xl border border-gray-800 hover:border-maverick-orange transition-all duration-300 group"
               >
                 <motion.div
-                  className="w-32 h-32 bg-white rounded-2xl flex items-center justify-center mb-6 shadow-lg p-6"
-                  whileHover={{ scale: 1.05, rotate: 2 }}
-                  transition={{ type: "spring", stiffness: 300 }}
+                  className="flex items-center justify-center"
+                  whileHover={{ scale: 1.1 }}
+                  transition={{ duration: 0.3 }}
                 >
-                  <div className="w-full h-full flex items-center justify-center">
-                    <img 
-                      src="/images/manus-ai-logo.svg" 
-                      alt="Manus AI Logo" 
-                      className="max-w-full max-h-full object-contain"
-                      loading="lazy"
-                      onError={(e) => {
-                        console.log("Manus AI logo failed to load, showing fallback");
-                        const fallback = e.currentTarget.nextElementSibling as HTMLElement;
-                        if (fallback) {
-                          e.currentTarget.style.display = 'none';
-                          fallback.style.display = 'flex';
-                        }
-                      }}
-                      onLoad={() => console.log("Manus AI logo loaded successfully")}
-                    />
-                    <div 
-                      className="w-full h-full bg-gradient-to-br from-purple-600 to-pink-600 rounded-lg flex items-center justify-center text-white font-bold text-sm text-center"
-                      style={{ display: 'none' }}
-                    >
-                      MANUS AI
+                  <div className="flex items-center">
+                    <div className="w-8 h-8 bg-gradient-to-br from-maverick-orange to-orange-600 rounded-lg mr-3 flex items-center justify-center">
+                      <Brain className="h-5 w-5 text-white" />
                     </div>
+                    <h3 className="text-2xl font-bold text-maverick-orange group-hover:text-white transition-colors">
+                      Manus AI
+                    </h3>
                   </div>
                 </motion.div>
-                <h3 className="text-xl font-bold mb-2 group-hover:text-maverick-orange transition-colors">Manus AI</h3>
-                <p className="text-[#AAAAAA] text-center text-sm">Artificial Intelligence Solutions</p>
-                
-                {/* AI neural network animation */}
-                <div className="absolute inset-0 pointer-events-none">
-                  {Array.from({ length: 6 }).map((_, i) => (
-                    <motion.div
-                      key={i}
-                      className="absolute w-1 h-1 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full"
-                      style={{
-                        left: `${15 + i * 12}%`,
-                        top: `${25 + (i % 3) * 20}%`,
-                      }}
-                      animate={{
-                        scale: [1, 2, 1],
-                        opacity: [0.3, 0.8, 0.3],
-                      }}
-                      transition={{
-                        duration: 2,
-                        repeat: Infinity,
-                        delay: i * 0.3,
-                      }}
-                    />
-                  ))}
-                  
-                  {/* Connecting lines */}
-                  <svg className="absolute inset-0 w-full h-full">
-                    <motion.path
-                      d="M50,50 Q75,25 100,50 Q125,75 150,50"
-                      stroke="url(#gradient)"
-                      strokeWidth="1"
-                      fill="none"
-                      strokeDasharray="5,5"
-                      initial={{ pathLength: 0 }}
-                      animate={{ pathLength: 1 }}
-                      transition={{ duration: 3, repeat: Infinity }}
-                    />
-                    <defs>
-                      <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                        <stop offset="0%" stopColor="#8B5CF6" stopOpacity="0.3" />
-                        <stop offset="50%" stopColor="#EC4899" stopOpacity="0.6" />
-                        <stop offset="100%" stopColor="#8B5CF6" stopOpacity="0.3" />
-                      </linearGradient>
-                    </defs>
-                  </svg>
-                </div>
+                <p className="text-center text-sm text-gray-400 mt-4">
+                  Artificial Intelligence
+                </p>
               </motion.div>
             </div>
 
-            {/* Partnership Benefits */}
-            <motion.div
-              className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-8"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.5 }}
-            >
-              <div className="text-center">
+            {/* Floating particles animation */}
+            <div className="absolute inset-0 overflow-hidden pointer-events-none">
+              {Array.from({ length: 15 }).map((_, i) => (
                 <motion.div
-                  className="w-16 h-16 bg-gradient-to-br from-blue-500 to-green-500 rounded-2xl flex items-center justify-center mx-auto mb-4"
-                  whileHover={{ scale: 1.1, rotate: 5 }}
-                >
-                  <Globe className="h-8 w-8 text-white" />
-                </motion.div>
-                <h4 className="text-lg font-bold mb-2">Enterprise-Grade Infrastructure</h4>
-                <p className="text-[#AAAAAA] text-sm">Leveraging world-class platforms for maximum reliability and performance</p>
-              </div>
-              
-              <div className="text-center">
-                <motion.div
-                  className="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center mx-auto mb-4"
-                  whileHover={{ scale: 1.1, rotate: -5 }}
-                >
-                  <Zap className="h-8 w-8 text-white" />
-                </motion.div>
-                <h4 className="text-lg font-bold mb-2">Cutting-Edge Innovation</h4>
-                <p className="text-[#AAAAAA] text-sm">Access to the latest technologies and AI-powered solutions</p>
-              </div>
-              
-              <div className="text-center">
-                <motion.div
-                  className="w-16 h-16 bg-gradient-to-br from-orange-500 to-red-500 rounded-2xl flex items-center justify-center mx-auto mb-4"
-                  whileHover={{ scale: 1.1, rotate: 5 }}
-                >
-                  <Shield className="h-8 w-8 text-white" />
-                </motion.div>
-                <h4 className="text-lg font-bold mb-2">Enhanced Security</h4>
-                <p className="text-[#AAAAAA] text-sm">Bank-level security protocols and compliance standards</p>
-              </div>
-            </motion.div>
+                  key={i}
+                  className="absolute w-2 h-2 bg-maverick-orange/20 rounded-full"
+                  style={{
+                    left: `${Math.random() * 100}%`,
+                    top: `${Math.random() * 100}%`,
+                  }}
+                  animate={{
+                    y: [-20, -100, -20],
+                    opacity: [0, 1, 0],
+                    scale: [0.5, 1, 0.5],
+                  }}
+                  transition={{
+                    duration: 4 + Math.random() * 2,
+                    repeat: Infinity,
+                    delay: Math.random() * 2,
+                    ease: "easeInOut",
+                  }}
+                />
+              ))}
+            </div>
           </div>
         </section>
 
