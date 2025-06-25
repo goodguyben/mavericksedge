@@ -54,7 +54,7 @@ export default function Hero() {
         </ContainerAnimated>
 
         <ContainerAnimated className="mb-8">
-          <p className="text-base sm:text-lg md:text-xl text-[#AAAAAA] leading-relaxed tracking-tight max-w-4xl mx-auto text-center md:text-left px-4 sm:px-0">
+          <p className="text-base sm:text-lg md:text-xl text-[#AAAAAA] leading-relaxed tracking-tight max-w-4xl mx-auto md:text-left px-4 sm:px-0 text-center">
             We're Edmonton-based creators who design beautiful websites, improve
             <span className="hidden md:inline"><br /></span>
             <span className="md:hidden"> </span>your online visibility, and offer smart AI integration so you can focus on
