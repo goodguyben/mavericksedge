@@ -32,7 +32,7 @@ const IMAGES_3 = [
 
 export default function ShowcaseGallery() {
   return (
-    <div className="relative bg-[#000000] py-12 md:py-16">
+    <div className="relative bg-[#000000] py-12 md:py-16 pt-[120px] pb-[120px]">
       <ContainerStagger className="relative z-[9999] place-self-center px-4 xs:px-6 sm:px-8 md:px-12 lg:px-16 xl:px-20 pt-8 xs:pt-10 sm:pt-12 text-center">
         <ContainerAnimated>
           <h2 className="font-serif text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-semibold text-center mb-4 xs:mb-5 sm:mb-6 md:mb-7 lg:mb-8">
@@ -73,7 +73,6 @@ export default function ShowcaseGallery() {
           </div>
         </ContainerAnimated>
       </ContainerStagger>
-      
       <div className="pointer-events-none absolute z-10 h-[70vh] w-full"
         style={{
           background: "linear-gradient(to right, #FF5630, #8B5CF6, #3B82F6)",
@@ -81,7 +80,6 @@ export default function ShowcaseGallery() {
           mixBlendMode: "screen",
         }}
       />
-
       <ContainerScroll className="relative h-[350vh]">
         <ContainerSticky className="h-svh bg-[#0000009e] -mt-8">
           <GalleryContainer className="-mt-4">
