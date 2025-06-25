@@ -42,7 +42,7 @@ export default function ShowcaseGallery() {
                 <div className="text-left">
                   <div className="font-serif font-semibold leading-tight mb-8">
                     {/* Main Partnership Title */}
-                    <h2 className="text-4xl xs:text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-white mb-8">
+                    <h2 className="xs:text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-white mb-8 text-[64px]">
                       Your
                       <span className="block mt-4">
                         <GradientText 
