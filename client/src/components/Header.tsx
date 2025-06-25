@@ -9,18 +9,52 @@ export default function Header() {
   const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false);
   const [pricingDropdownOpen, setPricingDropdownOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [headerVisible, setHeaderVisible] = useState(true);
+  const [headerOpacity, setHeaderOpacity] = useState(1);
   const [location] = useLocation();
   const isHomePage = location === '/';
 
-  // Handle scroll effect
+  // Handle scroll effect with hero fade behavior
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      const scrollY = window.scrollY;
+      setIsScrolled(scrollY > 20);
+
+      if (isHomePage) {
+        // Hero section approximate height: 100vh + 350vh = 450vh
+        // Start fading at 100px scroll, complete fade by 300px
+        // Reappear after hero section (around 450vh = ~2700px on average screen)
+        const viewportHeight = window.innerHeight;
+        const heroEndPosition = viewportHeight * 4.5; // Approximate end of hero section
+        
+        if (scrollY < 100) {
+          // Fully visible at top
+          setHeaderOpacity(1);
+          setHeaderVisible(true);
+        } else if (scrollY < 300) {
+          // Fade out while scrolling through initial hero content
+          const fadeProgress = (scrollY - 100) / 200; // 0 to 1
+          setHeaderOpacity(Math.max(0, 1 - fadeProgress));
+          setHeaderVisible(true);
+        } else if (scrollY < heroEndPosition) {
+          // Hidden during hero section
+          setHeaderOpacity(0);
+          setHeaderVisible(false);
+        } else {
+          // Reappear after hero section
+          setHeaderOpacity(1);
+          setHeaderVisible(true);  
+        }
+      } else {
+        // On other pages, always show header normally
+        setHeaderOpacity(1);
+        setHeaderVisible(true);
+      }
     };
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [isHomePage]);
 
   // Close mobile menu when location changes
   useEffect(() => {
@@ -89,9 +123,13 @@ export default function Header() {
         className="sticky top-0 left-0 w-full py-3 px-4 sm:px-6 lg:px-8 z-50 transition-all duration-300 backdrop-blur-md border-b border-maverick-orange/10 bg-[#12121226] mt-[-44px] mb-[-44px]"
         role="banner"
         initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
+        animate={{ 
+          opacity: headerVisible ? headerOpacity : 0,
+          y: headerVisible ? 0 : -20,
+          pointerEvents: headerVisible ? 'auto' : 'none'
+        }}
         transition={{ 
-          duration: 0.6,
+          duration: isHomePage ? 0.3 : 0.6,
           delay: isHomePage ? 4.0 : 0,
           ease: "easeInOut"
         }}
