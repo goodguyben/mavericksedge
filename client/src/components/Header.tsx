@@ -110,7 +110,7 @@ export default function Header() {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center space-x-8" role="navigation" aria-label="Main Navigation">
+          <nav className="hidden lg:flex items-center space-x-6 xl:space-x-8" role="navigation" aria-label="Main Navigation">
             {/* Home Link */}
             <motion.div
                 whileHover={{ scale: 1.05 }}
@@ -402,7 +402,7 @@ export default function Header() {
 
               {/* Navigation Items with improved spacing */}
               <div className="flex-1 overflow-y-auto py-8 px-6">
-                <nav className="space-y-4"></nav>
+                <nav className="space-y-2 mt-[23px] mb-[23px]">
                   <Link 
                     href="/" 
                     className={`group flex items-center px-4 py-4 rounded-xl min-h-[56px] touch-manipulation transition-all duration-300 relative overflow-hidden ${
@@ -420,7 +420,7 @@ export default function Header() {
                   </Link>
 
                   {/* Services Dropdown with enhanced design */}
-                  <div className="space-y-4">
+                  <div className="space-y-2">
                     <button 
                       onClick={() => setServicesDropdownOpen(!servicesDropdownOpen)}
                       className="group flex items-center justify-between w-full px-4 py-4 rounded-xl min-h-[56px] touch-manipulation transition-all duration-300 text-maverick-orange hover:bg-white/8 border border-transparent hover:border-white/10"
@@ -438,7 +438,7 @@ export default function Header() {
                           animate={{ opacity: 1, height: "auto" }}
                           exit={{ opacity: 0, height: 0 }}
                           transition={{ duration: 0.3, ease: "easeInOut" }}
-                          className="ml-6 space-y-3 overflow-hidden border-l border-white/10 pl-4"
+                          className="ml-6 space-y-1 overflow-hidden border-l border-white/10 pl-4"
                         >
                           <Link 
                             href="/services-edmonton-alberta" 
@@ -490,7 +490,7 @@ export default function Header() {
                   </div>
 
                   {/* Pricing Dropdown with enhanced design */}
-                  <div className="space-y-4">
+                  <div className="space-y-2">
                     <button 
                       onClick={() => setPricingDropdownOpen(!pricingDropdownOpen)}
                       className="group flex items-center justify-between w-full px-4 py-4 rounded-xl min-h-[56px] touch-manipulation transition-all duration-300 text-maverick-orange hover:bg-white/8 border border-transparent hover:border-white/10"
@@ -508,7 +508,7 @@ export default function Header() {
                           animate={{ opacity: 1, height: "auto" }}
                           exit={{ opacity: 0, height: 0 }}
                           transition={{ duration: 0.3, ease: "easeInOut" }}
-                          className="ml-6 space-y-3 overflow-hidden border-l border-white/10 pl-4"
+                          className="ml-6 space-y-1 overflow-hidden border-l border-white/10 pl-4"
                         >
                           <Link 
                             href="/pricing-edmonton-web-design-marketing" 
