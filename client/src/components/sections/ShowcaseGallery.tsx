@@ -33,45 +33,66 @@ const IMAGES_3 = [
 export default function ShowcaseGallery() {
   return (
     <div className="relative bg-[#000000] py-12 md:py-16 pt-[120px] pb-[120px]">
-      <ContainerStagger className="relative z-[9999] place-self-center px-4 xs:px-6 sm:px-8 md:px-12 lg:px-16 xl:px-20 pt-8 xs:pt-10 sm:pt-12 text-center">
-        <ContainerAnimated>
-          <h2 className="font-serif text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-semibold text-center mb-4 xs:mb-5 sm:mb-6 md:mb-7 lg:mb-8">
-            <span className="text-white">Your</span>{" "}
-            <span className="underline decoration-maverick-orange">
-              <GradientText 
-                colors={["#FF5630", "#FF8A50", "#FFB899", "#FF5630"]}
-                animationSpeed={5}
-              >
-                one source
-              </GradientText>
-            </span>
-          </h2>
-        </ContainerAnimated>
-        
-        <ContainerAnimated>
-          <h2 className="font-serif text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-semibold text-center mb-6 xs:mb-7 sm:mb-8 md:mb-9 lg:mb-10">
-            <span className="text-white">for all your digital solutions</span>
-          </h2>
-        </ContainerAnimated>
+      <ContainerStagger className="relative z-[9999] place-self-center px-4 xs:px-6 sm:px-8 md:px-12 lg:px-16 xl:px-20 pt-8 xs:pt-10 sm:pt-12">
+        <div className="max-w-6xl mx-auto">
+          {/* Creative Title Layout */}
+          <ContainerAnimated>
+            <div className="text-center mb-16 xs:mb-20 sm:mb-24 md:mb-28 lg:mb-32">
+              <div className="font-serif font-semibold leading-tight">
+                {/* "Your" - positioned top left */}
+                <div className="flex justify-start mb-4 xs:mb-6 sm:mb-8">
+                  <span className="text-white text-4xl xs:text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl">
+                    Your
+                  </span>
+                </div>
+                
+                {/* "one source" - centered and gradient */}
+                <div className="text-center mb-4 xs:mb-6 sm:mb-8">
+                  <span className="text-5xl xs:text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[10rem] underline decoration-maverick-orange decoration-4 xs:decoration-6 sm:decoration-8">
+                    <GradientText 
+                      colors={["#FF5630", "#FF8A50", "#FFB899", "#FF5630"]}
+                      animationSpeed={5}
+                    >
+                      one source
+                    </GradientText>
+                  </span>
+                </div>
+                
+                {/* "for all your digital solutions" - positioned bottom right */}
+                <div className="flex justify-end">
+                  <span className="text-white text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl text-right max-w-lg">
+                    for all your digital solutions
+                  </span>
+                </div>
+              </div>
+            </div>
+          </ContainerAnimated>
 
-        <ContainerAnimated className="mb-8 xs:mb-9 sm:mb-10 md:mb-11 lg:mb-12">
-          <p className="text-[#AAAAAA] leading-relaxed tracking-tight text-center text-base xs:text-lg sm:text-xl md:text-2xl lg:text-2xl xl:text-3xl max-w-2xl xs:max-w-3xl sm:max-w-4xl md:max-w-5xl mx-auto px-4">
-            No waste of time and money, we provide you with
-            <br className="hidden sm:block" /> 
-            a collection of services to power your next project.
-          </p>
-        </ContainerAnimated>
-
-        <ContainerAnimated>
-          <div className="flex flex-col xs:flex-col sm:flex-row justify-center items-center gap-4 xs:gap-4 sm:gap-6 md:gap-8 px-4">
-            <Button href="/contact" variant="primary">
-              Book Free Call <VideoIcon className="w-4 h-4 ml-1" />
-            </Button>
-            <Button href="/about-edmonton-web-design-company" variant="link">
-              About Us
-            </Button>
-          </div>
-        </ContainerAnimated>
+          {/* Redesigned Subtitle */}
+          <ContainerAnimated>
+            <div className="text-center">
+              <div className="relative">
+                {/* Left accent line */}
+                <div className="absolute left-0 top-1/2 transform -translate-y-1/2 w-12 xs:w-16 sm:w-20 md:w-24 h-0.5 bg-gradient-to-r from-maverick-orange to-transparent"></div>
+                
+                {/* Main text */}
+                <div className="px-16 xs:px-20 sm:px-24 md:px-28">
+                  <p className="text-[#CCCCCC] text-lg xs:text-xl sm:text-2xl md:text-3xl lg:text-4xl leading-relaxed font-light">
+                    <span className="text-maverick-orange font-medium">No waste</span> of time and money
+                  </p>
+                  <p className="text-[#AAAAAA] text-base xs:text-lg sm:text-xl md:text-2xl lg:text-3xl mt-4 xs:mt-6 sm:mt-8">
+                    we provide you with a 
+                    <span className="text-white font-medium"> collection of services </span>
+                    to power your next project
+                  </p>
+                </div>
+                
+                {/* Right accent line */}
+                <div className="absolute right-0 top-1/2 transform -translate-y-1/2 w-12 xs:w-16 sm:w-20 md:w-24 h-0.5 bg-gradient-to-l from-maverick-orange to-transparent"></div>
+              </div>
+            </div>
+          </ContainerAnimated>
+        </div>
       </ContainerStagger>
       <div className="pointer-events-none absolute z-10 h-[70vh] w-full"
         style={{
