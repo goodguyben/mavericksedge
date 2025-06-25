@@ -2,7 +2,6 @@ import { motion } from "framer-motion";
 import { Helmet } from "react-helmet-async";
 import { lazy, Suspense, useEffect } from "react";
 import Hero from "../components/sections/Hero";
-import ShowcaseGallery from "../components/sections/ShowcaseGallery";
 import WhatWeDoSection from "../components/sections/WhatWeDoSection";
 import { generateOrganizationStructuredData, generateWebsiteStructuredData, generateFAQStructuredData } from '../lib/seo';
 import LocalSEO from '../components/LocalSEO';
@@ -58,19 +57,6 @@ export default function Home() {
           <MobileOptimizations />
           {/* Main hero section - H1 heading for SEO is inside this component */}
           <Hero />
-
-          {/* Showcase Gallery between hero and what we do */}
-          <ScrollFadeSection
-            id="showcase-gallery"
-            fadeInPoint={0.4}
-            fadeOutPoint={0.6}
-            fadeInDuration={1.2}
-            fadeOutDuration={1.6}
-            initialOpacity={0}
-            minOpacity={0.1}
-          >
-            <ShowcaseGallery />
-          </ScrollFadeSection>
 
           {/* Main site sections - Reordered and wrapped with scroll fade effect */}
           <ScrollFadeSection

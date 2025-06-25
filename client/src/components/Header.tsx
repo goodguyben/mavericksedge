@@ -119,9 +119,7 @@ export default function Header() {
               >
                 <Link 
                   href="/" 
-                  className={`px-3 py-2 min-h-[44px] rounded-md text-base font-medium transition-colors duration-200 touch-manipulation flex items-center ${
-                    isCurrentPath('/') ? 'text-maverick-orange' : 'text-white hover:text-maverick-orange'
-                  }`} 
+                  className="px-3 py-2 min-h-[44px] rounded-md font-medium transition-colors duration-200 touch-manipulation flex items-center text-maverick-orange text-[18px]" 
                   aria-current={isCurrentPath('/') ? 'page' : undefined}
                 >
                   Home
@@ -129,160 +127,172 @@ export default function Header() {
               </motion.div>
 
             {/* Services Dropdown */}
-            <div className="relative dropdown-container">
-              <button 
-                type="button"
-                aria-expanded={servicesDropdownOpen}
-                aria-haspopup="true"
-                onMouseEnter={() => setServicesDropdownOpen(true)}
-                onMouseLeave={() => setServicesDropdownOpen(false)}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setServicesDropdownOpen(!servicesDropdownOpen);
-                }}
-                className="px-3 py-2 min-h-[44px] rounded-md text-base font-medium transition-colors duration-200 inline-flex items-center touch-manipulation text-maverick-orange hover:text-maverick-orange"
-              >
-                <span>Services</span>
-                <ChevronDown className={`ml-2 h-4 w-4 transition-transform duration-200 ${
-                  servicesDropdownOpen ? 'rotate-180' : ''
-                }`} />
-              </button>
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ duration: 0.2 }}
+            >
+              <div className="relative dropdown-container">
+                <button 
+                  type="button"
+                  aria-expanded={servicesDropdownOpen}
+                  aria-haspopup="true"
+                  onMouseEnter={() => setServicesDropdownOpen(true)}
+                  onMouseLeave={() => setServicesDropdownOpen(false)}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setServicesDropdownOpen(!servicesDropdownOpen);
+                  }}
+                  className="px-3 py-2 min-h-[44px] rounded-md text-base font-medium transition-colors duration-200 inline-flex items-center touch-manipulation text-maverick-orange hover:text-maverick-orange"
+                >
+                  <span className="text-[18px]">Services</span>
+                  <ChevronDown className={`ml-2 h-4 w-4 transition-transform duration-200 ${
+                    servicesDropdownOpen ? 'rotate-180' : ''
+                  }`} />
+                </button>
 
-              <AnimatePresence>
-                {servicesDropdownOpen && (
-                  <motion.div 
-                    initial={{ opacity: 0, y: -8 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -8 }}
-                    transition={{ duration: 0.2 }}
-                    className="absolute left-0 mt-2 w-64 z-50"
-                    onMouseEnter={() => setServicesDropdownOpen(true)}
-                    onMouseLeave={() => setServicesDropdownOpen(false)}
-                  >
-                    <div className="py-2 bg-[#1A1A1A]/95 backdrop-blur-md border border-gray-800/50 rounded-lg shadow-xl" role="menu">
-                      <Link 
-                        href="/services-edmonton-alberta" 
-                        className={`block px-4 py-3 min-h-[44px] text-base touch-manipulation ${
-                          isCurrentPath('/services-edmonton-alberta') ? 'text-maverick-orange bg-maverick-orange/10' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'
-                        }`} 
-                        role="menuitem"
-                        onClick={() => setServicesDropdownOpen(false)}
-                      >
-                        All Services
-                      </Link>
-                      <Link 
-                        href="/web-design-services-edmonton" 
-                        className={`block px-4 py-3 min-h-[44px] text-base touch-manipulation ${
-                          isCurrentPath('/web-design-services-edmonton') ? 'text-maverick-orange bg-maverick-orange/10' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'
-                        }`} 
-                        role="menuitem"
-                        onClick={() => setServicesDropdownOpen(false)}
-                      >
-                        Web Design & Development
-                      </Link>
-                      <Link 
-                        href="/digital-marketing-services-edmonton" 
-                        className={`block px-4 py-3 min-h-[44px] text-base touch-manipulation ${
-                          isCurrentPath('/digital-marketing-services-edmonton') ? 'text-maverick-orange bg-maverick-orange/10' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'
-                        }`} 
-                        role="menuitem"
-                        onClick={() => setServicesDropdownOpen(false)}
-                      >
-                        Marketing & Creative
-                      </Link>
-                      <Link 
-                        href="/ai-automation-services-edmonton" 
-                        className={`block px-4 py-3 min-h-[44px] text-base touch-manipulation ${
-                          isCurrentPath('/ai-automation-services-edmonton') ? 'text-maverick-orange bg-maverick-orange/10' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'
-                        }`} 
-                        role="menuitem"
-                        onClick={() => setServicesDropdownOpen(false)}
-                      >
-                        AI Integration & Automation
-                      </Link>
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
+                <AnimatePresence>
+                  {servicesDropdownOpen && (
+                    <motion.div 
+                      initial={{ opacity: 0, y: -8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -8 }}
+                      transition={{ duration: 0.2 }}
+                      className="absolute left-0 mt-2 w-64 z-50"
+                      onMouseEnter={() => setServicesDropdownOpen(true)}
+                      onMouseLeave={() => setServicesDropdownOpen(false)}
+                    >
+                      <div className="py-2 bg-[#1A1A1A]/95 backdrop-blur-md border border-gray-800/50 rounded-lg shadow-xl" role="menu">
+                        <Link 
+                          href="/services-edmonton-alberta" 
+                          className={`block px-4 py-3 min-h-[44px] text-base touch-manipulation ${
+                            isCurrentPath('/services-edmonton-alberta') ? 'text-maverick-orange bg-maverick-orange/10' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'
+                          }`} 
+                          role="menuitem"
+                          onClick={() => setServicesDropdownOpen(false)}
+                        >
+                          All Services
+                        </Link>
+                        <Link 
+                          href="/web-design-services-edmonton" 
+                          className={`block px-4 py-3 min-h-[44px] text-base touch-manipulation ${
+                            isCurrentPath('/web-design-services-edmonton') ? 'text-maverick-orange bg-maverick-orange/10' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'
+                          }`} 
+                          role="menuitem"
+                          onClick={() => setServicesDropdownOpen(false)}
+                        >
+                          Web Design & Development
+                        </Link>
+                        <Link 
+                          href="/digital-marketing-services-edmonton" 
+                          className={`block px-4 py-3 min-h-[44px] text-base touch-manipulation ${
+                            isCurrentPath('/digital-marketing-services-edmonton') ? 'text-maverick-orange bg-maverick-orange/10' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'
+                          }`} 
+                          role="menuitem"
+                          onClick={() => setServicesDropdownOpen(false)}
+                        >
+                          Marketing & Creative
+                        </Link>
+                        <Link 
+                          href="/ai-automation-services-edmonton" 
+                          className={`block px-4 py-3 min-h-[44px] text-base touch-manipulation ${
+                            isCurrentPath('/ai-automation-services-edmonton') ? 'text-maverick-orange bg-maverick-orange/10' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'
+                          }`} 
+                          role="menuitem"
+                          onClick={() => setServicesDropdownOpen(false)}
+                        >
+                          AI Integration & Automation
+                        </Link>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            </motion.div>
 
             {/* Pricing Dropdown */}
-            <div className="relative dropdown-container">
-              <button 
-                type="button"
-                aria-expanded={pricingDropdownOpen}
-                aria-haspopup="true"
-                onMouseEnter={() => setPricingDropdownOpen(true)}
-                onMouseLeave={() => setPricingDropdownOpen(false)}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setPricingDropdownOpen(!pricingDropdownOpen);
-                }}
-                className="px-3 py-2 min-h-[44px] rounded-md text-base font-medium transition-colors duration-200 inline-flex items-center touch-manipulation text-maverick-orange hover:text-maverick-orange"
-              >
-                <span>Pricing</span>
-                <ChevronDown className={`ml-2 h-4 w-4 transition-transform duration-200 ${
-                  pricingDropdownOpen ? 'rotate-180' : ''
-                }`} />
-              </button>
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ duration: 0.2 }}
+            >
+              <div className="relative dropdown-container">
+                <button 
+                  type="button"
+                  aria-expanded={pricingDropdownOpen}
+                  aria-haspopup="true"
+                  onMouseEnter={() => setPricingDropdownOpen(true)}
+                  onMouseLeave={() => setPricingDropdownOpen(false)}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setPricingDropdownOpen(!pricingDropdownOpen);
+                  }}
+                  className="px-3 py-2 min-h-[44px] rounded-md text-base font-medium transition-colors duration-200 inline-flex items-center touch-manipulation text-maverick-orange hover:text-maverick-orange"
+                >
+                  <span className="text-[18px]">Pricing</span>
+                  <ChevronDown className={`ml-2 h-4 w-4 transition-transform duration-200 ${
+                    pricingDropdownOpen ? 'rotate-180' : ''
+                  }`} />
+                </button>
 
-              <AnimatePresence>
-                {pricingDropdownOpen && (
-                  <motion.div 
-                    initial={{ opacity: 0, y: -8 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -8 }}
-                    transition={{ duration: 0.2 }}
-                    className="absolute left-0 mt-2 w-64 z-50"
-                    onMouseEnter={() => setPricingDropdownOpen(true)}
-                    onMouseLeave={() => setPricingDropdownOpen(false)}
-                  >
-                    <div className="py-2 bg-[#1A1A1A]/95 backdrop-blur-md border border-gray-800/50 rounded-lg shadow-xl" role="menu">
-                      <Link 
-                        href="/pricing-edmonton-web-design-marketing" 
-                        className={`block px-4 py-3 min-h-[44px] text-base touch-manipulation ${
-                          isCurrentPath('/pricing-edmonton-web-design-marketing') ? 'text-maverick-orange bg-maverick-orange/10' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'
-                        }`} 
-                        role="menuitem"
-                        onClick={() => setPricingDropdownOpen(false)}
-                      >
-                        All Pricing Plans
-                      </Link>
-                      <Link 
-                        href="/web-design-pricing-edmonton" 
-                        className={`block px-4 py-3 min-h-[44px] text-base touch-manipulation ${
-                          isCurrentPath('/web-design-pricing-edmonton') ? 'text-maverick-orange bg-maverick-orange/10' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'
-                        }`} 
-                        role="menuitem"
-                        onClick={() => setPricingDropdownOpen(false)}
-                      >
-                        Web Design & Development
-                      </Link>
-                      <Link 
-                        href="/digital-marketing-pricing-edmonton" 
-                        className={`block px-4 py-3 min-h-[44px] text-base touch-manipulation ${
-                          isCurrentPath('/digital-marketing-pricing-edmonton') ? 'text-maverick-orange bg-maverick-orange/10' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'
-                        }`} 
-                        role="menuitem"
-                        onClick={() => setPricingDropdownOpen(false)}
-                      >
-                        Marketing & Creative
-                      </Link>
-                      <Link 
-                        href="/ai-automation-pricing-edmonton" 
-                        className={`block px-4 py-3 min-h-[44px] text-base touch-manipulation ${
-                          isCurrentPath('/ai-automation-pricing-edmonton') ? 'text-maverick-orange bg-maverick-orange/10' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'
-                        }`} 
-                        role="menuitem"
-                        onClick={() => setPricingDropdownOpen(false)}
-                      >
-                        AI Integration & Automation
-                      </Link>
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
+                <AnimatePresence>
+                  {pricingDropdownOpen && (
+                    <motion.div 
+                      initial={{ opacity: 0, y: -8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -8 }}
+                      transition={{ duration: 0.2 }}
+                      className="absolute left-0 mt-2 w-64 z-50"
+                      onMouseEnter={() => setPricingDropdownOpen(true)}
+                      onMouseLeave={() => setPricingDropdownOpen(false)}
+                    >
+                      <div className="py-2 bg-[#1A1A1A]/95 backdrop-blur-md border border-gray-800/50 rounded-lg shadow-xl" role="menu">
+                        <Link 
+                          href="/pricing-edmonton-web-design-marketing" 
+                          className={`block px-4 py-3 min-h-[44px] text-base touch-manipulation ${
+                            isCurrentPath('/pricing-edmonton-web-design-marketing') ? 'text-maverick-orange bg-maverick-orange/10' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'
+                          }`} 
+                          role="menuitem"
+                          onClick={() => setPricingDropdownOpen(false)}
+                        >
+                          All Pricing Plans
+                        </Link>
+                        <Link 
+                          href="/web-design-pricing-edmonton" 
+                          className={`block px-4 py-3 min-h-[44px] text-base touch-manipulation ${
+                            isCurrentPath('/web-design-pricing-edmonton') ? 'text-maverick-orange bg-maverick-orange/10' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'
+                          }`} 
+                          role="menuitem"
+                          onClick={() => setPricingDropdownOpen(false)}
+                        >
+                          Web Design & Development
+                        </Link>
+                        <Link 
+                          href="/digital-marketing-pricing-edmonton" 
+                          className={`block px-4 py-3 min-h-[44px] text-base touch-manipulation ${
+                            isCurrentPath('/digital-marketing-pricing-edmonton') ? 'text-maverick-orange bg-maverick-orange/10' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'
+                          }`} 
+                          role="menuitem"
+                          onClick={() => setPricingDropdownOpen(false)}
+                        >
+                          Marketing & Creative
+                        </Link>
+                        <Link 
+                          href="/ai-automation-pricing-edmonton" 
+                          className={`block px-4 py-3 min-h-[44px] text-base touch-manipulation ${
+                            isCurrentPath('/ai-automation-pricing-edmonton') ? 'text-maverick-orange bg-maverick-orange/10' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'
+                          }`} 
+                          role="menuitem"
+                          onClick={() => setPricingDropdownOpen(false)}
+                        >
+                          AI Integration & Automation
+                        </Link>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            </motion.div>
 
             {/* About Link */}
             <motion.div
@@ -292,9 +302,7 @@ export default function Header() {
               >
                 <Link 
                   href="/about-edmonton-web-design-company" 
-                  className={`px-3 py-2 min-h-[44px] rounded-md text-base font-medium transition-colors duration-200 touch-manipulation flex items-center ${
-                    isCurrentPath('/about-edmonton-web-design-company') ? 'text-maverick-orange' : 'text-white hover:text-maverick-orange'
-                  }`} 
+                  className="px-3 py-2 min-h-[44px] rounded-md font-medium transition-colors duration-200 touch-manipulation flex items-center text-white hover:text-maverick-orange text-[18px]" 
                   aria-current={isCurrentPath('/about-edmonton-web-design-company') ? 'page' : undefined}
                 >
                   About
@@ -309,9 +317,7 @@ export default function Header() {
               >
                 <Link 
                   href="/contact-edmonton-web-design" 
-                  className={`px-3 py-2 min-h-[44px] rounded-md text-base font-medium transition-colors duration-200 touch-manipulation flex items-center ${
-                    isCurrentPath('/contact-edmonton-web-design') ? 'text-maverick-orange' : 'text-white hover:text-maverick-orange'
-                  }`} 
+                  className="px-3 py-2 min-h-[44px] rounded-md font-medium transition-colors duration-200 touch-manipulation flex items-center text-white hover:text-maverick-orange text-[18px]" 
                   aria-current={isCurrentPath('/contact-edmonton-web-design') ? 'page' : undefined}
                 >
                   Contact

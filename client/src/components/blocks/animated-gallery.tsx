@@ -1,5 +1,3 @@
-"use client" 
-
 import * as React from "react"
 
 import {
@@ -9,7 +7,7 @@ import {
   motion,
   useScroll,
   useTransform,
-} from "framer-motion"
+} from "motion/react"
 
 import { cn } from "@/lib/utils"
 

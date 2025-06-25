@@ -36,7 +36,7 @@
 
 /* Outline button */
 .maverick-button-outline {
-  background-color: #00000000;
+  background-color: transparent;
   border: 2px solid #F15A29;
   color: #F15A29 !important; /* Force text color */
 }
