@@ -1,3 +1,4 @@
+
 import { ContainerAnimated,
   ContainerScroll,
   ContainerStagger,
@@ -33,9 +34,55 @@ const IMAGES_3 = [
 export default function Hero() {
   return (
     <div className="relative mt-[-4px] mb-[-4px] bg-[#000000] pt-[1px] pb-[1px]">
-      <ContainerStagger className="relative z-[9999] place-self-center px-4 xs:px-6 sm:px-8 md:px-12 lg:px-16 xl:px-20 pt-8 xs:pt-10 sm:pt-12 text-center mt-[80px] xs:mt-[90px] sm:mt-[100px] md:mt-[110px] lg:mt-[120px] xl:mt-[130px] mb-[80px] xs:mb-[90px] sm:mb-[100px] md:mb-[110px] lg:mb-[120px] xl:mb-[130px]">
+      <ContainerStagger className="relative z-[9999] place-self-center 
+        px-3 
+        xs:px-4 
+        sm:px-5 
+        md:px-6 
+        lg:px-8 
+        xl:px-12 
+        2xl:px-16 
+        pt-6 
+        xs:pt-8 
+        sm:pt-10 
+        md:pt-12 
+        lg:pt-16 
+        xl:pt-20 
+        2xl:pt-24 
+        text-center 
+        mt-[70px] 
+        xs:mt-[75px] 
+        sm:mt-[80px] 
+        md:mt-[90px] 
+        lg:mt-[100px] 
+        xl:mt-[110px] 
+        2xl:mt-[120px] 
+        mb-[70px] 
+        xs:mb-[75px] 
+        sm:mb-[80px] 
+        md:mb-[90px] 
+        lg:mb-[100px] 
+        xl:mb-[110px] 
+        2xl:mb-[120px]">
+        
         <ContainerAnimated>
-          <h1 className="font-serif text-5xl xs:text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[10rem] 2xl:text-[12rem] mb-4 xs:mb-5 sm:mb-6 md:mb-7 lg:mb-8 xl:mb-9 font-semibold text-center leading-tight xs:leading-tight sm:leading-tight md:leading-tight lg:leading-tight xl:leading-tight">
+          {/* Hero Headline (H1) - Responsive Typography */}
+          <h1 className="font-serif font-semibold text-center leading-tight
+            text-2xl 
+            xs:text-[26px] 
+            sm:text-3xl 
+            md:text-4xl 
+            lg:text-5xl 
+            xl:text-6xl 
+            2xl:text-7xl 
+            3xl:text-[72px]
+            mb-3 
+            xs:mb-4 
+            sm:mb-5 
+            md:mb-6 
+            lg:mb-7 
+            xl:mb-8 
+            2xl:mb-9">
             <span className="text-white font-semibold">Building</span>{" "}
             <span className="underline decoration-maverick-orange font-semibold">
               <GradientText 
@@ -51,23 +98,159 @@ export default function Hero() {
           </h1>
         </ContainerAnimated>
 
-        <ContainerAnimated className="mb-6 xs:mb-7 sm:mb-8 md:mb-9 lg:mb-10 xl:mb-12">
-          <p className="text-sm xs:text-base sm:text-lg md:text-xl lg:text-xl xl:text-2xl 2xl:text-3xl text-[#AAAAAA] leading-relaxed tracking-tight max-w-xs xs:max-w-sm sm:max-w-md md:max-w-2xl lg:max-w-3xl xl:max-w-4xl 2xl:max-w-5xl mx-auto text-center px-2 xs:px-4 sm:px-6">
+        <ContainerAnimated className="
+          mb-4 
+          xs:mb-5 
+          sm:mb-6 
+          md:mb-7 
+          lg:mb-8 
+          xl:mb-10 
+          2xl:mb-12">
+          {/* Hero Subheadline - Responsive Typography */}
+          <p className="text-[#AAAAAA] leading-relaxed tracking-tight text-center 
+            text-sm 
+            xs:text-[15px] 
+            sm:text-base 
+            md:text-lg 
+            lg:text-xl 
+            xl:text-2xl 
+            2xl:text-2xl 
+            3xl:text-3xl
+            max-w-[280px] 
+            xs:max-w-[320px] 
+            sm:max-w-[400px] 
+            md:max-w-[500px] 
+            lg:max-w-[600px] 
+            xl:max-w-[700px] 
+            2xl:max-w-[800px] 
+            3xl:max-w-[900px] 
+            mx-auto 
+            px-2 
+            xs:px-3 
+            sm:px-4 
+            md:px-6 
+            lg:px-8">
             We're Edmonton-based creators who design beautiful websites, improve your online visibility, and offer smart AI integration so you can focus on growing your business
           </p>
         </ContainerAnimated>
 
         <ContainerAnimated className="text-center">
-          <div className="flex flex-col xs:flex-col sm:flex-row justify-center items-center gap-3 xs:gap-4 sm:gap-4 md:gap-5 lg:gap-6 xl:gap-8 px-2 xs:px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16">
-            <Button className="w-3/4 xs:w-2/3 sm:w-auto px-3 xs:px-4 sm:px-8 md:px-10 lg:px-12 xl:px-14 py-2 xs:py-2.5 sm:py-3 md:py-3.5 lg:py-4 xl:py-5 text-xs xs:text-sm sm:text-base md:text-lg lg:text-xl xl:text-xl bg-maverick-orange hover:bg-maverick-orange/90 text-white font-medium rounded-full min-h-[40px] xs:min-h-[44px] sm:min-h-[48px] md:min-h-[52px] lg:min-h-[56px] xl:min-h-[60px]">
+          {/* Button Layout - Stack on mobile, side-by-side on desktop */}
+          <div className="flex 
+            flex-col 
+            xs:flex-col 
+            sm:flex-col 
+            md:flex-col 
+            lg:flex-row 
+            xl:flex-row 
+            2xl:flex-row 
+            justify-center items-center 
+            gap-3 
+            xs:gap-3 
+            sm:gap-4 
+            md:gap-4 
+            lg:gap-5 
+            xl:gap-6 
+            2xl:gap-8 
+            px-4 
+            xs:px-5 
+            sm:px-6 
+            md:px-8 
+            lg:px-10 
+            xl:px-12 
+            2xl:px-16">
+            
+            {/* Primary CTA Button */}
+            <Button className="
+              w-full 
+              xs:w-full 
+              sm:w-4/5 
+              md:w-3/5 
+              lg:w-auto 
+              xl:w-auto 
+              2xl:w-auto
+              px-4 
+              xs:px-5 
+              sm:px-6 
+              md:px-7 
+              lg:px-8 
+              xl:px-10 
+              2xl:px-12
+              py-2.5 
+              xs:py-3 
+              sm:py-3 
+              md:py-3.5 
+              lg:py-4 
+              xl:py-4 
+              2xl:py-5
+              text-sm 
+              xs:text-sm 
+              sm:text-base 
+              md:text-base 
+              lg:text-lg 
+              xl:text-xl 
+              2xl:text-xl
+              bg-maverick-orange hover:bg-maverick-orange/90 
+              text-white font-medium rounded-lg
+              min-h-[44px] 
+              xs:min-h-[46px] 
+              sm:min-h-[48px] 
+              md:min-h-[50px] 
+              lg:min-h-[52px] 
+              xl:min-h-[56px] 
+              2xl:min-h-[60px]
+              transition-all duration-200 ease-in-out
+              shadow-md hover:shadow-lg">
               Explore Services
             </Button>
-            <Button variant="outline" className="w-3/4 xs:w-2/3 sm:w-auto px-3 xs:px-4 sm:px-8 md:px-10 lg:px-12 xl:px-14 py-2 xs:py-2.5 sm:py-3 md:py-3.5 lg:py-4 xl:py-5 text-xs xs:text-sm sm:text-base md:text-lg lg:text-xl xl:text-xl border-maverick-orange text-maverick-orange hover:bg-maverick-orange/10 font-medium rounded-full min-h-[40px] xs:min-h-[44px] sm:min-h-[48px] md:min-h-[52px] lg:min-h-[56px] xl:min-h-[60px]">
+            
+            {/* Secondary CTA Button */}
+            <Button variant="outline" className="
+              w-full 
+              xs:w-full 
+              sm:w-4/5 
+              md:w-3/5 
+              lg:w-auto 
+              xl:w-auto 
+              2xl:w-auto
+              px-4 
+              xs:px-5 
+              sm:px-6 
+              md:px-7 
+              lg:px-8 
+              xl:px-10 
+              2xl:px-12
+              py-2.5 
+              xs:py-3 
+              sm:py-3 
+              md:py-3.5 
+              lg:py-4 
+              xl:py-4 
+              2xl:py-5
+              text-sm 
+              xs:text-sm 
+              sm:text-base 
+              md:text-base 
+              lg:text-lg 
+              xl:text-xl 
+              2xl:text-xl
+              border-maverick-orange text-maverick-orange 
+              hover:bg-maverick-orange/10 font-medium rounded-lg
+              min-h-[44px] 
+              xs:min-h-[46px] 
+              sm:min-h-[48px] 
+              md:min-h-[50px] 
+              lg:min-h-[52px] 
+              xl:min-h-[56px] 
+              2xl:min-h-[60px]
+              transition-all duration-200 ease-in-out
+              shadow-sm hover:shadow-md">
               Book Free Consultation
             </Button>
           </div>
         </ContainerAnimated>
       </ContainerStagger>
+      
       <div className="pointer-events-none absolute z-10 h-[70vh] w-full"
         style={{
           background: "linear-gradient(to right, gray, rebeccapurple, blue)",
