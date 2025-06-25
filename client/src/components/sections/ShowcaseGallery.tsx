@@ -36,44 +36,38 @@ export default function ShowcaseGallery() {
       <ContainerStagger className="relative z-[9999] place-self-center px-4 xs:px-6 sm:px-8 md:px-12 lg:px-16 xl:px-20 pt-8 xs:pt-10 sm:pt-12">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-            {/* Left Side - True Partnership Philosophy */}
+            {/* Left Side - Heartfelt Philosophy */}
             <div className="lg:col-span-7">
               <ContainerAnimated>
                 <div className="text-left">
                   <div className="font-serif font-semibold leading-tight mb-8">
-                    {/* Main Partnership Title */}
-                    <h2 className="xs:text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-white mb-8 text-[68px]">
-                      Your
-                      <span className="block mt-4">
+                    {/* Main Philosophy Title */}
+                    <h2 className="text-4xl xs:text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-white mb-6">
+                      Where
+                      <span className="block">
                         <GradientText 
                           colors={["#FF5630", "#FF8A50", "#FFB899", "#FF5630"]}
                           animationSpeed={5}
+                          className="underline decoration-maverick-orange decoration-4 xs:decoration-6 sm:decoration-8"
                         >
-                          trusted partner
+                          passion meets
                         </GradientText>
                       </span>
-                      <span className="text-maverick-orange block mt-4">in growth</span>
+                      <span className="text-maverick-orange">purpose</span>
                     </h2>
                   </div>
                   
-                  {/* Partnership Philosophy Statement */}
-                  <div className="space-y-8">
-                    <div className="border-l-4 border-maverick-orange pl-6">
-                      <p className="text-lg xs:text-xl text-[#CCCCCC] italic leading-relaxed">
-                        "When you succeed, we succeed. Your goals become our mission, and your growth becomes our greatest achievement."
-                      </p>
-                    </div>
-                    
+                  {/* Philosophy Statement */}
+                  <div className="space-y-6">
                     <p className="text-xl xs:text-2xl sm:text-3xl md:text-4xl text-[#CCCCCC] leading-relaxed font-light">
-                      We don't just work
-                      <span className="text-white font-medium"> for you</span> — we work
-                      <span className="text-maverick-orange font-medium"> with you</span>
+                      We believe every business has a 
+                      <span className="text-white font-medium"> unique story </span>
+                      worth telling
                     </p>
-                    
-                    <p className="text-lg xs:text-xl sm:text-2xl text-[#AAAAAA] leading-relaxed max-w-2xl">
-                      True partnership means sharing your vision and 
-                      <span className="text-white font-medium"> celebrating your wins </span>
-                      as our own.
+                    <p className="text-lg xs:text-xl sm:text-2xl text-[#AAAAAA] leading-relaxed">
+                      Our mission isn't just to build websites—it's to craft digital experiences that 
+                      <span className="text-maverick-orange font-medium"> connect hearts, inspire action, </span>
+                      and create lasting impact in your community.
                     </p>
                   </div>
                 </div>
@@ -88,13 +82,13 @@ export default function ShowcaseGallery() {
                   <div className="bg-gradient-to-br from-[#1a1a1a]/90 to-[#2a2a2a]/90 backdrop-blur-sm rounded-2xl p-6 border border-gray-700/50 shadow-xl">
                     <div className="flex items-center justify-between mb-4">
                       <div className="flex items-center space-x-3">
-                        {/* Actual Google Logo */}
-                        <svg width="24" height="24" viewBox="0 0 24 24" className="flex-shrink-0">
-                          <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
-                          <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
-                          <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
-                          <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
-                        </svg>
+                        {/* Google Logo Colors */}
+                        <div className="flex items-center space-x-1">
+                          <div className="w-3 h-3 rounded-full bg-[#4285F4]"></div>
+                          <div className="w-3 h-3 rounded-full bg-[#EA4335]"></div>
+                          <div className="w-3 h-3 rounded-full bg-[#FBBC04]"></div>
+                          <div className="w-3 h-3 rounded-full bg-[#34A853]"></div>
+                        </div>
                         <span className="text-sm text-gray-400 font-medium">Google Reviews</span>
                       </div>
                       <div className="flex space-x-1">
@@ -128,65 +122,38 @@ export default function ShowcaseGallery() {
                     </div>
                   </div>
 
-                  {/* Partnership Success Metric */}
+                  {/* Success Rate Metric */}
                   <div className="bg-gradient-to-br from-[#1a1a1a]/90 to-[#2a2a2a]/90 backdrop-blur-sm rounded-2xl p-6 border border-gray-700/50 shadow-xl">
                     <div className="flex items-center justify-between mb-4">
-                      <span className="text-sm text-gray-400 font-medium">Long-term Partnerships</span>
-                      <div className="w-8 h-8 rounded-full bg-gradient-to-r from-blue-400 to-purple-500 flex items-center justify-center">
+                      <span className="text-sm text-gray-400 font-medium">Client Success Rate</span>
+                      <div className="w-8 h-8 rounded-full bg-gradient-to-r from-green-400 to-blue-500 flex items-center justify-center">
                         <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
-                          <path fillRule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clipRule="evenodd" />
+                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                         </svg>
                       </div>
                     </div>
                     <div className="flex items-baseline space-x-2">
-                      <span className="text-4xl font-bold text-white">92%</span>
-                      <span className="text-xl text-gray-300">clients continue working with us</span>
+                      <span className="text-4xl font-bold text-white">98%</span>
+                      <span className="text-xl text-gray-300">projects delivered on time</span>
                     </div>
                     <div className="mt-3 bg-gray-700/50 rounded-full h-2">
-                      <div className="bg-gradient-to-r from-blue-400 to-purple-500 h-2 rounded-full w-[92%]"></div>
+                      <div className="bg-gradient-to-r from-green-400 to-blue-500 h-2 rounded-full w-[98%]"></div>
                     </div>
                   </div>
 
-                  {/* Collaborative Approach Metric */}
+                  {/* Growth Impact Metric */}
                   <div className="bg-gradient-to-br from-[#1a1a1a]/90 to-[#2a2a2a]/90 backdrop-blur-sm rounded-2xl p-6 border border-gray-700/50 shadow-xl">
                     <div className="flex items-center justify-between mb-4">
-                      <span className="text-sm text-gray-400 font-medium">Collaborative Success</span>
-                      <div className="flex items-center space-x-1">
-                        <div className="w-3 h-3 bg-maverick-orange rounded-full animate-pulse"></div>
-                        <div className="w-1 h-1 bg-gray-400 rounded-full"></div>
-                        <div className="w-3 h-3 bg-blue-400 rounded-full animate-pulse" style={{animationDelay: '0.5s'}}></div>
+                      <span className="text-sm text-gray-400 font-medium">Average Client Growth</span>
+                      <div className="flex space-x-1">
+                        <div className="w-2 h-6 bg-maverick-orange rounded-full"></div>
+                        <div className="w-2 h-8 bg-maverick-orange rounded-full"></div>
+                        <div className="w-2 h-10 bg-maverick-orange rounded-full"></div>
                       </div>
                     </div>
                     <div className="flex items-baseline space-x-2">
-                      <span className="text-4xl font-bold text-white">100%</span>
-                      <span className="text-xl text-gray-300">transparent communication</span>
-                    </div>
-                    <p className="text-sm text-gray-400 mt-2">Weekly check-ins, shared goals, mutual success</p>
-                  </div>
-
-                  {/* Partnership Values */}
-                  <div className="bg-gradient-to-br from-[#1a1a1a]/90 to-[#2a2a2a]/90 backdrop-blur-sm rounded-2xl p-6 border border-gray-700/50 shadow-xl">
-                    <div className="flex items-center justify-between mb-4">
-                      <span className="text-sm text-gray-400 font-medium">Partnership Values</span>
-                      <div className="w-8 h-8 rounded-full bg-gradient-to-r from-maverick-orange to-yellow-400 flex items-center justify-center">
-                        <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
-                          <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                      </div>
-                    </div>
-                    <div className="space-y-3">
-                      <div className="flex items-center justify-between">
-                        <span className="text-white text-sm">Trust & Transparency</span>
-                        <div className="w-2 h-2 bg-green-400 rounded-full"></div>
-                      </div>
-                      <div className="flex items-center justify-between">
-                        <span className="text-white text-sm">Shared Accountability</span>
-                        <div className="w-2 h-2 bg-green-400 rounded-full"></div>
-                      </div>
-                      <div className="flex items-center justify-between">
-                        <span className="text-white text-sm">Mutual Growth</span>
-                        <div className="w-2 h-2 bg-green-400 rounded-full"></div>
-                      </div>
+                      <span className="text-4xl font-bold text-white">150%</span>
+                      <span className="text-xl text-gray-300">increase in online visibility</span>
                     </div>
                   </div>
                 </div>
