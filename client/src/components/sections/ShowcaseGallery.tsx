@@ -200,8 +200,8 @@ export default function ShowcaseGallery() {
           mixBlendMode: "screen",
         }}
       />
-      <ContainerScroll className="relative h-[350vh]">
-        <ContainerSticky className="h-svh bg-[#0000009e] -mt-8">
+      <ContainerScroll className="relative h-[120vh]">
+        <ContainerSticky className="h-svh bg-[#0000009e] -mt-16">
           <GalleryContainer className="-mt-4">
             <GalleryCol yRange={["-10%", "2%"]} className="-mt-2">
               {VIDEOS_1.map((videoUrl, index) => (
