@@ -290,9 +290,7 @@ export default function Header() {
               >
                 <Link 
                   href="/about-edmonton-web-design-company" 
-                  className={`px-3 py-2 min-h-[44px] rounded-md text-base font-medium transition-colors duration-200 touch-manipulation flex items-center ${
-                    isCurrentPath('/about-edmonton-web-design-company') ? 'text-maverick-orange' : 'text-white hover:text-maverick-orange'
-                  }`} 
+                  className="px-3 py-2 min-h-[44px] rounded-md font-medium transition-colors duration-200 touch-manipulation flex items-center text-white hover:text-maverick-orange text-[18px]" 
                   aria-current={isCurrentPath('/about-edmonton-web-design-company') ? 'page' : undefined}
                 >
                   About
