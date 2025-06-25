@@ -195,4 +195,3 @@ export default function CyclingVideoPlayer({
     </div>
   );
 }
-```

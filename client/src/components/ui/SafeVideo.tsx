@@ -1,3 +1,4 @@
+
 import React, { useState, useRef, useEffect } from 'react';
 
 interface SafeVideoProps {
@@ -93,7 +94,7 @@ export const SafeVideo: React.FC<SafeVideoProps> = ({
           <div className="text-gray-400 text-sm">Loading video...</div>
         </div>
       )}
-
+      
       <video
         ref={videoRef}
         className={`w-full h-full object-cover ${isLoaded ? 'opacity-100' : 'opacity-0'} transition-opacity duration-300`}

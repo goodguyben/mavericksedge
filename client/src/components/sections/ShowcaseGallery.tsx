@@ -14,11 +14,6 @@ const VIDEOS_1 = [
   "/videos/services/Next-Gen E-Commerce 1.mp4",
   "/videos/services/Productivity & Management Web Applications 1.mp4",
   "/videos/services/Social Media Management.mp4",
-  "/videos/services/Custom Interactive Websites 2.mp4",
-  "/videos/services/Next-Gen E-Commerce 2.mp4",
-  "/videos/services/Custom Interactive Websites 3.mp4",
-  "/videos/services/Productivity & Management Web Applications 3.mp4",
-  "/videos/services/Custom Interactive Websites 1.mp4"
 ]
 
 const VIDEOS_2 = [
@@ -26,11 +21,6 @@ const VIDEOS_2 = [
   "/videos/services/Next-Gen E-Commerce 2.mp4",
   "/videos/services/Custom Interactive Websites 3.mp4",
   "/videos/services/Productivity & Management Web Applications 3.mp4",
-  "/videos/services/Social Media Management.mp4",
-  "/videos/services/Next-Gen E-Commerce 1.mp4",
-  "/videos/services/Custom Interactive Websites 1.mp4",
-  "/videos/services/Productivity & Management Web Applications 1.mp4",
-  "/videos/services/Custom Interactive Websites 2.mp4"
 ]
 
 const IMAGES_3 = [
@@ -38,11 +28,6 @@ const IMAGES_3 = [
   "/videos/services/Productivity & Management Web Applications 2.png",
   "/images/manus-ai-logo.png",
   "/images/telus-logo.png",
-  "/videos/services/Custom Interactive Websites 1.mp4",
-  "/videos/services/Next-Gen E-Commerce 1.mp4",
-  "/videos/services/Social Media Management.mp4",
-  "/videos/services/Custom Interactive Websites 2.mp4",
-  "/videos/services/Productivity & Management Web Applications 1.mp4"
 ]
 
 export default function ShowcaseGallery() {
@@ -215,10 +200,10 @@ export default function ShowcaseGallery() {
           mixBlendMode: "screen",
         }}
       />
-      <ContainerScroll className="relative h-[350vh]">
-        <ContainerSticky className="h-svh bg-[#0000009e] -mt-8">
-          <GalleryContainer className="mt-[-100px] mb-[-100px]">
-            <GalleryCol yRange={["-10%", "2%"]} className="mt-[280px] mb-[280px]">
+      <ContainerScroll className="relative h-[120vh]">
+        <ContainerSticky className="h-svh bg-[#0000009e] -mt-16">
+          <GalleryContainer className="-mt-4">
+            <GalleryCol yRange={["-10%", "2%"]} className="-mt-2">
               {VIDEOS_1.map((videoUrl, index) => (
                 <video
                   key={index}
@@ -238,7 +223,7 @@ export default function ShowcaseGallery() {
                 </video>
               ))}
             </GalleryCol>
-            <GalleryCol className="mt-[288px] mb-[288px]" yRange={["15%", "5%"]}>
+            <GalleryCol className="mt-[-50%]" yRange={["15%", "5%"]}>
               {VIDEOS_2.map((videoUrl, index) => (
                 <video
                   key={index}
@@ -258,35 +243,15 @@ export default function ShowcaseGallery() {
                 </video>
               ))}
             </GalleryCol>
-            <GalleryCol yRange={["-10%", "2%"]} className="mt-[280px] mb-[280px]">
-              {IMAGES_3.map((mediaUrl, index) => {
-                const isVideo = mediaUrl.endsWith('.mp4');
-                return isVideo ? (
-                  <video
-                    key={index}
-                    className="aspect-video block h-auto max-h-full w-full rounded-md object-cover shadow-lg"
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    onCanPlay={() => {
-                      console.log(`Showcase video ready: ${mediaUrl}`);
-                    }}
-                    onError={(e) => {
-                      console.warn(`Failed to play showcase video: ${mediaUrl}`, e);
-                    }}
-                  >
-                    <source src={mediaUrl} type="video/mp4" />
-                  </video>
-                ) : (
-                  <img
-                    key={index}
-                    className="aspect-video block h-auto max-h-full w-full rounded-md object-cover shadow-lg"
-                    src={mediaUrl}
-                    alt="showcase item"
-                  />
-                );
-              })}
+            <GalleryCol yRange={["-10%", "2%"]} className="-mt-2">
+              {IMAGES_3.map((imageUrl, index) => (
+                <img
+                  key={index}
+                  className="aspect-video block h-auto max-h-full w-full rounded-md object-cover shadow-lg"
+                  src={imageUrl}
+                  alt="showcase item"
+                />
+              ))}
             </GalleryCol>
           </GalleryContainer>
         </ContainerSticky>
