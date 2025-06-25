@@ -60,8 +60,18 @@ export default function Hero() {
             <br />growing your business
           </p>
         </ContainerAnimated>
+
+        <ContainerAnimated className="text-right">
+          <div className="flex flex-wrap justify-end gap-4 pt-[0px] pb-[0px] pl-[124px] pr-[124px]">
+            <Button className="px-8 py-3 bg-maverick-orange hover:bg-maverick-orange/90 text-white font-medium rounded-full">
+              Explore Services
+            </Button>
+            <Button variant="outline" className="px-8 py-3 border-maverick-orange text-maverick-orange hover:bg-maverick-orange/10 font-medium rounded-full">
+              Book Free Consultation
+            </Button>
+          </div>
+        </ContainerAnimated>
       </ContainerStagger>
-      
       <div className="pointer-events-none absolute z-10 h-[70vh] w-full"
         style={{
           background: "linear-gradient(to right, gray, rebeccapurple, blue)",
@@ -125,19 +135,6 @@ export default function Hero() {
           </GalleryContainer>
         </ContainerSticky>
       </ContainerScroll>
-
-      <ContainerStagger className="relative z-[9999] place-self-center px-6 pt-12 text-center">
-        <ContainerAnimated className="text-right">
-          <div className="flex flex-wrap justify-end gap-4 pt-[0px] pb-[0px] pl-[124px] pr-[124px]">
-            <Button className="px-8 py-3 bg-maverick-orange hover:bg-maverick-orange/90 text-white font-medium rounded-full">
-              Explore Services
-            </Button>
-            <Button variant="outline" className="px-8 py-3 border-maverick-orange text-maverick-orange hover:bg-maverick-orange/10 font-medium rounded-full">
-              Book Free Consultation
-            </Button>
-          </div>
-        </ContainerAnimated>
-      </ContainerStagger>
     </div>
   );
 }
