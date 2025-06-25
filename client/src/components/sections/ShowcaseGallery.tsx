@@ -60,20 +60,18 @@ export default function ShowcaseGallery() {
                   <div className="space-y-8">
                     <div className="border-l-4 border-maverick-orange pl-6">
                       <p className="text-lg xs:text-xl text-[#CCCCCC] italic leading-relaxed">
-                        "When you succeed, we succeed. Your goals become our mission, and your growth becomes our greatest achievement."
+                        "Partnership is not just a contract. It's a way of doing things together, where both parties give more than they take."
                       </p>
+                      <p className="text-sm text-[#AAAAAA] mt-2">— Henry Kimsey-House</p>
                     </div>
                     
-                    <p className="text-xl xs:text-2xl sm:text-3xl md:text-4xl text-[#CCCCCC] leading-relaxed font-light">
-                      We don't just work
-                      <span className="text-white font-medium"> for you</span> — we work
-                      <span className="text-maverick-orange font-medium"> with you</span>
+                    <p className="text-lg xs:text-xl sm:text-2xl text-[#AAAAAA] leading-relaxed max-w-2xl">
+                      Every solution we build, from content strategy to backend systems, is grounded in co-created vision. As your web solutions agency, we measure success not by aesthetics alone but by alignment with your mission, audience, and growth.
                     </p>
                     
-                    <p className="text-lg xs:text-xl sm:text-2xl text-[#AAAAAA] leading-relaxed max-w-2xl">
-                      True partnership means sharing your vision and 
-                      <span className="text-white font-medium"> celebrating your wins </span>
-                      as our own.
+                    <p className="text-lg xs:text-xl sm:text-2xl text-[#CCCCCC] leading-relaxed max-w-2xl">
+                      We believe in walking beside you every step of the way. The best results come from 
+                      <span className="text-white font-medium"> mutual effort</span>, not transactional exchanges.
                     </p>
                   </div>
                 </div>
