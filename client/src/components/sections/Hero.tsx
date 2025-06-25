@@ -67,7 +67,7 @@ export default function Hero() {
         
         <ContainerAnimated>
           {/* Hero Headline (H1) - Responsive Typography */}
-          <h1 className="font-serif font-semibold text-center xs:text-[26px] sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl 3xl:text-[72px] mb-3 xs:mb-4 sm:mb-5 md:mb-6 lg:mb-7 xl:mb-8 2xl:mb-9 text-[34px]">
+          <h1 className="font-serif font-semibold text-center xs:text-[26px] sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl 3xl:text-[72px] mb-3 xs:mb-4 sm:mb-5 md:mb-6 lg:mb-7 xl:mb-8 2xl:mb-9 text-[32px]">
             <span className="text-white font-semibold">Building</span>{" "}
             <span className="underline decoration-maverick-orange font-semibold">
               <GradientText 
@@ -243,7 +243,7 @@ export default function Hero() {
         }}
       />
       <ContainerScroll className="relative h-[200vh]">
-        <ContainerSticky className="h-svh bg-[#0000009e] -mt-16 top-1/2 -translate-y-1/2 lg:top-0 lg:translate-y-0">
+        <ContainerSticky className="h-svh bg-[#0000009e] -mt-16">
           <GalleryContainer className="-mt-8">
             <GalleryCol yRange={["-10%", "2%"]} className="-mt-6">
               {VIDEOS_1.map((videoUrl, index) => (
