@@ -219,7 +219,7 @@ export default function Hero() {
               lg:text-lg 
               xl:text-xl 
               2xl:text-xl
-              border-maverick-orange text-maverick-orange 
+              bg-[#00000000] border-maverick-orange text-maverick-orange 
               hover:bg-maverick-orange/10 font-medium rounded-lg
               min-h-[44px] 
               xs:min-h-[46px] 
