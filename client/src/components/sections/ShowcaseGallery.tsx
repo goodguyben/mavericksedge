@@ -259,14 +259,34 @@ export default function ShowcaseGallery() {
               ))}
             </GalleryCol>
             <GalleryCol yRange={["-10%", "2%"]} className="mt-[280px] mb-[280px]">
-              {IMAGES_3.map((imageUrl, index) => (
-                <img
-                  key={index}
-                  className="aspect-video block h-auto max-h-full w-full rounded-md object-cover shadow-lg"
-                  src={imageUrl}
-                  alt="showcase item"
-                />
-              ))}
+              {IMAGES_3.map((mediaUrl, index) => {
+                const isVideo = mediaUrl.endsWith('.mp4');
+                return isVideo ? (
+                  <video
+                    key={index}
+                    className="aspect-video block h-auto max-h-full w-full rounded-md object-cover shadow-lg"
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    onCanPlay={() => {
+                      console.log(`Showcase video ready: ${mediaUrl}`);
+                    }}
+                    onError={(e) => {
+                      console.warn(`Failed to play showcase video: ${mediaUrl}`, e);
+                    }}
+                  >
+                    <source src={mediaUrl} type="video/mp4" />
+                  </video>
+                ) : (
+                  <img
+                    key={index}
+                    className="aspect-video block h-auto max-h-full w-full rounded-md object-cover shadow-lg"
+                    src={mediaUrl}
+                    alt="showcase item"
+                  />
+                );
+              })}
             </GalleryCol>
           </GalleryContainer>
         </ContainerSticky>
