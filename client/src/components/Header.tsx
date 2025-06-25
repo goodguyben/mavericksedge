@@ -119,9 +119,7 @@ export default function Header() {
               >
                 <Link 
                   href="/" 
-                  className={`px-3 py-2 min-h-[44px] rounded-md text-base font-medium transition-colors duration-200 touch-manipulation flex items-center ${
-                    isCurrentPath('/') ? 'text-maverick-orange' : 'text-white hover:text-maverick-orange'
-                  }`} 
+                  className="px-3 py-2 min-h-[44px] rounded-md font-medium transition-colors duration-200 touch-manipulation flex items-center text-maverick-orange text-[18px]" 
                   aria-current={isCurrentPath('/') ? 'page' : undefined}
                 >
                   Home
