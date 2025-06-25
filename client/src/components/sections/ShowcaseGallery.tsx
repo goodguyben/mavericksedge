@@ -34,64 +34,132 @@ export default function ShowcaseGallery() {
   return (
     <div className="relative bg-[#000000] py-12 md:py-16 pt-[120px] pb-[120px]">
       <ContainerStagger className="relative z-[9999] place-self-center px-4 xs:px-6 sm:px-8 md:px-12 lg:px-16 xl:px-20 pt-8 xs:pt-10 sm:pt-12">
-        <div className="max-w-6xl mx-auto">
-          {/* Creative Title Layout */}
-          <ContainerAnimated>
-            <div className="text-center mb-16 xs:mb-20 sm:mb-24 md:mb-28 lg:mb-32">
-              <div className="font-serif font-semibold leading-tight">
-                {/* "Your" - positioned top left */}
-                <div className="flex justify-start mb-4 xs:mb-6 sm:mb-8">
-                  <span className="text-white text-4xl xs:text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl">
-                    Your
-                  </span>
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+            {/* Left Side - Heartfelt Philosophy */}
+            <div className="lg:col-span-7">
+              <ContainerAnimated>
+                <div className="text-left">
+                  <div className="font-serif font-semibold leading-tight mb-8">
+                    {/* Main Philosophy Title */}
+                    <h2 className="text-4xl xs:text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-white mb-6">
+                      Where
+                      <span className="block">
+                        <GradientText 
+                          colors={["#FF5630", "#FF8A50", "#FFB899", "#FF5630"]}
+                          animationSpeed={5}
+                          className="underline decoration-maverick-orange decoration-4 xs:decoration-6 sm:decoration-8"
+                        >
+                          passion meets
+                        </GradientText>
+                      </span>
+                      <span className="text-maverick-orange">purpose</span>
+                    </h2>
+                  </div>
+                  
+                  {/* Philosophy Statement */}
+                  <div className="space-y-6">
+                    <p className="text-xl xs:text-2xl sm:text-3xl md:text-4xl text-[#CCCCCC] leading-relaxed font-light">
+                      We believe every business has a 
+                      <span className="text-white font-medium"> unique story </span>
+                      worth telling
+                    </p>
+                    <p className="text-lg xs:text-xl sm:text-2xl text-[#AAAAAA] leading-relaxed">
+                      Our mission isn't just to build websites—it's to craft digital experiences that 
+                      <span className="text-maverick-orange font-medium"> connect hearts, inspire action, </span>
+                      and create lasting impact in your community.
+                    </p>
+                  </div>
                 </div>
-                
-                {/* "one source" - centered and gradient */}
-                <div className="text-center mb-4 xs:mb-6 sm:mb-8">
-                  <span className="text-5xl xs:text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[10rem] underline decoration-maverick-orange decoration-4 xs:decoration-6 sm:decoration-8">
-                    <GradientText 
-                      colors={["#FF5630", "#FF8A50", "#FFB899", "#FF5630"]}
-                      animationSpeed={5}
-                    >
-                      one source
-                    </GradientText>
-                  </span>
-                </div>
-                
-                {/* "for all your digital solutions" - positioned bottom right */}
-                <div className="flex justify-end">
-                  <span className="text-white text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl text-right max-w-lg">
-                    for all your digital solutions
-                  </span>
-                </div>
-              </div>
+              </ContainerAnimated>
             </div>
-          </ContainerAnimated>
 
-          {/* Redesigned Subtitle */}
-          <ContainerAnimated>
-            <div className="text-center">
-              <div className="relative">
-                {/* Left accent line */}
-                <div className="absolute left-0 top-1/2 transform -translate-y-1/2 w-12 xs:w-16 sm:w-20 md:w-24 h-0.5 bg-gradient-to-r from-maverick-orange to-transparent"></div>
-                
-                {/* Main text */}
-                <div className="px-16 xs:px-20 sm:px-24 md:px-28">
-                  <p className="text-[#CCCCCC] text-lg xs:text-xl sm:text-2xl md:text-3xl lg:text-4xl leading-relaxed font-light">
-                    <span className="text-maverick-orange font-medium">No waste</span> of time and money
-                  </p>
-                  <p className="text-[#AAAAAA] text-base xs:text-lg sm:text-xl md:text-2xl lg:text-3xl mt-4 xs:mt-6 sm:mt-8">
-                    we provide you with a 
-                    <span className="text-white font-medium"> collection of services </span>
-                    to power your next project
-                  </p>
+            {/* Right Side - Metrics Dashboard */}
+            <div className="lg:col-span-5">
+              <ContainerAnimated>
+                <div className="space-y-6">
+                  {/* Google Reviews Metric */}
+                  <div className="bg-gradient-to-br from-[#1a1a1a]/90 to-[#2a2a2a]/90 backdrop-blur-sm rounded-2xl p-6 border border-gray-700/50 shadow-xl">
+                    <div className="flex items-center justify-between mb-4">
+                      <div className="flex items-center space-x-3">
+                        {/* Google Logo Colors */}
+                        <div className="flex items-center space-x-1">
+                          <div className="w-3 h-3 rounded-full bg-[#4285F4]"></div>
+                          <div className="w-3 h-3 rounded-full bg-[#EA4335]"></div>
+                          <div className="w-3 h-3 rounded-full bg-[#FBBC04]"></div>
+                          <div className="w-3 h-3 rounded-full bg-[#34A853]"></div>
+                        </div>
+                        <span className="text-sm text-gray-400 font-medium">Google Reviews</span>
+                      </div>
+                      <div className="flex space-x-1">
+                        {[...Array(5)].map((_, i) => (
+                          <svg key={i} className="w-5 h-5 text-yellow-400 fill-current" viewBox="0 0 20 20">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                          </svg>
+                        ))}
+                      </div>
+                    </div>
+                    <div className="flex items-baseline space-x-2">
+                      <span className="text-4xl font-bold text-white">5.0</span>
+                      <span className="text-xl text-gray-300">from</span>
+                      <span className="text-2xl font-semibold text-maverick-orange">37 reviews</span>
+                    </div>
+                  </div>
+
+                  {/* Experience Metric */}
+                  <div className="bg-gradient-to-br from-[#1a1a1a]/90 to-[#2a2a2a]/90 backdrop-blur-sm rounded-2xl p-6 border border-gray-700/50 shadow-xl">
+                    <div className="flex items-center justify-between mb-4">
+                      <span className="text-sm text-gray-400 font-medium">Years of Excellence</span>
+                      <div className="w-8 h-8 rounded-full bg-gradient-to-r from-maverick-orange to-yellow-400 flex items-center justify-center">
+                        <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                        </svg>
+                      </div>
+                    </div>
+                    <div className="flex items-baseline space-x-2">
+                      <span className="text-4xl font-bold text-white">10+</span>
+                      <span className="text-xl text-gray-300">years crafting digital experiences</span>
+                    </div>
+                  </div>
+
+                  {/* Success Rate Metric */}
+                  <div className="bg-gradient-to-br from-[#1a1a1a]/90 to-[#2a2a2a]/90 backdrop-blur-sm rounded-2xl p-6 border border-gray-700/50 shadow-xl">
+                    <div className="flex items-center justify-between mb-4">
+                      <span className="text-sm text-gray-400 font-medium">Client Success Rate</span>
+                      <div className="w-8 h-8 rounded-full bg-gradient-to-r from-green-400 to-blue-500 flex items-center justify-center">
+                        <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                        </svg>
+                      </div>
+                    </div>
+                    <div className="flex items-baseline space-x-2">
+                      <span className="text-4xl font-bold text-white">98%</span>
+                      <span className="text-xl text-gray-300">projects delivered on time</span>
+                    </div>
+                    <div className="mt-3 bg-gray-700/50 rounded-full h-2">
+                      <div className="bg-gradient-to-r from-green-400 to-blue-500 h-2 rounded-full w-[98%]"></div>
+                    </div>
+                  </div>
+
+                  {/* Growth Impact Metric */}
+                  <div className="bg-gradient-to-br from-[#1a1a1a]/90 to-[#2a2a2a]/90 backdrop-blur-sm rounded-2xl p-6 border border-gray-700/50 shadow-xl">
+                    <div className="flex items-center justify-between mb-4">
+                      <span className="text-sm text-gray-400 font-medium">Average Client Growth</span>
+                      <div className="flex space-x-1">
+                        <div className="w-2 h-6 bg-maverick-orange rounded-full"></div>
+                        <div className="w-2 h-8 bg-maverick-orange rounded-full"></div>
+                        <div className="w-2 h-10 bg-maverick-orange rounded-full"></div>
+                      </div>
+                    </div>
+                    <div className="flex items-baseline space-x-2">
+                      <span className="text-4xl font-bold text-white">150%</span>
+                      <span className="text-xl text-gray-300">increase in online visibility</span>
+                    </div>
+                  </div>
                 </div>
-                
-                {/* Right accent line */}
-                <div className="absolute right-0 top-1/2 transform -translate-y-1/2 w-12 xs:w-16 sm:w-20 md:w-24 h-0.5 bg-gradient-to-l from-maverick-orange to-transparent"></div>
-              </div>
+              </ContainerAnimated>
             </div>
-          </ContainerAnimated>
+          </div>
         </div>
       </ContainerStagger>
       <div className="pointer-events-none absolute z-10 h-[70vh] w-full"
