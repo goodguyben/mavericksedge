@@ -52,10 +52,7 @@ export default function App() {
   return (
     <>
     {isLoading ? (
-      <LoadingScreen 
-        isLoading={isLoading}
-        onLoadingComplete={() => setIsLoading(false)}
-      />
+      <LoadingScreen />
     ) : (
     <div className="min-h-screen opacity-0 animate-[fadeIn_0.3s_ease-in-out_forwards]">
       <QueryClientProvider client={queryClient}>
