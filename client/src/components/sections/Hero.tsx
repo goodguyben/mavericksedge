@@ -67,22 +67,7 @@ export default function Hero() {
         
         <ContainerAnimated>
           {/* Hero Headline (H1) - Responsive Typography */}
-          <h1 className="font-serif font-semibold text-center leading-tight
-            text-2xl 
-            xs:text-[26px] 
-            sm:text-3xl 
-            md:text-4xl 
-            lg:text-5xl 
-            xl:text-6xl 
-            2xl:text-7xl 
-            3xl:text-[72px]
-            mb-3 
-            xs:mb-4 
-            sm:mb-5 
-            md:mb-6 
-            lg:mb-7 
-            xl:mb-8 
-            2xl:mb-9">
+          <h1 className="font-serif font-semibold text-center xs:text-[26px] sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl 3xl:text-[72px] mb-3 xs:mb-4 sm:mb-5 md:mb-6 lg:mb-7 xl:mb-8 2xl:mb-9 text-[34px]">
             <span className="text-white font-semibold">Building</span>{" "}
             <span className="underline decoration-maverick-orange font-semibold">
               <GradientText 
@@ -250,7 +235,6 @@ export default function Hero() {
           </div>
         </ContainerAnimated>
       </ContainerStagger>
-      
       <div className="pointer-events-none absolute z-10 h-[70vh] w-full"
         style={{
           background: "linear-gradient(to right, gray, rebeccapurple, blue)",
