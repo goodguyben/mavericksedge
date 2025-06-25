@@ -218,7 +218,7 @@ export default function Header() {
                 }}
                 className="px-3 py-2 min-h-[44px] rounded-md text-base font-medium transition-colors duration-200 inline-flex items-center touch-manipulation text-maverick-orange hover:text-maverick-orange"
               >
-                <span>Pricing</span>
+                <span className="text-[18px]">Pricing</span>
                 <ChevronDown className={`ml-2 h-4 w-4 transition-transform duration-200 ${
                   pricingDropdownOpen ? 'rotate-180' : ''
                 }`} />
