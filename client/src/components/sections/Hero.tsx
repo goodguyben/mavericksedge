@@ -35,7 +35,7 @@ export default function Hero() {
     <div className="relative mt-[-4px] mb-[-4px] bg-[#000000] pt-[1px] pb-[1px]">
       <ContainerStagger className="relative z-[9999] place-self-center px-4 xs:px-6 sm:px-8 md:px-12 lg:px-16 xl:px-20 pt-8 xs:pt-10 sm:pt-12 text-center mt-[80px] xs:mt-[90px] sm:mt-[100px] md:mt-[110px] lg:mt-[120px] xl:mt-[130px] mb-[80px] xs:mb-[90px] sm:mb-[100px] md:mb-[110px] lg:mb-[120px] xl:mb-[130px]">
         <ContainerAnimated>
-          <h1 className="font-serif text-4xl xs:text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl 2xl:text-[10rem] mb-4 xs:mb-5 sm:mb-6 md:mb-7 lg:mb-8 xl:mb-9 font-semibold text-center xs:leading-tight sm:leading-tight md:leading-tight lg:leading-tight xl:leading-tight">
+          <h1 className="font-serif text-5xl xs:text-6xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl 2xl:text-[10rem] mb-4 xs:mb-5 sm:mb-6 md:mb-7 lg:mb-8 xl:mb-9 font-semibold text-center xs:leading-tight sm:leading-tight md:leading-tight lg:leading-tight xl:leading-tight">
             <span className="text-white font-semibold">Building</span>{" "}
             <span className="underline decoration-maverick-orange font-semibold">
               <GradientText 
@@ -59,10 +59,10 @@ export default function Hero() {
 
         <ContainerAnimated className="text-center">
           <div className="flex flex-col xs:flex-col sm:flex-row justify-center items-center gap-3 xs:gap-4 sm:gap-4 md:gap-5 lg:gap-6 xl:gap-8 px-2 xs:px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16">
-            <Button className="w-2/3 xs:w-2/3 sm:w-auto px-4 xs:px-6 sm:px-8 md:px-10 lg:px-12 xl:px-14 py-2 xs:py-2.5 sm:py-3 md:py-3.5 lg:py-4 xl:py-5 text-xs xs:text-sm sm:text-base md:text-lg lg:text-xl xl:text-xl bg-maverick-orange hover:bg-maverick-orange/90 text-white font-medium rounded-full min-h-[40px] xs:min-h-[44px] sm:min-h-[48px] md:min-h-[52px] lg:min-h-[56px] xl:min-h-[60px]">
+            <Button className="w-full xs:w-full sm:w-auto px-4 xs:px-6 sm:px-8 md:px-10 lg:px-12 xl:px-14 py-2 xs:py-2.5 sm:py-3 md:py-3.5 lg:py-4 xl:py-5 text-xs xs:text-sm sm:text-base md:text-lg lg:text-xl xl:text-xl bg-maverick-orange hover:bg-maverick-orange/90 text-white font-medium rounded-full min-h-[40px] xs:min-h-[44px] sm:min-h-[48px] md:min-h-[52px] lg:min-h-[56px] xl:min-h-[60px]">
               Explore Services
             </Button>
-            <Button variant="outline" className="w-2/3 xs:w-2/3 sm:w-auto px-4 xs:px-6 sm:px-8 md:px-10 lg:px-12 xl:px-14 py-2 xs:py-2.5 sm:py-3 md:py-3.5 lg:py-4 xl:py-5 text-xs xs:text-sm sm:text-base md:text-lg lg:text-xl xl:text-xl border-maverick-orange text-maverick-orange hover:bg-maverick-orange/10 font-medium rounded-full min-h-[40px] xs:min-h-[44px] sm:min-h-[48px] md:min-h-[52px] lg:min-h-[56px] xl:min-h-[60px]">
+            <Button variant="outline" className="w-full xs:w-full sm:w-auto px-4 xs:px-6 sm:px-8 md:px-10 lg:px-12 xl:px-14 py-2 xs:py-2.5 sm:py-3 md:py-3.5 lg:py-4 xl:py-5 text-xs xs:text-sm sm:text-base md:text-lg lg:text-xl xl:text-xl border-maverick-orange text-maverick-orange hover:bg-maverick-orange/10 font-medium rounded-full min-h-[40px] xs:min-h-[44px] sm:min-h-[48px] md:min-h-[52px] lg:min-h-[56px] xl:min-h-[60px]">
               Book Free Consultation
             </Button>
           </div>
