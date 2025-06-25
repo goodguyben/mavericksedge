@@ -35,7 +35,7 @@ export default function Hero() {
     <div className="relative mt-[-4px] mb-[-4px] bg-[#000000] pt-[1px] pb-[1px]">
       <ContainerStagger className="relative z-[9999] place-self-center px-6 pt-12 text-center mt-[130px] mb-[130px]">
         <ContainerAnimated>
-          <h1 className="font-serif text-5xl md:text-6xl lg:text-7xl mb-2 font-semibold">
+          <h1 className="font-serif text-3xl sm:text-4xl md:text-6xl lg:text-7xl mb-2 font-semibold text-center md:text-left">
             <span className="text-white px-2 py-1 rounded bg-[#ff563100] font-semibold">Building</span>{" "}
             <span className="underline decoration-maverick-orange font-semibold">
               <GradientText 
@@ -48,25 +48,27 @@ export default function Hero() {
           </h1>
         </ContainerAnimated>
         <ContainerAnimated>
-          <h1 className="font-serif text-5xl md:text-6xl lg:text-7xl mb-6 font-semibold">
+          <h1 className="font-serif text-3xl sm:text-4xl md:text-6xl lg:text-7xl mb-6 font-semibold text-center md:text-left">
             innovation and heart
           </h1>
         </ContainerAnimated>
 
         <ContainerAnimated className="mb-8">
-          <p className="text-xl text-[#AAAAAA] leading-relaxed tracking-tight max-w-4xl mx-auto">
+          <p className="text-base sm:text-lg md:text-xl text-[#AAAAAA] leading-relaxed tracking-tight max-w-4xl mx-auto text-center md:text-left px-4 sm:px-0">
             We're Edmonton-based creators who design beautiful websites, improve
-            <br />your online visibility, and offer smart AI integration so you can focus on
-            <br />growing your business
+            <span className="hidden md:inline"><br /></span>
+            <span className="md:hidden"> </span>your online visibility, and offer smart AI integration so you can focus on
+            <span className="hidden md:inline"><br /></span>
+            <span className="md:hidden"> </span>growing your business
           </p>
         </ContainerAnimated>
 
-        <ContainerAnimated className="text-right">
-          <div className="flex flex-wrap justify-end gap-4 pt-[0px] pb-[0px] pl-[124px] pr-[124px]">
-            <Button className="px-8 py-3 bg-maverick-orange hover:bg-maverick-orange/90 text-white font-medium rounded-full">
+        <ContainerAnimated className="text-center md:text-right">
+          <div className="flex flex-col sm:flex-row flex-wrap justify-center md:justify-end gap-3 sm:gap-4 pt-[0px] pb-[0px] px-4 sm:px-0 md:pl-[124px] md:pr-[124px]">
+            <Button className="px-6 py-3 sm:px-8 sm:py-3 bg-maverick-orange hover:bg-maverick-orange/90 text-white font-medium rounded-full text-sm sm:text-base min-h-[44px] w-full sm:w-auto">
               Explore Services
             </Button>
-            <Button variant="outline" className="px-8 py-3 border-maverick-orange text-maverick-orange hover:bg-maverick-orange/10 font-medium rounded-full">
+            <Button variant="outline" className="px-6 py-3 sm:px-8 sm:py-3 border-maverick-orange text-maverick-orange hover:bg-maverick-orange/10 font-medium rounded-full text-sm sm:text-base min-h-[44px] w-full sm:w-auto">
               Book Free Consultation
             </Button>
           </div>
