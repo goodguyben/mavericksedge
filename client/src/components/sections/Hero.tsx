@@ -45,7 +45,7 @@ export default function Hero() {
                 resilience
               </GradientText>
             </span>{" "}
-            <span className="text-white font-semibold text-[34px]">with innovation</span>
+            <span className="text-white font-semibold text-[36px]">with innovation</span>
             <br className="hidden md:block" />
             <span className="text-white font-semibold md:ml-0 ml-1">and heart</span>
           </h1>
