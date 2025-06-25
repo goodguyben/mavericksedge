@@ -80,9 +80,9 @@ export default function Hero() {
         }}
       />
       <ContainerScroll className="relative h-[350vh]">
-        <ContainerSticky className="h-svh bg-[#0000009e]">
-          <GalleryContainer className="">
-            <GalleryCol yRange={["-10%", "2%"]} className="-mt-2">
+        <ContainerSticky className="h-svh bg-[#0000009e] -mt-16">
+          <GalleryContainer className="-mt-8">
+            <GalleryCol yRange={["-10%", "2%"]} className="-mt-6">
               {VIDEOS_1.map((videoUrl, index) => (
                 <video
                   key={index}
@@ -102,7 +102,7 @@ export default function Hero() {
                 </video>
               ))}
             </GalleryCol>
-            <GalleryCol className="mt-[-50%]" yRange={["15%", "5%"]}>
+            <GalleryCol className="mt-[-54%]" yRange={["15%", "5%"]}>
               {VIDEOS_2.map((videoUrl, index) => (
                 <video
                   key={index}
