@@ -58,9 +58,15 @@ export default function ShowcaseGallery() {
                   
                   {/* Partnership Philosophy Statement */}
                   <div className="space-y-8">
+                    <div className="border-l-4 border-maverick-orange pl-6">
+                      <p className="text-lg xs:text-xl text-[#CCCCCC] italic leading-relaxed">
+                        "When you succeed, we succeed. Your goals become our mission, and your growth becomes our greatest achievement."
+                      </p>
+                    </div>
+                    
                     <p className="text-xl xs:text-2xl sm:text-3xl md:text-4xl text-[#CCCCCC] leading-relaxed font-light">
                       We don't just work
-                      <span className="text-white font-medium"> for you</span>—we work
+                      <span className="text-white font-medium"> for you</span> — we work
                       <span className="text-maverick-orange font-medium"> with you</span>
                     </p>
                     
@@ -69,12 +75,6 @@ export default function ShowcaseGallery() {
                       <span className="text-white font-medium"> celebrating your wins </span>
                       as our own.
                     </p>
-                    
-                    <div className="border-l-4 border-maverick-orange pl-6 mt-12">
-                      <p className="text-lg xs:text-xl text-[#CCCCCC] italic leading-relaxed">
-                        "When you succeed, we succeed."
-                      </p>
-                    </div>
                   </div>
                 </div>
               </ContainerAnimated>
