@@ -47,7 +47,7 @@ export default function Hero() {
             </span>{" "}
             <span className="text-white font-semibold text-[36px]">with innovation</span>
             <br className="hidden md:block" />
-            <span className="text-white font-semibold md:ml-0 ml-1">and heart</span>
+            <span className="text-white font-semibold md:ml-0 ml-1 text-[36px]">and heart</span>
           </h1>
         </ContainerAnimated>
 
