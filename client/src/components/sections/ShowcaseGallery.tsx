@@ -238,7 +238,7 @@ export default function ShowcaseGallery() {
                 </video>
               ))}
             </GalleryCol>
-            <GalleryCol className="mt-[190px] mb-[190px]" yRange={["15%", "5%"]}>
+            <GalleryCol className="mt-[120px] mb-[120px]" yRange={["15%", "5%"]}>
               {VIDEOS_2.map((videoUrl, index) => (
                 <video
                   key={index}
@@ -258,7 +258,7 @@ export default function ShowcaseGallery() {
                 </video>
               ))}
             </GalleryCol>
-            <GalleryCol yRange={["-10%", "2%"]} className="mt-[280px] mb-[280px]">
+            <GalleryCol yRange={["-10%", "2%"]} className="mt-[85px] mb-[85px]">
               {IMAGES_3.map((imageUrl, index) => (
                 <img
                   key={index}
