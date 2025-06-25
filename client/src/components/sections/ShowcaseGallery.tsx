@@ -4,7 +4,7 @@ import { ContainerAnimated,
   ContainerSticky,
   GalleryCol,
   GalleryContainer } from "@/components/blocks/animated-gallery"
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/custom-button"
 import { VideoIcon } from "lucide-react"
 import GradientText from "@/components/ui/GradientText"
 
@@ -64,10 +64,10 @@ export default function ShowcaseGallery() {
 
         <ContainerAnimated>
           <div className="flex flex-col xs:flex-col sm:flex-row justify-center items-center gap-4 xs:gap-4 sm:gap-6 md:gap-8 px-4">
-            <Button className="w-3/4 xs:w-3/4 sm:w-auto px-6 xs:px-7 sm:px-8 md:px-10 py-3 xs:py-3.5 sm:py-4 text-sm xs:text-base sm:text-lg md:text-xl bg-maverick-orange hover:bg-maverick-orange/90 text-white font-medium rounded-lg min-h-[48px] xs:min-h-[52px] sm:min-h-[56px] transition-all duration-200 ease-in-out shadow-md hover:shadow-lg gap-2">
-              Book Free Call <VideoIcon className="w-4 h-4" />
+            <Button href="/contact" variant="primary">
+              Book Free Call <VideoIcon className="w-4 h-4 ml-1" />
             </Button>
-            <Button variant="link" className="text-[#AAAAAA] hover:text-white underline-offset-4 hover:underline text-sm xs:text-base sm:text-lg md:text-xl">
+            <Button href="/about-edmonton-web-design-company" variant="link">
               About Us
             </Button>
           </div>
