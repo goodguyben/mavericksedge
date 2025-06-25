@@ -50,13 +50,13 @@ export default function Hero() {
         xl:pt-20 
         2xl:pt-24 
         text-center 
-        mt-[70px] 
-        xs:mt-[75px] 
-        sm:mt-[80px] 
-        md:mt-[90px] 
-        lg:mt-[100px] 
-        xl:mt-[110px] 
-        2xl:mt-[120px] 
+        mt-[100px] 
+        xs:mt-[110px] 
+        sm:mt-[120px] 
+        md:mt-[130px] 
+        lg:mt-[140px] 
+        xl:mt-[150px] 
+        2xl:mt-[160px] 
         mb-[70px] 
         xs:mb-[75px] 
         sm:mb-[80px] 
