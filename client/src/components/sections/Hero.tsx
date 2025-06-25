@@ -33,10 +33,10 @@ const IMAGES_3 = [
 export default function Hero() {
   return (
     <div className="relative mt-[-4px] mb-[-4px] bg-[#000000] pt-[1px] pb-[1px]">
-      <ContainerStagger className="relative z-[9999] place-self-center px-6 pt-12 text-center mt-[130px] mb-[130px]">
+      <ContainerStagger className="relative z-[9999] place-self-center px-4 xs:px-6 sm:px-8 md:px-12 lg:px-16 xl:px-20 pt-8 xs:pt-10 sm:pt-12 text-center mt-[80px] xs:mt-[90px] sm:mt-[100px] md:mt-[110px] lg:mt-[120px] xl:mt-[130px] mb-[80px] xs:mb-[90px] sm:mb-[100px] md:mb-[110px] lg:mb-[120px] xl:mb-[130px]">
         <ContainerAnimated>
-          <h1 className="font-serif text-3xl sm:text-4xl md:text-6xl lg:text-7xl mb-2 font-semibold text-center md:text-left">
-            <span className="text-white px-2 py-1 rounded bg-[#ff563100] font-semibold">Building</span>{" "}
+          <h1 className="font-serif text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl mb-1 xs:mb-2 font-semibold text-center leading-tight xs:leading-tight sm:leading-tight md:leading-tight lg:leading-tight xl:leading-tight">
+            <span className="text-white px-1 xs:px-2 py-0.5 xs:py-1 rounded bg-[#ff563100] font-semibold">Building</span>{" "}
             <span className="underline decoration-maverick-orange font-semibold">
               <GradientText 
                 colors={["#FF5630", "#FF8A50", "#FFB899", "#FF5630"]}
@@ -48,27 +48,23 @@ export default function Hero() {
           </h1>
         </ContainerAnimated>
         <ContainerAnimated>
-          <h1 className="font-serif text-3xl sm:text-4xl md:text-6xl lg:text-7xl mb-6 font-semibold md:text-left text-center">
+          <h1 className="font-serif text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl mb-4 xs:mb-5 sm:mb-6 md:mb-7 lg:mb-8 xl:mb-9 font-semibold text-center leading-tight xs:leading-tight sm:leading-tight md:leading-tight lg:leading-tight xl:leading-tight">
             innovation and heart
           </h1>
         </ContainerAnimated>
 
-        <ContainerAnimated className="mb-8">
-          <p className="text-base sm:text-lg md:text-xl text-[#AAAAAA] leading-relaxed tracking-tight max-w-4xl mx-auto md:text-left px-4 sm:px-0 text-center">
-            We're Edmonton-based creators who design beautiful websites, improve
-            <span className="hidden md:inline"><br /></span>
-            <span className="md:hidden"> </span>your online visibility, and offer smart AI integration so you can focus on
-            <span className="hidden md:inline"><br /></span>
-            <span className="md:hidden"> </span>growing your business
+        <ContainerAnimated className="mb-6 xs:mb-7 sm:mb-8 md:mb-9 lg:mb-10 xl:mb-12">
+          <p className="text-sm xs:text-base sm:text-lg md:text-xl lg:text-xl xl:text-2xl 2xl:text-3xl text-[#AAAAAA] leading-relaxed tracking-tight max-w-xs xs:max-w-sm sm:max-w-md md:max-w-2xl lg:max-w-3xl xl:max-w-4xl 2xl:max-w-5xl mx-auto text-center px-2 xs:px-4 sm:px-6">
+            We're Edmonton-based creators who design beautiful websites, improve your online visibility, and offer smart AI integration so you can focus on growing your business
           </p>
         </ContainerAnimated>
 
-        <ContainerAnimated className="text-center md:text-right">
-          <div className="flex flex-col sm:flex-row flex-wrap justify-center md:justify-end gap-3 sm:gap-4 pt-[0px] pb-[0px] px-4 sm:px-0 md:pl-[124px] md:pr-[124px]">
-            <Button className="px-6 py-3 sm:px-8 sm:py-3 bg-maverick-orange hover:bg-maverick-orange/90 text-white font-medium rounded-full text-sm sm:text-base min-h-[44px] w-full sm:w-auto">
+        <ContainerAnimated className="text-center">
+          <div className="flex flex-col xs:flex-col sm:flex-row justify-center items-center gap-3 xs:gap-4 sm:gap-4 md:gap-5 lg:gap-6 xl:gap-8 px-2 xs:px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16">
+            <Button className="w-full xs:w-full sm:w-auto px-4 xs:px-6 sm:px-8 md:px-10 lg:px-12 xl:px-14 py-2 xs:py-2.5 sm:py-3 md:py-3.5 lg:py-4 xl:py-5 text-xs xs:text-sm sm:text-base md:text-lg lg:text-xl xl:text-xl bg-maverick-orange hover:bg-maverick-orange/90 text-white font-medium rounded-full min-h-[40px] xs:min-h-[44px] sm:min-h-[48px] md:min-h-[52px] lg:min-h-[56px] xl:min-h-[60px]">
               Explore Services
             </Button>
-            <Button variant="outline" className="px-6 py-3 sm:px-8 sm:py-3 border-maverick-orange text-maverick-orange hover:bg-maverick-orange/10 font-medium rounded-full text-sm sm:text-base min-h-[44px] w-full sm:w-auto">
+            <Button variant="outline" className="w-full xs:w-full sm:w-auto px-4 xs:px-6 sm:px-8 md:px-10 lg:px-12 xl:px-14 py-2 xs:py-2.5 sm:py-3 md:py-3.5 lg:py-4 xl:py-5 text-xs xs:text-sm sm:text-base md:text-lg lg:text-xl xl:text-xl border-maverick-orange text-maverick-orange hover:bg-maverick-orange/10 font-medium rounded-full min-h-[40px] xs:min-h-[44px] sm:min-h-[48px] md:min-h-[52px] lg:min-h-[56px] xl:min-h-[60px]">
               Book Free Consultation
             </Button>
           </div>
