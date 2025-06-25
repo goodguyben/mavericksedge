@@ -48,7 +48,7 @@ export default function Hero() {
           </h1>
         </ContainerAnimated>
         <ContainerAnimated>
-          <h1 className="font-serif text-3xl sm:text-4xl md:text-6xl lg:text-7xl mb-6 font-semibold md:text-left text-center">
+          <h1 className="font-serif text-3xl sm:text-4xl md:text-6xl lg:text-7xl mb-6 font-semibold text-center md:text-left">
             innovation and heart
           </h1>
         </ContainerAnimated>
