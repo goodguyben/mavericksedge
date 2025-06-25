@@ -35,8 +35,8 @@ export default function Hero() {
     <div className="relative mt-[-4px] mb-[-4px] bg-[#000000] pt-[1px] pb-[1px]">
       <ContainerStagger className="relative z-[9999] place-self-center px-4 xs:px-6 sm:px-8 md:px-12 lg:px-16 xl:px-20 pt-8 xs:pt-10 sm:pt-12 text-center mt-[80px] xs:mt-[90px] sm:mt-[100px] md:mt-[110px] lg:mt-[120px] xl:mt-[130px] mb-[80px] xs:mb-[90px] sm:mb-[100px] md:mb-[110px] lg:mb-[120px] xl:mb-[130px]">
         <ContainerAnimated>
-          <h1 className="font-serif text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl mb-1 xs:mb-2 font-semibold text-center leading-tight xs:leading-tight sm:leading-tight md:leading-tight lg:leading-tight xl:leading-tight">
-            <span className="text-white px-1 xs:px-2 py-0.5 xs:py-1 rounded bg-[#ff563100] font-semibold">Building</span>{" "}
+          <h1 className="font-serif text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl mb-4 xs:mb-5 sm:mb-6 md:mb-7 lg:mb-8 xl:mb-9 font-semibold text-center leading-tight xs:leading-tight sm:leading-tight md:leading-tight lg:leading-tight xl:leading-tight">
+            <span className="text-white font-semibold">Building</span>{" "}
             <span className="underline decoration-maverick-orange font-semibold">
               <GradientText 
                 colors={["#FF5630", "#FF8A50", "#FFB899", "#FF5630"]}
@@ -44,12 +44,8 @@ export default function Hero() {
               >
                 resilience
               </GradientText>
-            </span> with
-          </h1>
-        </ContainerAnimated>
-        <ContainerAnimated>
-          <h1 className="font-serif text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl mb-4 xs:mb-5 sm:mb-6 md:mb-7 lg:mb-8 xl:mb-9 font-semibold text-center leading-tight xs:leading-tight sm:leading-tight md:leading-tight lg:leading-tight xl:leading-tight">
-            innovation and heart
+            </span>{" "}
+            <span className="text-white font-semibold">with innovation and heart</span>
           </h1>
         </ContainerAnimated>
 
