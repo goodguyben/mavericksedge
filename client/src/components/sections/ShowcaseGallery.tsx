@@ -7,7 +7,8 @@ import { ContainerAnimated,
 import { Button } from "@/components/ui/custom-button"
 import { VideoIcon } from "lucide-react"
 import GradientText from "@/components/ui/GradientText"
-import { memo, useCallback, useMemo } from "react"
+import React, { memo, useCallback, useMemo, useRef, useState, useEffect } from "react"
+import "../../styles/performance.css"
 
 // Optimized video and image data - reduced duplicates for better performance
 const VIDEOS_1 = [
@@ -34,29 +35,49 @@ const IMAGES_3 = [
   "/videos/services/Custom Interactive Websites 2.mp4"
 ]
 
-// Optimized Video Component
+// Optimized Video Component with Intersection Observer
 const OptimizedVideo = memo(({ src, index }: { src: string; index: number }) => {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [isInView, setIsInView] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsInView(entry.isIntersecting);
+        if (entry.isIntersecting && videoRef.current) {
+          videoRef.current.play().catch(() => {
+            // Silently handle autoplay failures
+          });
+        } else if (!entry.isIntersecting && videoRef.current) {
+          videoRef.current.pause();
+        }
+      },
+      { threshold: 0.1, rootMargin: '50px' }
+    );
+
+    if (videoRef.current) {
+      observer.observe(videoRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
   const handleCanPlay = useCallback(() => {
-    // Reduced console logging for performance
     if (process.env.NODE_ENV === 'development') {
       console.log(`Video ${index + 1} ready`);
     }
   }, [index]);
 
-  const handleError = useCallback((e: any) => {
-    console.warn(`Video ${index + 1} error:`, e);
-  }, [index]);
-
   return (
     <video
+      ref={videoRef}
       className="aspect-video block h-auto max-h-full w-full rounded-md object-cover shadow-lg"
-      autoPlay
       muted
       loop
       playsInline
-      preload="metadata"
+      preload="none"
+      style={{ willChange: 'transform' }}
       onCanPlay={handleCanPlay}
-      onError={handleError}
     >
       <source src={src} type="video/mp4" />
     </video>
@@ -65,16 +86,49 @@ const OptimizedVideo = memo(({ src, index }: { src: string; index: number }) => 
 
 OptimizedVideo.displayName = 'OptimizedVideo';
 
-// Optimized Image Component
+// Optimized Image Component with Intersection Observer
 const OptimizedImage = memo(({ src, index }: { src: string; index: number }) => {
+  const [isLoaded, setIsLoaded] = useState(false);
+  const imgRef = useRef<HTMLImageElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !isLoaded) {
+          setIsLoaded(true);
+        }
+      },
+      { threshold: 0.1, rootMargin: '100px' }
+    );
+
+    if (imgRef.current) {
+      observer.observe(imgRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, [isLoaded]);
+
   return (
-    <img
-      className="aspect-video block h-auto max-h-full w-full rounded-md object-cover shadow-lg"
-      src={src}
-      alt={`showcase item ${index + 1}`}
-      loading="lazy"
-      decoding="async"
-    />
+    <div 
+      ref={imgRef}
+      className="aspect-video block h-auto max-h-full w-full rounded-md bg-gray-800 shadow-lg"
+      style={{ willChange: 'transform' }}
+    >
+      {isLoaded && (
+        <img
+          className="aspect-video block h-auto max-h-full w-full rounded-md object-cover shadow-lg transition-opacity duration-300"
+          src={src}
+          alt={`showcase item ${index + 1}`}
+          loading="lazy"
+          decoding="async"
+          onLoad={() => {
+            if (process.env.NODE_ENV === 'development') {
+              console.log(`Image ${index + 1} loaded`);
+            }
+          }}
+        />
+      )}
+    </div>
   );
 });
 

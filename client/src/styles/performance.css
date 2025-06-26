@@ -1,0 +1,76 @@
+/* Performance optimizations for showcase gallery */
+
+/* GPU acceleration for video elements */
+video {
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+}
+
+/* Optimize image rendering */
+img {
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+}
+
+/* Optimize motion div containers */
+[data-framer-component-type="motion.div"] {
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+}
+
+/* Reduce paint complexity for gallery containers */
+.gallery-container {
+  contain: layout style paint;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+}
+
+/* Optimize scroll performance */
+.scroll-container {
+  contain: layout;
+  overflow: hidden;
+  will-change: transform;
+}
+
+/* Reduce animation complexity */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Optimize for smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Performance-focused focus management */
+*:focus {
+  outline: 2px solid #FF5630;
+  outline-offset: 2px;
+}
+
+/* Reduce layout shifts */
+.aspect-video {
+  aspect-ratio: 16 / 9;
+  width: 100%;
+  height: auto;
+}
+
+/* GPU acceleration for gradient text */
+.gradient-text {
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
