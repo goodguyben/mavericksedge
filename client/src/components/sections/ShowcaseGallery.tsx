@@ -7,30 +7,23 @@ import { ContainerAnimated,
 import { Button } from "@/components/ui/custom-button"
 import { VideoIcon } from "lucide-react"
 import GradientText from "@/components/ui/GradientText"
+import { memo, useCallback, useMemo } from "react"
 
-// Using project videos and images
+// Optimized video and image data - reduced duplicates for better performance
 const VIDEOS_1 = [
   "/videos/services/Custom Interactive Websites 1.mp4",
   "/videos/services/Next-Gen E-Commerce 1.mp4",
   "/videos/services/Productivity & Management Web Applications 1.mp4",
   "/videos/services/Social Media Management.mp4",
-  "/videos/services/Custom Interactive Websites 2.mp4",
-  "/videos/services/Next-Gen E-Commerce 2.mp4",
-  "/videos/services/Custom Interactive Websites 3.mp4",
-  "/videos/services/Productivity & Management Web Applications 3.mp4",
-  "/videos/services/Custom Interactive Websites 1.mp4"
+  "/videos/services/Custom Interactive Websites 2.mp4"
 ]
 
 const VIDEOS_2 = [
-  "/videos/services/Custom Interactive Websites 2.mp4",
   "/videos/services/Next-Gen E-Commerce 2.mp4",
   "/videos/services/Custom Interactive Websites 3.mp4",
   "/videos/services/Productivity & Management Web Applications 3.mp4",
-  "/videos/services/Social Media Management.mp4",
-  "/videos/services/Next-Gen E-Commerce 1.mp4",
   "/videos/services/Custom Interactive Websites 1.mp4",
-  "/videos/services/Productivity & Management Web Applications 1.mp4",
-  "/videos/services/Custom Interactive Websites 2.mp4"
+  "/videos/services/Social Media Management.mp4"
 ]
 
 const IMAGES_3 = [
@@ -38,12 +31,54 @@ const IMAGES_3 = [
   "/videos/services/Productivity & Management Web Applications 2.png",
   "/images/manus-ai-logo.png",
   "/images/telus-logo.png",
-  "/videos/services/Custom Interactive Websites 1.mp4",
-  "/videos/services/Next-Gen E-Commerce 1.mp4",
-  "/videos/services/Social Media Management.mp4",
-  "/videos/services/Custom Interactive Websites 2.mp4",
-  "/videos/services/Productivity & Management Web Applications 1.mp4"
+  "/videos/services/Custom Interactive Websites 2.mp4"
 ]
+
+// Optimized Video Component
+const OptimizedVideo = memo(({ src, index }: { src: string; index: number }) => {
+  const handleCanPlay = useCallback(() => {
+    // Reduced console logging for performance
+    if (process.env.NODE_ENV === 'development') {
+      console.log(`Video ${index + 1} ready`);
+    }
+  }, [index]);
+
+  const handleError = useCallback((e: any) => {
+    console.warn(`Video ${index + 1} error:`, e);
+  }, [index]);
+
+  return (
+    <video
+      className="aspect-video block h-auto max-h-full w-full rounded-md object-cover shadow-lg"
+      autoPlay
+      muted
+      loop
+      playsInline
+      preload="metadata"
+      onCanPlay={handleCanPlay}
+      onError={handleError}
+    >
+      <source src={src} type="video/mp4" />
+    </video>
+  );
+});
+
+OptimizedVideo.displayName = 'OptimizedVideo';
+
+// Optimized Image Component
+const OptimizedImage = memo(({ src, index }: { src: string; index: number }) => {
+  return (
+    <img
+      className="aspect-video block h-auto max-h-full w-full rounded-md object-cover shadow-lg"
+      src={src}
+      alt={`showcase item ${index + 1}`}
+      loading="lazy"
+      decoding="async"
+    />
+  );
+});
+
+OptimizedImage.displayName = 'OptimizedImage';
 
 export default function ShowcaseGallery() {
   return (
@@ -220,53 +255,23 @@ export default function ShowcaseGallery() {
           <GalleryContainer className="-mt-4">
             <GalleryCol yRange={["-10%", "2%"]} className="mt-[90px] mb-[90px]">
               {VIDEOS_1.map((videoUrl, index) => (
-                <video
-                  key={index}
-                  className="aspect-video block h-auto max-h-full w-full rounded-md object-cover shadow-lg"
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  onCanPlay={() => {
-                    console.log(`Showcase video ready: ${videoUrl}`);
-                  }}
-                  onError={(e) => {
-                    console.warn(`Failed to play showcase video: ${videoUrl}`, e);
-                  }}
-                >
-                  <source src={videoUrl} type="video/mp4" />
-                </video>
+                <OptimizedVideo key={`video1-${index}`} src={videoUrl} index={index} />
               ))}
             </GalleryCol>
             <GalleryCol className="mt-[120px] mb-[120px]" yRange={["15%", "5%"]}>
               {VIDEOS_2.map((videoUrl, index) => (
-                <video
-                  key={index}
-                  className="aspect-video block h-auto max-h-full w-full rounded-md object-cover shadow-lg"
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  onCanPlay={() => {
-                    console.log(`Showcase video ready: ${videoUrl}`);
-                  }}
-                  onError={(e) => {
-                    console.warn(`Failed to play showcase video: ${videoUrl}`, e);
-                  }}
-                >
-                  <source src={videoUrl} type="video/mp4" />
-                </video>
+                <OptimizedVideo key={`video2-${index}`} src={videoUrl} index={index} />
               ))}
             </GalleryCol>
             <GalleryCol yRange={["-10%", "2%"]} className="mt-[85px] mb-[85px]">
-              {IMAGES_3.map((imageUrl, index) => (
-                <img
-                  key={index}
-                  className="aspect-video block h-auto max-h-full w-full rounded-md object-cover shadow-lg"
-                  src={imageUrl}
-                  alt="showcase item"
-                />
-              ))}
+              {IMAGES_3.map((imageUrl, index) => {
+                const isVideo = imageUrl.endsWith('.mp4');
+                return isVideo ? (
+                  <OptimizedVideo key={`mixed-${index}`} src={imageUrl} index={index} />
+                ) : (
+                  <OptimizedImage key={`image-${index}`} src={imageUrl} index={index} />
+                );
+              })}
             </GalleryCol>
           </GalleryContainer>
         </ContainerSticky>
