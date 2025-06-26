@@ -7,24 +7,30 @@ import { ContainerAnimated,
 import { Button } from "@/components/ui/custom-button"
 import { VideoIcon } from "lucide-react"
 import GradientText from "@/components/ui/GradientText"
-import React, { memo, useCallback, useMemo, useRef, useState, useEffect } from "react"
-import "../../styles/performance.css"
 
-// Optimized video and image data - reduced duplicates for better performance
+// Using project videos and images
 const VIDEOS_1 = [
   "/videos/services/Custom Interactive Websites 1.mp4",
   "/videos/services/Next-Gen E-Commerce 1.mp4",
   "/videos/services/Productivity & Management Web Applications 1.mp4",
   "/videos/services/Social Media Management.mp4",
-  "/videos/services/Custom Interactive Websites 2.mp4"
-]
-
-const VIDEOS_2 = [
+  "/videos/services/Custom Interactive Websites 2.mp4",
   "/videos/services/Next-Gen E-Commerce 2.mp4",
   "/videos/services/Custom Interactive Websites 3.mp4",
   "/videos/services/Productivity & Management Web Applications 3.mp4",
+  "/videos/services/Custom Interactive Websites 1.mp4"
+]
+
+const VIDEOS_2 = [
+  "/videos/services/Custom Interactive Websites 2.mp4",
+  "/videos/services/Next-Gen E-Commerce 2.mp4",
+  "/videos/services/Custom Interactive Websites 3.mp4",
+  "/videos/services/Productivity & Management Web Applications 3.mp4",
+  "/videos/services/Social Media Management.mp4",
+  "/videos/services/Next-Gen E-Commerce 1.mp4",
   "/videos/services/Custom Interactive Websites 1.mp4",
-  "/videos/services/Social Media Management.mp4"
+  "/videos/services/Productivity & Management Web Applications 1.mp4",
+  "/videos/services/Custom Interactive Websites 2.mp4"
 ]
 
 const IMAGES_3 = [
@@ -32,107 +38,12 @@ const IMAGES_3 = [
   "/videos/services/Productivity & Management Web Applications 2.png",
   "/images/manus-ai-logo.png",
   "/images/telus-logo.png",
-  "/videos/services/Custom Interactive Websites 2.mp4"
+  "/videos/services/Custom Interactive Websites 1.mp4",
+  "/videos/services/Next-Gen E-Commerce 1.mp4",
+  "/videos/services/Social Media Management.mp4",
+  "/videos/services/Custom Interactive Websites 2.mp4",
+  "/videos/services/Productivity & Management Web Applications 1.mp4"
 ]
-
-// Optimized Video Component with Intersection Observer
-const OptimizedVideo = memo(({ src, index }: { src: string; index: number }) => {
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const [isInView, setIsInView] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setIsInView(entry.isIntersecting);
-        if (entry.isIntersecting && videoRef.current) {
-          videoRef.current.play().catch(() => {
-            // Silently handle autoplay failures
-          });
-        } else if (!entry.isIntersecting && videoRef.current) {
-          videoRef.current.pause();
-        }
-      },
-      { threshold: 0.1, rootMargin: '50px' }
-    );
-
-    if (videoRef.current) {
-      observer.observe(videoRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, []);
-
-  const handleCanPlay = useCallback(() => {
-    if (process.env.NODE_ENV === 'development') {
-      console.log(`Video ${index + 1} ready`);
-    }
-  }, [index]);
-
-  return (
-    <video
-      ref={videoRef}
-      className="aspect-video block h-auto max-h-full w-full rounded-md object-cover shadow-lg"
-      muted
-      loop
-      playsInline
-      preload="none"
-      style={{ willChange: 'transform' }}
-      onCanPlay={handleCanPlay}
-    >
-      <source src={src} type="video/mp4" />
-    </video>
-  );
-});
-
-OptimizedVideo.displayName = 'OptimizedVideo';
-
-// Optimized Image Component with Intersection Observer
-const OptimizedImage = memo(({ src, index }: { src: string; index: number }) => {
-  const [isLoaded, setIsLoaded] = useState(false);
-  const imgRef = useRef<HTMLImageElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !isLoaded) {
-          setIsLoaded(true);
-        }
-      },
-      { threshold: 0.1, rootMargin: '100px' }
-    );
-
-    if (imgRef.current) {
-      observer.observe(imgRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, [isLoaded]);
-
-  return (
-    <div 
-      ref={imgRef}
-      className="aspect-video block h-auto max-h-full w-full rounded-md bg-gray-800 shadow-lg"
-      style={{ willChange: 'transform' }}
-    >
-      {isLoaded && (
-        <img
-          className="aspect-video block h-auto max-h-full w-full rounded-md object-cover shadow-lg transition-opacity duration-300"
-          src={src}
-          alt={`showcase item ${index + 1}`}
-          loading="lazy"
-          decoding="async"
-          onLoad={() => {
-            if (process.env.NODE_ENV === 'development') {
-              console.log(`Image ${index + 1} loaded`);
-            }
-          }}
-        />
-      )}
-    </div>
-  );
-});
-
-OptimizedImage.displayName = 'OptimizedImage';
 
 export default function ShowcaseGallery() {
   return (
@@ -309,23 +220,53 @@ export default function ShowcaseGallery() {
           <GalleryContainer className="-mt-4">
             <GalleryCol yRange={["-10%", "2%"]} className="mt-[90px] mb-[90px]">
               {VIDEOS_1.map((videoUrl, index) => (
-                <OptimizedVideo key={`video1-${index}`} src={videoUrl} index={index} />
+                <video
+                  key={index}
+                  className="aspect-video block h-auto max-h-full w-full rounded-md object-cover shadow-lg"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  onCanPlay={() => {
+                    console.log(`Showcase video ready: ${videoUrl}`);
+                  }}
+                  onError={(e) => {
+                    console.warn(`Failed to play showcase video: ${videoUrl}`, e);
+                  }}
+                >
+                  <source src={videoUrl} type="video/mp4" />
+                </video>
               ))}
             </GalleryCol>
             <GalleryCol className="mt-[120px] mb-[120px]" yRange={["15%", "5%"]}>
               {VIDEOS_2.map((videoUrl, index) => (
-                <OptimizedVideo key={`video2-${index}`} src={videoUrl} index={index} />
+                <video
+                  key={index}
+                  className="aspect-video block h-auto max-h-full w-full rounded-md object-cover shadow-lg"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  onCanPlay={() => {
+                    console.log(`Showcase video ready: ${videoUrl}`);
+                  }}
+                  onError={(e) => {
+                    console.warn(`Failed to play showcase video: ${videoUrl}`, e);
+                  }}
+                >
+                  <source src={videoUrl} type="video/mp4" />
+                </video>
               ))}
             </GalleryCol>
             <GalleryCol yRange={["-10%", "2%"]} className="mt-[85px] mb-[85px]">
-              {IMAGES_3.map((imageUrl, index) => {
-                const isVideo = imageUrl.endsWith('.mp4');
-                return isVideo ? (
-                  <OptimizedVideo key={`mixed-${index}`} src={imageUrl} index={index} />
-                ) : (
-                  <OptimizedImage key={`image-${index}`} src={imageUrl} index={index} />
-                );
-              })}
+              {IMAGES_3.map((imageUrl, index) => (
+                <img
+                  key={index}
+                  className="aspect-video block h-auto max-h-full w-full rounded-md object-cover shadow-lg"
+                  src={imageUrl}
+                  alt="showcase item"
+                />
+              ))}
             </GalleryCol>
           </GalleryContainer>
         </ContainerSticky>

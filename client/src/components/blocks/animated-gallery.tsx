@@ -19,11 +19,11 @@ interface ContainerScrollContextValue {
 
 const SPRING_CONFIG = {
   type: "spring",
-  stiffness: 60,
-  damping: 20,
-  mass: 0.5,
-  restDelta: 0.01,
-  duration: 0.4,
+  stiffness: 100,
+  damping: 16,
+  mass: 0.75,
+  restDelta: 0.005,
+  duration: 0.3,
 }
 const blurVariants: Variants = {
   hidden: {
@@ -101,7 +101,7 @@ export const ContainerSticky = ({
 }
 ContainerSticky.displayName = "ContainerSticky"
 
-export const GalleryContainer = React.memo(({
+export const GalleryContainer = ({
   children,
   className,
   style,
@@ -122,7 +122,6 @@ export const GalleryContainer = React.memo(({
         scale,
         transformStyle: "preserve-3d",
         perspective: "1000px",
-        willChange: "transform",
         ...style,
       }}
       {...props}
@@ -130,10 +129,10 @@ export const GalleryContainer = React.memo(({
       {children}
     </motion.div>
   )
-})
+}
 GalleryContainer.displayName = "GalleryContainer"
 
-export const GalleryCol = React.memo(({
+export const GalleryCol = ({
   className,
   style,
   yRange = ["0%", "-10%"],
@@ -147,13 +146,12 @@ export const GalleryCol = React.memo(({
       className={cn("relative flex w-full flex-col gap-2 ", className)}
       style={{
         y,
-        willChange: "transform",
         ...style,
       }}
       {...props}
     />
   )
-})
+}
 GalleryCol.displayName = "GalleryCol"
 
 export const ContainerStagger = React.forwardRef<
