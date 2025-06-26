@@ -16,15 +16,15 @@ export default function LoadingScreen({
   const [videoLoaded, setVideoLoaded] = useState(false);
 
   useEffect(() => {
-    if (!isLoading) {
+    if (!isLoading && videoLoaded) {
       const timer = setTimeout(() => {
         setShouldShow(false);
         onLoadingComplete?.();
-      }, 800); // Reduced from 3000ms to 800ms for better performance
+      }, minDisplayTime);
 
       return () => clearTimeout(timer);
     }
-  }, [isLoading, onLoadingComplete]);
+  }, [isLoading, videoLoaded, minDisplayTime, onLoadingComplete]);
 
   const handleVideoLoad = () => {
     setVideoLoaded(true);

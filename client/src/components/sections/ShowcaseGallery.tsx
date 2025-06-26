@@ -304,9 +304,9 @@ export default function ShowcaseGallery() {
           mixBlendMode: "screen",
         }}
       />
-      <ContainerScroll className="relative h-[350vh] scroll-container">
+      <ContainerScroll className="relative h-[350vh]">
         <ContainerSticky className="h-svh bg-[#0000009e] -mt-8">
-          <GalleryContainer className="-mt-4 gallery-container">
+          <GalleryContainer className="-mt-4">
             <GalleryCol yRange={["-10%", "2%"]} className="mt-[90px] mb-[90px]">
               {VIDEOS_1.map((videoUrl, index) => (
                 <OptimizedVideo key={`video1-${index}`} src={videoUrl} index={index} />
