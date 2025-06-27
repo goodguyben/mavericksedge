@@ -70,51 +70,61 @@ export default function WebServices() {
     }
   ];
 
-  const processSteps = [
+  const collaborativeSteps = [
     {
-      step: "01",
-      title: "Discovery & Research",
-      description: "Deep dive into your business objectives, target audience analysis, competitor research, and technical requirements gathering. We create detailed user personas and define project scope.",
+      phase: "Blueprint",
+      title: "Foundation Planning",
+      agencyAction: "We Research & Strategize",
+      clientAction: "You Share Your Vision",
+      description: "Every great project starts with understanding. We dive deep into market research and technical planning while you share your business goals and brand vision.",
       icon: <Search className="h-6 w-6" />,
       color: "from-blue-500 to-cyan-500",
-      bgColor: "bg-blue-500/10",
-      details: ["Business Analysis", "User Research", "Competitor Audit", "Technical Planning"]
+      agencyDetails: ["Market Research", "Technical Analysis", "Strategy Development", "Resource Planning"],
+      clientDetails: ["Business Goals", "Brand Vision", "Target Audience", "Success Metrics"]
     },
     {
-      step: "02", 
-      title: "Architecture & Wireframing",
-      description: "Information architecture design, user flow mapping, and detailed wireframing. We create the structural blueprint that ensures optimal user experience and functionality.",
+      phase: "Architecture", 
+      title: "Digital Foundation",
+      agencyAction: "We Design the Structure",
+      clientAction: "You Approve & Guide",
+      description: "Our architects create the digital blueprint while you guide the user experience. Together we build the foundation that everything else relies on.",
       icon: <Globe className="h-6 w-6" />,
-      color: "from-purple-500 to-violet-500", 
-      bgColor: "bg-purple-500/10",
-      details: ["Site Architecture", "User Flow Design", "Wireframe Creation", "Content Strategy"]
+      color: "from-purple-500 to-violet-500",
+      agencyDetails: ["Site Architecture", "User Flow Design", "Wireframe Creation", "Technical Planning"],
+      clientDetails: ["UX Feedback", "Content Strategy", "Feature Priorities", "Flow Approval"]
     },
     {
-      step: "03",
-      title: "Visual Design & Prototyping",
-      description: "High-fidelity design creation with brand integration, interactive prototypes, and responsive design mockups. Every pixel is crafted for maximum impact.",
+      phase: "Design",
+      title: "Visual Identity",
+      agencyAction: "We Craft the Experience",
+      clientAction: "You Refine & Perfect",
+      description: "Our designers create stunning visuals that capture your brand essence. Your feedback shapes every detail until it's perfectly aligned with your vision.",
       icon: <Palette className="h-6 w-6" />,
       color: "from-pink-500 to-rose-500",
-      bgColor: "bg-pink-500/10", 
-      details: ["Visual Design", "Brand Integration", "Interactive Prototypes", "Mobile Optimization"]
+      agencyDetails: ["Visual Design", "Brand Integration", "Responsive Layouts", "Interactive Elements"],
+      clientDetails: ["Design Review", "Brand Feedback", "Content Input", "Final Approval"]
     },
     {
-      step: "04",
-      title: "Development & Integration",
-      description: "Full-stack development using modern technologies, API integrations, database setup, and CMS implementation. Rigorous testing ensures flawless functionality.",
+      phase: "Development",
+      title: "Digital Construction",
+      agencyAction: "We Build & Integrate",
+      clientAction: "You Test & Validate",
+      description: "Our developers bring designs to life with cutting-edge technology. You test functionality and validate features, ensuring everything works perfectly.",
       icon: <Code className="h-6 w-6" />,
       color: "from-green-500 to-emerald-500",
-      bgColor: "bg-green-500/10",
-      details: ["Frontend Development", "Backend Systems", "API Integration", "Quality Assurance"]
+      agencyDetails: ["Frontend Development", "Backend Systems", "API Integration", "Quality Assurance"],
+      clientDetails: ["Feature Testing", "Content Upload", "Workflow Validation", "User Acceptance"]
     },
     {
-      step: "05",
-      title: "Launch & Growth Optimization",
-      description: "Strategic launch execution, performance optimization, SEO implementation, and ongoing analytics setup. We ensure your site performs at peak efficiency from day one.",
+      phase: "Launch",
+      title: "Going Live",
+      agencyAction: "We Deploy & Optimize",
+      clientAction: "You Celebrate & Grow",
+      description: "We handle the technical launch and optimization while you focus on celebrating your new digital presence and growing your business.",
       icon: <Zap className="h-6 w-6" />,
       color: "from-orange-500 to-red-500",
-      bgColor: "bg-orange-500/10",
-      details: ["Site Launch", "Performance Tuning", "SEO Setup", "Analytics & Monitoring"]
+      agencyDetails: ["Site Deployment", "Performance Optimization", "SEO Setup", "Analytics Implementation"],
+      clientDetails: ["Launch Celebration", "Team Training", "Growth Planning", "Success Tracking"]
     }
   ];
 
@@ -527,20 +537,15 @@ export default function WebServices() {
 
         {/* Co-Create With Us Section */}
         <section className="py-24 px-5 md:px-10 bg-[#1E1E1E] relative overflow-hidden">
-          {/* Architectural Grid Background */}
+          {/* Animated blueprint grid background */}
           <div className="absolute inset-0 opacity-5">
-            <svg className="w-full h-full" viewBox="0 0 1200 800">
-              <defs>
-                <pattern id="architecturalGrid" x="0" y="0" width="60" height="60" patternUnits="userSpaceOnUse">
-                  <path d="M 60 0 L 0 0 0 60" fill="none" stroke="url(#gridGradient)" strokeWidth="0.5"/>
-                </pattern>
-                <linearGradient id="gridGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="#E04500" />
-                  <stop offset="100%" stopColor="#FF8A50" />
-                </linearGradient>
-              </defs>
-              <rect width="100%" height="100%" fill="url(#architecturalGrid)" />
-            </svg>
+            <div className="absolute inset-0" style={{
+              backgroundImage: `
+                linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)
+              `,
+              backgroundSize: '40px 40px'
+            }}></div>
           </div>
 
           <div className="container mx-auto relative">
@@ -550,311 +555,269 @@ export default function WebServices() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-4xl md:text-6xl font-bold mb-6 font-heading">
-                Co-Create 
-                <span className="bg-gradient-to-r from-maverick-orange to-orange-600 bg-clip-text text-transparent"> With Us</span>
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 font-heading">
+                Co-Create With Us
               </h2>
               <p className="text-xl text-[#AAAAAA] max-w-3xl mx-auto">
-                A collaborative digital architectural journey where your vision meets our expertise. 
-                Together, we build more than websites—we craft digital experiences.
+                Your digital journey is a collaborative architectural process. We bring expertise, you bring vision. 
+                Together, we build something extraordinary through transparent partnership at every stage.
               </p>
             </motion.div>
 
-            {/* Collaborative Timeline */}
-            <div className="max-w-7xl mx-auto">
-              {[
-                {
-                  phase: "01",
-                  title: "Blueprint & Discovery",
-                  subtitle: "Foundation Architecture",
-                  weContribute: ["Market Research", "Technical Analysis", "Strategy Framework", "Competitive Audit"],
-                  youContribute: ["Brand Vision", "Business Goals", "Content Assets", "Feedback & Direction"],
-                  icon: <Search className="h-6 w-6" />,
-                  color: "from-blue-500 to-cyan-500",
-                  bgColor: "bg-blue-500/10"
-                },
-                {
-                  phase: "02", 
-                  title: "Structural Design",
-                  subtitle: "Information Architecture",
-                  weContribute: ["User Flow Mapping", "Wireframe Creation", "UX Strategy", "Content Planning"],
-                  youContribute: ["Content Review", "User Insights", "Priority Setting", "Approval Cycles"],
-                  icon: <Globe className="h-6 w-6" />,
-                  color: "from-purple-500 to-violet-500",
-                  bgColor: "bg-purple-500/10"
-                },
-                {
-                  phase: "03",
-                  title: "Visual Engineering",
-                  subtitle: "Interface & Experience",
-                  weContribute: ["UI Design", "Prototyping", "Animation Systems", "Responsive Layouts"],
-                  youContribute: ["Design Feedback", "Brand Guidelines", "Asset Provision", "Style Preferences"],
-                  icon: <Palette className="h-6 w-6" />,
-                  color: "from-pink-500 to-rose-500",
-                  bgColor: "bg-pink-500/10"
-                },
-                {
-                  phase: "04",
-                  title: "Digital Construction",
-                  subtitle: "Development & Integration",
-                  weContribute: ["Code Development", "API Integration", "Testing Systems", "Performance Optimization"],
-                  youContribute: ["Content Integration", "Feature Testing", "User Acceptance", "Quality Assurance"],
-                  icon: <Code className="h-6 w-6" />,
-                  color: "from-green-500 to-emerald-500",
-                  bgColor: "bg-green-500/10"
-                },
-                {
-                  phase: "05",
-                  title: "Launch & Evolution",
-                  subtitle: "Deployment & Growth",
-                  weContribute: ["Site Deployment", "SEO Implementation", "Analytics Setup", "Ongoing Support"],
-                  youContribute: ["Go-Live Approval", "Marketing Coordination", "Team Training", "Success Metrics"],
-                  icon: <Zap className="h-6 w-6" />,
-                  color: "from-orange-500 to-red-500",
-                  bgColor: "bg-orange-500/10"
-                }
-              ].map((phase, index) => (
+            <div className="space-y-20">
+              {collaborativeSteps.map((step, index) => (
                 <motion.div
                   key={index}
                   initial={{ opacity: 0, y: 50 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: index * 0.2 }}
-                  className="mb-16 last:mb-0"
+                  transition={{ duration: 0.8, delay: index * 0.2 }}
+                  className="relative"
                 >
                   {/* Phase Header */}
                   <div className="text-center mb-12">
                     <motion.div
-                      className={`inline-flex items-center gap-4 px-6 py-3 rounded-full bg-gradient-to-r ${phase.color} text-white font-semibold mb-4`}
+                      className={`inline-flex items-center gap-3 mb-4 px-6 py-3 rounded-full bg-gradient-to-r ${step.color} text-white font-semibold text-lg`}
                       whileHover={{ scale: 1.05 }}
+                      transition={{ type: "spring", stiffness: 300 }}
                     >
-                      {phase.icon}
-                      <span>Phase {phase.phase}</span>
+                      {step.icon}
+                      Phase {index + 1}: {step.phase}
                     </motion.div>
-                    <h3 className="text-3xl font-bold mb-2">{phase.title}</h3>
-                    <p className="text-lg text-[#AAAAAA]">{phase.subtitle}</p>
+                    <h3 className="text-3xl font-bold mb-3">{step.title}</h3>
+                    <p className="text-lg text-[#AAAAAA] max-w-2xl mx-auto">{step.description}</p>
                   </div>
 
-                  {/* Split Screen Collaboration */}
-                  <div className="grid lg:grid-cols-2 gap-8 relative">
-                    {/* Our Contribution */}
+                  {/* Split-Screen Collaboration */}
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 relative">
+                    
+                    {/* Agency Side */}
                     <motion.div
-                      className={`${phase.bgColor} border border-gray-700/50 rounded-2xl p-8 relative overflow-hidden`}
+                      className="relative group"
                       whileHover={{ scale: 1.02 }}
-                      transition={{ type: "spring", stiffness: 200 }}
+                      transition={{ type: "spring", stiffness: 300 }}
                     >
-                      {/* Animated Blueprint Lines */}
-                      <div className="absolute inset-0 opacity-20">
-                        <svg className="w-full h-full" viewBox="0 0 400 300">
+                      <div className="bg-gradient-to-br from-[#2A2A2A] to-[#1A1A1A] border border-gray-700 rounded-2xl p-8 h-full relative overflow-hidden">
+                        
+                        {/* Blueprint Animation Trigger */}
+                        <motion.div
+                          className="absolute inset-0 opacity-0 group-hover:opacity-10"
+                          initial={false}
+                          animate={{ opacity: 0 }}
+                          whileHover={{ opacity: 0.1 }}
+                          transition={{ duration: 0.3 }}
+                        >
+                          {/* Blueprint lines */}
                           {Array.from({ length: 8 }).map((_, i) => (
-                            <motion.line
+                            <motion.div
                               key={i}
-                              x1={20 + i * 45}
-                              y1="20"
-                              x2={20 + i * 45}
-                              y2="280"
-                              stroke={`url(#gradient-${index})`}
-                              strokeWidth="1"
-                              strokeDasharray="4,4"
-                              initial={{ pathLength: 0 }}
-                              whileInView={{ pathLength: 1 }}
-                              viewport={{ once: true }}
-                              transition={{ delay: i * 0.1, duration: 2 }}
+                              className={`absolute h-px bg-gradient-to-r ${step.color}`}
+                              style={{
+                                top: `${10 + i * 12}%`,
+                                left: '10%',
+                                right: '10%',
+                              }}
+                              initial={{ scaleX: 0 }}
+                              whileHover={{ scaleX: 1 }}
+                              transition={{ duration: 0.5, delay: i * 0.1 }}
                             />
                           ))}
-                          <defs>
-                            <linearGradient id={`gradient-${index}`} x1="0%" y1="0%" x2="0%" y2="100%">
-                              <stop offset="0%" stopColor="#E04500" stopOpacity="0.6" />
-                              <stop offset="100%" stopColor="#FF8A50" stopOpacity="0.2" />
-                            </linearGradient>
-                          </defs>
-                        </svg>
-                      </div>
-
-                      <div className="relative z-10">
-                        <div className="flex items-center mb-6">
-                          <motion.div
-                            className="w-12 h-12 bg-gradient-to-br from-maverick-orange to-orange-600 rounded-lg flex items-center justify-center mr-4"
-                            animate={{ rotate: [0, 5, 0, -5, 0] }}
-                            transition={{ duration: 4, repeat: Infinity }}
-                          >
-                            <Users className="h-6 w-6 text-white" />
-                          </motion.div>
-                          <div>
-                            <h4 className="text-xl font-bold text-maverick-orange">We Contribute</h4>
-                            <p className="text-sm text-gray-400">Our Expertise & Tools</p>
-                          </div>
-                        </div>
-
-                        <div className="space-y-3">
-                          {phase.weContribute.map((item, idx) => (
-                            <motion.div
-                              key={idx}
-                              initial={{ opacity: 0, x: -20 }}
-                              whileInView={{ opacity: 1, x: 0 }}
-                              viewport={{ once: true }}
-                              transition={{ delay: 0.5 + idx * 0.1 }}
-                              className="flex items-center bg-white/5 rounded-lg p-3 hover:bg-white/10 transition-colors"
-                            >
-                              <motion.div
-                                className="w-2 h-2 bg-maverick-orange rounded-full mr-3"
-                                animate={{ scale: [1, 1.5, 1] }}
-                                transition={{ delay: idx * 0.2, duration: 2, repeat: Infinity }}
-                              />
-                              <span className="text-white font-medium">{item}</span>
-                            </motion.div>
-                          ))}
-                        </div>
-                      </div>
-                    </motion.div>
-
-                    {/* Your Contribution */}
-                    <motion.div
-                      className={`${phase.bgColor} border border-gray-700/50 rounded-2xl p-8 relative overflow-hidden`}
-                      whileHover={{ scale: 1.02 }}
-                      transition={{ type: "spring", stiffness: 200 }}
-                    >
-                      {/* Animated Connection Nodes */}
-                      <div className="absolute inset-0 opacity-20">
-                        {Array.from({ length: 6 }).map((_, i) => (
-                          <motion.div
-                            key={i}
-                            className="absolute w-3 h-3 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full"
-                            style={{
-                              left: `${20 + (i % 3) * 30}%`,
-                              top: `${30 + Math.floor(i / 3) * 40}%`,
-                            }}
-                            animate={{
-                              scale: [1, 1.8, 1],
-                              opacity: [0.4, 0.8, 0.4],
-                            }}
-                            transition={{
-                              duration: 3,
-                              repeat: Infinity,
-                              delay: i * 0.5,
-                            }}
-                          />
-                        ))}
-                      </div>
-
-                      <div className="relative z-10">
-                        <div className="flex items-center mb-6">
-                          <motion.div
-                            className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center mr-4"
-                            animate={{ rotate: [0, -5, 0, 5, 0] }}
-                            transition={{ duration: 4, repeat: Infinity, delay: 2 }}
-                          >
-                            <Target className="h-6 w-6 text-white" />
-                          </motion.div>
-                          <div>
-                            <h4 className="text-xl font-bold text-blue-400">You Contribute</h4>
-                            <p className="text-sm text-gray-400">Your Vision & Insights</p>
-                          </div>
-                        </div>
-
-                        <div className="space-y-3">
-                          {phase.youContribute.map((item, idx) => (
-                            <motion.div
-                              key={idx}
-                              initial={{ opacity: 0, x: 20 }}
-                              whileInView={{ opacity: 1, x: 0 }}
-                              viewport={{ once: true }}
-                              transition={{ delay: 0.5 + idx * 0.1 }}
-                              className="flex items-center bg-white/5 rounded-lg p-3 hover:bg-white/10 transition-colors"
-                            >
-                              <motion.div
-                                className="w-2 h-2 bg-blue-400 rounded-full mr-3"
-                                animate={{ scale: [1, 1.5, 1] }}
-                                transition={{ delay: idx * 0.2 + 1, duration: 2, repeat: Infinity }}
-                              />
-                              <span className="text-white font-medium">{item}</span>
-                            </motion.div>
-                          ))}
-                        </div>
-                      </div>
-                    </motion.div>
-
-                    {/* Collaboration Bridge */}
-                    <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 hidden lg:block">
-                      <motion.div
-                        className="w-16 h-16 bg-gradient-to-r from-maverick-orange via-purple-500 to-blue-500 rounded-full flex items-center justify-center shadow-lg border-4 border-white/10"
-                        animate={{
-                          rotate: [0, 360],
-                          scale: [1, 1.1, 1],
-                        }}
-                        transition={{
-                          rotate: { duration: 8, repeat: Infinity, ease: "linear" },
-                          scale: { duration: 2, repeat: Infinity, ease: "easeInOut" },
-                        }}
-                      >
-                        <motion.div
-                          animate={{ rotate: [0, -360] }}
-                          transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
-                        >
-                          <div className="w-6 h-6 bg-white rounded-sm flex items-center justify-center">
-                            <div className="w-2 h-2 bg-maverick-orange rounded-full"></div>
-                          </div>
                         </motion.div>
-                      </motion.div>
 
-                      {/* Connection Lines */}
-                      <svg className="absolute inset-0 w-full h-full -z-10" viewBox="0 0 64 64">
-                        <motion.path
-                          d="M8,32 Q32,20 56,32"
-                          stroke="url(#connectionGradient)"
-                          strokeWidth="2"
-                          fill="none"
-                          strokeDasharray="4,4"
-                          initial={{ pathLength: 0 }}
-                          whileInView={{ pathLength: 1 }}
-                          viewport={{ once: true }}
-                          transition={{ delay: 1, duration: 2 }}
-                        />
-                        <motion.path
-                          d="M8,32 Q32,44 56,32"
-                          stroke="url(#connectionGradient)"
-                          strokeWidth="2"
-                          fill="none"
-                          strokeDasharray="4,4"
-                          initial={{ pathLength: 0 }}
-                          whileInView={{ pathLength: 1 }}
-                          viewport={{ once: true }}
-                          transition={{ delay: 1.5, duration: 2 }}
-                        />
-                        <defs>
-                          <linearGradient id="connectionGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                            <stop offset="0%" stopColor="#E04500" stopOpacity="0.6" />
-                            <stop offset="50%" stopColor="#8B5CF6" stopOpacity="0.8" />
-                            <stop offset="100%" stopColor="#3B82F6" stopOpacity="0.6" />
-                          </linearGradient>
-                        </defs>
-                      </svg>
-                    </div>
+                        <div className="relative z-10">
+                          <div className="flex items-center mb-6">
+                            <motion.div
+                              className={`w-12 h-12 rounded-xl bg-gradient-to-br ${step.color} flex items-center justify-center text-white mr-4`}
+                              whileHover={{ rotate: 5 }}
+                              transition={{ type: "spring", stiffness: 300 }}
+                            >
+                              <Users className="h-6 w-6" />
+                            </motion.div>
+                            <div>
+                              <h4 className="text-xl font-bold text-maverick-orange">Mavericks Edge</h4>
+                              <p className="text-[#AAAAAA] text-sm">Our Contribution</p>
+                            </div>
+                          </div>
+
+                          <h5 className="text-lg font-semibold mb-4">{step.agencyAction}</h5>
+                          
+                          <div className="space-y-3">
+                            {step.agencyDetails.map((detail, idx) => (
+                              <motion.div
+                                key={idx}
+                                initial={{ opacity: 0, x: -20 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: 0.3 + idx * 0.1 }}
+                                className="flex items-center text-sm"
+                              >
+                                <motion.div
+                                  className={`w-2 h-2 rounded-full bg-gradient-to-r ${step.color} mr-3`}
+                                  animate={{ scale: [1, 1.2, 1] }}
+                                  transition={{ duration: 2, repeat: Infinity, delay: idx * 0.3 }}
+                                />
+                                {detail}
+                              </motion.div>
+                            ))}
+                          </div>
+
+                          {/* Animated building blocks for development phase */}
+                          {step.phase === "Development" && (
+                            <motion.div
+                              className="absolute bottom-4 right-4 grid grid-cols-3 gap-1"
+                              initial={{ opacity: 0, scale: 0.8 }}
+                              whileInView={{ opacity: 1, scale: 1 }}
+                              viewport={{ once: true }}
+                              transition={{ delay: 0.5 }}
+                            >
+                              {Array.from({ length: 9 }).map((_, i) => (
+                                <motion.div
+                                  key={i}
+                                  className={`w-3 h-3 bg-gradient-to-br ${step.color} rounded-sm`}
+                                  animate={{ 
+                                    scale: [1, 1.1, 1],
+                                    rotate: [0, 5, 0]
+                                  }}
+                                  transition={{ 
+                                    duration: 1.5, 
+                                    repeat: Infinity, 
+                                    delay: i * 0.1 
+                                  }}
+                                />
+                              ))}
+                            </motion.div>
+                          )}
+                        </div>
+                      </div>
+                    </motion.div>
+
+                    {/* Client Side */}
+                    <motion.div
+                      className="relative group"
+                      whileHover={{ scale: 1.02 }}
+                      transition={{ type: "spring", stiffness: 300 }}
+                    >
+                      <div className="bg-gradient-to-br from-[#2A2A2A] to-[#1A1A1A] border border-gray-700 rounded-2xl p-8 h-full relative overflow-hidden">
+                        
+                        {/* Blueprint Animation Trigger */}
+                        <motion.div
+                          className="absolute inset-0 opacity-0 group-hover:opacity-10"
+                          initial={false}
+                          animate={{ opacity: 0 }}
+                          whileHover={{ opacity: 0.1 }}
+                          transition={{ duration: 0.3 }}
+                        >
+                          {/* Blueprint lines */}
+                          {Array.from({ length: 8 }).map((_, i) => (
+                            <motion.div
+                              key={i}
+                              className="absolute w-px bg-gradient-to-b from-maverick-orange to-orange-600"
+                              style={{
+                                left: `${10 + i * 12}%`,
+                                top: '10%',
+                                bottom: '10%',
+                              }}
+                              initial={{ scaleY: 0 }}
+                              whileHover={{ scaleY: 1 }}
+                              transition={{ duration: 0.5, delay: i * 0.1 }}
+                            />
+                          ))}
+                        </motion.div>
+
+                        <div className="relative z-10">
+                          <div className="flex items-center mb-6">
+                            <motion.div
+                              className="w-12 h-12 rounded-xl bg-gradient-to-br from-maverick-orange to-orange-600 flex items-center justify-center text-white mr-4"
+                              whileHover={{ rotate: -5 }}
+                              transition={{ type: "spring", stiffness: 300 }}
+                            >
+                              <Target className="h-6 w-6" />
+                            </motion.div>
+                            <div>
+                              <h4 className="text-xl font-bold text-white">Your Business</h4>
+                              <p className="text-[#AAAAAA] text-sm">Your Involvement</p>
+                            </div>
+                          </div>
+
+                          <h5 className="text-lg font-semibold mb-4">{step.clientAction}</h5>
+                          
+                          <div className="space-y-3">
+                            {step.clientDetails.map((detail, idx) => (
+                              <motion.div
+                                key={idx}
+                                initial={{ opacity: 0, x: 20 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: 0.3 + idx * 0.1 }}
+                                className="flex items-center text-sm"
+                              >
+                                <motion.div
+                                  className="w-2 h-2 rounded-full bg-gradient-to-r from-maverick-orange to-orange-600 mr-3"
+                                  animate={{ scale: [1, 1.2, 1] }}
+                                  transition={{ duration: 2, repeat: Infinity, delay: idx * 0.3 }}
+                                />
+                                {detail}
+                              </motion.div>
+                            ))}
+                          </div>
+
+                          {/* Animated blueprint scroll for Blueprint phase */}
+                          {step.phase === "Blueprint" && (
+                            <motion.div
+                              className="absolute bottom-4 right-4"
+                              initial={{ opacity: 0, scale: 0.8 }}
+                              whileInView={{ opacity: 1, scale: 1 }}
+                              viewport={{ once: true }}
+                              transition={{ delay: 0.5 }}
+                            >
+                              <motion.div
+                                className="w-12 h-8 bg-gradient-to-r from-maverick-orange to-orange-600 rounded opacity-20"
+                                animate={{ 
+                                  scaleX: [1, 1.2, 1],
+                                  scaleY: [1, 0.8, 1]
+                                }}
+                                transition={{ duration: 2, repeat: Infinity }}
+                              />
+                            </motion.div>
+                          )}
+                        </div>
+                      </div>
+                    </motion.div>
                   </div>
 
-                  {/* Phase Connection Arrow */}
-                  {index < 4 && (
-                    <motion.div
-                      className="flex justify-center mt-12"
-                      initial={{ opacity: 0 }}
-                      whileInView={{ opacity: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: 0.5 }}
-                    >
+                  {/* Collaboration Bridge */}
+                  <motion.div
+                    className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 hidden lg:block"
+                    initial={{ scale: 0 }}
+                    whileInView={{ scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.5, type: "spring", stiffness: 200 }}
+                  >
+                    <div className="w-16 h-16 bg-gradient-to-r from-maverick-orange to-orange-600 rounded-full flex items-center justify-center shadow-lg border-4 border-[#1E1E1E]">
                       <motion.div
-                        className="w-12 h-12 bg-gradient-to-b from-maverick-orange to-orange-600 rounded-full flex items-center justify-center"
-                        animate={{ y: [0, 10, 0] }}
-                        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                        animate={{ rotate: 360 }}
+                        transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
                       >
-                        <ArrowRight className="h-6 w-6 text-white rotate-90" />
+                        <ArrowRight className="h-6 w-6 text-white" />
                       </motion.div>
-                    </motion.div>
+                    </div>
+                  </motion.div>
+
+                  {/* Progress Connection */}
+                  {index < collaborativeSteps.length - 1 && (
+                    <motion.div
+                      className="absolute left-1/2 -bottom-10 w-px h-20 bg-gradient-to-b from-maverick-orange/50 to-transparent hidden lg:block"
+                      initial={{ scaleY: 0, opacity: 0 }}
+                      whileInView={{ scaleY: 1, opacity: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.8, delay: 0.3 }}
+                    />
                   )}
                 </motion.div>
               ))}
             </div>
 
-            {/* Partnership Promise */}
+            {/* Call to Action */}
             <motion.div
               className="text-center mt-20"
               initial={{ opacity: 0, y: 30 }}
@@ -862,34 +825,18 @@ export default function WebServices() {
               viewport={{ once: true }}
               transition={{ delay: 0.5 }}
             >
-              <div className="max-w-4xl mx-auto bg-gradient-to-br from-maverick-orange/10 to-purple-600/10 backdrop-blur-sm border border-maverick-orange/20 rounded-2xl p-8">
-                <motion.div
-                  className="w-16 h-16 bg-gradient-to-br from-maverick-orange to-purple-600 rounded-full flex items-center justify-center mx-auto mb-6"
-                  animate={{ 
-                    boxShadow: [
-                      "0 0 20px rgba(224, 69, 0, 0.5)",
-                      "0 0 40px rgba(224, 69, 0, 0.8)",
-                      "0 0 20px rgba(224, 69, 0, 0.5)"
-                    ]
-                  }}
-                  transition={{ duration: 3, repeat: Infinity }}
-                >
-                  <Trophy className="h-8 w-8 text-white" />
-                </motion.div>
-                <h3 className="text-2xl font-bold mb-4">Built Together, Owned By You</h3>
-                <p className="text-lg text-[#AAAAAA] mb-6">
-                  This collaborative approach ensures every decision is informed by both technical expertise and your unique business insight. 
-                  The result? A digital solution that truly represents your brand and drives real results.
-                </p>
-                <motion.button
-                  className="px-8 py-4 rounded-lg font-semibold text-lg border-2 border-maverick-orange hover:bg-maverick-orange transition-colors"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.98 }}
-                  onClick={() => window.location.href = '/contact'}
-                >
-                  Start Our Journey Together
-                </motion.button>
-              </div>
+              <h3 className="text-2xl font-bold mb-4">Ready to Start Co-Creating?</h3>
+              <p className="text-[#AAAAAA] mb-6">
+                Let's begin this collaborative journey together. Your vision, our expertise.
+              </p>
+              <motion.button
+                className="px-8 py-4 rounded-lg font-semibold text-lg bg-gradient-to-r from-maverick-orange to-orange-600 text-white hover:shadow-lg transition-all"
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.98 }}
+                onClick={() => window.location.href = '/contact'}
+              >
+                Begin Our Partnership
+              </motion.button>
             </motion.div>
           </div>
         </section>
