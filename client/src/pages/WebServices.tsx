@@ -525,24 +525,9 @@ export default function WebServices() {
           </div>
         </section>
 
-        {/* Co-Create With Us Section */}
+        {/* Enhanced Process Section */}
         <section className="py-24 px-5 md:px-10 bg-[#1E1E1E] relative overflow-hidden">
-          {/* Architectural Grid Background */}
-          <div className="absolute inset-0 opacity-5">
-            <svg className="w-full h-full" viewBox="0 0 1200 800">
-              <defs>
-                <pattern id="architecturalGrid" x="0" y="0" width="60" height="60" patternUnits="userSpaceOnUse">
-                  <path d="M 60 0 L 0 0 0 60" fill="none" stroke="url(#gridGradient)" strokeWidth="0.5"/>
-                </pattern>
-                <linearGradient id="gridGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="#E04500" />
-                  <stop offset="100%" stopColor="#FF8A50" />
-                </linearGradient>
-              </defs>
-              <rect width="100%" height="100%" fill="url(#architecturalGrid)" />
-            </svg>
-          </div>
-
+          <div className="absolute inset-0 bg-gradient-to-r from-maverick-orange/5 via-transparent to-maverick-orange/5"></div>
           <div className="container mx-auto relative">
             <motion.div
               className="text-center mb-20"
@@ -550,347 +535,120 @@ export default function WebServices() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-4xl md:text-6xl font-bold mb-6 font-heading">
-                Co-Create 
-                <span className="bg-gradient-to-r from-maverick-orange to-orange-600 bg-clip-text text-transparent"> With Us</span>
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 font-heading">
+                Our 5-Stage Development Process
               </h2>
               <p className="text-xl text-[#AAAAAA] max-w-3xl mx-auto">
-                A collaborative digital architectural journey where your vision meets our expertise. 
-                Together, we build more than websites—we craft digital experiences.
+                From concept to launch, our proven methodology ensures your website or web application 
+                is delivered on time, on budget, and exceeds your expectations.
               </p>
             </motion.div>
 
-            {/* Collaborative Timeline */}
-            <div className="max-w-7xl mx-auto">
-              {[
-                {
-                  phase: "01",
-                  title: "Blueprint & Discovery",
-                  subtitle: "Foundation Architecture",
-                  weContribute: ["Market Research", "Technical Analysis", "Strategy Framework", "Competitive Audit"],
-                  youContribute: ["Brand Vision", "Business Goals", "Content Assets", "Feedback & Direction"],
-                  icon: <Search className="h-6 w-6" />,
-                  color: "from-blue-500 to-cyan-500",
-                  bgColor: "bg-blue-500/10"
-                },
-                {
-                  phase: "02", 
-                  title: "Structural Design",
-                  subtitle: "Information Architecture",
-                  weContribute: ["User Flow Mapping", "Wireframe Creation", "UX Strategy", "Content Planning"],
-                  youContribute: ["Content Review", "User Insights", "Priority Setting", "Approval Cycles"],
-                  icon: <Globe className="h-6 w-6" />,
-                  color: "from-purple-500 to-violet-500",
-                  bgColor: "bg-purple-500/10"
-                },
-                {
-                  phase: "03",
-                  title: "Visual Engineering",
-                  subtitle: "Interface & Experience",
-                  weContribute: ["UI Design", "Prototyping", "Animation Systems", "Responsive Layouts"],
-                  youContribute: ["Design Feedback", "Brand Guidelines", "Asset Provision", "Style Preferences"],
-                  icon: <Palette className="h-6 w-6" />,
-                  color: "from-pink-500 to-rose-500",
-                  bgColor: "bg-pink-500/10"
-                },
-                {
-                  phase: "04",
-                  title: "Digital Construction",
-                  subtitle: "Development & Integration",
-                  weContribute: ["Code Development", "API Integration", "Testing Systems", "Performance Optimization"],
-                  youContribute: ["Content Integration", "Feature Testing", "User Acceptance", "Quality Assurance"],
-                  icon: <Code className="h-6 w-6" />,
-                  color: "from-green-500 to-emerald-500",
-                  bgColor: "bg-green-500/10"
-                },
-                {
-                  phase: "05",
-                  title: "Launch & Evolution",
-                  subtitle: "Deployment & Growth",
-                  weContribute: ["Site Deployment", "SEO Implementation", "Analytics Setup", "Ongoing Support"],
-                  youContribute: ["Go-Live Approval", "Marketing Coordination", "Team Training", "Success Metrics"],
-                  icon: <Zap className="h-6 w-6" />,
-                  color: "from-orange-500 to-red-500",
-                  bgColor: "bg-orange-500/10"
-                }
-              ].map((phase, index) => (
+            <div className="space-y-16">
+              {processSteps.map((step, index) => (
                 <motion.div
                   key={index}
-                  initial={{ opacity: 0, y: 50 }}
-                  whileInView={{ opacity: 1, y: 0 }}
+                  initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
+                  whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: index * 0.2 }}
-                  className="mb-16 last:mb-0"
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  className={`flex flex-col ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} items-center gap-12`}
                 >
-                  {/* Phase Header */}
-                  <div className="text-center mb-12">
-                    <motion.div
-                      className={`inline-flex items-center gap-4 px-6 py-3 rounded-full bg-gradient-to-r ${phase.color} text-white font-semibold mb-4`}
-                      whileHover={{ scale: 1.05 }}
-                    >
-                      {phase.icon}
-                      <span>Phase {phase.phase}</span>
-                    </motion.div>
-                    <h3 className="text-3xl font-bold mb-2">{phase.title}</h3>
-                    <p className="text-lg text-[#AAAAAA]">{phase.subtitle}</p>
+                  {/* Content Side */}
+                  <div className="flex-1 text-center lg:text-left">
+                    <div className="flex items-center justify-center lg:justify-start mb-6">
+                      <motion.div 
+                        className={`w-20 h-20 rounded-2xl bg-gradient-to-br ${step.color} flex items-center justify-center text-white shadow-lg`}
+                        whileHover={{ scale: 1.1, rotate: 5 }}
+                        transition={{ type: "spring", stiffness: 300 }}
+                      >
+                        {step.icon}
+                      </motion.div>
+                      <div className="ml-6">
+                        <div className={`text-6xl font-bold bg-gradient-to-r ${step.color} bg-clip-text text-transparent`}>
+                          {step.step}
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <h3 className="text-3xl font-bold mb-4">{step.title}</h3>
+                    <p className="text-lg text-[#AAAAAA] mb-6 leading-relaxed">{step.description}</p>
+                    
+                    <div className="grid grid-cols-2 gap-3">
+                      {step.details.map((detail, idx) => (
+                        <motion.div
+                          key={idx}
+                          initial={{ opacity: 0, y: 10 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ delay: 0.3 + idx * 0.1 }}
+                          className={`${step.bgColor} border border-gray-700 rounded-lg p-3 text-sm font-medium flex items-center`}
+                        >
+                          <CheckCircle className={`h-4 w-4 mr-2 bg-gradient-to-r ${step.color} bg-clip-text`} />
+                          {detail}
+                        </motion.div>
+                      ))}
+                    </div>
                   </div>
 
-                  {/* Split Screen Collaboration */}
-                  <div className="grid lg:grid-cols-2 gap-8 relative">
-                    {/* Our Contribution */}
+                  {/* Visual Side */}
+                  <div className="flex-1 relative">
                     <motion.div
-                      className={`${phase.bgColor} border border-gray-700/50 rounded-2xl p-8 relative overflow-hidden`}
+                      className={`w-full h-80 rounded-2xl ${step.bgColor} border border-gray-700 relative overflow-hidden`}
                       whileHover={{ scale: 1.02 }}
-                      transition={{ type: "spring", stiffness: 200 }}
+                      transition={{ type: "spring", stiffness: 300 }}
                     >
-                      {/* Animated Blueprint Lines */}
-                      <div className="absolute inset-0 opacity-20">
-                        <svg className="w-full h-full" viewBox="0 0 400 300">
-                          {Array.from({ length: 8 }).map((_, i) => (
-                            <motion.line
-                              key={i}
-                              x1={20 + i * 45}
-                              y1="20"
-                              x2={20 + i * 45}
-                              y2="280"
-                              stroke={`url(#gradient-${index})`}
-                              strokeWidth="1"
-                              strokeDasharray="4,4"
-                              initial={{ pathLength: 0 }}
-                              whileInView={{ pathLength: 1 }}
-                              viewport={{ once: true }}
-                              transition={{ delay: i * 0.1, duration: 2 }}
-                            />
-                          ))}
-                          <defs>
-                            <linearGradient id={`gradient-${index}`} x1="0%" y1="0%" x2="0%" y2="100%">
-                              <stop offset="0%" stopColor="#E04500" stopOpacity="0.6" />
-                              <stop offset="100%" stopColor="#FF8A50" stopOpacity="0.2" />
-                            </linearGradient>
-                          </defs>
-                        </svg>
-                      </div>
-
-                      <div className="relative z-10">
-                        <div className="flex items-center mb-6">
-                          <motion.div
-                            className="w-12 h-12 bg-gradient-to-br from-maverick-orange to-orange-600 rounded-lg flex items-center justify-center mr-4"
-                            animate={{ rotate: [0, 5, 0, -5, 0] }}
-                            transition={{ duration: 4, repeat: Infinity }}
-                          >
-                            <Users className="h-6 w-6 text-white" />
-                          </motion.div>
-                          <div>
-                            <h4 className="text-xl font-bold text-maverick-orange">We Contribute</h4>
-                            <p className="text-sm text-gray-400">Our Expertise & Tools</p>
-                          </div>
-                        </div>
-
-                        <div className="space-y-3">
-                          {phase.weContribute.map((item, idx) => (
-                            <motion.div
-                              key={idx}
-                              initial={{ opacity: 0, x: -20 }}
-                              whileInView={{ opacity: 1, x: 0 }}
-                              viewport={{ once: true }}
-                              transition={{ delay: 0.5 + idx * 0.1 }}
-                              className="flex items-center bg-white/5 rounded-lg p-3 hover:bg-white/10 transition-colors"
-                            >
-                              <motion.div
-                                className="w-2 h-2 bg-maverick-orange rounded-full mr-3"
-                                animate={{ scale: [1, 1.5, 1] }}
-                                transition={{ delay: idx * 0.2, duration: 2, repeat: Infinity }}
-                              />
-                              <span className="text-white font-medium">{item}</span>
-                            </motion.div>
-                          ))}
-                        </div>
-                      </div>
-                    </motion.div>
-
-                    {/* Your Contribution */}
-                    <motion.div
-                      className={`${phase.bgColor} border border-gray-700/50 rounded-2xl p-8 relative overflow-hidden`}
-                      whileHover={{ scale: 1.02 }}
-                      transition={{ type: "spring", stiffness: 200 }}
-                    >
-                      {/* Animated Connection Nodes */}
-                      <div className="absolute inset-0 opacity-20">
-                        {Array.from({ length: 6 }).map((_, i) => (
+                      {/* Animated background pattern */}
+                      <div className="absolute inset-0 opacity-10">
+                        {Array.from({ length: 20 }).map((_, i) => (
                           <motion.div
                             key={i}
-                            className="absolute w-3 h-3 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full"
+                            className={`absolute w-2 h-2 bg-gradient-to-r ${step.color} rounded-full`}
                             style={{
-                              left: `${20 + (i % 3) * 30}%`,
-                              top: `${30 + Math.floor(i / 3) * 40}%`,
+                              left: `${Math.random() * 100}%`,
+                              top: `${Math.random() * 100}%`,
                             }}
                             animate={{
-                              scale: [1, 1.8, 1],
-                              opacity: [0.4, 0.8, 0.4],
+                              scale: [1, 1.5, 1],
+                              opacity: [0.3, 0.8, 0.3],
                             }}
                             transition={{
-                              duration: 3,
+                              duration: 2 + Math.random() * 2,
                               repeat: Infinity,
-                              delay: i * 0.5,
+                              delay: Math.random() * 2,
                             }}
                           />
                         ))}
                       </div>
 
-                      <div className="relative z-10">
-                        <div className="flex items-center mb-6">
-                          <motion.div
-                            className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center mr-4"
-                            animate={{ rotate: [0, -5, 0, 5, 0] }}
-                            transition={{ duration: 4, repeat: Infinity, delay: 2 }}
-                          >
-                            <Target className="h-6 w-6 text-white" />
-                          </motion.div>
-                          <div>
-                            <h4 className="text-xl font-bold text-blue-400">You Contribute</h4>
-                            <p className="text-sm text-gray-400">Your Vision & Insights</p>
-                          </div>
-                        </div>
-
-                        <div className="space-y-3">
-                          {phase.youContribute.map((item, idx) => (
-                            <motion.div
-                              key={idx}
-                              initial={{ opacity: 0, x: 20 }}
-                              whileInView={{ opacity: 1, x: 0 }}
-                              viewport={{ once: true }}
-                              transition={{ delay: 0.5 + idx * 0.1 }}
-                              className="flex items-center bg-white/5 rounded-lg p-3 hover:bg-white/10 transition-colors"
-                            >
-                              <motion.div
-                                className="w-2 h-2 bg-blue-400 rounded-full mr-3"
-                                animate={{ scale: [1, 1.5, 1] }}
-                                transition={{ delay: idx * 0.2 + 1, duration: 2, repeat: Infinity }}
-                              />
-                              <span className="text-white font-medium">{item}</span>
-                            </motion.div>
-                          ))}
-                        </div>
+                      {/* Step-specific content */}
+                      <div className="absolute inset-6 flex items-center justify-center">
+                        <motion.div
+                          className="text-center"
+                          animate={{ y: [-5, 5, -5] }}
+                          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                        >
+                          <div className={`w-32 h-32 rounded-full bg-gradient-to-br ${step.color} opacity-20 mx-auto mb-4`}></div>
+                          <div className="text-white/80 font-medium">Step {step.step}</div>
+                          <div className="text-white/60 text-sm mt-2">{step.title}</div>
+                        </motion.div>
                       </div>
                     </motion.div>
-
-                    {/* Collaboration Bridge */}
-                    <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 hidden lg:block">
-                      <motion.div
-                        className="w-16 h-16 bg-gradient-to-r from-maverick-orange via-purple-500 to-blue-500 rounded-full flex items-center justify-center shadow-lg border-4 border-white/10"
-                        animate={{
-                          rotate: [0, 360],
-                          scale: [1, 1.1, 1],
-                        }}
-                        transition={{
-                          rotate: { duration: 8, repeat: Infinity, ease: "linear" },
-                          scale: { duration: 2, repeat: Infinity, ease: "easeInOut" },
-                        }}
-                      >
-                        <motion.div
-                          animate={{ rotate: [0, -360] }}
-                          transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
-                        >
-                          <div className="w-6 h-6 bg-white rounded-sm flex items-center justify-center">
-                            <div className="w-2 h-2 bg-maverick-orange rounded-full"></div>
-                          </div>
-                        </motion.div>
-                      </motion.div>
-
-                      {/* Connection Lines */}
-                      <svg className="absolute inset-0 w-full h-full -z-10" viewBox="0 0 64 64">
-                        <motion.path
-                          d="M8,32 Q32,20 56,32"
-                          stroke="url(#connectionGradient)"
-                          strokeWidth="2"
-                          fill="none"
-                          strokeDasharray="4,4"
-                          initial={{ pathLength: 0 }}
-                          whileInView={{ pathLength: 1 }}
-                          viewport={{ once: true }}
-                          transition={{ delay: 1, duration: 2 }}
-                        />
-                        <motion.path
-                          d="M8,32 Q32,44 56,32"
-                          stroke="url(#connectionGradient)"
-                          strokeWidth="2"
-                          fill="none"
-                          strokeDasharray="4,4"
-                          initial={{ pathLength: 0 }}
-                          whileInView={{ pathLength: 1 }}
-                          viewport={{ once: true }}
-                          transition={{ delay: 1.5, duration: 2 }}
-                        />
-                        <defs>
-                          <linearGradient id="connectionGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                            <stop offset="0%" stopColor="#E04500" stopOpacity="0.6" />
-                            <stop offset="50%" stopColor="#8B5CF6" stopOpacity="0.8" />
-                            <stop offset="100%" stopColor="#3B82F6" stopOpacity="0.6" />
-                          </linearGradient>
-                        </defs>
-                      </svg>
-                    </div>
                   </div>
 
-                  {/* Phase Connection Arrow */}
-                  {index < 4 && (
+                  {/* Connection Line */}
+                  {index < processSteps.length - 1 && (
                     <motion.div
-                      className="flex justify-center mt-12"
-                      initial={{ opacity: 0 }}
-                      whileInView={{ opacity: 1 }}
+                      className="absolute left-1/2 -bottom-8 w-px h-16 bg-gradient-to-b from-maverick-orange to-transparent hidden lg:block"
+                      initial={{ scaleY: 0 }}
+                      whileInView={{ scaleY: 1 }}
                       viewport={{ once: true }}
-                      transition={{ delay: 0.5 }}
-                    >
-                      <motion.div
-                        className="w-12 h-12 bg-gradient-to-b from-maverick-orange to-orange-600 rounded-full flex items-center justify-center"
-                        animate={{ y: [0, 10, 0] }}
-                        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                      >
-                        <ArrowRight className="h-6 w-6 text-white rotate-90" />
-                      </motion.div>
-                    </motion.div>
+                      transition={{ duration: 0.5, delay: 0.3 }}
+                    />
                   )}
                 </motion.div>
               ))}
             </div>
-
-            {/* Partnership Promise */}
-            <motion.div
-              className="text-center mt-20"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.5 }}
-            >
-              <div className="max-w-4xl mx-auto bg-gradient-to-br from-maverick-orange/10 to-purple-600/10 backdrop-blur-sm border border-maverick-orange/20 rounded-2xl p-8">
-                <motion.div
-                  className="w-16 h-16 bg-gradient-to-br from-maverick-orange to-purple-600 rounded-full flex items-center justify-center mx-auto mb-6"
-                  animate={{ 
-                    boxShadow: [
-                      "0 0 20px rgba(224, 69, 0, 0.5)",
-                      "0 0 40px rgba(224, 69, 0, 0.8)",
-                      "0 0 20px rgba(224, 69, 0, 0.5)"
-                    ]
-                  }}
-                  transition={{ duration: 3, repeat: Infinity }}
-                >
-                  <Trophy className="h-8 w-8 text-white" />
-                </motion.div>
-                <h3 className="text-2xl font-bold mb-4">Built Together, Owned By You</h3>
-                <p className="text-lg text-[#AAAAAA] mb-6">
-                  This collaborative approach ensures every decision is informed by both technical expertise and your unique business insight. 
-                  The result? A digital solution that truly represents your brand and drives real results.
-                </p>
-                <motion.button
-                  className="px-8 py-4 rounded-lg font-semibold text-lg border-2 border-maverick-orange hover:bg-maverick-orange transition-colors"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.98 }}
-                  onClick={() => window.location.href = '/contact'}
-                >
-                  Start Our Journey Together
-                </motion.button>
-              </div>
-            </motion.div>
           </div>
         </section>
 
