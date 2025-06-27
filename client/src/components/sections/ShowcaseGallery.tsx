@@ -48,7 +48,7 @@ const IMAGES_3 = [
 export default function ShowcaseGallery() {
   return (
     <div className="relative bg-[#000000] py-12 md:py-16 pt-[120px] pb-[120px]">
-      <ContainerStagger className="relative z-[9999] place-self-center px-4 xs:px-6 sm:px-8 md:px-12 lg:px-16 xl:px-20 pt-8 xs:pt-10 sm:pt-12">
+      <ContainerStagger className="relative z-10 place-self-center px-4 xs:px-6 sm:px-8 md:px-12 lg:px-16 xl:px-20 pt-8 xs:pt-10 sm:pt-12">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             {/* Left Side - True Partnership Philosophy */}
