@@ -2,7 +2,7 @@
 
 ## Overview
 
-This is a full-stack web application for Mavericks Edge, a digital solutions agency specializing in web development, marketing, and AI integration services for SMBs and nonprofits. The application features a React frontend with a Node.js backend, utilizing modern web technologies and best practices.
+This is a full-stack web application for Mavericks Edge, an Edmonton-based agency helping small businesses grow with AI-powered web design, online presence, and automation services. The application features a React frontend with a Node.js backend, utilizing modern web technologies and best practices.
 
 ## System Architecture
 

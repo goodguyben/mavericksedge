@@ -1,12 +1,8 @@
-
 User-agent: *
-Allow: /
-
-# Sitemap Index
-Sitemap: https://mavericksedge.ca/sitemap.xml
-
-# Block access to admin areas and sensitive files
 Disallow: /admin/
 Disallow: /_next/
 Disallow: /api/
-Disallow: /*.json$
+Disallow: /*.json
+
+# Sitemap Index
+Sitemap: https://mavericksedge.ca/sitemap.xml
