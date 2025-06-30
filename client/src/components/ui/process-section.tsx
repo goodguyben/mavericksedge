@@ -137,7 +137,6 @@ const BlueprintElement: React.FC<BlueprintElementProps> = ({ phase, isActive, on
             transition={{ duration: 2, repeat: isActive ? Infinity : 0 }}
           >
             <p className="text-sm font-medium text-white mb-1">Co-Creation</p>
-            <p className="text-xs text-[#AAAAAA]">{phase.duration}</p>
           </motion.div>
 
           {/* Connecting Lines */}
