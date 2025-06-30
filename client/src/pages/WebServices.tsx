@@ -231,6 +231,7 @@ export default function WebServices() {
           ))}
         </script>
       </Helmet>
+
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -513,7 +514,7 @@ export default function WebServices() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="bg-[#1E1E1E] p-8 rounded-lg border border-gray-800 hover:border-maverick-orange transition-all duration-300 group pl-[2px] pr-[2px] ml-[-30px] mr-[-30px]"
+                  className="bg-[#1E1E1E] p-8 rounded-lg border border-gray-800 hover:border-maverick-orange transition-all duration-300 group"
                 >
                   <div className="text-maverick-orange mb-6 group-hover:scale-110 transition-transform duration-300">
                     {service.icon}
