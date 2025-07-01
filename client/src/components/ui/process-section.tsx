@@ -126,7 +126,7 @@ const BlueprintElement: React.FC<BlueprintElementProps> = ({ phase, isActive, on
               scale: [1, 1.2, 1],
               rotate: [0, 180, 360]
             } : { scale: 1, rotate: 0 }}
-            transition={{ duration: 1.5, repeat: isActive ? Infinity : 0 }}
+            transition={{ duration: 4, repeat: isActive ? Infinity : 0 }}
           >
             <ArrowRight className="w-6 h-6 text-white" />
           </motion.div>
