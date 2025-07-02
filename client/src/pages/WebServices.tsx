@@ -251,16 +251,16 @@ export default function WebServices() {
               >
                 <div className="flex items-center mb-6">
                   <div className="bg-maverick-orange/20 text-maverick-orange px-4 py-2 rounded-full text-sm font-medium">
-                    #1 Web Design Company in Edmonton
+                    #1 Website Design Company in Edmonton
                   </div>
                 </div>
                 <h1 className="text-5xl md:text-7xl font-bold mb-8 font-heading">
-                  Website Design Edmonton That 
-                  <span className="bg-gradient-to-r from-maverick-orange to-orange-600 bg-clip-text text-transparent"> Actually Works</span>
+                  Website Design Edmonton Trusted
+                  <span className="bg-gradient-to-r from-maverick-orange to-orange-600 bg-clip-text text-transparent"> By Local Businesses</span>
                 </h1>
                 <p className="text-xl md:text-2xl text-[#AAAAAA] mb-12 max-w-3xl leading-relaxed">
                   We're Edmonton's trusted web design company, crafting websites that turn visitors into customers. 
-                  Our Edmonton website builders combine stunning design with smart SEO services to help your business grow online—without the corporate BS.
+                  Our Edmonton website builders combine stunning design with smart SEO services to help your business grow online without the corporate jargon and fees.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-6">
                   <motion.button
@@ -836,17 +836,23 @@ export default function WebServices() {
         {/* Co-Create With Us Section */}
         <ProcessSection />
 
-        {/* Enhanced Why Choose Us */}
+        {/* Why Edmonton Business Owners Work With Us - Creative Timeline Design */}
         <section className="py-24 px-5 md:px-10 bg-[#1E1E1E] relative overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-radial from-maverick-orange/5 via-transparent to-transparent"></div>
+          {/* Dynamic background elements */}
+          <div className="absolute inset-0">
+            <div className="absolute top-0 left-0 w-96 h-96 bg-gradient-to-br from-maverick-orange/10 to-transparent rounded-full blur-3xl"></div>
+            <div className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-br from-blue-500/10 to-transparent rounded-full blur-3xl"></div>
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-gradient-to-br from-purple-500/5 to-transparent rounded-full blur-2xl"></div>
+          </div>
+
           <div className="container mx-auto relative">
             <motion.div
-              className="text-center mb-20"
+              className="text-center mb-24"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-4xl md:text-5xl font-bold mb-6 font-heading">
+              <h2 className="text-4xl md:text-6xl font-bold mb-8 font-heading">
                 Why Smart Edmonton Business Owners Work 
                 <span className="bg-gradient-to-r from-maverick-orange to-orange-600 bg-clip-text text-transparent"> With Us</span>
               </h2>
@@ -856,76 +862,147 @@ export default function WebServices() {
               </p>
             </motion.div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {/* Interactive Timeline Layout */}
+            <div className="relative max-w-6xl mx-auto">
+              {/* Central timeline line */}
+              <div className="absolute left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-maverick-orange via-blue-500 to-purple-500 transform -translate-x-1/2 hidden md:block">
+                <motion.div
+                  className="absolute top-0 left-0 w-full bg-gradient-to-b from-transparent via-maverick-orange/50 to-transparent"
+                  style={{ height: "100%" }}
+                  initial={{ scaleY: 0 }}
+                  whileInView={{ scaleY: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 2, ease: "easeOut" }}
+                />
+              </div>
+
+              {/* Reason Items */}
               {whyChooseUs.map((reason, index) => (
                 <motion.div
                   key={index}
-                  initial={{ opacity: 0, y: 30, scale: 0.9 }}
-                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                  className={`relative mb-16 ${index % 2 === 0 ? 'md:pr-8 md:text-right' : 'md:pl-8 md:text-left md:ml-auto'} md:w-1/2`}
+                  initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
+                  whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  whileHover={{ y: -10, scale: 1.02 }}
-                  className={`bg-gradient-to-br ${reason.bgGradient} backdrop-blur-sm p-8 rounded-2xl border border-gray-700/50 hover:border-gray-600 transition-all duration-300 group relative overflow-hidden`}
+                  transition={{ duration: 0.6, delay: index * 0.2 }}
                 >
-                  {/* Animated background elements */}
-                  <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br opacity-10 rounded-full -translate-y-10 translate-x-10 group-hover:scale-150 transition-transform duration-500"></div>
-                  
-                  {/* Stats badge */}
-                  <motion.div 
-                    className={`absolute top-4 right-4 bg-gradient-to-r ${reason.color} px-3 py-1 rounded-full text-white text-xs font-bold`}
-                    initial={{ scale: 0, rotate: -45 }}
-                    whileInView={{ scale: 1, rotate: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.3 + index * 0.1, type: "spring", stiffness: 200 }}
-                  >
-                    {reason.stats}
-                  </motion.div>
-
-                  {/* Icon */}
-                  <motion.div 
-                    className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${reason.color} flex items-center justify-center mb-6 text-white shadow-lg`}
-                    whileHover={{ rotate: 360, scale: 1.1 }}
-                    transition={{ duration: 0.5 }}
-                  >
-                    {reason.icon}
-                  </motion.div>
-
-                  {/* Content */}
-                  <h3 className="text-xl font-bold mb-4 group-hover:text-white transition-colors">
-                    {reason.title}
-                  </h3>
-                  <p className="text-[#AAAAAA] group-hover:text-gray-300 transition-colors leading-relaxed">
-                    {reason.description}
-                  </p>
-
-                  {/* Hover effect overlay */}
+                  {/* Timeline dot */}
                   <motion.div
-                    className={`absolute inset-0 bg-gradient-to-br ${reason.color} opacity-0 group-hover:opacity-5 transition-opacity duration-300 rounded-2xl`}
-                    initial={false}
-                  />
+                    className={`absolute top-8 ${index % 2 === 0 ? 'md:-right-4' : 'md:-left-4'} left-4 md:left-auto w-8 h-8 rounded-full bg-gradient-to-br ${reason.color} flex items-center justify-center shadow-lg z-10`}
+                    initial={{ scale: 0 }}
+                    whileInView={{ scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.3 + index * 0.2, type: "spring", stiffness: 200 }}
+                    whileHover={{ scale: 1.3 }}
+                  >
+                    <div className="w-4 h-4 text-white flex items-center justify-center">
+                      {reason.icon}
+                    </div>
+                  </motion.div>
+
+                  {/* Content container */}
+                  <motion.div
+                    className="bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-sm rounded-2xl p-8 ml-8 md:ml-0 border border-gray-700/30 hover:border-gray-600/50 transition-all duration-300 group relative overflow-hidden"
+                    whileHover={{ y: -5 }}
+                  >
+                    {/* Animated background glow */}
+                    <motion.div
+                      className={`absolute inset-0 bg-gradient-to-br ${reason.bgGradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl`}
+                      initial={false}
+                    />
+
+                    {/* Stats badge floating */}
+                    <motion.div
+                      className={`absolute ${index % 2 === 0 ? '-top-3 -left-3' : '-top-3 -right-3'} bg-gradient-to-r ${reason.color} px-4 py-2 rounded-full text-white text-sm font-bold shadow-lg`}
+                      initial={{ scale: 0, rotate: -180 }}
+                      whileInView={{ scale: 1, rotate: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: 0.5 + index * 0.2, type: "spring", stiffness: 200 }}
+                    >
+                      {reason.stats}
+                    </motion.div>
+
+                    {/* Main icon */}
+                    <motion.div
+                      className={`w-16 h-16 rounded-xl bg-gradient-to-br ${reason.color} flex items-center justify-center mb-6 text-white shadow-lg relative z-10 ${index % 2 === 0 ? 'md:ml-auto' : ''}`}
+                      whileHover={{ rotate: [0, -10, 10, 0], scale: 1.1 }}
+                      transition={{ duration: 0.5 }}
+                    >
+                      {reason.icon}
+                    </motion.div>
+
+                    {/* Content */}
+                    <div className="relative z-10">
+                      <h3 className="text-2xl font-bold mb-4 group-hover:text-white transition-colors">
+                        {reason.title}
+                      </h3>
+                      <p className="text-[#AAAAAA] group-hover:text-gray-200 transition-colors leading-relaxed">
+                        {reason.description}
+                      </p>
+                    </div>
+
+                    {/* Decorative elements */}
+                    {Array.from({ length: 3 }).map((_, i) => (
+                      <motion.div
+                        key={i}
+                        className={`absolute w-2 h-2 bg-gradient-to-r ${reason.color} rounded-full opacity-30`}
+                        style={{
+                          right: `${10 + i * 15}%`,
+                          top: `${20 + i * 10}%`,
+                        }}
+                        animate={{
+                          scale: [1, 1.5, 1],
+                          opacity: [0.3, 0.7, 0.3],
+                        }}
+                        transition={{
+                          duration: 2,
+                          repeat: Infinity,
+                          delay: i * 0.5,
+                        }}
+                      />
+                    ))}
+                  </motion.div>
                 </motion.div>
               ))}
             </div>
 
-            {/* Bottom CTA */}
+            {/* Bottom CTA with enhanced design */}
             <motion.div
-              className="text-center mt-16"
-              initial={{ opacity: 0, y: 20 }}
+              className="text-center mt-24"
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.5 }}
+              transition={{ delay: 0.8 }}
             >
-              <p className="text-lg text-[#AAAAAA] mb-6">
-                Sound like the kind of Edmonton web design company you want to work with?
-              </p>
-              <motion.button
-                className="px-8 py-4 rounded-lg font-semibold text-lg border-2 border-maverick-orange hover:bg-maverick-orange transition-colors"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.98 }}
-                onClick={() => window.location.href = '/contact'}
-              >
-                Let's Talk About Your Project
-              </motion.button>
+              <div className="relative max-w-2xl mx-auto">
+                {/* Background glow effect */}
+                <div className="absolute inset-0 bg-gradient-to-r from-maverick-orange/20 via-purple-500/20 to-blue-500/20 rounded-3xl blur-xl"></div>
+                
+                <div className="relative bg-gradient-to-br from-gray-800/80 to-gray-900/80 backdrop-blur-sm rounded-2xl p-8 border border-gray-700/50">
+                  <motion.div
+                    className="w-16 h-16 bg-gradient-to-br from-maverick-orange to-orange-600 rounded-xl flex items-center justify-center mx-auto mb-6"
+                    animate={{ rotate: [0, 5, -5, 0] }}
+                    transition={{ duration: 4, repeat: Infinity }}
+                  >
+                    <Target className="h-8 w-8 text-white" />
+                  </motion.div>
+                  
+                  <h3 className="text-2xl font-bold mb-4">Ready to Join These Smart Business Owners?</h3>
+                  <p className="text-lg text-[#AAAAAA] mb-8 leading-relaxed">
+                    Sound like the kind of Edmonton web design company you want to work with? 
+                    Let's have an honest conversation about your project.
+                  </p>
+                  
+                  <motion.button
+                    className="px-8 py-4 rounded-lg font-semibold text-lg bg-gradient-to-r from-maverick-orange to-orange-600 hover:from-orange-600 hover:to-red-600 transition-all duration-300 shadow-lg hover:shadow-xl"
+                    whileHover={{ scale: 1.05, y: -2 }}
+                    whileTap={{ scale: 0.98 }}
+                    onClick={() => window.location.href = '/contact'}
+                  >
+                    Let's Talk About Your Project
+                  </motion.button>
+                </div>
+              </div>
             </motion.div>
           </div>
         </section>
