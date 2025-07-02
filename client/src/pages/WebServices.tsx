@@ -594,9 +594,14 @@ export default function WebServices() {
                     Your customers aren't web developers—they're busy people trying to solve problems. That's why our Edmonton website development 
                     focuses on speed, simplicity, and accessibility that actually works on all devices.
                   </p>
+                  <p className="text-lg text-[#AAAAAA] mb-6 leading-relaxed">
+                    Consider this: if your website takes longer than 3 seconds to load, you've already lost 40% of your potential customers. 
+                    In Edmonton's competitive market, that could mean the difference between a thriving business and struggling to stay afloat. 
+                    Our web designer in Edmonton team obsesses over performance metrics that matter to your bottom line.
+                  </p>
                   <p className="text-lg text-[#AAAAAA] mb-8 leading-relaxed">
                     We test every website on real Edmonton internet speeds, real mobile devices, and with real users who have disabilities. 
-                    Because inclusive design isn't just good ethics—it's good business.
+                    Because inclusive design isn't just good ethics—it's good business. When your site works for everyone, everyone becomes a potential customer.
                   </p>
                   <div className="grid grid-cols-2 gap-4">
                     <div className="flex items-center gap-3">
@@ -756,9 +761,14 @@ export default function WebServices() {
                     Your website launch isn't our finish line—it's your starting line. We provide training so you can manage your content, 
                     updates when you need them, and real humans you can call when things go sideways.
                   </p>
+                  <p className="text-lg text-[#AAAAAA] mb-6 leading-relaxed">
+                    Here's what our ongoing support includes: content management training that actually makes sense, security updates 
+                    that keep your site safe, and strategic advice when you want to add new features or services. Plus, if Google changes 
+                    their algorithm (which they do constantly), we adjust your SEO strategy to keep you ranking high.
+                  </p>
                   <p className="text-lg text-[#AAAAAA] mb-8 leading-relaxed">
-                    Unlike other website designers in Edmonton who disappear after launch, we stick around. Because we know that a great 
-                    website is just the beginning of growing your business online.
+                    Unlike other website designers in Edmonton who disappear after launch, we stick around for the long haul. Because we know 
+                    that a great website is just the beginning of growing your business online—and we want to be part of that growth story.
                   </p>
                   <div className="bg-gradient-to-r from-purple-500/10 to-pink-500/10 border border-purple-500/20 rounded-lg p-6">
                     <div className="flex items-center gap-3 mb-3">
