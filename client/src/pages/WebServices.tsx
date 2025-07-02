@@ -836,248 +836,90 @@ export default function WebServices() {
         {/* Co-Create With Us Section */}
         <ProcessSection />
 
-        {/* Why Edmonton Business Owners Work With Us - Scroll-Driven Cinematic Layout */}
-        <section className="py-32 px-5 md:px-10 bg-[#1E1E1E] relative overflow-hidden">
-          {/* Animated mesh gradient background */}
-          <div className="absolute inset-0">
-            <motion.div 
-              className="absolute inset-0 opacity-30"
-              style={{
-                background: `
-                  radial-gradient(circle at 20% 20%, rgba(255, 90, 0, 0.15) 0%, transparent 50%),
-                  radial-gradient(circle at 80% 40%, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
-                  radial-gradient(circle at 40% 80%, rgba(168, 85, 247, 0.15) 0%, transparent 50%),
-                  radial-gradient(circle at 90% 10%, rgba(34, 197, 94, 0.15) 0%, transparent 50%)
-                `
-              }}
-              animate={{
-                backgroundPosition: ['0% 0%', '100% 100%', '0% 0%'],
-              }}
-              transition={{
-                duration: 20,
-                repeat: Infinity,
-                ease: "linear"
-              }}
-            />
-          </div>
+        {/* Why Edmonton Business Owners Work With Us - Clean Modern Layout */}
+        <section className="py-24 px-5 md:px-10 bg-[#1E1E1E] relative overflow-hidden">
+          {/* Simple background gradient */}
+          <div className="absolute inset-0 bg-gradient-to-br from-maverick-orange/5 via-transparent to-purple-500/5"></div>
 
           <div className="container mx-auto relative">
-            {/* Hero intro */}
+            {/* Section header */}
             <motion.div
-              className="max-w-5xl mx-auto mb-32"
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
+              className="text-center mb-20"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              <motion.h2 
-                className="text-5xl md:text-7xl font-bold font-heading mb-12 leading-tight"
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8 }}
-              >
+              <h2 className="text-4xl md:text-6xl font-bold font-heading mb-8">
                 Why Smart Edmonton Business Owners Work{" "}
-                <motion.span 
-                  className="bg-gradient-to-r from-maverick-orange via-orange-400 to-red-500 bg-clip-text text-transparent"
-                  initial={{ backgroundPosition: "0% 50%" }}
-                  animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
-                  transition={{ duration: 5, repeat: Infinity }}
-                >
+                <span className="bg-gradient-to-r from-maverick-orange to-orange-600 bg-clip-text text-transparent">
                   With Us
-                </motion.span>
-              </motion.h2>
-              
-              <motion.p 
-                className="text-2xl md:text-3xl text-[#AAAAAA] leading-relaxed max-w-4xl"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: 0.3 }}
-              >
+                </span>
+              </h2>
+              <p className="text-xl text-[#AAAAAA] max-w-4xl mx-auto leading-relaxed">
                 Look, we get it. You've been burned by web agencies before. Promises that didn't deliver, projects that dragged on forever, 
                 and websites that looked great but didn't bring in a single customer.{" "}
                 <span className="text-white font-semibold">Here's why Edmonton businesses choose us differently.</span>
-              </motion.p>
+              </p>
             </motion.div>
 
-            {/* Flowing content sections */}
-            <div className="space-y-40">
+            {/* Reasons list */}
+            <div className="max-w-5xl mx-auto space-y-16">
               {whyChooseUs.map((reason, index) => (
                 <motion.div
                   key={index}
                   className="relative"
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true, margin: "-100px" }}
-                  transition={{ duration: 1, delay: index * 0.2 }}
+                  initial={{ opacity: 0, y: 50 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
                 >
-                  {/* Floating number indicator */}
-                  <motion.div
-                    className="absolute -top-8 left-0 md:left-8"
-                    initial={{ scale: 0, rotate: -180 }}
-                    whileInView={{ scale: 1, rotate: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.5, type: "spring", stiffness: 200 }}
-                  >
-                    <div className={`w-16 h-16 rounded-full bg-gradient-to-br ${reason.color} flex items-center justify-center text-white font-bold text-xl shadow-2xl`}>
-                      {String(index + 1).padStart(2, '0')}
-                    </div>
-                  </motion.div>
-
-                  {/* Dynamic layout based on index */}
-                  <div className={`grid grid-cols-1 lg:grid-cols-12 gap-12 items-center ${index % 2 === 1 ? 'lg:direction-rtl' : ''}`}>
-                    {/* Content side */}
-                    <motion.div 
-                      className={`lg:col-span-7 ${index % 2 === 1 ? 'lg:order-2' : ''}`}
-                      initial={{ opacity: 0, x: index % 2 === 0 ? -100 : 100 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.8, delay: 0.3 }}
-                    >
-                      {/* Stats badge */}
+                  <div className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
+                    {/* Content */}
+                    <div className={index % 2 === 1 ? 'lg:order-2' : ''}>
                       <motion.div
-                        className={`inline-flex items-center gap-3 mb-6 px-6 py-3 bg-gradient-to-r ${reason.color} rounded-full text-white font-semibold shadow-lg`}
-                        initial={{ scale: 0, y: -20 }}
-                        whileInView={{ scale: 1, y: 0 }}
+                        className={`inline-flex items-center gap-3 mb-4 px-4 py-2 bg-gradient-to-r ${reason.color} rounded-full text-white text-sm font-semibold`}
+                        initial={{ scale: 0 }}
+                        whileInView={{ scale: 1 }}
                         viewport={{ once: true }}
-                        transition={{ delay: 0.6, type: "spring" }}
+                        transition={{ delay: 0.2 + index * 0.1 }}
                       >
-                        <div className="w-6 h-6">
+                        <div className="w-4 h-4">
                           {reason.icon}
                         </div>
                         {reason.stats}
                       </motion.div>
 
-                      <motion.h3 
-                        className="text-4xl md:text-5xl font-bold mb-8 leading-tight"
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.6, delay: 0.4 }}
-                      >
+                      <h3 className="text-3xl md:text-4xl font-bold mb-6 leading-tight">
                         {reason.title}
-                      </motion.h3>
+                      </h3>
                       
-                      <motion.p 
-                        className="text-xl text-[#AAAAAA] leading-relaxed mb-8"
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.6, delay: 0.5 }}
-                      >
+                      <p className="text-lg text-[#AAAAAA] leading-relaxed">
                         {reason.description}
-                      </motion.p>
+                      </p>
+                    </div>
 
-                      {/* Visual emphasis line */}
-                      <motion.div
-                        className={`h-1 bg-gradient-to-r ${reason.color} rounded-full`}
-                        initial={{ width: 0 }}
-                        whileInView={{ width: "100px" }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.8, duration: 0.8 }}
-                      />
-                    </motion.div>
-
-                    {/* Visual side */}
+                    {/* Visual */}
                     <motion.div 
-                      className={`lg:col-span-5 ${index % 2 === 1 ? 'lg:order-1' : ''}`}
-                      initial={{ opacity: 0, scale: 0.8, rotate: index % 2 === 0 ? -5 : 5 }}
-                      whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
+                      className={`${index % 2 === 1 ? 'lg:order-1' : ''}`}
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
                       viewport={{ once: true }}
-                      transition={{ duration: 0.8, delay: 0.4 }}
+                      transition={{ duration: 0.6, delay: 0.3 + index * 0.1 }}
                     >
-                      <div className="relative">
-                        {/* Main visual container */}
+                      <div className={`relative w-full h-64 bg-gradient-to-br ${reason.bgGradient} rounded-2xl flex items-center justify-center border border-gray-700/30`}>
                         <motion.div
-                          className={`relative w-full h-80 bg-gradient-to-br ${reason.bgGradient} rounded-3xl overflow-hidden border border-gray-700/30`}
-                          whileHover={{ scale: 1.02, rotateY: 5 }}
+                          className={`w-20 h-20 bg-gradient-to-br ${reason.color} rounded-xl flex items-center justify-center text-white shadow-lg`}
+                          whileHover={{ scale: 1.1, rotate: 5 }}
                           transition={{ duration: 0.3 }}
-                          style={{ perspective: "1000px" }}
                         >
-                          {/* Animated background pattern */}
-                          <div className="absolute inset-0">
-                            {Array.from({ length: 12 }).map((_, i) => (
-                              <motion.div
-                                key={i}
-                                className={`absolute w-4 h-4 bg-gradient-to-br ${reason.color} rounded-full opacity-20`}
-                                style={{
-                                  left: `${(i % 4) * 25 + 10}%`,
-                                  top: `${Math.floor(i / 4) * 30 + 15}%`,
-                                }}
-                                animate={{
-                                  scale: [1, 1.5, 1],
-                                  opacity: [0.2, 0.4, 0.2],
-                                  rotate: [0, 180, 360],
-                                }}
-                                transition={{
-                                  duration: 4,
-                                  repeat: Infinity,
-                                  delay: i * 0.2,
-                                  ease: "easeInOut"
-                                }}
-                              />
-                            ))}
+                          <div className="w-10 h-10">
+                            {reason.icon}
                           </div>
-
-                          {/* Central icon */}
-                          <motion.div
-                            className="absolute inset-0 flex items-center justify-center"
-                            animate={{
-                              y: [0, -10, 0],
-                            }}
-                            transition={{
-                              duration: 3,
-                              repeat: Infinity,
-                              ease: "easeInOut"
-                            }}
-                          >
-                            <motion.div
-                              className={`w-24 h-24 bg-gradient-to-br ${reason.color} rounded-2xl flex items-center justify-center text-white shadow-2xl`}
-                              whileHover={{ 
-                                rotate: [0, -10, 10, 0],
-                                scale: 1.1 
-                              }}
-                              transition={{ duration: 0.5 }}
-                            >
-                              <div className="w-12 h-12">
-                                {reason.icon}
-                              </div>
-                            </motion.div>
-                          </motion.div>
-
-                          {/* Subtle glow effect */}
-                          <motion.div
-                            className={`absolute inset-0 bg-gradient-to-r ${reason.color} opacity-0 blur-xl`}
-                            whileHover={{ opacity: 0.3 }}
-                            transition={{ duration: 0.3 }}
-                          />
                         </motion.div>
 
-                        {/* Floating accent elements */}
-                        <motion.div
-                          className={`absolute -top-4 -right-4 w-8 h-8 bg-gradient-to-br ${reason.color} rounded-full shadow-lg`}
-                          animate={{
-                            scale: [1, 1.2, 1],
-                            rotate: [0, 180, 360],
-                          }}
-                          transition={{
-                            duration: 6,
-                            repeat: Infinity,
-                            ease: "linear"
-                          }}
-                        />
-                        <motion.div
-                          className={`absolute -bottom-4 -left-4 w-6 h-6 bg-gradient-to-br ${reason.color} rounded-full shadow-lg opacity-60`}
-                          animate={{
-                            scale: [1, 1.3, 1],
-                            rotate: [360, 180, 0],
-                          }}
-                          transition={{
-                            duration: 8,
-                            repeat: Infinity,
-                            ease: "linear"
-                          }}
-                        />
+                        {/* Subtle decorative elements */}
+                        <div className="absolute top-6 right-6 w-3 h-3 bg-white/20 rounded-full"></div>
+                        <div className="absolute bottom-6 left-6 w-2 h-2 bg-white/30 rounded-full"></div>
                       </div>
                     </motion.div>
                   </div>
@@ -1085,86 +927,30 @@ export default function WebServices() {
               ))}
             </div>
 
-            {/* Final CTA with cinematic reveal */}
+            {/* CTA */}
             <motion.div
-              className="mt-40 text-center"
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
+              className="text-center mt-20"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 1, delay: 0.5 }}
+              transition={{ delay: 0.5 }}
             >
-              <motion.div
-                className="max-w-3xl mx-auto"
-                initial={{ y: 100 }}
-                whileInView={{ y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: 0.3 }}
+              <h3 className="text-3xl md:text-4xl font-bold mb-6">
+                Ready to Join These Smart Business Owners?
+              </h3>
+              <p className="text-lg text-[#AAAAAA] mb-8 max-w-2xl mx-auto">
+                Sound like the kind of Edmonton web design company you want to work with? 
+                Let's have an honest conversation about your project.
+              </p>
+              
+              <motion.button
+                className="px-8 py-4 bg-gradient-to-r from-maverick-orange to-orange-600 hover:from-orange-600 hover:to-red-600 rounded-lg font-semibold text-lg text-white transition-all duration-300"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => window.location.href = '/contact'}
               >
-                <motion.h3 
-                  className="text-4xl md:text-5xl font-bold mb-8 font-heading"
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.5 }}
-                >
-                  Ready to Join These Smart Business Owners?
-                </motion.h3>
-                
-                <motion.p 
-                  className="text-xl text-[#AAAAAA] mb-12 leading-relaxed"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.7 }}
-                >
-                  Sound like the kind of Edmonton web design company you want to work with? 
-                  Let's have an honest conversation about your project.
-                </motion.p>
-                
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.9 }}
-                >
-                  <motion.button
-                    className="relative px-12 py-6 text-xl font-semibold text-white overflow-hidden group"
-                    style={{
-                      background: "linear-gradient(45deg, #ff5a00, #ff7a30, #e04500)",
-                      borderRadius: "16px",
-                    }}
-                    whileHover={{ 
-                      scale: 1.05,
-                      boxShadow: "0 20px 40px rgba(255, 90, 0, 0.4)"
-                    }}
-                    whileTap={{ scale: 0.95 }}
-                    onClick={() => window.location.href = '/contact'}
-                  >
-                    <motion.div
-                      className="absolute inset-0 bg-gradient-to-r from-orange-600 to-red-600 opacity-0 group-hover:opacity-100"
-                      style={{ borderRadius: "16px" }}
-                      transition={{ duration: 0.3 }}
-                    />
-                    <span className="relative z-10">Let's Talk About Your Project</span>
-                    
-                    {/* Button sparkle effect */}
-                    <motion.div
-                      className="absolute top-1/2 left-1/2 w-0 h-0 bg-white rounded-full opacity-50"
-                      animate={{
-                        width: ["0px", "100px", "0px"],
-                        height: ["0px", "100px", "0px"],
-                        x: "-50%",
-                        y: "-50%",
-                      }}
-                      transition={{
-                        duration: 2,
-                        repeat: Infinity,
-                        ease: "easeInOut"
-                      }}
-                    />
-                  </motion.button>
-                </motion.div>
-              </motion.div>
+                Let's Talk About Your Project
+              </motion.button>
             </motion.div>
           </div>
         </section>
