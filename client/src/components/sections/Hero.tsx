@@ -4,6 +4,7 @@ import { ChevronDown } from "lucide-react";
 import { scrollToSection } from "@/lib/scroll";
 import { Button } from "@/components/ui/custom-button";
 import GradientText from "@/components/ui/GradientText";
+import { MapPin } from "lucide-react";
 
 
 export default function Hero() {
@@ -67,52 +68,48 @@ export default function Hero() {
           transition={{ duration: 0.1 }}
           style={{ opacity: heroOpacity }}
         >
-          <h1 className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-heading font-extrabold tracking-wide leading-tight text-maverick-cream text-center px-2">
-            <div className="inline-block text-left">
-              <motion.span 
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.7, delay: 0.4 }}
-                className="inline-block mr-2 text-maverick-cream"
-              >
+          <div className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-heading font-extrabold tracking-wide leading-tight text-maverick-cream text-center px-2">
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.7, delay: 0.4 }}
+              className="inline-block text-left"
+            >
+              <span className="inline-block mr-2 text-maverick-cream">
                 Building
-              </motion.span>
-              <motion.span 
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.7, delay: 0.4 }}
-                className="inline-block mr-2"
-              >
+              </span>
+              <span className="inline-block mr-2">
                 <GradientText 
                   colors={["#FF5630", "#FF8A50", "#FFB899", "#FF5630"]}
                   animationSpeed={6}
                 >
-                  Resilience
+                  Resilient Online Presence
                 </GradientText>
-              </motion.span>
-              <motion.span 
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.7, delay: 0.4 }}
-                className="inline-block mr-2 text-maverick-cream"
-              >with heart from</motion.span>
-              <motion.span 
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.7, delay: 0.4 }}
-                className="inline-block text-[#ff5631]"
-              >
-                River valley to digital valley
-              </motion.span>
-            </div>
-          </h1>
+              </span>
+              <span className="inline-block text-[#ff5631]">
+                from River valley to digital valley
+              </span>
+            </motion.div>
+          </div>
+
+          <motion.h1 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="flex items-center justify-center gap-2 text-lg xs:text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-heading font-bold text-maverick-cream mt-4 xs:mt-6 sm:mt-8 md:mt-10 lg:mt-12 xl:mt-14 mb-6 xs:mb-8 sm:mb-10 md:mb-12 lg:mb-14 xl:mb-16"
+          >
+            <MapPin className="h-5 w-5 xs:h-6 xs:w-6 sm:h-7 sm:w-7 md:h-8 md:w-8 lg:h-9 lg:w-9 xl:h-10 xl:w-10 2xl:h-12 2xl:w-12 text-maverick-orange flex-shrink-0" />
+            <span>Website Design Edmonton</span>
+          </motion.h1>
+
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 2.8 }}
-            className="hero-tagline text-sm xs:text-base sm:text-lg md:text-xl lg:text-xl xl:text-2xl 2xl:text-3xl text-maverick-cream/80 mt-3 xs:mt-4 sm:mt-5 md:mt-6 lg:mt-8 xl:mt-10 mb-6 xs:mb-8 sm:mb-10 md:mb-12 lg:mb-14 xl:mb-16 font-sans leading-relaxed mx-auto text-center"
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="hero-tagline text-sm xs:text-base sm:text-lg md:text-xl lg:text-xl xl:text-2xl 2xl:text-3xl text-maverick-cream/80 mb-6 xs:mb-8 sm:mb-10 md:mb-12 lg:mb-14 xl:mb-16 font-sans leading-relaxed mx-auto text-center"
           >
-            We're Edmonton-based creators who design beautiful websites, improve your online visibility, and offer smart AI Integration so you can focus on growing your business          </motion.p>
+            We're Edmonton-based creators who design beautiful websites, improve your online visibility, and offer smart AI Integration so you can focus on growing your business
+          </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
