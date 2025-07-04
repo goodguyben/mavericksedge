@@ -1,0 +1,53 @@
+.card-swap-container {
+  position: relative;
+  perspective: 1000px;
+  overflow: visible;
+}
+
+.card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+  border: 1px solid rgba(255, 90, 48, 0.2);
+  overflow: hidden;
+}
+
+.card:hover {
+  box-shadow: 0 15px 40px rgba(255, 90, 48, 0.2);
+  transform: translateY(-5px) !important;
+}
+
+.card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.card-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+.card-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 5px;
+  color: #ff5a30;
+}
+
+.card-description {
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
