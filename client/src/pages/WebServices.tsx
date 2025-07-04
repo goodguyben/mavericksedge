@@ -26,9 +26,9 @@ import { generateSEOTags, generateServiceStructuredData } from "@/lib/seo";
 
 export default function WebServices() {
   const seoConfig = generateSEOTags({
-    title: "Website Design Edmonton | #1 Web Design Company | Mavericks Edge",
-    description: "Edmonton's top website design company creating stunning, high-converting websites for local businesses. Custom web design, SEO optimization, and mobile-first development. Get your free quote today!",
-    keywords: "website design edmonton, web design edmonton, edmonton web design, website design company, web design company, edmonton website builders, website builders edmonton, web designing company, edmonton seo, seo company edmonton, web designers edmonton, website designers edmonton, edmonton website development, web development edmonton, seo services edmonton, edmonton seo agency, web design companies in edmonton, website designers in edmonton, web designer in edmonton, seo company services, edmonton seo company, seo companies in edmonton, website builders in canada",
+    title: "Website Design Edmonton | Professional Web Services Agency",
+    description: "Custom website design Edmonton businesses rely on. SEO-focused, mobile-optimized websites that increase ROI. 100% satisfaction or a full refund guarantee! Get your free quote today.",
+    keywords: "website design edmonton, web design edmonton, edmonton web design, web design company, website builders edmonton, web designing company, edmonton seo, seo company edmonton, web designers edmonton, website designers edmonton, edmonton website development, web development edmonton, seo services edmonton, edmonton seo agency, web design companies in edmonton, website designers in edmonton, web designer in edmonton, edmonton seo company, seo companies in edmonton",
     canonical: "/web-design-services-edmonton"
   });
 

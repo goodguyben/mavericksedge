@@ -18,9 +18,9 @@ interface SEOHeadProps {
 }
 
 export default function SEOHead({
-  title = "Mavericks Edge | Web Design, Marketing & AI Solutions for SMBs",
-  description = "Mavericks Edge delivers custom web design, digital marketing, and AI integration solutions tailored specifically for small businesses and nonprofits. Transform your online presence with our affordable, results-driven digital services.",
-  keywords = "web design, digital marketing, AI solutions, small business, nonprofit, web development, SEO, social media, content marketing, ecommerce, branding",
+  title = "Mavericks Edge | Edmonton Web Design, Digital Marketing & AI Services Company",
+  description = "Edmonton website design, digital marketing, and AI integration services tailored specifically for small businesses. Transform your online presence with our affordable, results-driven digital services.",
+  keywords = "edmonton web design, website design edmonton, edmonton website builders, web design company in edmonton, ai services edmonton, seo services edmonton, ai integration services, edmonton seo, social media marketing edmonton, digital marketing ads agency, digital marketing agency",
   canonicalUrl = "https://mavericksedge.ca",
   ogTitle,
   ogDescription,

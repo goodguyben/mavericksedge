@@ -3,11 +3,11 @@
   <!-- Main pages sitemap -->
   <sitemap>
     <loc>https://mavericksedge.ca/sitemap-main.xml</loc>
-    <lastmod>2025-01-29</lastmod>
+    <lastmod>2025-01-29T00:00:00+00:00</lastmod>
   </sitemap>
   <!-- Services sitemap -->
   <sitemap>
     <loc>https://mavericksedge.ca/sitemap-services.xml</loc>
-    <lastmod>2025-01-29</lastmod>
+    <lastmod>2025-06-20</lastmod>
   </sitemap>
 </sitemapindex>
