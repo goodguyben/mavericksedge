@@ -47,7 +47,7 @@ export default function FooterWrapper() {
             <nav className="footer-nav" aria-label="Services Navigation">
               <h2 className="footer-heading">Services</h2>
               <ul className="footer-links">
-                <li className="footer-link"><a href="/services/web" title="Website Design Services Edmonton">Website Design</a></li>
+                <li className="footer-link"><a href="/services/web" title="Edmonton Web Design & Development Services">Web Development</a></li>
                 <li className="footer-link"><a href="/services/marketing" title="Edmonton Digital Marketing Services">Digital Marketing</a></li>
                 <li className="footer-link"><a href="/services/ai" title="Edmonton AI Integration & Automation Services">AI Integration</a></li>
                 <li className="footer-link"><a href="/services" title="All Services">All Services</a></li>
