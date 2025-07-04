@@ -113,7 +113,7 @@ export default function Hero() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.7, delay: 1.6 }}
-                className="inline-block mr-1"
+                className="inline-block mr-1 text-[#ff5631]"
               >
                 Businesses
               </motion.span>
