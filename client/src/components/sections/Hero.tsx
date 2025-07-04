@@ -4,7 +4,6 @@ import { ChevronDown, MapPin } from "lucide-react";
 import { scrollToSection } from "@/lib/scroll";
 import { Button } from "@/components/ui/custom-button";
 import GradientText from "@/components/ui/GradientText";
-import HeroSideComponent from "@/components/ui/HeroSideComponent";
 
 
 export default function Hero() {
@@ -60,10 +59,9 @@ export default function Hero() {
         {/* Fallback background in case video fails */}
         <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-800" style={{ zIndex: -1 }} />
       </div>
-      <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 2xl:px-16 z-20 flex items-start justify-between w-full pointer-events-none min-h-screen pt-8 sm:pt-12 md:pt-16 lg:pt-24">
-        {/* Main Content - Left Side */}
+      <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 2xl:px-16 z-20 flex justify-center items-center w-full pointer-events-none">
         <motion.div
-          className="w-full lg:w-3/5 xl:w-1/2 text-left pointer-events-auto relative"
+          className="max-w-full sm:max-w-2xl md:max-w-3xl lg:max-w-4xl xl:max-w-5xl 2xl:max-w-6xl text-center sm:text-left w-full pointer-events-auto relative"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: heroOpacity, y: 0 }}
           transition={{ duration: 0.1 }}
@@ -73,25 +71,20 @@ export default function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="flex items-center justify-start gap-2 text-sm sm:text-base md:text-lg lg:text-xl font-heading font-medium mb-2 sm:mb-3 md:mb-4"
+            className="flex items-center justify-center sm:justify-start gap-2 text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl font-heading font-medium text-maverick-cream/70 mb-4 sm:mb-6 md:mb-8 lg:mb-10 xl:mb-12 2xl:mb-14"
           >
-            <MapPin className="h-4 w-4 sm:h-4 sm:w-4 md:h-5 md:w-5 lg:h-6 lg:w-6 text-maverick-orange/80 flex-shrink-0" />
-            <GradientText 
-              colors={["#C0C0C0", "#E5E5E5", "#F0F0F0", "#FFFFFF", "#F0F0F0", "#E5E5E5", "#C0C0C0"]}
-              animationSpeed={4}
-            >
-              Website Design Edmonton
-            </GradientText>
+            <MapPin className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 lg:h-7 lg:w-7 xl:h-8 xl:w-8 2xl:h-9 2xl:w-9 text-maverick-orange/80 flex-shrink-0" />
+            <span className="font-light">Website Design Edmonton</span>
           </motion.h1>
 
-          <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl font-heading font-extrabold tracking-wide leading-tight text-maverick-cream text-left">
+          <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-heading font-extrabold tracking-wide leading-tight text-maverick-cream text-center sm:text-left">
             <motion.div 
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.7, delay: 0.4 }}
               className="block"
             >
-              <span className="text-maverick-cream block">
+              <span className="text-maverick-cream block sm:inline">
                 Building Resilient Online Presence from 
               </span>
               <span className="block">
@@ -109,16 +102,15 @@ export default function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 2.8 }}
-            className="hero-tagline text-xs sm:text-sm md:text-base lg:text-lg text-maverick-cream/80 mt-3 sm:mt-4 md:mt-6 lg:mt-8 mb-3 sm:mb-4 md:mb-6 lg:mb-8 font-sans leading-relaxed text-left max-w-lg lg:max-w-xl"
+            className="hero-tagline text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl text-maverick-cream/80 mt-6 sm:mt-8 md:mt-10 lg:mt-12 xl:mt-14 2xl:mt-16 mb-6 sm:mb-8 md:mb-10 lg:mb-12 xl:mb-14 2xl:mb-16 font-sans leading-relaxed text-center sm:text-left px-2 sm:px-0"
           >
             We're Edmonton-based creators who design beautiful websites, improve your online visibility, and offer smart AI Integration so you can focus on growing your business
           </motion.p>
-          
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 3.2 }}
-            className="flex flex-col sm:flex-row gap-2 sm:gap-3 justify-start items-start"
+            className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center sm:justify-start items-center px-4 sm:px-0"
           >
             <Button 
               href="/services" 
@@ -134,16 +126,6 @@ export default function Hero() {
             </Button>
           </motion.div>
         </motion.div>
-
-        {/* Side Component - Right Side (Desktop/Tablet) */}
-        <div className="hidden md:block md:w-2/5 lg:w-2/5 xl:w-1/2 ml-6 lg:ml-8 xl:ml-12 pointer-events-auto">
-          <HeroSideComponent />
-        </div>
-      </div>
-
-      {/* Side Component - Bottom Right (Mobile) */}
-      <div className="md:hidden absolute bottom-4 right-4 w-72 h-80 pointer-events-auto z-30">
-        <HeroSideComponent />
       </div>
       <motion.div
         className="scroll-indicator cursor-pointer absolute bottom-6 sm:bottom-8 md:bottom-10 left-1/2 transform -translate-x-1/2 z-30 pointer-events-auto"
