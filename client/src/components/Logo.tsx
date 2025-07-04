@@ -20,7 +20,7 @@ export default function Logo({ size = "medium", showText = true, noLink = false 
     <>
       <img 
         src={logoPath}
-        alt="Mavericks Edge Logo" 
+        alt="Mavericks Edge Website Design Edmonton Logo" 
         className={`${sizeClasses[size]} object-contain`}
       />
       {showText && (
