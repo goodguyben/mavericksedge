@@ -95,9 +95,7 @@ export default function Hero() {
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.7, delay: 0.4 }}
                 className="inline-block mr-2 text-maverick-cream"
-              >
-                with innovation & heart from
-              </motion.span>
+              >with heart from</motion.span>
               <motion.span 
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
