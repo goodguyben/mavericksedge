@@ -75,8 +75,9 @@ export default function Hero() {
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.7, delay: 0.4 }}
                 className="inline-block mr-2"
-              >From River Valley to 
-              Digital Valley:</motion.span>
+              >
+                From River Valley to Dogtal Valley:
+              </motion.span>
               <span className="relative inline-block">
                 <motion.span
                   initial={{ opacity: 0 }}
