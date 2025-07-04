@@ -68,16 +68,15 @@ export default function Hero() {
           style={{ opacity: heroOpacity }}
         >
           <h1 className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-heading font-extrabold tracking-wide leading-tight text-maverick-cream text-center px-2">
-            <div className="inline-block">
+            <div className="inline-block text-left">
               {/* Word-by-word animation for the heading */}
               <motion.span 
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.7, delay: 0.4 }}
                 className="inline-block mr-2"
-              >
-                Building
-              </motion.span>
+              >From River Valley to 
+              Digital Valley:</motion.span>
               <span className="relative inline-block">
                 <motion.span
                   initial={{ opacity: 0 }}
@@ -89,7 +88,7 @@ export default function Hero() {
                     colors={["#FF5630", "#FF8A50", "#FFB899", "#FF5630"]}
                     animationSpeed={6}
                   >
-                    resilience
+                    Website Design
                   </GradientText>
                 </motion.span>
                 <motion.span 
@@ -104,37 +103,29 @@ export default function Hero() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.7, delay: 1.2 }}
-                className="inline-block mr-1"
+                className="inline-block mr-1 text-[#ff5631]"
               >
-                with
+                Edmonton
               </motion.span>
               {" "}
               <motion.span 
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.7, delay: 1.6 }}
-                className="inline-block mr-1"
+                className="inline-block mr-1 text-[#ff5631]"
               >
-                innovation
+                Businesses
               </motion.span>
               {" "}
               <motion.span 
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.7, delay: 2.0 }}
-                className="inline-block mr-1"
+                className="inline-block mr-1 text-[ff5631]"
               >
-                and
+                Trust
               </motion.span>
-              {" "}
-              <motion.span 
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.7, delay: 2.4 }}
-                className="inline-block"
-              >
-                heart
-              </motion.span>
+              
             </div>
           </h1>
           <motion.p
