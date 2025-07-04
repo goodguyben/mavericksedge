@@ -59,10 +59,9 @@ export default function Hero() {
         {/* Fallback background in case video fails */}
         <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-800" style={{ zIndex: -1 }} />
       </div>
-      <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 2xl:px-16 z-20 flex justify-start items-center w-full pointer-events-none relative">
-        {/* Main Hero Content - Left Aligned */}
+      <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 2xl:px-16 z-20 flex justify-center items-center w-full pointer-events-none">
         <motion.div
-          className="w-full lg:w-3/5 xl:w-1/2 text-left pointer-events-auto relative mt-16 sm:mt-8 md:mt-0"
+          className="max-w-full sm:max-w-2xl md:max-w-3xl lg:max-w-4xl xl:max-w-5xl 2xl:max-w-6xl text-center sm:text-left w-full pointer-events-auto relative"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: heroOpacity, y: 0 }}
           transition={{ duration: 0.1 }}
@@ -72,25 +71,20 @@ export default function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="flex items-center justify-start gap-2 text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-heading font-medium mb-3 sm:mb-4 md:mb-6"
+            className="flex items-center justify-center sm:justify-start gap-2 text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl font-heading font-medium text-maverick-cream/70 mb-4 sm:mb-6 md:mb-8 lg:mb-10 xl:mb-12 2xl:mb-14"
           >
-            <MapPin className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 lg:h-7 lg:w-7 text-maverick-orange/80 flex-shrink-0" />
-            <GradientText 
-              colors={["#C0C0C0", "#E5E5E5", "#F8F8FF", "#DCDCDC", "#C0C0C0"]}
-              animationSpeed={8}
-            >
-              <span className="font-light">Website Design Edmonton</span>
-            </GradientText>
+            <MapPin className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 lg:h-7 lg:w-7 xl:h-8 xl:w-8 2xl:h-9 2xl:w-9 text-maverick-orange/80 flex-shrink-0" />
+            <span className="font-light">Website Design Edmonton</span>
           </motion.h1>
 
-          <div className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-heading font-extrabold tracking-wide leading-tight text-maverick-cream text-left">
+          <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-heading font-extrabold tracking-wide leading-tight text-maverick-cream text-center sm:text-left">
             <motion.div 
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.7, delay: 0.4 }}
               className="block"
             >
-              <span className="text-maverick-cream block">
+              <span className="text-maverick-cream block sm:inline">
                 Building Resilient Online Presence from 
               </span>
               <span className="block">
@@ -108,7 +102,7 @@ export default function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 2.8 }}
-            className="hero-tagline text-sm sm:text-base md:text-lg lg:text-xl text-maverick-cream/80 mt-4 sm:mt-6 md:mt-8 mb-4 sm:mb-6 md:mb-8 font-sans leading-relaxed text-left"
+            className="hero-tagline text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl text-maverick-cream/80 mt-6 sm:mt-8 md:mt-10 lg:mt-12 xl:mt-14 2xl:mt-16 mb-6 sm:mb-8 md:mb-10 lg:mb-12 xl:mb-14 2xl:mb-16 font-sans leading-relaxed text-center sm:text-left px-2 sm:px-0"
           >
             We're Edmonton-based creators who design beautiful websites, improve your online visibility, and offer smart AI Integration so you can focus on growing your business
           </motion.p>
@@ -116,7 +110,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 3.2 }}
-            className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-start items-start"
+            className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center sm:justify-start items-center px-4 sm:px-0"
           >
             <Button 
               href="/services" 
@@ -131,58 +125,6 @@ export default function Hero() {
               Book Free Consultation
             </Button>
           </motion.div>
-        </motion.div>
-
-        {/* Placeholder for CardSwap Component - Temporarily Disabled */}
-        <motion.div
-          initial={{ opacity: 0, x: 50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, delay: 1.0 }}
-          className="hidden lg:block absolute right-8 xl:right-16 top-1/2 transform -translate-y-1/2 pointer-events-auto"
-        >
-          <div className="w-72 h-48 bg-gradient-to-br from-gray-800/80 to-gray-900/80 border border-maverick-orange/30 rounded-lg p-6 backdrop-blur-sm">
-            <h3 className="text-maverick-orange font-semibold mb-3 text-center">Our Services</h3>
-            <div className="space-y-2 text-sm text-maverick-cream/80">
-              <div className="flex items-center gap-2">
-                <div className="w-2 h-2 bg-maverick-orange rounded-full"></div>
-                <span>Custom Web Design</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
-                <span>Digital Marketing</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="w-2 h-2 bg-green-400 rounded-full"></div>
-                <span>AI Integration</span>
-              </div>
-            </div>
-          </div>
-        </motion.div>
-
-        {/* Mobile Service Card */}
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 1.2 }}
-          className="lg:hidden absolute bottom-4 right-4 pointer-events-auto"
-        >
-          <div className="w-40 h-28 bg-gradient-to-br from-gray-800/90 to-gray-900/90 border border-maverick-orange/30 rounded-lg p-3 backdrop-blur-sm">
-            <h4 className="text-maverick-orange font-semibold text-xs mb-2 text-center">Services</h4>
-            <div className="space-y-1 text-xs text-maverick-cream/80">
-              <div className="flex items-center gap-1">
-                <div className="w-1 h-1 bg-maverick-orange rounded-full"></div>
-                <span>Web Design</span>
-              </div>
-              <div className="flex items-center gap-1">
-                <div className="w-1 h-1 bg-blue-400 rounded-full"></div>
-                <span>Marketing</span>
-              </div>
-              <div className="flex items-center gap-1">
-                <div className="w-1 h-1 bg-green-400 rounded-full"></div>
-                <span>AI Tech</span>
-              </div>
-            </div>
-          </div>
         </motion.div>
       </div>
       <motion.div
