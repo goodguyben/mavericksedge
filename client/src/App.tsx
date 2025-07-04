@@ -1,10 +1,11 @@
-import { lazy, Suspense, useEffect } from "react";
+import { lazy, Suspense, useEffect, useState } from "react";
 import { Route, Switch, useLocation } from "wouter";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { queryClient } from "@/lib/queryClient";
 import Layout from "@/components/Layout";
 import PageTransition from "@/components/PageTransition";
+import LoadingScreen from "@/components/ui/LoadingScreen"; // Assuming LoadingScreen is in this path
 
 
 // Lazy load pages
@@ -33,19 +34,34 @@ const NotFound = lazy(() => import("@/pages/not-found"));
 
 export default function App() {
   const [location] = useLocation();
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [location]);
 
+  useEffect(() => {
+    // Simulate app initialization
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 500);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
-    <div className="min-h-screen">
+    <>
+    {isLoading ? (
+      <LoadingScreen 
+        isLoading={isLoading} 
+        onLoadingComplete={() => setIsLoading(false)} 
+      />
+    ) : (
+    <div className="min-h-screen opacity-0 animate-[fadeIn_0.3s_ease-in-out_forwards]">
       <QueryClientProvider client={queryClient}>
         <PageTransition />
         <Layout>
-          <Suspense fallback={<div className="min-h-screen flex items-center justify-center">
-            <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-primary"></div>
-          </div>}>
+          <Suspense fallback={<div />}>
             <Switch>
               <Route path="/">
                 <Home />
@@ -120,5 +136,7 @@ export default function App() {
         <Toaster />
       </QueryClientProvider>
     </div>
+      )}
+      </>
   );
 }
