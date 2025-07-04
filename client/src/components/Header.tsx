@@ -101,7 +101,7 @@ export default function Header() {
             aria-label="Mavericks Edge Home"
           >
             <Logo size="medium-small" noLink={true} showText={false} />
-            <span className="font-heading font-bold text-maverick-orange whitespace-nowrap text-xl sm:text-2xl md:text-3xl lg:text-2xl xl:text-3xl ml-[0px] mr-[0px] mt-[11px] mb-[11px] pt-[0px] pb-[0px]" style={{ letterSpacing: '-0.02em' }}>
+            <span className="font-heading font-bold text-maverick-orange whitespace-nowrap sm:text-2xl md:text-3xl lg:text-2xl xl:text-3xl ml-[0px] mr-[0px] mt-[11px] mb-[11px] pt-[0px] pb-[0px] text-[24px]" style={{ letterSpacing: '-0.02em' }}>
               Mavericks Edge
             </span>
           </Link>
