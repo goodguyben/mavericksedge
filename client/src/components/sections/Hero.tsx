@@ -69,63 +69,43 @@ export default function Hero() {
         >
           <h1 className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-heading font-extrabold tracking-wide leading-tight text-maverick-cream text-center px-2">
             <div className="inline-block text-left">
-              {/* Word-by-word animation for the heading */}
+              <motion.span 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.7, delay: 0.4 }}
+                className="inline-block mr-2 text-maverick-cream"
+              >
+                Building
+              </motion.span>
               <motion.span 
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.7, delay: 0.4 }}
                 className="inline-block mr-2"
-              >From River Valley to 
-              Digital Valley:</motion.span>
-              <span className="relative inline-block">
-                <motion.span
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 0.7, delay: 0.8 }}
-                  className="mr-2"
+              >
+                <GradientText 
+                  colors={["#FF5630", "#FF8A50", "#FFB899", "#FF5630"]}
+                  animationSpeed={6}
                 >
-                  <GradientText 
-                    colors={["#FF5630", "#FF8A50", "#FFB899", "#FF5630"]}
-                    animationSpeed={6}
-                  >
-                    Website Design
-                  </GradientText>
-                </motion.span>
-                <motion.span 
-                  className="absolute -bottom-1 left-0 h-1 bg-maverick-orange"
-                  initial={{ width: 0 }}
-                  animate={{ width: "100%" }}
-                  transition={{ delay: 1.2, duration: 0.8 }}
-                />
-              </span>
-              {" "}
+                  Resilience
+                </GradientText>
+              </motion.span>
               <motion.span 
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ duration: 0.7, delay: 1.2 }}
-                className="inline-block mr-1 text-[#ff5631]"
+                transition={{ duration: 0.7, delay: 0.4 }}
+                className="inline-block mr-2 text-maverick-cream"
               >
-                Edmonton
+                with innovation & heart from
               </motion.span>
-              {" "}
               <motion.span 
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ duration: 0.7, delay: 1.6 }}
-                className="inline-block mr-1 text-[#ff5631]"
+                transition={{ duration: 0.7, delay: 0.4 }}
+                className="inline-block text-[#ff5631]"
               >
-                Businesses
+                River valley to digital valley
               </motion.span>
-              {" "}
-              <motion.span 
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.7, delay: 2.0 }}
-                className="inline-block mr-1 text-[ff5631]"
-              >
-                Trust
-              </motion.span>
-              
             </div>
           </h1>
           <motion.p
