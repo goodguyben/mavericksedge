@@ -82,7 +82,7 @@ export default function Hero() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.7, delay: 0.4 }}
-              className="block text-left"
+              className="block text-left text-[34px]"
             >
               <span className="text-maverick-cream">
                 Building Resilient Online Presence from 
