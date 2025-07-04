@@ -113,7 +113,7 @@ export default function Hero() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.7, delay: 1.6 }}
-                className="inline-block mr-1 text-[#ff5631]"
+                className="inline-block mr-1"
               >
                 Businesses
               </motion.span>
@@ -122,11 +122,19 @@ export default function Hero() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.7, delay: 2.0 }}
-                className="inline-block mr-1 text-[ff5631]"
+                className="inline-block mr-1"
               >
                 Trust
               </motion.span>
-              
+              {" "}
+              <motion.span 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.7, delay: 2.4 }}
+                className="inline-block"
+              >
+                heart
+              </motion.span>
             </div>
           </h1>
           <motion.p
