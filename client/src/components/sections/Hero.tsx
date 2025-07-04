@@ -1,7 +1,7 @@
 
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
-import { ChevronDown, MapPin } from "lucide-react";
+import { ChevronDown, MapPin, Palette, Search, Bot } from "lucide-react";
 import { scrollToSection } from "@/lib/scroll";
 import { Button } from "@/components/ui/custom-button";
 import GradientText from "@/components/ui/GradientText";
@@ -154,18 +154,27 @@ export default function Hero() {
             pauseOnHover={true}
             easing="elastic"
           >
-            <Card customClass="bg-gradient-to-br from-maverick-orange/20 to-maverick-orange/10 border-maverick-orange/30 p-6">
-              <div className="text-maverick-cream text-sm font-medium">Web Design</div>
-              <div className="text-maverick-cream/70 text-xs mt-2">Custom websites that convert</div>
-            </Card>
-            <Card customClass="bg-gradient-to-br from-blue-600/20 to-blue-600/10 border-blue-600/30 p-6">
-              <div className="text-maverick-cream text-sm font-medium">SEO Services</div>
-              <div className="text-maverick-cream/70 text-xs mt-2">Rank higher, get more traffic</div>
-            </Card>
-            <Card customClass="bg-gradient-to-br from-green-600/20 to-green-600/10 border-green-600/30 p-6">
-              <div className="text-maverick-cream text-sm font-medium">AI Integration</div>
-              <div className="text-maverick-cream/70 text-xs mt-2">Smart automation solutions</div>
-            </Card>
+            <Card 
+              icon={Palette}
+              title="Web Design"
+              description="Custom websites that convert"
+              borderColorClass="border-maverick-orange"
+              customClass="bg-gradient-to-br from-maverick-orange/20 to-maverick-orange/10"
+            />
+            <Card 
+              icon={Search}
+              title="SEO Services"
+              description="Rank higher, get more traffic"
+              borderColorClass="border-blue-500"
+              customClass="bg-gradient-to-br from-blue-600/20 to-blue-600/10"
+            />
+            <Card 
+              icon={Bot}
+              title="AI Integration"
+              description="Smart automation solutions"
+              borderColorClass="border-green-500"
+              customClass="bg-gradient-to-br from-green-600/20 to-green-600/10"
+            />
           </CardSwap>
         </div>
 
@@ -180,18 +189,27 @@ export default function Hero() {
             pauseOnHover={true}
             easing="elastic"
           >
-            <Card customClass="bg-gradient-to-br from-maverick-orange/20 to-maverick-orange/10 border-maverick-orange/30 p-4">
-              <div className="text-maverick-cream text-xs font-medium">Web Design</div>
-              <div className="text-maverick-cream/70 text-[10px] mt-1">Custom websites</div>
-            </Card>
-            <Card customClass="bg-gradient-to-br from-blue-600/20 to-blue-600/10 border-blue-600/30 p-4">
-              <div className="text-maverick-cream text-xs font-medium">SEO Services</div>
-              <div className="text-maverick-cream/70 text-[10px] mt-1">Rank higher</div>
-            </Card>
-            <Card customClass="bg-gradient-to-br from-green-600/20 to-green-600/10 border-green-600/30 p-4">
-              <div className="text-maverick-cream text-xs font-medium">AI Integration</div>
-              <div className="text-maverick-cream/70 text-[10px] mt-1">Smart automation</div>
-            </Card>
+            <Card 
+              icon={Palette}
+              title="Web Design"
+              description="Custom websites"
+              borderColorClass="border-maverick-orange"
+              customClass="bg-gradient-to-br from-maverick-orange/20 to-maverick-orange/10"
+            />
+            <Card 
+              icon={Search}
+              title="SEO Services"
+              description="Rank higher"
+              borderColorClass="border-blue-500"
+              customClass="bg-gradient-to-br from-blue-600/20 to-blue-600/10"
+            />
+            <Card 
+              icon={Bot}
+              title="AI Integration"
+              description="Smart automation"
+              borderColorClass="border-green-500"
+              customClass="bg-gradient-to-br from-green-600/20 to-green-600/10"
+            />
           </CardSwap>
         </div>
       </div>
