@@ -59,9 +59,9 @@ export default function Hero() {
         {/* Fallback background in case video fails */}
         <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-800" style={{ zIndex: -1 }} />
       </div>
-      <div className="container mx-auto px-3 xs:px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 2xl:px-16 z-20 flex justify-center items-center w-full pointer-events-none">
+      <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 2xl:px-16 z-20 flex justify-center items-center w-full pointer-events-none">
         <motion.div
-          className="max-w-xs xs:max-w-sm sm:max-w-2xl md:max-w-3xl lg:max-w-4xl xl:max-w-5xl 2xl:max-w-6xl text-left w-full pointer-events-auto relative"
+          className="max-w-full sm:max-w-2xl md:max-w-3xl lg:max-w-4xl xl:max-w-5xl 2xl:max-w-6xl text-center sm:text-left w-full pointer-events-auto relative"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: heroOpacity, y: 0 }}
           transition={{ duration: 0.1 }}
@@ -71,20 +71,20 @@ export default function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="flex items-center gap-2 xs:text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-heading font-medium text-maverick-cream/70 xs:mb-6 sm:mb-8 md:mb-10 lg:mb-12 xl:mb-14 mt-[12px] mb-[12px] text-[18px]"
+            className="flex items-center justify-center sm:justify-start gap-2 text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl font-heading font-medium text-maverick-cream/70 mb-4 sm:mb-6 md:mb-8 lg:mb-10 xl:mb-12 2xl:mb-14"
           >
-            <MapPin className="h-4 w-4 xs:h-5 xs:w-5 sm:h-6 sm:w-6 md:h-7 md:h-7 lg:h-8 lg:w-8 xl:h-9 xl:w-9 2xl:h-10 2xl:w-10 text-maverick-orange/80 flex-shrink-0" />
-            <span className="text-[18px] font-light pl-[0px] pr-[0px]">Website Design Edmonton</span>
+            <MapPin className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 lg:h-7 lg:w-7 xl:h-8 xl:w-8 2xl:h-9 2xl:w-9 text-maverick-orange/80 flex-shrink-0" />
+            <span className="font-light">Website Design Edmonton</span>
           </motion.h1>
 
-          <div className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-heading font-extrabold tracking-wide leading-tight text-maverick-cream text-left px-2">
+          <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-heading font-extrabold tracking-wide leading-tight text-maverick-cream text-center sm:text-left">
             <motion.div 
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.7, delay: 0.4 }}
-              className="block text-left text-[60px] pl-[0px] pr-[0px] ml-[2px] mr-[2px]"
+              className="block"
             >
-              <span className="text-maverick-cream">
+              <span className="text-maverick-cream block sm:inline">
                 Building Resilient Online Presence from 
               </span>
               <span className="block">
@@ -102,7 +102,7 @@ export default function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 2.8 }}
-            className="hero-tagline text-sm xs:text-base sm:text-lg md:text-xl lg:text-xl xl:text-2xl 2xl:text-3xl text-maverick-cream/80 xs:mt-8 sm:mt-10 md:mt-12 lg:mt-14 xl:mt-16 xs:mb-8 sm:mb-10 md:mb-12 lg:mb-14 xl:mb-16 font-sans leading-relaxed text-left mt-[26px] mb-[26px] pl-[12px] pr-[12px]"
+            className="hero-tagline text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl text-maverick-cream/80 mt-6 sm:mt-8 md:mt-10 lg:mt-12 xl:mt-14 2xl:mt-16 mb-6 sm:mb-8 md:mb-10 lg:mb-12 xl:mb-14 2xl:mb-16 font-sans leading-relaxed text-center sm:text-left px-2 sm:px-0"
           >
             We're Edmonton-based creators who design beautiful websites, improve your online visibility, and offer smart AI Integration so you can focus on growing your business
           </motion.p>
@@ -110,7 +110,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 3.2 }}
-            className="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4 justify-center items-center px-4"
+            className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center sm:justify-start items-center px-4 sm:px-0"
           >
             <Button 
               href="/services" 
@@ -128,7 +128,7 @@ export default function Hero() {
         </motion.div>
       </div>
       <motion.div
-        className="scroll-indicator cursor-pointer absolute bottom-10 left-1/2 transform -translate-x-1/2 z-30 pointer-events-auto"
+        className="scroll-indicator cursor-pointer absolute bottom-6 sm:bottom-8 md:bottom-10 left-1/2 transform -translate-x-1/2 z-30 pointer-events-auto"
         animate={{ 
           opacity: scrolled ? 0 : 1,
           y: scrolled ? 10 : 0 
@@ -136,7 +136,7 @@ export default function Hero() {
         transition={{ duration: 0.3 }}
         onClick={() => scrollToSection("services")}
       >
-        <ChevronDown className="h-6 w-6 animate-bounce text-maverick-orange" />
+        <ChevronDown className="h-5 w-5 sm:h-6 sm:w-6 animate-bounce text-maverick-orange" />
       </motion.div>
     </section>
   );
