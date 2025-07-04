@@ -74,7 +74,7 @@ export default function Hero() {
             className="flex items-center gap-2 xs:text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-heading font-medium text-maverick-cream/70 xs:mb-6 sm:mb-8 md:mb-10 lg:mb-12 xl:mb-14 mt-[12px] mb-[12px] text-[18px]"
           >
             <MapPin className="h-4 w-4 xs:h-5 xs:w-5 sm:h-6 sm:w-6 md:h-7 md:h-7 lg:h-8 lg:w-8 xl:h-9 xl:w-9 2xl:h-10 2xl:w-10 text-maverick-orange/80 flex-shrink-0" />
-            <span className="text-[18px] font-light pl-[6px] pr-[6px]">Website Design Edmonton</span>
+            <span className="text-[18px] font-light pl-[0px] pr-[0px]">Website Design Edmonton</span>
           </motion.h1>
 
           <div className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-heading font-extrabold tracking-wide leading-tight text-maverick-cream text-left px-2">
