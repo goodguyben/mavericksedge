@@ -71,7 +71,7 @@ export default function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="flex items-center gap-2 text-lg xs:text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-heading font-medium text-maverick-cream/70 mb-4 xs:mb-6 sm:mb-8 md:mb-10 lg:mb-12 xl:mb-14"
+            className="flex items-center gap-2 text-lg xs:text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-heading font-medium text-maverick-cream/70 xs:mb-6 sm:mb-8 md:mb-10 lg:mb-12 xl:mb-14 mt-[10px] mb-[10px]"
           >
             <MapPin className="h-4 w-4 xs:h-5 xs:w-5 sm:h-6 sm:w-6 md:h-7 md:h-7 lg:h-8 lg:w-8 xl:h-9 xl:w-9 2xl:h-10 2xl:w-10 text-maverick-orange/80 flex-shrink-0" />
             <span>Website Design Edmonton</span>
