@@ -102,7 +102,7 @@ export default function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 2.8 }}
-            className="hero-tagline text-sm xs:text-base sm:text-lg md:text-xl lg:text-xl xl:text-2xl 2xl:text-3xl text-maverick-cream/80 xs:mt-8 sm:mt-10 md:mt-12 lg:mt-14 xl:mt-16 xs:mb-8 sm:mb-10 md:mb-12 lg:mb-14 xl:mb-16 font-sans leading-relaxed text-left pl-[12px] pr-[12px] mt-[20px] mb-[20px]"
+            className="hero-tagline text-sm xs:text-base sm:text-lg md:text-xl lg:text-xl xl:text-2xl 2xl:text-3xl text-maverick-cream/80 xs:mt-8 sm:mt-10 md:mt-12 lg:mt-14 xl:mt-16 xs:mb-8 sm:mb-10 md:mb-12 lg:mb-14 xl:mb-16 font-sans leading-relaxed text-left mt-[20px] mb-[20px] pl-[8px] pr-[8px]"
           >
             We're Edmonton-based creators who design beautiful websites, improve your online visibility, and offer smart AI Integration so you can focus on growing your business
           </motion.p>
