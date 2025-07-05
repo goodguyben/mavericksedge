@@ -80,18 +80,63 @@ export default function Header() {
 
   return (
     <>
+      {/* SVG Filter for Glass Effect */}
+      <svg style={{ display: "none" }}>
+        <filter
+          id="header-glass-distortion"
+          x="0%"
+          y="0%"
+          width="100%"
+          height="100%"
+          filterUnits="objectBoundingBox"
+        >
+          <feTurbulence
+            type="fractalNoise"
+            baseFrequency="0.001 0.005"
+            numOctaves="1"
+            seed="17"
+            result="turbulence"
+          />
+          <feComponentTransfer in="turbulence" result="mapped">
+            <feFuncR type="gamma" amplitude="1" exponent="10" offset="0.5" />
+            <feFuncG type="gamma" amplitude="0" exponent="1" offset="0" />
+            <feFuncB type="gamma" amplitude="0" exponent="1" offset="0.5" />
+          </feComponentTransfer>
+          <feGaussianBlur in="turbulence" stdDeviation="3" result="softMap" />
+          <feSpecularLighting
+            in="softMap"
+            surfaceScale="5"
+            specularConstant="1"
+            specularExponent="100"
+            lightingColor="white"
+            result="specLight"
+          >
+            <fePointLight x="-200" y="-200" z="300" />
+          </feSpecularLighting>
+          <feComposite
+            in="specLight"
+            operator="arithmetic"
+            k1="0"
+            k2="1"
+            k3="1"
+            k4="0"
+            result="litImage"
+          />
+          <feDisplacementMap
+            in="SourceGraphic"
+            in2="softMap"
+            scale="200"
+            xChannelSelector="R"
+            yChannelSelector="G"
+          />
+        </filter>
+      </svg>
+
       <motion.header 
         className="sticky top-0 left-0 w-full py-3 px-4 sm:px-6 lg:px-8 z-50 transition-all duration-300 mt-[-44px] mb-[-44px] relative overflow-hidden"
         style={{
-          backdropFilter: 'blur(20px) saturate(180%)',
-          WebkitBackdropFilter: 'blur(20px) saturate(180%)',
-          background: isScrolled 
-            ? 'rgba(18, 18, 18, 0.4)' 
-            : 'rgba(18, 18, 18, 0.2)',
-          boxShadow: `
-            0 8px 32px rgba(0, 0, 0, 0.3),
-            inset 0 1px 0 rgba(255, 255, 255, 0.1)
-          `,
+          boxShadow: "0 6px 6px rgba(0, 0, 0, 0.2), 0 0 20px rgba(0, 0, 0, 0.1)",
+          transitionTimingFunction: "cubic-bezier(0.175, 0.885, 0.32, 2.2)",
         }}
         role="banner"
         initial={{ opacity: 0 }}
@@ -102,7 +147,31 @@ export default function Header() {
           ease: "easeInOut"
         }}
       >
-        <div className="container mx-auto flex justify-between items-center max-w-7xl">
+        {/* Glass Layers */}
+        <div
+          className="absolute inset-0 z-0"
+          style={{
+            backdropFilter: "blur(12px)",
+            filter: "url(#header-glass-distortion)",
+            isolation: "isolate",
+          }}
+        />
+        <div
+          className="absolute inset-0 z-10"
+          style={{ 
+            background: isScrolled 
+              ? "rgba(18, 18, 18, 0.85)" 
+              : "rgba(18, 18, 18, 0.75)" 
+          }}
+        />
+        <div
+          className="absolute inset-0 z-20 border-b border-maverick-orange/20"
+          style={{
+            boxShadow:
+              "inset 2px 2px 1px 0 rgba(255, 255, 255, 0.1), inset -1px -1px 1px 1px rgba(255, 255, 255, 0.05)",
+          }}
+        />
+        <div className="container mx-auto flex justify-between items-center max-w-7xl relative z-30">
           {/* Logo */}
           <Link 
             href="/" 
