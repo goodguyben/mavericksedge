@@ -173,7 +173,7 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
             <img 
               src={getCardGif(title, cardNumber)}
               alt={`${title} illustration`}
-              className="max-w-full max-h-full object-contain rounded-lg ml-[0px] mr-[0px] pl-[0px] pr-[0px] pt-[0px] pb-[0px] mt-[-68px] mb-[-68px]"
+              className="max-w-full max-h-full object-contain rounded-lg ml-[0px] mr-[0px] pl-[0px] pr-[0px] mt-[-68px] mb-[-68px] pt-[2px] pb-[2px]"
               style={{ maxWidth: '200px', maxHeight: '200px' }}
             />
           )}
