@@ -64,7 +64,7 @@ export default function Hero() {
       <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 2xl:px-16 z-20 flex justify-start items-center w-full pointer-events-none relative">
         {/* Main Content - Left aligned and responsive */}
         <motion.div
-          className="max-w-full lg:max-w-[60%] xl:max-w-[55%] 2xl:max-w-[50%] text-left w-full pointer-events-auto relative pt-2 sm:pt-4 md:pt-8 lg:pt-0"
+          className="max-w-full lg:max-w-[60%] xl:max-w-[55%] 2xl:max-w-[50%] text-left w-full pointer-events-auto relative sm:pt-4 md:pt-8 lg:pt-0 mt-[0px] mb-[0px] pt-[100px] pb-[100px]"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: heroOpacity, y: 0 }}
           transition={{ duration: 0.1 }}
