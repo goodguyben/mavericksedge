@@ -172,10 +172,10 @@ export default function Hero() {
         {/* CardSwap Component - Mobile bottom right, larger */}
         <div className="lg:hidden absolute bottom-4 right-4 pointer-events-auto">
           <CardSwap
-            width={320}
-            height={260}
-            cardDistance={40}
-            verticalDistance={45}
+            width={380}
+            height={300}
+            cardDistance={50}
+            verticalDistance={55}
             delay={3500}
             pauseOnHover={true}
             easing="elastic"
