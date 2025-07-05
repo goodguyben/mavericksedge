@@ -1,4 +1,3 @@
-
 import React, {
   Children,
   cloneElement,
@@ -38,7 +37,7 @@ export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
 
 export const Card = forwardRef<HTMLDivElement, CardProps>(
   ({ customClass, icon: Icon, title, description, borderColorClass = "border-white", cardNumber, ...rest }, ref) => {
-    
+
     const getCardGif = (title: string, cardNumber?: number) => {
       // Use cardNumber if provided, otherwise derive from title
       let gifNumber = cardNumber;
@@ -60,7 +59,7 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
             gifNumber = 1;
         }
       }
-      
+
       // Map each gif to the correct filename based on what's available in attached_assets
       const gifMap: { [key: number]: string } = {
         1: "1_1751693734619.gif",
@@ -68,7 +67,7 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
         3: "3_1751693734651.gif",
         4: "4_1751693734651.gif"
       };
-      
+
       const gifFileName = gifMap[gifNumber] || gifMap[1];
       return `/attached_assets/${gifFileName}`;
     };
@@ -90,7 +89,7 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
             <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
             <div className="w-3 h-3 rounded-full bg-green-500"></div>
           </div>
-          
+
           {title && (
             <div className="flex items-center space-x-2 ml-3">
               {/* Animated icon next to title */}
@@ -166,10 +165,10 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
             </div>
           )}
         </div>
-        
+
         {/* White divider line */}
         <div className="border-t border-white"></div>
-        
+
         {/* Content area with GIF */}
         <div className="flex-1 p-4 bg-black flex items-center justify-center">
           {title && (
@@ -284,7 +283,7 @@ const CardSwap: React.FC<CardSwapProps> = ({
     const swap = () => {
       // Check if we should pause (only for hover, not scroll)
       if (shouldPauseRef.current) return;
-      
+
       if (order.current.length < 2) return;
 
       const [front, ...rest] = order.current;
@@ -365,7 +364,7 @@ const CardSwap: React.FC<CardSwapProps> = ({
       };
       node.addEventListener("mouseenter", pause);
       node.addEventListener("mouseleave", resume);
-      
+
       return () => {
         node.removeEventListener("mouseenter", pause);
         node.removeEventListener("mouseleave", resume);
