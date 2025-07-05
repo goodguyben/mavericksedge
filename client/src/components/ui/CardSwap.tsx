@@ -12,6 +12,7 @@ import React, {
   useRef,
 } from "react";
 import gsap from "gsap";
+import { motion } from "framer-motion";
 
 export interface CardSwapProps {
   width?: number | string;
@@ -54,8 +55,130 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
           </div>
           {/* Tab */}
           <div className="bg-gray-800 border border-gray-600 rounded-t px-3 py-1 flex items-center space-x-2">
-            {Icon && <Icon className="w-4 h-4 text-white" />}
-            {title && <span className="text-xs font-medium text-white">{title}</span>}
+            {Icon && (
+              <motion.div
+                animate={{ 
+                  scale: [1, 1.2, 1],
+                  rotate: [0, 360, 0]
+                }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+              >
+                <Icon className="w-4 h-4 text-white" />
+              </motion.div>
+            )}
+            {title && (
+              <div className="flex items-center space-x-2">
+                {/* Animated icon next to title */}
+                {title === "Smooth" && (
+                  <motion.div
+                    animate={{ 
+                      x: [0, 3, 0],
+                      opacity: [0.7, 1, 0.7]
+                    }}
+                    transition={{
+                      duration: 2,
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    }}
+                  >
+                    <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                  </motion.div>
+                )}
+                {title === "Customizable" && (
+                  <motion.div
+                    animate={{ 
+                      rotate: [0, 180, 360],
+                      scale: [1, 1.1, 1]
+                    }}
+                    transition={{
+                      duration: 4,
+                      repeat: Infinity,
+                      ease: "linear"
+                    }}
+                  >
+                    <div className="w-2 h-2 border border-maverick-orange rounded-sm"></div>
+                  </motion.div>
+                )}
+                {title === "Google Ranked" && (
+                  <motion.div
+                    animate={{ 
+                      y: [0, -2, 0],
+                      scale: [1, 1.2, 1]
+                    }}
+                    transition={{
+                      duration: 1.5,
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    }}
+                  >
+                    <div className="w-2 h-2 bg-yellow-500 rounded-full"></div>
+                  </motion.div>
+                )}
+                {title === "Mobile Responsive" && (
+                  <motion.div
+                    animate={{ 
+                      scale: [1, 0.8, 1, 1.2, 1],
+                    }}
+                    transition={{
+                      duration: 2.5,
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    }}
+                  >
+                    <div className="w-2 h-2 bg-blue-500 rounded"></div>
+                  </motion.div>
+                )}
+                {title === "Affordable" && (
+                  <motion.div
+                    animate={{ 
+                      rotate: [0, 10, -10, 0],
+                    }}
+                    transition={{
+                      duration: 2,
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    }}
+                  >
+                    <div className="w-2 h-2 bg-green-600 rounded-full"></div>
+                  </motion.div>
+                )}
+                {title === "Creative Core" && (
+                  <motion.div
+                    animate={{ 
+                      scale: [1, 1.3, 1],
+                      opacity: [0.8, 1, 0.8]
+                    }}
+                    transition={{
+                      duration: 3,
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    }}
+                  >
+                    <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
+                  </motion.div>
+                )}
+                {title === "Smart AI" && (
+                  <motion.div
+                    animate={{ 
+                      rotate: [0, 360],
+                      scale: [1, 1.1, 1]
+                    }}
+                    transition={{
+                      duration: 4,
+                      repeat: Infinity,
+                      ease: "linear"
+                    }}
+                  >
+                    <div className="w-2 h-2 bg-cyan-500 rounded-sm transform rotate-45"></div>
+                  </motion.div>
+                )}
+                <span className="text-xs font-medium text-white">{title}</span>
+              </div>
+            )}
           </div>
         </div>
       </div>
