@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, ChevronDown, X, ChevronRight } from "lucide-react";
 import Logo from "./Logo";
 import { ROUTES } from "@/lib/routes";
+import { HeaderGlassEffect, GlassFilter } from "@/components/ui/liquid-glass";
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -80,10 +81,9 @@ export default function Header() {
 
   return (
     <>
+      <GlassFilter />
       <motion.header 
-        className={`sticky top-0 left-0 w-full py-3 px-4 sm:px-6 lg:px-8 z-50 transition-all duration-300 backdrop-blur-md border-b border-maverick-orange/10 mt-[-44px] mb-[-44px] ${
-          isScrolled ? 'bg-[#121212]/95' : 'bg-[#12121226]'
-        }`}
+        className="sticky top-0 left-0 w-full z-50 transition-all duration-300 mt-[-44px] mb-[-44px]"
         role="banner"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -93,6 +93,11 @@ export default function Header() {
           ease: "easeInOut"
         }}
       >
+        <HeaderGlassEffect 
+          className={`py-3 px-4 sm:px-6 lg:px-8 border-b border-maverick-orange/10 ${
+            isScrolled ? 'opacity-100' : 'opacity-95'
+          }`}
+        >
         <div className="container mx-auto flex justify-between items-center max-w-7xl">
           {/* Logo */}
           <Link 
@@ -331,6 +336,7 @@ export default function Header() {
             </motion.div>
           </button>
         </div>
+        </HeaderGlassEffect>
       </motion.header>
       {/* Mobile Navigation Panel */}
       <AnimatePresence>

@@ -118,6 +118,52 @@ const GlassButton: React.FC<{ children: React.ReactNode; href?: string }> = ({
   </GlassEffect>
 );
 
+// Header Glass Component - Specifically for header background
+const HeaderGlassEffect: React.FC<{ children: React.ReactNode; className?: string }> = ({
+  children,
+  className = "",
+}) => {
+  return (
+    <div
+      className={`relative overflow-hidden ${className}`}
+      style={{
+        backdropFilter: "blur(12px)",
+        WebkitBackdropFilter: "blur(12px)",
+      }}
+    >
+      {/* Glass Layers */}
+      <div
+        className="absolute inset-0 z-0"
+        style={{
+          background: "rgba(18, 18, 18, 0.85)",
+          backdropFilter: "blur(12px)",
+          WebkitBackdropFilter: "blur(12px)",
+        }}
+      />
+      <div
+        className="absolute inset-0 z-10"
+        style={{ 
+          background: "rgba(255, 255, 255, 0.05)",
+          backdropFilter: "blur(8px)",
+          WebkitBackdropFilter: "blur(8px)",
+        }}
+      />
+      <div
+        className="absolute inset-0 z-20"
+        style={{
+          boxShadow:
+            "inset 0 1px 0 rgba(255, 255, 255, 0.1), inset 0 -1px 0 rgba(0, 0, 0, 0.1)",
+          backdropFilter: "blur(4px)",
+          WebkitBackdropFilter: "blur(4px)",
+        }}
+      />
+
+      {/* Content */}
+      <div className="relative z-30">{children}</div>
+    </div>
+  );
+};
+
 // SVG Filter Component
 const GlassFilter: React.FC = () => (
   <svg style={{ display: "none" }}>
@@ -171,7 +217,8 @@ const GlassFilter: React.FC = () => (
     </filter>
   </svg>
 );
-// Main Component
+
+// Main Component - Demo
 export const Component = () => {
   const dockIcons: DockIcon[] = [
     {
@@ -221,5 +268,7 @@ export const Component = () => {
       </div>     
     </div>
   );
-}
+};
 
+// Export components
+export { GlassEffect, GlassDock, GlassButton, HeaderGlassEffect, GlassFilter };
