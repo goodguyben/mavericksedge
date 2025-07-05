@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/custom-button"
 import { VideoIcon } from "lucide-react"
 import GradientText from "@/components/ui/GradientText"
 
-// Using project videos and images
+// Using project videos and images - Extended gallery content
 const VIDEOS_1 = [
   "/videos/services/Custom Interactive Websites 1.mp4",
   "/videos/services/Next-Gen E-Commerce 1.mp4",
@@ -18,7 +18,10 @@ const VIDEOS_1 = [
   "/videos/services/Next-Gen E-Commerce 2.mp4",
   "/videos/services/Custom Interactive Websites 3.mp4",
   "/videos/services/Productivity & Management Web Applications 3.mp4",
-  "/videos/services/Custom Interactive Websites 1.mp4"
+  "/videos/services/Custom Interactive Websites 1.mp4",
+  "/videos/services/Next-Gen E-Commerce 1.mp4",
+  "/videos/services/Social Media Management.mp4",
+  "/videos/services/Productivity & Management Web Applications 1.mp4"
 ]
 
 const VIDEOS_2 = [
@@ -30,7 +33,10 @@ const VIDEOS_2 = [
   "/videos/services/Next-Gen E-Commerce 1.mp4",
   "/videos/services/Custom Interactive Websites 1.mp4",
   "/videos/services/Productivity & Management Web Applications 1.mp4",
-  "/videos/services/Custom Interactive Websites 2.mp4"
+  "/videos/services/Custom Interactive Websites 2.mp4",
+  "/videos/services/Next-Gen E-Commerce 2.mp4",
+  "/videos/services/Custom Interactive Websites 3.mp4",
+  "/videos/services/Social Media Management.mp4"
 ]
 
 const IMAGES_3 = [
@@ -42,7 +48,10 @@ const IMAGES_3 = [
   "/videos/services/Next-Gen E-Commerce 1.mp4",
   "/videos/services/Social Media Management.mp4",
   "/videos/services/Custom Interactive Websites 2.mp4",
-  "/videos/services/Productivity & Management Web Applications 1.mp4"
+  "/videos/services/Productivity & Management Web Applications 1.mp4",
+  "/videos/services/Custom Interactive Websites 3.mp4",
+  "/videos/services/Next-Gen E-Commerce 2.mp4",
+  "/videos/services/Productivity & Management Web Applications 3.mp4"
 ]
 
 export default function ShowcaseGallery() {
@@ -220,42 +229,50 @@ export default function ShowcaseGallery() {
           <GalleryContainer className="-mt-4">
             <GalleryCol yRange={["-10%", "2%"]} className="mt-[90px] mb-[90px]">
               {VIDEOS_1.map((videoUrl, index) => (
-                <video
+                <div
                   key={index}
-                  className="block h-[400px] sm:h-[500px] md:h-[600px] lg:h-[700px] w-full rounded-md object-cover shadow-lg"
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  onCanPlay={() => {
-                    console.log(`Showcase video ready: ${videoUrl}`);
-                  }}
-                  onError={(e) => {
-                    console.warn(`Failed to play showcase video: ${videoUrl}`, e);
-                  }}
+                  className="block aspect-square w-full rounded-md shadow-lg bg-black overflow-hidden"
                 >
-                  <source src={videoUrl} type="video/mp4" />
-                </video>
+                  <video
+                    className="w-full h-full object-contain"
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    onCanPlay={() => {
+                      console.log(`Showcase video ready: ${videoUrl}`);
+                    }}
+                    onError={(e) => {
+                      console.warn(`Failed to play showcase video: ${videoUrl}`, e);
+                    }}
+                  >
+                    <source src={videoUrl} type="video/mp4" />
+                  </video>
+                </div>
               ))}
             </GalleryCol>
-            <GalleryCol className="mt-[120px] mb-[120px]" yRange={["15%", "5%"]}>
+            <GalleryCol className="mt-[40px] mb-[120px]" yRange={["0%", "-5%"]}>
               {VIDEOS_2.map((videoUrl, index) => (
-                <video
+                <div
                   key={index}
-                  className="block h-[400px] sm:h-[500px] md:h-[600px] lg:h-[700px] w-full rounded-md object-cover shadow-lg"
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  onCanPlay={() => {
-                    console.log(`Showcase video ready: ${videoUrl}`);
-                  }}
-                  onError={(e) => {
-                    console.warn(`Failed to play showcase video: ${videoUrl}`, e);
-                  }}
+                  className="block aspect-square w-full rounded-md shadow-lg bg-black overflow-hidden"
                 >
-                  <source src={videoUrl} type="video/mp4" />
-                </video>
+                  <video
+                    className="w-full h-full object-contain"
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    onCanPlay={() => {
+                      console.log(`Showcase video ready: ${videoUrl}`);
+                    }}
+                    onError={(e) => {
+                      console.warn(`Failed to play showcase video: ${videoUrl}`, e);
+                    }}
+                  >
+                    <source src={videoUrl} type="video/mp4" />
+                  </video>
+                </div>
               ))}
             </GalleryCol>
             <GalleryCol yRange={["-10%", "2%"]} className="mt-[85px] mb-[85px]">
@@ -264,29 +281,37 @@ export default function ShowcaseGallery() {
                 const isVideo = imageUrl.endsWith('.mp4');
                 
                 return isVideo ? (
-                  <video
+                  <div
                     key={index}
-                    className="block h-[400px] sm:h-[500px] md:h-[600px] lg:h-[700px] w-full rounded-md object-cover shadow-lg"
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    onCanPlay={() => {
-                      console.log(`Showcase video ready: ${imageUrl}`);
-                    }}
-                    onError={(e) => {
-                      console.warn(`Failed to play showcase video: ${imageUrl}`, e);
-                    }}
+                    className="block aspect-square w-full rounded-md shadow-lg bg-black overflow-hidden"
                   >
-                    <source src={imageUrl} type="video/mp4" />
-                  </video>
+                    <video
+                      className="w-full h-full object-contain"
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      onCanPlay={() => {
+                        console.log(`Showcase video ready: ${imageUrl}`);
+                      }}
+                      onError={(e) => {
+                        console.warn(`Failed to play showcase video: ${imageUrl}`, e);
+                      }}
+                    >
+                      <source src={imageUrl} type="video/mp4" />
+                    </video>
+                  </div>
                 ) : (
-                  <img
+                  <div
                     key={index}
-                    className="block h-[400px] sm:h-[500px] md:h-[600px] lg:h-[700px] w-full rounded-md object-cover shadow-lg"
-                    src={imageUrl}
-                    alt="showcase item"
-                  />
+                    className="block aspect-square w-full rounded-md shadow-lg bg-black overflow-hidden"
+                  >
+                    <img
+                      className="w-full h-full object-contain"
+                      src={imageUrl}
+                      alt="showcase item"
+                    />
+                  </div>
                 );
               })}
             </GalleryCol>
