@@ -96,9 +96,7 @@ export default function Hero() {
               transition={{ duration: 0.7, delay: 0.4 }}
               className="block"
             >
-              <span className="text-maverick-cream block font-extrabold text-[56px]">
-                Building Resilient Online Presence from 
-              </span>
+              <span className="text-maverick-cream block font-extrabold text-[56px]">Building resilient online presence from</span>
               <span className="block text-[56px]">
                 <GradientText 
                   colors={["#FF5630", "#FF8A50", "#FFB899", "#FF5630"]}
