@@ -117,8 +117,8 @@ export default function Header() {
           backdropFilter: 'blur(32px) saturate(200%) brightness(110%)',
           WebkitBackdropFilter: 'blur(32px) saturate(200%) brightness(110%)',
           background: isScrolled 
-            ? 'linear-gradient(135deg, rgba(18, 18, 18, 0.75) 0%, rgba(25, 25, 25, 0.8) 50%, rgba(18, 18, 18, 0.75) 100%)' 
-            : 'linear-gradient(135deg, rgba(18, 18, 18, 0.65) 0%, rgba(25, 25, 25, 0.7) 50%, rgba(18, 18, 18, 0.65) 100%)',
+            ? 'linear-gradient(135deg, rgba(18, 18, 18, 0.92) 0%, rgba(25, 25, 25, 0.95) 50%, rgba(18, 18, 18, 0.92) 100%)' 
+            : 'linear-gradient(135deg, rgba(18, 18, 18, 0.85) 0%, rgba(25, 25, 25, 0.9) 50%, rgba(18, 18, 18, 0.85) 100%)',
           border: '1px solid rgba(255, 255, 255, 0.08)',
           borderTop: 'none',
           boxShadow: `
