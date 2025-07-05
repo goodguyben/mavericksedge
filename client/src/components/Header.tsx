@@ -112,7 +112,7 @@ export default function Header() {
   return (
     <>
       <motion.header 
-        className="sticky top-0 left-0 w-full py-3 px-4 sm:px-6 lg:px-8 z-50 transition-all duration-300 mt-[-44px] mb-[-44px] relative"
+        className="top-0 left-0 w-full py-3 px-4 sm:px-6 lg:px-8 z-50 transition-all duration-300 mt-[-44px] mb-[-44px] relative bg-[#12121233]"
         style={{
           backdropFilter: 'blur(20px) saturate(180%)',
           WebkitBackdropFilter: 'blur(20px) saturate(180%)',
@@ -264,8 +264,7 @@ export default function Header() {
           </button>
         </div>
       </motion.header>
-
-            {/* Portal-based dropdowns for better positioning */}
+      {/* Portal-based dropdowns for better positioning */}
       {typeof window !== 'undefined' && servicesDropdownOpen && servicesButtonRect && createPortal(
         <motion.div 
           initial={{ opacity: 0, y: -8 }}
@@ -326,7 +325,6 @@ export default function Header() {
         </motion.div>,
         document.body
       )}
-
       {typeof window !== 'undefined' && pricingDropdownOpen && pricingButtonRect && createPortal(
         <motion.div 
           initial={{ opacity: 0, y: -8 }}
