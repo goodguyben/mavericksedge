@@ -158,7 +158,7 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
                   </svg>
                 </motion.div>
               )}
-              <span className="text-sm font-medium text-white">{title}</span>
+              <span className="font-medium text-white text-[20px]">{title}</span>
             </div>
           )}
         </div>
