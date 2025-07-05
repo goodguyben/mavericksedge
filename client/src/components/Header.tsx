@@ -117,8 +117,8 @@ export default function Header() {
           backdropFilter: 'blur(32px) saturate(200%) brightness(110%)',
           WebkitBackdropFilter: 'blur(32px) saturate(200%) brightness(110%)',
           background: isScrolled 
-            ? 'linear-gradient(135deg, rgba(18, 18, 18, 0.75) 0%, rgba(25, 25, 25, 0.8) 50%, rgba(18, 18, 18, 0.75) 100%)' 
-            : 'linear-gradient(135deg, rgba(18, 18, 18, 0.65) 0%, rgba(25, 25, 25, 0.7) 50%, rgba(18, 18, 18, 0.65) 100%)',
+            ? 'linear-gradient(135deg, rgba(18, 18, 18, 0.35) 0%, rgba(25, 25, 25, 0.45) 50%, rgba(18, 18, 18, 0.35) 100%)' 
+            : 'linear-gradient(135deg, rgba(18, 18, 18, 0.25) 0%, rgba(25, 25, 25, 0.35) 50%, rgba(18, 18, 18, 0.25) 100%)',
           border: '1px solid rgba(255, 255, 255, 0.08)',
           borderTop: 'none',
           boxShadow: `
@@ -433,7 +433,7 @@ export default function Header() {
                 height: '100dvh',
                 backdropFilter: 'blur(32px) saturate(200%)',
                 WebkitBackdropFilter: 'blur(32px) saturate(200%)',
-                background: 'linear-gradient(135deg, rgba(18, 18, 18, 0.98) 0%, rgba(20, 20, 20, 0.95) 100%)',
+                background: 'linear-gradient(135deg, rgba(18, 18, 18, 0.65) 0%, rgba(20, 20, 20, 0.70) 100%)',
                 borderLeft: '1px solid rgba(255, 86, 0, 0.4)',
                 boxShadow: `-20px 0 80px rgba(0, 0, 0, 0.6), 
                            inset 1px 0 0 rgba(255, 255, 255, 0.08),
