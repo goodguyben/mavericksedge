@@ -106,7 +106,7 @@ export default function Header() {
           {/* Logo */}
           <Link 
             href="/" 
-            className="flex items-center justify-start min-h-[44px] touch-manipulation pl-[0px] pr-[0px] ml-[-36px] mr-[-36px]" 
+            className="flex items-center justify-start min-h-[44px] touch-manipulation pl-[0px] pr-[0px] ml-[-22px] mr-[-22px]" 
             aria-label="Mavericks Edge Home"
           >
             <Logo size="medium-small" noLink={true} showText={false} />
