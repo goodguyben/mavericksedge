@@ -60,7 +60,6 @@ export default function Hero() {
         {/* Fallback background in case video fails */}
         <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-800" style={{ zIndex: -1 }} />
       </div>
-
       {/* Content Container */}
       <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 2xl:px-16 z-20 flex justify-start items-center w-full pointer-events-none relative">
         {/* Main Content - Left aligned and responsive */}
@@ -97,7 +96,7 @@ export default function Hero() {
               transition={{ duration: 0.7, delay: 0.4 }}
               className="block"
             >
-              <span className="text-maverick-cream block">
+              <span className="text-maverick-cream block text-[28px]">
                 Building Resilient Online Presence from 
               </span>
               <span className="block">
@@ -195,7 +194,6 @@ export default function Hero() {
           </CardSwap>
         </div>
       </div>
-
       {/* Scroll indicator */}
       <motion.div
         className="scroll-indicator cursor-pointer absolute bottom-6 sm:bottom-8 md:bottom-10 left-1/2 transform -translate-x-1/2 z-30 pointer-events-auto"
