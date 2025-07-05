@@ -96,8 +96,8 @@ export default function Hero() {
               transition={{ duration: 0.7, delay: 0.4 }}
               className="block"
             >
-              <span className="text-maverick-cream block font-extrabold text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-[56px]">Building resilient online presence from</span>
-              <span className="block text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-[58px]">
+              <span className="text-maverick-cream block font-extrabold text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-[56px]">Building resilient online presence from</span>
+              <span className="block text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-[58px]">
                 <GradientText 
                   colors={["#FF5630", "#FF8A50", "#FFB899", "#FF5630"]}
                   animationSpeed={6}
@@ -113,7 +113,7 @@ export default function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 2.8 }}
-            className="hero-tagline text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl text-maverick-cream/80 sm:mt-4 md:mt-5 lg:mt-6 xl:mt-7 2xl:mt-8 sm:mb-6 md:mb-8 lg:mb-10 xl:mb-12 2xl:mb-14 font-sans leading-relaxed text-left mt-[16px] mb-[24px]"
+            className="hero-tagline text-sm sm:text-base md:text-lg lg:text-lg xl:text-xl 2xl:text-2xl text-maverick-cream/80 sm:mt-4 md:mt-5 lg:mt-6 xl:mt-7 2xl:mt-8 sm:mb-6 md:mb-8 lg:mb-10 xl:mb-12 2xl:mb-14 font-sans leading-relaxed text-left mt-[16px] mb-[24px]"
           >
             We're Edmonton-based creators who design beautiful websites, improve your online visibility, and offer smart AI Integration so you can focus on growing your business
           </motion.p>
