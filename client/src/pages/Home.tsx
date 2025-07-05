@@ -29,12 +29,12 @@ export default function Home() {
     <>
       {/* Enhanced SEO with Structured Data */}
       <SEOHead 
-        title="Edmonton Web Design & Digital Marketing Agency | Mavericks Edge"
-        description="Premier Edmonton web design and digital marketing agency. Custom websites, SEO, AI integration for small businesses across Alberta. Free consultation available."
-        keywords="Edmonton web design, Edmonton digital marketing, web development Edmonton, SEO Edmonton, AI integration Edmonton, custom websites Edmonton, small business web design Alberta, nonprofit web design Edmonton, responsive web design Alberta, ecommerce development Edmonton"
+        title="Edmonton Website Builders & Web Design Company | Mavericks Edge"
+        description="Leading Edmonton website builders and web design company. Custom website design Edmonton, SEO services, digital marketing solutions for Alberta businesses. Trusted Edmonton web design agency serving local SMBs and nonprofits with responsive websites and AI integration."
+        keywords="edmonton website builders, website design edmonton, edmonton website design, web design edmonton, edmonton web design, website builder edmonton, web design company in edmonton, web design companies in edmonton, seo companies in edmonton, edmonton seo agency, edmonton seo company, seo company edmonton, seo services, edmonton seo, Edmonton digital marketing, custom websites Edmonton, responsive web design Alberta, AI integration Edmonton"
         canonicalUrl="https://mavericksedge.ca/"
-        ogTitle="Edmonton Web Design & Digital Marketing Agency | Mavericks Edge"
-        ogDescription="Premier Edmonton web design and digital marketing agency. Custom websites, SEO, AI integration for small businesses across Alberta."
+        ogTitle="Edmonton Website Builders & Web Design Company | Mavericks Edge"
+        ogDescription="Leading Edmonton website builders and web design company. Custom website design Edmonton, SEO services, digital marketing solutions for Alberta businesses."
         ogImage="https://mavericksedge.ca/logo.png"
         ogType="website"
       />

@@ -254,7 +254,9 @@ function SingleServiceSection({ service, sectionHeight = "400vh", sectionStart =
                       className="inline-flex items-center"
                       asButton={true}
                     >
-                      Learn More
+                      {service.id === 'web-applications' ? 'Explore Web Design Services' : 
+                       service.id === 'marketing-solutions' ? 'Discover Marketing Solutions' : 
+                       'Learn About AI Integration'}
                     </TechButton>
                   </motion.div>
                 </motion.div>

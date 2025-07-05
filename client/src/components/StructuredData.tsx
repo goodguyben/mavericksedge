@@ -21,7 +21,7 @@ export const organizationSchema = {
   "name": "Mavericks Edge",
   "url": "https://mavericksedge.ca",
   "logo": "https://mavericksedge.ca/logo.png",
-  "description": "Professional web development, digital marketing, and AI solutions in Edmonton, Alberta. Custom websites, marketing strategies, and intelligent automation for modern businesses.",
+  "description": "Leading Edmonton website builders and web design company. Professional web development, digital marketing, SEO services, and AI solutions in Edmonton, Alberta. Custom website design, marketing strategies, and intelligent automation for Alberta businesses.",
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "6908 100 Ave NW, Suite B",
@@ -51,7 +51,7 @@ export const localBusinessSchema = {
   "@type": "LocalBusiness",
   "name": "Mavericks Edge",
   "image": "https://mavericksedge.ca/logo.png",
-  "description": "Leading web development, digital marketing, and AI solutions provider in Edmonton, Alberta. Specializing in custom websites, strategic marketing, and intelligent business automation.",
+  "description": "Edmonton website builders and web design company serving Alberta businesses. Leading web development, digital marketing, SEO services, and AI solutions provider in Edmonton. Specializing in custom website design, strategic marketing, and intelligent business automation for SMBs and nonprofits.",
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "6908 100 Ave NW, Suite B",
@@ -103,8 +103,8 @@ export const websiteSchema = {
 export const webDevelopmentServiceSchema = {
   "@context": "https://schema.org",
   "@type": "Service",
-  "name": "Web Development Services",
-  "description": "Custom website development, web applications, e-commerce solutions, and responsive design services in Edmonton, Alberta.",
+  "name": "Edmonton Web Design & Development Services",
+  "description": "Edmonton website builders providing custom website development, web applications, e-commerce solutions, and responsive web design services. Leading web design company in Edmonton, Alberta serving local businesses with professional website design and development.",
   "provider": {
     "@type": "Organization",
     "name": "Mavericks Edge"
@@ -124,8 +124,8 @@ export const webDevelopmentServiceSchema = {
 export const marketingServiceSchema = {
   "@context": "https://schema.org",
   "@type": "Service",
-  "name": "Digital Marketing Services",
-  "description": "Comprehensive digital marketing solutions including SEO, social media marketing, content strategy, and online advertising in Edmonton, Alberta.",
+  "name": "Edmonton SEO & Digital Marketing Services",
+  "description": "Edmonton SEO agency providing comprehensive digital marketing solutions including SEO services, social media marketing, content strategy, and online advertising. Leading SEO company in Edmonton serving Alberta businesses with professional digital marketing and SEO optimization.",
   "provider": {
     "@type": "Organization",
     "name": "Mavericks Edge"
@@ -170,18 +170,18 @@ export const faqSchema = {
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "What web development services do you offer?",
+      "name": "What web design services do you offer in Edmonton?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "We offer custom website development, web applications, e-commerce solutions, responsive design, CMS development, and website maintenance services."
+        "text": "As Edmonton website builders, we offer custom website design Edmonton, web development, e-commerce solutions, responsive web design, CMS development, and website maintenance. Our Edmonton web design company specializes in creating professional websites for Alberta businesses."
       }
     },
     {
       "@type": "Question",
-      "name": "Do you provide digital marketing services?",
+      "name": "Are you an Edmonton SEO company offering digital marketing services?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes, we provide comprehensive digital marketing services including SEO optimization, social media marketing, content strategy, PPC advertising, and online brand management."
+        "text": "Yes, we are a leading Edmonton SEO agency providing comprehensive digital marketing services including SEO services, social media marketing, content strategy, PPC advertising, and online brand management. Our Edmonton SEO company specializes in helping Alberta businesses improve their search rankings and online visibility."
       }
     },
     {
@@ -190,6 +190,14 @@ export const faqSchema = {
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "We develop custom AI solutions including business process automation, chatbots, machine learning implementations, data analysis tools, and intelligent workflow optimization."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why choose Edmonton website builders over DIY website builder tools?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Professional Edmonton website builders offer custom website design, SEO optimization, responsive design, and ongoing support that DIY website builder tools cannot match. Our web design company in Edmonton creates unique, optimized websites tailored to your business needs, unlike generic templates from website builder platforms."
       }
     },
     {
