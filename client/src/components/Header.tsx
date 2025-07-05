@@ -114,14 +114,18 @@ export default function Header() {
       <motion.header 
         className="sticky top-0 left-0 w-full py-3 px-4 sm:px-6 lg:px-8 z-50 transition-all duration-300 mt-[-44px] mb-[-44px] relative"
         style={{
-          backdropFilter: 'blur(20px) saturate(180%)',
-          WebkitBackdropFilter: 'blur(20px) saturate(180%)',
+          backdropFilter: 'blur(32px) saturate(200%) brightness(110%)',
+          WebkitBackdropFilter: 'blur(32px) saturate(200%) brightness(110%)',
           background: isScrolled 
-            ? 'rgba(18, 18, 18, 0.95)' 
-            : 'rgba(18, 18, 18, 0.9)',
+            ? 'linear-gradient(135deg, rgba(18, 18, 18, 0.75) 0%, rgba(25, 25, 25, 0.8) 50%, rgba(18, 18, 18, 0.75) 100%)' 
+            : 'linear-gradient(135deg, rgba(18, 18, 18, 0.65) 0%, rgba(25, 25, 25, 0.7) 50%, rgba(18, 18, 18, 0.65) 100%)',
+          border: '1px solid rgba(255, 255, 255, 0.08)',
+          borderTop: 'none',
           boxShadow: `
-            0 8px 32px rgba(0, 0, 0, 0.3),
-            inset 0 1px 0 rgba(255, 255, 255, 0.1)
+            0 8px 32px rgba(0, 0, 0, 0.4),
+            0 4px 16px rgba(0, 0, 0, 0.2),
+            inset 0 1px 0 rgba(255, 255, 255, 0.15),
+            inset 0 -1px 0 rgba(255, 255, 255, 0.05)
           `,
         }}
         role="banner"
