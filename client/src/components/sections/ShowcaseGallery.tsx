@@ -227,14 +227,14 @@ export default function ShowcaseGallery() {
       <ContainerScroll className="relative h-[350vh]">
         <ContainerSticky className="h-svh bg-[#0000009e] -mt-8">
           <GalleryContainer className="-mt-4">
-            <GalleryCol yRange={["-10%", "2%"]} className="mt-[90px] mb-[90px]">
+            <GalleryCol yRange={["-10%", "2%"]} className="mt-[90px] mb-[90px] space-y-1">
               {VIDEOS_1.map((videoUrl, index) => (
                 <div
                   key={index}
-                  className="block aspect-square w-full rounded-md shadow-lg bg-black overflow-hidden"
+                  className="block aspect-video w-full rounded-md shadow-lg overflow-hidden border-b border-gray-800/50"
                 >
                   <video
-                    className="w-full h-full object-contain"
+                    className="w-full h-full object-cover"
                     autoPlay
                     muted
                     loop
@@ -251,14 +251,14 @@ export default function ShowcaseGallery() {
                 </div>
               ))}
             </GalleryCol>
-            <GalleryCol className="mt-[40px] mb-[120px]" yRange={["0%", "-5%"]}>
+            <GalleryCol className="mt-[40px] mb-[120px] space-y-1" yRange={["0%", "-5%"]}>
               {VIDEOS_2.map((videoUrl, index) => (
                 <div
                   key={index}
-                  className="block aspect-square w-full rounded-md shadow-lg bg-black overflow-hidden"
+                  className="block aspect-video w-full rounded-md shadow-lg overflow-hidden border-b border-gray-800/50"
                 >
                   <video
-                    className="w-full h-full object-contain"
+                    className="w-full h-full object-cover"
                     autoPlay
                     muted
                     loop
@@ -275,7 +275,7 @@ export default function ShowcaseGallery() {
                 </div>
               ))}
             </GalleryCol>
-            <GalleryCol yRange={["-10%", "2%"]} className="mt-[85px] mb-[85px]">
+            <GalleryCol yRange={["-10%", "2%"]} className="mt-[85px] mb-[85px] space-y-1">
               {IMAGES_3.map((imageUrl, index) => {
                 // Check if it's a video file
                 const isVideo = imageUrl.endsWith('.mp4');
@@ -283,10 +283,10 @@ export default function ShowcaseGallery() {
                 return isVideo ? (
                   <div
                     key={index}
-                    className="block aspect-square w-full rounded-md shadow-lg bg-black overflow-hidden"
+                    className="block aspect-video w-full rounded-md shadow-lg overflow-hidden border-b border-gray-800/50"
                   >
                     <video
-                      className="w-full h-full object-contain"
+                      className="w-full h-full object-cover"
                       autoPlay
                       muted
                       loop
@@ -304,10 +304,10 @@ export default function ShowcaseGallery() {
                 ) : (
                   <div
                     key={index}
-                    className="block aspect-square w-full rounded-md shadow-lg bg-black overflow-hidden"
+                    className="block aspect-square w-full rounded-md shadow-lg overflow-hidden border-b border-gray-800/50"
                   >
                     <img
-                      className="w-full h-full object-contain"
+                      className="w-full h-full object-cover"
                       src={imageUrl}
                       alt="showcase item"
                     />
