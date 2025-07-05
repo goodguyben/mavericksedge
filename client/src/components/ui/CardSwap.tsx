@@ -226,6 +226,10 @@ const CardSwap: React.FC<CardSwapProps> = ({
   easing = "elastic",
   children,
 }) => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const tlRef = useRef<gsap.core.Timeline | null>(null);
+  const intervalRef = useRef<number>();
+  
   const config =
     easing === "elastic"
       ? {
@@ -257,10 +261,6 @@ const CardSwap: React.FC<CardSwapProps> = ({
   const order = useRef<number[]>(
     Array.from({ length: childArr.length }, (_, i) => i)
   );
-
-  const tlRef = useRef<gsap.core.Timeline | null>(null);
-  const intervalRef = useRef<number>();
-  const container = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const total = refs.length;
@@ -345,7 +345,7 @@ const CardSwap: React.FC<CardSwapProps> = ({
     intervalRef.current = window.setInterval(swap, delay);
 
     // Add pause on hover functionality
-    const containerEl = container.current;
+    const containerEl = containerRef.current;
     const handleMouseEnter = () => {
       if (pauseOnHover && intervalRef.current) {
         clearInterval(intervalRef.current);
@@ -379,7 +379,7 @@ const CardSwap: React.FC<CardSwapProps> = ({
       ? cloneElement(child, {
           key: i,
           ref: refs[i],
-          cardNumber: i + 1, // Add card number prop
+          cardNumber: i + 1,
           style: { width, height, ...(child.props.style ?? {}) },
           onClick: (e) => {
             child.props.onClick?.(e as React.MouseEvent<HTMLDivElement>);
@@ -391,7 +391,7 @@ const CardSwap: React.FC<CardSwapProps> = ({
 
   return (
     <div
-      ref={container}
+      ref={containerRef}
       className="absolute bottom-0 right-0 transform translate-x-[5%] translate-y-[20%] origin-bottom-right perspective-[900px] overflow-visible max-[768px]:translate-x-[25%] max-[768px]:translate-y-[25%] max-[768px]:scale-[0.75] max-[480px]:translate-x-[25%] max-[480px]:translate-y-[25%] max-[480px]:scale-[0.55]"
       style={{ width, height, pointerEvents: 'auto' }}
     >
