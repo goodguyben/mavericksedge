@@ -73,10 +73,10 @@ export default function Hero() {
           <motion.h1 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
+            transition={{ duration: 0.8, delay: 0.5 }}
             className="flex items-center gap-2 text-base sm:text-lg md:text-xl lg:text-lg xl:text-xl 2xl:text-2xl font-heading font-medium mb-2 sm:mb-3 md:mb-4 lg:mb-4 xl:mb-5 2xl:mb-6 justify-start sm:justify-end md:justify-start"
           >
-            <MapPin className="h-3 w-3 sm:h-4 sm:w-4 md:h-5 md:w-5 lg:h-4 lg:w-4 xl:h-5 xl:w-5 2xl:h-6 2xl:w-6 text-maverick-orange/80 flex-shrink-0" />
+            <MapPin className="h-3 w-3 sm:h-4 sm:w-4 md:h-5 md:w-5 lg:h-4 lg:w-4 xl:h-5 xl:h-5 2xl:h-6 2xl:w-6 text-maverick-orange/80 flex-shrink-0" />
             <span className="font-light">
               <GradientText 
                 colors={["#C0C0C0", "#E8E8E8", "#F5F5F5", "#FFFFFF", "#F5F5F5", "#E8E8E8", "#C0C0C0"]}
@@ -92,7 +92,7 @@ export default function Hero() {
             <motion.div 
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.7, delay: 0.4 }}
+              transition={{ duration: 0.8, delay: 1.3 }}
               className="block"
             >
               <span className="text-maverick-cream block font-extrabold text-3xl sm:text-5xl md:text-5xl lg:text-5xl xl:text-[56px]">Building resilient online presence from</span>
@@ -111,8 +111,8 @@ export default function Hero() {
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 2.8 }}
-            className="hero-tagline text-sm sm:text-base md:text-lg lg:text-lg xl:text-xl 2xl:text-2xl text-maverick-cream/80 sm:mt-4 md:mt-5 lg:mt-6 xl:mt-7 2xl:mt-8 sm:mb-6 md:mb-8 lg:mb-10 xl:mb-12 2xl:mb-14 font-sans leading-relaxed text-left mt-[16px] mb-[24px] pl-[2px] pr-[2px]"
+            transition={{ duration: 0.8, delay: 2.5 }}
+            className="hero-tagline text-sm sm:text-base md:text-lg lg:text-lg xl:text-xl 2xl:text-2xl text-maverick-cream/80 sm:mt-4 md:mt-5 lg:mt-6 xl:mt-7 2xl:mt-8 sm:mb-6 md:mb-8 lg:mb-10 xl:mb-12 2xl:mb-14 font-sans leading-relaxed text-left mt-[16px] mb-[24px] pl-0"
           >
             We're Edmonton-based creators who design beautiful websites, improve your online visibility, and offer smart AI Integration so you can focus on growing your business
           </motion.p>
@@ -121,7 +121,7 @@ export default function Hero() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 3.2 }}
+            transition={{ duration: 0.8, delay: 3.5 }}
             className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-start items-start"
           >
             <Button 
