@@ -344,8 +344,35 @@ const CardSwap: React.FC<CardSwapProps> = ({
     swap();
     intervalRef.current = window.setInterval(swap, delay);
 
-    return () => clearInterval(intervalRef.current);
-  }, [cardDistance, verticalDistance, delay, skewAmount, easing]);
+    // Add pause on hover functionality
+    const containerEl = container.current;
+    const handleMouseEnter = () => {
+      if (pauseOnHover && intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
+    };
+
+    const handleMouseLeave = () => {
+      if (pauseOnHover && !intervalRef.current) {
+        intervalRef.current = window.setInterval(swap, delay);
+      }
+    };
+
+    if (containerEl && pauseOnHover) {
+      containerEl.addEventListener('mouseenter', handleMouseEnter);
+      containerEl.addEventListener('mouseleave', handleMouseLeave);
+    }
+
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
+      if (containerEl && pauseOnHover) {
+        containerEl.removeEventListener('mouseenter', handleMouseEnter);
+        containerEl.removeEventListener('mouseleave', handleMouseLeave);
+      }
+    };
+  }, [cardDistance, verticalDistance, delay, skewAmount, easing, pauseOnHover, refs.length]);
 
   const rendered = childArr.map((child, i) =>
     isValidElement<CardProps>(child)
