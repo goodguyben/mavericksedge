@@ -76,10 +76,7 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
       <div
         ref={ref}
         {...rest}
-        className={`absolute top-1/2 left-1/2 rounded-xl border border-white bg-black text-white
-                    [transform-style:preserve-3d] [will-change:transform] [backface-visibility:hidden]
-                    flex flex-col overflow-hidden
-                    ${customClass ?? ""} ${rest.className ?? ""}`.trim()}
+        className={`absolute top-1/2 left-1/2 rounded-xl border border-white bg-black text-white [transform-style:preserve-3d] [will-change:transform] [backface-visibility:hidden] flex flex-col overflow-hidden ${customClass ?? ""} ${rest.className ?? ""}`.trim()}
       >
         {/* Title section with macOS controls and icon */}
         <div className="bg-black p-3 flex items-center justify-start space-x-2">
