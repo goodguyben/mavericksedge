@@ -45,8 +45,17 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
                   flex flex-col overflow-hidden
                   ${customClass ?? ""} ${rest.className ?? ""}`.trim()}
     >
+      {/* macOS Window Controls */}
+      <div className="bg-black p-3 flex items-center justify-start space-x-2">
+        <div className="flex space-x-2">
+          <div className="w-3 h-3 rounded-full bg-red-500"></div>
+          <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
+          <div className="w-3 h-3 rounded-full bg-green-500"></div>
+        </div>
+      </div>
+      
       {/* Title section with simple black background */}
-      <div className="bg-black p-4">
+      <div className="bg-black px-4 pb-4">
         {title && (
           <div className="flex items-center space-x-2">
             {/* Animated icon next to title */}
