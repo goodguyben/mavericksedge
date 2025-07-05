@@ -102,7 +102,7 @@ export default function Hero() {
                   colors={["#FF5630", "#FF8A50", "#FFB899", "#FF5630"]}
                   animationSpeed={6}
                 >
-                  River valley to digital valley
+                  river valley to digital valley
                 </GradientText>
               </span>
             </motion.div>
