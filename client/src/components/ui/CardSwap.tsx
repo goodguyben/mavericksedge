@@ -88,7 +88,7 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
           </div>
 
           {title && (
-            <div className="flex items-center space-x-2 ml-[12px] mr-[12px]">
+            <div className="flex items-center space-x-2 ml-[12px] mr-[12px] pl-[10px] pr-[10px]">
               {/* Animated icon next to title */}
               {title === "Mobile Responsive" && (
                 <motion.div
