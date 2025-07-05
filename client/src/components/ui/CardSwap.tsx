@@ -165,17 +165,15 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
             </div>
           )}
         </div>
-
         {/* White divider line */}
         <div className="border-t border-white"></div>
-
         {/* Content area with GIF */}
         <div className="flex-1 p-4 bg-black flex items-center justify-center">
           {title && (
             <img 
               src={getCardGif(title, cardNumber)}
               alt={`${title} illustration`}
-              className="max-w-full max-h-full object-contain rounded-lg"
+              className="max-w-full max-h-full object-contain rounded-lg ml-[0px] mr-[0px] pl-[0px] pr-[0px] pt-[0px] pb-[0px] mt-[-68px] mb-[-68px]"
               style={{ maxWidth: '200px', maxHeight: '200px' }}
             />
           )}
