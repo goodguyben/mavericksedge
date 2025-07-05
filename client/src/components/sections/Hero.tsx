@@ -168,10 +168,10 @@ export default function Hero() {
             />
           </CardSwap>
         </motion.div>
-        {/* CardSwap Component - Mobile bottom right, larger */}
+        {/* CardSwap Component - Mobile bottom left, larger */}
         <motion.div 
-          className="lg:hidden absolute bottom-4 right-4 pointer-events-auto"
-          initial={{ opacity: 0, x: 100 }}
+          className="lg:hidden absolute bottom-4 left-4 sm:left-8 md:left-12 pointer-events-auto"
+          initial={{ opacity: 0, x: -100 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 1.0, delay: 3.5, ease: "easeOut" }}
         >
