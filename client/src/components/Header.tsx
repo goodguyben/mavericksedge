@@ -112,13 +112,13 @@ export default function Header() {
   return (
     <>
       <motion.header 
-        className="sticky top-0 left-0 w-full py-3 px-4 sm:px-6 lg:px-8 z-50 transition-all duration-300 mt-[-44px] mb-[-44px] relative"
+        className="top-0 left-0 w-full py-3 px-4 sm:px-6 lg:px-8 z-50 transition-all duration-300 mt-[-44px] mb-[-44px] relative text-[#ffffff] bg-[#ffffff00]"
         style={{
           backdropFilter: 'blur(32px) saturate(200%) brightness(110%)',
           WebkitBackdropFilter: 'blur(32px) saturate(200%) brightness(110%)',
           background: isScrolled 
-            ? 'linear-gradient(135deg, rgba(18, 18, 18, 0.92) 0%, rgba(25, 25, 25, 0.95) 50%, rgba(18, 18, 18, 0.92) 100%)' 
-            : 'linear-gradient(135deg, rgba(18, 18, 18, 0.85) 0%, rgba(25, 25, 25, 0.9) 50%, rgba(18, 18, 18, 0.85) 100%)',
+            ? 'linear-gradient(135deg, rgba(18, 18, 18, 0.75) 0%, rgba(25, 25, 25, 0.8) 50%, rgba(18, 18, 18, 0.75) 100%)' 
+            : 'linear-gradient(135deg, rgba(18, 18, 18, 0.65) 0%, rgba(25, 25, 25, 0.7) 50%, rgba(18, 18, 18, 0.65) 100%)',
           border: '1px solid rgba(255, 255, 255, 0.08)',
           borderTop: 'none',
           boxShadow: `
@@ -268,8 +268,7 @@ export default function Header() {
           </button>
         </div>
       </motion.header>
-
-            {/* Portal-based dropdowns for better positioning */}
+      {/* Portal-based dropdowns for better positioning */}
       {typeof window !== 'undefined' && servicesDropdownOpen && servicesButtonRect && createPortal(
         <motion.div 
           initial={{ opacity: 0, y: -8 }}
@@ -330,7 +329,6 @@ export default function Header() {
         </motion.div>,
         document.body
       )}
-
       {typeof window !== 'undefined' && pricingDropdownOpen && pricingButtonRect && createPortal(
         <motion.div 
           initial={{ opacity: 0, y: -8 }}
