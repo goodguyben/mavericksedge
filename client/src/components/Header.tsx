@@ -88,11 +88,9 @@ export default function Header() {
           background: isScrolled 
             ? 'rgba(18, 18, 18, 0.4)' 
             : 'rgba(18, 18, 18, 0.2)',
-          borderBottom: '1px solid rgba(255, 86, 48, 0.2)',
           boxShadow: `
             0 8px 32px rgba(0, 0, 0, 0.3),
-            inset 0 1px 0 rgba(255, 255, 255, 0.1),
-            inset 0 -1px 0 rgba(255, 86, 48, 0.1)
+            inset 0 1px 0 rgba(255, 255, 255, 0.1)
           `,
         }}
         role="banner"
