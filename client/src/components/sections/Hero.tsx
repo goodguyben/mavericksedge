@@ -147,7 +147,7 @@ export default function Hero() {
           transition={{ duration: 1.0, delay: 3.5, ease: "easeOut" }}
         >
           <CardSwap
-            width={500}
+            width={600}
             height={400}
             cardDistance={60}
             verticalDistance={70}
@@ -178,7 +178,7 @@ export default function Hero() {
           transition={{ duration: 1.0, delay: 3.5, ease: "easeOut" }}
         >
           <CardSwap
-            width={420}
+            width={500}
             height={340}
             cardDistance={55}
             verticalDistance={60}

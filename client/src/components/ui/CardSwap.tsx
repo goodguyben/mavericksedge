@@ -168,13 +168,12 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
         {/* White divider line */}
         <div className="border-t border-white"></div>
         {/* Content area with GIF */}
-        <div className="flex-1 p-4 bg-black flex items-center justify-center">
+        <div className="flex-1 bg-black overflow-hidden">
           {title && (
             <img 
               src={getCardGif(title, cardNumber)}
               alt={`${title} illustration`}
-              className="max-w-full max-h-full object-contain rounded-lg ml-[0px] mr-[0px] pl-[0px] pr-[0px] mt-[-68px] mb-[-68px] pt-[2px] pb-[2px]"
-              style={{ maxWidth: '200px', maxHeight: '200px' }}
+              className="w-full h-full object-cover"
             />
           )}
           {rest.children}
@@ -270,13 +269,15 @@ const CardSwap: React.FC<CardSwapProps> = ({
 
   useEffect(() => {
     const total = refs.length;
-    refs.forEach((r, i) =>
-      placeNow(
-        r.current!,
-        makeSlot(i, cardDistance, verticalDistance, total),
-        skewAmount
-      )
-    );
+    refs.forEach((r, i) => {
+      if (r.current) {
+        placeNow(
+          r.current,
+          makeSlot(i, cardDistance, verticalDistance, total),
+          skewAmount
+        );
+      }
+    });
 
     const swap = () => {
       // Check if we should pause (only for hover, not scroll)
@@ -285,7 +286,9 @@ const CardSwap: React.FC<CardSwapProps> = ({
       if (order.current.length < 2) return;
 
       const [front, ...rest] = order.current;
-      const elFront = refs[front].current!;
+      const elFront = refs[front].current;
+      if (!elFront) return;
+      
       const tl = gsap.timeline();
       tlRef.current = tl;
 
@@ -297,7 +300,9 @@ const CardSwap: React.FC<CardSwapProps> = ({
 
       tl.addLabel("promote", `-=${config.durDrop * config.promoteOverlap}`);
       rest.forEach((idx, i) => {
-        const el = refs[idx].current!;
+        const el = refs[idx].current;
+        if (!el) return;
+        
         const slot = makeSlot(i, cardDistance, verticalDistance, refs.length);
         tl.set(el, { zIndex: slot.zIndex }, "promote");
         tl.to(

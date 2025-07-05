@@ -44,7 +44,7 @@ export default function App() {
     // Simulate app initialization
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 500);
+    }, 2000); // Reduced from minDisplayTime to ensure loading finishes
 
     return () => clearTimeout(timer);
   }, []);
