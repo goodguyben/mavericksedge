@@ -127,34 +127,35 @@ const HeaderGlassEffect: React.FC<{ children: React.ReactNode; className?: strin
     <div
       className={`relative overflow-hidden ${className}`}
       style={{
-        backdropFilter: "blur(12px)",
-        WebkitBackdropFilter: "blur(12px)",
+        backdropFilter: "blur(20px)",
+        WebkitBackdropFilter: "blur(20px)",
       }}
     >
-      {/* Glass Layers */}
+      {/* Glass Layers - Balanced opacity */}
       <div
         className="absolute inset-0 z-0"
         style={{
-          background: "rgba(18, 18, 18, 0.85)",
-          backdropFilter: "blur(12px)",
-          WebkitBackdropFilter: "blur(12px)",
+          background: "rgba(18, 18, 18, 0.92)",
+          backdropFilter: "blur(16px)",
+          WebkitBackdropFilter: "blur(16px)",
         }}
       />
       <div
         className="absolute inset-0 z-10"
         style={{ 
-          background: "rgba(255, 255, 255, 0.05)",
-          backdropFilter: "blur(8px)",
-          WebkitBackdropFilter: "blur(8px)",
+          background: "rgba(255, 255, 255, 0.08)",
+          backdropFilter: "blur(12px)",
+          WebkitBackdropFilter: "blur(12px)",
         }}
       />
       <div
         className="absolute inset-0 z-20"
         style={{
+          background: "rgba(255, 86, 48, 0.02)",
           boxShadow:
-            "inset 0 1px 0 rgba(255, 255, 255, 0.1), inset 0 -1px 0 rgba(0, 0, 0, 0.1)",
-          backdropFilter: "blur(4px)",
-          WebkitBackdropFilter: "blur(4px)",
+            "inset 0 1px 0 rgba(255, 255, 255, 0.15), inset 0 -1px 0 rgba(0, 0, 0, 0.15)",
+          backdropFilter: "blur(8px)",
+          WebkitBackdropFilter: "blur(8px)",
         }}
       />
 

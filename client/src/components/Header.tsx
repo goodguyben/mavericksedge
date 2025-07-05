@@ -94,8 +94,8 @@ export default function Header() {
         }}
       >
         <HeaderGlassEffect 
-          className={`py-3 px-4 sm:px-6 lg:px-8 border-b border-maverick-orange/10 ${
-            isScrolled ? 'opacity-100' : 'opacity-95'
+          className={`py-3 px-4 sm:px-6 lg:px-8 border-b border-maverick-orange/20 ${
+            isScrolled ? 'opacity-100' : 'opacity-100'
           }`}
         >
         <div className="container mx-auto flex justify-between items-center max-w-7xl">
