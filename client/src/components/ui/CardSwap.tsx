@@ -264,8 +264,6 @@ const CardSwap: React.FC<CardSwapProps> = ({
   const tlRef = useRef<gsap.core.Timeline | null>(null);
   const intervalRef = useRef<number>();
   const container = useRef<HTMLDivElement>(null);
-  const isHoveredRef = useRef<boolean>(false);
-  const shouldPauseRef = useRef<boolean>(false);
 
   useEffect(() => {
     const total = refs.length;
@@ -345,16 +343,12 @@ const CardSwap: React.FC<CardSwapProps> = ({
       });
     };
 
+    // Start swapping immediately and continuously
     swap();
     intervalRef.current = window.setInterval(swap, delay);
 
-    // Remove pauseOnHover logic
-    clearInterval(intervalRef.current);
-    intervalRef.current = window.setInterval(swap, delay);
-
-
     return () => clearInterval(intervalRef.current);
-  }, [cardDistance, verticalDistance, delay, pauseOnHover, skewAmount, easing]);
+  }, [cardDistance, verticalDistance, delay, skewAmount, easing]);
 
   const rendered = childArr.map((child, i) =>
     isValidElement<CardProps>(child)
@@ -383,4 +377,3 @@ const CardSwap: React.FC<CardSwapProps> = ({
 };
 
 export default CardSwap;
-`
