@@ -817,10 +817,7 @@ export default function WhatWeDoSection() {
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.8 }}
                           >
-                            {service.id === "web-development" ? "Explore Web Design Services" : 
-                             service.id === "creative-design" ? "Discover Marketing Solutions" : 
-                             service.id === "digital-strategy" ? "Learn About AI Integration" : 
-                             "View Support Services"} <ArrowRight className="w-4 h-4" />
+                            Learn more <ArrowRight className="w-4 h-4" />
                           </motion.button>
                         </motion.div>
                       </motion.div>
@@ -1038,10 +1035,7 @@ export default function WhatWeDoSection() {
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.6 }}
                           >
-                            {service.id === "web-development" ? "Explore Web Design Services" : 
-                             service.id === "creative-design" ? "Discover Marketing Solutions" : 
-                             service.id === "digital-strategy" ? "Learn About AI Integration" : 
-                             "View Support Services"} <ArrowRight className="w-4 h-4" />
+                            Learn more <ArrowRight className="w-4 h-4" />
                           </motion.button>
                         </motion.div>
 

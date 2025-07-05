@@ -69,7 +69,7 @@ export default function Hero() {
           transition={{ duration: 0.1 }}
         >
           {/* Location heading with metallic gradient */}
-          <motion.div 
+          <motion.h1 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 1.0 }}
@@ -81,13 +81,13 @@ export default function Hero() {
                 colors={["#C0C0C0", "#E8E8E8", "#F5F5F5", "#FFFFFF", "#F5F5F5", "#E8E8E8", "#C0C0C0"]}
                 animationSpeed={4}
               >
-                Edmonton Website Builders & Web Design Company
+                Website Design Edmonton
               </GradientText>
             </span>
-          </motion.div>
+          </motion.h1>
 
           {/* Main heading - responsive text sizes */}
-          <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-heading font-extrabold tracking-wide leading-tight text-maverick-cream text-left">
+          <div className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-heading font-extrabold tracking-wide leading-tight text-maverick-cream text-left">
             <motion.div 
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -104,7 +104,7 @@ export default function Hero() {
                 </GradientText>
               </span>
             </motion.div>
-          </h1>
+          </div>
 
           {/* Description text */}
           <motion.p

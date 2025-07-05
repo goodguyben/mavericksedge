@@ -1,7 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "wouter";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, ChevronDown, X, ChevronRight } from "lucide-react";
+import { createPortal } from "react-dom";
 import Logo from "./Logo";
 import { ROUTES } from "@/lib/routes";
 
@@ -12,6 +13,10 @@ export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [location] = useLocation();
   const isHomePage = location === '/';
+  const servicesButtonRef = useRef<HTMLButtonElement>(null);
+  const pricingButtonRef = useRef<HTMLButtonElement>(null);
+  const [servicesButtonRect, setServicesButtonRect] = useState<DOMRect | null>(null);
+  const [pricingButtonRect, setPricingButtonRect] = useState<DOMRect | null>(null);
 
   // Handle scroll effect
   useEffect(() => {
@@ -78,16 +83,42 @@ export default function Header() {
 
   const isCurrentPath = (path: string) => location === path;
 
+  // Update button positions for dropdown positioning
+  const updateServicesButtonRect = () => {
+    if (servicesButtonRef.current) {
+      setServicesButtonRect(servicesButtonRef.current.getBoundingClientRect());
+    }
+  };
+
+  const updatePricingButtonRect = () => {
+    if (pricingButtonRef.current) {
+      setPricingButtonRect(pricingButtonRef.current.getBoundingClientRect());
+    }
+  };
+
+  // Update positions when dropdowns open
+  useEffect(() => {
+    if (servicesDropdownOpen) {
+      updateServicesButtonRect();
+    }
+  }, [servicesDropdownOpen]);
+
+  useEffect(() => {
+    if (pricingDropdownOpen) {
+      updatePricingButtonRect();
+    }
+  }, [pricingDropdownOpen]);
+
   return (
     <>
       <motion.header 
-        className="sticky top-0 left-0 w-full py-3 px-4 sm:px-6 lg:px-8 z-50 transition-all duration-300 mt-[-44px] mb-[-44px] relative overflow-hidden"
+        className="sticky top-0 left-0 w-full py-3 px-4 sm:px-6 lg:px-8 z-50 transition-all duration-300 mt-[-44px] mb-[-44px] relative"
         style={{
           backdropFilter: 'blur(20px) saturate(180%)',
           WebkitBackdropFilter: 'blur(20px) saturate(180%)',
           background: isScrolled 
-            ? 'rgba(18, 18, 18, 0.4)' 
-            : 'rgba(18, 18, 18, 0.2)',
+            ? 'rgba(18, 18, 18, 0.95)' 
+            : 'rgba(18, 18, 18, 0.9)',
           boxShadow: `
             0 8px 32px rgba(0, 0, 0, 0.3),
             inset 0 1px 0 rgba(255, 255, 255, 0.1)
@@ -116,7 +147,7 @@ export default function Header() {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center space-x-6 xl:space-x-8" role="navigation" aria-label="Main Navigation">
+          <nav className="hidden lg:flex items-center space-x-6 xl:space-x-8 relative" role="navigation" aria-label="Main Navigation" style={{ zIndex: 'auto' }}>
             {/* Home Link */}
             <motion.div
                 whileHover={{ scale: 1.05 }}
@@ -135,8 +166,9 @@ export default function Header() {
               </motion.div>
 
             {/* Services Dropdown */}
-            <div className="relative dropdown-container">
+            <div className="relative dropdown-container" style={{ zIndex: 'auto' }}>
               <button 
+                ref={servicesButtonRef}
                 type="button"
                 aria-expanded={servicesDropdownOpen}
                 aria-haspopup="true"
@@ -154,67 +186,13 @@ export default function Header() {
                 }`} />
               </button>
 
-              <AnimatePresence>
-                {servicesDropdownOpen && (
-                  <motion.div 
-                    initial={{ opacity: 0, y: -8 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -8 }}
-                    transition={{ duration: 0.2 }}
-                    className="absolute left-0 mt-2 w-64 z-50"
-                    onMouseEnter={() => setServicesDropdownOpen(true)}
-                    onMouseLeave={() => setServicesDropdownOpen(false)}
-                  >
-                    <div className="py-2 bg-[#1A1A1A]/95 backdrop-blur-md border border-gray-800/50 rounded-lg shadow-xl" role="menu">
-                      <Link 
-                        href={ROUTES.SERVICES.ALL} 
-                        className={`block px-4 py-3 min-h-[44px] text-base touch-manipulation ${
-                          isCurrentPath(ROUTES.SERVICES.ALL) ? 'text-maverick-orange bg-maverick-orange/10' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'
-                        }`} 
-                        role="menuitem"
-                        onClick={() => setServicesDropdownOpen(false)}
-                      >
-                        All Services
-                      </Link>
-                      <Link 
-                        href={ROUTES.SERVICES.WEB_DESIGN} 
-                        className={`block px-4 py-3 min-h-[44px] text-base touch-manipulation ${
-                          isCurrentPath(ROUTES.SERVICES.WEB_DESIGN) ? 'text-maverick-orange bg-maverick-orange/10' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'
-                        }`} 
-                        role="menuitem"
-                        onClick={() => setServicesDropdownOpen(false)}
-                      >
-                        Web Design & Development
-                      </Link>
-                      <Link 
-                        href={ROUTES.SERVICES.MARKETING} 
-                        className={`block px-4 py-3 min-h-[44px] text-base touch-manipulation ${
-                          isCurrentPath(ROUTES.SERVICES.MARKETING) ? 'text-maverick-orange bg-maverick-orange/10' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'
-                        }`} 
-                        role="menuitem"
-                        onClick={() => setServicesDropdownOpen(false)}
-                      >
-                        Marketing & Creative
-                      </Link>
-                      <Link 
-                        href={ROUTES.SERVICES.AI_AUTOMATION} 
-                        className={`block px-4 py-3 min-h-[44px] text-base touch-manipulation ${
-                          isCurrentPath(ROUTES.SERVICES.AI_AUTOMATION) ? 'text-maverick-orange bg-maverick-orange/10' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'
-                        }`} 
-                        role="menuitem"
-                        onClick={() => setServicesDropdownOpen(false)}
-                      >
-                        AI Integration & Automation
-                      </Link>
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
+              {/* Dropdown content now rendered via portal */}
             </div>
 
             {/* Pricing Dropdown */}
-            <div className="relative dropdown-container">
+            <div className="relative dropdown-container" style={{ zIndex: 'auto' }}>
               <button 
+                ref={pricingButtonRef}
                 type="button"
                 aria-expanded={pricingDropdownOpen}
                 aria-haspopup="true"
@@ -232,62 +210,7 @@ export default function Header() {
                 }`} />
               </button>
 
-              <AnimatePresence>
-                {pricingDropdownOpen && (
-                  <motion.div 
-                    initial={{ opacity: 0, y: -8 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -8 }}
-                    transition={{ duration: 0.2 }}
-                    className="absolute left-0 mt-2 w-64 z-50"
-                    onMouseEnter={() => setPricingDropdownOpen(true)}
-                    onMouseLeave={() => setPricingDropdownOpen(false)}
-                  >
-                    <div className="py-2 bg-[#1A1A1A]/95 backdrop-blur-md border border-gray-800/50 rounded-lg shadow-xl" role="menu">
-                      <Link 
-                        href={ROUTES.PRICING.ALL} 
-                        className={`block px-4 py-3 min-h-[44px] text-base touch-manipulation ${
-                          isCurrentPath(ROUTES.PRICING.ALL) ? 'text-maverick-orange bg-maverick-orange/10' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'
-                        }`} 
-                        role="menuitem"
-                        onClick={() => setPricingDropdownOpen(false)}
-                      >
-                        All Pricing Plans
-                      </Link>
-                      <Link 
-                        href={ROUTES.PRICING.WEB_DESIGN} 
-                        className={`block px-4 py-3 min-h-[44px] text-base touch-manipulation ${
-                          isCurrentPath(ROUTES.PRICING.WEB_DESIGN) ? 'text-maverick-orange bg-maverick-orange/10' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'
-                        }`} 
-                        role="menuitem"
-                        onClick={() => setPricingDropdownOpen(false)}
-                      >
-                        Web Design & Development
-                      </Link>
-                      <Link 
-                        href={ROUTES.PRICING.MARKETING} 
-                        className={`block px-4 py-3 min-h-[44px] text-base touch-manipulation ${
-                          isCurrentPath(ROUTES.PRICING.MARKETING) ? 'text-maverick-orange bg-maverick-orange/10' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'
-                        }`} 
-                        role="menuitem"
-                        onClick={() => setPricingDropdownOpen(false)}
-                      >
-                        Marketing & Creative
-                      </Link>
-                      <Link 
-                        href={ROUTES.PRICING.AI_AUTOMATION} 
-                        className={`block px-4 py-3 min-h-[44px] text-base touch-manipulation ${
-                          isCurrentPath(ROUTES.PRICING.AI_AUTOMATION) ? 'text-maverick-orange bg-maverick-orange/10' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'
-                        }`} 
-                        role="menuitem"
-                        onClick={() => setPricingDropdownOpen(false)}
-                      >
-                        AI Integration & Automation
-                      </Link>
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
+              {/* Dropdown content now rendered via portal */}
             </div>
 
             {/* About Link */}
@@ -341,6 +264,129 @@ export default function Header() {
           </button>
         </div>
       </motion.header>
+
+            {/* Portal-based dropdowns for better positioning */}
+      {typeof window !== 'undefined' && servicesDropdownOpen && servicesButtonRect && createPortal(
+        <motion.div 
+          initial={{ opacity: 0, y: -8 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -8 }}
+          transition={{ duration: 0.2 }}
+          className="fixed w-64 z-[9999]"
+          style={{ 
+            top: servicesButtonRect.bottom + 8,
+            left: servicesButtonRect.left,
+            zIndex: 9999
+          }}
+          onMouseEnter={() => setServicesDropdownOpen(true)}
+          onMouseLeave={() => setServicesDropdownOpen(false)}
+        >
+          <div className="py-2 bg-[#1A1A1A] backdrop-blur-md border border-gray-800/50 rounded-lg shadow-xl" role="menu">
+            <Link 
+              href={ROUTES.SERVICES.ALL} 
+              className={`block px-4 py-3 min-h-[44px] text-base touch-manipulation ${
+                isCurrentPath(ROUTES.SERVICES.ALL) ? 'text-maverick-orange bg-maverick-orange/10' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'
+              }`} 
+              role="menuitem"
+              onClick={() => setServicesDropdownOpen(false)}
+            >
+              All Services
+            </Link>
+            <Link 
+              href={ROUTES.SERVICES.WEB_DESIGN} 
+              className={`block px-4 py-3 min-h-[44px] text-base touch-manipulation ${
+                isCurrentPath(ROUTES.SERVICES.WEB_DESIGN) ? 'text-maverick-orange bg-maverick-orange/10' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'
+              }`} 
+              role="menuitem"
+              onClick={() => setServicesDropdownOpen(false)}
+            >
+              Web Design & Development
+            </Link>
+            <Link 
+              href={ROUTES.SERVICES.MARKETING} 
+              className={`block px-4 py-3 min-h-[44px] text-base touch-manipulation ${
+                isCurrentPath(ROUTES.SERVICES.MARKETING) ? 'text-maverick-orange bg-maverick-orange/10' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'
+              }`} 
+              role="menuitem"
+              onClick={() => setServicesDropdownOpen(false)}
+            >
+              Marketing & Creative
+            </Link>
+            <Link 
+              href={ROUTES.SERVICES.AI_AUTOMATION} 
+              className={`block px-4 py-3 min-h-[44px] text-base touch-manipulation ${
+                isCurrentPath(ROUTES.SERVICES.AI_AUTOMATION) ? 'text-maverick-orange bg-maverick-orange/10' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'
+              }`} 
+              role="menuitem"
+              onClick={() => setServicesDropdownOpen(false)}
+            >
+              AI Integration & Automation
+            </Link>
+          </div>
+        </motion.div>,
+        document.body
+      )}
+
+      {typeof window !== 'undefined' && pricingDropdownOpen && pricingButtonRect && createPortal(
+        <motion.div 
+          initial={{ opacity: 0, y: -8 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -8 }}
+          transition={{ duration: 0.2 }}
+          className="fixed w-64 z-[9999]"
+          style={{ 
+            top: pricingButtonRect.bottom + 8,
+            left: pricingButtonRect.left,
+            zIndex: 9999
+          }}
+          onMouseEnter={() => setPricingDropdownOpen(true)}
+          onMouseLeave={() => setPricingDropdownOpen(false)}
+        >
+          <div className="py-2 bg-[#1A1A1A] backdrop-blur-md border border-gray-800/50 rounded-lg shadow-xl" role="menu">
+            <Link 
+              href={ROUTES.PRICING.ALL} 
+              className={`block px-4 py-3 min-h-[44px] text-base touch-manipulation ${
+                isCurrentPath(ROUTES.PRICING.ALL) ? 'text-maverick-orange bg-maverick-orange/10' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'
+              }`} 
+              role="menuitem"
+              onClick={() => setPricingDropdownOpen(false)}
+            >
+              All Pricing Plans
+            </Link>
+            <Link 
+              href={ROUTES.PRICING.WEB_DESIGN} 
+              className={`block px-4 py-3 min-h-[44px] text-base touch-manipulation ${
+                isCurrentPath(ROUTES.PRICING.WEB_DESIGN) ? 'text-maverick-orange bg-maverick-orange/10' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'
+              }`} 
+              role="menuitem"
+              onClick={() => setPricingDropdownOpen(false)}
+            >
+              Web Design & Development
+            </Link>
+            <Link 
+              href={ROUTES.PRICING.MARKETING} 
+              className={`block px-4 py-3 min-h-[44px] text-base touch-manipulation ${
+                isCurrentPath(ROUTES.PRICING.MARKETING) ? 'text-maverick-orange bg-maverick-orange/10' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'
+              }`} 
+              role="menuitem"
+              onClick={() => setPricingDropdownOpen(false)}
+            >
+              Marketing & Creative
+            </Link>
+            <Link 
+              href={ROUTES.PRICING.AI_AUTOMATION} 
+              className={`block px-4 py-3 min-h-[44px] text-base touch-manipulation ${
+                isCurrentPath(ROUTES.PRICING.AI_AUTOMATION) ? 'text-maverick-orange bg-maverick-orange/10' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'
+              }`} 
+              role="menuitem"
+              onClick={() => setPricingDropdownOpen(false)}
+            >
+              AI Integration & Automation
+            </Link>
+          </div>
+        </motion.div>,
+        document.body
+      )}
       {/* Mobile Navigation Panel */}
       <AnimatePresence>
         {isMobileMenuOpen && (
