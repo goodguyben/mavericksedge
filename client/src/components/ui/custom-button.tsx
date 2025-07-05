@@ -45,7 +45,7 @@ export function Button({
   // If href is provided, render a link with our CSS classes
   if (href) {
     return (
-      <a href={href} className="maverick-button maverick-button-primary ml-[16px] mr-[16px]">
+      <a href={href} className={buttonClasses}>
         {buttonContent}
       </a>
     );
