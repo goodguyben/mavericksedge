@@ -155,46 +155,16 @@ export default function Hero() {
             easing="elastic"
           >
             <Card 
-              customClass="border-maverick-orange/50" 
-              icon={() => <div className="w-4 h-4 bg-maverick-orange rounded"></div>}
-              title="Customizable"
-              description="Tailored websites that perfectly match your brand and business needs"
-            />
-            <Card 
-              customClass="border-green-500/50" 
-              icon={() => <div className="w-4 h-4 bg-green-500 rounded-full"></div>}
-              title="Smooth"
-              description="Seamless user experience across all devices and platforms"
-            />
-            <Card 
-              customClass="border-yellow-500/50" 
-              icon={() => <div className="w-4 h-4 bg-yellow-500 rounded-full"></div>}
-              title="Google Ranked"
-              description="SEO-optimized websites that rank higher in search results"
-            />
-            <Card 
-              customClass="border-blue-500/50" 
-              icon={() => <div className="w-4 h-4 bg-blue-500 rounded"></div>}
               title="Mobile Responsive"
-              description="Perfect performance on every device and screen size"
             />
             <Card 
-              customClass="border-green-600/50" 
-              icon={() => <div className="w-4 h-4 bg-green-600 rounded-full"></div>}
+              title="Human Design"
+            />
+            <Card 
+              title="Google Ranked"
+            />
+            <Card 
               title="Affordable"
-              description="High-quality solutions that fit your budget"
-            />
-            <Card 
-              customClass="border-purple-500/50" 
-              icon={() => <div className="w-4 h-4 bg-purple-500 rounded-full"></div>}
-              title="Creative Core"
-              description="Innovative designs that make your brand stand out"
-            />
-            <Card 
-              customClass="border-cyan-500/50" 
-              icon={() => <div className="w-4 h-4 bg-cyan-500 rounded-sm transform rotate-45"></div>}
-              title="Smart AI"
-              description="AI-powered features for enhanced user engagement"
             />
           </CardSwap>
         </div>
@@ -211,46 +181,16 @@ export default function Hero() {
             easing="elastic"
           >
             <Card 
-              customClass="border-maverick-orange/50" 
-              icon={() => <div className="w-3 h-3 bg-maverick-orange rounded"></div>}
-              title="Customizable"
-              description="Tailored solutions"
-            />
-            <Card 
-              customClass="border-green-500/50" 
-              icon={() => <div className="w-3 h-3 bg-green-500 rounded-full"></div>}
-              title="Smooth"
-              description="Great UX"
-            />
-            <Card 
-              customClass="border-yellow-500/50" 
-              icon={() => <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>}
-              title="Google Ranked"
-              description="SEO optimized"
-            />
-            <Card 
-              customClass="border-blue-500/50" 
-              icon={() => <div className="w-3 h-3 bg-blue-500 rounded"></div>}
               title="Mobile Responsive"
-              description="All devices"
             />
             <Card 
-              customClass="border-green-600/50" 
-              icon={() => <div className="w-3 h-3 bg-green-600 rounded-full"></div>}
+              title="Human Design"
+            />
+            <Card 
+              title="Google Ranked"
+            />
+            <Card 
               title="Affordable"
-              description="Budget friendly"
-            />
-            <Card 
-              customClass="border-purple-500/50" 
-              icon={() => <div className="w-3 h-3 bg-purple-500 rounded-full"></div>}
-              title="Creative Core"
-              description="Unique designs"
-            />
-            <Card 
-              customClass="border-cyan-500/50" 
-              icon={() => <div className="w-3 h-3 bg-cyan-500 rounded-sm transform rotate-45"></div>}
-              title="Smart AI"
-              description="AI powered"
             />
           </CardSwap>
         </div>
