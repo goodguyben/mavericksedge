@@ -222,7 +222,7 @@ export default function ShowcaseGallery() {
               {VIDEOS_1.map((videoUrl, index) => (
                 <video
                   key={index}
-                  className="aspect-video block h-auto max-h-full w-full rounded-md object-cover shadow-lg"
+                  className="block h-[400px] sm:h-[500px] md:h-[600px] lg:h-[700px] w-full rounded-md object-cover shadow-lg"
                   autoPlay
                   muted
                   loop
@@ -242,7 +242,7 @@ export default function ShowcaseGallery() {
               {VIDEOS_2.map((videoUrl, index) => (
                 <video
                   key={index}
-                  className="aspect-video block h-auto max-h-full w-full rounded-md object-cover shadow-lg"
+                  className="block h-[400px] sm:h-[500px] md:h-[600px] lg:h-[700px] w-full rounded-md object-cover shadow-lg"
                   autoPlay
                   muted
                   loop
@@ -259,14 +259,36 @@ export default function ShowcaseGallery() {
               ))}
             </GalleryCol>
             <GalleryCol yRange={["-10%", "2%"]} className="mt-[85px] mb-[85px]">
-              {IMAGES_3.map((imageUrl, index) => (
-                <img
-                  key={index}
-                  className="aspect-video block h-auto max-h-full w-full rounded-md object-cover shadow-lg"
-                  src={imageUrl}
-                  alt="showcase item"
-                />
-              ))}
+              {IMAGES_3.map((imageUrl, index) => {
+                // Check if it's a video file
+                const isVideo = imageUrl.endsWith('.mp4');
+                
+                return isVideo ? (
+                  <video
+                    key={index}
+                    className="block h-[400px] sm:h-[500px] md:h-[600px] lg:h-[700px] w-full rounded-md object-cover shadow-lg"
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    onCanPlay={() => {
+                      console.log(`Showcase video ready: ${imageUrl}`);
+                    }}
+                    onError={(e) => {
+                      console.warn(`Failed to play showcase video: ${imageUrl}`, e);
+                    }}
+                  >
+                    <source src={imageUrl} type="video/mp4" />
+                  </video>
+                ) : (
+                  <img
+                    key={index}
+                    className="block h-[400px] sm:h-[500px] md:h-[600px] lg:h-[700px] w-full rounded-md object-cover shadow-lg"
+                    src={imageUrl}
+                    alt="showcase item"
+                  />
+                );
+              })}
             </GalleryCol>
           </GalleryContainer>
         </ContainerSticky>
