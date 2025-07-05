@@ -75,9 +75,9 @@ export default function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="flex items-center gap-2 text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl font-heading font-medium mb-3 sm:mb-4 md:mb-6 lg:mb-8 xl:mb-10 2xl:mb-12"
+            className="flex items-center gap-2 text-base sm:text-lg md:text-xl lg:text-lg xl:text-xl 2xl:text-2xl font-heading font-medium mb-3 sm:mb-4 md:mb-6 lg:mb-8 xl:mb-10 2xl:mb-12"
           >
-            <MapPin className="h-3 w-3 sm:h-4 sm:w-4 md:h-5 md:w-5 lg:h-6 lg:w-6 xl:h-7 xl:w-7 2xl:h-8 2xl:w-8 text-maverick-orange/80 flex-shrink-0" />
+            <MapPin className="h-3 w-3 sm:h-4 sm:w-4 md:h-5 md:w-5 lg:h-4 lg:w-4 xl:h-5 xl:w-5 2xl:h-6 2xl:w-6 text-maverick-orange/80 flex-shrink-0" />
             <span className="font-light">
               <GradientText 
                 colors={["#C0C0C0", "#E8E8E8", "#F5F5F5", "#FFFFFF", "#F5F5F5", "#E8E8E8", "#C0C0C0"]}
