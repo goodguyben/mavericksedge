@@ -63,7 +63,7 @@ export default function Hero() {
       <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 2xl:px-16 z-20 flex justify-start items-center w-full pointer-events-none relative">
         {/* Main Content - Left aligned and responsive */}
         <motion.div
-          className="max-w-full lg:max-w-[60%] xl:max-w-[55%] 2xl:max-w-[50%] text-left w-full pointer-events-auto relative sm:pt-4 md:pt-8 lg:pt-0 mt-[84px] mb-[84px] pt-[30px] pb-[30px]"
+          className="max-w-full lg:max-w-[60%] xl:max-w-[55%] 2xl:max-w-[50%] text-left w-full pointer-events-auto relative sm:pt-4 md:pt-8 lg:pt-0 mt-[30px] mb-[84px] pt-[30px] pb-[30px]"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: heroOpacity, y: 0 }}
           transition={{ duration: 0.1 }}
@@ -79,7 +79,7 @@ export default function Hero() {
             <MapPin className="h-3 w-3 sm:h-4 sm:w-4 md:h-5 md:w-5 lg:h-4 lg:w-4 xl:h-5 xl:h-5 2xl:h-6 2xl:w-6 text-maverick-orange/80 flex-shrink-0" />
             <span className="font-light">
               <GradientText 
-                colors={["#C0C0C0", "#E8E8E8", "#F5F5F5", "#FFFFFF", "#F5F5F5", "#E8E8E8", "#C0C0C0"]}
+                colors={['#C0C0C0', '#E8E8E8', '#F5F5F5', '#FFFFFF', '#F5F5F5', '#E8E8E8', '#C0C0C0']}
                 animationSpeed={4}
               >
                 Website Design Edmonton
@@ -98,7 +98,7 @@ export default function Hero() {
               <span className="text-maverick-cream block font-extrabold text-3xl sm:text-5xl md:text-5xl lg:text-5xl xl:text-[56px]">Building resilient online presence from</span>
               <span className="block text-3xl sm:text-5xl md:text-5xl lg:text-5xl xl:text-[58px]">
                 <GradientText 
-                  colors={["#FF5630", "#FF8A50", "#FFB899", "#FF5630"]}
+                  colors={['#FF5630', '#FF8A50', '#FFB899', '#FF5630']}
                   animationSpeed={6}
                 >
                   river valley to digital valley
@@ -138,7 +138,6 @@ export default function Hero() {
             </Button>
           </motion.div>
         </motion.div>
-
         {/* CardSwap Component - Right side for desktop/tablet, moved down */}
         <motion.div 
           className="hidden lg:block absolute right-0 bottom-20 pointer-events-auto"
@@ -169,7 +168,6 @@ export default function Hero() {
             />
           </CardSwap>
         </motion.div>
-
         {/* CardSwap Component - Mobile bottom right, larger */}
         <motion.div 
           className="lg:hidden absolute bottom-4 right-4 pointer-events-auto"
