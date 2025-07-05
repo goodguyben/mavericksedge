@@ -60,7 +60,17 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
             gifNumber = 1;
         }
       }
-      return `/attached_assets/${gifNumber}_1751693734619.gif`;
+      
+      // Map each gif to the correct filename based on what's available in attached_assets
+      const gifMap: { [key: number]: string } = {
+        1: "1_1751693734619.gif",
+        2: "2_1751693734650.gif", 
+        3: "3_1751693734651.gif",
+        4: "4_1751693734651.gif"
+      };
+      
+      const gifFileName = gifMap[gifNumber] || gifMap[1];
+      return `/attached_assets/${gifFileName}`;
     };
 
     return (
