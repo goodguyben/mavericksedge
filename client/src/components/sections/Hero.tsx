@@ -143,13 +143,13 @@ export default function Hero() {
           </motion.div>
         </motion.div>
 
-        {/* CardSwap Component - Right side for desktop/tablet, bottom right for mobile */}
-        <div className="hidden lg:block absolute right-0 top-1/2 transform -translate-y-1/2 pointer-events-auto">
+        {/* CardSwap Component - Right side for desktop/tablet, moved down */}
+        <div className="hidden lg:block absolute right-0 bottom-20 pointer-events-auto">
           <CardSwap
-            width={300}
-            height={240}
-            cardDistance={40}
-            verticalDistance={50}
+            width={400}
+            height={320}
+            cardDistance={50}
+            verticalDistance={60}
             delay={3500}
             pauseOnHover={true}
             easing="elastic"
@@ -169,13 +169,13 @@ export default function Hero() {
           </CardSwap>
         </div>
 
-        {/* CardSwap Component - Mobile bottom right */}
+        {/* CardSwap Component - Mobile bottom right, larger */}
         <div className="lg:hidden absolute bottom-4 right-4 pointer-events-auto">
           <CardSwap
-            width={200}
-            height={160}
-            cardDistance={25}
-            verticalDistance={30}
+            width={250}
+            height={200}
+            cardDistance={30}
+            verticalDistance={35}
             delay={3500}
             pauseOnHover={true}
             easing="elastic"
