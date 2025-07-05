@@ -152,7 +152,7 @@ export default function Hero() {
             cardDistance={60}
             verticalDistance={70}
             delay={5000}
-            pauseOnHover={true}
+            pauseOnHover={false}
             easing="elastic"
           >
             <Card 
@@ -183,7 +183,7 @@ export default function Hero() {
             cardDistance={55}
             verticalDistance={60}
             delay={5000}
-            pauseOnHover={true}
+            pauseOnHover={false}
             easing="elastic"
           >
             <Card 

@@ -280,8 +280,8 @@ const CardSwap: React.FC<CardSwapProps> = ({
     });
 
     const swap = () => {
-      // Check if we should pause (only for hover, not scroll)
-      if (shouldPauseRef.current) return;
+      // Only pause if explicitly hovered (not for scroll)
+      if (pauseOnHover && shouldPauseRef.current && isHoveredRef.current) return;
 
       if (order.current.length < 2) return;
 
@@ -354,16 +354,20 @@ const CardSwap: React.FC<CardSwapProps> = ({
     if (pauseOnHover) {
       const node = container.current!;
       const pause = () => {
-        isHoveredRef.current = true;
-        shouldPauseRef.current = true;
-        tlRef.current?.pause();
-        clearInterval(intervalRef.current);
+        if (!isHoveredRef.current) {
+          isHoveredRef.current = true;
+          shouldPauseRef.current = true;
+          tlRef.current?.pause();
+          clearInterval(intervalRef.current);
+        }
       };
       const resume = () => {
-        isHoveredRef.current = false;
-        shouldPauseRef.current = false;
-        tlRef.current?.play();
-        intervalRef.current = window.setInterval(swap, delay);
+        if (isHoveredRef.current) {
+          isHoveredRef.current = false;
+          shouldPauseRef.current = false;
+          tlRef.current?.play();
+          intervalRef.current = window.setInterval(swap, delay);
+        }
       };
       node.addEventListener("mouseenter", pause);
       node.addEventListener("mouseleave", resume);
