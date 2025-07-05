@@ -167,7 +167,7 @@ export default function WhyChooseUsSection() {
             viewport={{ once: true }}
             transition={{ duration: 1, delay: 0.5 }}
           >
-            We partner with passionate people building meaningful work — SMBs, nonprofits, and early-stage teams doing a lot with a little. We get it: every dollar matters. That's why our services are flexible, transparent, and built around long-term sustainability.
+            As one of Edmonton's premier web design companies and SEO agencies, we partner with passionate people building meaningful work — SMBs, nonprofits, and early-stage teams doing a lot with a little. We get it: every dollar matters. That's why our Edmonton web design and digital marketing services are flexible, transparent, and built around long-term sustainability. Whether you need website design in Edmonton or comprehensive SEO services, we're here to help your business grow.
           </motion.p>
         </motion.div>
 

@@ -45,7 +45,7 @@ export default function WhatWeDoSection() {
       tagline: "Where Vision Meets Digital Reality",
       icon: <Code className="w-12 h-12 text-maverick-orange" />,
       details:
-        "We create responsive websites and e-commerce platforms aligned with your business goals. Our solutions deliver optimized user journeys, seamless functionality, and scalable architecture built for growth.",
+        "Our Edmonton web design services create responsive websites and e-commerce platforms aligned with your business goals. As one of the top web design companies in Edmonton, we deliver optimized user journeys, seamless functionality, and scalable architecture built for growth. Whether you need a simple website builder solution or complex custom web design in Edmonton, we've got you covered.",
       valueProps: [
         "Converts visitors into customers through strategic design",
         "Builds brand credibility with professional, cohesive aesthetics",
@@ -63,7 +63,7 @@ export default function WhatWeDoSection() {
       tagline: "Turning Impressions Into Relationships",
       icon: <PenTool className="w-12 h-12 text-maverick-orange" />,
       details:
-        "We craft compelling brand stories across all touchpoints using effective design, targeted content, and data-driven campaigns to build engagement and drive lasting brand loyalty.",
+        "Our Edmonton digital marketing services craft compelling brand stories across all touchpoints using effective design, targeted content, and data-driven campaigns. As a premier Edmonton SEO agency, we build engagement and drive lasting brand loyalty through comprehensive digital marketing strategies tailored for the Alberta market.",
       valueProps: [
         "Amplifies your voice in crowded markets",
         "Transforms data into actionable marketing strategies",
@@ -207,7 +207,7 @@ export default function WhatWeDoSection() {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.3 }}
             >
-              We offer a range of services, from building and optimizing websites and e-commerce platforms to developing strategic marketing campaigns and integrating AI solutions for automation. Our goal is to provide customized, impactful solutions that drive results.
+              As a leading Edmonton web design company, we offer comprehensive digital marketing services including custom website design, SEO optimization, and strategic marketing campaigns. Our Edmonton web design agency specializes in creating responsive websites that drive results for businesses across Alberta. From website builders to full-service digital marketing solutions, we're your trusted Edmonton SEO company and web design partner.
             </motion.p>
           </motion.div>
         </header>

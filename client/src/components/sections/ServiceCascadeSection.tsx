@@ -350,7 +350,7 @@ export default function ServiceCascadeSection() {
         {
           id: "websites",
           title: "Custom Interactive Websites",
-          description: "We craft custom interactive and 3D websites that engage users with motion, depth, and storytelling built to captivate and convert. Whether it's scroll-triggered animations, immersive product showcases, or spatial design, we turn static sites into dynamic journeys.",
+          description: "Our Edmonton web design team crafts custom interactive and 3D websites that engage users with motion, depth, and storytelling built to captivate and convert. Whether it's scroll-triggered animations, immersive product showcases, or spatial design, we turn static sites into dynamic journeys. As a leading web design company in Edmonton, we specialize in creating websites that stand out in today's competitive digital landscape.",
           videos: [
             "/videos/services/Custom Interactive Websites 1.mp4",
             "/videos/services/Custom Interactive Websites 2.mp4",
@@ -386,7 +386,7 @@ export default function ServiceCascadeSection() {
         {
           id: "performance",
           title: "Performance Optimization & Online Visibility",
-          description: "We enhance your website's speed, mobile responsiveness, and Core Web Vitals to ensure a seamless user experience. Our strategies incorporate Generative Engine Optimization (GEO) to position your content in AI-generated responses across platforms like Google's AI Overviews and ChatGPT. By focusing on structured data, semantic clarity, and user-centric design, we not only boost your search rankings but also increase visibility in AI-driven search results, driving higher engagement and conversions.",
+          description: "Our Edmonton SEO services enhance your website's speed, mobile responsiveness, and Core Web Vitals to ensure a seamless user experience. As a trusted Edmonton SEO company, our strategies incorporate Generative Engine Optimization (GEO) to position your content in AI-generated responses across platforms like Google's AI Overviews and ChatGPT. By focusing on structured data, semantic clarity, and user-centric design, we not only boost your search rankings but also increase visibility in AI-driven search results, driving higher engagement and conversions.",
           images: [
             "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop&crop=entropy"
           ],
@@ -403,7 +403,7 @@ export default function ServiceCascadeSection() {
         {
           id: "brand-strategy",
           title: "Brand Strategy & Design",
-          description: "We create adaptive brand strategies that connect your business with audiences across platforms through clarity and authenticity. Our services include logo design, brand guidelines, visual identity systems, and messaging frameworks, all crafted to build memorable, scalable brand experiences that evolve with your business. Every element is thoughtfully designed to build trust, inspire engagement, and reflect your brand's true character.",
+          description: "Our Edmonton digital marketing agency creates adaptive brand strategies that connect your business with audiences across platforms through clarity and authenticity. Our services include logo design, brand guidelines, visual identity systems, and messaging frameworks, all crafted to build memorable, scalable brand experiences that evolve with your business. Every element is thoughtfully designed to build trust, inspire engagement, and reflect your brand's true character.",
           images: [
             "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=800&h=600&fit=crop&crop=entropy"
           ],
