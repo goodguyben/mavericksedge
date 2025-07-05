@@ -28,29 +28,15 @@ export interface CardSwapProps {
 
 export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   customClass?: string;
-  icon?: React.ComponentType<any>;
-  title?: string;
-  description?: string;
-  borderColorClass?: string;
 }
 
 export const Card = forwardRef<HTMLDivElement, CardProps>(
-  ({ customClass, icon: Icon, title, description, borderColorClass = "border-white", ...rest }, ref) => (
+  ({ customClass, ...rest }, ref) => (
     <div
       ref={ref}
       {...rest}
-      className={`absolute top-1/2 left-1/2 rounded-xl border-2 ${borderColorClass} bg-black text-white
-                  [transform-style:preserve-3d] [will-change:transform] [backface-visibility:hidden]
-                  flex flex-col items-start justify-end p-6 overflow-hidden
-                  ${customClass ?? ""} ${rest.className ?? ""}`.trim()}
-    >
-      {/* Content for the card */}
-      <div className="absolute top-4 left-4 flex items-center space-x-2">
-        {Icon && <Icon className="w-6 h-6 text-white" />}
-        {title && <span className="text-sm font-semibold">{title}</span>}
-      </div>
-      {description && <p className="text-lg font-bold mb-2">{description}</p>}
-    </div>
+      className={`absolute top-1/2 left-1/2 rounded-xl border border-white bg-black [transform-style:preserve-3d] [will-change:transform] [backface-visibility:hidden] ${customClass ?? ""} ${rest.className ?? ""}`.trim()}
+    />
   )
 );
 Card.displayName = "Card";
