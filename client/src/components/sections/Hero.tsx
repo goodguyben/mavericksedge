@@ -96,7 +96,7 @@ export default function Hero() {
               transition={{ duration: 0.7, delay: 0.4 }}
               className="block"
             >
-              <span className="text-maverick-cream block text-[28px]">
+              <span className="text-maverick-cream block text-[50px] font-extrabold">
                 Building Resilient Online Presence from 
               </span>
               <span className="block text-[28px]">
