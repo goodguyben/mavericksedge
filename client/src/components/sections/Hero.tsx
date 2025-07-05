@@ -99,7 +99,7 @@ export default function Hero() {
               <span className="text-maverick-cream block text-[28px]">
                 Building Resilient Online Presence from 
               </span>
-              <span className="block">
+              <span className="block text-[28px]">
                 <GradientText 
                   colors={["#FF5630", "#FF8A50", "#FFB899", "#FF5630"]}
                   animationSpeed={6}
