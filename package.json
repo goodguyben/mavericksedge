@@ -50,6 +50,7 @@
     "@types/react-helmet-async": "^1.0.1",
     "@vidstack/player": "^1.6.5",
     "@vidstack/react": "^0.6.15",
+    "caniuse-lite": "^1.0.30001726",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cmdk": "^1.1.1",
