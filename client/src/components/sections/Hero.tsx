@@ -64,7 +64,7 @@ export default function Hero() {
       <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 2xl:px-16 z-20 flex justify-start items-center w-full pointer-events-none relative">
         {/* Main Content - Left aligned and responsive */}
         <motion.div
-          className="max-w-full lg:max-w-[60%] xl:max-w-[55%] 2xl:max-w-[50%] text-left w-full pointer-events-auto relative pt-8 sm:pt-12 md:pt-16 lg:pt-0"
+          className="max-w-full lg:max-w-[60%] xl:max-w-[55%] 2xl:max-w-[50%] text-left w-full pointer-events-auto relative pt-2 sm:pt-4 md:pt-8 lg:pt-0"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: heroOpacity, y: 0 }}
           transition={{ duration: 0.1 }}
@@ -75,7 +75,7 @@ export default function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="flex items-center gap-2 text-base sm:text-lg md:text-xl lg:text-lg xl:text-xl 2xl:text-2xl font-heading font-medium mb-2 sm:mb-3 md:mb-4 lg:mb-4 xl:mb-5 2xl:mb-6"
+            className="flex items-center gap-2 text-base sm:text-lg md:text-xl lg:text-lg xl:text-xl 2xl:text-2xl font-heading font-medium mb-2 sm:mb-3 md:mb-4 lg:mb-4 xl:mb-5 2xl:mb-6 justify-start sm:justify-end md:justify-start"
           >
             <MapPin className="h-3 w-3 sm:h-4 sm:w-4 md:h-5 md:w-5 lg:h-4 lg:w-4 xl:h-5 xl:w-5 2xl:h-6 2xl:w-6 text-maverick-orange/80 flex-shrink-0" />
             <span className="font-light">
@@ -169,10 +169,10 @@ export default function Hero() {
         {/* CardSwap Component - Mobile bottom right, larger */}
         <div className="lg:hidden absolute bottom-4 right-4 pointer-events-auto">
           <CardSwap
-            width={380}
-            height={300}
-            cardDistance={50}
-            verticalDistance={55}
+            width={420}
+            height={340}
+            cardDistance={55}
+            verticalDistance={60}
             delay={3500}
             pauseOnHover={true}
             easing="elastic"
