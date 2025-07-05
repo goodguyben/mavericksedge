@@ -28,15 +28,48 @@ export interface CardSwapProps {
 
 export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   customClass?: string;
+  icon?: React.ComponentType<any>;
+  title?: string;
+  description?: string;
+  borderColorClass?: string;
 }
 
 export const Card = forwardRef<HTMLDivElement, CardProps>(
-  ({ customClass, ...rest }, ref) => (
+  ({ customClass, icon: Icon, title, description, borderColorClass = "border-white", ...rest }, ref) => (
     <div
       ref={ref}
       {...rest}
-      className={`absolute top-1/2 left-1/2 rounded-xl border border-white bg-black [transform-style:preserve-3d] [will-change:transform] [backface-visibility:hidden] ${customClass ?? ""} ${rest.className ?? ""}`.trim()}
-    />
+      className={`absolute top-1/2 left-1/2 rounded-xl border-2 ${borderColorClass} bg-black text-white
+                  [transform-style:preserve-3d] [will-change:transform] [backface-visibility:hidden]
+                  flex flex-col overflow-hidden
+                  ${customClass ?? ""} ${rest.className ?? ""}`.trim()}
+    >
+      {/* Browser-style header with tab */}
+      <div className="bg-gray-900 border-b border-gray-700 p-2">
+        <div className="flex items-center space-x-2">
+          <div className="flex space-x-1">
+            <div className="w-3 h-3 bg-red-500 rounded-full"></div>
+            <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
+            <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+          </div>
+          {/* Tab */}
+          <div className="bg-gray-800 border border-gray-600 rounded-t px-3 py-1 flex items-center space-x-2">
+            {Icon && <Icon className="w-4 h-4 text-white" />}
+            {title && <span className="text-xs font-medium text-white">{title}</span>}
+          </div>
+        </div>
+      </div>
+      
+      {/* Content area */}
+      <div className="flex-1 p-4 bg-gradient-to-br from-gray-100 to-gray-200">
+        {description && (
+          <div className="text-gray-800 text-sm font-medium">
+            {description}
+          </div>
+        )}
+        {rest.children}
+      </div>
+    </div>
   )
 );
 Card.displayName = "Card";

@@ -154,18 +154,24 @@ export default function Hero() {
             pauseOnHover={true}
             easing="elastic"
           >
-            <Card customClass="bg-gradient-to-br from-maverick-orange/20 to-maverick-orange/10 border-maverick-orange/30 p-6">
-              <div className="text-maverick-cream text-sm font-medium">Web Design</div>
-              <div className="text-maverick-cream/70 text-xs mt-2">Custom websites that convert</div>
-            </Card>
-            <Card customClass="bg-gradient-to-br from-blue-600/20 to-blue-600/10 border-blue-600/30 p-6">
-              <div className="text-maverick-cream text-sm font-medium">SEO Services</div>
-              <div className="text-maverick-cream/70 text-xs mt-2">Rank higher, get more traffic</div>
-            </Card>
-            <Card customClass="bg-gradient-to-br from-green-600/20 to-green-600/10 border-green-600/30 p-6">
-              <div className="text-maverick-cream text-sm font-medium">AI Integration</div>
-              <div className="text-maverick-cream/70 text-xs mt-2">Smart automation solutions</div>
-            </Card>
+            <Card 
+              customClass="border-maverick-orange/50" 
+              icon={() => <div className="w-4 h-4 bg-maverick-orange rounded"></div>}
+              title="Customizable"
+              description="Tailored websites that perfectly match your brand and business needs"
+            />
+            <Card 
+              customClass="border-blue-500/50" 
+              icon={() => <div className="w-4 h-4 bg-blue-500 rounded"></div>}
+              title="Reliable"
+              description="Built with modern technology for maximum performance and uptime"
+            />
+            <Card 
+              customClass="border-green-500/50" 
+              icon={() => <div className="w-4 h-4 bg-green-500 rounded-full"></div>}
+              title="Smooth"
+              description="Seamless user experience across all devices and platforms"
+            />
           </CardSwap>
         </div>
 
@@ -180,18 +186,24 @@ export default function Hero() {
             pauseOnHover={true}
             easing="elastic"
           >
-            <Card customClass="bg-gradient-to-br from-maverick-orange/20 to-maverick-orange/10 border-maverick-orange/30 p-4">
-              <div className="text-maverick-cream text-xs font-medium">Web Design</div>
-              <div className="text-maverick-cream/70 text-[10px] mt-1">Custom websites</div>
-            </Card>
-            <Card customClass="bg-gradient-to-br from-blue-600/20 to-blue-600/10 border-blue-600/30 p-4">
-              <div className="text-maverick-cream text-xs font-medium">SEO Services</div>
-              <div className="text-maverick-cream/70 text-[10px] mt-1">Rank higher</div>
-            </Card>
-            <Card customClass="bg-gradient-to-br from-green-600/20 to-green-600/10 border-green-600/30 p-4">
-              <div className="text-maverick-cream text-xs font-medium">AI Integration</div>
-              <div className="text-maverick-cream/70 text-[10px] mt-1">Smart automation</div>
-            </Card>
+            <Card 
+              customClass="border-maverick-orange/50" 
+              icon={() => <div className="w-3 h-3 bg-maverick-orange rounded"></div>}
+              title="Customizable"
+              description="Tailored solutions"
+            />
+            <Card 
+              customClass="border-blue-500/50" 
+              icon={() => <div className="w-3 h-3 bg-blue-500 rounded"></div>}
+              title="Reliable"
+              description="High performance"
+            />
+            <Card 
+              customClass="border-green-500/50" 
+              icon={() => <div className="w-3 h-3 bg-green-500 rounded-full"></div>}
+              title="Smooth"
+              description="Great UX"
+            />
           </CardSwap>
         </div>
       </div>
