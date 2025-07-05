@@ -280,15 +280,12 @@ const CardSwap: React.FC<CardSwapProps> = ({
     });
 
     const swap = () => {
-      // Only pause if explicitly hovered (not for scroll)
-      if (pauseOnHover && shouldPauseRef.current && isHoveredRef.current) return;
-
       if (order.current.length < 2) return;
 
       const [front, ...rest] = order.current;
       const elFront = refs[front].current;
       if (!elFront) return;
-      
+
       const tl = gsap.timeline();
       tlRef.current = tl;
 
@@ -302,7 +299,7 @@ const CardSwap: React.FC<CardSwapProps> = ({
       rest.forEach((idx, i) => {
         const el = refs[idx].current;
         if (!el) return;
-        
+
         const slot = makeSlot(i, cardDistance, verticalDistance, refs.length);
         tl.set(el, { zIndex: slot.zIndex }, "promote");
         tl.to(
@@ -351,33 +348,11 @@ const CardSwap: React.FC<CardSwapProps> = ({
     swap();
     intervalRef.current = window.setInterval(swap, delay);
 
-    if (pauseOnHover) {
-      const node = container.current!;
-      const pause = () => {
-        if (!isHoveredRef.current) {
-          isHoveredRef.current = true;
-          shouldPauseRef.current = true;
-          tlRef.current?.pause();
-          clearInterval(intervalRef.current);
-        }
-      };
-      const resume = () => {
-        if (isHoveredRef.current) {
-          isHoveredRef.current = false;
-          shouldPauseRef.current = false;
-          tlRef.current?.play();
-          intervalRef.current = window.setInterval(swap, delay);
-        }
-      };
-      node.addEventListener("mouseenter", pause);
-      node.addEventListener("mouseleave", resume);
+    // Remove pauseOnHover logic
+    clearInterval(intervalRef.current);
+    intervalRef.current = window.setInterval(swap, delay);
 
-      return () => {
-        node.removeEventListener("mouseenter", pause);
-        node.removeEventListener("mouseleave", resume);
-        clearInterval(intervalRef.current);
-      };
-    }
+
     return () => clearInterval(intervalRef.current);
   }, [cardDistance, verticalDistance, delay, pauseOnHover, skewAmount, easing]);
 
@@ -408,3 +383,4 @@ const CardSwap: React.FC<CardSwapProps> = ({
 };
 
 export default CardSwap;
+`
