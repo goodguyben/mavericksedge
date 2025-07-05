@@ -81,9 +81,20 @@ export default function Header() {
   return (
     <>
       <motion.header 
-        className={`sticky top-0 left-0 w-full py-3 px-4 sm:px-6 lg:px-8 z-50 transition-all duration-300 backdrop-blur-md border-b border-maverick-orange/10 mt-[-44px] mb-[-44px] ${
-          isScrolled ? 'bg-[#121212]/95' : 'bg-[#12121226]'
-        }`}
+        className="sticky top-0 left-0 w-full py-3 px-4 sm:px-6 lg:px-8 z-50 transition-all duration-300 mt-[-44px] mb-[-44px] relative overflow-hidden"
+        style={{
+          backdropFilter: 'blur(20px) saturate(180%)',
+          WebkitBackdropFilter: 'blur(20px) saturate(180%)',
+          background: isScrolled 
+            ? 'rgba(18, 18, 18, 0.4)' 
+            : 'rgba(18, 18, 18, 0.2)',
+          borderBottom: '1px solid rgba(255, 86, 48, 0.2)',
+          boxShadow: `
+            0 8px 32px rgba(0, 0, 0, 0.3),
+            inset 0 1px 0 rgba(255, 255, 255, 0.1),
+            inset 0 -1px 0 rgba(255, 86, 48, 0.1)
+          `,
+        }}
         role="banner"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
