@@ -58,7 +58,8 @@ export class MemStorage implements IStorage {
     const contactSubmission: ContactSubmission = {
       ...submission,
       id,
-      submittedAt
+      submittedAt,
+      phone: submission.phone || null
     };
     
     this.contactSubmissions.set(id, contactSubmission);

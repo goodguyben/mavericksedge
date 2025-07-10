@@ -574,7 +574,7 @@ export default function CreativeWorkSection() {
             Our <span className="text-maverick-orange">Creative Work</span>
           </h2>
           <p className="text-[#BBBBBB] text-xl max-w-3xl mx-auto">
-            Experience our Edmonton web design portfolio in an immersive 3D environment. Interact with our projects to discover innovative website designs and digital marketing experiences crafted by our Edmonton web design agency.
+            Experience our portfolio in an immersive 3D environment. Interact with our projects to discover innovative designs and digital experiences.
           </p>
         </motion.div>
         

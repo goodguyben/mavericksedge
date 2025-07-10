@@ -1,0 +1,72 @@
+# Styling Standards - Mavericks Edge
+
+## Tailwind CSS Guidelines
+- Use Tailwind CSS as the primary styling solution (configured in [tailwind.config.ts](mdc:tailwind.config.ts))
+- Follow the custom color palette defined in the config:
+  - `maverick-*` colors for brand-specific styling
+  - `sidebar-*` colors for sidebar components
+  - Standard shadcn/ui color tokens for general UI
+
+## Mavericks Edge Brand Colors
+- `maverick-yellow`: #FFD74B (Bright yellow for dark backgrounds)
+- `maverick-orange`: #FF5630 (Vibrant orange for dark backgrounds)
+- `maverick-brown`: #AE6A4D (Lighter brown for better visibility on dark)
+- `maverick-light-orange`: #FF8A50 (Brighter light orange)
+- `maverick-dark-brown`: #272114 (Very dark brown for backgrounds)
+- `maverick-amber`: #FFC43D (Bright amber)
+- `maverick-charcoal`: #1E1A18 (Dark background)
+- `maverick-slate`: #252B32 (Alternative dark background)
+- `maverick-cream`: #FFFAF0 (Very light warm white)
+
+## Component Styling
+- Use `className` with Tailwind utilities
+- Use `clsx` or `tailwind-merge` for conditional classes
+- Follow responsive design patterns with breakpoints:
+  - `xs`: 375px (small mobile)
+  - `sm`: 640px (tablet portrait)
+  - `md`: 768px (tablet landscape)
+  - `lg`: 1024px (desktop)
+  - `xl`: 1440px (large desktop)
+  - `2xl`: 1920px (extra large desktop)
+
+## Typography
+- Use custom font families defined in config:
+  - `font-sans`: Space Grotesk for body text
+  - `font-heading`: Outfit for headings
+  - `font-logo`: Sansation for logos
+
+## Animation
+- Use predefined animations from config:
+  - `animate-accordion-down/up` for accordions
+  - `animate-gradient-slow` for gradient animations
+- Use Framer Motion for complex animations and page transitions
+- Use GSAP for advanced animations
+- Implement smooth page transitions for better UX
+
+## Radix UI Integration
+- Use Radix UI components with Tailwind styling
+- Follow shadcn/ui patterns for component variants
+- Use `class-variance-authority` for component variants
+
+## Dark Mode
+- Support dark mode with `dark:` prefix
+- Use CSS custom properties for theme switching
+- Test both light and dark themes
+- Ensure proper contrast ratios for accessibility
+
+## Service-Specific Styling
+- **Web Development Section**: Use modern, tech-focused styling
+- **Marketing Section**: Use vibrant, engaging colors
+- **AI Integration Section**: Use futuristic, innovative styling
+- Maintain consistent branding across all service sections
+
+## Accessibility
+- Ensure proper color contrast ratios
+- Use semantic color tokens
+- Support reduced motion preferences
+- Test with screen readers and keyboard navigation
+
+description:
+globs:
+alwaysApply: false
+---

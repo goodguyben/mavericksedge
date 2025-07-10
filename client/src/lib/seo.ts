@@ -1,4 +1,4 @@
-import { SERVICE_KEYWORDS } from './constants';
+// SERVICE_KEYWORDS is defined at the bottom of this file
 
 export interface SEOConfig {
   title: string;

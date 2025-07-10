@@ -20,6 +20,8 @@ export const lazyLoadImages = () => {
   }
 };
 
+import React from 'react';
+
 export const lazyLoadComponent = (importFn: () => Promise<any>) => {
   return React.lazy(() => importFn());
 };

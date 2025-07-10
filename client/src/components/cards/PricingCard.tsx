@@ -17,6 +17,7 @@ interface PricingCardProps {
     icon?: React.ReactNode;
     focusStatement?: string;
     color?: string;
+    extras?: string;
   };
 }
 

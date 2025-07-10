@@ -90,7 +90,7 @@ export default function ContactSection({ fullPage = false }: ContactSectionProps
           >
             <h2 className="text-4xl md:text-5xl font-bold mb-4">Get in Touch</h2>
             <p className="text-[#AAAAAA] text-xl max-w-2xl mx-auto">
-              Ready to take your business to the next level? Contact our Edmonton web design agency today to discuss your website design, SEO services, or digital marketing project. Let's build something amazing together.
+              Ready to take your business to the next level? Contact us today to discuss your project
             </p>
           </motion.div>
         )}

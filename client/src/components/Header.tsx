@@ -81,9 +81,18 @@ export default function Header() {
   return (
     <>
       <motion.header 
-        className={`sticky top-0 left-0 w-full py-3 px-4 sm:px-6 lg:px-8 z-50 transition-all duration-300 backdrop-blur-md border-b border-maverick-orange/10 mt-[-44px] mb-[-44px] ${
-          isScrolled ? 'bg-[#121212]/95' : 'bg-[#12121226]'
-        }`}
+        className="sticky top-0 left-0 w-full py-3 px-4 sm:px-6 lg:px-8 z-50 transition-all duration-300 mt-[-44px] mb-[-44px] relative overflow-hidden"
+        style={{
+          backdropFilter: 'blur(20px) saturate(180%)',
+          WebkitBackdropFilter: 'blur(20px) saturate(180%)',
+          background: isScrolled 
+            ? 'rgba(18, 18, 18, 0.4)' 
+            : 'rgba(18, 18, 18, 0.2)',
+          boxShadow: `
+            0 8px 32px rgba(0, 0, 0, 0.3),
+            inset 0 1px 0 rgba(255, 255, 255, 0.1)
+          `,
+        }}
         role="banner"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -97,7 +106,7 @@ export default function Header() {
           {/* Logo */}
           <Link 
             href="/" 
-            className="flex items-center justify-start min-h-[44px] touch-manipulation pl-[0px] pr-[0px] ml-[-36px] mr-[-36px]" 
+            className="flex items-center justify-start min-h-[44px] touch-manipulation pl-[0px] pr-[0px] ml-[-22px] mr-[-22px]" 
             aria-label="Mavericks Edge Home"
           >
             <Logo size="medium-small" noLink={true} showText={false} />
@@ -156,15 +165,7 @@ export default function Header() {
                     onMouseEnter={() => setServicesDropdownOpen(true)}
                     onMouseLeave={() => setServicesDropdownOpen(false)}
                   >
-                    <motion.div
-                    className="py-2 backdrop-blur-xl backdrop-saturate-200 border border-white/10 rounded-lg shadow-2xl" 
-                    style={{
-                      background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.03) 100%)',
-                      backdropFilter: 'blur(16px) saturate(200%)',
-                      WebkitBackdropFilter: 'blur(16px) saturate(200%)',
-                      boxShadow: '0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1)'
-                    }}
-                    role="menu">
+                    <div className="py-2 bg-[#1A1A1A]/95 backdrop-blur-md border border-gray-800/50 rounded-lg shadow-xl" role="menu">
                       <Link 
                         href={ROUTES.SERVICES.ALL} 
                         className={`block px-4 py-3 min-h-[44px] text-base touch-manipulation ${
@@ -205,7 +206,7 @@ export default function Header() {
                       >
                         AI Integration & Automation
                       </Link>
-                    </motion.div>
+                    </div>
                   </motion.div>
                 )}
               </AnimatePresence>
@@ -242,15 +243,7 @@ export default function Header() {
                     onMouseEnter={() => setPricingDropdownOpen(true)}
                     onMouseLeave={() => setPricingDropdownOpen(false)}
                   >
-                    <div 
-                      className="py-2 backdrop-blur-xl backdrop-saturate-200 border border-white/10 rounded-lg shadow-2xl" 
-                      style={{
-                        background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.03) 100%)',
-                        backdropFilter: 'blur(16px) saturate(200%)',
-                        WebkitBackdropFilter: 'blur(16px) saturate(200%)',
-                        boxShadow: '0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1)'
-                      }}
-                      role="menu">
+                    <div className="py-2 bg-[#1A1A1A]/95 backdrop-blur-md border border-gray-800/50 rounded-lg shadow-xl" role="menu">
                       <Link 
                         href={ROUTES.PRICING.ALL} 
                         className={`block px-4 py-3 min-h-[44px] text-base touch-manipulation ${
@@ -335,7 +328,7 @@ export default function Header() {
           {/* Mobile Menu Button */}
           <button
             onClick={toggleMobileMenu}
-            className="block lg:hidden p-3 rounded-full transition-colors duration-200 min-h-[44px] min-w-[44px] touch-manipulation"
+            className="block lg:hidden p-3 rounded-full transition-colors duration-200 min-h-[44px] min-w-[44px] touch-manipulation pl-[8px] pr-[8px] ml-[-16px] mr-[-16px]"
             aria-label="Toggle mobile navigation menu"
             aria-expanded={isMobileMenuOpen}
           >

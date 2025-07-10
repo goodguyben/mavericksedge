@@ -1,0 +1,71 @@
+# Build and Deployment Standards - Mavericks Edge
+
+## Build Configuration
+- Use Vite for frontend builds (configured in [vite.config.ts](mdc:vite.config.ts))
+- Use esbuild for server builds (configured in [package.json](mdc:package.json))
+- Build outputs to `dist/` directory
+- Use TypeScript compilation for type checking
+
+## Development Environment
+- **Run Command**: `npm run dev` starts both frontend (port 5173) and backend (port 5000)
+- **Database**: Uses environment variables for database connection
+- **Hot Reload**: Vite provides instant feedback during development
+- **Local Development**: Uses local development server with hot reload
+
+## Production Deployment
+- **Build Process**: `npm run build` creates optimized production bundle
+- **Server**: `npm run start` runs the production server
+- **Database**: Requires `DATABASE_URL` environment variable
+- **Email**: Requires `RESEND_API_KEY` for email functionality
+- **Autoscaling**: Configured for automatic scaling based on traffic
+
+## Environment Configuration
+- **Development**: Local development server with hot reload
+- **Production**: Optimized build with environment-specific configurations
+- **Database**: Drizzle migrations handle schema updates
+- **Required Variables**: `DATABASE_URL`, `RESEND_API_KEY`
+
+## Database Deployment
+- Use `npm run db:push` for schema deployments
+- Test migrations in staging before production
+- Backup database before major schema changes
+- Monitor migration success/failure
+
+## Asset Management
+- Optimize images with Sharp
+- Use proper asset compression
+- Implement CDN for production assets
+- Use proper cache headers
+- Use FFmpeg for video/audio optimization
+
+## Performance Optimization
+- Enable code splitting in Vite
+- Optimize bundle size
+- Use proper caching strategies
+- Monitor Core Web Vitals
+- Implement lazy loading and image optimization
+
+## Security Considerations
+- Use HTTPS in production
+- Implement proper CORS policies
+- Use secure session configuration
+- Validate all inputs and outputs
+- Use environment variables for sensitive data
+
+## Monitoring and Logging
+- Implement proper error tracking
+- Use structured logging
+- Monitor application performance
+- Set up health checks
+- Track API performance and errors
+
+## Third-Party Services
+- **Email**: Resend for production, Nodemailer for development
+- **Database**: Neon serverless PostgreSQL
+- **Media Processing**: FFmpeg integration
+- **Analytics**: SEO tracking and structured data
+
+description:
+globs:
+alwaysApply: false
+---

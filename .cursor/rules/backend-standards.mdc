@@ -1,0 +1,82 @@
+# Backend Development Standards - Mavericks Edge
+
+## Express.js Guidelines
+- Follow the structure established in [server/index.ts](mdc:server/index.ts)
+- Use TypeScript for all server code
+- Implement proper error handling middleware
+- Use async/await for database operations
+
+## API Design
+- Follow RESTful conventions
+- Use proper HTTP status codes
+- Implement request validation with Zod schemas
+- Use consistent response formats
+
+## Key Backend Services
+
+### Contact API
+- Handles form submissions and email notifications
+- Use Resend API for production emails with Nodemailer fallback
+- Implement proper validation and error handling
+- Follow patterns in [server/email.ts](mdc:server/email.ts) and [server/nodemailer.ts](mdc:server/nodemailer.ts)
+
+### Static File Serving
+- Serves optimized assets and media files
+- Use proper caching headers
+- Implement file compression
+
+### SEO Routes
+- Robots.txt, sitemap.xml for search engine optimization
+- Implement proper meta tag generation
+- Use structured data for better SEO
+
+### Error Handling
+- Centralized error handling and logging
+- Implement proper error responses
+- Use structured logging for debugging
+
+## Database Operations
+- Use Drizzle ORM as configured in [drizzle.config.ts](mdc:drizzle.config.ts)
+- Define schemas in [shared/schema.ts](mdc:shared/schema.ts)
+- Use transactions for multi-step operations
+- Implement proper error handling for database failures
+
+### Database Schema
+- **Users Table**: Basic user management with username/password authentication
+- **Contact Submissions Table**: Stores contact form submissions with timestamps
+- Use Drizzle Kit for migrations and schema synchronization
+
+## Authentication & Security
+- Use Passport.js for authentication (configured in dependencies)
+- Implement session management with express-session
+- Use environment variables for sensitive configuration
+- Validate all user inputs
+
+## Email Services
+- Use Resend API for production emails
+- Use Nodemailer as fallback for development
+- Follow patterns in [server/email.ts](mdc:server/email.ts) and [server/nodemailer.ts](mdc:server/nodemailer.ts)
+- Implement proper error handling for email failures
+
+## File Storage
+- Use the storage utilities in [server/storage.ts](mdc:server/storage.ts)
+- Implement proper file validation and size limits
+- Use Sharp for image processing when needed
+
+## Third-Party Integrations
+- **Email Services**: Resend for production emails, Nodemailer for development
+- **Database**: Neon serverless PostgreSQL for production
+- **Media Processing**: FFmpeg for video/audio optimization
+- **Analytics**: Structured data and SEO tracking
+
+## Environment Configuration
+- Use environment variables for configuration
+- Validate required environment variables on startup
+- Use different configurations for development/production
+- Required variables: `DATABASE_URL`, `RESEND_API_KEY`
+
+## Logging & Monitoring
+- Implement proper logging for debugging
+- Use structured logging for production
+- Monitor database connection health
+- Track API performance and errors

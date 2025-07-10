@@ -83,7 +83,7 @@ export default function ShowcaseGallery() {
                   {/* Partnership Philosophy Statement */}
                   <div className="space-y-8">
                     <p className="text-lg xs:text-xl sm:text-2xl text-[#AAAAAA] leading-relaxed max-w-2xl">
-                      Every Edmonton web design solution we build, from content strategy to backend systems, is grounded in co-created vision. As your Edmonton web design agency and SEO company, we measure success not by aesthetics alone but by alignment with your mission, audience, and growth through effective digital marketing strategies.
+                      Every solution we build, from content strategy to backend systems, is grounded in co-created vision. As your web solutions agency, we measure success not by aesthetics alone but by alignment with your mission, audience, and growth.
                     </p>
                     
                     <div className="border-l-4 border-maverick-orange pl-6">

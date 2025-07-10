@@ -1,0 +1,69 @@
+# Database Development Standards - Mavericks Edge
+
+## Drizzle ORM Guidelines
+- Use Drizzle ORM as the primary database abstraction layer
+- Define all schemas in [shared/schema.ts](mdc:shared/schema.ts)
+- Use PostgreSQL as the database (configured in [drizzle.config.ts](mdc:drizzle.config.ts))
+- Use Neon serverless PostgreSQL for production
+
+## Schema Design
+
+### Core Tables
+- **Users Table**: Basic user management with username/password authentication
+- **Contact Submissions Table**: Stores contact form submissions with timestamps
+- Use descriptive table and column names
+- Implement proper foreign key relationships
+- Use appropriate data types for each column
+- Add proper indexes for performance
+- Use timestamps for created_at/updated_at fields
+
+## Migration Management
+- Use `npm run db:push` for schema changes
+- Use Drizzle Kit for migrations and schema synchronization
+- Review generated migrations before applying
+- Test migrations in development before production
+- Keep migrations version controlled
+
+## Query Patterns
+- Use Drizzle's query builder for complex queries
+- Implement proper error handling for database operations
+- Use transactions for multi-step operations
+- Optimize queries for performance
+
+## Data Validation
+- Use Zod schemas for input validation
+- Validate data before database operations
+- Use Drizzle's built-in type safety
+- Implement proper error messages
+
+## Connection Management
+- Use connection pooling for production
+- Implement proper connection error handling
+- Monitor database connection health
+- Use environment variables for database configuration
+- Use `DATABASE_URL` environment variable
+
+## Security Best Practices
+- Use parameterized queries (handled by Drizzle)
+- Validate all user inputs
+- Implement proper access control
+- Use least privilege database users
+
+## Performance Optimization
+- Use appropriate indexes
+- Monitor query performance
+- Implement caching where appropriate
+- Use pagination for large datasets
+
+## Data Flow
+- User Interaction: Client-side routing and form interactions
+- API Requests: React Query manages API calls to Express backend
+- Data Validation: Zod schemas validate incoming data
+- Database Operations: Drizzle ORM handles database queries
+- Email Notifications: Automated emails sent via Resend/Nodemailer
+- Response Handling: Standardized API responses with error handling
+
+description:
+globs:
+alwaysApply: false
+---

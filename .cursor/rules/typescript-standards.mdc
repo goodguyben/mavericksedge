@@ -1,0 +1,66 @@
+# TypeScript Coding Standards - Mavericks Edge
+
+## General Guidelines
+- Use strict TypeScript configuration (already enabled in [tsconfig.json](mdc:tsconfig.json))
+- Always use explicit type annotations for function parameters and return types
+- Prefer `interface` over `type` for object shapes
+- Use `const` assertions for immutable data
+- Use optional chaining (`?.`) and nullish coalescing (`??`) operators
+
+## Import/Export Patterns
+- Use ES6 module syntax (`import`/`export`)
+- Use path aliases defined in [tsconfig.json](mdc:tsconfig.json):
+  - `@/*` for client source files
+  - `@shared/*` for shared code
+- Group imports: external libraries, then internal modules, then relative imports
+
+## React/TSX Guidelines
+- Use functional components with hooks
+- Prefer `React.FC<Props>` or explicit prop interfaces
+- Use proper event typing: `React.ChangeEvent<HTMLInputElement>`
+- Use `useState<T>()` with explicit types
+- Use `useCallback` and `useMemo` for performance optimization
+
+## External Dependencies Integration
+
+### Production Dependencies
+- **Database**: `@neondatabase/serverless` for PostgreSQL connectivity
+- **Email**: `@sendgrid/mail` and Resend for email services
+- **UI Libraries**: Radix UI components for accessible interfaces
+- **Validation**: Zod for runtime type checking
+- **Animations**: Framer Motion for smooth transitions
+- **Media Processing**: FFmpeg for video/audio optimization
+
+### Development Dependencies
+- **Build Tools**: Vite, TypeScript, ESBuild for development and production builds
+- **Styling**: Tailwind CSS with PostCSS for styling
+- **Code Quality**: TypeScript for type safety
+
+## Error Handling
+- Use Zod for runtime validation (already configured)
+- Use proper error types and error boundaries
+- Handle async operations with try-catch blocks
+- Implement centralized error handling
+
+## Database Operations
+- Use Drizzle ORM patterns from [shared/schema.ts](mdc:shared/schema.ts)
+- Always validate input data with Zod schemas
+- Use proper transaction handling for multi-step operations
+- Use Neon serverless PostgreSQL for production
+
+## API Integration
+- Use React Query (TanStack Query) for server state management
+- Implement proper loading and error states
+- Use consistent API response formats
+- Handle authentication and authorization properly
+
+## Third-Party Service Integration
+- **Email Services**: Resend for production, Nodemailer for development
+- **Database**: Neon serverless PostgreSQL
+- **Media Processing**: FFmpeg integration
+- **Analytics**: SEO tracking and structured data
+
+description:
+globs:
+alwaysApply: false
+---

@@ -64,7 +64,7 @@ export default function ProcessSection() {
         entries.forEach((entry) => {
           const stepNumber = parseInt(entry.target.getAttribute('data-step') || '0');
           if (entry.isIntersecting) {
-            setVisibleSteps(prev => new Set(Array.from(prev).concat(stepNumber)));
+            setVisibleSteps(prev => new Set([...prev, stepNumber]));
           }
         });
       },
@@ -96,7 +96,7 @@ export default function ProcessSection() {
             </GradientText>
           </h2>
           <p className="text-[#AAAAAA] text-xl max-w-2xl mx-auto">
-            A collaborative approach to delivering exceptional Edmonton web design and digital marketing results for your business. Our proven process ensures your website design and SEO services exceed expectations.
+            A collaborative approach to delivering exceptional results for your business
           </p>
         </motion.div>
 

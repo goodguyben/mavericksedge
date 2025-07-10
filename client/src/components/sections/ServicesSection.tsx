@@ -1,4 +1,4 @@
-
+// The code modifies the "Get Started" button's styling in the ServicesSection component to match the EdgeBrand Identity design, enhancing its visual appeal and interactivity.
 import { motion } from "framer-motion";
 import ServiceCard from "@/components/cards/ServiceCard";
 import { Monitor, PieChart, Zap, Layout, Globe, ShieldCheck, BarChart2, PenTool, Calendar, Brain, Database, Workflow } from "lucide-react";
