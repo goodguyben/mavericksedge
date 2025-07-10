@@ -8,51 +8,48 @@ import { Button } from "@/components/ui/custom-button"
 import { VideoIcon } from "lucide-react"
 import GradientText from "@/components/ui/GradientText"
 
-// Using project videos and images - Extended gallery content
-const VIDEOS_1 = [
-  "/videos/services/Custom Interactive Websites 1.mp4",
-  "/videos/services/Next-Gen E-Commerce 1.mp4",
-  "/videos/services/Productivity & Management Web Applications 1.mp4",
-  "/videos/services/Social Media Management.mp4",
-  "/videos/services/Custom Interactive Websites 2.mp4",
-  "/videos/services/Next-Gen E-Commerce 2.mp4",
-  "/videos/services/Custom Interactive Websites 3.mp4",
-  "/videos/services/Productivity & Management Web Applications 3.mp4",
-  "/videos/services/Custom Interactive Websites 1.mp4",
-  "/videos/services/Next-Gen E-Commerce 1.mp4",
-  "/videos/services/Social Media Management.mp4",
-  "/videos/services/Productivity & Management Web Applications 1.mp4"
-]
+// CDN-hosted portfolio videos from Cloudflare R2
+const CDN_VIDEOS = [
+  "https://media.mavericksedge.ca/Portfolio_Video_1.mp4",
+  "https://media.mavericksedge.ca/Portfolio_Video_2.mp4",
+  "https://media.mavericksedge.ca/Portfolio_Video_3.mp4",
+  "https://media.mavericksedge.ca/Portfolio_Video_4.mp4",
+  "https://media.mavericksedge.ca/Portfolio_Video_5.mp4",
+  "https://media.mavericksedge.ca/Portfolio_Video_6.mp4",
+  "https://media.mavericksedge.ca/Portfolio_Video_7.mp4",
+  "https://media.mavericksedge.ca/Portfolio_Video_8.mp4",
+  "https://media.mavericksedge.ca/Portfolio_Video_9.mp4",
+  "https://media.mavericksedge.ca/Portfolio_Video_10.mp4",
+  "https://media.mavericksedge.ca/Portfolio_Video_11.mp4",
+  "https://media.mavericksedge.ca/Portfolio_Video_12.mp4",
+  "https://media.mavericksedge.ca/Portfolio_Video_13.mp4",
+  "https://media.mavericksedge.ca/Portfolio_Video_14.mp4",
+  "https://media.mavericksedge.ca/Portfolio_Video_15.mp4",
+  "https://media.mavericksedge.ca/Portfolio_Video_16.mp4",
+  "https://media.mavericksedge.ca/Portfolio_Video_17.mp4",
+  "https://media.mavericksedge.ca/Portfolio_Video_18.mp4",
+  "https://media.mavericksedge.ca/Portfolio_Video_19.mp4",
+  "https://media.mavericksedge.ca/Portfolio_Video_20.mp4",
+  "https://media.mavericksedge.ca/Portfolio_Video_21.mp4",
+  "https://media.mavericksedge.ca/Portfolio_Video_22.mp4",
+  "https://media.mavericksedge.ca/Portfolio_Video_23.mp4",
+  "https://media.mavericksedge.ca/Portfolio_Video_24.mp4",
+  "https://media.mavericksedge.ca/Portfolio_Video_25.mp4",
+  "https://media.mavericksedge.ca/Portfolio_Video_26.mp4"
+];
 
-const VIDEOS_2 = [
-  "/videos/services/Custom Interactive Websites 2.mp4",
-  "/videos/services/Next-Gen E-Commerce 2.mp4",
-  "/videos/services/Custom Interactive Websites 3.mp4",
-  "/videos/services/Productivity & Management Web Applications 3.mp4",
-  "/videos/services/Social Media Management.mp4",
-  "/videos/services/Next-Gen E-Commerce 1.mp4",
-  "/videos/services/Custom Interactive Websites 1.mp4",
-  "/videos/services/Productivity & Management Web Applications 1.mp4",
-  "/videos/services/Custom Interactive Websites 2.mp4",
-  "/videos/services/Next-Gen E-Commerce 2.mp4",
-  "/videos/services/Custom Interactive Websites 3.mp4",
-  "/videos/services/Social Media Management.mp4"
-]
+// Function to fill gallery slots by cycling through CDN videos
+const fillGallerySlots = (slotCount: number) => {
+  const videos = [];
+  for (let i = 0; i < slotCount; i++) {
+    videos.push(CDN_VIDEOS[i % CDN_VIDEOS.length]);
+  }
+  return videos;
+};
 
-const IMAGES_3 = [
-  "/videos/services/Custom AI Solutions.jpg",
-  "/videos/services/Productivity & Management Web Applications 2.png",
-  "/images/manus-ai-logo.png",
-  "/images/telus-logo.png",
-  "/videos/services/Custom Interactive Websites 1.mp4",
-  "/videos/services/Next-Gen E-Commerce 1.mp4",
-  "/videos/services/Social Media Management.mp4",
-  "/videos/services/Custom Interactive Websites 2.mp4",
-  "/videos/services/Productivity & Management Web Applications 1.mp4",
-  "/videos/services/Custom Interactive Websites 3.mp4",
-  "/videos/services/Next-Gen E-Commerce 2.mp4",
-  "/videos/services/Productivity & Management Web Applications 3.mp4"
-]
+const VIDEOS_1 = fillGallerySlots(12);
+const VIDEOS_2 = fillGallerySlots(12);
+const IMAGES_3 = fillGallerySlots(12);
 
 export default function ShowcaseGallery() {
   return (
@@ -239,6 +236,8 @@ export default function ShowcaseGallery() {
                     muted
                     loop
                     playsInline
+                    loading="lazy"
+                    preload="metadata"
                     onCanPlay={() => {
                       console.log(`Showcase video ready: ${videoUrl}`);
                     }}
@@ -263,6 +262,8 @@ export default function ShowcaseGallery() {
                     muted
                     loop
                     playsInline
+                    loading="lazy"
+                    preload="metadata"
                     onCanPlay={() => {
                       console.log(`Showcase video ready: ${videoUrl}`);
                     }}
@@ -276,44 +277,30 @@ export default function ShowcaseGallery() {
               ))}
             </GalleryCol>
             <GalleryCol yRange={["-10%", "2%"]} className="mt-[85px] mb-[85px] space-y-1">
-              {IMAGES_3.map((imageUrl, index) => {
-                // Check if it's a video file
-                const isVideo = imageUrl.endsWith('.mp4');
-                
-                return isVideo ? (
-                  <div
-                    key={index}
-                    className="block aspect-video w-full rounded-md shadow-lg overflow-hidden border-b border-gray-800/50"
+              {IMAGES_3.map((videoUrl, index) => (
+                <div
+                  key={index}
+                  className="block aspect-video w-full rounded-md shadow-lg overflow-hidden border-b border-gray-800/50"
+                >
+                  <video
+                    className="w-full h-full object-cover"
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    loading="lazy"
+                    preload="metadata"
+                    onCanPlay={() => {
+                      console.log(`Showcase video ready: ${videoUrl}`);
+                    }}
+                    onError={(e) => {
+                      console.warn(`Failed to play showcase video: ${videoUrl}`, e);
+                    }}
                   >
-                    <video
-                      className="w-full h-full object-cover"
-                      autoPlay
-                      muted
-                      loop
-                      playsInline
-                      onCanPlay={() => {
-                        console.log(`Showcase video ready: ${imageUrl}`);
-                      }}
-                      onError={(e) => {
-                        console.warn(`Failed to play showcase video: ${imageUrl}`, e);
-                      }}
-                    >
-                      <source src={imageUrl} type="video/mp4" />
-                    </video>
-                  </div>
-                ) : (
-                  <div
-                    key={index}
-                    className="block aspect-square w-full rounded-md shadow-lg overflow-hidden border-b border-gray-800/50"
-                  >
-                    <img
-                      className="w-full h-full object-cover"
-                      src={imageUrl}
-                      alt="showcase item"
-                    />
-                  </div>
-                );
-              })}
+                    <source src={videoUrl} type="video/mp4" />
+                  </video>
+                </div>
+              ))}
             </GalleryCol>
           </GalleryContainer>
         </ContainerSticky>
