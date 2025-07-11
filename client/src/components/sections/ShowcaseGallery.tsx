@@ -4,6 +4,7 @@ import { ContainerAnimated,
   ContainerSticky,
   GalleryCol,
   GalleryContainer } from "@/components/blocks/animated-gallery"
+import { useMemo } from 'react';
 import { Button } from "@/components/ui/custom-button"
 import { VideoIcon } from "lucide-react"
 import GradientText from "@/components/ui/GradientText"
@@ -43,32 +44,32 @@ const distributeVideosRandomly = () => {
   const totalSlots = 36;
   const availableVideos = [...CDN_VIDEOS];
   const distributedVideos = [];
-  
+
   // First pass: Add each video once
   const shuffled = [...availableVideos].sort(() => Math.random() - 0.5);
   distributedVideos.push(...shuffled);
-  
+
   // Second pass: Fill remaining slots (10) with random videos from the collection
   const remainingSlots = totalSlots - CDN_VIDEOS.length;
   for (let i = 0; i < remainingSlots; i++) {
     const randomVideo = availableVideos[Math.floor(Math.random() * availableVideos.length)];
     distributedVideos.push(randomVideo);
   }
-  
+
   // Ensure no adjacent duplicates by checking and swapping
   const ensureNoAdjacentDuplicates = (videos) => {
     const result = [...videos];
     let attempts = 0;
     const maxAttempts = 100;
-    
+
     while (attempts < maxAttempts) {
       let hasAdjacent = false;
-      
+
       // Check for adjacent duplicates in the linear array
       for (let i = 0; i < result.length - 1; i++) {
         if (result[i] === result[i + 1]) {
           hasAdjacent = true;
-          
+
           // Find a different video to swap with
           for (let j = i + 2; j < result.length; j++) {
             if (result[j] !== result[i] && result[j] !== result[i - 1] && 
@@ -81,12 +82,12 @@ const distributeVideosRandomly = () => {
           break;
         }
       }
-      
+
       // Also check for column-based adjacency (videos that are 12 positions apart)
       for (let i = 0; i < result.length - 12; i++) {
         if (result[i] === result[i + 12]) {
           hasAdjacent = true;
-          
+
           // Find a different video to swap with
           for (let j = 0; j < result.length; j++) {
             if (j !== i && j !== i + 12 && result[j] !== result[i] &&
@@ -100,14 +101,14 @@ const distributeVideosRandomly = () => {
           break;
         }
       }
-      
+
       if (!hasAdjacent) break;
       attempts++;
     }
-    
+
     return result;
   };
-  
+
   return ensureNoAdjacentDuplicates(distributedVideos);
 };
 
@@ -144,20 +145,20 @@ export default function ShowcaseGallery() {
                       <span className="text-maverick-orange block mt-4">in growth</span>
                     </h2>
                   </div>
-                  
+
                   {/* Partnership Philosophy Statement */}
                   <div className="space-y-8">
                     <p className="text-lg xs:text-xl sm:text-2xl text-[#AAAAAA] leading-relaxed max-w-2xl">
                       Every solution we build, from content strategy to backend systems, is grounded in co-created vision. As your web solutions agency, we measure success not by aesthetics alone but by alignment with your mission, audience, and growth.
                     </p>
-                    
+
                     <div className="border-l-4 border-maverick-orange pl-6">
                       <p className="text-lg xs:text-xl text-[#CCCCCC] italic leading-relaxed">
                         "Partnership is not just a contract. It's a way of doing things together, where both parties give more than they take."
                       </p>
                       <p className="text-sm text-[#AAAAAA] mt-2">— Henry Kimsey-House</p>
                     </div>
-                    
+
                     <p className="text-lg xs:text-xl sm:text-2xl text-[#CCCCCC] leading-relaxed max-w-2xl">
                       We believe in walking beside you every step of the way. The best results come from 
                       <span className="text-white font-medium"> mutual effort</span>, not transactional exchanges.
