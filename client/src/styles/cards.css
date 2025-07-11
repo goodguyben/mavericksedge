@@ -46,6 +46,15 @@
   position: absolute;
   top: 0;
   left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0;
+  border-radius: inherit;
+  box-shadow: 0 0 25px 3px rgba(255, 86, 48, 0.3);
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: -1;
+}
 
 /* Colored pricing card glow effects */
 .pricing-card.border-emerald-500:hover::after {
@@ -90,16 +99,6 @@
 
 .pricing-card.border-violet-500:hover::after {
   box-shadow: 0 0 25px 3px rgba(139, 92, 246, 0.3);
-}
-
-  right: 0;
-  bottom: 0;
-  opacity: 0;
-  border-radius: inherit;
-  box-shadow: 0 0 25px 3px rgba(255, 86, 48, 0.3);
-  transition: opacity 0.3s ease;
-  pointer-events: none;
-  z-index: -1;
 }
 
 .hover-card-wrapper:hover::after {
