@@ -1,4 +1,5 @@
 import { useState, useEffect, RefObject } from 'react';
+import { throttle } from '@/lib/performance';
 
 // Define the options interface for the hook
 export interface ScrollFadeOptions {
@@ -42,7 +43,8 @@ export function useScrollFade(
       element.style.position = 'relative';
     }
 
-    const handleScroll = () => {
+    // Throttled scroll handler for better performance
+    const handleScroll = throttle(() => {
       const rect = element.getBoundingClientRect();
       const viewportHeight = window.innerHeight;
 
@@ -71,7 +73,7 @@ export function useScrollFade(
       // Use the lower opacity value to ensure both effects work
       const finalOpacity = Math.min(entryFactor, exitFactor);
       setOpacity(finalOpacity);
-    };
+    }, 16); // ~60fps throttling
 
     // Initial calculation
     handleScroll();

@@ -86,3 +86,103 @@ export const initializeProductionOptimizations = () => {
     }
   }
 };
+
+// Intersection Observer for lazy loading
+export const createLazyObserver = (
+  callback: (entries: IntersectionObserverEntry[]) => void,
+  options: IntersectionObserverInit = {}
+) => {
+  const defaultOptions = {
+    rootMargin: '50px',
+    threshold: 0.1,
+    ...options
+  };
+  
+  return new IntersectionObserver(callback, defaultOptions);
+};
+
+// Bundle size optimization - dynamic imports
+export const loadComponentAsync = <T extends React.ComponentType<any>>(
+  importFunc: () => Promise<{ default: T }>
+) => {
+  return React.lazy(importFunc);
+};
+
+// Memory cleanup manager
+export const createCleanupManager = () => {
+  const cleanupFunctions: (() => void)[] = [];
+  
+  return {
+    add: (cleanup: () => void) => {
+      cleanupFunctions.push(cleanup);
+    },
+    cleanup: () => {
+      cleanupFunctions.forEach(fn => {
+        try {
+          fn();
+        } catch (error) {
+          console.warn('Cleanup function error:', error);
+        }
+      });
+      cleanupFunctions.length = 0;
+    }
+  };
+};
+
+// Performance monitoring utilities
+export const measurePerformance = (name: string, fn: () => void) => {
+  if (typeof window !== 'undefined' && window.performance && window.performance.mark) {
+    const startMark = `${name}-start`;
+    const endMark = `${name}-end`;
+    
+    window.performance.mark(startMark);
+    fn();
+    window.performance.mark(endMark);
+    window.performance.measure(name, startMark, endMark);
+    
+    const measure = window.performance.getEntriesByName(name)[0];
+    console.log(`${name} took ${measure.duration}ms`);
+  } else {
+    fn();
+  }
+};
+
+// Request Idle Callback wrapper for non-critical work
+export const requestIdleCallback = (callback: () => void, options?: { timeout?: number }) => {
+  if ('requestIdleCallback' in window) {
+    return (window as any).requestIdleCallback(callback, options);
+  } else {
+    // Fallback for browsers that don't support requestIdleCallback
+    return setTimeout(callback, 1);
+  }
+};
+
+// Cancel idle callback
+export const cancelIdleCallback = (id: number) => {
+  if ('cancelIdleCallback' in window) {
+    (window as any).cancelIdleCallback(id);
+  } else {
+    clearTimeout(id);
+  }
+};
+
+// Device capability detection
+export const getDeviceCapabilities = () => {
+  if (typeof window === 'undefined') {
+    return { isLowEnd: false, isMobile: false, hasReducedMotion: false };
+  }
+
+  const isLowEnd = 
+    navigator.hardwareConcurrency <= 4 ||
+    (navigator as any).deviceMemory <= 4 ||
+    (navigator as any).connection?.effectiveType === '2g' ||
+    (navigator as any).connection?.effectiveType === 'slow-2g';
+  
+  const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+  const hasReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  
+  return { isLowEnd, isMobile, hasReducedMotion };
+};
+
+// Import React for lazy loading
+import React from 'react';

@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import { motion } from 'framer-motion';
-import { useScrollFade, ScrollFadeOptions } from '@/hooks/useScrollFade';
+import { useOptimizedScrollFade, ScrollFadeOptions } from '@/hooks/useOptimizedScrollFade';
+import { useScrollFade } from '@/hooks/useScrollFade';
 
 interface ScrollFadeSectionProps {
   className?: string;
@@ -12,11 +13,12 @@ interface ScrollFadeSectionProps {
   fadeOutDuration?: number;
   fadeInDuration?: number;
   initialOpacity?: number;
+  useFallback?: boolean; // Add option to use original implementation
 }
 
 /**
  * A section component with scroll-based fade effects
- * Wraps children in a motion.div that changes opacity based on scroll position
+ * Now uses optimized scroll management for better performance
  */
 export default function ScrollFadeSection({
   className = '',
@@ -28,25 +30,34 @@ export default function ScrollFadeSection({
   fadeOutDuration = 1,
   fadeInDuration = 1.2,
   initialOpacity = 0,
+  useFallback = false, // Default to optimized version
 }: ScrollFadeSectionProps) {
   const sectionRef = useRef<HTMLDivElement>(null);
   
-  // Use our custom hook to calculate opacity based on scroll position
-  const opacity = useScrollFade(sectionRef, {
-    minOpacity,
-    fadeOutPoint,
-    fadeInPoint,
-    fadeOutDuration,
-    fadeInDuration,
-    initialOpacity,
-  });
+  // Use fallback or optimized hook based on prop
+  const opacity = useFallback 
+    ? useScrollFade(sectionRef, {
+        minOpacity,
+        fadeOutPoint,
+        fadeInPoint,
+        fadeOutDuration,
+        fadeInDuration,
+        initialOpacity,
+      })
+    : useOptimizedScrollFade(sectionRef, {
+        minOpacity,
+        fadeOutPoint,
+        fadeInPoint,
+        fadeOutDuration,
+        fadeInDuration,
+        initialOpacity,
+      });
 
   return (
     <motion.section
       id={id}
       ref={sectionRef}
-      className="relative pt-[0px] pb-[0px]"
-      style={{ opacity }}
+      className={`relative pt-[0px] pb-[0px] ${className}`}
       initial={{ opacity: initialOpacity }}
       animate={{ opacity }}
       transition={{ duration: 0.3 }}

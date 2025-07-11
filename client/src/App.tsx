@@ -6,6 +6,7 @@ import { queryClient } from "@/lib/queryClient";
 import Layout from "@/components/Layout";
 import PageTransition from "@/components/PageTransition";
 import LoadingScreen from "@/components/ui/LoadingScreen"; // Assuming LoadingScreen is in this path
+import { PerformanceMonitor } from "@/components/performance";
 
 
 // Lazy load pages
@@ -134,6 +135,7 @@ export default function App() {
           </Suspense>
         </Layout>
         <Toaster />
+        <PerformanceMonitor />
       </QueryClientProvider>
     </div>
       )}

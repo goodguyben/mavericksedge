@@ -996,3 +996,162 @@ img {
   backface-visibility: hidden;
   transform: translateZ(0);
 }
+
+/* ===== Additional Performance Optimizations ===== */
+
+/* Content visibility optimization for sections */
+.performance-optimized {
+  content-visibility: auto;
+  contain-intrinsic-size: 0 500px; /* Estimated height for sections */
+  contain: layout style paint;
+}
+
+/* GPU acceleration for animated elements */
+.gpu-accelerated-element {
+  will-change: transform, opacity;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Optimize reflow/repaint for animations */
+.optimize-animation {
+  position: relative;
+  z-index: 1;
+  isolation: isolate;
+}
+
+/* Reduce animations on low-end devices */
+@media (max-width: 768px), (prefers-reduced-motion: reduce) {
+  .reduce-animation * {
+    animation-duration: 0.3s !important;
+    transition-duration: 0.3s !important;
+    animation-delay: 0s !important;
+  }
+  
+  /* Disable complex animations */
+  .reduce-animation .framer-motion > * {
+    animation: none !important;
+  }
+}
+
+/* Optimize scroll performance */
+.scroll-optimized {
+  will-change: scroll-position;
+  scroll-behavior: smooth;
+  overscroll-behavior: contain;
+}
+
+/* Lazy loading images and videos */
+img[loading="lazy"],
+video[loading="lazy"] {
+  content-visibility: auto;
+}
+
+/* Performance hints for browsers */
+.hint-resource-priority-high {
+  /* For critical above-fold content */
+  contain: none;
+}
+
+.hint-resource-priority-low {
+  /* For below-fold content */
+  contain: layout style paint;
+  content-visibility: auto;
+}
+
+/* Optimize large sections */
+section {
+  contain: layout style;
+}
+
+/* Reduce paint areas for fixed elements */
+.fixed-element {
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+/* Optimize font loading */
+.font-display-swap {
+  font-display: swap;
+}
+
+/* Hardware acceleration for transforms */
+.transform-gpu {
+  transform: translate3d(0, 0, 0);
+  will-change: transform;
+}
+
+/* Optimize backdrop filters */
+.backdrop-optimized {
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transform: translateZ(0);
+}
+
+/* Reduce complexity for mobile */
+@media (max-width: 768px) {
+  /* Simplify shadows */
+  .shadow-lg {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Reduce blur effects */
+  .backdrop-blur-sm {
+    backdrop-filter: blur(4px);
+  }
+  
+  /* Disable parallax on mobile */
+  .parallax {
+    transform: none !important;
+  }
+}
+
+/* High performance scrolling */
+.high-performance-scroll {
+  -webkit-overflow-scrolling: touch;
+  overflow-y: auto;
+  overscroll-behavior-y: contain;
+}
+
+/* Optimize hover states for performance */
+@media (hover: hover) {
+  .optimized-hover {
+    transition: transform 0.2s ease-out;
+  }
+  
+  .optimized-hover:hover {
+    transform: translateY(-2px);
+  }
+}
+
+/* Reduce motion for accessibility and performance */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  .video-gallery-wrapper video {
+    animation: none !important;
+  }
+}
+
+/* Optimize print styles */
+@media print {
+  * {
+    background: white !important;
+    color: black !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+  
+  video,
+  .no-print {
+    display: none !important;
+  }
+}
