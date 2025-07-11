@@ -4,6 +4,7 @@ import { ContainerAnimated,
   ContainerSticky,
   GalleryCol,
   GalleryContainer } from "@/components/blocks/animated-gallery"
+import { OptimizedVideo, VideoGalleryWrapper } from "@/components/blocks/optimized-video"
 import { useMemo } from 'react';
 import { Button } from "@/components/ui/custom-button"
 import { VideoIcon } from "lucide-react"
@@ -244,86 +245,40 @@ export default function ShowcaseGallery() {
       />
       <ContainerScroll className="relative h-[350vh]">
         <ContainerSticky className="h-svh bg-[#0000009e] -mt-8">
-          <GalleryContainer className="-mt-4">
-            <GalleryCol yRange={["-10%", "2%"]} className="mt-[90px] mb-[90px] space-y-1">
-              {VIDEOS_1.map((videoUrl, index) => (
-                <div
-                  key={index}
-                  className="block aspect-video w-full rounded-md shadow-lg overflow-hidden border-b border-gray-800/50"
-                >
-                  <video
-                    className="w-full h-full object-cover"
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    loading="lazy"
-                    preload="metadata"
-                    onCanPlay={() => {
-                      console.log(`Showcase video ready: ${videoUrl}`);
-                    }}
-                    onError={(e) => {
-                      console.warn(`Failed to play showcase video: ${videoUrl}`, e);
-                    }}
-                  >
-                    <source src={videoUrl} type="video/mp4" />
-                  </video>
-                </div>
-              ))}
-            </GalleryCol>
-            <GalleryCol className="mt-[40px] mb-[120px] space-y-1" yRange={["0%", "-5%"]}>
-              {VIDEOS_2.map((videoUrl, index) => (
-                <div
-                  key={index}
-                  className="block aspect-video w-full rounded-md shadow-lg overflow-hidden border-b border-gray-800/50"
-                >
-                  <video
-                    className="w-full h-full object-cover"
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    loading="lazy"
-                    preload="metadata"
-                    onCanPlay={() => {
-                      console.log(`Showcase video ready: ${videoUrl}`);
-                    }}
-                    onError={(e) => {
-                      console.warn(`Failed to play showcase video: ${videoUrl}`, e);
-                    }}
-                  >
-                    <source src={videoUrl} type="video/mp4" />
-                  </video>
-                </div>
-              ))}
-            </GalleryCol>
-            <GalleryCol yRange={["-10%", "2%"]} className="mt-[85px] mb-[85px] space-y-1">
-              {IMAGES_3.map((videoUrl, index) => (
-                <div
-                  key={index}
-                  className="block aspect-video w-full rounded-md shadow-lg overflow-hidden border-b border-gray-800/50"
-                >
-                  <video
-                    className="w-full h-full object-cover"
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    loading="lazy"
-                    preload="metadata"
-                    onCanPlay={() => {
-                      console.log(`Showcase video ready: ${videoUrl}`);
-                    }}
-                    onError={(e) => {
-                      console.warn(`Failed to play showcase video: ${videoUrl}`, e);
-                    }}
-                  >
-                    <source src={videoUrl} type="video/mp4" />
-                  </video>
-                </div>
-              ))}
-            </GalleryCol>
-          </GalleryContainer>
+          <VideoGalleryWrapper maxConcurrentVideos={6}>
+            <GalleryContainer className="-mt-4">
+              <GalleryCol yRange={["-10%", "2%"]} className="mt-[90px] mb-[90px] space-y-1">
+                {VIDEOS_1.map((videoUrl, index) => (
+                  <OptimizedVideo
+                    key={index}
+                    src={videoUrl}
+                    className="block aspect-video w-full rounded-md shadow-lg overflow-hidden border-b border-gray-800/50"
+                    priority={index < 3}
+                  />
+                ))}
+              </GalleryCol>
+              <GalleryCol className="mt-[40px] mb-[120px] space-y-1" yRange={["0%", "-5%"]}>
+                {VIDEOS_2.map((videoUrl, index) => (
+                  <OptimizedVideo
+                    key={index}
+                    src={videoUrl}
+                    className="block aspect-video w-full rounded-md shadow-lg overflow-hidden border-b border-gray-800/50"
+                    priority={false}
+                  />
+                ))}
+              </GalleryCol>
+              <GalleryCol yRange={["-10%", "2%"]} className="mt-[85px] mb-[85px] space-y-1">
+                {IMAGES_3.map((videoUrl, index) => (
+                  <OptimizedVideo
+                    key={index}
+                    src={videoUrl}
+                    className="block aspect-video w-full rounded-md shadow-lg overflow-hidden border-b border-gray-800/50"
+                    priority={false}
+                  />
+                ))}
+              </GalleryCol>
+            </GalleryContainer>
+          </VideoGalleryWrapper>
         </ContainerSticky>
       </ContainerScroll>
     </div>

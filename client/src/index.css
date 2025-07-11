@@ -930,3 +930,69 @@ img {
     linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
   background-size: 20px 20px;
 }
+
+/* Video optimization for low-end devices and performance */
+.reduce-video-quality video {
+  image-rendering: optimizeSpeed;
+  image-rendering: -webkit-optimize-contrast;
+}
+
+@media (max-width: 768px) {
+  .reduce-video-quality video {
+    max-width: 480px;
+    max-height: 270px;
+  }
+}
+
+/* Smooth video loading transitions */
+.optimized-video video {
+  transition: opacity 0.3s ease-in-out;
+}
+
+.optimized-video video:not([src]) {
+  opacity: 0;
+}
+
+/* Prevent video layout shift */
+.optimized-video {
+  aspect-ratio: 16 / 9;
+  background-color: #1a1a1a;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Loading state for videos */
+.optimized-video[data-loading="true"]::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Performance optimizations for gallery */
+.video-gallery-wrapper[data-low-power="true"] video {
+  /* Reduce quality on low-power mode */
+  filter: contrast(0.95) brightness(0.98);
+}
+
+/* Ensure videos don't cause reflow during load */
+.video-gallery-wrapper video {
+  will-change: transform;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}

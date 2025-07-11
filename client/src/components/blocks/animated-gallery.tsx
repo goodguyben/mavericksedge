@@ -57,6 +57,7 @@ export const ContainerScroll = ({
   const scrollRef = React.useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({
     target: scrollRef,
+    offset: ["start end", "end start"]
   })
   return (
     <ContainerScrollContext.Provider value={{ scrollYProgress }}>
