@@ -109,16 +109,20 @@ export const GalleryContainer = ({
   ...props
 }: React.HTMLAttributes<HTMLDivElement> & HTMLMotionProps<"div">) => {
   const { scrollYProgress } = useContainerScrollContext()
-  // Smoother rotation with easing
-  const rotateX = useTransform(scrollYProgress, [0, 0.3, 0.5], [45, 20, 0], {
+  // More dynamic rotation with larger angle range
+  const rotateX = useTransform(scrollYProgress, [0, 0.2, 0.4, 0.6, 0.8], [85, 60, 30, 10, 0], {
     clamp: true
   })
-  // More gradual scale change
-  const scale = useTransform(scrollYProgress, [0, 0.5, 0.9], [1.1, 1.05, 1], {
+  // More dramatic scale change with zoom out effect
+  const scale = useTransform(scrollYProgress, [0, 0.3, 0.6, 0.9], [1.4, 1.2, 1.05, 0.95], {
     clamp: true
   })
-  // Add opacity for fade effect
-  const opacity = useTransform(scrollYProgress, [0, 0.2], [0.8, 1], {
+  // Dynamic opacity with fade in/out
+  const opacity = useTransform(scrollYProgress, [0, 0.1, 0.8, 1], [0.6, 1, 1, 0.9], {
+    clamp: true
+  })
+  // Add subtle Y translation for more depth
+  const y = useTransform(scrollYProgress, [0, 0.5, 1], [100, 0, -50], {
     clamp: true
   })
 
@@ -132,16 +136,17 @@ export const GalleryContainer = ({
         rotateX,
         scale,
         opacity,
+        y,
         transformStyle: "preserve-3d",
-        perspective: "1000px",
+        perspective: "1200px",
         willChange: "transform",
         ...style,
       }}
       transition={{
         type: "spring",
-        stiffness: 100,
-        damping: 30,
-        mass: 1
+        stiffness: 80,
+        damping: 25,
+        mass: 1.2
       }}
       {...props}
     >
@@ -158,27 +163,38 @@ export const GalleryCol = ({
   ...props
 }: HTMLMotionProps<"div"> & { yRange?: string[] }) => {
   const { scrollYProgress } = useContainerScrollContext()
-  // Smoother parallax effect with more control points
+  // More dynamic parallax with extended range and multiple control points
   const y = useTransform(
     scrollYProgress, 
-    [0, 0.3, 0.7, 1], 
-    [yRange[0], `${parseInt(yRange[0]) * 0.6}%`, `${parseInt(yRange[1]) * 0.6}%`, yRange[1]],
+    [0, 0.2, 0.4, 0.6, 0.8, 1], 
+    [yRange[0], `${parseInt(yRange[0]) * 0.8}%`, `${parseInt(yRange[0]) * 0.4}%`, `${parseInt(yRange[1]) * 0.3}%`, `${parseInt(yRange[1]) * 0.7}%`, yRange[1]],
     { clamp: true }
   )
+  // Add subtle rotation for more dynamic feel
+  const rotateZ = useTransform(scrollYProgress, [0, 0.5, 1], [0, 1, -1], {
+    clamp: true
+  })
+  // Add scale variation for depth
+  const scale = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [1, 1.02, 0.98, 1.01], {
+    clamp: true
+  })
 
   return (
     <motion.div
       className={cn("relative flex w-full flex-col gap-2 ", className)}
       style={{
         y,
+        rotateZ,
+        scale,
         willChange: "transform",
+        transformOrigin: "center",
         ...style,
       }}
       transition={{
         type: "spring",
-        stiffness: 100,
-        damping: 30,
-        mass: 1
+        stiffness: 90,
+        damping: 25,
+        mass: 1.1
       }}
       {...props}
     />
