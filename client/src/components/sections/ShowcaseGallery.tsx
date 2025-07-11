@@ -40,119 +40,21 @@ const CDN_VIDEOS = [
 ];
 
 export default function ShowcaseGallery() {
-  // Function to randomly distribute videos across gallery slots without adjacent duplicates
-  const distributeVideosRandomly = () => {
-    const totalSlots = 36;
-    const maxRepeats = 2;
+  // Fixed distribution: videos 1-26 + videos 1-10 to fill 36 slots
+  const createFixedDistribution = () => {
     const distributedVideos = [];
     
-    // Create a pool where each video can appear up to 2 times
-    const videoPool = [];
-    for (let i = 0; i < maxRepeats; i++) {
-      videoPool.push(...CDN_VIDEOS);
-    }
+    // Add videos 1-26 (all unique videos)
+    distributedVideos.push(...CDN_VIDEOS);
     
-    // Shuffle the pool
-    const shuffledPool = [...videoPool].sort(() => Math.random() - 0.5);
+    // Add videos 1-10 to fill remaining slots
+    distributedVideos.push(...CDN_VIDEOS.slice(0, 10));
     
-    // Take exactly 36 videos from the shuffled pool
-    distributedVideos.push(...shuffledPool.slice(0, totalSlots));
-    
-    // Ensure no adjacent duplicates
-    const ensureNoAdjacentDuplicates = (videos) => {
-      const result = [...videos];
-      const maxAttempts = 200;
-      let attempts = 0;
-      
-      while (attempts < maxAttempts) {
-        let needsSwap = false;
-        
-        // Check for horizontal adjacency (consecutive positions)
-        for (let i = 0; i < result.length - 1; i++) {
-          if (result[i] === result[i + 1]) {
-            needsSwap = true;
-            
-            // Find a suitable position to swap with
-            for (let j = i + 2; j < result.length; j++) {
-              const canSwap = result[j] !== result[i] && 
-                            result[j] !== result[i - 1] && 
-                            (j === result.length - 1 || result[j] !== result[j + 1]) &&
-                            (j === 0 || result[j] !== result[j - 1]);
-              
-              if (canSwap) {
-                [result[i + 1], result[j]] = [result[j], result[i + 1]];
-                break;
-              }
-            }
-            break;
-          }
-        }
-        
-        // Check for vertical adjacency (12 positions apart - same position in adjacent columns)
-        for (let i = 0; i < result.length - 12; i++) {
-          if (result[i] === result[i + 12]) {
-            needsSwap = true;
-            
-            // Find a suitable position to swap with
-            for (let j = 0; j < result.length; j++) {
-              if (j !== i && j !== i + 12) {
-                const canSwap = result[j] !== result[i] &&
-                              (j < 12 || result[j] !== result[j - 12]) &&
-                              (j >= result.length - 12 || result[j] !== result[j + 12]) &&
-                              (j === 0 || result[j] !== result[j - 1]) &&
-                              (j === result.length - 1 || result[j] !== result[j + 1]);
-                
-                if (canSwap) {
-                  [result[i + 12], result[j]] = [result[j], result[i + 12]];
-                  break;
-                }
-              }
-            }
-            break;
-          }
-        }
-        
-        // Check for row adjacency within columns (positions that are 1 apart within the same column)
-        for (let col = 0; col < 3; col++) {
-          for (let row = 0; row < 11; row++) {
-            const currentIndex = col * 12 + row;
-            const nextIndex = col * 12 + row + 1;
-            
-            if (result[currentIndex] === result[nextIndex]) {
-              needsSwap = true;
-              
-              // Find a suitable position to swap with
-              for (let j = 0; j < result.length; j++) {
-                if (j !== currentIndex && j !== nextIndex) {
-                  const canSwap = result[j] !== result[currentIndex] &&
-                                (j === 0 || result[j] !== result[j - 1]) &&
-                                (j === result.length - 1 || result[j] !== result[j + 1]) &&
-                                (j < 12 || result[j] !== result[j - 12]) &&
-                                (j >= result.length - 12 || result[j] !== result[j + 12]);
-                  
-                  if (canSwap) {
-                    [result[nextIndex], result[j]] = [result[j], result[nextIndex]];
-                    break;
-                  }
-                }
-              }
-              break;
-            }
-          }
-        }
-        
-        if (!needsSwap) break;
-        attempts++;
-      }
-      
-      return result;
-    };
-    
-    return ensureNoAdjacentDuplicates(distributedVideos);
+    return distributedVideos;
   };
 
-  // Generate the distributed videos using useMemo for performance
-  const allDistributedVideos = useMemo(() => distributeVideosRandomly(), []);
+  // Generate the fixed distribution
+  const allDistributedVideos = createFixedDistribution();
 
   // Split into three columns
   const VIDEOS_1 = allDistributedVideos.slice(0, 12);
