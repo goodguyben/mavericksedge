@@ -38,18 +38,34 @@ const CDN_VIDEOS = [
   "https://media.mavericksedge.ca/Portfolio_Video_26.mp4"
 ];
 
-// Function to fill gallery slots by cycling through CDN videos
-const fillGallerySlots = (slotCount: number) => {
-  const videos = [];
-  for (let i = 0; i < slotCount; i++) {
-    videos.push(CDN_VIDEOS[i % CDN_VIDEOS.length]);
+// Function to randomly distribute videos across gallery slots
+const distributeVideosRandomly = () => {
+  const totalSlots = 36;
+  const availableVideos = [...CDN_VIDEOS];
+  const distributedVideos = [];
+  
+  // First pass: Add each video once
+  const shuffled = [...availableVideos].sort(() => Math.random() - 0.5);
+  distributedVideos.push(...shuffled);
+  
+  // Second pass: Fill remaining slots (10) with random videos from the collection
+  const remainingSlots = totalSlots - CDN_VIDEOS.length;
+  for (let i = 0; i < remainingSlots; i++) {
+    const randomVideo = availableVideos[Math.floor(Math.random() * availableVideos.length)];
+    distributedVideos.push(randomVideo);
   }
-  return videos;
+  
+  // Shuffle the final array
+  return distributedVideos.sort(() => Math.random() - 0.5);
 };
 
-const VIDEOS_1 = fillGallerySlots(12);
-const VIDEOS_2 = fillGallerySlots(12);
-const IMAGES_3 = fillGallerySlots(12);
+// Generate the distributed videos
+const allDistributedVideos = distributeVideosRandomly();
+
+// Split into three columns
+const VIDEOS_1 = allDistributedVideos.slice(0, 12);
+const VIDEOS_2 = allDistributedVideos.slice(12, 24);
+const IMAGES_3 = allDistributedVideos.slice(24, 36);
 
 export default function ShowcaseGallery() {
   return (
