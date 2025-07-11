@@ -40,99 +40,34 @@ const CDN_VIDEOS = [
 ];
 
 export default function ShowcaseGallery() {
-  // Random distribution with no adjacent duplicates
-  const createRandomDistribution = () => {
-    const totalSlots = 36;
+  // Fixed distribution: videos 1-26 + specific videos for remaining slots
+  const createFixedDistribution = () => {
     const distributedVideos = [];
     
-    // Create pool: videos 1-26 + videos 1-10 (for 36 total)
-    const videoPool = [...CDN_VIDEOS, ...CDN_VIDEOS.slice(0, 10)];
+    // Add videos 1-26 (all unique videos)
+    distributedVideos.push(...CDN_VIDEOS);
     
-    // Shuffle the pool randomly
-    const shuffledPool = [...videoPool].sort(() => Math.random() - 0.5);
-    distributedVideos.push(...shuffledPool);
+    // Add specific videos for remaining 10 slots: videos 2, 4, 6, 8, 10, 12, 14, 16, 18, 20
+    const additionalVideos = [
+      CDN_VIDEOS[1],  // Video 2
+      CDN_VIDEOS[3],  // Video 4
+      CDN_VIDEOS[5],  // Video 6
+      CDN_VIDEOS[7],  // Video 8
+      CDN_VIDEOS[9],  // Video 10
+      CDN_VIDEOS[11], // Video 12
+      CDN_VIDEOS[13], // Video 14
+      CDN_VIDEOS[15], // Video 16
+      CDN_VIDEOS[17], // Video 18
+      CDN_VIDEOS[19]  // Video 20
+    ];
     
-    // Ensure no adjacent duplicates using smart swapping
-    const ensureNoAdjacentDuplicates = (videos) => {
-      const result = [...videos];
-      const maxAttempts = 100;
-      let attempts = 0;
-      
-      while (attempts < maxAttempts) {
-        let needsSwap = false;
-        
-        // Check horizontal adjacency (consecutive positions)
-        for (let i = 0; i < result.length - 1; i++) {
-          if (result[i] === result[i + 1]) {
-            needsSwap = true;
-            // Find a suitable swap candidate
-            for (let j = i + 2; j < result.length; j++) {
-              if (result[j] !== result[i] && 
-                  (j === result.length - 1 || result[j] !== result[j + 1]) &&
-                  (j === 0 || result[j] !== result[j - 1])) {
-                [result[i + 1], result[j]] = [result[j], result[i + 1]];
-                break;
-              }
-            }
-            break;
-          }
-        }
-        
-        // Check vertical adjacency (12 positions apart - same row in adjacent columns)
-        for (let i = 0; i < result.length - 12; i++) {
-          if (result[i] === result[i + 12]) {
-            needsSwap = true;
-            // Find a suitable swap candidate
-            for (let j = 0; j < result.length; j++) {
-              if (j !== i && j !== i + 12 && result[j] !== result[i] &&
-                  (j < 12 || result[j] !== result[j - 12]) &&
-                  (j >= result.length - 12 || result[j] !== result[j + 12]) &&
-                  (j === 0 || result[j] !== result[j - 1]) &&
-                  (j === result.length - 1 || result[j] !== result[j + 1])) {
-                [result[i + 12], result[j]] = [result[j], result[i + 12]];
-                break;
-              }
-            }
-            break;
-          }
-        }
-        
-        // Check within-column adjacency (consecutive positions within same column)
-        for (let col = 0; col < 3; col++) {
-          for (let row = 0; row < 11; row++) {
-            const currentIndex = col * 12 + row;
-            const nextIndex = col * 12 + row + 1;
-            
-            if (nextIndex < (col + 1) * 12 && result[currentIndex] === result[nextIndex]) {
-              needsSwap = true;
-              // Find a suitable swap candidate
-              for (let j = 0; j < result.length; j++) {
-                if (j !== currentIndex && j !== nextIndex && result[j] !== result[currentIndex] &&
-                    (j === 0 || result[j] !== result[j - 1]) &&
-                    (j === result.length - 1 || result[j] !== result[j + 1]) &&
-                    (j < 12 || result[j] !== result[j - 12]) &&
-                    (j >= result.length - 12 || result[j] !== result[j + 12])) {
-                  [result[nextIndex], result[j]] = [result[j], result[nextIndex]];
-                  break;
-                }
-              }
-              break;
-            }
-          }
-        }
-        
-        if (!needsSwap) break;
-        attempts++;
-      }
-      
-      return result;
-    };
+    distributedVideos.push(...additionalVideos);
     
-    return ensureNoAdjacentDuplicates(distributedVideos);
+    return distributedVideos;
   };
 
-  // Generate the random distribution using useMemo for consistent results during render
-  const allDistributedVideos = useMemo(() => createRandomDistribution(), []);
+  // Generate the fixed distribution
+  const allDistributedVideos = createFixedDistribution();
 
   // Split into three columns
   const VIDEOS_1 = allDistributedVideos.slice(0, 12);
