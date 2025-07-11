@@ -38,7 +38,7 @@ const CDN_VIDEOS = [
   "https://media.mavericksedge.ca/Portfolio_Video_26.mp4"
 ];
 
-// Function to randomly distribute videos across gallery slots
+// Function to randomly distribute videos across gallery slots without adjacent duplicates
 const distributeVideosRandomly = () => {
   const totalSlots = 36;
   const availableVideos = [...CDN_VIDEOS];
@@ -55,8 +55,60 @@ const distributeVideosRandomly = () => {
     distributedVideos.push(randomVideo);
   }
   
-  // Shuffle the final array
-  return distributedVideos.sort(() => Math.random() - 0.5);
+  // Ensure no adjacent duplicates by checking and swapping
+  const ensureNoAdjacentDuplicates = (videos) => {
+    const result = [...videos];
+    let attempts = 0;
+    const maxAttempts = 100;
+    
+    while (attempts < maxAttempts) {
+      let hasAdjacent = false;
+      
+      // Check for adjacent duplicates in the linear array
+      for (let i = 0; i < result.length - 1; i++) {
+        if (result[i] === result[i + 1]) {
+          hasAdjacent = true;
+          
+          // Find a different video to swap with
+          for (let j = i + 2; j < result.length; j++) {
+            if (result[j] !== result[i] && result[j] !== result[i - 1] && 
+                (j === result.length - 1 || result[j] !== result[j + 1])) {
+              // Swap the videos
+              [result[i + 1], result[j]] = [result[j], result[i + 1]];
+              break;
+            }
+          }
+          break;
+        }
+      }
+      
+      // Also check for column-based adjacency (videos that are 12 positions apart)
+      for (let i = 0; i < result.length - 12; i++) {
+        if (result[i] === result[i + 12]) {
+          hasAdjacent = true;
+          
+          // Find a different video to swap with
+          for (let j = 0; j < result.length; j++) {
+            if (j !== i && j !== i + 12 && result[j] !== result[i] &&
+                (j < 12 || result[j] !== result[j - 12]) &&
+                (j >= result.length - 12 || result[j] !== result[j + 12])) {
+              // Swap the videos
+              [result[i + 12], result[j]] = [result[j], result[i + 12]];
+              break;
+            }
+          }
+          break;
+        }
+      }
+      
+      if (!hasAdjacent) break;
+      attempts++;
+    }
+    
+    return result;
+  };
+  
+  return ensureNoAdjacentDuplicates(distributedVideos);
 };
 
 // Generate the distributed videos
