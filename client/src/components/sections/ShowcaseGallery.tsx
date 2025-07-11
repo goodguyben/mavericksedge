@@ -293,7 +293,7 @@ export default function ShowcaseGallery() {
       <ContainerScroll className="relative h-[350vh]">
         <ContainerSticky className="h-svh bg-[#0000009e] -mt-8">
           <GalleryContainer className="-mt-4">
-            <GalleryCol yRange={["-10%", "2%"]} className="mt-[90px] mb-[90px] space-y-1">
+            <GalleryCol yRange={["0%", "-8%"]} className="mt-[90px] mb-[90px] space-y-1">
               {VIDEOS_1.map((videoUrl, index) => (
                 <div
                   key={index}
@@ -345,7 +345,7 @@ export default function ShowcaseGallery() {
                 </div>
               ))}
             </GalleryCol>
-            <GalleryCol yRange={["-10%", "2%"]} className="mt-[85px] mb-[85px] space-y-1">
+            <GalleryCol yRange={["0%", "-8%"]} className="mt-[85px] mb-[85px] space-y-1">
               {IMAGES_3.map((videoUrl, index) => (
                 <div
                   key={index}

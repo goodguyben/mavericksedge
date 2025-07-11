@@ -58,6 +58,16 @@ html {
   -webkit-overflow-scrolling: touch;
 }
 
+/* Enable hardware acceleration for smoother animations */
+.gallery-container,
+[data-animated-gallery] {
+  will-change: transform;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
 /* Touch-friendly utilities */
 .touch-manipulation {
   touch-action: manipulation;

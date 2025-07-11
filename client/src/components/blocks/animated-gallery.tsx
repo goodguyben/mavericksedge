@@ -57,6 +57,7 @@ export const ContainerScroll = ({
   const scrollRef = React.useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({
     target: scrollRef,
+    offset: ["start start", "end start"],
   })
   return (
     <ContainerScrollContext.Provider value={{ scrollYProgress }}>
@@ -108,8 +109,18 @@ export const GalleryContainer = ({
   ...props
 }: React.HTMLAttributes<HTMLDivElement> & HTMLMotionProps<"div">) => {
   const { scrollYProgress } = useContainerScrollContext()
-  const rotateX = useTransform(scrollYProgress, [0, 0.5], [75, 0])
-  const scale = useTransform(scrollYProgress, [0.5, 0.9], [1.2, 1])
+  // Smoother rotation with easing
+  const rotateX = useTransform(scrollYProgress, [0, 0.3, 0.5], [45, 20, 0], {
+    clamp: true
+  })
+  // More gradual scale change
+  const scale = useTransform(scrollYProgress, [0, 0.5, 0.9], [1.1, 1.05, 1], {
+    clamp: true
+  })
+  // Add opacity for fade effect
+  const opacity = useTransform(scrollYProgress, [0, 0.2], [0.8, 1], {
+    clamp: true
+  })
 
   return (
     <motion.div
@@ -120,9 +131,17 @@ export const GalleryContainer = ({
       style={{
         rotateX,
         scale,
+        opacity,
         transformStyle: "preserve-3d",
         perspective: "1000px",
+        willChange: "transform",
         ...style,
+      }}
+      transition={{
+        type: "spring",
+        stiffness: 100,
+        damping: 30,
+        mass: 1
       }}
       {...props}
     >
@@ -139,14 +158,27 @@ export const GalleryCol = ({
   ...props
 }: HTMLMotionProps<"div"> & { yRange?: string[] }) => {
   const { scrollYProgress } = useContainerScrollContext()
-  const y = useTransform(scrollYProgress, [0.5, 1], yRange)
+  // Smoother parallax effect with more control points
+  const y = useTransform(
+    scrollYProgress, 
+    [0, 0.3, 0.7, 1], 
+    [yRange[0], `${parseInt(yRange[0]) * 0.6}%`, `${parseInt(yRange[1]) * 0.6}%`, yRange[1]],
+    { clamp: true }
+  )
 
   return (
     <motion.div
       className={cn("relative flex w-full flex-col gap-2 ", className)}
       style={{
         y,
+        willChange: "transform",
         ...style,
+      }}
+      transition={{
+        type: "spring",
+        stiffness: 100,
+        damping: 30,
+        mass: 1
       }}
       {...props}
     />
