@@ -47,18 +47,18 @@ export default function ShowcaseGallery() {
     // Add videos 1-26 (all unique videos)
     distributedVideos.push(...CDN_VIDEOS);
     
-    // Add specific videos for remaining 10 slots: videos 2, 4, 6, 8, 10, 12, 14, 16, 18, 20
+    // Add specific videos for remaining 10 slots: videos 10, 2, 22, 8, 15, 4, 18, 20, 12, 14
     const additionalVideos = [
-      CDN_VIDEOS[1],  // Video 2
-      CDN_VIDEOS[3],  // Video 4
-      CDN_VIDEOS[5],  // Video 6
-      CDN_VIDEOS[7],  // Video 8
       CDN_VIDEOS[9],  // Video 10
-      CDN_VIDEOS[11], // Video 12
-      CDN_VIDEOS[13], // Video 14
-      CDN_VIDEOS[15], // Video 16
+      CDN_VIDEOS[1],  // Video 2
+      CDN_VIDEOS[21], // Video 22
+      CDN_VIDEOS[7],  // Video 8
+      CDN_VIDEOS[14], // Video 15
+      CDN_VIDEOS[3],  // Video 4
       CDN_VIDEOS[17], // Video 18
-      CDN_VIDEOS[19]  // Video 20
+      CDN_VIDEOS[19], // Video 20
+      CDN_VIDEOS[11], // Video 12
+      CDN_VIDEOS[13]  // Video 14
     ];
     
     distributedVideos.push(...additionalVideos);
