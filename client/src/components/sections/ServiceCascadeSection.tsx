@@ -349,12 +349,12 @@ export default function ServiceCascadeSection() {
       items: [
         {
           id: "websites",
-          title: "Custom Interactive Websites",
-          description: "We craft custom interactive and 3D websites that engage users with motion, depth, and storytelling built to captivate and convert. Whether it's scroll-triggered animations, immersive product showcases, or spatial design, we turn static sites into dynamic journeys.",
+          title: "Custom Website Design",
+          description: "We design custom websites that range from clean, professional layouts to immersive 3D and interactive experiences. Each crafted to engage, captivate, and convert. Whether you’re looking for a straightforward, elegant website or a dynamic, story-driven journey with scroll-triggered animations, spatial design, or product showcases, our team of expert website builders brings your vision to life with clarity and creativity. For high-quality website design Edmonton businesses can rely on, we deliver results that make a lasting impact.",
           videos: [
-            "/videos/services/Custom Interactive Websites 1.mp4",
-            "/videos/services/Custom Interactive Websites 2.mp4",
-            "/videos/services/Custom Interactive Websites 3.mp4"
+            "https://media.mavericksedge.ca/Portfolio_Video_3.mp4",
+            "https://media.mavericksedge.ca/Portfolio_Video_2.mp4",
+            "https://media.mavericksedge.ca/Portfolio_Video_5.mp4"
           ],
           videoDurations: [11000, 7000, 11000], // 1st and 3rd extended by 4 seconds
           zoomEffects: ['zoom-out', 'zoom-out', 'zoom-out'],
@@ -362,14 +362,13 @@ export default function ServiceCascadeSection() {
         },
         {
           id: "web-applications",
-          title: "Productivity & Management Web Applications",
-          description: "We develop web applications tailored to solve your unique operational challenges and streamline complex data management. From CRM software and asset management systems to interactive dashboards, our scalable, user-friendly solutions leverage AI-driven insights and low-code adaptability. Designed for seamless integration, these powerful tools empower your team to boost productivity, enhance decision-making, and accelerate business growth.",
+          title: "Custom Web Application Development",
+          description: "We specialize in custom web application development designed to solve your unique operational challenges and streamline complex data management. Our web application development services cover everything from CRM software and asset management systems to interactive dashboards. Leveraging scalable, cloud-based web application development frameworks and advanced AI-driven insights, our user-friendly solutions offer low-code adaptability and seamless API integration web application capabilities.",
           videos: [
-            "/videos/services/Productivity & Management Web Applications 1.mp4",
-            "/videos/services/Productivity & Management Web Applications 3.mp4"
-          ],
-          images: [
-            "/videos/services/Productivity & Management Web Applications 2.png"
+            "https://media.mavericksedge.ca/Portfolio_Video_6.mp4",
+            "https://media.mavericksedge.ca/Portfolio_Video_17.mp4",
+            "https://media.mavericksedge.ca/Portfolio_Video_14.mp4",
+            "https://media.mavericksedge.ca/Portfolio_Video_13.mp4"
           ],
           gradient: "from-yellow-500/20 to-orange-500/20"
         },
@@ -378,17 +377,17 @@ export default function ServiceCascadeSection() {
           title: "Next-Gen E-Commerce",
           description: "Launch and grow your online store with expertly crafted e-commerce sites on Shopify and WooCommerce. We build fast, secure storefronts with optimized checkout, seamless payment integration, inventory syncing, and built-in analytics to help you sell smarter. With AI-powered product recommendations built in, your customers discover what they want faster, boosting engagement and increasing sales.",
           videos: [
-            "/videos/services/Next-Gen E-Commerce 1.mp4",
-            "/videos/services/Next-Gen E-Commerce 2.mp4"
+            "https://media.mavericksedge.ca/Portfolio_Video_9.mp4",
+            "https://media.mavericksedge.ca/Portfolio_Video_8.mp4"
           ],
           gradient: "from-emerald-500/20 to-teal-500/20"
         },
         {
-          id: "performance",
-          title: "Performance Optimization & Online Visibility",
-          description: "We enhance your website's speed, mobile responsiveness, and Core Web Vitals to ensure a seamless user experience. Our strategies incorporate Generative Engine Optimization (GEO) to position your content in AI-generated responses across platforms like Google's AI Overviews and ChatGPT. By focusing on structured data, semantic clarity, and user-centric design, we not only boost your search rankings but also increase visibility in AI-driven search results, driving higher engagement and conversions.",
-          images: [
-            "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop&crop=entropy"
+          id: "seo",
+          title: "SEO Services and Performance",
+          description: "As a leading Edmonton SEO agency, we enhance your website’s speed, mobile responsiveness, and Core Web Vitals to deliver a seamless user experience. Our strategies leverage Generative Engine Optimization (GEO) to position your content in AI-generated responses on platforms like Google’s AI Overviews and ChatGPT. By focusing on structured data, semantic clarity, and user-centric design, we improve both your traditional search rankings and visibility in AI-driven results, increasing engagement and conversions.",
+          videos: [
+            "https://media.mavericksedge.ca/Portfolio_Video_27.mp4"
           ],
           gradient: "from-orange-500/20 to-red-500/20"
         }
@@ -417,6 +416,17 @@ export default function ServiceCascadeSection() {
             "/videos/services/Social Media Management.mp4"
           ],
           gradient: "from-blue-500/20 to-purple-500/20"
+        },
+        {
+          id: "ppc-advertising",
+          title: "Pay-Per-Click (PPC) Advertising",
+          description: "Drive targeted traffic and maximize your return on ad spend with strategic PPC advertising campaigns across Google Ads and Meta Ads (Facebook + Instagram). Our digital marketing agency uses a data-driven approach including keyword research, audience targeting, ad copy optimization, and continuous performance monitoring. We focus on high-intent keywords, compelling ad creatives, and conversion-optimized landing pages to ensure every click counts. From Google AdWords search campaigns to display advertising and remarketing strategies, our PPC company helps businesses achieve measurable results and scale their digital advertising efforts efficiently.",
+          videos: [
+            "https://media.mavericksedge.ca/Portfolio_Video_29.mp4",
+            "https://media.mavericksedge.ca/Portfolio_Video_30.mp4"
+          ],
+          videoDurations: [26000], // 26 seconds for first video, default for second
+          gradient: "from-green-500/20 to-blue-500/20"
         }
       ]
     },
