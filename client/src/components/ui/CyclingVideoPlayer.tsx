@@ -131,7 +131,7 @@ export default function CyclingVideoPlayer({
                 {isCurrentVideo ? (
                   <video
                     ref={(el) => { videoRefs.current[index] = el; }}
-                    className="w-full h-full object-cover max-[480px]:max-w-[320px] max-[480px]:max-h-[180px] max-[320px]:max-w-[280px] max-[320px]:max-h-[158px]"
+                    className="w-full h-full object-cover"
                     autoPlay={autoPlay}
                     muted={muted}
                     loop={loop}
@@ -160,13 +160,13 @@ export default function CyclingVideoPlayer({
                     }}
                   >
                     <source src={media} type="video/mp4" />
-                    <span className="text-xs text-gray-400 max-[480px]:text-[10px]">Your browser does not support the video tag.</span>
+                    Your browser does not support the video tag.
                   </video>
                 ) : (
                   <img
                     src={media}
                     alt={alt}
-                    className="w-full h-full object-cover max-[480px]:max-w-[320px] max-[480px]:max-h-[180px] max-[320px]:max-w-[280px] max-[320px]:max-h-[158px]"
+                    className="w-full h-full object-cover"
                     loading="lazy"
                   />
                 )}
@@ -177,13 +177,13 @@ export default function CyclingVideoPlayer({
         })}
       </AnimatePresence>
 
-      {/* Optional indicators - smaller on mobile */}
+      {/* Optional indicators */}
       {totalMedia > 1 && (
-        <div className="absolute bottom-2 right-2 flex gap-1 max-[480px]:bottom-1 max-[480px]:right-1 max-[480px]:gap-0.5">
+        <div className="absolute bottom-2 right-2 flex gap-1">
           {allMedia.map((_, index) => (
             <div
               key={index}
-              className={`w-1.5 h-1.5 rounded-full transition-colors duration-300 max-[480px]:w-1 max-[480px]:h-1 ${
+              className={`w-1.5 h-1.5 rounded-full transition-colors duration-300 ${
                 index === currentIndex 
                   ? 'bg-maverick-orange' 
                   : 'bg-white/30'
