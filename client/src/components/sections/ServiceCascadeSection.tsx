@@ -131,7 +131,6 @@ function SingleServiceSection({ service, sectionHeight = "400vh", sectionStart =
           />
         ))}
       </div>
-
       {/* Sticky content container */}
       <div className="sticky top-0 h-screen flex items-center justify-center bg-black z-10 pt-12 sm:pt-16 md:pt-20 lg:pt-24 relative">
         <div className="container mx-auto px-4 sm:px-6 md:px-8">
@@ -145,7 +144,7 @@ function SingleServiceSection({ service, sectionHeight = "400vh", sectionStart =
               className="flex items-center justify-center gap-4 mb-4"
             >
               {service.icon}
-              <h2 className="text-3xl lg:text-4xl xl:text-5xl font-bold text-white">
+              <h2 className="text-3xl lg:text-4xl xl:text-5xl font-bold text-white mt-[7px] mb-[7px]">
                 {service.title}
               </h2>
             </motion.div>
@@ -401,26 +400,28 @@ export default function ServiceCascadeSection() {
       items: [
         {
           id: "brand-strategy",
-          title: "Brand Strategy & Design",
-          description: "We create adaptive brand strategies that connect your business with audiences across platforms through clarity and authenticity. Our services include logo design, brand guidelines, visual identity systems, and messaging frameworks, all crafted to build memorable, scalable brand experiences that evolve with your business. Every element is thoughtfully designed to build trust, inspire engagement, and reflect your brand's true character.",
-          images: [
-            "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=800&h=600&fit=crop&crop=entropy"
+          title: "Brand Strategy and Design",
+          description: "We create adaptive brand strategies that connect your business with the right audience through clarity and authenticity. Our branding services include custom logo design, brand identity systems, typography, messaging frameworks, and visual branding solutions tailored to your goals. Whether you’re a startup or an established company looking for a brand refresh, we design every element to build trust, inspire engagement, and reflect your brand’s true character across platforms.",
+          videos: [
+            "https://media.mavericksedge.ca/Portfolio_Video_33.mp4",
+            "https://media.mavericksedge.ca/Portfolio_Video_34.mp4"
           ],
           gradient: "from-purple-500/20 to-pink-500/20"
         },
         {
           id: "social-media",
           title: "Social Media Management",
-          description: "Social media is about more than visibility; it's about earning attention through relevance, consistency, and trust. Services include content planning, platform native strategy, community engagement, and performance analysis, all tailored to reflect your brand's voice and values. ",
+          description: "Social media goes beyond visibility; it’s about earning attention through relevance, consistency, and trust. From content planning and platform-native strategy to community engagement and performance analytics, we ensure your brand’s voice shines through every post on every platform. Our AI-backed process generates scroll-stopping content that’s uniquely tailored to each platform, fueling your brand’s visibility and engagement.",
           videos: [
-            "/videos/services/Social Media Management.mp4"
+            "https://media.mavericksedge.ca/Portfolio_Video_31.mp4",
+            "https://media.mavericksedge.ca/Portfolio_Video_32.mp4"
           ],
           gradient: "from-blue-500/20 to-purple-500/20"
         },
         {
           id: "ppc-advertising",
           title: "Pay-Per-Click (PPC) Advertising",
-          description: "Drive targeted traffic and maximize your return on ad spend with strategic PPC advertising campaigns across Google Ads and Meta Ads (Facebook + Instagram). Our digital marketing agency uses a data-driven approach including keyword research, audience targeting, ad copy optimization, and continuous performance monitoring. We focus on high-intent keywords, compelling ad creatives, and conversion-optimized landing pages to ensure every click counts. From Google AdWords search campaigns to display advertising and remarketing strategies, our PPC company helps businesses achieve measurable results and scale their digital advertising efforts efficiently.",
+          description: "Drive targeted traffic and boost ROI with strategic PPC advertising campaigns across Google Ads and Meta Ads (Facebook & Instagram). As a data-driven PPC company, we specialize in high-intent keyword research, audience targeting, ad copy optimization, and performance monitoring. From Google AdWords search to display and remarketing, our digital marketing agency creates conversion-optimized campaigns that deliver measurable results.",
           videos: [
             "https://media.mavericksedge.ca/Portfolio_Video_29.mp4",
             "https://media.mavericksedge.ca/Portfolio_Video_30.mp4"
@@ -432,7 +433,7 @@ export default function ServiceCascadeSection() {
     },
     {
       id: "ai-applications",
-      title: "AI Applications",
+      title: "AI Solutions",
       icon: <Brain className="w-8 h-8 text-maverick-orange" />,
       imagePosition: 'left',
       items: [

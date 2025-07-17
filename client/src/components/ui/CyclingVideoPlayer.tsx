@@ -131,7 +131,7 @@ export default function CyclingVideoPlayer({
                 {isCurrentVideo ? (
                   <video
                     ref={(el) => { videoRefs.current[index] = el; }}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-contain"
                     autoPlay={autoPlay}
                     muted={muted}
                     loop={loop}
@@ -166,7 +166,7 @@ export default function CyclingVideoPlayer({
                   <img
                     src={media}
                     alt={alt}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-contain"
                     loading="lazy"
                   />
                 )}
