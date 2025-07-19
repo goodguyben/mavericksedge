@@ -42,15 +42,5 @@ export const contactSubmissionSchema = z.object({
 export type InsertUser = z.infer<typeof insertUserSchema>;
 export type User = typeof users.$inferSelect;
 
-import { z } from "zod";
-
-export const contactSubmissionSchema = z.object({
-  name: z.string().min(1, "Name is required"),
-  email: z.string().email("Please enter a valid email"),
-  phone: z.string().optional(),
-  service: z.string().min(1, "Please select a service"),
-  message: z.string().min(1, "Message is required")
-});
-
-export type InsertContactSubmission = z.infer<typeof contactSubmissionSchema>;
-export type ContactSubmission = z.infer<typeof contactSubmissionSchema>;
+export type InsertContactSubmission = z.infer<typeof insertContactSubmissionSchema>;
+export type ContactSubmission = typeof contactSubmissions.$inferSelect;
