@@ -131,8 +131,9 @@ function SingleServiceSection({ service, sectionHeight = "400vh", sectionStart =
           />
         ))}
       </div>
+
       {/* Sticky content container */}
-      <div className="top-0 h-screen flex items-center justify-center bg-black z-10 sm:pt-16 md:pt-20 lg:pt-24 relative pt-[24px] pb-[24px] mt-[0px] mb-[0px]">
+      <div className="sticky top-0 h-screen flex items-center justify-center bg-black z-10 pt-12 sm:pt-16 md:pt-20 lg:pt-24 relative">
         <div className="container mx-auto px-4 sm:px-6 md:px-8">
 
           {/* Section Title */}
