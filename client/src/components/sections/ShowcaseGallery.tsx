@@ -37,34 +37,24 @@ const CDN_VIDEOS = [
   "https://media.mavericksedge.ca/Portfolio_Video_23.mp4",
   "https://media.mavericksedge.ca/Portfolio_Video_24.mp4",
   "https://media.mavericksedge.ca/Portfolio_Video_25.mp4",
-  "https://media.mavericksedge.ca/Portfolio_Video_26.mp4"
+  "https://media.mavericksedge.ca/Portfolio_Video_26.mp4",
+  "https://media.mavericksedge.ca/Portfolio_Video_27.mp4",
+  "https://media.mavericksedge.ca/Portfolio_Video_28.mp4",
+  "https://media.mavericksedge.ca/Portfolio_Video_29.mp4",
+  "https://media.mavericksedge.ca/Portfolio_Video_30.mp4",
+  "https://media.mavericksedge.ca/Portfolio_Video_31.mp4",
+  "https://media.mavericksedge.ca/Portfolio_Video_32.mp4",
+  "https://media.mavericksedge.ca/Portfolio_Video_33.mp4",
+  "https://media.mavericksedge.ca/Portfolio_Video_34.mp4",
+  "https://media.mavericksedge.ca/Portfolio_Video_35.mp4",
+  "https://media.mavericksedge.ca/Portfolio_Video_36.mp4"
 ];
 
 export default function ShowcaseGallery() {
-  // Fixed distribution: videos 1-26 + specific videos for remaining slots
+  // Fixed distribution: all 36 videos
   const createFixedDistribution = () => {
-    const distributedVideos = [];
-    
-    // Add videos 1-26 (all unique videos)
-    distributedVideos.push(...CDN_VIDEOS);
-    
-    // Add specific videos for remaining 10 slots: videos 10, 2, 22, 8, 15, 4, 18, 20, 12, 14
-    const additionalVideos = [
-      CDN_VIDEOS[9],  // Video 10
-      CDN_VIDEOS[1],  // Video 2
-      CDN_VIDEOS[21], // Video 22
-      CDN_VIDEOS[7],  // Video 8
-      CDN_VIDEOS[14], // Video 15
-      CDN_VIDEOS[3],  // Video 4
-      CDN_VIDEOS[17], // Video 18
-      CDN_VIDEOS[19], // Video 20
-      CDN_VIDEOS[11], // Video 12
-      CDN_VIDEOS[13]  // Video 14
-    ];
-    
-    distributedVideos.push(...additionalVideos);
-    
-    return distributedVideos;
+    // We now have exactly 36 videos, so we can use them all directly
+    return [...CDN_VIDEOS];
   };
 
   // Generate the fixed distribution
@@ -247,32 +237,32 @@ export default function ShowcaseGallery() {
         <ContainerSticky className="h-svh bg-[#0000009e] -mt-8">
           <VideoGalleryWrapper maxConcurrentVideos={6}>
             <GalleryContainer className="-mt-4">
-              <GalleryCol yRange={["-10%", "2%"]} className="mt-[90px] mb-[90px] space-y-1">
+              <GalleryCol yRange={["-10%", "2%"]} className="mt-[90px] mb-[90px]">
                 {VIDEOS_1.map((videoUrl, index) => (
                   <OptimizedVideo
                     key={index}
                     src={videoUrl}
-                    className="block aspect-video w-full rounded-md shadow-lg overflow-hidden border-b border-gray-800/50"
+                    className="block aspect-video w-full rounded-md shadow-lg overflow-hidden"
                     priority={index < 3}
                   />
                 ))}
               </GalleryCol>
-              <GalleryCol className="mt-[40px] mb-[120px] space-y-1" yRange={["0%", "-5%"]}>
+              <GalleryCol className="mt-[40px] mb-[120px]" yRange={["0%", "-5%"]}>
                 {VIDEOS_2.map((videoUrl, index) => (
                   <OptimizedVideo
                     key={index}
                     src={videoUrl}
-                    className="block aspect-video w-full rounded-md shadow-lg overflow-hidden border-b border-gray-800/50"
+                    className="block aspect-video w-full rounded-md shadow-lg overflow-hidden"
                     priority={false}
                   />
                 ))}
               </GalleryCol>
-              <GalleryCol yRange={["-10%", "2%"]} className="mt-[85px] mb-[85px] space-y-1">
+              <GalleryCol yRange={["-10%", "2%"]} className="mt-[85px] mb-[85px]">
                 {IMAGES_3.map((videoUrl, index) => (
                   <OptimizedVideo
                     key={index}
                     src={videoUrl}
-                    className="block aspect-video w-full rounded-md shadow-lg overflow-hidden border-b border-gray-800/50"
+                    className="block aspect-video w-full rounded-md shadow-lg overflow-hidden"
                     priority={false}
                   />
                 ))}
