@@ -60,6 +60,11 @@ export default function AIServices() {
       icon: <Shield className="h-10 w-10 text-maverick-orange" />,
       title: "Secure & Compliant AI Setup",
       description: "Implementation of AI solutions with strong security measures and compliance with regulations including PIPEDA."
+    },
+    {
+      icon: <Brain className="h-10 w-10 text-maverick-orange" />,
+      title: "Custom AI Applications",
+      description: "We develop custom AI solutions to streamline your core operations. Our expertise in generative AI and machine learning enables us to build powerful automation tools like an AI sales representative that nurtures leads, an automated inventory management system, or an intelligent platform for logistics optimization."
     }
   ];
 

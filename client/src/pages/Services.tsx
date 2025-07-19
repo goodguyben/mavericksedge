@@ -55,6 +55,7 @@ export default function Services() {
         "AI Tool & Platform Selection",
         "Custom API Integration",
         "AI-Powered Workflow Automation",
+        "Custom AI Applications",
         "Secure & Compliant AI Setup"
       ]
     }

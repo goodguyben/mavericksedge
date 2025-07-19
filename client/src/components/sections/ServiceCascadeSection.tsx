@@ -132,7 +132,7 @@ function SingleServiceSection({ service, sectionHeight = "400vh", sectionStart =
         ))}
       </div>
       {/* Sticky content container */}
-      <div className="sticky top-0 h-screen flex items-center justify-center bg-black z-10 pt-12 sm:pt-16 md:pt-20 lg:pt-24 relative">
+      <div className="top-0 h-screen flex items-center justify-center bg-black z-10 sm:pt-16 md:pt-20 lg:pt-24 relative pt-[24px] pb-[24px] mt-[42px] mb-[42px]">
         <div className="container mx-auto px-4 sm:px-6 md:px-8">
 
           {/* Section Title */}
@@ -144,7 +144,7 @@ function SingleServiceSection({ service, sectionHeight = "400vh", sectionStart =
               className="flex items-center justify-center gap-4 mb-4"
             >
               {service.icon}
-              <h2 className="text-3xl lg:text-4xl xl:text-5xl font-bold text-white mt-[7px] mb-[7px]">
+              <h2 className="text-3xl lg:text-4xl xl:text-5xl font-bold text-white">
                 {service.title}
               </h2>
             </motion.div>
@@ -439,30 +439,40 @@ export default function ServiceCascadeSection() {
       items: [
         {
           id: "ai-integration",
-          title: "AI Integration & Automation",
-          description: "Streamline your business operations with intelligent AI solutions that reduce manual work and increase efficiency. Our implementations are practical, measurable, and designed to deliver immediate ROI.",
-          images: [
-            "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=600&fit=crop&crop=entropy"
+          title: "AI Integration Solutions",
+          description: "AI integration solutions that empower your business to innovate, automate, and scale effortlessly. From intelligent automation and predictive analytics to natural language processing and machine learning models, our services enable you to transform operations, enhance customer experiences, and make data-driven decisions. Whether it's integrating AI agents into your CRM, developing personalized marketing strategies, or optimizing workflows, we provide the tools and expertise to turn your business vision into reality.",
+          videos: [
+            "https://media.mavericksedge.ca/Portfolio_Video_35.mp4"
           ],
           gradient: "from-cyan-500/20 to-blue-500/20"
         },
         {
-          id: "data-analytics",
-          title: "AI-Powered Analytics",
-          description: "Transform your business data into actionable insights with advanced AI analytics. We help you uncover hidden patterns, predict trends, and make data-driven decisions that accelerate growth.",
-          images: [
-            "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop&crop=entropy"
+          id: "ai-chatbots",
+          title: "AI Chatbots and Virtual Assistants",
+          description: "Elevate your customer engagement with our advanced AI Chatbots and Virtual Assistants, powered by sophisticated machine learning algorithms. Our solutions use cutting edge conversational AI and natural language processing (NLP) to deliver seamless customer service automation and intelligent lead generation. We also leverage generative AI to provide personalized recommendations, ensuring every interaction is meaningful and drives business growth.",
+          videos: [
+            "https://media.mavericksedge.ca/Portfolio_Video_36.mp4",
+            "https://media.mavericksedge.ca/Portfolio_Video_37.mp4"
           ],
           gradient: "from-green-500/20 to-cyan-500/20"
         },
         {
-          id: "custom-ai",
-          title: "Custom AI Solutions",
-          description: "Develop bespoke AI applications tailored to your specific business challenges. From chatbots to predictive models, we create AI solutions that integrate seamlessly with your existing workflows.",
-          images: [
-            "/videos/services/Custom AI Solutions.jpg"
+          id: "workflow-automation",
+          title: "Workflow and Process Automation",
+          description: "We build intelligent automation directly into your operations. We perform seamless AI integration using powerful platforms like N8n, Make, and Zapier connected to leading generative AI models from OpenAI, Gemini, and Claude. Imagine automatically qualifying sales leads with predictive analytics or using natural language processing to analyze client feedback instantly, transforming your data analysis and business efficiency with our custom AI solutions.",
+          videos: [
+            "https://media.mavericksedge.ca/Portfolio_Video_19.mp4"
           ],
           gradient: "from-indigo-500/20 to-purple-500/20"
+        },
+        {
+          id: "custom-ai-applications",
+          title: "Custom AI Applications",
+          description: "We develop custom AI solutions to streamline your core operations. Our expertise in generative AI and machine learning enables us to build powerful automation tools like an AI sales representative that nurtures leads, an automated inventory management system, or an intelligent platform for logistics optimization. Leverage our predictive analytics and process automation to reduce costs and gain a competitive edge.",
+          videos: [
+            "https://media.mavericksedge.ca/Portfolio_Video_38.mp4"
+          ],
+          gradient: "from-purple-500/20 to-pink-500/20"
         }
       ]
     }

@@ -283,7 +283,7 @@ export default function WhatWeDoSection() {
               </motion.div>
             </div>
             {/* Service Content Display with Graphics */}
-            <div className="mt-10">
+            <div className="mt-10 h-[800px]">
               <AnimatePresence mode="wait">
                 {services.map(
                   (service) =>
@@ -294,11 +294,11 @@ export default function WhatWeDoSection() {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -20 }}
                         transition={{ duration: 0.5, ease: "easeOut" }}
-                        className="grid grid-cols-1 gap-8 items-center"
+                        className="grid grid-cols-1 gap-8 items-center h-full"
                       >
                         {/* Visual side with same graphics as desktop */}
                         <motion.div
-                          className="relative h-64 rounded-2xl overflow-hidden"
+                          className="relative h-64 rounded-2xl overflow-hidden flex-shrink-0"
                           initial={{ opacity: 0, x: 30 }}
                           animate={{ opacity: 1, x: 0 }}
                           transition={{ duration: 0.5, delay: 0.4 }}
@@ -923,7 +923,7 @@ export default function WhatWeDoSection() {
               </motion.div>
             </div>
             {/* Service Content Display */}
-            <div className="mt-10 pt-14">
+            <div className="mt-10 pt-14 h-[800px]">
               <AnimatePresence mode="wait">
                 {services.map(
                   (service) =>
@@ -934,7 +934,7 @@ export default function WhatWeDoSection() {
                           animate={{ opacity: 1, y: 0 }}
                           exit={{ opacity: 0, y: -20 }}
                           transition={{ duration: 0.5, ease: "easeOut" }}
-                          className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center"
+                          className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center h-full"
                         >
                         {/* Content side */}
                         <motion.div
@@ -1041,7 +1041,7 @@ export default function WhatWeDoSection() {
 
                         {/* Visual side */}
                         <motion.div
-                          className="relative h-full min-h-[300px] lg:min-h-[400px] rounded-2xl overflow-hidden"
+                          className="relative h-full min-h-[300px] lg:min-h-[400px] rounded-2xl overflow-hidden flex-shrink-0"
                           initial={{ opacity: 0, x: 30 }}
                           animate={{ opacity: 1, x: 0 }}
                           transition={{ duration: 0.5, delay: 0.4 }}

@@ -188,6 +188,17 @@ const implementationExamples = [
       "60% faster document processing",
       "Significant cost savings on admin work"
     ]
+  },
+  {
+    title: "Custom AI Applications",
+    description: "Bespoke AI solutions tailored to your specific business needs, including AI sales representatives, automated inventory management, and logistics optimization platforms.",
+    price: "$8,000 - $25,000",
+    results: [
+      "Streamlined core operations",
+      "Reduced operational costs",
+      "Enhanced competitive advantage",
+      "Scalable automation solutions"
+    ]
   }
 ];
 
