@@ -920,6 +920,7 @@ export default function WebPricing() {
               Let's create a website that works as hard as you do. Schedule a free consultation to discuss your project and find the perfect solution for your needs.
             </p>
             <motion.div
+              className="inline-flex"
               whileHover={{ 
                 scale: 1.05, 
                 boxShadow: "0 10px 30px rgba(255, 86, 48, 0.3)"
