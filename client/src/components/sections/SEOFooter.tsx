@@ -8,7 +8,7 @@ export default function SEOFooter() {
     "@context": "https://schema.org",
     "@type": "Organization",
     "name": "Mavericks Edge",
-    "url": "https://mavericksedge.com",
+    "url": "https://mavericksedge.ca",
     "logo": "https://mavericksedge.ca/images/logo-transparent-thumb4x.png",
     "contactPoint": {
       "@type": "ContactPoint",
