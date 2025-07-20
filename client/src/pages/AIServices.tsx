@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Brain, Database, Workflow, Shield, FileCode, Users, Gauge, Zap, Activity, LineChart, Cpu, Target, TrendingUp, CheckCircle, ArrowRight, Star, Clock, DollarSign } from "lucide-react";
+import { Brain, Database, Workflow, Shield, FileCode, Users, Gauge, Zap, Activity, LineChart, Cpu, Target, TrendingUp, CheckCircle, ArrowRight, Star, Clock, DollarSign, ChevronRight } from "lucide-react";
 import ContactSection from "@/components/sections/ContactSection";
 import SEOHead from "@/components/SEOHead";
 import { Link } from "wouter";
@@ -90,15 +90,16 @@ export default function AIServices() {
   return (
     <div>
       <SEOHead 
-        title="AI Integration Services | Artificial Intelligence Solutions | Machine Learning Implementation | Mavericks Edge"
-        description="Transform your business with cutting-edge AI integration services. Expert artificial intelligence solutions, machine learning implementation, and AI automation for businesses of all sizes. Get custom AI development, ChatGPT integration, and intelligent automation."
-        keywords="AI integration services, artificial intelligence solutions, machine learning implementation, AI automation, ChatGPT integration, custom AI development, business AI solutions, AI consulting, machine learning consulting, AI transformation, intelligent automation, AI strategy, data science services, predictive analytics, natural language processing, computer vision, AI chatbots, business process automation, AI readiness assessment, AI implementation, enterprise AI solutions, small business AI, AI consulting services, machine learning models, deep learning, neural networks, AI platform integration, OpenAI integration, Google AI integration, AI data governance, AI compliance, PIPEDA compliance, AI training, change management, AI performance monitoring, ROI optimization"
-        canonicalUrl="/services/ai"
-        ogTitle="AI Integration Services | Artificial Intelligence Solutions | Mavericks Edge"
-        ogDescription="Transform your business with cutting-edge AI integration services. Expert artificial intelligence solutions, machine learning implementation, and AI automation."
+        title="AI Integration Services Edmonton | Artificial Intelligence Solutions | Machine Learning Implementation | Mavericks Edge"
+        description="Transform your Edmonton business with cutting-edge AI integration services. Expert artificial intelligence solutions, machine learning implementation, and AI automation for businesses of all sizes. Get custom AI development, ChatGPT integration, and intelligent automation in Edmonton, Alberta."
+        keywords="AI integration services Edmonton, artificial intelligence solutions Edmonton, machine learning implementation Edmonton, AI automation Edmonton, ChatGPT integration Edmonton, custom AI development Edmonton, business AI solutions Edmonton, AI consulting Edmonton, machine learning consulting Edmonton, AI transformation Edmonton, intelligent automation Edmonton, AI strategy Edmonton, data science services Edmonton, predictive analytics Edmonton, natural language processing Edmonton, computer vision Edmonton, AI chatbots Edmonton, business process automation Edmonton, AI readiness assessment Edmonton, AI implementation Edmonton, enterprise AI solutions Edmonton, small business AI Edmonton, AI consulting services Edmonton, machine learning models Edmonton, deep learning Edmonton, neural networks Edmonton, AI platform integration Edmonton, OpenAI integration Edmonton, Google AI integration Edmonton, AI data governance Edmonton, AI compliance Edmonton, PIPEDA compliance Edmonton, AI training Edmonton, change management Edmonton, AI performance monitoring Edmonton, ROI optimization Edmonton, Edmonton AI services, Alberta AI solutions"
+        canonicalUrl="/ai-automation-services-edmonton"
+        ogTitle="AI Integration Services Edmonton | Artificial Intelligence Solutions | Mavericks Edge"
+        ogDescription="Transform your Edmonton business with cutting-edge AI integration services. Expert artificial intelligence solutions, machine learning implementation, and AI automation."
         ogImage="https://mavericksedge.ca/images/logo-transparent-thumb4x.png"
         ogType="website"
       />
+      
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -117,14 +118,14 @@ export default function AIServices() {
               >
                 <div className="inline-flex items-center px-4 py-2 bg-maverick-orange bg-opacity-10 border border-maverick-orange border-opacity-30 rounded-full text-maverick-orange text-sm font-medium mb-6">
                   <Brain className="h-4 w-4 mr-2" />
-                  Artificial Intelligence Solutions
+                  Artificial Intelligence Solutions Edmonton
                 </div>
                 <h1 className="text-5xl md:text-7xl font-bold mb-6 font-heading">
                   AI Integration & 
                   <span className="text-maverick-orange"> Automation</span>
                 </h1>
                 <p className="text-xl text-[#AAAAAA] max-w-3xl mb-8 leading-relaxed">
-                  Transform your business operations with cutting-edge artificial intelligence solutions. From machine learning implementation to intelligent automation, we deliver custom AI development that drives measurable results and competitive advantage.
+                  Transform your Edmonton business operations with cutting-edge artificial intelligence solutions. From machine learning implementation to intelligent automation, we deliver custom AI development that drives measurable results and competitive advantage.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">
                   <Link href="/contact">
@@ -133,7 +134,7 @@ export default function AIServices() {
                       <ArrowRight className="ml-2 h-5 w-5" />
                     </a>
                   </Link>
-                  <Link href="/pricing/ai">
+                  <Link href="/ai-automation-pricing-edmonton">
                     <a className="maverick-button maverick-button-outline inline-flex items-center justify-center px-8 py-3 text-base font-medium rounded-md md:py-4 md:text-lg md:px-10">
                       View AI Pricing
                     </a>
@@ -150,7 +151,7 @@ export default function AIServices() {
               <div className="bg-[#1A1A1A] p-1 rounded-lg border border-gray-800">
                 <img 
                   src="https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
-                  alt="AI Integration Services" 
+                  alt="AI Integration Services Edmonton" 
                   className="rounded-lg w-full h-auto" 
                 />
               </div>
@@ -161,7 +162,7 @@ export default function AIServices() {
         </div>
       </div>
 
-      {/* AI Services Section - Modern Grid Layout */}
+      {/* AI Services Section - Modern List Layout */}
       <section className="py-24 px-5 md:px-10 bg-[#1E1E1E]">
         <div className="container mx-auto">
           <motion.div 
@@ -171,47 +172,53 @@ export default function AIServices() {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 font-heading">Comprehensive AI Integration Services</h2>
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 font-heading">Comprehensive AI Integration Services Edmonton</h2>
             <p className="text-[#AAAAAA] text-xl max-w-3xl mx-auto leading-relaxed">
-              From initial AI readiness assessment to full-scale implementation and ongoing optimization, we provide end-to-end artificial intelligence solutions that transform your business operations.
+              From initial AI readiness assessment to full-scale implementation and ongoing optimization, we provide end-to-end artificial intelligence solutions that transform your Edmonton business operations.
             </p>
           </motion.div>
 
-          {/* Modern Grid Layout */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {/* Modern List Layout */}
+          <div className="space-y-8">
             {aiServices.map((service, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="bg-gradient-to-br from-[#1A1A1A] to-[#2A2A2A] rounded-xl p-8 border border-gray-800 hover:border-maverick-orange transition-all duration-300 group pl-[0px] pr-[0px] ml-[-2px] mr-[-2px]"
+                className="group"
               >
-                <div className="flex items-start justify-between mb-6">
-                  <div className="p-3 bg-maverick-orange bg-opacity-10 rounded-lg group-hover:bg-opacity-20 transition-all duration-300">
-                    {service.icon}
-                  </div>
-                  <div className="text-maverick-orange opacity-0 group-hover:opacity-100 transition-all duration-300">
-                    <ArrowRight className="h-5 w-5" />
-                  </div>
-                </div>
-                
-                <h3 className="text-xl font-semibold mb-4 font-heading group-hover:text-maverick-orange transition-colors duration-300">
-                  {service.title}
-                </h3>
-                
-                <p className="text-[#AAAAAA] mb-6 leading-relaxed">
-                  {service.description}
-                </p>
-
-                <div className="space-y-3">
-                  {service.features.map((feature, featureIndex) => (
-                    <div key={featureIndex} className="flex items-center text-sm text-[#CCCCCC]">
-                      <CheckCircle className="h-4 w-4 text-maverick-orange mr-3 flex-shrink-0" />
-                      <span>{feature}</span>
+                <div className="bg-gradient-to-r from-[#1A1A1A] to-[#2A2A2A] rounded-xl p-8 border border-gray-800 hover:border-maverick-orange transition-all duration-300">
+                  <div className="flex items-start gap-6">
+                    <div className="flex-shrink-0">
+                      <div className="p-4 bg-maverick-orange bg-opacity-10 rounded-lg group-hover:bg-opacity-20 transition-all duration-300">
+                        {service.icon}
+                      </div>
                     </div>
-                  ))}
+                    
+                    <div className="flex-1">
+                      <div className="flex items-center justify-between mb-4">
+                        <h3 className="text-2xl font-semibold font-heading group-hover:text-maverick-orange transition-colors duration-300">
+                          {service.title}
+                        </h3>
+                        <ChevronRight className="h-6 w-6 text-maverick-orange opacity-0 group-hover:opacity-100 transition-all duration-300" />
+                      </div>
+                      
+                      <p className="text-[#AAAAAA] mb-6 leading-relaxed text-lg">
+                        {service.description}
+                      </p>
+
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                        {service.features.map((feature, featureIndex) => (
+                          <div key={featureIndex} className="flex items-center text-[#CCCCCC] group-hover:text-[#DDDDDD] transition-colors duration-300">
+                            <CheckCircle className="h-4 w-4 text-maverick-orange mr-3 flex-shrink-0" />
+                            <span className="text-sm">{feature}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </motion.div>
             ))}
@@ -229,9 +236,9 @@ export default function AIServices() {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 font-heading">AI Technologies & Platforms</h2>
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 font-heading">AI Technologies & Platforms We Integrate</h2>
             <p className="text-[#AAAAAA] text-xl max-w-3xl mx-auto">
-              We integrate with leading AI platforms and technologies to deliver cutting-edge solutions tailored to your business needs.
+              We integrate with leading AI platforms and technologies to deliver cutting-edge solutions tailored to your Edmonton business needs.
             </p>
           </motion.div>
 
@@ -264,9 +271,9 @@ export default function AIServices() {
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
             >
-              <h2 className="text-3xl md:text-5xl font-bold mb-6 font-heading">Why Choose AI Integration?</h2>
+              <h2 className="text-3xl md:text-5xl font-bold mb-6 font-heading">Why Choose AI Integration in Edmonton?</h2>
               <p className="text-[#AAAAAA] text-lg mb-8 leading-relaxed">
-                Implementing artificial intelligence solutions in your business delivers measurable benefits that drive growth, efficiency, and competitive advantage.
+                Implementing artificial intelligence solutions in your Edmonton business delivers measurable benefits that drive growth, efficiency, and competitive advantage.
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 {[
@@ -305,7 +312,7 @@ export default function AIServices() {
               <div className="bg-[#1A1A1A] p-1 rounded-lg border border-gray-800">
                 <img 
                   src="https://images.unsplash.com/photo-1682687980961-78fa83781450?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
-                  alt="AI Benefits" 
+                  alt="AI Benefits Edmonton" 
                   className="rounded-lg w-full h-auto" 
                 />
               </div>
@@ -325,9 +332,9 @@ export default function AIServices() {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 font-heading">Industries We Serve</h2>
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 font-heading">Industries We Serve in Edmonton</h2>
             <p className="text-[#AAAAAA] text-xl max-w-3xl mx-auto">
-              Our AI integration services are tailored to meet the unique challenges and opportunities across diverse industries.
+              Our AI integration services are tailored to meet the unique challenges and opportunities across diverse Edmonton industries.
             </p>
           </motion.div>
 
@@ -360,9 +367,9 @@ export default function AIServices() {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 font-heading">Our AI Implementation Process</h2>
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 font-heading">Our AI Implementation Process Edmonton</h2>
             <p className="text-[#AAAAAA] text-xl max-w-3xl mx-auto">
-              We follow a proven, structured approach to implement AI solutions that deliver measurable business value.
+              We follow a proven, structured approach to implement AI solutions that deliver measurable business value for Edmonton companies.
             </p>
           </motion.div>
 
@@ -437,9 +444,9 @@ export default function AIServices() {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 font-heading">AI Success Stories</h2>
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 font-heading">AI Success Stories Edmonton</h2>
             <p className="text-[#AAAAAA] text-xl max-w-3xl mx-auto">
-              See how our AI integration services have transformed businesses across various industries.
+              See how our AI integration services have transformed Edmonton businesses across various industries.
             </p>
           </motion.div>
 
@@ -517,22 +524,22 @@ export default function AIServices() {
           >
             <h2 className="text-4xl md:text-5xl font-bold mb-6 font-heading">Frequently Asked Questions</h2>
             <p className="text-[#AAAAAA] text-xl max-w-3xl mx-auto">
-              Find answers to common questions about our AI integration services and artificial intelligence solutions.
+              Find answers to common questions about our AI integration services and artificial intelligence solutions in Edmonton.
             </p>
           </motion.div>
 
           <div className="max-w-4xl mx-auto">
             {[
               {
-                question: "What is the minimum business size for AI integration?",
-                answer: "There is no minimum business size for AI integration. We work with businesses of all sizes, from startups to established enterprises. Our AI solutions are scalable and can be tailored to your specific needs and budget. Even small businesses can benefit from AI technologies through cost-effective implementations that start small and grow with your business."
+                question: "What is the minimum business size for AI integration in Edmonton?",
+                answer: "There is no minimum business size for AI integration. We work with Edmonton businesses of all sizes, from startups to established enterprises. Our AI solutions are scalable and can be tailored to your specific needs and budget. Even small businesses can benefit from AI technologies through cost-effective implementations that start small and grow with your business."
               },
               {
                 question: "Do I need a large amount of data to implement AI solutions?",
                 answer: "While having quality data is important, you don't necessarily need massive amounts. We can work with the data you have and help you implement solutions that start small and grow as your data collection improves. Many AI implementations can begin with modest data sets and expand over time. We also help you establish data collection strategies to improve your AI capabilities."
               },
               {
-                question: "How long does it take to implement AI solutions?",
+                question: "How long does it take to implement AI solutions in Edmonton?",
                 answer: "Implementation timelines vary based on complexity and scope. Simple AI integrations like chatbot implementation might take 4-8 weeks, while more comprehensive solutions like custom machine learning models could take 3-6 months. We provide detailed timelines during the discovery phase and often implement in phases to deliver value quickly and allow for iterative improvements."
               },
               {
@@ -541,7 +548,7 @@ export default function AIServices() {
               },
               {
                 question: "What kind of ROI can I expect from AI integration?",
-                answer: "ROI varies by implementation, but our clients typically see returns in the form of cost savings (20-40%), increased efficiency (30-60% time savings), improved customer satisfaction, and new revenue opportunities. We work with you to establish clear KPIs and measurement frameworks to track the business impact of your AI investments and ensure you're achieving your expected returns."
+                answer: "ROI varies by implementation, but our Edmonton clients typically see returns in the form of cost savings (20-40%), increased efficiency (30-60% time savings), improved customer satisfaction, and new revenue opportunities. We work with you to establish clear KPIs and measurement frameworks to track the business impact of your AI investments and ensure you're achieving your expected returns."
               },
               {
                 question: "Can you integrate AI with my existing software and systems?",
