@@ -32,13 +32,13 @@ export default function Hero() {
         {/* Background gradient */}
         <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-800" />
         {/* Dark overlay for better text readability */}
-        <div className="absolute inset-0 bg-black/60 sm:bg-black/50" />
+        <div className="absolute inset-0 bg-black/60 sm:bg-black/50 mt-[-30px] mb-[-30px]" />
       </div>
       {/* Content Container */}
       <div className="container mx-auto px-0 sm:px-6 md:px-8 lg:px-10 xl:px-12 2xl:px-16 z-20 flex justify-start items-center w-full pointer-events-none relative">
         {/* Main Content - Left aligned and responsive */}
         <motion.div
-          className="max-w-full lg:max-w-[60%] xl:max-w-[55%] 2xl:max-w-[50%] text-left w-full pointer-events-auto relative sm:pt-4 md:pt-8 lg:pt-0 mb-[84px] pt-[20px] sm:pt-[25px] md:pt-[30px] pb-[30px]"
+          className="max-w-full lg:max-w-[60%] xl:max-w-[55%] 2xl:max-w-[50%] text-left w-full pointer-events-auto relative lg:pt-0 sm:mt-[55px] md:mt-[65px] lg:mt-[84px] pt-[20px] sm:pt-[25px] md:pt-[30px] pb-[30px] mt-[38.5px] mb-[38.5px]"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: heroOpacity, y: 0 }}
           transition={{ duration: 0.1 }}

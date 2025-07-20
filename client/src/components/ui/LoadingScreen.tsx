@@ -76,7 +76,7 @@ export default function LoadingScreen({
                 muted
                 loop
                 playsInline
-                preload="none"
+                preload="auto"
                 onLoadedData={handleVideoLoad}
                 onEnded={handleVideoEnd}
                 onError={(e) => {
