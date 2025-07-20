@@ -1197,6 +1197,72 @@ section {
   overscroll-behavior-y: contain;
 }
 
+/* Mobile-specific optimizations */
+.mobile-optimized {
+  /* Reduce paint complexity */
+  contain: layout style;
+  
+  /* Optimize animations */
+  --animation-duration: 0.2s;
+  --transition-duration: 0.2s;
+}
+
+.mobile-optimized * {
+  /* Reduce animation complexity on mobile */
+  animation-duration: var(--animation-duration, 0.2s) !important;
+  transition-duration: var(--transition-duration, 0.2s) !important;
+}
+
+/* Optimize images for mobile */
+.mobile-optimized img {
+  max-width: 100%;
+  height: auto;
+  will-change: auto;
+}
+
+/* Reduce video quality on mobile */
+.mobile-optimized video {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Optimize touch targets */
+.mobile-optimized button,
+.mobile-optimized a {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+/* Reduce shadow complexity on mobile */
+.mobile-optimized .shadow-lg {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.mobile-optimized .shadow-xl {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Optimize backdrop filters for mobile */
+.mobile-optimized .backdrop-blur-sm {
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+}
+
+.mobile-optimized .backdrop-blur-md {
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+/* Disable complex effects on mobile */
+.mobile-optimized .parallax {
+  transform: none !important;
+}
+
+.mobile-optimized .transform-gpu {
+  transform: none !important;
+  will-change: auto;
+}
+
 /* Optimize hover states for performance */
 @media (hover: hover) {
   .optimized-hover {
