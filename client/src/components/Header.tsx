@@ -104,11 +104,11 @@ export default function Header() {
           {/* Logo */}
           <Link 
             href="/" 
-            className="flex items-center justify-start min-h-[44px] touch-manipulation pl-[0px] pr-[0px] ml-[-18px] mr-[-18px]" 
+            className="flex items-center justify-start min-h-[48px] touch-manipulation pl-[0px] pr-[0px] ml-[-18px] mr-[-18px]" 
             aria-label="Mavericks Edge Home"
           >
-            <Logo size="medium-small" noLink={true} showText={false} />
-            <span className="font-heading font-bold text-maverick-orange whitespace-nowrap sm:text-2xl md:text-3xl lg:text-2xl xl:text-3xl ml-[0px] mr-[0px] mt-[11px] mb-[11px] pt-[0px] pb-[0px] text-[24px]" style={{ letterSpacing: '-0.02em' }}>
+            <Logo size="medium" noLink={true} showText={false} />
+            <span className="font-heading font-bold text-maverick-orange whitespace-nowrap text-[26px] sm:text-3xl md:text-4xl lg:text-2xl xl:text-3xl ml-[0px] mr-[0px] mt-[11px] mb-[11px] pt-[0px] pb-[0px]" style={{ letterSpacing: '-0.02em' }}>
               Mavericks Edge
             </span>
           </Link>
