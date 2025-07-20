@@ -8,8 +8,38 @@ if (!process.env.NODE_ENV) {
 }
 
 const app = express();
+
+// Performance optimizations
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ extended: false, limit: '50mb' }));
+
+// Compression middleware for better performance
+import compression from 'compression';
+app.use(compression({
+  level: 6,
+  threshold: 1024,
+  filter: (req: any, res: any) => {
+    if (req.headers['x-no-compression']) {
+      return false;
+    }
+    return compression.filter(req, res);
+  }
+}));
+
+// Security and performance headers
+app.use((req, res, next) => {
+  // Security headers
+  res.setHeader('X-Content-Type-Options', 'nosniff');
+  res.setHeader('X-Frame-Options', 'DENY');
+  res.setHeader('X-XSS-Protection', '1; mode=block');
+  res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
+  
+  // Performance headers
+  res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
+  res.setHeader('Vary', 'Accept-Encoding');
+  
+  next();
+});
 
 // Add CORS headers for development
 app.use((req, res, next) => {
