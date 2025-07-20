@@ -81,7 +81,7 @@ export default function Header() {
   return (
     <>
       <motion.header 
-        className={`sticky top-0 left-0 w-full py-3 px-4 sm:px-6 lg:px-8 z-50 transition-all duration-500 backdrop-blur-xl border-b border-white/5 ${
+        className={`sticky top-0 left-0 w-full py-3 px-4 sm:px-6 lg:px-8 z-50 transition-all duration-500 backdrop-blur-xl border-b border-white/5 mt-[-44px] mb-[-44px] ${
           isScrolled 
             ? 'bg-[#121212]/70 shadow-lg shadow-black/20' 
             : 'bg-[#121212]/20'

@@ -28,7 +28,7 @@ export default function Layout({ children }: LayoutProps) {
   }, [children, location]);
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#000000]">
+    <div className="min-h-screen flex flex-col">
       <PageTransition />
       <Header />
       <main 
