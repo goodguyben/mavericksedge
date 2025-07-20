@@ -117,11 +117,11 @@ export default function AIServices() {
         </div>
       </div>
 
-      {/* Services Grid */}
-      <section className="py-24 px-5 md:px-10 bg-[#1E1E1E]">
-        <div className="container mx-auto">
+      {/* Neural Network Services */}
+      <section className="py-24 px-5 md:px-10 bg-[#1E1E1E] relative overflow-hidden">
+        <div className="container mx-auto relative z-10">
           <motion.div 
-            className="text-center mb-16"
+            className="text-center mb-20"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -133,7 +133,188 @@ export default function AIServices() {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {/* Neural Network Layout */}
+          <div className="relative min-h-[800px] md:min-h-[1000px]">
+            {/* Connection Lines Background */}
+            <svg className="absolute inset-0 w-full h-full opacity-20" style={{ zIndex: 1 }}>
+              <defs>
+                <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="#FF6B35" stopOpacity="0.6"/>
+                  <stop offset="100%" stopColor="#FF6B35" stopOpacity="0.1"/>
+                </linearGradient>
+              </defs>
+              
+              {/* Animated connection lines */}
+              <motion.path
+                d="M 100,150 Q 400,200 700,250"
+                stroke="url(#lineGradient)"
+                strokeWidth="2"
+                fill="none"
+                initial={{ pathLength: 0 }}
+                animate={{ pathLength: 1 }}
+                transition={{ duration: 2, repeat: Infinity, repeatType: "reverse" }}
+              />
+              <motion.path
+                d="M 200,350 Q 500,300 800,450"
+                stroke="url(#lineGradient)"
+                strokeWidth="2"
+                fill="none"
+                initial={{ pathLength: 0 }}
+                animate={{ pathLength: 1 }}
+                transition={{ duration: 2.5, repeat: Infinity, repeatType: "reverse", delay: 0.5 }}
+              />
+              <motion.path
+                d="M 150,600 Q 450,550 750,700"
+                stroke="url(#lineGradient)"
+                strokeWidth="2"
+                fill="none"
+                initial={{ pathLength: 0 }}
+                animate={{ pathLength: 1 }}
+                transition={{ duration: 3, repeat: Infinity, repeatType: "reverse", delay: 1 }}
+              />
+            </svg>
+
+            {/* Service Nodes */}
+            <div className="absolute inset-0" style={{ zIndex: 2 }}>
+              {services.map((service, index) => {
+                // Position services in a neural network pattern
+                const positions: Array<{ top: string; left: string; size: 'small' | 'medium' | 'large' }> = [
+                  { top: '10%', left: '15%', size: 'large' }, // Top left
+                  { top: '5%', left: '50%', size: 'medium' }, // Top center
+                  { top: '15%', left: '80%', size: 'large' }, // Top right
+                  { top: '35%', left: '25%', size: 'medium' }, // Mid left
+                  { top: '40%', left: '60%', size: 'large' }, // Center
+                  { top: '45%', left: '85%', size: 'medium' }, // Mid right
+                  { top: '65%', left: '20%', size: 'large' }, // Bottom left
+                  { top: '70%', left: '50%', size: 'medium' }, // Bottom center
+                  { top: '75%', left: '75%', size: 'large' }, // Bottom right
+                ];
+
+                // Ensure we don't exceed available positions, cycle if needed
+                const position = positions[index % positions.length];
+                const sizeClasses: Record<'small' | 'medium' | 'large', string> = {
+                  small: 'w-48 h-48',
+                  medium: 'w-52 h-52',
+                  large: 'w-56 h-56'
+                };
+
+                return (
+                  <motion.div
+                    key={index}
+                    className={`absolute ${sizeClasses[position.size]} transform -translate-x-1/2 -translate-y-1/2`}
+                    style={{
+                      top: position.top,
+                      left: position.left,
+                    }}
+                    initial={{ opacity: 0, scale: 0, rotate: -180 }}
+                    whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ 
+                      duration: 0.8, 
+                      delay: index * 0.15,
+                      type: "spring",
+                      stiffness: 100
+                    }}
+                    whileHover={{ 
+                      scale: 1.1, 
+                      rotate: 5,
+                      transition: { duration: 0.3 }
+                    }}
+                  >
+                    {/* Hexagonal Container */}
+                    <div className="relative w-full h-full group cursor-pointer">
+                      {/* Outer Glow */}
+                      <div className="absolute inset-0 bg-maverick-orange opacity-0 group-hover:opacity-20 blur-xl transition-all duration-500 rounded-full"></div>
+                      
+                      {/* Main Hexagonal Shape */}
+                      <div 
+                        className="relative w-full h-full bg-gradient-to-br from-[#1A1A1A] via-[#2A2A2A] to-[#1A1A1A] border-2 border-gray-700 group-hover:border-maverick-orange transition-all duration-500 backdrop-blur-sm"
+                        style={{
+                          clipPath: 'polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%)',
+                        }}
+                      >
+                        {/* Content */}
+                        <div className="flex flex-col items-center justify-center h-full p-4 text-center">
+                          {/* Icon */}
+                          <motion.div
+                            className="mb-3 p-2 rounded-lg bg-maverick-orange bg-opacity-10 group-hover:bg-opacity-30 transition-all duration-300"
+                            whileHover={{ rotate: 360 }}
+                            transition={{ duration: 0.5 }}
+                          >
+                            {service.icon}
+                          </motion.div>
+                          
+                          {/* Title */}
+                          <h3 className="text-sm font-bold mb-2 font-heading text-white group-hover:text-maverick-orange transition-colors duration-300 leading-tight">
+                            {service.title}
+                          </h3>
+                          
+                          {/* Description - Hidden by default, shown on hover */}
+                          <motion.p 
+                            className="text-xs text-[#AAAAAA] opacity-0 group-hover:opacity-100 transition-all duration-300 leading-tight"
+                            initial={{ height: 0 }}
+                            whileHover={{ height: "auto" }}
+                          >
+                            {service.description.slice(0, 80)}...
+                          </motion.p>
+                        </div>
+
+                        {/* Floating Particles */}
+                        <motion.div
+                          className="absolute top-1/4 right-1/4 w-2 h-2 bg-maverick-orange rounded-full opacity-60"
+                          animate={{
+                            x: [0, 10, -5, 0],
+                            y: [0, -10, 5, 0],
+                          }}
+                          transition={{
+                            duration: 4,
+                            repeat: Infinity,
+                            delay: index * 0.2,
+                          }}
+                        />
+                      </div>
+
+                      {/* Pulse Effect */}
+                      <motion.div
+                        className="absolute inset-0 border-2 border-maverick-orange opacity-0 group-hover:opacity-50"
+                        style={{
+                          clipPath: 'polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%)',
+                        }}
+                        animate={{
+                          scale: [1, 1.1, 1],
+                          opacity: [0, 0.3, 0],
+                        }}
+                        transition={{
+                          duration: 2,
+                          repeat: Infinity,
+                          delay: index * 0.3,
+                        }}
+                      />
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </div>
+
+            {/* Central AI Core */}
+            <motion.div
+              className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-20 h-20 z-20"
+              animate={{
+                rotate: 360,
+                scale: [1, 1.1, 1],
+              }}
+              transition={{
+                rotate: { duration: 20, repeat: Infinity, ease: "linear" },
+                scale: { duration: 3, repeat: Infinity },
+              }}
+            >
+              <div className="w-full h-full bg-gradient-to-r from-maverick-orange to-yellow-400 rounded-full blur-lg opacity-60"></div>
+              <Brain className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 h-10 w-10 text-white z-10" />
+            </motion.div>
+          </div>
+
+          {/* Mobile Fallback */}
+          <div className="md:hidden grid grid-cols-1 gap-6 mt-16">
             {services.map((service, index) => (
               <motion.div
                 key={index}
@@ -141,17 +322,22 @@ export default function AIServices() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="bg-[#121212] rounded-xl p-6 border border-gray-800 hover:border-maverick-orange transition-all duration-300 group"
+                className="bg-gradient-to-br from-[#1A1A1A] to-[#2A2A2A] rounded-xl p-6 border border-gray-700 hover:border-maverick-orange transition-all duration-300 group"
               >
-                <div className="p-4 bg-maverick-orange bg-opacity-10 rounded-lg inline-block mb-6 group-hover:bg-opacity-20 transition-all duration-300">
+                <div className="p-4 bg-maverick-orange bg-opacity-10 rounded-lg inline-block mb-4 group-hover:bg-opacity-20 transition-all duration-300">
                   {service.icon}
                 </div>
-                <h3 className="text-xl font-semibold mb-3 font-heading">{service.title}</h3>
-                <p className="text-[#AAAAAA] group-hover:text-[#DDDDDD] transition-all duration-300">{service.description}</p>
+                <h3 className="text-lg font-semibold mb-3 font-heading group-hover:text-maverick-orange transition-colors duration-300">{service.title}</h3>
+                <p className="text-[#AAAAAA] group-hover:text-[#DDDDDD] transition-all duration-300 text-sm">{service.description}</p>
               </motion.div>
             ))}
           </div>
         </div>
+
+        {/* Background Elements */}
+        <div className="absolute top-20 left-10 w-32 h-32 bg-maverick-orange rounded-full blur-3xl opacity-10"></div>
+        <div className="absolute bottom-20 right-10 w-40 h-40 bg-maverick-orange rounded-full blur-3xl opacity-10"></div>
+        <div className="absolute top-1/3 right-1/4 w-24 h-24 bg-maverick-orange rounded-full blur-2xl opacity-10"></div>
       </section>
 
       {/* Benefits Section */}
