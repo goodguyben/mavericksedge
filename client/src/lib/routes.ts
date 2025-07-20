@@ -1,10 +1,10 @@
 
 export const ROUTES = {
   HOME: '/',
-  ABOUT: '/about-edmonton-web-design-company',
-  CONTACT: '/contact-edmonton-web-design',
+  ABOUT: '/about',
+  CONTACT: '/contact',
   SERVICES: {
-    ALL: '/services-edmonton-alberta',
+    ALL: '/services',
     WEB_DESIGN: '/web-design-services-edmonton',
     MARKETING: '/digital-marketing-services-edmonton',
     AI_AUTOMATION: '/ai-automation-services-edmonton'

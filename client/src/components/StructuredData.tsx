@@ -20,7 +20,7 @@ export const organizationSchema = {
   "@type": "Organization",
   "name": "Mavericks Edge",
   "url": "https://mavericksedge.ca",
-  "logo": "https://mavericksedge.ca/logo.png",
+  "logo": "https://mavericksedge.ca/images/logo-transparent-thumb4x.png",
   "description": "Professional web development, digital marketing, and AI solutions in Edmonton, Alberta. Custom websites, marketing strategies, and intelligent automation for modern businesses.",
   "address": {
     "@type": "PostalAddress",
@@ -36,8 +36,8 @@ export const organizationSchema = {
     "email": "info@mavericksedge.ca"
   },
   "sameAs": [
-    "https://www.linkedin.com/company/mavericksedge",
-    "https://twitter.com/mavericksedge"
+    "https://www.linkedin.com/company/mavericks-edge/",
+    "https://x.com/mavericksedge"
   ],
   "areaServed": {
     "@type": "Place",
@@ -50,7 +50,7 @@ export const localBusinessSchema = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
   "name": "Mavericks Edge",
-  "image": "https://mavericksedge.ca/logo.png",
+  "image": "https://mavericksedge.ca/images/logo-transparent-thumb4x.png",
   "description": "Leading web development, digital marketing, and AI solutions provider in Edmonton, Alberta. Specializing in custom websites, strategic marketing, and intelligent business automation.",
   "address": {
     "@type": "PostalAddress",

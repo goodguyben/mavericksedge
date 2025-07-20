@@ -79,6 +79,19 @@ export default function SEOHead({
           {JSON.stringify(structuredData)}
         </script>
       )}
+
+      {/* Google Analytics 4 - Page View Tracking */}
+      <script>
+        {`
+          if (typeof gtag !== 'undefined') {
+            gtag('config', 'G-ZKE1PD024S', {
+              page_title: '${title}',
+              page_location: '${canonicalUrl}',
+              page_path: window.location.pathname
+            });
+          }
+        `}
+      </script>
     </Helmet>
   );
 }

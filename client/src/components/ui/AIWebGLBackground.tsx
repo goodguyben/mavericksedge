@@ -22,7 +22,7 @@ interface Neuron {
   weight: number;
   bias: number;
   evolutionStage: number;
-  llmAffinity: 'chatgpt' | 'gemini' | 'grok' | 'claude' | 'neutral';
+  llmAffinity: 'chatgpt' | 'gemini' | 'grok' | 'claude' | 'hybrid';
 }
 
 interface Signal {
@@ -54,7 +54,7 @@ interface Particle {
   type: 'token' | 'thought' | 'response' | 'knowledge';
   spin: number;
   frequency: number;
-  llmType: 'chatgpt' | 'gemini' | 'grok' | 'claude' | 'neutral';
+  llmType: 'chatgpt' | 'gemini' | 'grok' | 'claude' | 'hybrid';
 }
 
 interface LLMNode {
@@ -80,7 +80,7 @@ interface DataStream {
   intensity: number;
   dataType: 'input' | 'processing' | 'output' | 'feedback';
   packets: Array<{ position: number; size: number; color: string }>;
-  llmTarget: 'chatgpt' | 'gemini' | 'grok' | 'claude' | 'multi';
+  llmTarget: 'chatgpt' | 'gemini' | 'grok' | 'claude' | 'hybrid';
 }
 
 interface NeuralCluster {
@@ -357,7 +357,7 @@ export default function AIWebGLBackground({
 
         for (let i = 0; i < layer.count; i++) {
           const baseY = startY + i * verticalSpacing;
-          const llmAffinities: Neuron['llmAffinity'][] = ['chatgpt', 'gemini', 'grok', 'claude', 'neutral'];
+          const llmAffinities: Neuron['llmAffinity'][] = ['chatgpt', 'gemini', 'grok', 'claude', 'hybrid'];
 
           const neuron: Neuron = {
             x: layer.x + (Math.random() - 0.5) * 30,

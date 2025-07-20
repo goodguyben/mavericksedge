@@ -135,6 +135,7 @@ const carePackages = [
     subtitle: "Foundational security & upkeep for peace of mind",
     price: "$75",
     period: "per month",
+    oneTime: false,
     popular: false,
     features: [
       "Core Software Updates",
@@ -155,6 +156,7 @@ const carePackages = [
     subtitle: "Maintaining site health + dedicated support time for growth",
     price: "$175",
     period: "per month",
+    oneTime: false,
     popular: true,
     features: [
       "All Essentials Care Plan features",
@@ -176,6 +178,7 @@ const carePackages = [
     subtitle: "Proactive optimization, enhanced support & strategic oversight",
     price: "$400+",
     period: "per month",
+    oneTime: false,
     popular: false,
     features: [
       "All Business Growth Plan features",
@@ -195,21 +198,22 @@ const carePackages = [
     subtitle: "For web development, design, technical support",
     price: "$85",
     period: "per hour",
+    oneTime: true,
     popular: false,
     extras: {
       title: "Support Block",
-      description: "4 hours for $300"
+      description: "Pre-purchased hours at discounted rates"
     },
     features: [
-      "Expert assistance when you need it",
-      "Web development and technical solutions",
-      "Design updates and improvements",
-      "Training on website management",
-      "SEO and performance consulting",
-      "Technical troubleshooting",
-      "Website structure and architecture planning"
+      "Technical consultation and planning",
+      "Code review and optimization",
+      "Performance analysis and recommendations",
+      "Security audit and recommendations",
+      "SEO strategy and implementation guidance",
+      "Integration planning and setup",
+      "Training and documentation"
     ],
-    icon: <Calendar size={24} className="text-maverick-orange" />,
+    icon: <HelpCircle size={24} className="text-maverick-orange" />,
     color: "border-purple-400"
   }
 ];

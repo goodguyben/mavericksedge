@@ -1,8 +1,8 @@
 import { motion } from "framer-motion";
-import { Helmet } from 'react-helmet';
 import TeamSection from "@/components/sections/TeamSection";
 import ProcessSection from "@/components/sections/ProcessSection";
 import ContactSection from "@/components/sections/ContactSection";
+import SEOHead from "@/components/SEOHead";
 import { useEffect } from "react";
 
 export default function About() {
@@ -13,62 +13,52 @@ export default function About() {
 
   return (
     <>
-      {/* SEO Optimization */}
-      <Helmet>
-        <title>About Mavericks Edge | Our Team & Mission</title>
-        <meta name="description" content="Mavericks Edge is a digital solutions agency specializing in web development, marketing, and AI integration for SMBs and nonprofits. Meet our expert team and learn about our mission." />
-        <link rel="canonical" href="https://mavericksedge.com/about" />
-        <meta name="keywords" content="digital agency team, web development experts, marketing professionals, AI integration specialists, SMB digital solutions" />
-        
-        {/* Open Graph data */}
-        <meta property="og:title" content="About Mavericks Edge | Our Team & Mission" />
-        <meta property="og:description" content="Meet the team behind Mavericks Edge and learn about our mission to empower small businesses and nonprofits with accessible digital solutions." />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://mavericksedge.com/about" />
-        <meta property="og:image" content="/images/logo-transparent-thumb4x.png" />
-        
-        {/* Structured data for Organization */}
-        <script type="application/ld+json">
-          {`
+      <SEOHead 
+        title="About Mavericks Edge | Our Team & Mission"
+        description="Mavericks Edge is a digital solutions agency specializing in web development, marketing, and AI integration for SMBs and nonprofits. Meet our expert team and learn about our mission."
+        keywords="digital agency team, web development experts, marketing professionals, AI integration specialists, SMB digital solutions"
+        canonicalUrl="/about"
+        ogTitle="About Mavericks Edge | Our Team & Mission"
+        ogDescription="Meet the team behind Mavericks Edge and learn about our mission to empower small businesses and nonprofits with accessible digital solutions."
+        ogImage="https://mavericksedge.ca/images/logo-transparent-thumb4x.png"
+        ogType="website"
+        structuredData={{
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          "name": "Mavericks Edge",
+          "url": "https://mavericksedge.ca",
+          "logo": "https://mavericksedge.ca/images/logo-transparent-thumb4x.png",
+          "description": "Digital solutions agency specializing in web development, marketing, and AI integration services for SMBs and nonprofits.",
+          "foundingDate": "2014",
+          "founders": [
             {
-              "@context": "https://schema.org",
-              "@type": "Organization",
-              "name": "Mavericks Edge",
-              "url": "https://mavericksedge.com",
-              "logo": "https://mavericksedge.com/images/logo-transparent-thumb4x.png",
-              "description": "Digital solutions agency specializing in web development, marketing, and AI integration services for SMBs and nonprofits.",
-              "foundingDate": "2022",
-              "founders": [
-                {
-                  "@type": "Person",
-                  "name": "Jane Smith",
-                  "jobTitle": "CEO & Founder"
-                }
-              ],
-              "address": {
-                "@type": "PostalAddress",
-                "streetAddress": "123 Digital Way",
-                "addressLocality": "Tech City",
-                "addressRegion": "CA",
-                "postalCode": "94103",
-                "addressCountry": "US"
-              },
-              "contactPoint": {
-                "@type": "ContactPoint",
-                "contactType": "customer service",
-                "telephone": "+1-250-883-8849",
-                "email": "info@mavericksedge.com"
-              },
-              "sameAs": [
-                "https://www.facebook.com/mavericksedge",
-                "https://www.twitter.com/mavericksedge",
-                "https://www.linkedin.com/company/mavericksedge",
-                "https://www.instagram.com/mavericksedge"
-              ]
+              "@type": "Person",
+              "name": "Bezal Benny",
+              "jobTitle": "CEO & Founder"
             }
-          `}
-        </script>
-      </Helmet>
+          ],
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "6908 100 Ave NW",
+            "addressLocality": "Edmonton",
+            "addressRegion": "AB",
+            "postalCode": "T6A 0G2",
+            "addressCountry": "CA"
+          },
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "contactType": "customer service",
+            "telephone": "+1-250-883-8849",
+            "email": "info@mavericksedge.ca"
+          },
+          "sameAs": [
+            "https://www.facebook.com/mavericksedge",
+            "https://x.com/mavericksedge",
+            "https://www.linkedin.com/company/mavericks-edge/",
+            "https://www.instagram.com/mavericksedge"
+          ]
+        }}
+      />
       
       <motion.div
         initial={{ opacity: 0 }}

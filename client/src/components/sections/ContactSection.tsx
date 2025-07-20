@@ -24,12 +24,19 @@ import {
   SelectValue
 } from "@/components/ui/select";
 import { Phone, Mail, MapPin, Facebook, Instagram, Linkedin, Twitter } from "lucide-react";
+import { logger } from '@/lib/logger';
 
 interface ContactSectionProps {
   fullPage?: boolean;
 }
 
-type ContactFormValues = z.infer<typeof contactSubmissionSchema>;
+interface ContactFormValues {
+  name: string;
+  email: string;
+  phone?: string;
+  service: string;
+  message: string;
+}
 
 export default function ContactSection({ fullPage = false }: ContactSectionProps) {
   const { toast } = useToast();
@@ -47,13 +54,13 @@ export default function ContactSection({ fullPage = false }: ContactSectionProps
 
   const mutation = useMutation({
     mutationFn: (values: ContactFormValues) => {
-      console.log("Submitting form with values:", values);
+      logger.log("Submitting form with values:", values);
       return apiRequest("POST", "/api/contact", values);
     },
     onSuccess: async (response) => {
-      console.log("Form submission successful:", response);
+      logger.log("Form submission successful:", response);
       const data = await response.json();
-      console.log("Response data:", data);
+      logger.log("Response data:", data);
       toast({
         title: "Success!",
         description: data.message,
@@ -61,7 +68,7 @@ export default function ContactSection({ fullPage = false }: ContactSectionProps
       form.reset();
     },
     onError: (error: Error) => {
-      console.error("Form submission error:", error);
+      logger.error("Form submission error:", error);
       toast({
         title: "Error",
         description: error.message || "Something went wrong. Please try again.",
@@ -270,30 +277,38 @@ export default function ContactSection({ fullPage = false }: ContactSectionProps
             <h4 className="font-semibold mb-4">Follow Us</h4>
             <div className="flex space-x-4">
               <a
-                href="#"
+                href="https://www.facebook.com/mavericksedge"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="p-2 bg-maverick-orange bg-opacity-10 rounded-lg text-maverick-orange hover:bg-opacity-20 transition duration-300"
                 aria-label="Facebook"
               >
                 <Facebook className="h-5 w-5" />
               </a>
               <a
-                href="#"
+                href="https://www.instagram.com/mavericksedge"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="p-2 bg-maverick-orange bg-opacity-10 rounded-lg text-maverick-orange hover:bg-opacity-20 transition duration-300"
                 aria-label="Instagram"
               >
                 <Instagram className="h-5 w-5" />
               </a>
               <a
-                href="#"
+                href="https://www.linkedin.com/company/mavericks-edge/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="p-2 bg-maverick-orange bg-opacity-10 rounded-lg text-maverick-orange hover:bg-opacity-20 transition duration-300"
                 aria-label="LinkedIn"
               >
                 <Linkedin className="h-5 w-5" />
               </a>
               <a
-                href="#"
+                href="https://x.com/mavericksedge"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="p-2 bg-maverick-orange bg-opacity-10 rounded-lg text-maverick-orange hover:bg-opacity-20 transition duration-300"
-                aria-label="Twitter"
+                aria-label="X (Twitter)"
               >
                 <Twitter className="h-5 w-5" />
               </a>

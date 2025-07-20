@@ -92,12 +92,12 @@ export default function Header() {
           borderImage: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent) 1',
         }}
         role="banner"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
+        initial={{ opacity: 0, y: -100 }}
+        animate={{ opacity: 1, y: 0 }}
         transition={{ 
-          duration: 0.6,
-          delay: isHomePage ? 4.0 : 0,
-          ease: "easeInOut"
+          duration: 1.0,
+          delay: isHomePage ? 3.0 : 0,
+          ease: "easeOut"
         }}
       >
         <div className="container mx-auto flex justify-between items-center max-w-7xl">

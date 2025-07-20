@@ -9,12 +9,12 @@ export default function SEOFooter() {
     "@type": "Organization",
     "name": "Mavericks Edge",
     "url": "https://mavericksedge.com",
-    "logo": "https://mavericksedge.com/images/logo-transparent-thumb4x.png",
+    "logo": "https://mavericksedge.ca/images/logo-transparent-thumb4x.png",
     "contactPoint": {
       "@type": "ContactPoint",
       "telephone": "+1-250-883-8849",
       "contactType": "customer service",
-      "email": "info@mavericksedge.com",
+      "email": "info@mavericksedge.ca",
       "availableLanguage": "English"
     },
     "address": {
@@ -27,7 +27,7 @@ export default function SEOFooter() {
     },
     "sameAs": [
       "https://www.facebook.com/mavericksedge",
-      "https://www.linkedin.com/company/mavericksedge",
+              "https://www.linkedin.com/company/mavericks-edge/",
       "https://x.com/mavericksedge",
       "https://www.instagram.com/mavericksedge"
     ]
@@ -73,7 +73,7 @@ export default function SEOFooter() {
           Edmonton, AB T6A 0G2<br />
           Canada<br />
           Phone: +1 (250) 883-8849<br />
-          Email: info@mavericksedge.com
+          Email: info@mavericksedge.ca
         </address>
       </div>
     </>

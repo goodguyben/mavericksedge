@@ -139,7 +139,7 @@ export default function Compliance() {
                   If you have questions about our compliance standards, certifications, or would like to discuss specific requirements for your project, we're here to help.
                 </p>
                 <p className="text-gray-300">
-                  Contact us at <a href="mailto:compliance@mavericksedge.com" className="text-maverick-orange hover:underline">compliance@mavericksedge.com</a> or through our general <a href="/contact" className="text-maverick-orange hover:underline">contact form</a>.
+                  Contact us at <a href="mailto:compliance@mavericksedge.ca" className="text-maverick-orange hover:underline">compliance@mavericksedge.ca</a> or through our general <a href="/contact" className="text-maverick-orange hover:underline">contact form</a>.
                 </p>
               </section>
 

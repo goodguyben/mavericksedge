@@ -1,6 +1,5 @@
 
 import { motion } from "framer-motion";
-import { Helmet } from 'react-helmet-async';
 import { 
   Search,
   TrendingUp,
@@ -22,15 +21,10 @@ import {
   Mail
 } from "lucide-react";
 import ContactSection from "@/components/sections/ContactSection";
-import { generateSEOTags, generateServiceStructuredData } from "@/lib/seo";
+import SEOHead from "@/components/SEOHead";
+import { generateServiceStructuredData } from "@/lib/seo";
 
 export default function SEOServices() {
-  const seoConfig = generateSEOTags({
-    title: "Edmonton SEO Services | Local SEO Experts | #1 Rankings | Mavericks Edge",
-    description: "Professional SEO services in Edmonton. Dominate local search results, increase website traffic, and grow your business. Guaranteed results with transparent reporting.",
-    keywords: "Edmonton SEO services, local SEO Edmonton, search engine optimization Alberta, SEO company Edmonton, Google rankings Edmonton, digital marketing SEO",
-    canonical: "/seo-services-edmonton"
-  });
 
   const seoServices = [
     {
@@ -173,32 +167,22 @@ export default function SEOServices() {
 
   return (
     <>
-      <Helmet>
-        <title>{seoConfig.title}</title>
-        <meta name="description" content={seoConfig.description} />
-        <meta name="keywords" content={seoConfig.keywords} />
-        <link rel="canonical" href={seoConfig.canonical} />
-        
-        <meta property="og:title" content={seoConfig.openGraph.title} />
-        <meta property="og:description" content={seoConfig.openGraph.description} />
-        <meta property="og:type" content={seoConfig.openGraph.type} />
-        <meta property="og:url" content={seoConfig.openGraph.url} />
-        <meta property="og:image" content={seoConfig.openGraph.image} />
-        
-        <meta name="twitter:card" content={seoConfig.twitter.card} />
-        <meta name="twitter:title" content={seoConfig.twitter.title} />
-        <meta name="twitter:description" content={seoConfig.twitter.description} />
-        <meta name="twitter:image" content={seoConfig.twitter.image} />
-        
-        <script type="application/ld+json">
-          {JSON.stringify(generateServiceStructuredData(
-            "SEO Services Edmonton",
-            "Professional SEO services in Edmonton including local SEO, technical optimization, and content marketing for improved search rankings",
-            "https://mavericksedge.ca/seo-services-edmonton",
-            "$850 - $3000"
-          ))}
-        </script>
-      </Helmet>
+      <SEOHead 
+        title="Edmonton SEO Services | Local SEO Experts | #1 Rankings | Mavericks Edge"
+        description="Professional SEO services in Edmonton. Dominate local search results, increase website traffic, and grow your business. Guaranteed results with transparent reporting."
+        keywords="Edmonton SEO services, local SEO Edmonton, search engine optimization Alberta, SEO company Edmonton, Google rankings Edmonton, digital marketing SEO"
+        canonicalUrl="/seo-services-edmonton"
+        ogTitle="Edmonton SEO Services | Local SEO Experts | #1 Rankings | Mavericks Edge"
+        ogDescription="Professional SEO services in Edmonton. Dominate local search results, increase website traffic, and grow your business."
+        ogImage="https://mavericksedge.ca/images/logo-transparent-thumb4x.png"
+        ogType="website"
+        structuredData={generateServiceStructuredData(
+          "SEO Services Edmonton",
+          "Professional SEO services in Edmonton including local SEO, technical optimization, and content marketing for improved search rankings",
+          "https://mavericksedge.ca/seo-services-edmonton",
+          "$850 - $3000"
+        )}
+      />
 
       <motion.div
         initial={{ opacity: 0 }}

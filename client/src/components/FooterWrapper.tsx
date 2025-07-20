@@ -47,11 +47,11 @@ export default function FooterWrapper() {
             <nav className="footer-nav" aria-label="Services Navigation">
               <h2 className="footer-heading">Services</h2>
               <ul className="footer-links">
-                <li className="footer-link"><a href="/services/web" title="Website Design Services Edmonton">Website Design</a></li>
-                <li className="footer-link"><a href="/services/marketing" title="Edmonton Digital Marketing Services">Digital Marketing</a></li>
-                <li className="footer-link"><a href="/services/ai" title="Edmonton AI Integration & Automation Services">AI Integration</a></li>
+                <li className="footer-link"><a href="/web-design-services-edmonton" title="Website Design Services Edmonton">Website Design</a></li>
+                <li className="footer-link"><a href="/digital-marketing-services-edmonton" title="Edmonton Digital Marketing Services">Digital Marketing</a></li>
+                <li className="footer-link"><a href="/ai-automation-services-edmonton" title="Edmonton AI Integration & Automation Services">AI Integration</a></li>
                 <li className="footer-link"><a href="/services" title="All Services">All Services</a></li>
-                <li className="footer-link"><a href="/pricing" title="Service Pricing">Pricing</a></li>
+                <li className="footer-link"><a href="/pricing-edmonton-web-design-marketing" title="Service Pricing">Pricing</a></li>
               </ul>
             </nav>
 
@@ -60,9 +60,9 @@ export default function FooterWrapper() {
               <h2 className="footer-heading">Company</h2>
               <ul className="footer-links">
                 <li className="footer-link"><a href="/about" title="About Mavericks Edge">About Us</a></li>
-                <li className="footer-link"><a href="/work" title="Our Work & Portfolio">Our Work</a></li>
+                <li className="footer-link"><a href="/portfolio-edmonton-web-design" title="Our Work & Portfolio">Our Work</a></li>
                 <li className="footer-link"><a href="/contact" title="Contact Mavericks Edge">Contact</a></li>
-                <li className="footer-link"><a href="/pricing" title="Service Pricing">Pricing</a></li>
+                <li className="footer-link"><a href="/pricing-edmonton-web-design-marketing" title="Service Pricing">Pricing</a></li>
                 <li className="footer-link"><a href="/compliance" title="Compliance & Standards">Compliance</a></li>
               </ul>
             </nav>
@@ -107,7 +107,7 @@ export default function FooterWrapper() {
                   <svg className="w-4 h-4 mr-2 text-maverick-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                   </svg>
-                  <a href="mailto:info@mavericksedge.com" className="hover:text-maverick-orange transition-colors">info@mavericksedge.com</a>
+                  <a href="mailto:info@mavericksedge.ca" className="hover:text-maverick-orange transition-colors">info@mavericksedge.ca</a>
                 </div>
               </div>
             </div>
@@ -124,7 +124,7 @@ export default function FooterWrapper() {
                 </a>
               </li>
               <li>
-                <a href="https://facebook.com/mavericksedge" title="Like us on Facebook" target="_blank" rel="noopener noreferrer" className="social-icon">
+                <a href="https://www.facebook.com/mavericksedge" title="Like us on Facebook" target="_blank" rel="noopener noreferrer" className="social-icon">
                   <span className="sr-only">Facebook</span>
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                     <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
@@ -132,7 +132,7 @@ export default function FooterWrapper() {
                 </a>
               </li>
               <li>
-                <a href="https://instagram.com/mavericksedge" title="Follow us on Instagram" target="_blank" rel="noopener noreferrer" className="social-icon">
+                <a href="https://www.instagram.com/mavericksedge" title="Follow us on Instagram" target="_blank" rel="noopener noreferrer" className="social-icon">
                   <span className="sr-only">Instagram</span>
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                     <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
@@ -142,7 +142,7 @@ export default function FooterWrapper() {
                 </a>
               </li>
               <li>
-                <a href="https://linkedin.com/company/mavericksedge" title="Connect with us on LinkedIn" target="_blank" rel="noopener noreferrer" className="social-icon">
+                <a href="https://www.linkedin.com/company/mavericks-edge/" title="Connect with us on LinkedIn" target="_blank" rel="noopener noreferrer" className="social-icon">
                   <span className="sr-only">LinkedIn</span>
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                     <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>

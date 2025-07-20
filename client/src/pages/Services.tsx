@@ -1,9 +1,9 @@
 import { motion } from "framer-motion";
-import { Helmet } from 'react-helmet';
 import { Code, Monitor, PieChart, Zap, BarChart2, PenTool, Calendar, Brain, Database, Workflow } from "lucide-react";
 import ServicesSection from "@/components/sections/ServicesSection";
 import ProcessSection from "@/components/sections/ProcessSection";
 import ContactSection from "@/components/sections/ContactSection";
+import SEOHead from "@/components/SEOHead";
 import { Link } from "wouter";
 import { useEffect } from "react";
 
@@ -63,74 +63,64 @@ export default function Services() {
 
   return (
     <>
-      {/* SEO Optimization */}
-      <Helmet>
-        <title>Services | Web Development, Marketing & AI Solutions | Mavericks Edge</title>
-        <meta name="description" content="Explore Mavericks Edge's comprehensive digital solutions including web development, marketing services, and AI integration for small businesses and nonprofits." />
-        <link rel="canonical" href="https://mavericksedge.com/services" />
-        <meta name="keywords" content="web development services, digital marketing solutions, AI integration, SMB services, nonprofit digital solutions" />
-        
-        {/* Open Graph data */}
-        <meta property="og:title" content="Services | Web Development, Marketing & AI Solutions | Mavericks Edge" />
-        <meta property="og:description" content="Explore our comprehensive digital solutions including web development, marketing services, and AI integration for small businesses and nonprofits." />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://mavericksedge.com/services" />
-        <meta property="og:image" content="/images/logo-transparent-thumb4x.png" />
-        
-        {/* Structured data for Service List */}
-        <script type="application/ld+json">
-          {`
+      <SEOHead 
+        title="Services | Web Development, Marketing & AI Solutions | Mavericks Edge"
+        description="Explore Mavericks Edge's comprehensive digital solutions including web development, marketing services, and AI integration for small businesses and nonprofits."
+        keywords="web development services, digital marketing solutions, AI integration, SMB services, nonprofit digital solutions"
+        canonicalUrl="/services"
+        ogTitle="Services | Web Development, Marketing & AI Solutions | Mavericks Edge"
+        ogDescription="Explore our comprehensive digital solutions including web development, marketing services, and AI integration for small businesses and nonprofits."
+        ogImage="https://mavericksedge.ca/images/logo-transparent-thumb4x.png"
+        ogType="website"
+        structuredData={{
+          "@context": "https://schema.org",
+          "@type": "ItemList",
+          "itemListElement": [
             {
-              "@context": "https://schema.org",
-              "@type": "ItemList",
-              "itemListElement": [
-                {
-                  "@type": "ListItem",
-                  "position": 1,
-                  "item": {
-                    "@type": "Service",
-                    "name": "Web & Digital Solutions",
-                    "description": "Custom websites, web applications, and digital platforms tailored to your unique business needs",
-                    "provider": {
-                      "@type": "Organization",
-                      "name": "Mavericks Edge"
-                    },
-                    "url": "https://mavericksedge.com/services/web"
-                  }
+              "@type": "ListItem",
+              "position": 1,
+              "item": {
+                "@type": "Service",
+                "name": "Web & Digital Solutions",
+                "description": "Custom websites, web applications, and digital platforms tailored to your unique business needs",
+                "provider": {
+                  "@type": "Organization",
+                  "name": "Mavericks Edge"
                 },
-                {
-                  "@type": "ListItem",
-                  "position": 2,
-                  "item": {
-                    "@type": "Service",
-                    "name": "Marketing & Creative Services",
-                    "description": "Strategic marketing solutions to boost your brand visibility and drive engagement",
-                    "provider": {
-                      "@type": "Organization",
-                      "name": "Mavericks Edge"
-                    },
-                    "url": "https://mavericksedge.com/services/marketing"
-                  }
+                "url": "https://mavericksedge.ca/services/web"
+              }
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "item": {
+                "@type": "Service",
+                "name": "Marketing & Creative Services",
+                "description": "Strategic marketing solutions to boost your brand visibility and drive engagement",
+                "provider": {
+                  "@type": "Organization",
+                  "name": "Mavericks Edge"
                 },
-                {
-                  "@type": "ListItem",
-                  "position": 3,
-                  "item": {
-                    "@type": "Service",
-                    "name": "AI Integration & Automation",
-                    "description": "Harness the power of artificial intelligence to streamline operations and enhance customer experiences",
-                    "provider": {
-                      "@type": "Organization",
-                      "name": "Mavericks Edge"
-                    },
-                    "url": "https://mavericksedge.com/services/ai"
-                  }
-                }
-              ]
+                "url": "https://mavericksedge.ca/services/marketing"
+              }
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "item": {
+                "@type": "Service",
+                "name": "AI Integration & Automation",
+                "description": "Harness the power of artificial intelligence to streamline operations and enhance customer experiences",
+                "provider": {
+                  "@type": "Organization",
+                  "name": "Mavericks Edge"
+                },
+                "url": "https://mavericksedge.ca/services/ai"
+              }
             }
-          `}
-        </script>
-      </Helmet>
+          ]
+        }}
+      />
       
       <motion.div
         initial={{ opacity: 0 }}

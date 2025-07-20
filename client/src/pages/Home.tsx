@@ -1,24 +1,25 @@
 import { motion } from "framer-motion";
 import { Helmet } from "react-helmet-async";
 import { lazy, Suspense, useEffect } from "react";
-import Hero from "../components/sections/Hero";
-import ShowcaseGallery from "../components/sections/ShowcaseGallery";
-import WhatWeDoSection from "../components/sections/WhatWeDoSection";
-import { generateOrganizationStructuredData, generateWebsiteStructuredData, generateFAQStructuredData } from '../lib/seo';
-import LocalSEO from '../components/LocalSEO';
-import MobileOptimizations from '../components/MobileOptimized';
-import CreativeWorkSection from '../components/sections/CreativeWorkSection';
-import ProcessSection from '../components/sections/ProcessSection';
-import ScrollFadeSection from '../components/ui/scroll-fade-section';
-import SEOHead from '../components/SEOHead';
-import StructuredData, { organizationSchema, localBusinessSchema, websiteSchema, faqSchema } from '../components/StructuredData';
-import { LazySection } from '../components/performance/LazySection';
-import { measurePerformance, initializeProductionOptimizations } from '../lib/performance';
+import Hero from "@/components/sections/Hero";
+import ShowcaseGallery from "@/components/sections/ShowcaseGallery";
+import WhatWeDoSection from "@/components/sections/WhatWeDoSection";
+import { generateOrganizationStructuredData, generateWebsiteStructuredData, generateFAQStructuredData } from '@/lib/seo';
+import LocalSEO from '@/components/LocalSEO';
+import MobileOptimizations from '@/components/MobileOptimized';
+import CreativeWorkSection from '@/components/sections/CreativeWorkSection';
+import ProcessSection from '@/components/sections/ProcessSection';
+import ScrollFadeSection from '@/components/ui/scroll-fade-section';
+import SEOHead from '@/components/SEOHead';
+import StructuredData, { organizationSchema, localBusinessSchema, websiteSchema, faqSchema } from '@/components/StructuredData';
+import { LazySection } from '@/components/performance/LazySection';
+import { measurePerformance, initializeProductionOptimizations } from '@/lib/performance';
+import { analytics } from '@/lib/logger';
 
 // Lazy load non-critical components
-const ServiceCascadeSection = lazy(() => import("../components/sections/ServiceCascadeSection"));
-const WhyChooseUsSection = lazy(() => import("../components/sections/WhyChooseUsSection"));
-const ContactSection = lazy(() => import("../components/sections/ContactSection"));
+const ServiceCascadeSection = lazy(() => import("@/components/sections/ServiceCascadeSection"));
+const WhyChooseUsSection = lazy(() => import("@/components/sections/WhyChooseUsSection"));
+const ContactSection = lazy(() => import("@/components/sections/ContactSection"));
 
 // Optimized fallback component
 const SectionFallback = ({ height = "h-64" }: { height?: string }) => (
@@ -29,7 +30,7 @@ export default function Home() {
   // Initialize performance optimizations
   useEffect(() => {
     measurePerformance('HomePage-Mount', () => {
-      console.log("Home page viewed");
+      analytics.log("Home page viewed");
       initializeProductionOptimizations();
     });
   }, []);
@@ -38,13 +39,13 @@ export default function Home() {
     <>
       {/* Enhanced SEO with Structured Data */}
       <SEOHead 
-        title="Edmonton Web Design & Digital Marketing Agency | Mavericks Edge"
-        description="Premier Edmonton web design and digital marketing agency. Custom websites, SEO, AI integration for small businesses across Alberta. Free consultation available."
+        title="Mavericks Edge | Digital Marketing and Website Design Edmonton"
+        description="Affordable Digital marketing, SEO, and website design in Edmonton that businesses rely on to grow their brand and reach customers. Free consultation available."
         keywords="Edmonton web design, Edmonton digital marketing, web development Edmonton, SEO Edmonton, AI integration Edmonton, custom websites Edmonton, small business web design Alberta, nonprofit web design Edmonton, responsive web design Alberta, ecommerce development Edmonton"
         canonicalUrl="https://mavericksedge.ca/"
-        ogTitle="Edmonton Web Design & Digital Marketing Agency | Mavericks Edge"
-        ogDescription="Premier Edmonton web design and digital marketing agency. Custom websites, SEO, AI integration for small businesses across Alberta."
-        ogImage="https://mavericksedge.ca/logo.png"
+        ogTitle="Mavericks Edge | Digital Marketing and Website Design Edmonton"
+        ogDescription="Affordable Digital marketing, SEO, and website design in Edmonton that businesses rely on to grow their brand and reach customers."
+        ogImage="https://mavericksedge.ca/images/logo-transparent-thumb4x.png"
         ogType="website"
       />
       

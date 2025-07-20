@@ -7,6 +7,7 @@ import Layout from "@/components/Layout";
 import PageTransition from "@/components/PageTransition";
 import LoadingScreen from "@/components/ui/LoadingScreen"; // Assuming LoadingScreen is in this path
 import { PerformanceMonitor } from "@/components/performance";
+import { initializeGoogleAnalytics, trackPageView } from "@/lib/analytics";
 
 
 // Lazy load pages
@@ -37,9 +38,21 @@ export default function App() {
   const [location] = useLocation();
   const [isLoading, setIsLoading] = useState(true);
 
+  // Initialize Google Analytics on app mount
+  useEffect(() => {
+    initializeGoogleAnalytics();
+  }, []);
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [location]);
+
+  // Track page views when location changes
+  useEffect(() => {
+    if (!isLoading) {
+      trackPageView(document.title, location, window.location.href);
+    }
+  }, [location, isLoading]);
 
   useEffect(() => {
     // Simulate app initialization
@@ -66,6 +79,9 @@ export default function App() {
             <Switch>
               <Route path="/">
                 <Home />
+              </Route>
+              <Route path="/services">
+                <Services />
               </Route>
               <Route path="/services-edmonton-alberta">
                 <Services />
@@ -94,11 +110,20 @@ export default function App() {
               <Route path="/ai-automation-pricing-edmonton">
                 <AIPricing />
               </Route>
+              <Route path="/work">
+                <Work />
+              </Route>
               <Route path="/portfolio-edmonton-web-design">
                 <Work />
               </Route>
+              <Route path="/about">
+                <About />
+              </Route>
               <Route path="/about-edmonton-web-design-company">
                 <About />
+              </Route>
+              <Route path="/contact">
+                <Contact />
               </Route>
               <Route path="/contact-edmonton-web-design">
                 <Contact />

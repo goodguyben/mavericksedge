@@ -107,12 +107,12 @@ export function generateOrganizationStructuredData() {
     "paymentAccepted": "Cash, Credit Card, Debit Card, E-Transfer, PayPal",
     "currenciesAccepted": "CAD",
     "openingHours": "Mo-Fr 09:00-17:00",
-    "foundingDate": "2023",
+    "foundingDate": "2014",
     "founder": {
       "@type": "Person",
-      "name": "Mavericks Edge Team"
+      "name": "Bezal Benny"
     },
-    "numberOfEmployees": "5-10",
+    "numberOfEmployees": "2",
     "slogan": "Digital solutions that elevate your business",
     "knowsAbout": [
       "Web Design",
@@ -169,7 +169,7 @@ export function generateOrganizationStructuredData() {
     },
     "sameAs": [
       "https://www.facebook.com/mavericksedge",
-      "https://www.linkedin.com/company/mavericksedge",
+      "https://www.linkedin.com/company/mavericks-edge/",
       "https://x.com/mavericksedge",
       "https://www.instagram.com/mavericksedge"
     ]
@@ -212,7 +212,7 @@ export function generateLocalBusinessStructuredData() {
     "aggregateRating": {
       "@type": "AggregateRating",
       "ratingValue": "5.0",
-      "reviewCount": "47",
+"reviewCount": "23",
       "bestRating": "5",
       "worstRating": "1"
     }
@@ -229,7 +229,7 @@ export function generateWebsiteStructuredData() {
 
     "sameAs": [
       "https://www.facebook.com/mavericksedge",
-      "https://www.linkedin.com/company/mavericksedge",
+      "https://www.linkedin.com/company/mavericks-edge/",
       "https://x.com/mavericksedge",
       "https://www.instagram.com/mavericksedge"
     ]

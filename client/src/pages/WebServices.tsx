@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import { Helmet } from 'react-helmet-async';
 import { 
   Monitor, 
   Smartphone, 
@@ -21,15 +20,10 @@ import {
 } from "lucide-react";
 import ContactSection from "@/components/sections/ContactSection";
 import { Link } from "wouter";
-import { generateSEOTags, generateServiceStructuredData } from "@/lib/seo";
+import SEOHead from "@/components/SEOHead";
+import { generateServiceStructuredData } from "@/lib/seo";
 
 export default function WebServices() {
-  const seoConfig = generateSEOTags({
-    title: "Edmonton Web Design & Development Services | Custom Websites | Mavericks Edge",
-    description: "Professional web design and development services in Edmonton. Custom websites, e-commerce solutions, and responsive designs for Alberta businesses. Get your quote today!",
-    keywords: "Edmonton web design, web development Edmonton, custom websites Edmonton, responsive web design Alberta, e-commerce development Edmonton, WordPress development Edmonton",
-    canonical: "/web-design-services-edmonton"
-  });
 
   const webServices = [
     {
@@ -195,32 +189,22 @@ export default function WebServices() {
 
   return (
     <>
-      <Helmet>
-        <title>{seoConfig.title}</title>
-        <meta name="description" content={seoConfig.description} />
-        <meta name="keywords" content={seoConfig.keywords} />
-        <link rel="canonical" href={seoConfig.canonical} />
-
-        <meta property="og:title" content={seoConfig.openGraph.title} />
-        <meta property="og:description" content={seoConfig.openGraph.description} />
-        <meta property="og:type" content={seoConfig.openGraph.type} />
-        <meta property="og:url" content={seoConfig.openGraph.url} />
-        <meta property="og:image" content={seoConfig.openGraph.image} />
-
-        <meta name="twitter:card" content={seoConfig.twitter.card} />
-        <meta name="twitter:title" content={seoConfig.twitter.title} />
-        <meta name="twitter:description" content={seoConfig.twitter.description} />
-        <meta name="twitter:image" content={seoConfig.twitter.image} />
-
-        <script type="application/ld+json">
-          {JSON.stringify(generateServiceStructuredData(
-            "Web Design & Development Services",
-            "Professional web design and development services in Edmonton including custom websites, e-commerce solutions, and responsive designs",
-            "https://mavericksedge.ca/web-design-services-edmonton",
-            "$850 - $5000"
-          ))}
-        </script>
-      </Helmet>
+      <SEOHead 
+        title="Mavericks Edge | Affordable Website Design Edmonton"
+        description="Affordable website design in Edmonton. We create custom, responsive websites with SEO to help your business grow and attract customers. Get a free quote!"
+        keywords="Edmonton web design, web development Edmonton, custom websites Edmonton, responsive web design Alberta, e-commerce development Edmonton, WordPress development Edmonton"
+        canonicalUrl="/web-design-services-edmonton"
+        ogTitle="Mavericks Edge | Affordable Website Design Edmonton"
+        ogDescription="Affordable website design in Edmonton. We create custom, responsive websites with SEO to help your business grow and attract customers."
+        ogImage="https://mavericksedge.ca/images/logo-transparent-thumb4x.png"
+        ogType="website"
+        structuredData={generateServiceStructuredData(
+          "Web Design & Development Services",
+          "Professional web design and development services in Edmonton including custom websites, e-commerce solutions, and responsive designs",
+          "https://mavericksedge.ca/web-design-services-edmonton",
+          "$850 - $5000"
+        )}
+      />
 
       <motion.div
         initial={{ opacity: 0 }}

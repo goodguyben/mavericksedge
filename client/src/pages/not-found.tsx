@@ -50,7 +50,7 @@ export default function NotFound() {
             <div className="bg-maverick-charcoal/30 p-6 rounded-lg border border-maverick-charcoal/50">
               <h3 className="text-lg font-semibold text-maverick-cream mb-2">Web Development</h3>
               <p className="text-gray-400 text-sm mb-4">Custom websites and applications built with cutting-edge technology.</p>
-              <Link href="/services/web">
+              <Link href="/web-design-services-edmonton">
                 <Button variant="ghost">Learn More</Button>
               </Link>
             </div>
@@ -58,7 +58,7 @@ export default function NotFound() {
             <div className="bg-maverick-charcoal/30 p-6 rounded-lg border border-maverick-charcoal/50">
               <h3 className="text-lg font-semibold text-maverick-cream mb-2">Digital Marketing</h3>
               <p className="text-gray-400 text-sm mb-4">Strategic marketing solutions to grow your online presence.</p>
-              <Link href="/services/marketing">
+              <Link href="/digital-marketing-services-edmonton">
                 <Button variant="ghost">Learn More</Button>
               </Link>
             </div>
@@ -66,7 +66,7 @@ export default function NotFound() {
             <div className="bg-maverick-charcoal/30 p-6 rounded-lg border border-maverick-charcoal/50">
               <h3 className="text-lg font-semibold text-maverick-cream mb-2">AI Solutions</h3>
               <p className="text-gray-400 text-sm mb-4">Intelligent automation and AI-powered business solutions.</p>
-              <Link href="/services/ai">
+              <Link href="/ai-automation-services-edmonton">
                 <Button variant="ghost">Learn More</Button>
               </Link>
             </div>

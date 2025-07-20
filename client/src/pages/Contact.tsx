@@ -1,76 +1,67 @@
 import { motion } from "framer-motion";
-import { Helmet } from 'react-helmet';
 import ContactSection from "@/components/sections/ContactSection";
+import SEOHead from "@/components/SEOHead";
 import { useEffect } from "react";
 import { contactInfo } from "@/lib/constants";
+import { analytics } from '@/lib/logger';
 
 export default function Contact() {
   // Track page view for analytics
   useEffect(() => {
-    console.log("Contact page viewed");
+    analytics.log("Contact page viewed");
   }, []);
 
   return (
     <>
-      {/* SEO Optimization */}
-      <Helmet>
-        <title>Contact Mavericks Edge | Request a Free Consultation</title>
-        <meta name="description" content="Get in touch with Mavericks Edge to discuss your web design, digital marketing, or AI integration needs. Request a free consultation and take the first step toward transforming your online presence." />
-        <link rel="canonical" href="https://mavericksedge.ca/contact" />
-        <meta name="keywords" content="contact digital agency, web design consultation, request quote, SMB digital solutions, affordable web services" />
-        
-        {/* Open Graph data */}
-        <meta property="og:title" content="Contact Mavericks Edge | Request a Free Consultation" />
-        <meta property="og:description" content="Reach out to our team for a free consultation on your web design, digital marketing, or AI integration project. We're here to answer your questions and help you succeed online." />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://mavericksedge.ca/contact" />
-        <meta property="og:image" content="/images/logo-transparent-thumb4x.png" />
-        
-        {/* Structured data for LocalBusiness */}
-        <script type="application/ld+json">
-          {`
-            {
-              "@context": "https://schema.org",
-              "@type": "LocalBusiness",
-              "name": "Mavericks Edge",
-              "image": "https://mavericksedge.ca/images/logo-transparent-thumb4x.png",
-              "url": "https://mavericksedge.ca",
-              "telephone": "+1-250-883-8849",
-              "address": {
-                "@type": "PostalAddress",
-                "streetAddress": "6908 100 Ave NW, Suite B",
-                "addressLocality": "Edmonton",
-                "addressRegion": "Alberta",
-                "postalCode": "T6A 0G2",
-                "addressCountry": "Canada"
-              },
-              "geo": {
-                "@type": "GeoCoordinates",
-                "latitude": 37.7749,
-                "longitude": -122.4194
-              },
-              "openingHoursSpecification": {
-                "@type": "OpeningHoursSpecification",
-                "dayOfWeek": [
-                  "Monday",
-                  "Tuesday",
-                  "Wednesday",
-                  "Thursday",
-                  "Friday"
-                ],
-                "opens": "09:00",
-                "closes": "17:00"
-              },
-              "sameAs": [
-                "https://www.facebook.com/mavericksedge",
-                "https://www.twitter.com/mavericksedge",
-                "https://www.linkedin.com/company/mavericksedge",
-                "https://www.instagram.com/mavericksedge"
-              ]
-            }
-          `}
-        </script>
-      </Helmet>
+      <SEOHead 
+        title="Contact Mavericks Edge | Request a Free Consultation"
+        description="Get in touch with Mavericks Edge to discuss your web design, digital marketing, or AI integration needs. Request a free consultation and take the first step toward transforming your online presence."
+        keywords="contact digital agency, web design consultation, request quote, SMB digital solutions, affordable web services"
+        canonicalUrl="/contact"
+        ogTitle="Contact Mavericks Edge | Request a Free Consultation"
+        ogDescription="Reach out to our team for a free consultation on your web design, digital marketing, or AI integration project. We're here to answer your questions and help you succeed online."
+        ogImage="https://mavericksedge.ca/images/logo-transparent-thumb4x.png"
+        ogType="website"
+        structuredData={{
+          "@context": "https://schema.org",
+          "@type": "LocalBusiness",
+          "name": "Mavericks Edge",
+          "image": "https://mavericksedge.ca/images/logo-transparent-thumb4x.png",
+          "url": "https://mavericksedge.ca",
+          "telephone": "+1-250-883-8849",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "6908 100 Ave NW, Suite B",
+            "addressLocality": "Edmonton",
+            "addressRegion": "Alberta",
+            "postalCode": "T6A 0G2",
+            "addressCountry": "Canada"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 53.5461,
+            "longitude": -113.4938
+          },
+          "openingHoursSpecification": {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": [
+              "Monday",
+              "Tuesday",
+              "Wednesday",
+              "Thursday",
+              "Friday"
+            ],
+            "opens": "09:00",
+            "closes": "17:00"
+          },
+          "sameAs": [
+            "https://www.facebook.com/mavericksedge",
+            "https://x.com/mavericksedge",
+            "https://www.linkedin.com/company/mavericks-edge/",
+            "https://www.instagram.com/mavericksedge"
+          ]
+        }}
+      />
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}

@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
-import { Helmet } from 'react-helmet';
 import { Brain, Database, Workflow, Shield, FileCode, Users, Gauge, Zap, Activity, LineChart } from "lucide-react";
 import ContactSection from "@/components/sections/ContactSection";
+import SEOHead from "@/components/SEOHead";
 import { Link } from "wouter";
 import { useEffect } from "react";
 
@@ -70,19 +70,16 @@ export default function AIServices() {
 
   return (
     <div>
-      <Helmet>
-        <title>AI Integration Services | Business Automation Solutions | Mavericks Edge</title>
-        <meta name="description" content="Transform your business with AI integration and automation solutions. Streamline operations, enhance decision-making, and improve customer experiences with our tailored AI services." />
-        <link rel="canonical" href="https://mavericksedge.com/services/ai" />
-        <meta name="keywords" content="AI integration, business automation, AI readiness assessment, workflow automation, AI implementation, custom API integration, AI data governance, small business AI solutions" />
-        
-        {/* Open Graph data */}
-        <meta property="og:title" content="AI Integration Services | Business Automation Solutions | Mavericks Edge" />
-        <meta property="og:description" content="Transform your business with AI integration and automation solutions. Streamline operations, enhance decision-making, and improve customer experiences." />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://mavericksedge.com/services/ai" />
-        <meta property="og:image" content="/images/logo-transparent-thumb4x.png" />
-      </Helmet>
+      <SEOHead 
+        title="AI Integration Services | Business Automation Solutions | Mavericks Edge"
+        description="Transform your business with AI integration and automation solutions. Streamline operations, enhance decision-making, and improve customer experiences with our tailored AI services."
+        keywords="AI integration, business automation, AI readiness assessment, workflow automation, AI implementation, custom API integration, AI data governance, small business AI solutions"
+        canonicalUrl="/services/ai"
+        ogTitle="AI Integration Services | Business Automation Solutions | Mavericks Edge"
+        ogDescription="Transform your business with AI integration and automation solutions. Streamline operations, enhance decision-making, and improve customer experiences."
+        ogImage="https://mavericksedge.ca/images/logo-transparent-thumb4x.png"
+        ogType="website"
+      />
       
       <motion.div
         initial={{ opacity: 0 }}

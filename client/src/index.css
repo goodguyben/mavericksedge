@@ -1021,6 +1021,89 @@ img {
   isolation: isolate;
 }
 
+/* Fix dropdown menu z-index issues */
+.dropdown-container {
+  position: relative;
+  z-index: 99998;
+}
+
+.dropdown-container .absolute {
+  z-index: 99999 !important;
+}
+
+/* Ensure header dropdowns appear above all content */
+header .dropdown-container {
+  position: relative;
+  z-index: 99998;
+}
+
+header .dropdown-container .absolute {
+  z-index: 99999 !important;
+  position: absolute !important;
+}
+
+/* Fix mobile menu z-index */
+header .fixed {
+  z-index: 99999 !important;
+}
+
+/* Additional dropdown positioning fixes */
+.dropdown-container {
+  isolation: isolate;
+}
+
+.dropdown-container .absolute {
+  isolation: isolate;
+  transform: translateZ(0);
+  will-change: transform, opacity;
+}
+
+/* Ensure dropdowns are above all other content */
+header .dropdown-container .absolute {
+  z-index: 99999 !important;
+  position: absolute !important;
+  isolation: isolate;
+  transform: translateZ(0);
+  will-change: transform, opacity;
+}
+
+/* Fix any potential stacking context issues */
+header {
+  isolation: isolate;
+  z-index: 99997;
+}
+
+/* Ensure dropdown content is visible */
+.dropdown-container .absolute > div {
+  position: relative;
+  z-index: 99999;
+}
+
+/* Additional positioning fixes for dropdowns */
+.dropdown-container {
+  overflow: visible !important;
+}
+
+.dropdown-container .absolute {
+  overflow: visible !important;
+  pointer-events: auto;
+}
+
+/* Ensure dropdowns don't get clipped */
+header {
+  overflow: visible !important;
+}
+
+header nav {
+  overflow: visible !important;
+}
+
+/* Fix any potential clipping issues */
+.dropdown-container .absolute {
+  clip: auto !important;
+  clip-path: none !important;
+}
+
 /* Reduce animations on low-end devices */
 @media (max-width: 768px), (prefers-reduced-motion: reduce) {
   .reduce-animation * {

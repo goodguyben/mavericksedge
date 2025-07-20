@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
-import { Helmet } from 'react-helmet';
 import { BarChart3, PieChart, Megaphone, Mail, Globe, Send, Award, Calendar, TrendingUp, Users } from "lucide-react";
 import ContactSection from "@/components/sections/ContactSection";
+import SEOHead from "@/components/SEOHead";
 import { Link } from "wouter";
 import { useEffect } from "react";
 
@@ -66,19 +66,16 @@ export default function MarketingServices() {
 
   return (
     <div>
-      <Helmet>
-        <title>Marketing Services | Brand & Digital Marketing Solutions | Mavericks Edge</title>
-        <meta name="description" content="Strategic marketing and creative solutions for SMBs and nonprofits. Boost brand visibility, engage your audience, and drive measurable growth with our tailored marketing services." />
-        <link rel="canonical" href="https://mavericksedge.com/services/marketing" />
-        <meta name="keywords" content="digital marketing strategy, brand development, SEO services, PPC management, social media marketing, email campaigns, event planning, marketing analytics" />
-        
-        {/* Open Graph data */}
-        <meta property="og:title" content="Marketing Services | Brand & Digital Marketing Solutions | Mavericks Edge" />
-        <meta property="og:description" content="Strategic marketing solutions to boost your brand visibility, engage your audience, and drive business growth for small businesses and nonprofits." />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://mavericksedge.com/services/marketing" />
-        <meta property="og:image" content="/images/logo-transparent-thumb4x.png" />
-      </Helmet>
+      <SEOHead 
+        title="Marketing Services | Brand & Digital Marketing Solutions | Mavericks Edge"
+        description="Strategic marketing and creative solutions for SMBs and nonprofits. Boost brand visibility, engage your audience, and drive measurable growth with our tailored marketing services."
+        keywords="digital marketing strategy, brand development, SEO services, PPC management, social media marketing, email campaigns, event planning, marketing analytics"
+        canonicalUrl="/services/marketing"
+        ogTitle="Marketing Services | Brand & Digital Marketing Solutions | Mavericks Edge"
+        ogDescription="Strategic marketing solutions to boost your brand visibility, engage your audience, and drive business growth for small businesses and nonprofits."
+        ogImage="https://mavericksedge.ca/images/logo-transparent-thumb4x.png"
+        ogType="website"
+      />
       
       <motion.div
         initial={{ opacity: 0 }}
