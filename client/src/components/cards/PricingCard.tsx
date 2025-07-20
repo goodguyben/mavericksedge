@@ -66,10 +66,10 @@ export default function PricingCard({ plan }: PricingCardProps) {
         {plan.icon && (
           <motion.div 
             className="flex items-center mb-4"
-            initial={{ scale: 0 }}
-            whileInView={{ scale: 1 }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
+            transition={{ duration: 0.5 }}
           >
             <div className={`w-12 h-12 rounded-full flex items-center justify-center ${
               plan.popular ? 'bg-maverick-orange' : 'bg-maverick-orange bg-opacity-10'
@@ -80,7 +80,17 @@ export default function PricingCard({ plan }: PricingCardProps) {
           </motion.div>
         )}
 
-        {!plan.icon && <h3 className="text-2xl font-bold mb-2 font-heading">{plan.title}</h3>}
+        {!plan.icon && (
+          <motion.h3 
+            className="text-2xl font-bold mb-2 font-heading"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            {plan.title}
+          </motion.h3>
+        )}
 
         <p className="text-[#AAAAAA] mb-4">{plan.subtitle || plan.focusStatement}</p>
 
