@@ -919,12 +919,21 @@ export default function WebPricing() {
             <p className="text-xl text-[#DDDDDD] mb-10">
               Let's create a website that works as hard as you do. Schedule a free consultation to discuss your project and find the perfect solution for your needs.
             </p>
-            <Link 
-              href="/contact"
-              className="inline-flex items-center justify-center px-8 py-4 bg-maverick-orange hover:bg-opacity-90 text-white rounded-lg font-medium transition-all duration-300"
+            <motion.div
+              whileHover={{ 
+                scale: 1.05, 
+                boxShadow: "0 10px 30px rgba(255, 86, 48, 0.3)"
+              }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ duration: 0.2 }}
             >
-              Get Started Today
-            </Link>
+              <Link 
+                href="/contact"
+                className="inline-flex items-center justify-center px-8 py-4 rounded-lg font-medium transition-all duration-300 border border-maverick-orange text-maverick-orange hover:bg-maverick-orange hover:bg-opacity-10"
+              >
+                Get Started Today
+              </Link>
+            </motion.div>
           </motion.div>
         </div>
       </section>
