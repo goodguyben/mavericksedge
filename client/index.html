@@ -63,20 +63,14 @@
     <link rel="dns-prefetch" href="//www.google-analytics.com" />
     <link rel="dns-prefetch" href="//www.googletagmanager.com" />
     <link rel="dns-prefetch" href="//images.unsplash.com" />
-    <link rel="dns-prefetch" href="//cdn.jsdelivr.net" />
 
     <!-- Preconnect for Critical Resources -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preconnect" href="https://www.google-analytics.com" />
-    <link rel="preconnect" href="https://www.googletagmanager.com" />
 
-    <!-- Optimized Google Fonts Loading -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"></noscript>
-    
-    <!-- Preload critical images -->
-    <link rel="preload" as="image" href="/images/logo-transparent-thumb4x.png" />
+    <!-- Defer Google Fonts -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"></noscript>
 
     <!-- Alternative Languages -->
     <link rel="alternate" hreflang="en-ca" href="https://mavericksedge.com/" />
@@ -194,79 +188,17 @@
     <!-- Critical CSS Inline -->
     <style>
       /* Critical above-the-fold styles */
-      body { 
-        margin: 0; 
-        font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
-        background: #121212; 
-        color: #fff; 
-        line-height: 1.6;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-      }
-      
-      /* Loading states */
+      body { margin: 0; font-family: system-ui, -apple-system, sans-serif; background: #121212; color: #fff; }
       .loading { opacity: 0; transition: opacity 0.3s ease; }
       .loaded { opacity: 1; }
-      
+
       /* Critical hero styles */
-      .hero-container { 
-        min-height: 100vh; 
-        display: flex; 
-        align-items: center; 
-        justify-content: center; 
-        padding: 1rem;
-      }
-      .hero-text { 
-        font-size: clamp(1.5rem, 4vw, 2.5rem); 
-        font-weight: 700; 
-        text-align: center; 
-        margin: 0;
-      }
-      
+      .hero-container { min-height: 100vh; display: flex; align-items: center; justify-content: center; }
+      .hero-text { font-size: 2rem; font-weight: bold; text-align: center; }
+
       /* Critical layout */
-      .container { 
-        max-width: 1200px; 
-        margin: 0 auto; 
-        padding: 0 1rem; 
-        width: 100%;
-        box-sizing: border-box;
-      }
-      
-      .btn-primary { 
-        background: #ff6b35; 
-        color: white; 
-        padding: 0.75rem 1.5rem; 
-        border-radius: 0.5rem; 
-        text-decoration: none; 
-        display: inline-block;
-        border: none;
-        cursor: pointer;
-        font-weight: 500;
-        transition: background-color 0.2s ease;
-      }
-      
-      .btn-primary:hover {
-        background: #e55a2b;
-      }
-      
-      /* Mobile optimizations */
-      @media (max-width: 768px) {
-        .hero-container {
-          padding: 0.5rem;
-        }
-        .container {
-          padding: 0 0.5rem;
-        }
-      }
-      
-      /* Reduce motion for accessibility */
-      @media (prefers-reduced-motion: reduce) {
-        * {
-          animation-duration: 0.01ms !important;
-          animation-iteration-count: 1 !important;
-          transition-duration: 0.01ms !important;
-        }
-      }
+      .container { max-width: 1200px; margin: 0 auto; padding: 0 1rem; }
+      .btn-primary { background: #ff6b35; color: white; padding: 0.75rem 1.5rem; border-radius: 0.5rem; text-decoration: none; display: inline-block; }
     </style>
   </head>
   <body>
