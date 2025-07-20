@@ -81,17 +81,15 @@ export default function Header() {
   return (
     <>
       <motion.header 
-        className="sticky top-0 left-0 w-full py-3 px-4 sm:px-6 lg:px-8 z-50 transition-all duration-300 mt-[-44px] mb-[-44px] relative overflow-hidden"
+        className={`sticky top-0 left-0 w-full py-3 px-4 sm:px-6 lg:px-8 z-50 transition-all duration-500 backdrop-blur-xl border-b border-white/5 mt-[-44px] mb-[-44px] ${
+          isScrolled 
+            ? 'bg-[#121212]/70 shadow-lg shadow-black/20' 
+            : 'bg-[#121212]/20'
+        }`}
         style={{
           backdropFilter: 'blur(20px) saturate(180%)',
           WebkitBackdropFilter: 'blur(20px) saturate(180%)',
-          background: isScrolled 
-            ? 'rgba(18, 18, 18, 0.4)' 
-            : 'rgba(18, 18, 18, 0.2)',
-          boxShadow: `
-            0 8px 32px rgba(0, 0, 0, 0.3),
-            inset 0 1px 0 rgba(255, 255, 255, 0.1)
-          `,
+          borderImage: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent) 1',
         }}
         role="banner"
         initial={{ opacity: 0 }}
@@ -106,7 +104,7 @@ export default function Header() {
           {/* Logo */}
           <Link 
             href="/" 
-            className="flex items-center justify-start min-h-[44px] touch-manipulation pl-[0px] pr-[0px] ml-[-22px] mr-[-22px]" 
+            className="flex items-center justify-start min-h-[44px] touch-manipulation pl-[0px] pr-[0px] ml-[-36px] mr-[-36px]" 
             aria-label="Mavericks Edge Home"
           >
             <Logo size="medium-small" noLink={true} showText={false} />
@@ -328,7 +326,7 @@ export default function Header() {
           {/* Mobile Menu Button */}
           <button
             onClick={toggleMobileMenu}
-            className="block lg:hidden p-3 rounded-full transition-colors duration-200 min-h-[44px] min-w-[44px] touch-manipulation pl-[8px] pr-[8px] ml-[-16px] mr-[-16px]"
+            className="block lg:hidden p-3 rounded-full transition-colors duration-200 min-h-[44px] min-w-[44px] touch-manipulation"
             aria-label="Toggle mobile navigation menu"
             aria-expanded={isMobileMenuOpen}
           >
