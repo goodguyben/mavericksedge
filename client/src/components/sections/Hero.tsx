@@ -32,7 +32,7 @@ export default function Hero() {
         {/* Background gradient */}
         <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-800" />
         {/* Dark overlay for better text readability */}
-        <div className="absolute inset-0 bg-black/60 sm:bg-black/50 mt-[-105px] mb-[-105px]" />
+        <div className="absolute inset-0 bg-black/60 sm:bg-black/50" />
       </div>
       {/* Content Container */}
       <div className="container mx-auto px-0 sm:px-6 md:px-8 lg:px-10 xl:px-12 2xl:px-16 z-20 flex justify-start items-center w-full pointer-events-none relative">
