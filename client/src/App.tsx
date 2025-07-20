@@ -7,7 +7,6 @@ import Layout from "@/components/Layout";
 import PageTransition from "@/components/PageTransition";
 import LoadingScreen from "@/components/ui/LoadingScreen"; // Assuming LoadingScreen is in this path
 import { PerformanceMonitor } from "@/components/performance";
-import { PerformanceOptimizer } from "@/components/PerformanceOptimizer";
 import { initializeGoogleAnalytics, trackPageView } from "@/lib/analytics";
 
 
@@ -162,7 +161,6 @@ export default function App() {
         </Layout>
         <Toaster />
         <PerformanceMonitor />
-        <PerformanceOptimizer />
       </QueryClientProvider>
     </div>
       )}
