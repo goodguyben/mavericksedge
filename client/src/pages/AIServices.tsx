@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Brain, Database, Workflow, Shield, FileCode, Users, Gauge, Zap, Activity, LineChart, Cpu, Target, TrendingUp, CheckCircle, ArrowRight, Star, Clock, DollarSign, ChevronRight } from "lucide-react";
 import ContactSection from "@/components/sections/ContactSection";
 import SEOHead from "@/components/SEOHead";
+import StructuredData, { aiServiceSchema, faqSchema } from "@/components/StructuredData";
 import { Link } from "wouter";
 import { useEffect } from "react";
 
@@ -99,6 +100,8 @@ export default function AIServices() {
         ogImage="https://mavericksedge.ca/images/logo-transparent-thumb4x.png"
         ogType="website"
       />
+      <StructuredData data={aiServiceSchema} />
+      <StructuredData data={faqSchema} />
       
       <motion.div
         initial={{ opacity: 0 }}
