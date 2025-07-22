@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 
 export default function Terms() {
   useEffect(() => {
-    // Page view tracking can be added here if needed
+    console.log('Terms of Service page viewed');
   }, []);
 
   return (

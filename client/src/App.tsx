@@ -5,11 +5,9 @@ import { Toaster } from "@/components/ui/toaster";
 import { queryClient } from "@/lib/queryClient";
 import Layout from "@/components/Layout";
 import PageTransition from "@/components/PageTransition";
-import LoadingScreen from "@/components/ui/LoadingScreen";
+import LoadingScreen from "@/components/ui/LoadingScreen"; // Assuming LoadingScreen is in this path
 import { PerformanceMonitor } from "@/components/performance";
 import { WebVitalsMonitor } from "@/components/performance/WebVitalsMonitor";
-import { CriticalCSS } from "@/components/performance/CriticalCSS";
-import { PerformanceDashboard } from "@/components/performance/PerformanceDashboard";
 import { initializeGoogleAnalytics, trackPageView } from "@/lib/analytics";
 
 
@@ -68,19 +66,17 @@ export default function App() {
 
   return (
     <>
-      <CriticalCSS />
-      {isLoading ? (
-        <LoadingScreen 
-          isLoading={isLoading} 
-          onLoadingComplete={() => setIsLoading(false)} 
-        />
-      ) : (
-      <div className="min-h-screen">
-        <QueryClientProvider client={queryClient}>
-          <WebVitalsMonitor />
-          <PerformanceDashboard />
-          <PageTransition />
-          <Layout>
+    {isLoading ? (
+      <LoadingScreen 
+        isLoading={isLoading} 
+        onLoadingComplete={() => setIsLoading(false)} 
+      />
+    ) : (
+    <div className="min-h-screen" style={{backgroundColor: 'red', position: 'relative', zIndex: 9999}}>
+      <QueryClientProvider client={queryClient}>
+        <WebVitalsMonitor />
+        <PageTransition />
+        <Layout>
           <Suspense fallback={<div />}>
             <Switch>
               <Route path="/">

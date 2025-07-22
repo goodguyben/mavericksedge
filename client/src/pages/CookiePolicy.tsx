@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 
 export default function CookiePolicy() {
   useEffect(() => {
-    // Page view tracking can be added here if needed
+    console.log('Cookie Policy page viewed');
   }, []);
 
   return (

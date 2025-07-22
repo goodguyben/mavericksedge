@@ -1,3 +1,4 @@
+
 {
   "name": "mavericks-edge-client",
   "version": "1.0.0",
@@ -5,7 +6,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && NODE_OPTIONS='--max-old-space-size=4096' vite build",
+    "build": "tsc && vite build",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -77,15 +78,9 @@
     "@types/react-helmet-async": "^1.0.1",
     "@vitejs/plugin-react": "^4.3.2",
     "autoprefixer": "^10.4.20",
-    "imagemin-avif": "^0.1.6",
-    "imagemin-webp": "^8.0.0",
     "postcss": "^8.4.47",
     "tailwindcss": "^3.4.17",
-    "terser": "^5.43.1",
     "typescript": "5.6.3",
-    "vite": "^5.4.14",
-    "vite-imagetools": "^7.1.0",
-    "vite-plugin-imagemin": "^0.6.1",
-    "vite-plugin-pwa": "^1.0.1"
+    "vite": "^5.4.14"
   }
 }

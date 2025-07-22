@@ -49,25 +49,12 @@
     <meta name="distribution" content="Global" />
     <meta name="rating" content="General" />
 
-    <!-- Google Tag Manager - Optimized Loading -->
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'GTM-MP5GC82Q', {
-        send_page_view: false,
-        page_title: document.title,
-        page_location: window.location.href
-      });
-      
-      // Load GTM script with lower priority
-      setTimeout(() => {
-        const script = document.createElement('script');
-        script.async = true;
-        script.src = 'https://www.googletagmanager.com/gtm.js?id=GTM-MP5GC82Q';
-        document.head.appendChild(script);
-      }, 1000);
-    </script>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-MP5GC82Q');</script>
     <!-- End Google Tag Manager -->
 
     <!-- DNS Prefetch for Performance -->
@@ -82,34 +69,15 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preconnect" href="https://mavericksedge.ca" crossorigin />
-    <link rel="preconnect" href="https://www.googletagmanager.com" />
-    
-    <!-- Preload critical fonts -->
-    <link rel="preload" href="https://fonts.gstatic.com/s/inter/v13/UcC73FwrK3iLTeHuS_fvQtMwCp50KnMa2JL7W0Q.woff2" as="font" type="font/woff2" crossorigin>
     
     <!-- Preload critical videos for faster LCP - WebM preferred -->
     <link rel="preload" as="video" href="https://mavericksedge.ca/videos/Portfolio_Video_1.webm" type="video/webm">
     <link rel="preload" as="video" href="https://mavericksedge.ca/videos/Portfolio_Video_2.webm" type="video/webm">
     <link rel="preload" as="video" href="https://mavericksedge.ca/videos/Portfolio_Video_3.webm" type="video/webm">
 
-    <!-- Optimized Google Fonts with font-display: swap -->
-    <style>
-      @font-face {
-        font-family: 'Inter';
-        font-style: normal;
-        font-weight: 300 900;
-        font-display: swap;
-        src: url('https://fonts.gstatic.com/s/inter/v13/UcC73FwrK3iLTeHuS_fvQtMwCp50KnMa2JL7W0Q.woff2') format('woff2');
-        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-      }
-    </style>
-    
-    <!-- Fallback font stack -->
-    <style>
-      body {
-        font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-      }
-    </style>
+    <!-- Defer Google Fonts -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"></noscript>
 
     <!-- Alternative Languages -->
     <link rel="alternate" hreflang="en-ca" href="https://mavericksedge.ca/" />
@@ -240,13 +208,13 @@
       .btn-primary { background: #ff6b35; color: white; padding: 0.75rem 1.5rem; border-radius: 0.5rem; text-decoration: none; display: inline-block; }
     </style>
   </head>
-  <body>
+  <body style="background: yellow !important; min-height: 100vh;">
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MP5GC82Q"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
 
-    <div id="root"></div>
+    <div id="root" style="background: blue !important; min-height: 100vh; color: white;">ROOT DIV TEST</div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

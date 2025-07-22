@@ -1,10 +1,12 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import path from "path";
+import runtimeErrorOverlay from "@replit/vite-plugin-runtime-error-modal";
 
 export default defineConfig({
   plugins: [
     react(),
+    runtimeErrorOverlay(),
     ...(process.env.NODE_ENV !== "production" &&
     process.env.REPL_ID !== undefined
       ? [
@@ -28,27 +30,5 @@ export default defineConfig({
   build: {
     outDir: path.resolve(import.meta.dirname, "dist/public"),
     emptyOutDir: true,
-    cssCodeSplit: true,
-    rollupOptions: {
-      output: {
-        manualChunks: {
-          vendor: ['react', 'react-dom'],
-          ui: ['framer-motion', '@headlessui/react'],
-          forms: ['react-hook-form', '@hookform/resolvers', 'zod'],
-          charts: ['recharts'],
-          animations: ['gsap', 'motion']
-        }
-      }
-    },
-    minify: 'terser',
-    terserOptions: {
-      compress: {
-        drop_console: true,
-        drop_debugger: true
-      }
-    }
   },
-  optimizeDeps: {
-    include: ['react', 'react-dom', 'framer-motion']
-  }
 });
