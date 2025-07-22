@@ -93,6 +93,14 @@ This is a full-stack web application for Mavericks Edge, a digital solutions age
 ## Changelog
 
 - June 24, 2025. Initial setup
+- July 21, 2025. Performance Optimizations:
+  - Reduced video loading from 36 concurrent to 2 concurrent videos for better LCP
+  - Implemented lazy loading for ShowcaseGallery videos with progressive loading
+  - Optimized CardSwap component with intersection observer to animate only when in view
+  - Changed from elastic to power2 easing in CardSwap for smoother performance
+  - Added preconnect hints for video CDN (mavericksedge.ca)
+  - Added WebVitalsMonitor to track FCP, LCP, CLS, and Speed Index metrics
+  - Reduced initial video load from 36 to 12 videos, rest lazy-loaded on scroll
 
 ## User Preferences
 

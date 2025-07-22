@@ -10,7 +10,7 @@ interface OptimizedVideoProps {
   onError?: (error: Event) => void;
 }
 
-const MAX_CONCURRENT_VIDEOS = 6;
+const MAX_CONCURRENT_VIDEOS = 2; // Reduced for better performance
 let currentlyLoadingVideos = 0;
 const videoQueue: Array<() => void> = [];
 
@@ -37,10 +37,10 @@ export const OptimizedVideo: React.FC<OptimizedVideoProps> = ({
   const videoRef = useRef<HTMLVideoElement>(null);
   const hasStartedLoading = useRef(false);
 
-  // Use intersection observer to trigger loading
+  // Use intersection observer with optimized margin for better performance
   const { isIntersecting } = useIntersectionObserver(videoRef, {
-    threshold: 0.1,
-    rootMargin: '100px'
+    threshold: 0.01,
+    rootMargin: priority ? '200px' : '50px' // Smaller margins for better LCP
   });
 
   const startLoading = useCallback(() => {
@@ -115,7 +115,7 @@ export const OptimizedVideo: React.FC<OptimizedVideoProps> = ({
       <video
         ref={videoRef}
         className={`w-full h-full object-cover ${isLoaded ? 'opacity-100' : 'opacity-0'} transition-opacity duration-300`}
-        autoPlay={false}
+        autoPlay
         muted
         loop
         playsInline

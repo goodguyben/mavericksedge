@@ -51,19 +51,31 @@ const CDN_VIDEOS = [
 ];
 
 export default function ShowcaseGallery() {
-  // Fixed distribution: all 36 videos
-  const createFixedDistribution = () => {
-    // We now have exactly 36 videos, so we can use them all directly
-    return [...CDN_VIDEOS];
+  // Performance optimization: Load fewer videos initially
+  const INITIAL_VIDEOS = 3; // Reduced to 3 videos initially for better LCP
+  const VIDEOS_PER_COLUMN = 2; // Display only 2 videos per column initially
+  
+  // Create a more efficient distribution
+  const createOptimizedDistribution = () => {
+    // For initial load, only use first 12 videos
+    const initialSet = CDN_VIDEOS.slice(0, INITIAL_VIDEOS * 2);
+    // Rest will be loaded lazily
+    const lazySet = CDN_VIDEOS.slice(INITIAL_VIDEOS * 2);
+    
+    return { initialSet, lazySet };
   };
 
-  // Generate the fixed distribution
-  const allDistributedVideos = createFixedDistribution();
+  const { initialSet, lazySet } = createOptimizedDistribution();
 
-  // Split into three columns
-  const VIDEOS_1 = allDistributedVideos.slice(0, 12);
-  const VIDEOS_2 = allDistributedVideos.slice(12, 24);
-  const IMAGES_3 = allDistributedVideos.slice(24, 36);
+  // Split initial videos into three columns (4 per column)
+  const VIDEOS_1 = initialSet.slice(0, VIDEOS_PER_COLUMN);
+  const VIDEOS_2 = initialSet.slice(VIDEOS_PER_COLUMN, VIDEOS_PER_COLUMN * 2);
+  const IMAGES_3 = initialSet.slice(VIDEOS_PER_COLUMN * 2, VIDEOS_PER_COLUMN * 3);
+  
+  // Lazy load the rest
+  const LAZY_VIDEOS_1 = lazySet.slice(0, 8);
+  const LAZY_VIDEOS_2 = lazySet.slice(8, 16);
+  const LAZY_VIDEOS_3 = lazySet.slice(16, 24);
   return (
     <div className="relative bg-[#000000] py-12 md:py-16 pt-[120px] pb-[120px] performance-optimized">
       <ContainerStagger className="relative z-10 place-self-center px-4 xs:px-6 sm:px-8 md:px-12 lg:px-16 xl:px-20 pt-8 xs:pt-10 sm:pt-12">
@@ -235,22 +247,42 @@ export default function ShowcaseGallery() {
       />
       <ContainerScroll className="relative h-[350vh]">
         <ContainerSticky className="h-svh bg-[#0000009e] -mt-8">
-          <VideoGalleryWrapper maxConcurrentVideos={6}>
+          <VideoGalleryWrapper maxConcurrentVideos={3}>
             <GalleryContainer className="-mt-4">
               <GalleryCol yRange={["-10%", "2%"]} className="mt-[90px] mb-[90px]">
+                {/* Priority load first 2 videos */}
                 {VIDEOS_1.map((videoUrl, index) => (
                   <OptimizedVideo
-                    key={index}
+                    key={`initial-1-${index}`}
                     src={videoUrl}
                     className="block aspect-video w-full rounded-md shadow-lg overflow-hidden"
-                    priority={index < 3}
+                    priority={index < 2}
+                  />
+                ))}
+                {/* Lazy load remaining videos */}
+                {LAZY_VIDEOS_1.map((videoUrl, index) => (
+                  <OptimizedVideo
+                    key={`lazy-1-${index}`}
+                    src={videoUrl}
+                    className="block aspect-video w-full rounded-md shadow-lg overflow-hidden"
+                    priority={false}
                   />
                 ))}
               </GalleryCol>
               <GalleryCol className="mt-[40px] mb-[120px]" yRange={["0%", "-5%"]}>
+                {/* No priority for middle column */}
                 {VIDEOS_2.map((videoUrl, index) => (
                   <OptimizedVideo
-                    key={index}
+                    key={`initial-2-${index}`}
+                    src={videoUrl}
+                    className="block aspect-video w-full rounded-md shadow-lg overflow-hidden"
+                    priority={false}
+                  />
+                ))}
+                {/* Lazy load remaining videos */}
+                {LAZY_VIDEOS_2.map((videoUrl, index) => (
+                  <OptimizedVideo
+                    key={`lazy-2-${index}`}
                     src={videoUrl}
                     className="block aspect-video w-full rounded-md shadow-lg overflow-hidden"
                     priority={false}
@@ -258,9 +290,19 @@ export default function ShowcaseGallery() {
                 ))}
               </GalleryCol>
               <GalleryCol yRange={["-10%", "2%"]} className="mt-[85px] mb-[85px]">
+                {/* No priority for third column */}
                 {IMAGES_3.map((videoUrl, index) => (
                   <OptimizedVideo
-                    key={index}
+                    key={`initial-3-${index}`}
+                    src={videoUrl}
+                    className="block aspect-video w-full rounded-md shadow-lg overflow-hidden"
+                    priority={false}
+                  />
+                ))}
+                {/* Lazy load remaining videos */}
+                {LAZY_VIDEOS_3.map((videoUrl, index) => (
+                  <OptimizedVideo
+                    key={`lazy-3-${index}`}
                     src={videoUrl}
                     className="block aspect-video w-full rounded-md shadow-lg overflow-hidden"
                     priority={false}

@@ -229,16 +229,19 @@ const CardSwap: React.FC<CardSwapProps> = ({
   const containerRef = useRef<HTMLDivElement>(null);
   const tlRef = useRef<gsap.core.Timeline | null>(null);
   const intervalRef = useRef<number>();
+  const isInViewRef = useRef(false);
+  const hasStartedRef = useRef(false);
   
+  // Performance optimization: Simpler easing for better performance
   const config =
     easing === "elastic"
       ? {
-          ease: "elastic.out(0.6,0.9)",
-          durDrop: 2,
-          durMove: 2,
-          durReturn: 2,
-          promoteOverlap: 0.9,
-          returnDelay: 0.05,
+          ease: "power2.out", // Changed from elastic for better performance
+          durDrop: 1.5,
+          durMove: 1.5,
+          durReturn: 1.5,
+          promoteOverlap: 0.8,
+          returnDelay: 0.1,
         }
       : {
           ease: "power1.inOut",
@@ -275,7 +278,7 @@ const CardSwap: React.FC<CardSwapProps> = ({
     });
 
     const swap = () => {
-      if (order.current.length < 2) return;
+      if (!isInViewRef.current || order.current.length < 2) return;
 
       const [front, ...rest] = order.current;
       const elFront = refs[front].current;
@@ -340,9 +343,29 @@ const CardSwap: React.FC<CardSwapProps> = ({
       });
     };
 
-    // Start swapping immediately and continuously
-    swap();
-    intervalRef.current = window.setInterval(swap, delay);
+    // Set up intersection observer for performance
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          isInViewRef.current = entry.isIntersecting;
+          if (entry.isIntersecting && !hasStartedRef.current) {
+            hasStartedRef.current = true;
+            // Start swapping only when in view
+            swap();
+            intervalRef.current = window.setInterval(swap, delay);
+          } else if (!entry.isIntersecting && intervalRef.current) {
+            // Stop animations when out of view
+            clearInterval(intervalRef.current);
+            intervalRef.current = undefined;
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
+    }
 
     // Add pause on hover functionality
     const containerEl = containerRef.current;
@@ -353,7 +376,7 @@ const CardSwap: React.FC<CardSwapProps> = ({
     };
 
     const handleMouseLeave = () => {
-      if (pauseOnHover && !intervalRef.current) {
+      if (pauseOnHover && !intervalRef.current && isInViewRef.current) {
         intervalRef.current = window.setInterval(swap, delay);
       }
     };
@@ -367,9 +390,12 @@ const CardSwap: React.FC<CardSwapProps> = ({
       if (intervalRef.current) {
         clearInterval(intervalRef.current);
       }
-      if (containerEl && pauseOnHover) {
-        containerEl.removeEventListener('mouseenter', handleMouseEnter);
-        containerEl.removeEventListener('mouseleave', handleMouseLeave);
+      if (containerEl) {
+        observer.unobserve(containerEl);
+        if (pauseOnHover) {
+          containerEl.removeEventListener('mouseenter', handleMouseEnter);
+          containerEl.removeEventListener('mouseleave', handleMouseLeave);
+        }
       }
     };
   }, [cardDistance, verticalDistance, delay, skewAmount, easing, pauseOnHover, refs.length]);

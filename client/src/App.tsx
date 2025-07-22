@@ -7,6 +7,7 @@ import Layout from "@/components/Layout";
 import PageTransition from "@/components/PageTransition";
 import LoadingScreen from "@/components/ui/LoadingScreen"; // Assuming LoadingScreen is in this path
 import { PerformanceMonitor } from "@/components/performance";
+import { WebVitalsMonitor } from "@/components/performance/WebVitalsMonitor";
 import { initializeGoogleAnalytics, trackPageView } from "@/lib/analytics";
 
 
@@ -73,6 +74,7 @@ export default function App() {
     ) : (
     <div className="min-h-screen opacity-0 animate-[fadeIn_0.3s_ease-in-out_forwards]">
       <QueryClientProvider client={queryClient}>
+        <WebVitalsMonitor />
         <PageTransition />
         <Layout>
           <Suspense fallback={<div />}>
