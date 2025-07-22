@@ -21,8 +21,8 @@ export const WebVitalsMonitor = () => {
   useEffect(() => {
     const metrics: PerformanceMetrics = {};
 
-    // Log performance metrics
-    const logMetric = (name: string, value: number) => {
+    // Track performance metrics
+    const trackMetric = (name: string, value: number) => {
       const threshold = PERFORMANCE_THRESHOLDS[name as keyof typeof PERFORMANCE_THRESHOLDS];
       let rating = 'poor';
       
@@ -34,56 +34,54 @@ export const WebVitalsMonitor = () => {
         }
       }
 
-      console.log(`[Web Vitals] ${name}: ${value.toFixed(2)}ms (${rating})`);
+      // You can send metrics to analytics here
+      // Example: analytics.track('web_vital', { name, value, rating });
     };
 
     // Capture Core Web Vitals
     onCLS((metric) => {
       metrics.CLS = metric.value;
-      logMetric('CLS', metric.value);
+      trackMetric('CLS', metric.value);
     });
 
     onFCP((metric) => {
       metrics.FCP = metric.value;
-      logMetric('FCP', metric.value);
+      trackMetric('FCP', metric.value);
     });
 
     onLCP((metric) => {
       metrics.LCP = metric.value;
-      logMetric('LCP', metric.value);
+      trackMetric('LCP', metric.value);
     });
 
     onTTFB((metric) => {
       metrics.TTFB = metric.value;
-      logMetric('TTFB', metric.value);
+      trackMetric('TTFB', metric.value);
     });
 
     onINP((metric) => {
       metrics.INP = metric.value;
-      logMetric('INP', metric.value);
+      trackMetric('INP', metric.value);
     });
 
-    // Also log navigation timing for Speed Index approximation
+    // Track navigation timing for Speed Index approximation
     if ('performance' in window && 'getEntriesByType' in window.performance) {
       const navigationTiming = performance.getEntriesByType('navigation')[0] as PerformanceNavigationTiming;
       
       if (navigationTiming) {
         const speedIndex = navigationTiming.loadEventEnd - navigationTiming.fetchStart;
-        console.log(`[Performance] Speed Index (approx): ${speedIndex.toFixed(2)}ms`);
-        
-        // Log other useful metrics
         const domContentLoaded = navigationTiming.domContentLoadedEventEnd - navigationTiming.fetchStart;
         const pageLoad = navigationTiming.loadEventEnd - navigationTiming.fetchStart;
         
-        console.log(`[Performance] DOM Content Loaded: ${domContentLoaded.toFixed(2)}ms`);
-        console.log(`[Performance] Page Load Complete: ${pageLoad.toFixed(2)}ms`);
+        // You can send these metrics to analytics here
+        // Example: analytics.track('performance', { speedIndex, domContentLoaded, pageLoad });
       }
     }
 
     // Report metrics to analytics if needed
     window.addEventListener('beforeunload', () => {
       // You can send metrics to your analytics service here
-      console.log('[Web Vitals] Final metrics:', metrics);
+      // Example: analytics.track('web_vitals_final', metrics);
     });
 
   }, []);

@@ -8,7 +8,7 @@ import { useEffect } from "react";
 export default function About() {
   // Track page view for analytics
   useEffect(() => {
-    console.log("About page viewed");
+    // Page view tracking can be added here if needed
   }, []);
 
   return (

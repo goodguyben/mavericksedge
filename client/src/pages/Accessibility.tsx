@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 
 export default function Accessibility() {
   useEffect(() => {
-    console.log('Accessibility Statement page viewed');
+    // Page view tracking can be added here if needed
   }, []);
 
   return (

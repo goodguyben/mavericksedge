@@ -80,12 +80,10 @@ export default function LoadingScreen({
                 onLoadedData={handleVideoLoad}
                 onEnded={handleVideoEnd}
                 onError={(e) => {
-                  console.error('Logo animation video failed to load:', e);
                   // Fallback to static logo
                   setVideoLoaded(true);
                 }}
                 onCanPlay={() => {
-                  console.log('Logo animation video ready');
                   handleVideoLoad();
                 }}
                 className="w-full h-full object-cover"

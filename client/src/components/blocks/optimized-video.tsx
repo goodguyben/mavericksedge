@@ -66,21 +66,16 @@ export const OptimizedVideo: React.FC<OptimizedVideoProps> = ({
         processVideoQueue();
         onLoad?.();
         
-        // Log which format was loaded and start playback
+        // Start playback
         const loadedSrc = video.currentSrc || video.src;
-        const format = loadedSrc.includes('.webm') ? 'WebM' : 'MP4';
-        console.log(`✅ Video ready (${format}): ${loadedSrc}`);
         
         // Force play the video immediately
         if (video.paused) {
-          video.play().then(() => {
-            console.log(`🎬 Video playing: ${loadedSrc}`);
-          }).catch(e => {
-            console.warn(`Video autoplay prevented for ${loadedSrc}:`, e);
+          video.play().catch(e => {
             // Try again after a short delay
             setTimeout(() => {
               video.play().catch(() => {
-                console.log(`Video autoplay blocked for ${loadedSrc}`);
+                // Silent fail for autoplay restrictions
               });
             }, 500);
           });
@@ -92,9 +87,6 @@ export const OptimizedVideo: React.FC<OptimizedVideoProps> = ({
         currentlyLoadingVideos--;
         processVideoQueue();
         onError?.(e);
-        
-        const errorSrc = typeof src === 'string' ? src : src.webm;
-        console.error(`❌ Video failed to load: ${errorSrc}`);
       };
 
       video.addEventListener('loadeddata', handleLoad, { once: true });
@@ -108,7 +100,7 @@ export const OptimizedVideo: React.FC<OptimizedVideoProps> = ({
       video.addEventListener('canplay', () => {
         if (video.paused && video.readyState >= 3) {
           video.play().catch(e => {
-            console.warn(`Video play failed after canplay:`, e);
+            // Silent fail for autoplay restrictions
           });
         }
       }, { once: true });

@@ -897,14 +897,12 @@ export default function WebServices() {
                       className="max-w-full max-h-full object-contain"
                       loading="lazy"
                       onError={(e) => {
-                        console.log("Telus logo failed to load, showing fallback");
                         const fallback = e.currentTarget.nextElementSibling as HTMLElement;
                         if (fallback) {
                           e.currentTarget.style.display = 'none';
                           fallback.style.display = 'flex';
                         }
                       }}
-                      onLoad={() => console.log("Telus logo loaded successfully")}
                     />
                     <div 
                       className="w-full h-full bg-gradient-to-br from-green-600 to-blue-600 rounded-lg flex items-center justify-center text-white font-bold text-lg"
@@ -950,14 +948,12 @@ export default function WebServices() {
                       className="max-w-full max-h-full object-contain"
                       loading="lazy"
                       onError={(e) => {
-                        console.log("Manus AI logo failed to load, showing fallback");
                         const fallback = e.currentTarget.nextElementSibling as HTMLElement;
                         if (fallback) {
                           e.currentTarget.style.display = 'none';
                           fallback.style.display = 'flex';
                         }
                       }}
-                      onLoad={() => console.log("Manus AI logo loaded successfully")}
                     />
                     <div 
                       className="w-full h-full bg-gradient-to-br from-purple-600 to-pink-600 rounded-lg flex items-center justify-center text-white font-bold text-sm text-center"

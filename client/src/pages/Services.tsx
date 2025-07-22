@@ -10,7 +10,7 @@ import { useEffect } from "react";
 export default function Services() {
   // Track page view for analytics
   useEffect(() => {
-    console.log("Services page viewed");
+    // Page view tracking can be added here if needed
   }, []);
   const serviceCategories = [
     {

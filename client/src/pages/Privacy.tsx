@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 
 export default function Privacy() {
   useEffect(() => {
-    console.log('Privacy Policy page viewed');
+    // Page view tracking can be added here if needed
   }, []);
 
   return (

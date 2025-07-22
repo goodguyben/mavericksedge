@@ -9,7 +9,7 @@ import { useEffect } from "react";
 export default function AIServices() {
   // Track page view for analytics
   useEffect(() => {
-    console.log("AI Services page viewed");
+    // Page view tracking can be added here if needed
   }, []);
 
   const aiServices = [

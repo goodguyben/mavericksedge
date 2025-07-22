@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 
 export default function Compliance() {
   useEffect(() => {
-    console.log('Compliance page viewed');
+    // Page view tracking can be added here if needed
   }, []);
 
   return (

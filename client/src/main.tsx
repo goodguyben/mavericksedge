@@ -3,6 +3,7 @@ import { HelmetProvider } from "react-helmet-async";
 import App from "./App";
 import "./index.css";
 import { AnimatePresence } from "framer-motion";
+import { registerServiceWorker } from "./lib/serviceWorker";
 
 // Performance optimizations
 const enablePerformanceOptimizations = () => {
@@ -24,6 +25,9 @@ const enablePerformanceOptimizations = () => {
 
 // Initialize performance optimizations
 enablePerformanceOptimizations();
+
+// Register service worker for PWA functionality
+registerServiceWorker();
 
 const root = createRoot(document.getElementById("root")!);
 

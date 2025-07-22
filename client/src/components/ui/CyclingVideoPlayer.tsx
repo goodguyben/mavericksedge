@@ -144,21 +144,18 @@ export default function CyclingVideoPlayer({
                         if (video) {
                           video.currentTime = 0;
                           video.play().catch((error) => {
-                            console.warn(`Failed to play video: ${media}`, error);
+                            // Silent fail for autoplay restrictions
                           });
                         }
                       }
                     }}
                     onError={(e) => {
-                      console.error(`Video failed to load: ${media}`, e);
                       // Hide failed video and show next one
                       const video = e.currentTarget;
                       video.style.display = 'none';
                     }}
                     onCanPlayThrough={() => {
-                      const loadedSrc = videoRefs.current[index]?.currentSrc || media;
-                      const format = loadedSrc.includes('.webm') ? 'WebM' : 'MP4';
-                      console.log(`Video ready to play (${format}): ${loadedSrc}`);
+                      // Video is ready to play
                     }}
                   >
                     {/* Prioritize WebM format with MP4 fallback */}

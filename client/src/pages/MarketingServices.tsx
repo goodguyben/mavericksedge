@@ -8,7 +8,7 @@ import { useEffect } from "react";
 export default function MarketingServices() {
   // Track page view for analytics
   useEffect(() => {
-    console.log("Marketing Services page viewed");
+    // Page view tracking can be added here if needed
   }, []);
   
   const services = [

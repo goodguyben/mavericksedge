@@ -26,7 +26,6 @@ export default function PageTemplate({
   // Track page view for analytics
   useEffect(() => {
     trackPageView(title, window.location.pathname, canonicalUrl);
-    console.log(`${title} page viewed`);
   }, [title, canonicalUrl]);
 
   return (
