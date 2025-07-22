@@ -66,10 +66,19 @@ export const OptimizedVideo: React.FC<OptimizedVideoProps> = ({
         processVideoQueue();
         onLoad?.();
         
-        // Log which format was loaded
+        // Log which format was loaded and start playback
         const loadedSrc = video.currentSrc || video.src;
         const format = loadedSrc.includes('.webm') ? 'WebM' : 'MP4';
         console.log(`✅ Video ready (${format}): ${loadedSrc}`);
+        
+        // Ensure video plays after loading - retry mechanism for WebM
+        setTimeout(() => {
+          if (video.paused) {
+            video.play().catch(e => {
+              console.warn(`Video autoplay prevented for ${loadedSrc}:`, e);
+            });
+          }
+        }, 100);
       };
 
       const handleError = (e: Event) => {
@@ -85,29 +94,27 @@ export const OptimizedVideo: React.FC<OptimizedVideoProps> = ({
       video.addEventListener('loadeddata', handleLoad, { once: true });
       video.addEventListener('error', handleError, { once: true });
       
-      // Clear any existing sources
-      video.innerHTML = '';
-      
-      // Add source elements for WebM and MP4 fallback
-      if (typeof src === 'object' && src.webm && src.mp4) {
-        const webmSource = document.createElement('source');
-        webmSource.src = src.webm;
-        webmSource.type = 'video/webm; codecs="vp9,opus"';
-        video.appendChild(webmSource);
-        
-        const mp4Source = document.createElement('source');
-        mp4Source.src = src.mp4;
-        mp4Source.type = 'video/mp4; codecs="avc1.42E01E,mp4a.40.2"';
-        video.appendChild(mp4Source);
-      } else {
-        // Fallback for string src (backward compatibility)
-        const singleSource = document.createElement('source');
-        singleSource.src = typeof src === 'string' ? src : src.webm;
-        singleSource.type = typeof src === 'string' && src.includes('.webm') ? 'video/webm' : 'video/mp4';
-        video.appendChild(singleSource);
-      }
+      // Sources are now in JSX, just load the video
       
       video.load();
+      
+      // Try to play once video can play - with retry for WebM
+      video.addEventListener('canplay', () => {
+        if (video.paused && video.readyState >= 3) {
+          video.play().catch(e => {
+            console.warn(`Video play failed after canplay:`, e);
+          });
+        }
+      }, { once: true });
+      
+      // Additional fallback for WebM videos
+      video.addEventListener('loadedmetadata', () => {
+        if (video.paused) {
+          video.play().catch(e => {
+            // Silent fail for autoplay restrictions
+          });
+        }
+      }, { once: true });
     };
 
     if (priority || currentlyLoadingVideos < MAX_CONCURRENT_VIDEOS) {
@@ -119,7 +126,6 @@ export const OptimizedVideo: React.FC<OptimizedVideoProps> = ({
   }, [src, priority, onLoad, onError]);
 
   useEffect(() => {
-    console.log(`Video ${typeof src === 'string' ? src : src.webm} - isIntersecting: ${isIntersecting}, priority: ${priority}, shouldLoad: ${shouldLoad}`);
     if ((isIntersecting || priority) && !shouldLoad) {
       setShouldLoad(true);
       startLoading();
@@ -155,7 +161,18 @@ export const OptimizedVideo: React.FC<OptimizedVideoProps> = ({
         controls={false}
         style={{ aspectRatio: '16/9' }}
       >
-        {/* Sources will be dynamically added by the loading function */}
+        {/* Add sources directly in JSX for better reliability */}
+        {typeof src === 'object' && src.webm && src.mp4 ? (
+          <>
+            <source src={src.webm} type="video/webm; codecs=vp9,opus" />
+            <source src={src.mp4} type="video/mp4; codecs=avc1.42E01E,mp4a.40.2" />
+          </>
+        ) : (
+          <source 
+            src={typeof src === 'string' ? src : src.webm} 
+            type={typeof src === 'string' && src.includes('.webm') ? 'video/webm' : 'video/mp4'} 
+          />
+        )}
       </video>
     </div>
   );
