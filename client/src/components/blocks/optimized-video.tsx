@@ -71,20 +71,14 @@ export const OptimizedVideo: React.FC<OptimizedVideoProps> = ({
         const format = loadedSrc.includes('.webm') ? 'WebM' : 'MP4';
         console.log(`✅ Video ready (${format}): ${loadedSrc}`);
         
-        // Force play the video immediately
-        if (video.paused) {
-          video.play().then(() => {
-            console.log(`🎬 Video playing: ${loadedSrc}`);
-          }).catch(e => {
-            console.warn(`Video autoplay prevented for ${loadedSrc}:`, e);
-            // Try again after a short delay
-            setTimeout(() => {
-              video.play().catch(() => {
-                console.log(`Video autoplay blocked for ${loadedSrc}`);
-              });
-            }, 500);
-          });
-        }
+        // Ensure video plays after loading - retry mechanism for WebM
+        setTimeout(() => {
+          if (video.paused) {
+            video.play().catch(e => {
+              console.warn(`Video autoplay prevented for ${loadedSrc}:`, e);
+            });
+          }
+        }, 100);
       };
 
       const handleError = (e: Event) => {
@@ -149,31 +143,23 @@ export const OptimizedVideo: React.FC<OptimizedVideoProps> = ({
   }
 
   return (
-    <div className={`relative ${className} optimized-video border-2 border-blue-500`} data-loading={!isLoaded}>
+    <div className={`relative ${className} optimized-video`} data-loading={!isLoaded}>
       {!isLoaded && shouldLoad && (
-        <div className="absolute inset-0 bg-red-800 animate-pulse flex items-center justify-center z-10">
-          <div className="text-white text-sm font-bold">Loading WebM video...</div>
+        <div className="absolute inset-0 bg-gray-800 animate-pulse flex items-center justify-center">
+          <div className="text-gray-400 text-sm">Loading video...</div>
         </div>
       )}
-      {/* Debug info */}
-      <div className="absolute top-0 left-0 bg-black/80 text-white text-xs p-1 z-20">
-        {isLoaded ? 'LOADED' : 'LOADING'} | {typeof src === 'object' ? 'WebM' : 'String'}
-      </div>
       
       <video
         ref={videoRef}
-        className={`w-full h-full object-cover transition-opacity duration-300`}
+        className={`w-full h-full object-cover ${isLoaded ? 'opacity-100' : 'opacity-0'} transition-opacity duration-300`}
         autoPlay
         muted
         loop
         playsInline
-        preload="metadata"
+        preload="none"
         controls={false}
-        style={{ 
-          aspectRatio: '16/9',
-          opacity: isLoaded ? 1 : 0.3,
-          backgroundColor: '#1a1a1a'
-        }}
+        style={{ aspectRatio: '16/9' }}
       >
         {/* Add sources directly in JSX for better reliability */}
         {typeof src === 'object' && src.webm && src.mp4 ? (
