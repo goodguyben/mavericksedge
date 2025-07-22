@@ -59,7 +59,7 @@ export default function App() {
     // Simulate app initialization
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 2000); // Reduced from minDisplayTime to ensure loading finishes
+    }, 1000); // Further reduced for faster app start
 
     return () => clearTimeout(timer);
   }, []);

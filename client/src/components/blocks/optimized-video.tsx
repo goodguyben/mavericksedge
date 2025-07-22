@@ -2,8 +2,13 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { useIntersectionObserver } from '@/hooks/useIntersectionObserver';
 
+interface VideoSource {
+  webm: string;
+  mp4: string;
+}
+
 interface OptimizedVideoProps {
-  src: string;
+  src: string | VideoSource;
   className?: string;
   priority?: boolean;
   onLoad?: () => void;
@@ -40,7 +45,7 @@ export const OptimizedVideo: React.FC<OptimizedVideoProps> = ({
   // Use intersection observer with optimized margin for better performance
   const { isIntersecting } = useIntersectionObserver(videoRef, {
     threshold: 0.01,
-    rootMargin: priority ? '200px' : '50px' // Smaller margins for better LCP
+    rootMargin: priority ? '400px' : '200px' // Larger margins for earlier loading
   });
 
   const startLoading = useCallback(() => {
@@ -60,7 +65,11 @@ export const OptimizedVideo: React.FC<OptimizedVideoProps> = ({
         currentlyLoadingVideos--;
         processVideoQueue();
         onLoad?.();
-        console.log(`Video ready: ${src}`);
+        
+        // Log which format was loaded
+        const loadedSrc = video.currentSrc || video.src;
+        const format = loadedSrc.includes('.webm') ? 'WebM' : 'MP4';
+        console.log(`✅ Video ready (${format}): ${loadedSrc}`);
       };
 
       const handleError = (e: Event) => {
@@ -68,14 +77,36 @@ export const OptimizedVideo: React.FC<OptimizedVideoProps> = ({
         currentlyLoadingVideos--;
         processVideoQueue();
         onError?.(e);
-        console.error(`Video failed to load: ${src}`);
+        
+        const errorSrc = typeof src === 'string' ? src : src.webm;
+        console.error(`❌ Video failed to load: ${errorSrc}`);
       };
 
       video.addEventListener('loadeddata', handleLoad, { once: true });
       video.addEventListener('error', handleError, { once: true });
       
-      // Set the source to start loading
-      video.src = src;
+      // Clear any existing sources
+      video.innerHTML = '';
+      
+      // Add source elements for WebM and MP4 fallback
+      if (typeof src === 'object' && src.webm && src.mp4) {
+        const webmSource = document.createElement('source');
+        webmSource.src = src.webm;
+        webmSource.type = 'video/webm; codecs="vp9,opus"';
+        video.appendChild(webmSource);
+        
+        const mp4Source = document.createElement('source');
+        mp4Source.src = src.mp4;
+        mp4Source.type = 'video/mp4; codecs="avc1.42E01E,mp4a.40.2"';
+        video.appendChild(mp4Source);
+      } else {
+        // Fallback for string src (backward compatibility)
+        const singleSource = document.createElement('source');
+        singleSource.src = typeof src === 'string' ? src : src.webm;
+        singleSource.type = typeof src === 'string' && src.includes('.webm') ? 'video/webm' : 'video/mp4';
+        video.appendChild(singleSource);
+      }
+      
       video.load();
     };
 
@@ -88,6 +119,7 @@ export const OptimizedVideo: React.FC<OptimizedVideoProps> = ({
   }, [src, priority, onLoad, onError]);
 
   useEffect(() => {
+    console.log(`Video ${typeof src === 'string' ? src : src.webm} - isIntersecting: ${isIntersecting}, priority: ${priority}, shouldLoad: ${shouldLoad}`);
     if ((isIntersecting || priority) && !shouldLoad) {
       setShouldLoad(true);
       startLoading();
@@ -122,7 +154,9 @@ export const OptimizedVideo: React.FC<OptimizedVideoProps> = ({
         preload="none"
         controls={false}
         style={{ aspectRatio: '16/9' }}
-      />
+      >
+        {/* Sources will be dynamically added by the loading function */}
+      </video>
     </div>
   );
 };

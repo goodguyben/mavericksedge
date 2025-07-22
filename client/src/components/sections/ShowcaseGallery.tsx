@@ -10,44 +10,46 @@ import { Button } from "@/components/ui/custom-button"
 import { VideoIcon } from "lucide-react"
 import GradientText from "@/components/ui/GradientText"
 
-// CDN-hosted portfolio videos from Cloudflare R2
+// CDN-hosted portfolio videos - WebM format for optimal performance
 const CDN_VIDEOS = [
-  "https://mavericksedge.ca/videos/Portfolio_Video_1.mp4",
-  "https://mavericksedge.ca/videos/Portfolio_Video_2.mp4",
-  "https://mavericksedge.ca/videos/Portfolio_Video_3.mp4",
-  "https://mavericksedge.ca/videos/Portfolio_Video_4.mp4",
-  "https://mavericksedge.ca/videos/Portfolio_Video_5.mp4",
-  "https://mavericksedge.ca/videos/Portfolio_Video_6.mp4",
-  "https://mavericksedge.ca/videos/Portfolio_Video_7.mp4",
-  "https://mavericksedge.ca/videos/Portfolio_Video_8.mp4",
-  "https://mavericksedge.ca/videos/Portfolio_Video_9.mp4",
-  "https://mavericksedge.ca/videos/Portfolio_Video_10.mp4",
-  "https://mavericksedge.ca/videos/Portfolio_Video_11.mp4",
-  "https://mavericksedge.ca/videos/Portfolio_Video_12.mp4",
-  "https://mavericksedge.ca/videos/Portfolio_Video_13.mp4",
-  "https://mavericksedge.ca/videos/Portfolio_Video_14.mp4",
-  "https://mavericksedge.ca/videos/Portfolio_Video_15.mp4",
-  "https://mavericksedge.ca/videos/Portfolio_Video_16.mp4",
-  "https://mavericksedge.ca/videos/Portfolio_Video_17.mp4",
-  "https://mavericksedge.ca/videos/Portfolio_Video_18.mp4",
-  "https://mavericksedge.ca/videos/Portfolio_Video_19.mp4",
-  "https://mavericksedge.ca/videos/Portfolio_Video_20.mp4",
-  "https://mavericksedge.ca/videos/Portfolio_Video_21.mp4",
-  "https://mavericksedge.ca/videos/Portfolio_Video_22.mp4",
-  "https://mavericksedge.ca/videos/Portfolio_Video_23.mp4",
-  "https://mavericksedge.ca/videos/Portfolio_Video_24.mp4",
-  "https://mavericksedge.ca/videos/Portfolio_Video_25.mp4",
-  "https://mavericksedge.ca/videos/Portfolio_Video_26.mp4",
-  "https://mavericksedge.ca/videos/Portfolio_Video_27.mp4",
-  "https://mavericksedge.ca/videos/Portfolio_Video_28.mp4",
-  "https://mavericksedge.ca/videos/Portfolio_Video_29.mp4",
-  "https://mavericksedge.ca/videos/Portfolio_Video_30.mp4",
-  "https://mavericksedge.ca/videos/Portfolio_Video_31.mp4",
-  "https://mavericksedge.ca/videos/Portfolio_Video_32.mp4",
-  "https://mavericksedge.ca/videos/Portfolio_Video_33.mp4",
-  "https://mavericksedge.ca/videos/Portfolio_Video_34.mp4",
-  "https://mavericksedge.ca/videos/Portfolio_Video_35.mp4",
-  "https://mavericksedge.ca/videos/Portfolio_Video_36.mp4"
+  { webm: "https://mavericksedge.ca/videos/Portfolio_Video_1.webm", mp4: "https://mavericksedge.ca/videos/Portfolio_Video_1.mp4" },
+  { webm: "https://mavericksedge.ca/videos/Portfolio_Video_2.webm", mp4: "https://mavericksedge.ca/videos/Portfolio_Video_2.mp4" },
+  { webm: "https://mavericksedge.ca/videos/Portfolio_Video_3.webm", mp4: "https://mavericksedge.ca/videos/Portfolio_Video_3.mp4" },
+  { webm: "https://mavericksedge.ca/videos/Portfolio_Video_4.webm", mp4: "https://mavericksedge.ca/videos/Portfolio_Video_4.mp4" },
+  { webm: "https://mavericksedge.ca/videos/Portfolio_Video_5.webm", mp4: "https://mavericksedge.ca/videos/Portfolio_Video_5.mp4" },
+  { webm: "https://mavericksedge.ca/videos/Portfolio_Video_6.webm", mp4: "https://mavericksedge.ca/videos/Portfolio_Video_6.mp4" },
+  { webm: "https://mavericksedge.ca/videos/Portfolio_Video_7.webm", mp4: "https://mavericksedge.ca/videos/Portfolio_Video_7.mp4" },
+  { webm: "https://mavericksedge.ca/videos/Portfolio_Video_8.webm", mp4: "https://mavericksedge.ca/videos/Portfolio_Video_8.mp4" },
+  { webm: "https://mavericksedge.ca/videos/Portfolio_Video_9.webm", mp4: "https://mavericksedge.ca/videos/Portfolio_Video_9.mp4" },
+  { webm: "https://mavericksedge.ca/videos/Portfolio_Video_10.webm", mp4: "https://mavericksedge.ca/videos/Portfolio_Video_10.mp4" },
+  { webm: "https://mavericksedge.ca/videos/Portfolio_Video_11.webm", mp4: "https://mavericksedge.ca/videos/Portfolio_Video_11.mp4" },
+  { webm: "https://mavericksedge.ca/videos/Portfolio_Video_12.webm", mp4: "https://mavericksedge.ca/videos/Portfolio_Video_12.mp4" },
+  { webm: "https://mavericksedge.ca/videos/Portfolio_Video_13.webm", mp4: "https://mavericksedge.ca/videos/Portfolio_Video_13.mp4" },
+  { webm: "https://mavericksedge.ca/videos/Portfolio_Video_14.webm", mp4: "https://mavericksedge.ca/videos/Portfolio_Video_14.mp4" },
+  { webm: "https://mavericksedge.ca/videos/Portfolio_Video_15.webm", mp4: "https://mavericksedge.ca/videos/Portfolio_Video_15.mp4" },
+  { webm: "https://mavericksedge.ca/videos/Portfolio_Video_16.webm", mp4: "https://mavericksedge.ca/videos/Portfolio_Video_16.mp4" },
+  { webm: "https://mavericksedge.ca/videos/Portfolio_Video_17.webm", mp4: "https://mavericksedge.ca/videos/Portfolio_Video_17.mp4" },
+  { webm: "https://mavericksedge.ca/videos/Portfolio_Video_18.webm", mp4: "https://mavericksedge.ca/videos/Portfolio_Video_18.mp4" },
+  { webm: "https://mavericksedge.ca/videos/Portfolio_Video_19.webm", mp4: "https://mavericksedge.ca/videos/Portfolio_Video_19.mp4" },
+  { webm: "https://mavericksedge.ca/videos/Portfolio_Video_20.webm", mp4: "https://mavericksedge.ca/videos/Portfolio_Video_20.mp4" },
+  { webm: "https://mavericksedge.ca/videos/Portfolio_Video_21.webm", mp4: "https://mavericksedge.ca/videos/Portfolio_Video_21.mp4" },
+  { webm: "https://mavericksedge.ca/videos/Portfolio_Video_22.webm", mp4: "https://mavericksedge.ca/videos/Portfolio_Video_22.mp4" },
+  { webm: "https://mavericksedge.ca/videos/Portfolio_Video_23.webm", mp4: "https://mavericksedge.ca/videos/Portfolio_Video_23.mp4" },
+  { webm: "https://mavericksedge.ca/videos/Portfolio_Video_24.webm", mp4: "https://mavericksedge.ca/videos/Portfolio_Video_24.mp4" },
+  { webm: "https://mavericksedge.ca/videos/Portfolio_Video_25.webm", mp4: "https://mavericksedge.ca/videos/Portfolio_Video_25.mp4" },
+  { webm: "https://mavericksedge.ca/videos/Portfolio_Video_26.webm", mp4: "https://mavericksedge.ca/videos/Portfolio_Video_26.mp4" },
+  { webm: "https://mavericksedge.ca/videos/Portfolio_Video_27.webm", mp4: "https://mavericksedge.ca/videos/Portfolio_Video_27.mp4" },
+  { webm: "https://mavericksedge.ca/videos/Portfolio_Video_28.webm", mp4: "https://mavericksedge.ca/videos/Portfolio_Video_28.mp4" },
+  { webm: "https://mavericksedge.ca/videos/Portfolio_Video_29.webm", mp4: "https://mavericksedge.ca/videos/Portfolio_Video_29.mp4" },
+  { webm: "https://mavericksedge.ca/videos/Portfolio_Video_30.webm", mp4: "https://mavericksedge.ca/videos/Portfolio_Video_30.mp4" },
+  { webm: "https://mavericksedge.ca/videos/Portfolio_Video_31.webm", mp4: "https://mavericksedge.ca/videos/Portfolio_Video_31.mp4" },
+  { webm: "https://mavericksedge.ca/videos/Portfolio_Video_32.webm", mp4: "https://mavericksedge.ca/videos/Portfolio_Video_32.mp4" },
+  { webm: "https://mavericksedge.ca/videos/Portfolio_Video_33.webm", mp4: "https://mavericksedge.ca/videos/Portfolio_Video_33.mp4" },
+  { webm: "https://mavericksedge.ca/videos/Portfolio_Video_34.webm", mp4: "https://mavericksedge.ca/videos/Portfolio_Video_34.mp4" },
+  { webm: "https://mavericksedge.ca/videos/Portfolio_Video_35.webm", mp4: "https://mavericksedge.ca/videos/Portfolio_Video_35.mp4" },
+  { webm: "https://mavericksedge.ca/videos/Portfolio_Video_36.webm", mp4: "https://mavericksedge.ca/videos/Portfolio_Video_36.mp4" },
+  { webm: "https://mavericksedge.ca/videos/Portfolio_Video_37.webm", mp4: "https://mavericksedge.ca/videos/Portfolio_Video_37.mp4" },
+  { webm: "https://mavericksedge.ca/videos/Portfolio_Video_38.webm", mp4: "https://mavericksedge.ca/videos/Portfolio_Video_38.mp4" }
 ];
 
 export default function ShowcaseGallery() {
@@ -251,19 +253,19 @@ export default function ShowcaseGallery() {
             <GalleryContainer className="-mt-4">
               <GalleryCol yRange={["-10%", "2%"]} className="mt-[90px] mb-[90px]">
                 {/* Priority load first 2 videos */}
-                {VIDEOS_1.map((videoUrl, index) => (
+                {VIDEOS_1.map((videoSource, index) => (
                   <OptimizedVideo
                     key={`initial-1-${index}`}
-                    src={videoUrl}
+                    src={videoSource}
                     className="block aspect-video w-full rounded-md shadow-lg overflow-hidden"
                     priority={index < 2}
                   />
                 ))}
                 {/* Lazy load remaining videos */}
-                {LAZY_VIDEOS_1.map((videoUrl, index) => (
+                {LAZY_VIDEOS_1.map((videoSource, index) => (
                   <OptimizedVideo
                     key={`lazy-1-${index}`}
-                    src={videoUrl}
+                    src={videoSource}
                     className="block aspect-video w-full rounded-md shadow-lg overflow-hidden"
                     priority={false}
                   />
@@ -271,19 +273,19 @@ export default function ShowcaseGallery() {
               </GalleryCol>
               <GalleryCol className="mt-[40px] mb-[120px]" yRange={["0%", "-5%"]}>
                 {/* No priority for middle column */}
-                {VIDEOS_2.map((videoUrl, index) => (
+                {VIDEOS_2.map((videoSource, index) => (
                   <OptimizedVideo
                     key={`initial-2-${index}`}
-                    src={videoUrl}
+                    src={videoSource}
                     className="block aspect-video w-full rounded-md shadow-lg overflow-hidden"
                     priority={false}
                   />
                 ))}
                 {/* Lazy load remaining videos */}
-                {LAZY_VIDEOS_2.map((videoUrl, index) => (
+                {LAZY_VIDEOS_2.map((videoSource, index) => (
                   <OptimizedVideo
                     key={`lazy-2-${index}`}
-                    src={videoUrl}
+                    src={videoSource}
                     className="block aspect-video w-full rounded-md shadow-lg overflow-hidden"
                     priority={false}
                   />
@@ -291,19 +293,19 @@ export default function ShowcaseGallery() {
               </GalleryCol>
               <GalleryCol yRange={["-10%", "2%"]} className="mt-[85px] mb-[85px]">
                 {/* No priority for third column */}
-                {IMAGES_3.map((videoUrl, index) => (
+                {IMAGES_3.map((videoSource, index) => (
                   <OptimizedVideo
                     key={`initial-3-${index}`}
-                    src={videoUrl}
+                    src={videoSource}
                     className="block aspect-video w-full rounded-md shadow-lg overflow-hidden"
                     priority={false}
                   />
                 ))}
                 {/* Lazy load remaining videos */}
-                {LAZY_VIDEOS_3.map((videoUrl, index) => (
+                {LAZY_VIDEOS_3.map((videoSource, index) => (
                   <OptimizedVideo
                     key={`lazy-3-${index}`}
-                    src={videoUrl}
+                    src={videoSource}
                     className="block aspect-video w-full rounded-md shadow-lg overflow-hidden"
                     priority={false}
                   />

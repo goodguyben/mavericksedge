@@ -101,6 +101,13 @@ This is a full-stack web application for Mavericks Edge, a digital solutions age
   - Added preconnect hints for video CDN (mavericksedge.ca)
   - Added WebVitalsMonitor to track FCP, LCP, CLS, and Speed Index metrics
   - Reduced initial video load from 36 to 12 videos, rest lazy-loaded on scroll
+- July 22, 2025. WebM Video Optimization:
+  - Replaced all MP4 videos with WebM format for optimal compression and performance
+  - Updated video components to use WebM as primary format with MP4 fallback
+  - Added proper video/webm codecs specification (vp9,opus) 
+  - Updated preload hints in HTML to prioritize WebM format
+  - Enhanced OptimizedVideo component with multi-source support and format detection
+  - Updated logo animation video to use WebM with MP4 fallback
 
 ## User Preferences
 
