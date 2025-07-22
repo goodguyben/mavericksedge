@@ -26,7 +26,9 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden opacity-0 animate-[fadeIn_0.5s_ease-in-out_0.2s_forwards]">
+    <section className="relative min-h-screen flex items-center overflow-hidden bg-red-900">
+      {/* TEST: Temporary red background to verify visibility */}
+      <div className="absolute inset-0 bg-red-500 z-5" />
       {/* Background */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-10">
         {/* Background gradient */}

@@ -156,10 +156,14 @@ export default function CyclingVideoPlayer({
                       video.style.display = 'none';
                     }}
                     onCanPlayThrough={() => {
-                      console.log(`Video ready to play: ${media}`);
+                      const loadedSrc = videoRefs.current[index]?.currentSrc || media;
+                      const format = loadedSrc.includes('.webm') ? 'WebM' : 'MP4';
+                      console.log(`Video ready to play (${format}): ${loadedSrc}`);
                     }}
                   >
-                    <source src={media} type="video/mp4" />
+                    {/* Prioritize WebM format with MP4 fallback */}
+                    <source src={media.replace('.mp4', '.webm')} type="video/webm; codecs=vp9,opus" />
+                    <source src={media} type="video/mp4; codecs=avc1.42E01E,mp4a.40.2" />
                     Your browser does not support the video tag.
                   </video>
                 ) : (

@@ -72,7 +72,7 @@ export default function App() {
         onLoadingComplete={() => setIsLoading(false)} 
       />
     ) : (
-    <div className="min-h-screen">
+    <div className="min-h-screen" style={{backgroundColor: 'red', position: 'relative', zIndex: 9999}}>
       <QueryClientProvider client={queryClient}>
         <WebVitalsMonitor />
         <PageTransition />

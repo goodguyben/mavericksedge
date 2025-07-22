@@ -110,6 +110,7 @@ This is a full-stack web application for Mavericks Edge, a digital solutions age
   - Updated logo animation video to use WebM with MP4 fallback
   - Successfully implemented 38 WebM videos with console logging confirming format selection
   - Removed debug overlays and restored clean video presentation
+  - Updated CyclingVideoPlayer component to prioritize WebM format with MP4 fallback for cascade section videos
 
 ## User Preferences
 
