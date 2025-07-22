@@ -57,13 +57,7 @@ export default function Home() {
 
       <LocalSEO page="home" location="Edmonton" />
 
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        transition={{ duration: 0.3 }} // Reduced duration for faster page transitions
-        className="home-page-wrapper"
-      >
+      <div className="home-page-wrapper">
         <article>
           <MobileOptimizations />
           {/* Main hero section - Critical above-fold content */}
@@ -170,7 +164,7 @@ export default function Home() {
             </ScrollFadeSection>
           </LazySection>
         </article>
-      </motion.div>
+      </div>
     </>
   );
 }

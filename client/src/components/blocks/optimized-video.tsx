@@ -149,16 +149,12 @@ export const OptimizedVideo: React.FC<OptimizedVideoProps> = ({
   }
 
   return (
-    <div className={`relative ${className} optimized-video border-2 border-blue-500`} data-loading={!isLoaded}>
+    <div className={`relative ${className} optimized-video`} data-loading={!isLoaded}>
       {!isLoaded && shouldLoad && (
-        <div className="absolute inset-0 bg-red-800 animate-pulse flex items-center justify-center z-10">
-          <div className="text-white text-sm font-bold">Loading WebM video...</div>
+        <div className="absolute inset-0 bg-gray-800 animate-pulse flex items-center justify-center">
+          <div className="text-gray-400 text-sm">Loading video...</div>
         </div>
       )}
-      {/* Debug info */}
-      <div className="absolute top-0 left-0 bg-black/80 text-white text-xs p-1 z-20">
-        {isLoaded ? 'LOADED' : 'LOADING'} | {typeof src === 'object' ? 'WebM' : 'String'}
-      </div>
       
       <video
         ref={videoRef}
