@@ -115,7 +115,7 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({
                 <video
                   ref={videoRef}
                   src={logoVideoSrc}
-                  className="w-full h-full object-contain"
+                  className="w-full h-full object-cover bg-black"
                   autoPlay
                   muted
                   playsInline
