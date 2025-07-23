@@ -59,20 +59,20 @@ export default function App() {
     // Simulate app initialization
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 1000); // Further reduced for faster app start
+    }, 1500); // Optimized loading time
 
     return () => clearTimeout(timer);
   }, []);
 
   return (
     <>
-    {isLoading ? (
-      <LoadingScreen 
-        isLoading={isLoading} 
-        onLoadingComplete={() => setIsLoading(false)} 
-      />
-    ) : (
-    <div className="min-h-screen" style={{backgroundColor: 'red', position: 'relative', zIndex: 9999}}>
+      {isLoading ? (
+        <LoadingScreen 
+          isLoading={isLoading} 
+          onLoadingComplete={() => setIsLoading(false)} 
+        />
+      ) : (
+    <div className="min-h-screen">
       <QueryClientProvider client={queryClient}>
         <WebVitalsMonitor />
         <PageTransition />

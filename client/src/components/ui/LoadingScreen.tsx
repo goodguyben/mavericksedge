@@ -10,21 +10,38 @@ interface LoadingScreenProps {
 export default function LoadingScreen({ 
   isLoading, 
   onLoadingComplete, 
-  minDisplayTime = 3000 
+  minDisplayTime = 1500 
 }: LoadingScreenProps) {
   const [shouldShow, setShouldShow] = useState(true);
   const [videoLoaded, setVideoLoaded] = useState(false);
+  const [progress, setProgress] = useState(0);
 
   useEffect(() => {
-    if (!isLoading) {
+    // Progressive loading animation
+    const progressInterval = setInterval(() => {
+      setProgress(prev => {
+        if (prev >= 100) {
+          clearInterval(progressInterval);
+          return 100;
+        }
+        return prev + 2;
+      });
+    }, 30);
+
+    if (!isLoading && progress >= 100) {
       const timer = setTimeout(() => {
         setShouldShow(false);
         onLoadingComplete?.();
-      }, 1000); // Short delay to ensure smooth transition
+      }, 500);
 
-      return () => clearTimeout(timer);
+      return () => {
+        clearTimeout(timer);
+        clearInterval(progressInterval);
+      };
     }
-  }, [isLoading, onLoadingComplete]);
+
+    return () => clearInterval(progressInterval);
+  }, [isLoading, onLoadingComplete, progress]);
 
   const handleVideoLoad = () => {
     setVideoLoaded(true);
@@ -126,14 +143,16 @@ export default function LoadingScreen({
                 Mavericks Edge
               </h1>
 
+              <div className="text-center mb-2">
+                <span className="text-white text-sm">{Math.round(progress)}%</span>
+              </div>
+
               <motion.div
                 className="w-64 h-1 bg-gray-800 rounded-full ml-auto mr-0 mb-4 overflow-hidden"
               >
                 <motion.div
-                  initial={{ width: "0%" }}
-                  animate={{ width: "100%" }}
-                  transition={{ duration: 2.5, ease: "easeInOut" }}
-                  className="h-full bg-gradient-to-r from-maverick-orange to-orange-600 rounded-full"
+                  style={{ width: `${progress}%` }}
+                  className="h-full bg-gradient-to-r from-maverick-orange to-orange-600 rounded-full transition-all duration-300 ease-out"
                 />
               </motion.div>
             </motion.div>
