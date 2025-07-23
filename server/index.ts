@@ -54,8 +54,9 @@ app.use((req, res, next) => {
   next();
 });
 
+// Initialize the app
 (async () => {
-  const server = await registerRoutes(app);
+  await registerRoutes(app);
 
   app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
     const status = err.status || err.statusCode || 500;
@@ -69,10 +70,10 @@ app.use((req, res, next) => {
   // setting up all the other routes so the catch-all route
   // doesn't interfere with the other routes
   if (app.get("env") === "development") {
+    // For development, we need to set up the server
+    const { createServer } = await import("http");
+    const server = createServer(app);
     await setupVite(app, server);
-  } else {
-    serveStatic(app);
-  }
 
   // ALWAYS serve the app on port 5000
   // this serves both the API and the client.
@@ -108,6 +109,10 @@ app.use((req, res, next) => {
       process.exit(0);
     });
   });
+  } else {
+    // For production (serverless), just serve static files
+    serveStatic(app);
+  }
 
   // Handle unhandled promise rejections
   process.on('unhandledRejection', (reason, promise) => {
@@ -120,3 +125,6 @@ app.use((req, res, next) => {
     console.error(error.stack);
   });
 })();
+
+// Export the app for serverless environments
+export default app;

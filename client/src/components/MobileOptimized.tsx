@@ -14,10 +14,9 @@ export const MobileOptimizations = () => {
       document.addEventListener('touchstart', () => {}, { passive: true });
       document.addEventListener('touchmove', () => {}, { passive: true });
       
-      // Preload critical mobile resources
+      // Preload critical mobile resources (removed non-existent images)
       const mobilePreloads = [
-        '/images/mobile-hero.webp',
-        '/images/mobile-logo.webp'
+        '/assets/logo-transparent-thumb4x.png'
       ];
       
       mobilePreloads.forEach(src => {

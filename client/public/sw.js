@@ -3,9 +3,7 @@
 const CACHE_NAME = 'mavericks-edge-v1';
 const urlsToCache = [
   '/',
-  '/assets/logo-transparent-thumb4x.png',
-  '/videos/logo_animation.mp4',
-  '/videos/background.mp4'
+  '/assets/logo-transparent-thumb4x.png'
 ];
 
 self.addEventListener('install', (event) => {

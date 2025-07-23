@@ -38,38 +38,38 @@ export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
 export const Card = forwardRef<HTMLDivElement, CardProps>(
   ({ customClass, icon: Icon, title, description, borderColorClass = "border-white", cardNumber, ...rest }, ref) => {
 
-    const getCardGif = (title: string, cardNumber?: number) => {
+    const getCardVideo = (title: string, cardNumber?: number) => {
       // Use cardNumber if provided, otherwise derive from title
-      let gifNumber = cardNumber;
-      if (!gifNumber) {
+      let videoNumber = cardNumber;
+      if (!videoNumber) {
         switch (title) {
           case "Mobile Responsive":
-            gifNumber = 1;
+            videoNumber = 1;
             break;
           case "Human Design":
-            gifNumber = 2;
+            videoNumber = 2;
             break;
           case "Google Ranked":
-            gifNumber = 3;
+            videoNumber = 3;
             break;
           case "Affordable":
-            gifNumber = 4;
+            videoNumber = 4;
             break;
           default:
-            gifNumber = 1;
+            videoNumber = 1;
         }
       }
 
-      // Map each gif to the correct filename based on what's available in attached_assets
-      const gifMap: { [key: number]: string } = {
-        1: "1_1751693734619.gif",
-        2: "2_1751693734650.gif", 
-        3: "3_1751693734651.gif",
-        4: "4_1751693734651.gif"
+      // Map each card to optimized WebM videos
+      const videoMap: { [key: number]: string } = {
+        1: "/attached_assets/1.webm", // Mobile Responsive
+        2: "/attached_assets/2.webm", // Human Design  
+        3: "/attached_assets/3.webm", // Google Ranked
+        4: "/attached_assets/4.webm"  // Affordable
       };
 
-      const gifFileName = gifMap[gifNumber] || gifMap[1];
-      return `/attached_assets/${gifFileName}`;
+      const videoFileName = videoMap[videoNumber] || videoMap[1];
+      return videoFileName;
     };
 
     return (
@@ -164,13 +164,17 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
         </div>
         {/* White divider line */}
         <div className="border-t border-white"></div>
-        {/* Content area with GIF */}
+        {/* Content area with optimized video */}
         <div className="flex-1 bg-black overflow-hidden">
           {title && (
-            <img 
-              src={getCardGif(title, cardNumber)}
-              alt={`${title} illustration`}
+            <video 
+              src={getCardVideo(title, cardNumber)}
+              autoPlay
+              loop
+              muted
+              playsInline
               className="w-full h-full object-cover"
+              preload="metadata"
             />
           )}
           {rest.children}
@@ -267,14 +271,18 @@ const CardSwap: React.FC<CardSwapProps> = ({
 
   useEffect(() => {
     const total = refs.length;
-    refs.forEach((r, i) => {
-      if (r.current) {
-        placeNow(
-          r.current,
-          makeSlot(i, cardDistance, verticalDistance, total),
-          skewAmount
-        );
-      }
+    
+    // Use requestAnimationFrame to batch DOM updates and reduce reflows
+    requestAnimationFrame(() => {
+      refs.forEach((r, i) => {
+        if (r.current) {
+          placeNow(
+            r.current,
+            makeSlot(i, cardDistance, verticalDistance, total),
+            skewAmount
+          );
+        }
+      });
     });
 
     const swap = () => {
@@ -284,8 +292,10 @@ const CardSwap: React.FC<CardSwapProps> = ({
       const elFront = refs[front].current;
       if (!elFront) return;
 
-      const tl = gsap.timeline();
-      tlRef.current = tl;
+      // Use requestAnimationFrame to prevent forced reflows
+      requestAnimationFrame(() => {
+        const tl = gsap.timeline();
+        tlRef.current = tl;
 
       tl.to(elFront, {
         y: "+=500",
@@ -341,6 +351,7 @@ const CardSwap: React.FC<CardSwapProps> = ({
       tl.call(() => {
         order.current = [...rest, front];
       });
+    });
     };
 
     // Set up intersection observer for performance

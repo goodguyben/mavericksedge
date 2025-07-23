@@ -5,10 +5,10 @@ import { Toaster } from "@/components/ui/toaster";
 import { queryClient } from "@/lib/queryClient";
 import Layout from "@/components/Layout";
 import PageTransition from "@/components/PageTransition";
-import LoadingScreen from "@/components/ui/LoadingScreen"; // Assuming LoadingScreen is in this path
 import { PerformanceMonitor } from "@/components/performance";
 import { WebVitalsMonitor } from "@/components/performance/WebVitalsMonitor";
 import { initializeGoogleAnalytics, trackPageView } from "@/lib/analytics";
+import LoadingScreen from "@/components/ui/LoadingScreen";
 
 
 // Lazy load pages
@@ -38,6 +38,14 @@ const NotFound = lazy(() => import("@/pages/not-found"));
 export default function App() {
   const [location] = useLocation();
   const [isLoading, setIsLoading] = useState(true);
+  const [hasSeenLoading, setHasSeenLoading] = useState(false);
+
+  // Show loading screen every time (removed localStorage check)
+  useEffect(() => {
+    // Always show loading screen on page load
+    setIsLoading(true);
+    setHasSeenLoading(false);
+  }, []);
 
   // Initialize Google Analytics on app mount
   useEffect(() => {
@@ -55,26 +63,27 @@ export default function App() {
     }
   }, [location, isLoading]);
 
-  useEffect(() => {
-    // Simulate app initialization
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 1000); // Further reduced for faster app start
-
-    return () => clearTimeout(timer);
-  }, []);
+  const handleLoadingComplete = () => {
+    setIsLoading(false);
+    setHasSeenLoading(true);
+    // Removed localStorage setting since we want it to show every time
+  };
 
   return (
-    <>
-    {isLoading ? (
-      <LoadingScreen 
-        isLoading={isLoading} 
-        onLoadingComplete={() => setIsLoading(false)} 
-      />
-    ) : (
     <div className="min-h-screen">
       <QueryClientProvider client={queryClient}>
         <WebVitalsMonitor />
+        
+        {/* Loading Screen - only show on first visit */}
+        {isLoading && !hasSeenLoading && (
+          <LoadingScreen
+            onLoadingComplete={handleLoadingComplete}
+            logoVideoSrc="/attached_assets/logo_animation.mp4"
+            companyName="Mavericks Edge"
+            loadingDuration={4000}
+          />
+        )}
+        
         <PageTransition />
         <Layout>
           <Suspense fallback={<div />}>
@@ -165,7 +174,5 @@ export default function App() {
         <PerformanceMonitor />
       </QueryClientProvider>
     </div>
-      )}
-      </>
   );
 }

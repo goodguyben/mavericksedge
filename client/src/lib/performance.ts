@@ -75,7 +75,6 @@ export const setCacheHeaders = () => {
 export const initializeProductionOptimizations = () => {
   if (process.env.NODE_ENV === 'production') {
     // Preload critical resources
-    preloadResource('/videos/logo_animation.mp4', 'video');
     preloadResource('/assets/logo-transparent-thumb4x.png', 'image');
     
     // Enable service worker for caching (if available)

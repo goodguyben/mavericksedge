@@ -27,20 +27,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Serve static files from the public directory
   app.use(express.static(path.resolve(process.cwd(), "public")));
   
-  // Route to check if the video file exists and is accessible
-  app.get("/api/check-video", (req, res) => {
-    const videoPath = path.resolve(process.cwd(), "public/videos/background.mp4");
-    import('fs').then(fs => {
-      const exists = fs.existsSync(videoPath);
-      res.json({ 
-        exists,
-        path: videoPath,
-        url: "/videos/background.mp4"
-      });
-    }).catch(err => {
-      res.status(500).json({ error: err.message });
-    });
-  });
   // Contact form submission endpoint
   app.post("/api/contact", async (req, res) => {
     try {
