@@ -83,8 +83,13 @@ app.use((req, res, next) => {
   });
 
   // Handle server errors gracefully
-  server.on('error', (err) => {
-    log(`Server error: ${err.message}`, 'error');
+  server.on('error', (err: any) => {
+    if (err.code === 'EADDRINUSE') {
+      log(`Port ${port} is already in use. Please check for other running instances.`, 'error');
+      process.exit(1);
+    } else {
+      log(`Server error: ${err.message}`, 'error');
+    }
   });
 
   // Handle process termination gracefully
