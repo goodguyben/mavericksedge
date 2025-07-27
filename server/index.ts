@@ -7,6 +7,12 @@ if (!process.env.NODE_ENV) {
   process.env.NODE_ENV = 'development';
 }
 
+// Add debugging for production
+console.log('Server starting...');
+console.log('NODE_ENV:', process.env.NODE_ENV);
+console.log('RESEND_API_KEY present:', !!process.env.RESEND_API_KEY);
+console.log('DATABASE_URL present:', !!process.env.DATABASE_URL);
+
 const app = express();
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ extended: false, limit: '50mb' }));
@@ -75,40 +81,40 @@ app.use((req, res, next) => {
     const server = createServer(app);
     await setupVite(app, server);
 
-  // ALWAYS serve the app on port 5000
-  // this serves both the API and the client.
-  // It is the only port that is not firewalled.
-  const port = 5000;
-  server.listen(port, "0.0.0.0", () => {
-    log(`Server running on http://0.0.0.0:${port}`);
-  });
-
-  // Handle server errors gracefully
-  server.on('error', (err: any) => {
-    if (err.code === 'EADDRINUSE') {
-      log(`Port ${port} is already in use. Please check for other running instances.`, 'error');
-      process.exit(1);
-    } else {
-      log(`Server error: ${err.message}`, 'error');
-    }
-  });
-
-  // Handle process termination gracefully
-  process.on('SIGTERM', () => {
-    log('Received SIGTERM, shutting down gracefully');
-    server.close(() => {
-      log('Server closed');
-      process.exit(0);
+    // ALWAYS serve the app on port 5000
+    // this serves both the API and the client.
+    // It is the only port that is not firewalled.
+    const port = 5000;
+    server.listen(port, "0.0.0.0", () => {
+      log(`Server running on http://0.0.0.0:${port}`);
     });
-  });
 
-  process.on('SIGINT', () => {
-    log('Received SIGINT, shutting down gracefully');
-    server.close(() => {
-      log('Server closed');
-      process.exit(0);
+    // Handle server errors gracefully
+    server.on('error', (err: any) => {
+      if (err.code === 'EADDRINUSE') {
+        log(`Port ${port} is already in use. Please check for other running instances.`, 'error');
+        process.exit(1);
+      } else {
+        log(`Server error: ${err.message}`, 'error');
+      }
     });
-  });
+
+    // Handle process termination gracefully
+    process.on('SIGTERM', () => {
+      log('Received SIGTERM, shutting down gracefully');
+      server.close(() => {
+        log('Server closed');
+        process.exit(0);
+      });
+    });
+
+    process.on('SIGINT', () => {
+      log('Received SIGINT, shutting down gracefully');
+      server.close(() => {
+        log('Server closed');
+        process.exit(0);
+      });
+    });
   } else {
     // For production (serverless), just serve static files
     serveStatic(app);
