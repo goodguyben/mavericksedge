@@ -53,18 +53,18 @@ export async function registerRoutes(app: Express): Promise<Server> {
       
       try {
         // First try with Resend
+        await sendEmail(
+          'bezal.john@gmail.com', // Must send to the account owner's email in sandbox mode
+          'New Contact Form Submission - Mavericks Edge Website',
+          text,
+          html
+        );
+        
+        console.log('Email sent with Resend to bezal.john@gmail.com');
+      } catch (error: any) {
+        console.log('Resend failed, trying Nodemailer instead:', error?.message || 'Unknown error');
+        
         try {
-          await sendEmail(
-            'bezal.john@gmail.com', // Must send to the account owner's email in sandbox mode
-            'New Contact Form Submission - Mavericks Edge Website',
-            text,
-            html
-          );
-          
-          console.log('Email sent with Resend to bezal.john@gmail.com');
-        } catch (error: any) {
-          console.log('Resend failed, trying Nodemailer instead:', error?.message || 'Unknown error');
-          
           // Fallback to Nodemailer if Resend fails
           const result = await sendEmailWithNodemailer(
             'info@mavericksedge.ca', // This will create a test message viewable at preview URL
@@ -78,11 +78,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
             console.log('Nodemailer test email sent! View it here:', result.previewURL);
             console.log('IMPORTANT: This is a test email with a preview link. In production, emails should be sent directly to info@mavericksedge.ca');
           }
+        } catch (nodemailerError) {
+          console.error('Both Resend and Nodemailer failed:', nodemailerError);
         }
-      } catch (emailError) {
-        // Log the error but don't fail the request
-        console.error('Failed to send email notification with all methods:', emailError);
-        // We'll still return success to the user as their submission was saved
       }
       
       res.status(201).json({ success: true, message: "Thank you for your message! We will get back to you soon." });

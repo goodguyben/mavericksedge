@@ -7,12 +7,6 @@ if (!process.env.NODE_ENV) {
   process.env.NODE_ENV = 'development';
 }
 
-// Add debugging for production
-console.log('Server starting...');
-console.log('NODE_ENV:', process.env.NODE_ENV);
-console.log('RESEND_API_KEY present:', !!process.env.RESEND_API_KEY);
-console.log('DATABASE_URL present:', !!process.env.DATABASE_URL);
-
 const app = express();
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ extended: false, limit: '50mb' }));
