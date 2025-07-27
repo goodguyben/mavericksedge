@@ -104,11 +104,11 @@ export default {
           },
         },
         "gradient-x": {
-          "0%, 100%": {
+          "0%, 100%": { 
             "background-size": "200% 200%",
             "background-position": "left center",
           },
-          "50%": {
+          "50%": { 
             "background-size": "200% 200%",
             "background-position": "right center",
           },

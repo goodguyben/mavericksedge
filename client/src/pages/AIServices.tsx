@@ -213,7 +213,7 @@ export default function AIServices() {
                     transition={{ duration: 0.6, delay: 0.4 }}
                     className="text-4xl md:text-5xl font-bold mb-6 font-heading bg-gradient-to-r from-white via-maverick-orange to-orange-400 bg-clip-text text-transparent"
                   >
-                    {service.title}
+                          {service.title}
                   </motion.h3>
                   
                   {/* Description */}
@@ -383,11 +383,11 @@ export default function AIServices() {
                             <span className="text-sm">{feature}</span>
                           </div>
                         ))}
-                      </div>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
             </div>
           </motion.div>
         </div>
