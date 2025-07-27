@@ -18,19 +18,8 @@ export const LogoAnimationPlaceholder: React.FC<LogoAnimationPlaceholderProps> =
       >
         {/* Animated logo container */}
         <motion.div
-          className="w-full h-full bg-gradient-to-br from-orange-500 via-orange-600 to-orange-700 rounded-full flex items-center justify-center relative overflow-hidden"
-          animate={{
-            background: [
-              "linear-gradient(135deg, #F97316, #EA580C, #F97316)",
-              "linear-gradient(225deg, #F97316, #EA580C, #F97316)",
-              "linear-gradient(135deg, #F97316, #EA580C, #F97316)"
-            ]
-          }}
-          transition={{
-            duration: 3,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
+          className="w-full h-full bg-black rounded-full flex items-center justify-center relative overflow-hidden"
+          style={{ backgroundColor: 'black' }}
         >
           {/* Inner glow effect */}
           <motion.div

@@ -103,12 +103,14 @@ export default {
             height: "0",
           },
         },
-        "gradient-shift": {
-          "0%, 100%": { 
-            backgroundPosition: "0% 50%",
+        "gradient-x": {
+          "0%, 100%": {
+            "background-size": "200% 200%",
+            "background-position": "left center",
           },
-          "50%": { 
-            backgroundPosition: "100% 50%",
+          "50%": {
+            "background-size": "200% 200%",
+            "background-position": "right center",
           },
         },
       },
@@ -116,6 +118,7 @@ export default {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "gradient-slow": "gradient-shift 8s ease infinite",
+        "gradient-x": "gradient-x 3s ease infinite",
       },
       backgroundSize: {
         'gradient-animate': '400% 400%'

@@ -41,7 +41,7 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({
           setTimeout(onLoadingComplete, 500); // Wait for fade out animation
         }, 200);
       }
-    }, 50); // Update every 50ms for smooth progress
+    }, 16); // Update every 16ms for 60fps smooth progress
 
     return () => {
       if (progressIntervalRef.current) {
@@ -65,7 +65,8 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({
     <AnimatePresence>
       {isVisible && (
         <motion.div
-          className="fixed inset-0 z-[9999] bg-gradient-to-br from-gray-900 via-black to-gray-800 flex flex-col items-center justify-center"
+          className="fixed inset-0 z-[9999] bg-black flex flex-col items-center justify-center"
+          style={{ backgroundColor: 'black' }}
           initial={{ opacity: 1 }}
           exit={{ 
             opacity: 0,
@@ -102,7 +103,8 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({
             
             {/* Logo Animation Video */}
             <motion.div
-              className="relative w-96 h-96 sm:w-[30rem] sm:h-[30rem] md:w-[36rem] md:h-[36rem] lg:w-[42rem] lg:h-[42rem]"
+              className="relative w-96 h-96 sm:w-[30rem] sm:h-[30rem] md:w-[36rem] md:h-[36rem] lg:w-[42rem] lg:h-[42rem] bg-black"
+              style={{ backgroundColor: 'black' }}
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ 
@@ -123,12 +125,18 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({
                   onLoadedData={handleVideoLoad}
                   onError={handleVideoError}
                   preload="auto"
+                  style={{ 
+                    backgroundColor: 'black',
+                    background: 'black'
+                  }}
                 />
               )}
               
               {/* Fallback logo if video fails */}
               {!isVideoLoaded && (
-                <LogoAnimationPlaceholder className="absolute inset-0" />
+                <div className="absolute inset-0 bg-black flex items-center justify-center" style={{ backgroundColor: 'black' }}>
+                  <LogoAnimationPlaceholder className="w-full h-full" />
+                </div>
               )}
             </motion.div>
 
@@ -169,7 +177,7 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({
                   className="h-full bg-gradient-to-r from-orange-400 via-orange-500 to-orange-600 rounded-full relative"
                   initial={{ width: "0%" }}
                   animate={{ width: `${loadingProgress}%` }}
-                  transition={{ duration: 0.1, ease: "linear" }}
+                  transition={{ duration: 0.2, ease: "easeOut" }}
                 >
                   {/* Shimmer effect */}
                   <motion.div
@@ -186,7 +194,7 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({
                 </motion.div>
               </div>
               
-              {/* Loading percentage */}
+              {/* Loading text */}
               <motion.div
                 className="text-center mt-3"
                 initial={{ opacity: 0 }}
@@ -194,7 +202,7 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({
                 transition={{ delay: 0.4 }}
               >
                 <span className="text-sm sm:text-base text-gray-300 font-medium">
-                  Loading... {Math.round(loadingProgress)}%
+                  Loading...
                 </span>
               </motion.div>
             </motion.div>

@@ -115,7 +115,7 @@ export default function Services() {
                   "@type": "Organization",
                   "name": "Mavericks Edge"
                 },
-                "url": "https://mavericksedge.ca/services/ai"
+                "url": "https://mavericksedge.ca/ai-automation-services-edmonton"
               }
             }
           ]

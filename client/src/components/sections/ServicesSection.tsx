@@ -49,7 +49,7 @@ const services = [
       "AI training & implementation"
     ],
     linkText: "Learn more",
-    linkHref: "/services/ai"
+    linkHref: "/ai-automation-services-edmonton"
   }
 ];
 
