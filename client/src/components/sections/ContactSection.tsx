@@ -61,10 +61,24 @@ export default function ContactSection({ fullPage = false }: ContactSectionProps
       logger.log("Form submission successful:", response);
       const data = await response.json();
       logger.log("Response data:", data);
+      
+      // Show success message
       toast({
         title: "Success!",
         description: data.message,
       });
+      
+      // Show additional note if provided
+      if (data.note) {
+        setTimeout(() => {
+          toast({
+            title: "Note",
+            description: data.note,
+            variant: "default",
+          });
+        }, 1000);
+      }
+      
       form.reset();
     },
     onError: (error: Error) => {

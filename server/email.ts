@@ -20,6 +20,13 @@ export async function sendEmail(
   try {
     console.log('Attempting to send email with Resend API...');
     console.log('API Key present:', !!process.env.RESEND_API_KEY);
+    
+    // Check if API key is available
+    if (!process.env.RESEND_API_KEY) {
+      console.log('RESEND_API_KEY not found, skipping Resend email sending');
+      throw new Error('RESEND_API_KEY not configured');
+    }
+    
     console.log('Email details:', { 
       to, 
       subject,

@@ -83,6 +83,13 @@ export async function registerRoutes(app: Express): Promise<Server> {
         // Log the error but don't fail the request
         console.error('Failed to send email notification with all methods:', emailError);
         // We'll still return success to the user as their submission was saved
+        // But we'll include a note about email delivery
+        res.status(201).json({ 
+          success: true, 
+          message: "Thank you for your message! Your submission has been saved. We'll review it and get back to you soon.",
+          note: "Note: Email notification may be delayed due to service configuration."
+        });
+        return;
       }
       
       res.status(201).json({ success: true, message: "Thank you for your message! We will get back to you soon." });
