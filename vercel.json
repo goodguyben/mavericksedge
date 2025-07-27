@@ -8,6 +8,11 @@
       "destination": "/public/index.html"
     }
   ],
+  "functions": {
+    "api/contact.js": {
+      "maxDuration": 30
+    }
+  },
   "env": {
     "NODE_ENV": "production"
   }
