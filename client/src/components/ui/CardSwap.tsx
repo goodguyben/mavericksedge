@@ -271,55 +271,95 @@ const CardSwap: React.FC<CardSwapProps> = ({
 
   useEffect(() => {
     const total = refs.length;
-    console.log('CardSwap: useEffect triggered. Total cards:', total);
     
     // Use requestAnimationFrame to batch DOM updates and reduce reflows
     requestAnimationFrame(() => {
       refs.forEach((r, i) => {
         if (r.current) {
-          console.log('CardSwap: Positioning card', i, 'Element:', r.current);
           placeNow(
             r.current,
             makeSlot(i, cardDistance, verticalDistance, total),
             skewAmount
           );
-        } else {
-          console.log('CardSwap: Card', i, 'ref is null');
         }
       });
     });
 
     const swap = () => {
-      console.log('CardSwap: Attempting swap. InView:', isInViewRef.current, 'Order length:', order.current.length);
       if (!isInViewRef.current || order.current.length < 2) return;
 
       const [front, ...rest] = order.current;
       const elFront = refs[front].current;
-      console.log('CardSwap: Front card index:', front, 'Element exists:', !!elFront);
       if (!elFront) return;
 
-      // Simple test animation - just rotate the front card
-      console.log('CardSwap: Starting simple rotation test');
-      gsap.to(elFront, {
-        rotation: "+=360",
-        duration: 1,
-        ease: "power2.out",
-        onStart: () => console.log('CardSwap: Rotation started'),
-        onComplete: () => {
-          console.log('CardSwap: Rotation completed, updating order');
+      // Use requestAnimationFrame to prevent forced reflows
+      requestAnimationFrame(() => {
+        const tl = gsap.timeline();
+        tlRef.current = tl;
+
+        tl.to(elFront, {
+          y: "+=500",
+          duration: config.durDrop,
+          ease: config.ease,
+        });
+
+        tl.addLabel("promote", `-=${config.durDrop * config.promoteOverlap}`);
+        rest.forEach((idx, i) => {
+          const el = refs[idx].current;
+          if (!el) return;
+
+          const slot = makeSlot(i, cardDistance, verticalDistance, refs.length);
+          tl.set(el, { zIndex: slot.zIndex }, "promote");
+          tl.to(
+            el,
+            {
+              x: slot.x,
+              y: slot.y,
+              z: slot.z,
+              duration: config.durMove,
+              ease: config.ease,
+            },
+            `promote+=${i * 0.15}`
+          );
+        });
+
+        const backSlot = makeSlot(
+          refs.length - 1,
+          cardDistance,
+          verticalDistance,
+          refs.length
+        );
+        tl.addLabel("return", `promote+=${config.durMove * config.returnDelay}`);
+        tl.call(
+          () => {
+            gsap.set(elFront, { zIndex: backSlot.zIndex });
+          },
+          undefined,
+          "return"
+        );
+        tl.set(elFront, { x: backSlot.x, z: backSlot.z }, "return");
+        tl.to(
+          elFront,
+          {
+            y: backSlot.y,
+            duration: config.durReturn,
+            ease: config.ease,
+          },
+          "return"
+        );
+
+        tl.call(() => {
           order.current = [...rest, front];
-        }
+        });
       });
     };
 
-    // Simplified approach: Start animation immediately without intersection observer
-    console.log('CardSwap: Starting animations immediately');
+    // Start animation immediately without intersection observer
     isInViewRef.current = true;
     hasStartedRef.current = true;
     
     // Start first swap after a short delay to allow DOM to settle
     const startTimeout = setTimeout(() => {
-      console.log('CardSwap: Executing first swap');
       swap();
       intervalRef.current = window.setInterval(swap, delay);
     }, 1000);
@@ -344,7 +384,6 @@ const CardSwap: React.FC<CardSwapProps> = ({
     }
 
     return () => {
-      console.log('CardSwap: Cleanup function called');
       if (intervalRef.current) {
         clearInterval(intervalRef.current);
       }
