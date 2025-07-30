@@ -305,6 +305,23 @@ export default function Header() {
                 </Link>
               </motion.div>
 
+            {/* Blog Link */}
+            <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ duration: 0.2 }}
+              >
+                <Link 
+                  href={ROUTES.BLOG} 
+                  className={`px-3 py-2 min-h-[44px] rounded-md text-base font-medium transition-colors duration-200 touch-manipulation flex items-center ${
+                    isCurrentPath(ROUTES.BLOG) ? 'text-maverick-orange' : 'text-white hover:text-maverick-orange'
+                  }`} 
+                  aria-current={isCurrentPath(ROUTES.BLOG) ? 'page' : undefined}
+                >
+                  Blog
+                </Link>
+              </motion.div>
+
             {/* Contact Link */}
             <motion.div
                 whileHover={{ scale: 1.05 }}
@@ -582,6 +599,22 @@ export default function Header() {
                       <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-maverick-orange to-yellow-500 rounded-r-full"></div>
                     )}
                     <span className="text-lg font-semibold relative z-10">About</span>
+                    <ChevronRight className="w-5 h-5 ml-auto opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
+                  </Link>
+
+                  <Link 
+                    href={ROUTES.BLOG} 
+                    className={`group flex items-center px-4 py-4 rounded-xl min-h-[56px] touch-manipulation transition-all duration-300 relative overflow-hidden ${
+                      isCurrentPath(ROUTES.BLOG) 
+                        ? 'text-maverick-orange bg-gradient-to-r from-maverick-orange/15 to-yellow-500/10 border border-maverick-orange/20' 
+                        : 'text-white hover:bg-white/8 hover:text-maverick-orange border border-transparent hover:border-white/10'
+                    }`}
+                    onClick={closeMobileMenu}
+                  >
+                    {isCurrentPath(ROUTES.BLOG) && (
+                      <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-maverick-orange to-yellow-500 rounded-r-full"></div>
+                    )}
+                    <span className="text-lg font-semibold relative z-10">Blog</span>
                     <ChevronRight className="w-5 h-5 ml-auto opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
                   </Link>
 

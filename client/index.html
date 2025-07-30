@@ -80,26 +80,87 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preconnect" href="https://mavericksedge.ca" crossorigin />
     
-    <!-- Preload critical videos for faster LCP - WebM preferred -->
-    <link rel="preload" as="video" href="https://mavericksedge.ca/videos/Portfolio_Video_1.webm" type="video/webm">
-    <link rel="preload" as="video" href="https://mavericksedge.ca/videos/Portfolio_Video_2.webm" type="video/webm">
-    <link rel="preload" as="video" href="https://mavericksedge.ca/videos/Portfolio_Video_3.webm" type="video/webm">
+    <!-- Critical CSS Inline - Remove video preloading for mobile performance -->
+    <style>
+      /* Critical above-the-fold styles to eliminate render blocking */
+      body { 
+        margin: 0; 
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; 
+        background: #121212; 
+        color: #fff; 
+        line-height: 1.6;
+      }
+      .loading { opacity: 0; transition: opacity 0.3s ease; }
+      .loaded { opacity: 1; }
+      .hero-container { 
+        min-height: 100vh; 
+        display: flex; 
+        align-items: center; 
+        justify-content: center; 
+        background: #121212;
+      }
+      .hero-text { 
+        font-size: clamp(1.5rem, 5vw, 3rem); 
+        font-weight: bold; 
+        text-align: center; 
+        color: #fff;
+      }
+      .container { 
+        max-width: 1200px; 
+        margin: 0 auto; 
+        padding: 0 1rem; 
+      }
+      .btn-primary { 
+        background: #ff6b35; 
+        color: white; 
+        padding: 0.75rem 1.5rem; 
+        border-radius: 0.5rem; 
+        text-decoration: none; 
+        display: inline-block; 
+        border: none;
+        cursor: pointer;
+      }
+      /* Prevent layout shift for videos */
+      .video-container {
+        aspect-ratio: 16 / 9;
+        background: #1a1a1a;
+        position: relative;
+        overflow: hidden;
+        width: 100%;
+      }
+      /* Mobile optimizations */
+      @media (max-width: 768px) {
+        .hero-text { font-size: clamp(1.25rem, 6vw, 2rem); }
+        .container { padding: 0 0.75rem; }
+      }
+    </style>
 
-    <!-- Optimized Google Fonts with display=swap -->
+    <!-- Optimized Google Fonts - Reduced to essential fonts only -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"></noscript>
+    <!-- Load only critical fonts initially -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap"></noscript>
     
-    <!-- Additional fonts with optimized loading -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap"></noscript>
-    
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap"></noscript>
-    
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Sansation:wght@700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sansation:wght@700&display=swap"></noscript>
+    <!-- Load additional fonts asynchronously after page load -->
+    <script>
+      // Load non-critical fonts after page load
+      window.addEventListener('load', function() {
+        const fontLinks = [
+          'https://fonts.googleapis.com/css2?family=Inter:wght@300;500;600;800;900&display=swap',
+          'https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap',
+          'https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap',
+          'https://fonts.googleapis.com/css2?family=Sansation:wght@700&display=swap'
+        ];
+        
+        fontLinks.forEach(href => {
+          const link = document.createElement('link');
+          link.rel = 'stylesheet';
+          link.href = href;
+          document.head.appendChild(link);
+        });
+      });
+    </script>
 
     <!-- Alternative Languages -->
     <link rel="alternate" hreflang="en-ca" href="https://mavericksedge.ca/" />
@@ -214,21 +275,39 @@
       gtag('config', 'G-ZKE1PD024S');
     </script>
 
-    <!-- Critical CSS Inline -->
-    <style>
-      /* Critical above-the-fold styles */
-      body { margin: 0; font-family: system-ui, -apple-system, sans-serif; background: #121212; color: #fff; }
-      .loading { opacity: 0; transition: opacity 0.3s ease; }
-      .loaded { opacity: 1; }
+    <!-- Performance optimization script -->
+    <script>
+      // Performance optimizations for mobile
+      (function() {
+        // Detect mobile devices
+        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth <= 768;
+        
+        if (isMobile) {
+          // Reduce animation complexity on mobile
+          document.documentElement.style.setProperty('--animation-duration', '0.2s');
+          
+          // Optimize touch interactions
+          document.addEventListener('touchstart', function(){}, {passive: true});
+          document.addEventListener('touchmove', function(){}, {passive: true});
+          
+          // Disable heavy animations on mobile
+          document.documentElement.classList.add('mobile-optimized');
+        }
 
-      /* Critical hero styles */
-      .hero-container { min-height: 100vh; display: flex; align-items: center; justify-content: center; }
-      .hero-text { font-size: 2rem; font-weight: bold; text-align: center; }
-
-      /* Critical layout */
-      .container { max-width: 1200px; margin: 0 auto; padding: 0 1rem; }
-      .btn-primary { background: #ff6b35; color: white; padding: 0.75rem 1.5rem; border-radius: 0.5rem; text-decoration: none; display: inline-block; }
-    </style>
+        // Preload critical resources
+        const criticalResources = [
+          '/assets/logo-transparent-thumb4x.png'
+        ];
+        
+        criticalResources.forEach(src => {
+          const link = document.createElement('link');
+          link.rel = 'preload';
+          link.as = 'image';
+          link.href = src;
+          document.head.appendChild(link);
+        });
+      })();
+    </script>
   </head>
   <body>
     <!-- Google Tag Manager (noscript) -->

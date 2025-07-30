@@ -1,5 +1,6 @@
 import { Link } from "wouter";
 import { Button } from "@/components/ui/custom-button";
+import LearnMoreButton from "@/components/ui/LearnMoreButton";
 import { Home, Search, ArrowLeft } from "lucide-react";
 import Layout from "@/components/Layout";
 import SEOHead from "@/components/SEOHead";
@@ -50,25 +51,19 @@ export default function NotFound() {
             <div className="bg-maverick-charcoal/30 p-6 rounded-lg border border-maverick-charcoal/50">
               <h3 className="text-lg font-semibold text-maverick-cream mb-2">Web Development</h3>
               <p className="text-gray-400 text-sm mb-4">Custom websites and applications built with cutting-edge technology.</p>
-              <Link href="/web-design-services-edmonton">
-                <Button variant="ghost">Learn More</Button>
-              </Link>
+              <LearnMoreButton href="/web-design-services-edmonton" />
             </div>
             
             <div className="bg-maverick-charcoal/30 p-6 rounded-lg border border-maverick-charcoal/50">
               <h3 className="text-lg font-semibold text-maverick-cream mb-2">Digital Marketing</h3>
               <p className="text-gray-400 text-sm mb-4">Strategic marketing solutions to grow your online presence.</p>
-              <Link href="/digital-marketing-services-edmonton">
-                <Button variant="ghost">Learn More</Button>
-              </Link>
+              <LearnMoreButton href="/digital-marketing-services-edmonton" />
             </div>
             
             <div className="bg-maverick-charcoal/30 p-6 rounded-lg border border-maverick-charcoal/50">
               <h3 className="text-lg font-semibold text-maverick-cream mb-2">AI Solutions</h3>
               <p className="text-gray-400 text-sm mb-4">Intelligent automation and AI-powered business solutions.</p>
-              <Link href="/ai-automation-services-edmonton">
-                <Button variant="ghost">Learn More</Button>
-              </Link>
+              <LearnMoreButton href="/ai-automation-services-edmonton" />
             </div>
           </div>
         </div>

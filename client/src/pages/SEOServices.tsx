@@ -23,6 +23,7 @@ import {
 import ContactSection from "@/components/sections/ContactSection";
 import SEOHead from "@/components/SEOHead";
 import { generateServiceStructuredData } from "@/lib/seo";
+import LearnMoreButton from "@/components/ui/LearnMoreButton";
 
 export default function SEOServices() {
 
@@ -323,9 +324,7 @@ export default function SEOServices() {
                       </li>
                     ))}
                   </ul>
-                  <button className="w-full bg-green-400/20 text-green-400 py-3 rounded-lg font-medium hover:bg-green-400/30 transition-colors">
-                    Learn More
-                  </button>
+                  <LearnMoreButton />
                 </motion.div>
               ))}
             </div>

@@ -17,9 +17,9 @@ import { measurePerformance, initializeProductionOptimizations } from '@/lib/per
 import { analytics } from '@/lib/logger';
 
 // Lazy load non-critical components
-const ServiceCascadeSection = lazy(() => import("@/components/sections/ServiceCascadeSection"));
+import ServiceCascadeSection from "@/components/sections/ServiceCascadeSection";
+import ContactSection from "@/components/sections/ContactSection";
 const WhyChooseUsSection = lazy(() => import("@/components/sections/WhyChooseUsSection"));
-const ContactSection = lazy(() => import("@/components/sections/ContactSection"));
 
 // Optimized fallback component
 const SectionFallback = ({ height = "h-64" }: { height?: string }) => (
@@ -81,21 +81,12 @@ export default function Home() {
 
           {/* Progressive loading for below-fold sections */}
           <LazySection threshold={0.1} rootMargin="50px">
-            <ScrollFadeSection
-              id="what-we-do"
-              fadeInPoint={0.5}
-              fadeOutPoint={0.6}
-              fadeInDuration={1}
-              fadeOutDuration={1.8}
-              initialOpacity={0}
-              minOpacity={0.1}
-              useFallback={true} // Use original implementation for now
-            >
+            <section id="what-we-do" className="relative">
               <WhatWeDoSection />
-            </ScrollFadeSection>
+            </section>
           </LazySection>
 
-          {/* Service Cascade Section with lazy loading */}
+          {/* Service Cascade Section */}
           <LazySection threshold={0.1} rootMargin="50px">
             <ScrollFadeSection
               id="service-cascade"
@@ -107,9 +98,7 @@ export default function Home() {
               minOpacity={0.1}
               useFallback={true} // Use original implementation for now
             >
-              <Suspense fallback={<SectionFallback height="h-96" />}>
-                <ServiceCascadeSection />
-              </Suspense>
+              <ServiceCascadeSection />
             </ScrollFadeSection>
           </LazySection>
 
@@ -158,9 +147,7 @@ export default function Home() {
               minOpacity={0.1}
               useFallback={true} // Use original implementation for now
             >
-              <Suspense fallback={<SectionFallback height="h-96" />}>
-                <ContactSection />
-              </Suspense>
+              <ContactSection />
             </ScrollFadeSection>
           </LazySection>
         </article>

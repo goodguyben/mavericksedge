@@ -32,6 +32,8 @@ const CookiePolicy = lazy(() => import("@/pages/CookiePolicy"));
 const GDPRCompliance = lazy(() => import("@/pages/GDPRCompliance"));
 const Compliance = lazy(() => import("@/pages/Compliance"));
 const Accessibility = lazy(() => import("@/pages/Accessibility"));
+const Blog = lazy(() => import("@/pages/Blog"));
+const BlogPost = lazy(() => import("@/pages/BlogPost"));
 const NotFound = lazy(() => import("@/pages/not-found"));
 
 
@@ -163,6 +165,12 @@ export default function App() {
               </Route>
               <Route path="/accessibility">
                 <Accessibility />
+              </Route>
+              <Route path="/blog">
+                <Blog />
+              </Route>
+              <Route path="/blog/:slug">
+                <BlogPost />
               </Route>
               <Route>
                 <NotFound />

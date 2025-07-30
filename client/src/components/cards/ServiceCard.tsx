@@ -1,6 +1,7 @@
 import { ReactNode } from "react";
 import { Link } from "wouter";
 import { Check } from "lucide-react";
+import LearnMoreButton from "@/components/ui/LearnMoreButton";
 
 interface ServiceCardProps {
   service: {
@@ -30,9 +31,7 @@ export default function ServiceCard({ service }: ServiceCardProps) {
           </li>
         ))}
       </ul>
-      <Link href={service.linkHref} className="hover-link text-maverick-orange font-medium">
-        {service.linkText} →
-      </Link>
+      <LearnMoreButton href={service.linkHref} />
     </div>
   );
 }

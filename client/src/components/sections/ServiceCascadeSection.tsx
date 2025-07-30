@@ -10,6 +10,7 @@ import {
 import { Code, PenTool, Brain, ChevronRight, Play, Pause } from "lucide-react";
 import TechButton from "../ui/tech-button";
 import CyclingVideoPlayer from "../ui/CyclingVideoPlayer";
+import LearnMoreButton from "@/components/ui/LearnMoreButton";
 
 interface CascadeItem {
   id: string;
@@ -279,13 +280,10 @@ function SingleServiceSection({
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.3, delay: 0.2 }}
                   >
-                    <TechButton
+                    <LearnMoreButton
                       href={`/services/${service.id === "web-applications" ? "web-design-and-development-edmonton" : service.id === "marketing-solutions" ? "digital-marketing-edmonton" : "ai-integration-automation-edmonton"}`}
-                      className="inline-flex items-center"
-                      asButton={true}
-                    >
-                      Learn More
-                    </TechButton>
+                      size="small-medium"
+                    />
                   </motion.div>
                 </motion.div>
               </AnimatePresence>

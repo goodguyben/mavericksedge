@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { ChevronDown, MapPin } from "lucide-react";
 import { scrollToSection } from "@/lib/scroll";
 import { Button } from "@/components/ui/custom-button";
+import { ShinyBorderButton } from "@/components/ui/ShinyBorderButton";
 import GradientText from "@/components/ui/GradientText";
 import CardSwap, { Card } from "@/components/ui/CardSwap";
 
@@ -55,8 +56,8 @@ export default function Hero() {
             <MapPin className="h-3 w-3 sm:h-4 sm:w-4 md:h-5 md:w-5 lg:h-4 lg:w-4 xl:h-5 xl:h-5 2xl:h-6 2xl:w-6 text-maverick-orange/80 flex-shrink-0" />
             <span className="font-light">
               <GradientText 
-                colors={["#C0C0C0", "#E8E8E8", "#F5F5F5", "#FFFFFF", "#F5F5F5", "#E8E8E8", "#C0C0C0"]}
-                animationSpeed={4}
+                colors={["#A0A0A0", "#D0D0D0", "#F0F0F0", "#FFFFFF", "#F8F8F8", "#E0E0E0", "#B0B0B0", "#A0A0A0"]}
+                animationSpeed={3}
               >
                 Website Design Edmonton
               </GradientText>
@@ -108,12 +109,16 @@ export default function Hero() {
             >
               Explore Services
             </Button>
-            <Button 
-              href="/contact" 
-              variant="outline"
+            <ShinyBorderButton 
+              href="/contact"
+              lightColor="#F15A29"
+              duration={6}
+              lightWidth={200}
+              borderWidth={2}
+              className="maverick-button maverick-button-outline"
             >
               Book Free Consultation
-            </Button>
+            </ShinyBorderButton>
           </motion.div>
         </motion.div>
 
@@ -137,7 +142,7 @@ export default function Hero() {
               title="Mobile Responsive"
             />
             <Card 
-              title="Human Design"
+              title="Human-Centered Design"
             />
             <Card 
               title="Google Ranked"
@@ -168,7 +173,7 @@ export default function Hero() {
               title="Mobile Responsive"
             />
             <Card 
-              title="Human Design"
+              title="Human-Centered Design"
             />
             <Card 
               title="Google Ranked"

@@ -56,10 +56,8 @@ export default function TechButton({
 
   // Otherwise render as Link
   return (
-    <Link href={href}>
-      <span className={baseClasses}>
-        {children}
-      </span>
+    <Link href={href} className={baseClasses}>
+      {children}
     </Link>
   );
 }

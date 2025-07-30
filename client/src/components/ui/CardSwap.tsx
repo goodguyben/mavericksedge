@@ -46,7 +46,7 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
           case "Mobile Responsive":
             videoNumber = 1;
             break;
-          case "Human Design":
+          case "Human-Centered Design":
             videoNumber = 2;
             break;
           case "Google Ranked":
@@ -63,7 +63,7 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
       // Map each card to optimized WebM videos
       const videoMap: { [key: number]: string } = {
         1: "/attached_assets/1.webm", // Mobile Responsive
-        2: "/attached_assets/2.webm", // Human Design  
+        2: "/attached_assets/2.webm", // Human-Centered Design  
         3: "/attached_assets/3.webm", // Google Ranked
         4: "/attached_assets/4.webm"  // Affordable
       };
@@ -106,7 +106,7 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
                   </svg>
                 </motion.div>
               )}
-              {title === "Human Design" && (
+              {title === "Human-Centered Design" && (
                 <motion.div
                   animate={{ 
                     scale: [1, 1.1, 1],

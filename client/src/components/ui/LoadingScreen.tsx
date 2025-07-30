@@ -11,25 +11,39 @@ interface LoadingScreenProps {
 
 export const LoadingScreen: React.FC<LoadingScreenProps> = ({
   onLoadingComplete,
-  logoVideoSrc = '/attached_assets/logo_animation.mp4', // Updated to use your MP4 file
+  logoVideoSrc = '/attached_assets/logo_animation.mp4',
   companyName = 'Mavericks Edge',
-  loadingDuration = 4000 // 4 seconds default
+  loadingDuration = 4000
 }) => {
   const [loadingProgress, setLoadingProgress] = useState(0);
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
+  const [isMobile, setIsMobile] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const progressIntervalRef = useRef<NodeJS.Timeout>();
 
-  // Simulate loading progress
+  // Detect mobile device
+  useEffect(() => {
+    const checkMobile = () => {
+      const mobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth <= 768;
+      setIsMobile(mobile);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // Simulate loading progress - faster on mobile
   useEffect(() => {
     const startTime = Date.now();
-    const endTime = startTime + loadingDuration;
+    const mobileDuration = isMobile ? Math.min(loadingDuration, 2000) : loadingDuration; // Max 2s on mobile
+    const endTime = startTime + mobileDuration;
 
     progressIntervalRef.current = setInterval(() => {
       const currentTime = Date.now();
       const elapsed = currentTime - startTime;
-      const progress = Math.min((elapsed / loadingDuration) * 100, 100);
+      const progress = Math.min((elapsed / mobileDuration) * 100, 100);
       
       setLoadingProgress(progress);
 
@@ -48,7 +62,7 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({
         clearInterval(progressIntervalRef.current);
       }
     };
-  }, [loadingDuration, onLoadingComplete]);
+  }, [loadingDuration, onLoadingComplete, isMobile]);
 
   // Handle video load
   const handleVideoLoad = () => {
@@ -73,9 +87,9 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({
             transition: { duration: 0.5, ease: "easeInOut" }
           }}
         >
-          {/* Animated background particles */}
+          {/* Animated background particles - reduced on mobile */}
           <div className="absolute inset-0 overflow-hidden">
-            {[...Array(20)].map((_, i) => (
+            {[...Array(isMobile ? 8 : 20)].map((_, i) => (
               <motion.div
                 key={i}
                 className="absolute w-1 h-1 bg-orange-500/30 rounded-full"
@@ -89,7 +103,7 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({
                   scale: [1, 1.5, 1],
                 }}
                 transition={{
-                  duration: 3 + Math.random() * 2,
+                  duration: isMobile ? 2 + Math.random() : 3 + Math.random() * 2,
                   repeat: Infinity,
                   delay: Math.random() * 2,
                   ease: "easeInOut"
@@ -101,9 +115,13 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({
           {/* Main content container */}
           <div className="relative z-10 flex flex-col items-center justify-center space-y-8 px-4">
             
-            {/* Logo Animation Video */}
+            {/* Logo Animation Video - optimized for mobile */}
             <motion.div
-              className="relative w-96 h-96 sm:w-[30rem] sm:h-[30rem] md:w-[36rem] md:h-[36rem] lg:w-[42rem] lg:h-[42rem] bg-black"
+              className={`relative bg-black ${
+                isMobile 
+                  ? 'w-64 h-64 sm:w-80 sm:h-80' 
+                  : 'w-96 h-96 sm:w-[30rem] sm:h-[30rem] md:w-[36rem] md:h-[36rem] lg:w-[42rem] lg:h-[42rem]'
+              }`}
               style={{ backgroundColor: 'black' }}
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}

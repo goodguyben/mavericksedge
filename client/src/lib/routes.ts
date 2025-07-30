@@ -3,6 +3,7 @@ export const ROUTES = {
   HOME: '/',
   ABOUT: '/about',
   CONTACT: '/contact',
+  BLOG: '/blog',
   SERVICES: {
     ALL: '/services',
     WEB_DESIGN: '/web-design-services-edmonton',

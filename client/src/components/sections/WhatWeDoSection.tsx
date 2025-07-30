@@ -22,6 +22,7 @@ import {
   Pause,
 } from "lucide-react";
 import GradientText from "@/components/ui/GradientText";
+import LearnMoreButton from "@/components/ui/LearnMoreButton";
 
 export default function WhatWeDoSection() {
   const isMobile = useIsMobile();
@@ -33,8 +34,8 @@ export default function WhatWeDoSection() {
     offset: ["start end", "end start"],
   });
 
-  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
-  const y = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [100, 0, 0, -100]);
+  // Removed conflicting scroll transforms to prevent flickering
+  // The ScrollFadeSection wrapper handles the fade animation
 
   const services = [
     {
@@ -136,21 +137,9 @@ export default function WhatWeDoSection() {
       ref={sectionRef}
       className="py-28 md:py-32 px-5 md:px-10 bg-[#121212] relative overflow-hidden"
     >
-      {/* Animated background elements */}
-      <motion.div
-        className="absolute top-1/4 left-10 w-80 h-80 rounded-full bg-gradient-to-tr from-maverick-orange/20 to-transparent opacity-30 blur-3xl"
-        style={{
-          scale: useTransform(scrollYProgress, [0, 0.5, 1], [0.8, 1.2, 0.8]),
-          x: useTransform(scrollYProgress, [0, 0.5, 1], [-50, 50, -50]),
-        }}
-      />
-      <motion.div
-        className="absolute bottom-1/3 right-10 w-96 h-96 rounded-full bg-gradient-to-bl from-maverick-amber/20 to-transparent opacity-20 blur-3xl"
-        style={{
-          scale: useTransform(scrollYProgress, [0, 0.5, 1], [1.2, 0.8, 1.2]),
-          y: useTransform(scrollYProgress, [0, 0.5, 1], [50, -50, 50]),
-        }}
-      />
+      {/* Static background elements - removed scroll transforms to prevent flickering */}
+      <div className="absolute top-1/4 left-10 w-80 h-80 rounded-full bg-gradient-to-tr from-maverick-orange/20 to-transparent opacity-30 blur-3xl" />
+      <div className="absolute bottom-1/3 right-10 w-96 h-96 rounded-full bg-gradient-to-bl from-maverick-amber/20 to-transparent opacity-20 blur-3xl" />
       <div className="absolute inset-0 bg-[url('/images/noise.png')] opacity-[0.03] mix-blend-soft-light"></div>
       <div className="container mx-auto relative z-10">
         <header className="text-center mt-[-16px] mb-[-16px]">
@@ -214,7 +203,7 @@ export default function WhatWeDoSection() {
 
         {isMobile ? (
           // Mobile/Tablet version - Mimics desktop layout with graphics
-          (<motion.div className="relative min-h-[500px]" style={{ opacity, y }}>
+          (<motion.div className="relative min-h-[500px]">
             {/* Service Navigation */}
             <div className="mb-8">
               <motion.div
@@ -803,22 +792,13 @@ export default function WhatWeDoSection() {
                             </ul>
                           </motion.div>
 
-                          <motion.button
-                            className="px-6 py-3 rounded-lg font-medium flex items-center gap-2 transition-all duration-300 mx-auto"
-                            style={{
-                              background: `linear-gradient(90deg, #E04500 0%, #E57B00 100%)`,
-                            }}
-                            whileHover={{
-                              scale: 1.05,
-                              boxShadow: `0 10px 25px -5px rgba(224, 69, 0, 0.4)`,
-                            }}
-                            whileTap={{ scale: 0.98 }}
+                          <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.8 }}
                           >
-                            Learn more <ArrowRight className="w-4 h-4" />
-                          </motion.button>
+                            <LearnMoreButton />
+                          </motion.div>
                         </motion.div>
                       </motion.div>
                     ),
@@ -828,7 +808,7 @@ export default function WhatWeDoSection() {
           </motion.div>)
         ) : (
           // Desktop version - Interactive showcase
-          (<motion.div className="relative min-h-[500px]" style={{ opacity, y }}>
+          (<motion.div className="relative min-h-[500px]">
             {/* Service Navigation */}
             <div className="absolute top-[-50px] left-0 w-full z-10">
               <motion.div
@@ -1021,22 +1001,13 @@ export default function WhatWeDoSection() {
                             </ul>
                           </motion.div>
 
-                          <motion.button
-                            className="px-6 py-3 rounded-lg font-medium flex items-center gap-2 transition-all duration-300"
-                            style={{
-                              background: `linear-gradient(90deg, #E04500 0%, #E57B00 100%)`,
-                            }}
-                            whileHover={{
-                              scale: 1.05,
-                              boxShadow: `0 10px 25px -5px rgba(224, 69, 0, 0.4)`,
-                            }}
-                            whileTap={{ scale: 0.98 }}
+                          <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.6 }}
+                            transition={{ delay: 0.8 }}
                           >
-                            Learn more <ArrowRight className="w-4 h-4" />
-                          </motion.button>
+                            <LearnMoreButton />
+                          </motion.div>
                         </motion.div>
 
                         {/* Visual side */}

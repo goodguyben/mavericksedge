@@ -27,7 +27,7 @@ export const OptimizedCardImage: React.FC<OptimizedCardImageProps> = ({
           text: "Responsive Design"
         };
         break;
-      case "Human Design":
+      case "Human-Centered Design":
         content = {
           icon: "🎨",
           color: "from-pink-500 to-red-600",

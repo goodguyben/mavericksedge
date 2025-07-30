@@ -9,6 +9,8 @@ import { useMemo } from 'react';
 import { Button } from "@/components/ui/custom-button"
 import { VideoIcon } from "lucide-react"
 import GradientText from "@/components/ui/GradientText"
+import MobileOptimizedVideo from "@/components/ui/MobileOptimizedVideo"
+import useMobileOptimization from "@/hooks/useMobileOptimization"
 
 // CDN-hosted portfolio videos - WebM format for optimal performance
 const CDN_VIDEOS = [
@@ -53,9 +55,11 @@ const CDN_VIDEOS = [
 ];
 
 export default function ShowcaseGallery() {
+  const { isMobile, shouldLazyLoad, getLoadingPriority } = useMobileOptimization();
+  
   // Performance optimization: Load fewer videos initially
-  const INITIAL_VIDEOS = 3; // Reduced to 3 videos initially for better LCP
-  const VIDEOS_PER_COLUMN = 2; // Display only 2 videos per column initially
+  const INITIAL_VIDEOS = isMobile ? 2 : 3; // Even fewer videos on mobile
+  const VIDEOS_PER_COLUMN = isMobile ? 1 : 2; // Single column on mobile
   
   // Create a more efficient distribution
   const createOptimizedDistribution = () => {
