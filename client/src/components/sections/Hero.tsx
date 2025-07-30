@@ -5,7 +5,7 @@ import { scrollToSection } from "@/lib/scroll";
 import { Button } from "@/components/ui/custom-button";
 import { ShinyBorderButton } from "@/components/ui/ShinyBorderButton";
 import GradientText from "@/components/ui/GradientText";
-import CardSwap, { Card } from "@/components/ui/CardSwap";
+import SimpleCardSwap, { Card } from "@/components/ui/SimpleCardSwap";
 
 export default function Hero() {
   const [scrolled, setScrolled] = useState(false);
@@ -129,14 +129,10 @@ export default function Hero() {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 1.0, delay: 3.5, ease: "easeOut" }}
         >
-          <CardSwap
+          <SimpleCardSwap
             width={600}
             height={400}
-            cardDistance={60}
-            verticalDistance={70}
             delay={5000}
-            pauseOnHover={false}
-            easing="elastic"
           >
             <Card 
               title="Mobile Responsive"
@@ -150,7 +146,7 @@ export default function Hero() {
             <Card 
               title="Affordable"
             />
-          </CardSwap>
+          </SimpleCardSwap>
         </motion.div>
 
         {/* CardSwap Component - Mobile bottom right, larger */}
@@ -160,14 +156,10 @@ export default function Hero() {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 1.0, delay: 3.5, ease: "easeOut" }}
         >
-          <CardSwap
+          <SimpleCardSwap
             width={500}
             height={340}
-            cardDistance={55}
-            verticalDistance={60}
             delay={5000}
-            pauseOnHover={false}
-            easing="elastic"
           >
             <Card 
               title="Mobile Responsive"
@@ -181,7 +173,7 @@ export default function Hero() {
             <Card 
               title="Affordable"
             />
-          </CardSwap>
+          </SimpleCardSwap>
         </motion.div>
       </div>
       {/* Scroll indicator */}
