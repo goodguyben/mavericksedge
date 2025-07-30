@@ -270,17 +270,23 @@ const CardSwap: React.FC<CardSwapProps> = ({
   );
 
   useEffect(() => {
+    console.log('CardSwap useEffect: Total cards:', refs.length);
+    console.log('CardSwap useEffect: GSAP available:', typeof gsap);
+    
     const total = refs.length;
     
     // Use requestAnimationFrame to batch DOM updates and reduce reflows
     requestAnimationFrame(() => {
       refs.forEach((r, i) => {
         if (r.current) {
+          console.log('Placing card', i, 'at position:', makeSlot(i, cardDistance, verticalDistance, total));
           placeNow(
             r.current,
             makeSlot(i, cardDistance, verticalDistance, total),
             skewAmount
           );
+        } else {
+          console.log('Card ref', i, 'is null');
         }
       });
     });
@@ -354,14 +360,36 @@ const CardSwap: React.FC<CardSwapProps> = ({
       });
     };
 
+    // Test GSAP first with a simple animation
+    const testGSAP = () => {
+      console.log('Testing GSAP with simple animation');
+      refs.forEach((ref, i) => {
+        if (ref.current) {
+          console.log('Animating card', i, 'with pulse effect');
+          gsap.to(ref.current, {
+            scale: 1.05,
+            duration: 0.5,
+            yoyo: true,
+            repeat: 1,
+            ease: "power2.inOut"
+          });
+        }
+      });
+    };
+
     // Start animation immediately without intersection observer
     isInViewRef.current = true;
     hasStartedRef.current = true;
     
-    // Start first swap after a short delay to allow DOM to settle
+    // First test GSAP, then start swapping
     const startTimeout = setTimeout(() => {
-      swap();
-      intervalRef.current = window.setInterval(swap, delay);
+      console.log('Starting animations...');
+      testGSAP();
+      setTimeout(() => {
+        console.log('Starting swap animations...');
+        swap();
+        intervalRef.current = window.setInterval(swap, delay);
+      }, 2000);
     }, 1000);
 
     // Add pause on hover functionality
