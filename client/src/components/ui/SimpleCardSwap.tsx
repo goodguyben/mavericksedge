@@ -147,7 +147,7 @@ const SimpleCardSwap: React.FC<SimpleCardSwapProps> = ({
                   translateX(${position * 60}px) 
                   translateY(${-position * 70}px) 
                   translateZ(${-position * 90}px)
-                  skewY(6deg)
+                  skewY(48deg)
                 `,
                 zIndex: children.length - position
               }}
