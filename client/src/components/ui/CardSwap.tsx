@@ -270,23 +270,17 @@ const CardSwap: React.FC<CardSwapProps> = ({
   );
 
   useEffect(() => {
-    console.log('CardSwap useEffect: Total cards:', refs.length);
-    console.log('CardSwap useEffect: GSAP available:', typeof gsap);
-    
     const total = refs.length;
     
     // Use requestAnimationFrame to batch DOM updates and reduce reflows
     requestAnimationFrame(() => {
       refs.forEach((r, i) => {
         if (r.current) {
-          console.log('Placing card', i, 'at position:', makeSlot(i, cardDistance, verticalDistance, total));
           placeNow(
             r.current,
             makeSlot(i, cardDistance, verticalDistance, total),
             skewAmount
           );
-        } else {
-          console.log('Card ref', i, 'is null');
         }
       });
     });
@@ -298,99 +292,81 @@ const CardSwap: React.FC<CardSwapProps> = ({
       const elFront = refs[front].current;
       if (!elFront) return;
 
-      // Use requestAnimationFrame to prevent forced reflows
-      requestAnimationFrame(() => {
-        const tl = gsap.timeline();
-        tlRef.current = tl;
+      // Kill any existing timeline
+      if (tlRef.current) {
+        tlRef.current.kill();
+      }
 
-        tl.to(elFront, {
-          y: "+=500",
-          duration: config.durDrop,
-          ease: config.ease,
-        });
-
-        tl.addLabel("promote", `-=${config.durDrop * config.promoteOverlap}`);
-        rest.forEach((idx, i) => {
-          const el = refs[idx].current;
-          if (!el) return;
-
-          const slot = makeSlot(i, cardDistance, verticalDistance, refs.length);
-          tl.set(el, { zIndex: slot.zIndex }, "promote");
-          tl.to(
-            el,
-            {
-              x: slot.x,
-              y: slot.y,
-              z: slot.z,
-              duration: config.durMove,
-              ease: config.ease,
-            },
-            `promote+=${i * 0.15}`
-          );
-        });
-
-        const backSlot = makeSlot(
-          refs.length - 1,
-          cardDistance,
-          verticalDistance,
-          refs.length
-        );
-        tl.addLabel("return", `promote+=${config.durMove * config.returnDelay}`);
-        tl.call(
-          () => {
-            gsap.set(elFront, { zIndex: backSlot.zIndex });
-          },
-          undefined,
-          "return"
-        );
-        tl.set(elFront, { x: backSlot.x, z: backSlot.z }, "return");
-        tl.to(
-          elFront,
-          {
-            y: backSlot.y,
-            duration: config.durReturn,
-            ease: config.ease,
-          },
-          "return"
-        );
-
-        tl.call(() => {
+      const tl = gsap.timeline({
+        onComplete: () => {
           order.current = [...rest, front];
-        });
-      });
-    };
-
-    // Test GSAP first with a simple animation
-    const testGSAP = () => {
-      console.log('Testing GSAP with simple animation');
-      refs.forEach((ref, i) => {
-        if (ref.current) {
-          console.log('Animating card', i, 'with pulse effect');
-          gsap.to(ref.current, {
-            scale: 1.05,
-            duration: 0.5,
-            yoyo: true,
-            repeat: 1,
-            ease: "power2.inOut"
-          });
         }
       });
+      tlRef.current = tl;
+
+      // Drop animation
+      tl.to(elFront, {
+        y: "+=500",
+        duration: config.durDrop,
+        ease: config.ease,
+      });
+
+      // Promote other cards
+      tl.addLabel("promote", `-=${config.durDrop * config.promoteOverlap}`);
+      rest.forEach((idx, i) => {
+        const el = refs[idx].current;
+        if (!el) return;
+
+        const slot = makeSlot(i, cardDistance, verticalDistance, refs.length);
+        tl.set(el, { zIndex: slot.zIndex }, "promote");
+        tl.to(
+          el,
+          {
+            x: slot.x,
+            y: slot.y,
+            z: slot.z,
+            duration: config.durMove,
+            ease: config.ease,
+          },
+          `promote+=${i * 0.15}`
+        );
+      });
+
+      // Return front card to back
+      const backSlot = makeSlot(
+        refs.length - 1,
+        cardDistance,
+        verticalDistance,
+        refs.length
+      );
+      tl.addLabel("return", `promote+=${config.durMove * config.returnDelay}`);
+      tl.set(elFront, { zIndex: backSlot.zIndex }, "return");
+      tl.set(elFront, { x: backSlot.x, z: backSlot.z }, "return");
+      tl.to(
+        elFront,
+        {
+          y: backSlot.y,
+          duration: config.durReturn,
+          ease: config.ease,
+        },
+        "return"
+      );
     };
 
-    // Start animation immediately without intersection observer
+    // Start animation immediately
     isInViewRef.current = true;
     hasStartedRef.current = true;
     
-    // First test GSAP, then start swapping
+    // Ensure we don't have multiple intervals running
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+    }
+    
+    // Start first swap after DOM settles, then set up interval
     const startTimeout = setTimeout(() => {
-      console.log('Starting animations...');
-      testGSAP();
-      setTimeout(() => {
-        console.log('Starting swap animations...');
-        swap();
-        intervalRef.current = window.setInterval(swap, delay);
-      }, 2000);
-    }, 1000);
+      swap();
+      intervalRef.current = window.setInterval(swap, delay);
+    }, 1500);
 
     // Add pause on hover functionality
     const containerEl = containerRef.current;
@@ -423,7 +399,24 @@ const CardSwap: React.FC<CardSwapProps> = ({
         containerEl.removeEventListener('mouseleave', handleMouseLeave);
       }
     };
-  }, [cardDistance, verticalDistance, delay, skewAmount, easing, pauseOnHover, refs.length]);
+  }, []); // Empty dependency array to run only once
+
+  // Separate effect for repositioning cards when props change
+  useEffect(() => {
+    const total = refs.length;
+    
+    requestAnimationFrame(() => {
+      refs.forEach((r, i) => {
+        if (r.current) {
+          placeNow(
+            r.current,
+            makeSlot(i, cardDistance, verticalDistance, total),
+            skewAmount
+          );
+        }
+      });
+    });
+  }, [cardDistance, verticalDistance, skewAmount, refs.length]);
 
   const rendered = childArr.map((child, i) =>
     isValidElement<CardProps>(child)
