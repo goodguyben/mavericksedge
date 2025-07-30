@@ -298,97 +298,31 @@ const CardSwap: React.FC<CardSwapProps> = ({
       console.log('CardSwap: Front card index:', front, 'Element exists:', !!elFront);
       if (!elFront) return;
 
-      // Use requestAnimationFrame to prevent forced reflows
-      requestAnimationFrame(() => {
-        const tl = gsap.timeline();
-        tlRef.current = tl;
-
-        tl.to(elFront, {
-          y: "+=500",
-          duration: config.durDrop,
-          ease: config.ease,
-        });
-
-        tl.addLabel("promote", `-=${config.durDrop * config.promoteOverlap}`);
-        rest.forEach((idx, i) => {
-          const el = refs[idx].current;
-          if (!el) return;
-
-          const slot = makeSlot(i, cardDistance, verticalDistance, refs.length);
-          tl.set(el, { zIndex: slot.zIndex }, "promote");
-          tl.to(
-            el,
-            {
-              x: slot.x,
-              y: slot.y,
-              z: slot.z,
-              duration: config.durMove,
-              ease: config.ease,
-            },
-            `promote+=${i * 0.15}`
-          );
-        });
-
-        const backSlot = makeSlot(
-          refs.length - 1,
-          cardDistance,
-          verticalDistance,
-          refs.length
-        );
-        tl.addLabel("return", `promote+=${config.durMove * config.returnDelay}`);
-        tl.call(
-          () => {
-            gsap.set(elFront, { zIndex: backSlot.zIndex });
-          },
-          undefined,
-          "return"
-        );
-        tl.set(elFront, { x: backSlot.x, z: backSlot.z }, "return");
-        tl.to(
-          elFront,
-          {
-            y: backSlot.y,
-            duration: config.durReturn,
-            ease: config.ease,
-          },
-          "return"
-        );
-
-        tl.call(() => {
+      // Simple test animation - just rotate the front card
+      console.log('CardSwap: Starting simple rotation test');
+      gsap.to(elFront, {
+        rotation: "+=360",
+        duration: 1,
+        ease: "power2.out",
+        onStart: () => console.log('CardSwap: Rotation started'),
+        onComplete: () => {
+          console.log('CardSwap: Rotation completed, updating order');
           order.current = [...rest, front];
-        });
+        }
       });
     };
 
-    // Set up intersection observer for performance
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          console.log('CardSwap: Intersection observer triggered. IsIntersecting:', entry.isIntersecting, 'HasStarted:', hasStartedRef.current);
-          isInViewRef.current = entry.isIntersecting;
-          if (entry.isIntersecting && !hasStartedRef.current) {
-            hasStartedRef.current = true;
-            console.log('CardSwap: Starting animations - first swap and interval');
-            // Start swapping only when in view
-            swap();
-            intervalRef.current = window.setInterval(swap, delay);
-          } else if (!entry.isIntersecting && intervalRef.current) {
-            // Stop animations when out of view
-            console.log('CardSwap: Stopping animations - out of view');
-            clearInterval(intervalRef.current);
-            intervalRef.current = undefined;
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    if (containerRef.current) {
-      console.log('CardSwap: Starting to observe container:', containerRef.current);
-      observer.observe(containerRef.current);
-    } else {
-      console.log('CardSwap: Container ref is null, cannot observe');
-    }
+    // Simplified approach: Start animation immediately without intersection observer
+    console.log('CardSwap: Starting animations immediately');
+    isInViewRef.current = true;
+    hasStartedRef.current = true;
+    
+    // Start first swap after a short delay to allow DOM to settle
+    const startTimeout = setTimeout(() => {
+      console.log('CardSwap: Executing first swap');
+      swap();
+      intervalRef.current = window.setInterval(swap, delay);
+    }, 1000);
 
     // Add pause on hover functionality
     const containerEl = containerRef.current;
@@ -410,15 +344,16 @@ const CardSwap: React.FC<CardSwapProps> = ({
     }
 
     return () => {
+      console.log('CardSwap: Cleanup function called');
       if (intervalRef.current) {
         clearInterval(intervalRef.current);
       }
-      if (containerEl) {
-        observer.unobserve(containerEl);
-        if (pauseOnHover) {
-          containerEl.removeEventListener('mouseenter', handleMouseEnter);
-          containerEl.removeEventListener('mouseleave', handleMouseLeave);
-        }
+      if (startTimeout) {
+        clearTimeout(startTimeout);
+      }
+      if (containerEl && pauseOnHover) {
+        containerEl.removeEventListener('mouseenter', handleMouseEnter);
+        containerEl.removeEventListener('mouseleave', handleMouseLeave);
       }
     };
   }, [cardDistance, verticalDistance, delay, skewAmount, easing, pauseOnHover, refs.length]);
