@@ -226,7 +226,7 @@ const CardSwap: React.FC<CardSwapProps> = ({
   delay = 5000,
   pauseOnHover = false,
   onCardClick,
-  skewAmount = 48,
+  skewAmount = 6,
   easing = "elastic",
   children,
 }) => {
