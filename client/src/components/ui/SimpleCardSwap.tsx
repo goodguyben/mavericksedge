@@ -79,7 +79,7 @@ const SimpleCardSwap: React.FC<SimpleCardSwapProps> = ({
   const cardPositions = useMemo(() => {
     return Array.from({ length: children.length }, (_, i) => ({
       x: i * 60,
-      y: -i * 70,
+      y: -i * 50, // Reduced from 70 to make tops more visible
       z: -i * 90,
       zIndex: children.length - i
     }));
@@ -90,10 +90,14 @@ const SimpleCardSwap: React.FC<SimpleCardSwapProps> = ({
     const startTimeout = setTimeout(() => {
       const performSwap = () => {
         setIsSwapping(true);
+        // Wait for the z-index to change before moving to next card
         setTimeout(() => {
           setCurrentIndex((prev) => (prev + 1) % children.length);
+        }, 100);
+        // Reset swapping state after animation completes
+        setTimeout(() => {
           setIsSwapping(false);
-        }, 300);
+        }, 1600);
       };
 
       performSwap(); // Initial swap
@@ -110,7 +114,7 @@ const SimpleCardSwap: React.FC<SimpleCardSwapProps> = ({
 
   return (
     <div
-      className="relative overflow-visible"
+      className="absolute bottom-0 right-0 transform translate-x-[5%] translate-y-[20%] origin-bottom-right"
       style={{ 
         width, 
         height,
@@ -118,14 +122,19 @@ const SimpleCardSwap: React.FC<SimpleCardSwapProps> = ({
         transformStyle: "preserve-3d"
       }}
     >
+      {/* Render all cards, sorted by position to ensure proper layering */}
       {children.map((child, index) => {
         const position = (index - currentIndex + children.length) % children.length;
-        const isVisible = position < 4; // Show only top 4 cards
-        
-        if (!isVisible) return null;
-
+        return { child, index, position };
+      })
+      .filter(({ position }) => position < 4) // Show only top 4 cards
+      .sort((a, b) => b.position - a.position) // Sort by position (back to front)
+      .map(({ child, index, position }) => {
         const isDropping = isSwapping && position === 0;
         const pos = cardPositions[position];
+        
+        // Simple z-index: higher position = higher z-index, except when dropping
+        const currentZIndex = isDropping ? 0 : (children.length - position);
 
         return (
           <motion.div
@@ -133,15 +142,18 @@ const SimpleCardSwap: React.FC<SimpleCardSwapProps> = ({
             className="absolute"
             initial={false}
             animate={{
-              x: isDropping ? pos.x : pos.x,
+              x: pos.x,
               y: isDropping ? pos.y + 500 : pos.y,
-              z: pos.z,
+              z: isDropping ? pos.z - 200 : pos.z, // Push dropping card further back
               skewY: 6,
-              opacity: isDropping ? 0 : 1
+              opacity: isDropping ? 0.9 : 1,
+              rotateX: isDropping ? 10 : 0 // Slight rotation to enhance depth
             }}
             transition={{
               duration: isDropping ? 1.5 : 0.8,
-              ease: isDropping ? [0.4, 0, 1, 1] : [0.25, 0.1, 0.25, 1]
+              ease: isDropping ? [0.4, 0, 1, 1] : [0.25, 0.1, 0.25, 1],
+              z: { duration: 0.1 }, // Instant z-index change
+              rotateX: { duration: 0.3 }
             }}
             style={{
               width: "100%",
@@ -151,7 +163,8 @@ const SimpleCardSwap: React.FC<SimpleCardSwapProps> = ({
               translateX: "-50%",
               translateY: "-50%",
               transformStyle: "preserve-3d",
-              zIndex: pos.zIndex
+              zIndex: currentZIndex,
+              backfaceVisibility: "hidden"
             }}
           >
             {React.isValidElement(child) && 
