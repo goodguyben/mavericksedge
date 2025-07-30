@@ -271,9 +271,10 @@ const CardSwap: React.FC<CardSwapProps> = ({
 
   useEffect(() => {
     const total = refs.length;
-    
-    // Use requestAnimationFrame to batch DOM updates and reduce reflows
-    requestAnimationFrame(() => {
+    if (total < 2) return;
+
+    // Position cards initially
+    const positionCards = () => {
       refs.forEach((r, i) => {
         if (r.current) {
           placeNow(
@@ -283,10 +284,13 @@ const CardSwap: React.FC<CardSwapProps> = ({
           );
         }
       });
-    });
+    };
+
+    // Initial positioning
+    requestAnimationFrame(positionCards);
 
     const swap = () => {
-      if (!isInViewRef.current || order.current.length < 2) return;
+      if (order.current.length < 2) return;
 
       const [front, ...rest] = order.current;
       const elFront = refs[front].current;
@@ -353,31 +357,44 @@ const CardSwap: React.FC<CardSwapProps> = ({
       );
     };
 
-    // Start animation immediately
-    isInViewRef.current = true;
-    hasStartedRef.current = true;
-    
-    // Ensure we don't have multiple intervals running
-    if (intervalRef.current) {
-      clearInterval(intervalRef.current);
-    }
-    
-    // Start first swap after DOM settles, then set up interval
-    const startTimeout = setTimeout(() => {
-      swap();
-      intervalRef.current = window.setInterval(swap, delay);
-    }, 1500);
+    // Use a more robust approach for starting animations
+    // Account for Framer Motion's 3.5s delay plus additional time for DOM stability
+    const startAnimations = () => {
+      // Verify all refs are still valid before starting
+      const allRefsValid = refs.every(ref => ref.current !== null);
+      if (!allRefsValid) {
+        // Retry after a short delay if refs aren't ready
+        setTimeout(startAnimations, 500);
+        return;
+      }
 
-    // Add pause on hover functionality
+      // Clear any existing interval
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+        intervalRef.current = undefined;
+      }
+
+      // Start the first swap
+      swap();
+      
+      // Set up the recurring interval
+      intervalRef.current = window.setInterval(swap, delay);
+    };
+
+    // Wait for Framer Motion animation to complete (3.5s) plus buffer
+    const animationDelay = setTimeout(startAnimations, 5000);
+
+    // Hover pause functionality
     const containerEl = containerRef.current;
     const handleMouseEnter = () => {
       if (pauseOnHover && intervalRef.current) {
         clearInterval(intervalRef.current);
+        intervalRef.current = undefined;
       }
     };
 
     const handleMouseLeave = () => {
-      if (pauseOnHover && !intervalRef.current && isInViewRef.current) {
+      if (pauseOnHover && !intervalRef.current) {
         intervalRef.current = window.setInterval(swap, delay);
       }
     };
@@ -390,33 +407,20 @@ const CardSwap: React.FC<CardSwapProps> = ({
     return () => {
       if (intervalRef.current) {
         clearInterval(intervalRef.current);
+        intervalRef.current = undefined;
       }
-      if (startTimeout) {
-        clearTimeout(startTimeout);
+      if (animationDelay) {
+        clearTimeout(animationDelay);
+      }
+      if (tlRef.current) {
+        tlRef.current.kill();
       }
       if (containerEl && pauseOnHover) {
         containerEl.removeEventListener('mouseenter', handleMouseEnter);
         containerEl.removeEventListener('mouseleave', handleMouseLeave);
       }
     };
-  }, []); // Empty dependency array to run only once
-
-  // Separate effect for repositioning cards when props change
-  useEffect(() => {
-    const total = refs.length;
-    
-    requestAnimationFrame(() => {
-      refs.forEach((r, i) => {
-        if (r.current) {
-          placeNow(
-            r.current,
-            makeSlot(i, cardDistance, verticalDistance, total),
-            skewAmount
-          );
-        }
-      });
-    });
-  }, [cardDistance, verticalDistance, skewAmount, refs.length]);
+  }, [cardDistance, verticalDistance, delay, skewAmount, pauseOnHover, refs.length]);
 
   const rendered = childArr.map((child, i) =>
     isValidElement<CardProps>(child)
