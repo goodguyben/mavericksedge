@@ -78,9 +78,9 @@ const SimpleCardSwap: React.FC<SimpleCardSwapProps> = ({
   // Pre-calculate positions for performance
   const cardPositions = useMemo(() => {
     return Array.from({ length: children.length }, (_, i) => ({
-      x: i * 60,
-      y: -i * 70,
-      z: -i * 90,
+      x: i * 40,
+      y: -i * 50,
+      z: -i * 60,
       zIndex: children.length - i
     }));
   }, [children.length]);
@@ -114,34 +114,57 @@ const SimpleCardSwap: React.FC<SimpleCardSwapProps> = ({
       style={{ 
         width, 
         height,
-        perspective: "900px",
-        transformStyle: "preserve-3d"
+        perspective: "900px"
       }}
     >
-      {children.map((child, index) => {
-        const position = (index - currentIndex + children.length) % children.length;
-        const isVisible = position < 4; // Show only top 4 cards
-        
-        if (!isVisible) return null;
+      {children
+        .map((child, index) => {
+          const position = (index - currentIndex + children.length) % children.length;
+          const isVisible = position < 4; // Show only top 4 cards
+          
+          if (!isVisible) return null;
 
-        const isDropping = isSwapping && position === 0;
-        const pos = cardPositions[position];
+          const isDropping = isSwapping && position === 0;
+          const pos = cardPositions[position];
 
-        return (
+          // Reorder cards when dropping - dropping card should be rendered first (bottom)
+          const renderOrder = isDropping ? -1 : pos.zIndex;
+
+          return {
+            child,
+            index,
+            position,
+            isDropping,
+            pos,
+            renderOrder
+          };
+        })
+        .filter((item): item is NonNullable<typeof item> => item !== null)
+        .sort((a, b) => {
+          // Sort so dropping card comes first (rendered at bottom)
+          if (a.isDropping && !b.isDropping) return -1;
+          if (!a.isDropping && b.isDropping) return 1;
+          return b.renderOrder - a.renderOrder; // Higher z-index rendered later
+        })
+        .map(({ child, index, position, isDropping, pos, renderOrder }) => (
           <motion.div
             key={index}
             className="absolute"
             initial={false}
             animate={{
-              x: isDropping ? pos.x : pos.x,
-              y: isDropping ? pos.y + 500 : pos.y,
-              z: pos.z,
+              x: isDropping ? pos.x - 60 : pos.x,
+              y: isDropping ? pos.y + 400 : pos.y,
+              z: isDropping ? pos.z - 500 : pos.z,
               skewY: 6,
               opacity: isDropping ? 0 : 1
             }}
             transition={{
               duration: isDropping ? 1.5 : 0.8,
-              ease: isDropping ? [0.4, 0, 1, 1] : [0.25, 0.1, 0.25, 1]
+              ease: isDropping ? [0.4, 0, 1, 1] : [0.25, 0.1, 0.25, 1],
+              opacity: {
+                duration: isDropping ? 0.8 : 0.8,
+                delay: isDropping ? 0.3 : 0
+              }
             }}
             style={{
               width: "100%",
@@ -151,7 +174,7 @@ const SimpleCardSwap: React.FC<SimpleCardSwapProps> = ({
               translateX: "-50%",
               translateY: "-50%",
               transformStyle: "preserve-3d",
-              zIndex: pos.zIndex
+              zIndex: renderOrder
             }}
           >
             {React.isValidElement(child) && 
@@ -160,8 +183,7 @@ const SimpleCardSwap: React.FC<SimpleCardSwapProps> = ({
               })
             }
           </motion.div>
-        );
-      })}
+        ))}
     </div>
   );
 };
