@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useMemo } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 export interface SimpleCardSwapProps {
@@ -73,31 +73,13 @@ const SimpleCardSwap: React.FC<SimpleCardSwapProps> = ({
 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const intervalRef = useRef<number>();
-  const [isSwapping, setIsSwapping] = useState(false);
-
-  // Pre-calculate positions for performance
-  const cardPositions = useMemo(() => {
-    return Array.from({ length: children.length }, (_, i) => ({
-      x: i * 40,
-      y: -i * 50,
-      z: -i * 60,
-      zIndex: children.length - i
-    }));
-  }, [children.length]);
 
   useEffect(() => {
     // Start rotation after initial delay
     const startTimeout = setTimeout(() => {
-      const performSwap = () => {
-        setIsSwapping(true);
-        setTimeout(() => {
-          setCurrentIndex((prev) => (prev + 1) % children.length);
-          setIsSwapping(false);
-        }, 300);
-      };
-
-      performSwap(); // Initial swap
-      intervalRef.current = window.setInterval(performSwap, delay);
+      intervalRef.current = window.setInterval(() => {
+        setCurrentIndex((prev) => (prev + 1) % children.length);
+      }, delay);
     }, 5000); // Wait for Framer Motion animation
 
     return () => {
@@ -108,82 +90,77 @@ const SimpleCardSwap: React.FC<SimpleCardSwapProps> = ({
     };
   }, [children.length, delay]);
 
+  const cardVariants = {
+    enter: (index: number) => ({
+      x: index * 60,
+      y: -index * 70,
+      z: -index * 90,
+      zIndex: children.length - index,
+      transition: {
+        duration: 0.8,
+        ease: "easeOut"
+      }
+    }),
+    center: {
+      x: 0,
+      y: 0,
+      z: 0,
+      zIndex: children.length,
+      transition: {
+        duration: 0.8,
+        ease: "easeOut"
+      }
+    },
+    exit: {
+      y: 500,
+      transition: {
+        duration: 1.5,
+        ease: "easeIn"
+      }
+    }
+  };
+
   return (
     <div
-      className="relative overflow-visible"
-      style={{ 
-        width, 
-        height,
-        perspective: "900px"
-      }}
+      className="relative perspective-[900px]"
+      style={{ width, height }}
     >
-      {children
-        .map((child, index) => {
+      <AnimatePresence mode="sync">
+        {children.map((child, index) => {
           const position = (index - currentIndex + children.length) % children.length;
           const isVisible = position < 4; // Show only top 4 cards
           
           if (!isVisible) return null;
 
-          const isDropping = isSwapping && position === 0;
-          const pos = cardPositions[position];
-
-          // Reorder cards when dropping - dropping card should be rendered first (bottom)
-          const renderOrder = isDropping ? -1 : pos.zIndex;
-
-          return {
-            child,
-            index,
-            position,
-            isDropping,
-            pos,
-            renderOrder
-          };
-        })
-        .filter((item): item is NonNullable<typeof item> => item !== null)
-        .sort((a, b) => {
-          // Sort so dropping card comes first (rendered at bottom)
-          if (a.isDropping && !b.isDropping) return -1;
-          if (!a.isDropping && b.isDropping) return 1;
-          return b.renderOrder - a.renderOrder; // Higher z-index rendered later
-        })
-        .map(({ child, index, position, isDropping, pos, renderOrder }) => (
-          <motion.div
-            key={index}
-            className="absolute"
-            initial={false}
-            animate={{
-              x: isDropping ? pos.x - 60 : pos.x,
-              y: isDropping ? pos.y + 400 : pos.y,
-              z: isDropping ? pos.z - 500 : pos.z,
-              skewY: 6,
-              opacity: isDropping ? 0 : 1
-            }}
-            transition={{
-              duration: isDropping ? 1.5 : 0.8,
-              ease: isDropping ? [0.4, 0, 1, 1] : [0.25, 0.1, 0.25, 1],
-              opacity: {
-                duration: isDropping ? 0.8 : 0.8,
-                delay: isDropping ? 0.3 : 0
+          return (
+            <motion.div
+              key={index}
+              className="absolute inset-0"
+              custom={position}
+              variants={cardVariants}
+              initial="enter"
+              animate="enter"
+              exit={position === 0 ? "exit" : undefined}
+              style={{
+                transformStyle: "preserve-3d",
+                transform: `
+                  translateX(${position * 60}px) 
+                  translateY(${-position * 70}px) 
+                  translateZ(${-position * 90}px)
+                  skewY(48deg)
+                `,
+                zIndex: children.length - position
+              }}
+            >
+              {React.isValidElement(child) && 
+                React.cloneElement(child as React.ReactElement<CardProps>, {
+                  style: { width: "100%", height: "100%" }
+                })
               }
-            }}
-            style={{
-              width: "100%",
-              height: "100%",
-              left: "50%",
-              top: "50%",
-              translateX: "-50%",
-              translateY: "-50%",
-              transformStyle: "preserve-3d",
-              zIndex: renderOrder
-            }}
-          >
-            {React.isValidElement(child) && 
-              React.cloneElement(child as React.ReactElement<CardProps>, {
-                style: { width: "100%", height: "100%" }
-              })
-            }
-          </motion.div>
-        ))}
+            </motion.div>
+          );
+        })}
+      </AnimatePresence>
     </div>
   );
 };
