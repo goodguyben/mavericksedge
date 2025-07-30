@@ -271,25 +271,31 @@ const CardSwap: React.FC<CardSwapProps> = ({
 
   useEffect(() => {
     const total = refs.length;
+    console.log('CardSwap: useEffect triggered. Total cards:', total);
     
     // Use requestAnimationFrame to batch DOM updates and reduce reflows
     requestAnimationFrame(() => {
       refs.forEach((r, i) => {
         if (r.current) {
+          console.log('CardSwap: Positioning card', i, 'Element:', r.current);
           placeNow(
             r.current,
             makeSlot(i, cardDistance, verticalDistance, total),
             skewAmount
           );
+        } else {
+          console.log('CardSwap: Card', i, 'ref is null');
         }
       });
     });
 
     const swap = () => {
+      console.log('CardSwap: Attempting swap. InView:', isInViewRef.current, 'Order length:', order.current.length);
       if (!isInViewRef.current || order.current.length < 2) return;
 
       const [front, ...rest] = order.current;
       const elFront = refs[front].current;
+      console.log('CardSwap: Front card index:', front, 'Element exists:', !!elFront);
       if (!elFront) return;
 
       // Use requestAnimationFrame to prevent forced reflows
@@ -358,14 +364,17 @@ const CardSwap: React.FC<CardSwapProps> = ({
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
+          console.log('CardSwap: Intersection observer triggered. IsIntersecting:', entry.isIntersecting, 'HasStarted:', hasStartedRef.current);
           isInViewRef.current = entry.isIntersecting;
           if (entry.isIntersecting && !hasStartedRef.current) {
             hasStartedRef.current = true;
+            console.log('CardSwap: Starting animations - first swap and interval');
             // Start swapping only when in view
             swap();
             intervalRef.current = window.setInterval(swap, delay);
           } else if (!entry.isIntersecting && intervalRef.current) {
             // Stop animations when out of view
+            console.log('CardSwap: Stopping animations - out of view');
             clearInterval(intervalRef.current);
             intervalRef.current = undefined;
           }
@@ -375,7 +384,10 @@ const CardSwap: React.FC<CardSwapProps> = ({
     );
 
     if (containerRef.current) {
+      console.log('CardSwap: Starting to observe container:', containerRef.current);
       observer.observe(containerRef.current);
+    } else {
+      console.log('CardSwap: Container ref is null, cannot observe');
     }
 
     // Add pause on hover functionality
