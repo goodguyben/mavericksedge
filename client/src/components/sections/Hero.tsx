@@ -27,7 +27,9 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden">
+    <section className="relative min-h-screen flex items-center overflow-hidden bg-red-900">
+      {/* TEST: Temporary red background to verify visibility */}
+      <div className="absolute inset-0 bg-red-500 z-5" />
       {/* Background */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-10">
         {/* Background gradient */}
@@ -122,10 +124,10 @@ export default function Hero() {
 
         {/* CardSwap Component - Right side for desktop/tablet, moved down */}
         <motion.div 
-          className="absolute right-0 bottom-20 pointer-events-auto"
+          className="hidden lg:block absolute right-0 bottom-20 pointer-events-auto"
           initial={{ opacity: 0, x: 100 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1.0, delay: 0.5, ease: "easeOut" }}
+          transition={{ duration: 1.0, delay: 3.5, ease: "easeOut" }}
         >
           <CardSwap
             width={600}
@@ -156,7 +158,7 @@ export default function Hero() {
           className="lg:hidden absolute bottom-4 right-4 pointer-events-auto"
           initial={{ opacity: 0, x: 100 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1.0, delay: 0.5, ease: "easeOut" }}
+          transition={{ duration: 1.0, delay: 3.5, ease: "easeOut" }}
         >
           <CardSwap
             width={500}

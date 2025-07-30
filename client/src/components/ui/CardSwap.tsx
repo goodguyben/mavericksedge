@@ -230,7 +230,6 @@ const CardSwap: React.FC<CardSwapProps> = ({
   easing = "elastic",
   children,
 }) => {
-  console.log('CardSwap: Component mounted with', Children.count(children), 'children');
   const containerRef = useRef<HTMLDivElement>(null);
   const tlRef = useRef<gsap.core.Timeline | null>(null);
   const intervalRef = useRef<number>();
@@ -381,7 +380,7 @@ const CardSwap: React.FC<CardSwapProps> = ({
           }
         });
       },
-      { threshold: 0.01 }
+      { threshold: 0.1 }
     );
 
     if (containerRef.current) {
@@ -390,17 +389,6 @@ const CardSwap: React.FC<CardSwapProps> = ({
     } else {
       console.log('CardSwap: Container ref is null, cannot observe');
     }
-
-    // TEMPORARY: Force start for debugging after 2 seconds
-    const debugTimer = setTimeout(() => {
-      console.log('CardSwap: Force starting debug mode');
-      isInViewRef.current = true;
-      if (!hasStartedRef.current) {
-        hasStartedRef.current = true;
-        swap();
-        intervalRef.current = window.setInterval(swap, delay);
-      }
-    }, 2000);
 
     // Add pause on hover functionality
     const containerEl = containerRef.current;
@@ -432,7 +420,6 @@ const CardSwap: React.FC<CardSwapProps> = ({
           containerEl.removeEventListener('mouseleave', handleMouseLeave);
         }
       }
-      clearTimeout(debugTimer);
     };
   }, [cardDistance, verticalDistance, delay, skewAmount, easing, pauseOnHover, refs.length]);
 
