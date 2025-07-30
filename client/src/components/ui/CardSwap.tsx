@@ -297,61 +297,61 @@ const CardSwap: React.FC<CardSwapProps> = ({
         const tl = gsap.timeline();
         tlRef.current = tl;
 
-      tl.to(elFront, {
-        y: "+=500",
-        duration: config.durDrop,
-        ease: config.ease,
-      });
+        tl.to(elFront, {
+          y: "+=500",
+          duration: config.durDrop,
+          ease: config.ease,
+        });
 
-      tl.addLabel("promote", `-=${config.durDrop * config.promoteOverlap}`);
-      rest.forEach((idx, i) => {
-        const el = refs[idx].current;
-        if (!el) return;
+        tl.addLabel("promote", `-=${config.durDrop * config.promoteOverlap}`);
+        rest.forEach((idx, i) => {
+          const el = refs[idx].current;
+          if (!el) return;
 
-        const slot = makeSlot(i, cardDistance, verticalDistance, refs.length);
-        tl.set(el, { zIndex: slot.zIndex }, "promote");
+          const slot = makeSlot(i, cardDistance, verticalDistance, refs.length);
+          tl.set(el, { zIndex: slot.zIndex }, "promote");
+          tl.to(
+            el,
+            {
+              x: slot.x,
+              y: slot.y,
+              z: slot.z,
+              duration: config.durMove,
+              ease: config.ease,
+            },
+            `promote+=${i * 0.15}`
+          );
+        });
+
+        const backSlot = makeSlot(
+          refs.length - 1,
+          cardDistance,
+          verticalDistance,
+          refs.length
+        );
+        tl.addLabel("return", `promote+=${config.durMove * config.returnDelay}`);
+        tl.call(
+          () => {
+            gsap.set(elFront, { zIndex: backSlot.zIndex });
+          },
+          undefined,
+          "return"
+        );
+        tl.set(elFront, { x: backSlot.x, z: backSlot.z }, "return");
         tl.to(
-          el,
+          elFront,
           {
-            x: slot.x,
-            y: slot.y,
-            z: slot.z,
-            duration: config.durMove,
+            y: backSlot.y,
+            duration: config.durReturn,
             ease: config.ease,
           },
-          `promote+=${i * 0.15}`
+          "return"
         );
-      });
 
-      const backSlot = makeSlot(
-        refs.length - 1,
-        cardDistance,
-        verticalDistance,
-        refs.length
-      );
-      tl.addLabel("return", `promote+=${config.durMove * config.returnDelay}`);
-      tl.call(
-        () => {
-          gsap.set(elFront, { zIndex: backSlot.zIndex });
-        },
-        undefined,
-        "return"
-      );
-      tl.set(elFront, { x: backSlot.x, z: backSlot.z }, "return");
-      tl.to(
-        elFront,
-        {
-          y: backSlot.y,
-          duration: config.durReturn,
-          ease: config.ease,
-        },
-        "return"
-      );
-
-      tl.call(() => {
-        order.current = [...rest, front];
+        tl.call(() => {
+          order.current = [...rest, front];
+        });
       });
-    });
     };
 
     // Set up intersection observer for performance
