@@ -2,13 +2,8 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { useIntersectionObserver } from '@/hooks/useIntersectionObserver';
 
-interface VideoSource {
-  webm: string;
-  mp4: string;
-}
-
 interface OptimizedVideoProps {
-  src: string | VideoSource;
+  src: string;
   className?: string;
   priority?: boolean;
   onLoad?: () => void;
@@ -68,8 +63,7 @@ export const OptimizedVideo: React.FC<OptimizedVideoProps> = ({
         
         // Log which format was loaded and start playback
         const loadedSrc = video.currentSrc || video.src;
-        const format = loadedSrc.includes('.webm') ? 'WebM' : 'MP4';
-        console.log(`✅ Video ready (${format}): ${loadedSrc}`);
+        console.log(`✅ Video ready (WebM): ${loadedSrc}`);
         
         // Force play the video immediately
         if (video.paused) {
@@ -93,8 +87,7 @@ export const OptimizedVideo: React.FC<OptimizedVideoProps> = ({
         processVideoQueue();
         onError?.(e);
         
-        const errorSrc = typeof src === 'string' ? src : src.webm;
-        console.error(`❌ Video failed to load: ${errorSrc}`);
+        console.error(`❌ Video failed to load: ${src}`);
       };
 
       video.addEventListener('loadeddata', handleLoad, { once: true });
@@ -171,18 +164,7 @@ export const OptimizedVideo: React.FC<OptimizedVideoProps> = ({
           backgroundColor: '#1a1a1a'
         }}
       >
-        {/* Add sources directly in JSX for better reliability */}
-        {typeof src === 'object' && src.webm && src.mp4 ? (
-          <>
-            <source src={src.webm} type="video/webm; codecs=vp9,opus" />
-            <source src={src.mp4} type="video/mp4; codecs=avc1.42E01E,mp4a.40.2" />
-          </>
-        ) : (
-          <source 
-            src={typeof src === 'string' ? src : src.webm} 
-            type={typeof src === 'string' && src.includes('.webm') ? 'video/webm' : 'video/mp4'} 
-          />
-        )}
+        <source src={src} type="video/webm; codecs=vp9,opus" />
       </video>
     </div>
   );

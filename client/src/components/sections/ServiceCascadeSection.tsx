@@ -384,9 +384,9 @@ export default function ServiceCascadeSection() {
           description:
             "We design custom websites that range from clean, professional layouts to immersive 3D and interactive experiences. Each crafted to engage, captivate, and convert. Whether you’re looking for a straightforward, elegant website or a dynamic, story-driven journey with scroll-triggered animations, spatial design, or product showcases, our team of expert website builders brings your vision to life with clarity and creativity. For high-quality website design Edmonton businesses can rely on, we deliver results that make a lasting impact.",
           videos: [
-            "https://mavericksedge.ca/videos/Portfolio_Video_3.mp4",
-            "https://mavericksedge.ca/videos/Portfolio_Video_2.mp4",
-            "https://mavericksedge.ca/videos/Portfolio_Video_5.mp4",
+            "https://mavericksedge.ca/videos/Portfolio_Video_3.webm",
+            "https://mavericksedge.ca/videos/Portfolio_Video_2.webm",
+            "https://mavericksedge.ca/videos/Portfolio_Video_5.webm",
           ],
           videoDurations: [11000, 7000, 11000], // 1st and 3rd extended by 4 seconds
           zoomEffects: ["zoom-out", "zoom-out", "zoom-out"],
@@ -398,10 +398,10 @@ export default function ServiceCascadeSection() {
           description:
             "We specialize in custom web application development designed to solve your unique operational challenges and streamline complex data management. Our web application development services cover everything from CRM software and asset management systems to interactive dashboards. Leveraging scalable, cloud-based web application development frameworks and advanced AI-driven insights, our user-friendly solutions offer low-code adaptability and seamless API integration web application capabilities.",
           videos: [
-            "https://mavericksedge.ca/videos/Portfolio_Video_6.mp4",
-            "https://mavericksedge.ca/videos/Portfolio_Video_17.mp4",
-            "https://mavericksedge.ca/videos/Portfolio_Video_14.mp4",
-            "https://mavericksedge.ca/videos/Portfolio_Video_13.mp4",
+            "https://mavericksedge.ca/videos/Portfolio_Video_6.webm",
+            "https://mavericksedge.ca/videos/Portfolio_Video_17.webm",
+            "https://mavericksedge.ca/videos/Portfolio_Video_14.webm",
+            "https://mavericksedge.ca/videos/Portfolio_Video_13.webm",
           ],
           gradient: "from-yellow-500/20 to-orange-500/20",
         },
@@ -411,8 +411,8 @@ export default function ServiceCascadeSection() {
           description:
             "Launch and grow your online store with expertly crafted e-commerce sites on Shopify and WooCommerce. We build fast, secure storefronts with optimized checkout, seamless payment integration, inventory syncing, and built-in analytics to help you sell smarter. With AI-powered product recommendations built in, your customers discover what they want faster, boosting engagement and increasing sales.",
           videos: [
-            "https://mavericksedge.ca/videos/Portfolio_Video_9.mp4",
-            "https://mavericksedge.ca/videos/Portfolio_Video_8.mp4",
+            "https://mavericksedge.ca/videos/Portfolio_Video_9.webm",
+            "https://mavericksedge.ca/videos/Portfolio_Video_8.webm",
           ],
           gradient: "from-emerald-500/20 to-teal-500/20",
         },
@@ -421,7 +421,7 @@ export default function ServiceCascadeSection() {
           title: "SEO Services and Performance",
           description:
             "As a leading Edmonton SEO agency, we enhance your website’s speed, mobile responsiveness, and Core Web Vitals to deliver a seamless user experience. Our strategies leverage Generative Engine Optimization (GEO) to position your content in AI-generated responses on platforms like Google’s AI Overviews and ChatGPT. By focusing on structured data, semantic clarity, and user-centric design, we improve both your traditional search rankings and visibility in AI-driven results, increasing engagement and conversions.",
-          videos: ["https://mavericksedge.ca/videos/Portfolio_Video_27.mp4"],
+          videos: ["https://mavericksedge.ca/videos/Portfolio_Video_27.webm"],
           gradient: "from-orange-500/20 to-red-500/20",
         },
       ],
@@ -438,8 +438,8 @@ export default function ServiceCascadeSection() {
           description:
             "We create adaptive brand strategies that connect your business with the right audience through clarity and authenticity. Our branding services include custom logo design, brand identity systems, typography, messaging frameworks, and visual branding solutions tailored to your goals. Whether you’re a startup or an established company looking for a brand refresh, we design every element to build trust, inspire engagement, and reflect your brand’s true character across platforms.",
           videos: [
-            "https://mavericksedge.ca/videos/Portfolio_Video_33.mp4",
-            "https://mavericksedge.ca/videos/Portfolio_Video_34.mp4",
+            "https://mavericksedge.ca/videos/Portfolio_Video_33.webm",
+            "https://mavericksedge.ca/videos/Portfolio_Video_34.webm",
           ],
           gradient: "from-purple-500/20 to-pink-500/20",
         },
@@ -449,8 +449,8 @@ export default function ServiceCascadeSection() {
           description:
             "Social media goes beyond visibility; it’s about earning attention through relevance, consistency, and trust. From content planning and platform-native strategy to community engagement and performance analytics, we ensure your brand’s voice shines through every post on every platform. Our AI-backed process generates scroll-stopping content that’s uniquely tailored to each platform, fueling your brand’s visibility and engagement.",
           videos: [
-            "https://mavericksedge.ca/videos/Portfolio_Video_31.mp4",
-            "https://mavericksedge.ca/videos/Portfolio_Video_32.mp4",
+            "https://mavericksedge.ca/videos/Portfolio_Video_31.webm",
+            "https://mavericksedge.ca/videos/Portfolio_Video_32.webm",
           ],
           gradient: "from-blue-500/20 to-purple-500/20",
         },
@@ -460,8 +460,8 @@ export default function ServiceCascadeSection() {
           description:
             "Drive targeted traffic and boost ROI with strategic PPC advertising campaigns across Google Ads and Meta Ads (Facebook & Instagram). As a data-driven PPC company, we specialize in high-intent keyword research, audience targeting, ad copy optimization, and performance monitoring. From Google AdWords search to display and remarketing, our digital marketing agency creates conversion-optimized campaigns that deliver measurable results.",
           videos: [
-            "https://mavericksedge.ca/videos/Portfolio_Video_29.mp4",
-            "https://mavericksedge.ca/videos/Portfolio_Video_30.mp4",
+            "https://mavericksedge.ca/videos/Portfolio_Video_29.webm",
+            "https://mavericksedge.ca/videos/Portfolio_Video_30.webm",
           ],
           videoDurations: [26000], // 26 seconds for first video, default for second
           gradient: "from-green-500/20 to-blue-500/20",
@@ -479,7 +479,7 @@ export default function ServiceCascadeSection() {
           title: "AI Integration Solutions",
           description:
             "AI integration solutions that empower your business to innovate, automate, and scale effortlessly. From intelligent automation and predictive analytics to natural language processing and machine learning models, our services enable you to transform operations, enhance customer experiences, and make data-driven decisions. Whether it's integrating AI agents into your CRM, developing personalized marketing strategies, or optimizing workflows, we provide the tools and expertise to turn your business vision into reality.",
-          videos: ["https://mavericksedge.ca/videos/Portfolio_Video_35.mp4"],
+          videos: ["https://mavericksedge.ca/videos/Portfolio_Video_35.webm"],
           gradient: "from-cyan-500/20 to-blue-500/20",
         },
         {
@@ -488,8 +488,8 @@ export default function ServiceCascadeSection() {
           description:
             "Elevate your customer engagement with our advanced AI Chatbots and Virtual Assistants, powered by sophisticated machine learning algorithms. Our solutions use cutting edge conversational AI and natural language processing (NLP) to deliver seamless customer service automation and intelligent lead generation. We also leverage generative AI to provide personalized recommendations, ensuring every interaction is meaningful and drives business growth.",
           videos: [
-            "https://mavericksedge.ca/videos/Portfolio_Video_36.mp4",
-            "https://mavericksedge.ca/videos/Portfolio_Video_37.mp4",
+            "https://mavericksedge.ca/videos/Portfolio_Video_36.webm",
+            "https://mavericksedge.ca/videos/Portfolio_Video_37.webm",
           ],
           gradient: "from-green-500/20 to-cyan-500/20",
         },
@@ -498,7 +498,7 @@ export default function ServiceCascadeSection() {
           title: "Workflow and Process Automation",
           description:
             "We build intelligent automation directly into your operations. We perform seamless AI integration using powerful platforms like N8n, Make, and Zapier connected to leading generative AI models from OpenAI, Gemini, and Claude. Imagine automatically qualifying sales leads with predictive analytics or using natural language processing to analyze client feedback instantly, transforming your data analysis and business efficiency with our custom AI solutions.",
-          videos: ["https://mavericksedge.ca/videos/Portfolio_Video_19.mp4"],
+          videos: ["https://mavericksedge.ca/videos/Portfolio_Video_19.webm"],
           gradient: "from-indigo-500/20 to-purple-500/20",
         },
         {
@@ -506,7 +506,7 @@ export default function ServiceCascadeSection() {
           title: "Custom AI Applications",
           description:
             "We develop custom AI solutions to streamline your core operations. Our expertise in generative AI and machine learning enables us to build powerful automation tools like an AI sales representative that nurtures leads, an automated inventory management system, or an intelligent platform for logistics optimization. Leverage our predictive analytics and process automation to reduce costs and gain a competitive edge.",
-          videos: ["https://mavericksedge.ca/videos/Portfolio_Video_38.mp4"],
+          videos: ["https://mavericksedge.ca/videos/Portfolio_Video_38.webm"],
           gradient: "from-purple-500/20 to-pink-500/20",
         },
       ],

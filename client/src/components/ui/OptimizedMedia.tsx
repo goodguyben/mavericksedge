@@ -33,7 +33,6 @@ export const OptimizedVideo: React.FC<OptimizedVideoProps> = ({
     
     return {
       webm: `${directory}/optimized/${baseName.split('/').pop()}-optimized.webm`,
-      mp4: `${directory}/optimized/${baseName.split('/').pop()}-optimized.mp4`,
       fallback: originalSrc
     };
   };
@@ -76,8 +75,7 @@ export const OptimizedVideo: React.FC<OptimizedVideoProps> = ({
         preload="metadata"
       >
         <source src={sources.webm} type="video/webm" />
-        <source src={sources.mp4} type="video/mp4" />
-        <source src={sources.fallback} type="video/mp4" />
+        <source src={sources.fallback} type="video/webm" />
         
         <p>Your browser does not support the video tag. {alt}</p>
       </video>

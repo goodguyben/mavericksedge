@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 interface MobileOptimizedVideoProps {
-  src: string | { webm: string; mp4: string };
+  src: string;
   alt?: string;
   className?: string;
   poster?: string;
@@ -89,11 +89,7 @@ export const MobileOptimizedVideo: React.FC<MobileOptimizedVideoProps> = ({
 
   // Get video source
   const getVideoSrc = () => {
-    if (typeof src === 'string') {
-      return src;
-    }
-    // Prefer WebM on desktop, MP4 on mobile for better compatibility
-    return isMobile ? src.mp4 : src.webm;
+    return src;
   };
 
   // Get video type
@@ -153,14 +149,7 @@ export const MobileOptimizedVideo: React.FC<MobileOptimizedVideoProps> = ({
             onError={handleVideoError}
 
           >
-            {typeof src === 'object' && src.webm && src.mp4 ? (
-              <>
-                <source src={src.webm} type="video/webm; codecs=vp9,opus" />
-                <source src={src.mp4} type="video/mp4; codecs=avc1.42E01E,mp4a.40.2" />
-              </>
-            ) : (
-              <source src={getVideoSrc()} type={getVideoType()} />
-            )}
+            <source src={getVideoSrc()} type="video/webm; codecs=vp9,opus" />
             {alt && <track kind="descriptions" src="" label={alt} />}
           </motion.video>
         )}

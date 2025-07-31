@@ -20,7 +20,7 @@ export default function AIServices() {
       title: "AI Integration Solutions",
       description: "AI integration solutions that empower your business to innovate, automate, and scale effortlessly. From intelligent automation and predictive analytics to natural language processing and machine learning models, our services enable you to transform operations, enhance customer experiences, and make data-driven decisions.",
       features: ["Intelligent automation", "Predictive analytics", "Natural language processing", "Machine learning models"],
-      video: "https://mavericksedge.ca/videos/Portfolio_Video_35.mp4",
+              video: "https://mavericksedge.ca/videos/Portfolio_Video_35.webm",
       gradient: "from-cyan-500/20 to-blue-500/20"
     },
     {
@@ -28,7 +28,7 @@ export default function AIServices() {
       title: "AI Chatbots and Virtual Assistants",
       description: "Elevate your customer engagement with our advanced AI Chatbots and Virtual Assistants, powered by sophisticated machine learning algorithms. Our solutions use cutting edge conversational AI and natural language processing (NLP) to deliver seamless customer service automation and intelligent lead generation.",
       features: ["Conversational AI", "Natural language processing", "Customer service automation", "Intelligent lead generation"],
-      video: "https://mavericksedge.ca/videos/Portfolio_Video_36.mp4",
+              video: "https://mavericksedge.ca/videos/Portfolio_Video_36.webm",
       gradient: "from-green-500/20 to-cyan-500/20"
     },
     {
@@ -36,7 +36,7 @@ export default function AIServices() {
       title: "Workflow and Process Automation",
       description: "We build intelligent automation directly into your operations. We perform seamless AI integration using powerful platforms like N8n, Make, and Zapier connected to leading generative AI models from OpenAI, Gemini, and Claude.",
       features: ["Intelligent automation", "Platform integration", "Generative AI models", "Process optimization"],
-      video: "https://mavericksedge.ca/videos/Portfolio_Video_19.mp4",
+              video: "https://mavericksedge.ca/videos/Portfolio_Video_19.webm",
       gradient: "from-indigo-500/20 to-purple-500/20"
     },
     {
@@ -44,7 +44,7 @@ export default function AIServices() {
       title: "Custom AI Applications",
       description: "We develop custom AI solutions to streamline your core operations. Our expertise in generative AI and machine learning enables us to build powerful automation tools like an AI sales representative that nurtures leads, an automated inventory management system, or an intelligent platform for logistics optimization.",
       features: ["Custom AI development", "Generative AI", "Machine learning", "Business automation"],
-      video: "https://mavericksedge.ca/videos/Portfolio_Video_38.mp4",
+              video: "https://mavericksedge.ca/videos/Portfolio_Video_38.webm",
       gradient: "from-purple-500/20 to-pink-500/20"
     }
   ];

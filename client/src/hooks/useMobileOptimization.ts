@@ -96,14 +96,9 @@ export const useMobileOptimization = () => {
   }, [detectDeviceCapabilities, applyOptimizations]);
 
   // Get optimized video source
-  const getOptimizedVideoSrc = useCallback((sources: { webm: string; mp4: string } | string) => {
-    if (typeof sources === 'string') {
-      return sources;
-    }
-
-    // Prefer MP4 on mobile for better compatibility
-    return isMobile ? sources.mp4 : sources.webm;
-  }, [isMobile]);
+  const getOptimizedVideoSrc = useCallback((src: string) => {
+    return src;
+  }, []);
 
   // Get optimized image source
   const getOptimizedImageSrc = useCallback((src: string, mobileSrc?: string) => {

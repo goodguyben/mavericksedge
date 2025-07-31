@@ -117,21 +117,21 @@ export default function WebServices() {
       title: "NorthShore Commerce",
       description: "Luxury retail e-commerce platform with AI recommendations",
       tech: ["React", "Node.js", "Stripe", "MongoDB"],
-      image: "/videos/services/Next-Gen E-Commerce 2.mp4",
+              image: "/videos/services/Next-Gen E-Commerce 2.webm",
       category: "E-Commerce"
     },
     {
       title: "Apex Consulting Group",
       description: "Professional corporate website with dynamic CMS",
       tech: ["WordPress", "Custom Theme", "SEO", "Analytics"],
-      image: "/videos/services/Custom Interactive Websites 1.mp4",
+              image: "/videos/services/Custom Interactive Websites 1.webm",
       category: "Corporate Website"
     },
     {
       title: "TaskFlow Pro",
       description: "Advanced project management web application",
       tech: ["Vue.js", "Express", "PostgreSQL", "AWS"],
-      image: "/videos/services/Productivity & Management Web Applications 3.mp4",
+              image: "/videos/services/Productivity & Management Web Applications 3.webm",
       category: "Web Application"
     }
   ];
