@@ -77,9 +77,8 @@ export const initializeProductionOptimizations = () => {
     // Preload critical resources
     preloadResource('/assets/logo-transparent-thumb4x.png', 'image');
     
-    // Clear old cache and enable service worker for caching (if available)
-    if ('serviceWorker' in navigator) {
-      // Clear all old caches first
+    // Clear old caches first
+    if ('caches' in window) {
       caches.keys().then((cacheNames) => {
         cacheNames.forEach((cacheName) => {
           if (cacheName !== 'mavericks-edge-v2') {
@@ -87,15 +86,10 @@ export const initializeProductionOptimizations = () => {
           }
         });
       });
-      
-      // Unregister old service workers
-      navigator.serviceWorker.getRegistrations().then((registrations) => {
-        registrations.forEach((registration) => {
-          registration.unregister();
-        });
-      });
-      
-      // Register new service worker
+    }
+    
+    // Enable service worker for caching (if available)
+    if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('/sw.js').catch(() => {
         // Service worker registration failed, continue without it
       });

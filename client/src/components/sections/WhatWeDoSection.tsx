@@ -179,13 +179,6 @@ export default function WhatWeDoSection() {
                 >
                   Do
                 </GradientText>
-                <motion.span
-                  className="absolute -bottom-2 left-0 w-full h-1 bg-maverick-orange"
-                  initial={{ scaleX: 0, originX: 0 }}
-                  whileInView={{ scaleX: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.5 }}
-                />
               </span>
             </motion.h2>
 

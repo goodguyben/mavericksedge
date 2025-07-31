@@ -4,8 +4,7 @@ import { ContainerAnimated,
   ContainerSticky,
   GalleryCol,
   GalleryContainer } from "@/components/blocks/animated-gallery"
-import { VideoGalleryWrapper } from "@/components/blocks/optimized-video"
-import LazyVideo from "@/components/ui/LazyVideo"
+import { OptimizedVideo, VideoGalleryWrapper } from "@/components/blocks/optimized-video"
 import { useMemo } from 'react';
 import { Button } from "@/components/ui/custom-button"
 import { VideoIcon } from "lucide-react"
@@ -257,18 +256,18 @@ export default function ShowcaseGallery() {
           <VideoGalleryWrapper maxConcurrentVideos={3}>
             <GalleryContainer className="-mt-4">
               <GalleryCol yRange={["-10%", "2%"]} className="mt-[90px] mb-[90px]">
-                {/* No priority loading - all videos lazy load on interaction */}
+                {/* Priority load first 2 videos */}
                 {VIDEOS_1.map((videoSource, index) => (
-                  <LazyVideo
+                  <OptimizedVideo
                     key={`initial-1-${index}`}
                     src={videoSource}
                     className="block aspect-video w-full rounded-md shadow-lg overflow-hidden"
-                    priority={false}
+                    priority={index < 2}
                   />
                 ))}
                 {/* Lazy load remaining videos */}
                 {LAZY_VIDEOS_1.map((videoSource, index) => (
-                  <LazyVideo
+                  <OptimizedVideo
                     key={`lazy-1-${index}`}
                     src={videoSource}
                     className="block aspect-video w-full rounded-md shadow-lg overflow-hidden"
@@ -279,7 +278,7 @@ export default function ShowcaseGallery() {
               <GalleryCol className="mt-[40px] mb-[120px]" yRange={["0%", "-5%"]}>
                 {/* No priority for middle column */}
                 {VIDEOS_2.map((videoSource, index) => (
-                  <LazyVideo
+                  <OptimizedVideo
                     key={`initial-2-${index}`}
                     src={videoSource}
                     className="block aspect-video w-full rounded-md shadow-lg overflow-hidden"
@@ -288,7 +287,7 @@ export default function ShowcaseGallery() {
                 ))}
                 {/* Lazy load remaining videos */}
                 {LAZY_VIDEOS_2.map((videoSource, index) => (
-                  <LazyVideo
+                  <OptimizedVideo
                     key={`lazy-2-${index}`}
                     src={videoSource}
                     className="block aspect-video w-full rounded-md shadow-lg overflow-hidden"
@@ -299,7 +298,7 @@ export default function ShowcaseGallery() {
               <GalleryCol yRange={["-10%", "2%"]} className="mt-[85px] mb-[85px]">
                 {/* No priority for third column */}
                 {IMAGES_3.map((videoSource, index) => (
-                  <LazyVideo
+                  <OptimizedVideo
                     key={`initial-3-${index}`}
                     src={videoSource}
                     className="block aspect-video w-full rounded-md shadow-lg overflow-hidden"
@@ -308,7 +307,7 @@ export default function ShowcaseGallery() {
                 ))}
                 {/* Lazy load remaining videos */}
                 {LAZY_VIDEOS_3.map((videoSource, index) => (
-                  <LazyVideo
+                  <OptimizedVideo
                     key={`lazy-3-${index}`}
                     src={videoSource}
                     className="block aspect-video w-full rounded-md shadow-lg overflow-hidden"
