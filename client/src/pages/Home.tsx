@@ -84,9 +84,18 @@ export default function Home() {
 
           {/* Progressive loading for below-fold sections */}
           <LazySection threshold={0.1} rootMargin="50px">
-            <section id="what-we-do" className="relative">
+            <ScrollFadeSection
+              id="what-we-do"
+              fadeInPoint={0.5}
+              fadeOutPoint={0.6}
+              fadeInDuration={1}
+              fadeOutDuration={1.8}
+              initialOpacity={0}
+              minOpacity={0.1}
+              useFallback={true}
+            >
               <WhatWeDoSection />
-            </section>
+            </ScrollFadeSection>
           </LazySection>
 
           {/* Service Cascade Section */}
