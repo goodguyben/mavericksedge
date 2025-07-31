@@ -93,7 +93,7 @@ export default function App() {
         {isLoading && !hasSeenLoading && (
           <LoadingScreen
             onLoadingComplete={handleLoadingComplete}
-            logoVideoSrc="/attached_assets/logo_animation.mp4"
+            logoVideoSrc="https://mavericksedge.ca/videos/logo_animation.webm"
             companyName="Mavericks Edge"
             loadingDuration={4000}
           />

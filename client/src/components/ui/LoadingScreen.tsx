@@ -11,7 +11,7 @@ interface LoadingScreenProps {
 
 export const LoadingScreen: React.FC<LoadingScreenProps> = ({
   onLoadingComplete,
-  logoVideoSrc = '/attached_assets/logo_animation.mp4',
+  logoVideoSrc = 'https://mavericksedge.ca/videos/logo_animation.webm',
   companyName = 'Mavericks Edge',
   loadingDuration = 4000
 }) => {
