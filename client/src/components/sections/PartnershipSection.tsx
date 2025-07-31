@@ -1,19 +1,9 @@
-import { ContainerAnimated,
-  ContainerScroll,
-  ContainerStagger,
-  ContainerSticky,
-  GalleryCol,
-  GalleryContainer } from "@/components/blocks/animated-gallery"
-import { OptimizedVideo, VideoGalleryWrapper } from "@/components/blocks/optimized-video"
-import { useMemo } from 'react';
-import { Button } from "@/components/ui/custom-button"
-import { VideoIcon } from "lucide-react"
-import GradientText from "@/components/ui/GradientText"
-import MobileOptimizedVideo from "@/components/ui/MobileOptimizedVideo"
-import useMobileOptimization from "@/hooks/useMobileOptimization"
+import React, { useState, useEffect, useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import GradientText from "@/components/ui/GradientText";
+import { OptimizedVideo } from "@/components/blocks/optimized-video";
 
-// CDN-hosted portfolio videos - WebM format for optimal performance
-const CDN_VIDEOS = [
+const BENTO_VIDEOS = [
   "https://mavericksedge.ca/videos/Portfolio_Video_1.webm",
   "https://mavericksedge.ca/videos/Portfolio_Video_2.webm",
   "https://mavericksedge.ca/videos/Portfolio_Video_3.webm",
@@ -32,64 +22,67 @@ const CDN_VIDEOS = [
   "https://mavericksedge.ca/videos/Portfolio_Video_16.webm",
   "https://mavericksedge.ca/videos/Portfolio_Video_17.webm",
   "https://mavericksedge.ca/videos/Portfolio_Video_18.webm",
-  "https://mavericksedge.ca/videos/Portfolio_Video_19.webm",
-  "https://mavericksedge.ca/videos/Portfolio_Video_20.webm",
-  "https://mavericksedge.ca/videos/Portfolio_Video_21.webm",
-  "https://mavericksedge.ca/videos/Portfolio_Video_22.webm",
-  "https://mavericksedge.ca/videos/Portfolio_Video_23.webm",
-  "https://mavericksedge.ca/videos/Portfolio_Video_24.webm",
-  "https://mavericksedge.ca/videos/Portfolio_Video_25.webm",
-  "https://mavericksedge.ca/videos/Portfolio_Video_26.webm",
-  "https://mavericksedge.ca/videos/Portfolio_Video_27.webm",
-  "https://mavericksedge.ca/videos/Portfolio_Video_28.webm",
-  "https://mavericksedge.ca/videos/Portfolio_Video_29.webm",
-  "https://mavericksedge.ca/videos/Portfolio_Video_30.webm",
-  "https://mavericksedge.ca/videos/Portfolio_Video_31.webm",
-  "https://mavericksedge.ca/videos/Portfolio_Video_32.webm",
-  "https://mavericksedge.ca/videos/Portfolio_Video_33.webm",
-  "https://mavericksedge.ca/videos/Portfolio_Video_34.webm",
-  "https://mavericksedge.ca/videos/Portfolio_Video_35.webm",
-  "https://mavericksedge.ca/videos/Portfolio_Video_36.webm",
-  "https://mavericksedge.ca/videos/Portfolio_Video_37.webm",
-  "https://mavericksedge.ca/videos/Portfolio_Video_38.webm"
 ];
 
-export default function ShowcaseGallery() {
-  const { isMobile, shouldLazyLoad, getLoadingPriority } = useMobileOptimization();
+export default function PartnershipSection() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [isInView, setIsInView] = useState(false);
   
-  // Performance optimization: Load fewer videos initially
-  const INITIAL_VIDEOS = isMobile ? 2 : 3; // Even fewer videos on mobile
-  const VIDEOS_PER_COLUMN = isMobile ? 1 : 2; // Single column on mobile
-  
-  // Create a more efficient distribution
-  const createOptimizedDistribution = () => {
-    // For initial load, only use first 12 videos
-    const initialSet = CDN_VIDEOS.slice(0, INITIAL_VIDEOS * 2);
-    // Rest will be loaded lazily
-    const lazySet = CDN_VIDEOS.slice(INITIAL_VIDEOS * 2);
-    
-    return { initialSet, lazySet };
-  };
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"]
+  });
 
-  const { initialSet, lazySet } = createOptimizedDistribution();
+  // Transform from zoomed in (1.8) to normal (1.0) as user scrolls - more dramatic zoom
+  const scale = useTransform(scrollYProgress, [0, 0.6], [1.8, 1.0]);
+  const opacity = useTransform(scrollYProgress, [0, 0.4], [0, 1]);
 
-  // Split initial videos into three columns (4 per column)
-  const VIDEOS_1 = initialSet.slice(0, VIDEOS_PER_COLUMN);
-  const VIDEOS_2 = initialSet.slice(VIDEOS_PER_COLUMN, VIDEOS_PER_COLUMN * 2);
-  const IMAGES_3 = initialSet.slice(VIDEOS_PER_COLUMN * 2, VIDEOS_PER_COLUMN * 3);
-  
-  // Lazy load the rest
-  const LAZY_VIDEOS_1 = lazySet.slice(0, 8);
-  const LAZY_VIDEOS_2 = lazySet.slice(8, 16);
-  const LAZY_VIDEOS_3 = lazySet.slice(16, 24);
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsInView(entry.isIntersecting);
+      },
+      {
+        threshold: 0.1,
+        rootMargin: "0px 0px -100px 0px"
+      }
+    );
+
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <div className="relative bg-[#000000] py-12 md:py-16 pt-[120px] pb-[120px] performance-optimized">
-      <ContainerStagger className="relative z-10 place-self-center px-4 xs:px-6 sm:px-8 md:px-12 lg:px-16 xl:px-20 pt-8 xs:pt-10 sm:pt-12">
+    <div className="relative bg-[#000000] py-12 md:py-16 pt-[120px] pb-[120px]">
+      <style dangerouslySetInnerHTML={{
+        __html: `
+          @keyframes scrollLeft {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+          }
+          
+          @keyframes scrollRight {
+            0% { transform: translateX(-50%); }
+            100% { transform: translateX(0); }
+          }
+        `
+      }} />
+
+
+      <div className="relative z-10 place-self-center px-4 xs:px-6 sm:px-8 md:px-12 lg:px-16 xl:px-20 pt-8 xs:pt-10 sm:pt-12">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             {/* Left Side - True Partnership Philosophy */}
             <div className="lg:col-span-7">
-              <ContainerAnimated>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5 }}
+              >
                 <div className="text-left">
                   <div className="font-serif font-semibold leading-tight mb-8">
                     {/* Main Partnership Title */}
@@ -126,12 +119,17 @@ export default function ShowcaseGallery() {
                     </p>
                   </div>
                 </div>
-              </ContainerAnimated>
+              </motion.div>
             </div>
 
             {/* Right Side - Metrics Dashboard */}
             <div className="lg:col-span-5">
-              <ContainerAnimated>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+              >
                 <div className="space-y-6">
                   {/* Google Reviews Metric */}
                   <div className="bg-gradient-to-br from-[#1a1a1a]/90 to-[#2a2a2a]/90 backdrop-blur-sm rounded-2xl p-6 border border-gray-700/50 shadow-xl">
@@ -239,86 +237,239 @@ export default function ShowcaseGallery() {
                     </div>
                   </div>
                 </div>
-              </ContainerAnimated>
+              </motion.div>
             </div>
           </div>
         </div>
-      </ContainerStagger>
-      <div className="pointer-events-none absolute z-10 h-[70vh] w-full"
+      </div>
+
+      {/* Bento Video Grid Section */}
+      <div 
+        ref={containerRef}
+        className="relative mt-48 overflow-hidden w-full"
+      >
+        {/* Container with zoom effect */}
+        <motion.div
+          className="w-full"
+          style={{ scale, opacity }}
+        >
+          {/* Horizontal Scrolling Bento Grid */}
+          <div className="space-y-8">
+            {/* Row 1: Left to Right - Videos 1-6 with auto-scroll */}
+            <motion.div 
+              className="flex gap-8 overflow-hidden pb-4"
+              style={{
+                scrollbarWidth: 'none',
+                msOverflowStyle: 'none',
+                width: '100%',
+                WebkitOverflowScrolling: 'touch'
+              }}
+            >
+              {/* First set of videos */}
+              <div className="flex gap-8" style={{ 
+                animationDuration: '30s',
+                animationName: 'scrollLeft',
+                animationTimingFunction: 'linear',
+                animationIterationCount: 'infinite'
+              }}>
+                {BENTO_VIDEOS.slice(0, 6).map((video, index) => (
+                  <motion.div
+                    key={`row1-${index}`}
+                    className="flex-shrink-0 w-96 h-72 relative group"
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <div className="relative w-full h-full rounded-2xl overflow-hidden shadow-xl">
+                      <OptimizedVideo
+                        src={video}
+                        className="w-full h-full object-cover"
+                        priority={index === 0}
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+              {/* Duplicate set for seamless loop */}
+              <div className="flex gap-8" style={{ 
+                animationDuration: '30s',
+                animationName: 'scrollLeft',
+                animationTimingFunction: 'linear',
+                animationIterationCount: 'infinite'
+              }}>
+                {BENTO_VIDEOS.slice(0, 6).map((video, index) => (
+                  <motion.div
+                    key={`row1-duplicate-${index}`}
+                    className="flex-shrink-0 w-96 h-72 relative group"
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <div className="relative w-full h-full rounded-2xl overflow-hidden shadow-xl">
+                      <OptimizedVideo
+                        src={video}
+                        className="w-full h-full object-cover"
+                        priority={false}
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* Row 2: Right to Left - Videos 7-12 with auto-scroll */}
+            <motion.div 
+              className="flex gap-8 overflow-hidden pb-4"
+              style={{
+                scrollbarWidth: 'none',
+                msOverflowStyle: 'none',
+                width: '100%',
+                WebkitOverflowScrolling: 'touch'
+              }}
+            >
+              {/* First set of videos */}
+              <div className="flex gap-8" style={{ 
+                animationDuration: '25s',
+                animationName: 'scrollRight',
+                animationTimingFunction: 'linear',
+                animationIterationCount: 'infinite'
+              }}>
+                {BENTO_VIDEOS.slice(6, 12).map((video, index) => (
+                  <motion.div
+                    key={`row2-${index}`}
+                    className="flex-shrink-0 w-96 h-72 relative group"
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <div className="relative w-full h-full rounded-2xl overflow-hidden shadow-xl">
+                      <OptimizedVideo
+                        src={video}
+                        className="w-full h-full object-cover"
+                        priority={false}
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+              {/* Duplicate set for seamless loop */}
+              <div className="flex gap-8" style={{ 
+                animationDuration: '25s',
+                animationName: 'scrollRight',
+                animationTimingFunction: 'linear',
+                animationIterationCount: 'infinite'
+              }}>
+                {BENTO_VIDEOS.slice(6, 12).map((video, index) => (
+                  <motion.div
+                    key={`row2-duplicate-${index}`}
+                    className="flex-shrink-0 w-96 h-72 relative group"
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <div className="relative w-full h-full rounded-2xl overflow-hidden shadow-xl">
+                      <OptimizedVideo
+                        src={video}
+                        className="w-full h-full object-cover"
+                        priority={false}
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* Row 3: Left to Right - Videos 13-18 with auto-scroll */}
+            <motion.div 
+              className="flex gap-8 overflow-hidden pb-4"
+              style={{
+                scrollbarWidth: 'none',
+                msOverflowStyle: 'none',
+                width: '100%',
+                WebkitOverflowScrolling: 'touch'
+              }}
+            >
+              {/* First set of videos */}
+              <div className="flex gap-8" style={{ 
+                animationDuration: '35s',
+                animationName: 'scrollLeft',
+                animationTimingFunction: 'linear',
+                animationIterationCount: 'infinite'
+              }}>
+                {BENTO_VIDEOS.slice(12, 18).map((video, index) => (
+                  <motion.div
+                    key={`row3-${index}`}
+                    className="flex-shrink-0 w-96 h-72 relative group"
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <div className="relative w-full h-full rounded-2xl overflow-hidden shadow-xl">
+                      <OptimizedVideo
+                        src={video}
+                        className="w-full h-full object-cover"
+                        priority={false}
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+              {/* Duplicate set for seamless loop */}
+              <div className="flex gap-8" style={{ 
+                animationDuration: '35s',
+                animationName: 'scrollLeft',
+                animationTimingFunction: 'linear',
+                animationIterationCount: 'infinite'
+              }}>
+                {BENTO_VIDEOS.slice(12, 18).map((video, index) => (
+                  <motion.div
+                    key={`row3-duplicate-${index}`}
+                    className="flex-shrink-0 w-96 h-72 relative group"
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <div className="relative w-full h-full rounded-2xl overflow-hidden shadow-xl">
+                      <OptimizedVideo
+                        src={video}
+                        className="w-full h-full object-cover"
+                        priority={false}
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Call to Action */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.9 }}
+            className="text-center mt-16"
+          >
+            <p className="text-lg text-gray-300 mb-6">
+              Ready to see your project come to life?
+            </p>
+            <button className="bg-gradient-to-r from-[#E04500] via-[#FF5630] to-[#FF8A50] text-white px-8 py-4 rounded-lg font-semibold hover:shadow-lg hover:shadow-orange-500/40 transition-all duration-300 transform hover:scale-105 shadow-lg">
+              Start Your Project
+            </button>
+          </motion.div>
+        </motion.div>
+      </div>
+      
+      {/* Background gradient effect - positioned below metrics with overlap */}
+      <div className="pointer-events-none absolute z-10 w-full"
         style={{
           background: "linear-gradient(to right, #FF5630, #8B5CF6, #3B82F6)",
           filter: "blur(84px)",
           mixBlendMode: "screen",
+          top: "30%",
+          height: "50vh",
         }}
       />
-      <ContainerScroll className="relative h-[350vh]">
-        <ContainerSticky className="h-svh bg-[#0000009e] -mt-8">
-          <VideoGalleryWrapper maxConcurrentVideos={3}>
-            <GalleryContainer className="-mt-4">
-              <GalleryCol yRange={["-10%", "2%"]} className="mt-[90px] mb-[90px]">
-                {/* Priority load first 2 videos */}
-                {VIDEOS_1.map((videoSource, index) => (
-                  <OptimizedVideo
-                    key={`initial-1-${index}`}
-                    src={videoSource}
-                    className="block aspect-video w-full rounded-md shadow-lg overflow-hidden"
-                    priority={index < 2}
-                  />
-                ))}
-                {/* Lazy load remaining videos */}
-                {LAZY_VIDEOS_1.map((videoSource, index) => (
-                  <OptimizedVideo
-                    key={`lazy-1-${index}`}
-                    src={videoSource}
-                    className="block aspect-video w-full rounded-md shadow-lg overflow-hidden"
-                    priority={false}
-                  />
-                ))}
-              </GalleryCol>
-              <GalleryCol className="mt-[40px] mb-[120px]" yRange={["0%", "-5%"]}>
-                {/* No priority for middle column */}
-                {VIDEOS_2.map((videoSource, index) => (
-                  <OptimizedVideo
-                    key={`initial-2-${index}`}
-                    src={videoSource}
-                    className="block aspect-video w-full rounded-md shadow-lg overflow-hidden"
-                    priority={false}
-                  />
-                ))}
-                {/* Lazy load remaining videos */}
-                {LAZY_VIDEOS_2.map((videoSource, index) => (
-                  <OptimizedVideo
-                    key={`lazy-2-${index}`}
-                    src={videoSource}
-                    className="block aspect-video w-full rounded-md shadow-lg overflow-hidden"
-                    priority={false}
-                  />
-                ))}
-              </GalleryCol>
-              <GalleryCol yRange={["-10%", "2%"]} className="mt-[85px] mb-[85px]">
-                {/* No priority for third column */}
-                {IMAGES_3.map((videoSource, index) => (
-                  <OptimizedVideo
-                    key={`initial-3-${index}`}
-                    src={videoSource}
-                    className="block aspect-video w-full rounded-md shadow-lg overflow-hidden"
-                    priority={false}
-                  />
-                ))}
-                {/* Lazy load remaining videos */}
-                {LAZY_VIDEOS_3.map((videoSource, index) => (
-                  <OptimizedVideo
-                    key={`lazy-3-${index}`}
-                    src={videoSource}
-                    className="block aspect-video w-full rounded-md shadow-lg overflow-hidden"
-                    priority={false}
-                  />
-                ))}
-              </GalleryCol>
-            </GalleryContainer>
-          </VideoGalleryWrapper>
-        </ContainerSticky>
-      </ContainerScroll>
     </div>
   );
-}
+} 

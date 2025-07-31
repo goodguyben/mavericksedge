@@ -2,8 +2,9 @@ import { motion } from "framer-motion";
 import { Helmet } from "react-helmet-async";
 import { lazy, Suspense, useEffect } from "react";
 import Hero from "@/components/sections/Hero";
-import ShowcaseGallery from "@/components/sections/ShowcaseGallery";
+
 import WhatWeDoSection from "@/components/sections/WhatWeDoSection";
+import PartnershipSection from "@/components/sections/PartnershipSection";
 import { generateOrganizationStructuredData, generateWebsiteStructuredData, generateFAQStructuredData } from '@/lib/seo';
 import LocalSEO from '@/components/LocalSEO';
 import MobileOptimizations from '@/components/MobileOptimized';
@@ -63,21 +64,23 @@ export default function Home() {
           {/* Main hero section - Critical above-fold content */}
           <Hero />
 
-          {/* Showcase Gallery - Progressive loading */}
+          {/* Partnership Section - Your trusted partner in growth */}
           <LazySection threshold={0.2} rootMargin="100px" className="relative">
             <ScrollFadeSection
-              id="showcase-gallery"
+              id="partnership"
               fadeInPoint={0.4}
               fadeOutPoint={0.6}
               fadeInDuration={1.2}
               fadeOutDuration={1.6}
               initialOpacity={0}
               minOpacity={0.1}
-              useFallback={true} // Use original implementation for now
+              useFallback={true}
             >
-              <ShowcaseGallery />
+              <PartnershipSection />
             </ScrollFadeSection>
           </LazySection>
+
+
 
           {/* Progressive loading for below-fold sections */}
           <LazySection threshold={0.1} rootMargin="50px">
