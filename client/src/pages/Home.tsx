@@ -14,13 +14,12 @@ import { LazySection } from '@/components/performance/LazySection';
 import { measurePerformance, initializeProductionOptimizations } from '@/lib/performance';
 import { analytics } from '@/lib/logger';
 
-// Lazy load non-critical components
-const ShowcaseGallery = lazy(() => import("@/components/sections/ShowcaseGallery"));
-const ServiceCascadeSection = lazy(() => import("@/components/sections/ServiceCascadeSection"));
-const ContactSection = lazy(() => import("@/components/sections/ContactSection"));
-const WhyChooseUsSection = lazy(() => import("@/components/sections/WhyChooseUsSection"));
-const CreativeWorkSection = lazy(() => import("@/components/sections/CreativeWorkSection"));
-const ProcessSection = lazy(() => import("@/components/sections/ProcessSection"));
+// Import components directly for now (will optimize later)
+import ShowcaseGallery from "@/components/sections/ShowcaseGallery";
+import ServiceCascadeSection from "@/components/sections/ServiceCascadeSection";
+import ContactSection from "@/components/sections/ContactSection";
+import WhyChooseUsSection from "@/components/sections/WhyChooseUsSection";
+import ProcessSection from "@/components/sections/ProcessSection";
 
 // Optimized fallback component
 const SectionFallback = ({ height = "h-64" }: { height?: string }) => (
@@ -65,99 +64,77 @@ export default function Home() {
           {/* Main hero section - Critical above-fold content */}
           <Hero />
 
-          {/* Showcase Gallery - Progressive loading */}
-          <LazySection threshold={0.2} rootMargin="100px" className="relative">
-            <ScrollFadeSection
-              id="showcase-gallery"
-              fadeInPoint={0.4}
-              fadeOutPoint={0.6}
-              fadeInDuration={1.2}
-              fadeOutDuration={1.6}
-              initialOpacity={0}
-              minOpacity={0.1}
-              useFallback={true} // Use original implementation for now
-            >
-              <Suspense fallback={<SectionFallback height="h-96" />}>
-                <ShowcaseGallery />
-              </Suspense>
-            </ScrollFadeSection>
-          </LazySection>
+          {/* Showcase Gallery */}
+          <ScrollFadeSection
+            id="showcase-gallery"
+            fadeInPoint={0.4}
+            fadeOutPoint={0.6}
+            fadeInDuration={1.2}
+            fadeOutDuration={1.6}
+            initialOpacity={0}
+            minOpacity={0.1}
+            useFallback={true}
+          >
+            <ShowcaseGallery />
+          </ScrollFadeSection>
 
-          {/* Progressive loading for below-fold sections */}
-          <LazySection threshold={0.1} rootMargin="50px">
-            <section id="what-we-do" className="relative">
-              <WhatWeDoSection />
-            </section>
-          </LazySection>
+          {/* What We Do Section */}
+          <section id="what-we-do" className="relative">
+            <WhatWeDoSection />
+          </section>
 
           {/* Service Cascade Section */}
-          <LazySection threshold={0.1} rootMargin="50px">
-            <ScrollFadeSection
-              id="service-cascade"
-              fadeInPoint={0.5}
-              fadeOutPoint={0.6}
-              fadeInDuration={1}
-              fadeOutDuration={1.8}
-              initialOpacity={0}
-              minOpacity={0.1}
-              useFallback={true} // Use original implementation for now
-            >
-              <Suspense fallback={<SectionFallback />}>
-                <ServiceCascadeSection />
-              </Suspense>
-            </ScrollFadeSection>
-          </LazySection>
+          <ScrollFadeSection
+            id="service-cascade"
+            fadeInPoint={0.5}
+            fadeOutPoint={0.6}
+            fadeInDuration={1}
+            fadeOutDuration={1.8}
+            initialOpacity={0}
+            minOpacity={0.1}
+            useFallback={true}
+          >
+            <ServiceCascadeSection />
+          </ScrollFadeSection>
 
-          <LazySection threshold={0.1} rootMargin="50px">
-            <ScrollFadeSection
-              id="why-choose-us"
-              fadeInPoint={0.5}
-              fadeOutPoint={0.6}
-              fadeInDuration={1}
-              fadeOutDuration={1.9}
-              initialOpacity={0}
-              minOpacity={0.1}
-              useFallback={true} // Use original implementation for now
-            >
-              <Suspense fallback={<SectionFallback />}>
-                <WhyChooseUsSection />
-              </Suspense>
-            </ScrollFadeSection>
-          </LazySection>
+          <ScrollFadeSection
+            id="why-choose-us"
+            fadeInPoint={0.5}
+            fadeOutPoint={0.6}
+            fadeInDuration={1}
+            fadeOutDuration={1.9}
+            initialOpacity={0}
+            minOpacity={0.1}
+            useFallback={true}
+          >
+            <WhyChooseUsSection />
+          </ScrollFadeSection>
 
-          <LazySection threshold={0.1} rootMargin="50px">
-            <ScrollFadeSection
-              id="process"
-              fadeInPoint={0.5}
-              fadeOutPoint={0.65}
-              fadeInDuration={0.9}
-              fadeOutDuration={1.8}
-              initialOpacity={0}
-              minOpacity={0.1}
-              useFallback={true} // Use original implementation for now
-            >
-              <Suspense fallback={<SectionFallback />}>
-                <ProcessSection />
-              </Suspense>
-            </ScrollFadeSection>
-          </LazySection>
+          <ScrollFadeSection
+            id="process"
+            fadeInPoint={0.5}
+            fadeOutPoint={0.65}
+            fadeInDuration={0.9}
+            fadeOutDuration={1.8}
+            initialOpacity={0}
+            minOpacity={0.1}
+            useFallback={true}
+          >
+            <ProcessSection />
+          </ScrollFadeSection>
 
-          <LazySection threshold={0.1} rootMargin="50px">
-            <ScrollFadeSection
-              id="contact"
-              fadeInPoint={0.5}
-              fadeOutPoint={0.6}
-              fadeInDuration={0.9}
-              fadeOutDuration={1.6}
-              initialOpacity={0}
-              minOpacity={0.1}
-              useFallback={true} // Use original implementation for now
-            >
-              <Suspense fallback={<SectionFallback />}>
-                <ContactSection />
-              </Suspense>
-            </ScrollFadeSection>
-          </LazySection>
+          <ScrollFadeSection
+            id="contact"
+            fadeInPoint={0.5}
+            fadeOutPoint={0.6}
+            fadeInDuration={0.9}
+            fadeOutDuration={1.6}
+            initialOpacity={0}
+            minOpacity={0.1}
+            useFallback={true}
+          >
+            <ContactSection />
+          </ScrollFadeSection>
         </article>
       </div>
     </>
