@@ -172,10 +172,11 @@ export default function WhatWeDoSection() {
               transition={{ duration: 0.5, delay: 0.2 }}
             >
               What We{" "}
-              <span className="relative inline-block">
+              <span className="inline">
                 <GradientText 
                   colors={["#FF5630", "#FF8A50", "#FFB899", "#FF5630"]}
                   animationSpeed={5}
+                  className="no-underline inline"
                 >
                   Do
                 </GradientText>

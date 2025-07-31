@@ -1,8 +1,18 @@
 
 .animated-gradient-text {
   position: relative;
-  display: inline-block;
+  display: inline;
   overflow: hidden;
+}
+
+.animated-gradient-text.inline {
+  display: inline !important;
+  white-space: nowrap;
+}
+
+.animated-gradient-text.no-underline {
+  text-decoration: none !important;
+  border-bottom: none !important;
 }
 
 .text-content {
@@ -13,6 +23,17 @@
   animation: gradient-animation infinite ease-in-out;
   position: relative;
   z-index: 2;
+  display: inline;
+}
+
+.text-content.no-underline {
+  text-decoration: none !important;
+  border-bottom: none !important;
+}
+
+.text-content.inline {
+  display: inline !important;
+  white-space: nowrap;
 }
 
 .gradient-overlay {

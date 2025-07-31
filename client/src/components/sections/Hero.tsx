@@ -114,8 +114,8 @@ export default function Hero() {
               lightColor="#F15A29"
               duration={6}
               lightWidth={200}
-              borderWidth={2}
-              className="maverick-button maverick-button-outline"
+              borderWidth={1}
+              className="maverick-button maverick-button-outline px-6 py-5"
             >
               Book Free Consultation
             </ShinyBorderButton>

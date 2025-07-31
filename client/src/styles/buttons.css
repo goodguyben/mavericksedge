@@ -4,7 +4,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.625rem 1.25rem;
+  padding: 0.875rem 1.25rem;
   border-radius: 9999px;
   font-weight: 500;
   text-align: center;
@@ -18,14 +18,14 @@
 /* Responsive button sizes */
 @media (min-width: 640px) {
   .maverick-button {
-    padding: 0.75rem 1.5rem;
+    padding: 1rem 1.5rem;
     font-size: 1rem;
   }
 }
 
 @media (min-width: 768px) {
   .maverick-button {
-    padding: 0.75rem 2rem;
+    padding: 1.125rem 2rem;
   }
 }
 
@@ -72,7 +72,7 @@
 /* Outline button */
 .maverick-button-outline {
   background-color: #00000000;
-  border: 2px solid #F15A29;
+  border: 1px solid #F15A29;
   color: #F15A29 !important; /* Force text color */
 }
 
