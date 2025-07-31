@@ -1,6 +1,6 @@
 
 // Simple service worker for production caching
-const CACHE_NAME = 'mavericks-edge-v2'; // Increment version to force cache refresh
+const CACHE_NAME = 'mavericks-edge-v3'; // Increment version to force cache refresh
 const urlsToCache = [
   '/',
   '/assets/logo-transparent-thumb4x.png'
@@ -19,10 +19,14 @@ self.addEventListener('activate', (event) => {
       return Promise.all(
         cacheNames.map((cacheName) => {
           if (cacheName !== CACHE_NAME) {
+            console.log('Deleting old cache:', cacheName);
             return caches.delete(cacheName);
           }
         })
       );
+    }).then(() => {
+      // Force clients to reload
+      return self.clients.claim();
     })
   );
 });

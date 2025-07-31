@@ -81,7 +81,7 @@ export const initializeProductionOptimizations = () => {
     if ('caches' in window) {
       caches.keys().then((cacheNames) => {
         cacheNames.forEach((cacheName) => {
-          if (cacheName !== 'mavericks-edge-v2') {
+          if (cacheName !== 'mavericks-edge-v3') {
             caches.delete(cacheName);
           }
         });
