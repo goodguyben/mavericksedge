@@ -37,9 +37,17 @@ export default defineConfig({
         manualChunks: {
           // Separate vendor chunks for better caching
           vendor: ['react', 'react-dom'],
-          animations: ['framer-motion', 'gsap'],
+          animations: ['framer-motion'],
           ui: ['@radix-ui/react-dialog', '@radix-ui/react-dropdown-menu', '@radix-ui/react-navigation-menu'],
           utils: ['clsx', 'tailwind-merge', 'class-variance-authority'],
+        },
+        // Optimize chunk loading
+        chunkFileNames: (chunkInfo) => {
+          const facadeModuleId = chunkInfo.facadeModuleId;
+          if (facadeModuleId?.includes('node_modules')) {
+            return 'vendor/[name]-[hash].js';
+          }
+          return 'chunks/[name]-[hash].js';
         },
       },
     },

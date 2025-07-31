@@ -1,5 +1,6 @@
 
 // Performance optimization utilities
+import React from 'react';
 
 // Reduce DOM complexity by virtualizing large lists
 export const virtualizeList = (items: any[], containerHeight: number, itemHeight: number, scrollTop: number) => {
@@ -15,31 +16,74 @@ export const virtualizeList = (items: any[], containerHeight: number, itemHeight
   };
 };
 
-// Debounce scroll events to improve performance
+// Enhanced debounce with options
+export const optimizedDebounce = <T extends (...args: any[]) => any>(
+  func: T,
+  wait: number,
+  options: { leading?: boolean; trailing?: boolean } = {}
+): ((...args: Parameters<T>) => void) => {
+  let timeoutId: NodeJS.Timeout | undefined;
+  let lastArgs: Parameters<T> | undefined;
+  
+  return (...args: Parameters<T>) => {
+    lastArgs = args;
+    
+    if (options.leading && !timeoutId) {
+      func(...args);
+    }
+    
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => {
+      if (options.trailing && lastArgs) {
+        func(...lastArgs);
+      }
+      timeoutId = undefined;
+      lastArgs = undefined;
+    }, wait);
+  };
+};
+
+// Enhanced throttle with better performance
+export const optimizedThrottle = <T extends (...args: any[]) => any>(
+  func: T,
+  limit: number,
+  options: { leading?: boolean; trailing?: boolean } = {}
+): ((...args: Parameters<T>) => void) => {
+  let inThrottle: boolean;
+  let lastArgs: Parameters<T> | undefined;
+  
+  return (...args: Parameters<T>) => {
+    lastArgs = args;
+    
+    if (!inThrottle) {
+      if (options.leading !== false) {
+        func(...args);
+      }
+      inThrottle = true;
+      setTimeout(() => {
+        inThrottle = false;
+        if (options.trailing && lastArgs) {
+          func(...lastArgs);
+        }
+      }, limit);
+    }
+  };
+};
+
+// Legacy debounce for backward compatibility
 export const debounce = <T extends (...args: any[]) => any>(
   func: T,
   wait: number
 ): ((...args: Parameters<T>) => void) => {
-  let timeout: NodeJS.Timeout;
-  return (...args: Parameters<T>) => {
-    clearTimeout(timeout);
-    timeout = setTimeout(() => func(...args), wait);
-  };
+  return optimizedDebounce(func, wait);
 };
 
-// Throttle expensive operations
+// Legacy throttle for backward compatibility
 export const throttle = <T extends (...args: any[]) => any>(
   func: T,
   limit: number
 ): ((...args: Parameters<T>) => void) => {
-  let inThrottle: boolean;
-  return (...args: Parameters<T>) => {
-    if (!inThrottle) {
-      func(...args);
-      inThrottle = true;
-      setTimeout(() => inThrottle = false, limit);
-    }
-  };
+  return optimizedThrottle(func, limit);
 };
 
 // Preload critical resources
@@ -50,6 +94,41 @@ export const preloadResource = (href: string, as: string, type?: string) => {
   link.as = as;
   if (type) link.type = type;
   document.head.appendChild(link);
+};
+
+// Enhanced memory management
+export const createMemoryManager = () => {
+  const observers = new Set<IntersectionObserver>();
+  const timeouts = new Set<NodeJS.Timeout>();
+  const eventListeners = new Set<{ element: Element; type: string; handler: EventListener }>();
+  
+  return {
+    addObserver: (observer: IntersectionObserver) => {
+      observers.add(observer);
+    },
+    addTimeout: (timeout: NodeJS.Timeout) => {
+      timeouts.add(timeout);
+    },
+    addEventListener: (element: Element, type: string, handler: EventListener) => {
+      element.addEventListener(type, handler);
+      eventListeners.add({ element, type, handler });
+    },
+    cleanup: () => {
+      // Cleanup observers
+      observers.forEach(observer => observer.disconnect());
+      observers.clear();
+      
+      // Cleanup timeouts
+      timeouts.forEach(timeout => clearTimeout(timeout));
+      timeouts.clear();
+      
+      // Cleanup event listeners
+      eventListeners.forEach(({ element, type, handler }) => {
+        element.removeEventListener(type, handler);
+      });
+      eventListeners.clear();
+    },
+  };
 };
 
 // Clean up event listeners and observers
@@ -111,6 +190,46 @@ export const createLazyObserver = (
   return new IntersectionObserver(callback, defaultOptions);
 };
 
+// Enhanced lazy loading with priority management
+export const createPriorityLoader = () => {
+  const highPriority = new Set<string>();
+  const lowPriority = new Set<string>();
+  
+  return {
+    addHighPriority: (component: string) => highPriority.add(component),
+    addLowPriority: (component: string) => lowPriority.add(component),
+    loadHighPriority: () => Promise.all([...highPriority].map(import)),
+    loadLowPriority: () => requestIdleCallback(() => 
+      Promise.all([...lowPriority].map(import))
+    )
+  };
+};
+
+// Optimize your existing lazy loading
+export const optimizedLazyLoad = <T extends React.ComponentType<any>>(
+  importFunc: () => Promise<{ default: T }>,
+  priority: 'high' | 'low' = 'low'
+) => {
+  if (priority === 'high') {
+    // Preload high-priority components
+    return React.lazy(() => importFunc().then(module => {
+      // Pre-warm the component
+      if (module.default) {
+        React.createElement(module.default);
+      }
+      return module;
+    }));
+  }
+  
+  return React.lazy(() => 
+    new Promise(resolve => {
+      requestIdleCallback(() => {
+        importFunc().then(resolve);
+      });
+    })
+  );
+};
+
 // Bundle size optimization - dynamic imports
 export const loadComponentAsync = <T extends React.ComponentType<any>>(
   importFunc: () => Promise<{ default: T }>
@@ -159,7 +278,7 @@ export const measurePerformance = (name: string, fn: () => void) => {
 
 // Request Idle Callback wrapper for non-critical work
 export const requestIdleCallback = (callback: () => void, options?: { timeout?: number }) => {
-  if ('requestIdleCallback' in window) {
+  if (typeof window !== 'undefined' && 'requestIdleCallback' in window) {
     return (window as any).requestIdleCallback(callback, options);
   } else {
     // Fallback for browsers that don't support requestIdleCallback
@@ -169,7 +288,7 @@ export const requestIdleCallback = (callback: () => void, options?: { timeout?: 
 
 // Cancel idle callback
 export const cancelIdleCallback = (id: number) => {
-  if ('cancelIdleCallback' in window) {
+  if (typeof window !== 'undefined' && 'cancelIdleCallback' in window) {
     (window as any).cancelIdleCallback(id);
   } else {
     clearTimeout(id);
@@ -178,21 +297,18 @@ export const cancelIdleCallback = (id: number) => {
 
 // Device capability detection
 export const getDeviceCapabilities = () => {
-  if (typeof window === 'undefined') {
+  if (typeof window === 'undefined' || typeof navigator === 'undefined') {
     return { isLowEnd: false, isMobile: false, hasReducedMotion: false };
   }
 
   const isLowEnd = 
-    navigator.hardwareConcurrency <= 4 ||
-    (navigator as any).deviceMemory <= 4 ||
-    (navigator as any).connection?.effectiveType === '2g' ||
-    (navigator as any).connection?.effectiveType === 'slow-2g';
+    (navigator.hardwareConcurrency || 0) <= 4 ||
+    ((navigator as any).deviceMemory || 0) <= 4 ||
+    ((navigator as any).connection?.effectiveType === '2g') ||
+    ((navigator as any).connection?.effectiveType === 'slow-2g');
   
-  const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-  const hasReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent || '');
+  const hasReducedMotion = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)').matches : false;
   
   return { isLowEnd, isMobile, hasReducedMotion };
 };
-
-// Import React for lazy loading
-import React from 'react';

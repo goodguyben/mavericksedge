@@ -9,9 +9,10 @@ import { PerformanceMonitor } from "@/components/performance";
 import { WebVitalsMonitor } from "@/components/performance/WebVitalsMonitor";
 import { initializeGoogleAnalytics, trackPageView } from "@/lib/analytics";
 import LoadingScreen from "@/components/ui/LoadingScreen";
+import { CriticalPathLoader } from "@/lib/criticalPath";
+import { getDeviceCapabilities } from "@/lib/performance";
 
-
-// Lazy load pages
+// Regular lazy loading for now to fix crash
 const Home = lazy(() => import("@/pages/Home"));
 const Services = lazy(() => import("@/pages/Services"));
 const WebServices = lazy(() => import("@/pages/WebServices"));
@@ -35,7 +36,6 @@ const Accessibility = lazy(() => import("@/pages/Accessibility"));
 const Blog = lazy(() => import("@/pages/Blog"));
 const BlogPost = lazy(() => import("@/pages/BlogPost"));
 const NotFound = lazy(() => import("@/pages/not-found"));
-
 
 export default function App() {
   const [location] = useLocation();
@@ -62,6 +62,19 @@ export default function App() {
   useEffect(() => {
     if (!isLoading) {
       trackPageView(document.title, location, window.location.href);
+    }
+  }, [location, isLoading]);
+
+  // Preload components based on route and device capabilities
+  useEffect(() => {
+    if (!isLoading) {
+      const capabilities = getDeviceCapabilities();
+      CriticalPathLoader.preloadBasedOnRoute(location);
+      
+      // Load non-critical components based on device capabilities
+      if (!capabilities.isLowEnd) {
+        CriticalPathLoader.loadNonCritical();
+      }
     }
   }, [location, isLoading]);
 
