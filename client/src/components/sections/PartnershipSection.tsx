@@ -254,15 +254,17 @@ export default function PartnershipSection() {
           style={{ scale, opacity }}
         >
           {/* Horizontal Scrolling Bento Grid */}
-          <div className="space-y-8">
+          <div className="space-y-12">
             {/* Row 1: Left to Right - Videos 1-6 with auto-scroll */}
             <motion.div 
-              className="flex gap-8 overflow-hidden pb-4"
+              className="flex gap-8 overflow-hidden pb-4 py-6"
               style={{
                 scrollbarWidth: 'none',
                 msOverflowStyle: 'none',
                 width: '100%',
-                WebkitOverflowScrolling: 'touch'
+                WebkitOverflowScrolling: 'touch',
+                paddingLeft: '24px',
+                paddingRight: '24px'
               }}
             >
               {/* First set of videos */}
@@ -319,12 +321,14 @@ export default function PartnershipSection() {
 
             {/* Row 2: Right to Left - Videos 7-12 with auto-scroll */}
             <motion.div 
-              className="flex gap-8 overflow-hidden pb-4"
+              className="flex gap-8 overflow-hidden pb-4 py-6"
               style={{
                 scrollbarWidth: 'none',
                 msOverflowStyle: 'none',
                 width: '100%',
-                WebkitOverflowScrolling: 'touch'
+                WebkitOverflowScrolling: 'touch',
+                paddingLeft: '24px',
+                paddingRight: '24px'
               }}
             >
               {/* First set of videos */}
@@ -381,12 +385,14 @@ export default function PartnershipSection() {
 
             {/* Row 3: Left to Right - Videos 13-18 with auto-scroll */}
             <motion.div 
-              className="flex gap-8 overflow-hidden pb-4"
+              className="flex gap-8 overflow-hidden pb-4 py-6"
               style={{
                 scrollbarWidth: 'none',
                 msOverflowStyle: 'none',
                 width: '100%',
-                WebkitOverflowScrolling: 'touch'
+                WebkitOverflowScrolling: 'touch',
+                paddingLeft: '24px',
+                paddingRight: '24px'
               }}
             >
               {/* First set of videos */}
