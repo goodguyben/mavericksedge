@@ -271,10 +271,9 @@ const CardSwap: React.FC<CardSwapProps> = ({
 
   useEffect(() => {
     const total = refs.length;
-    if (total < 2) return;
-
-    // Position cards initially
-    const positionCards = () => {
+    
+    // Use requestAnimationFrame to batch DOM updates and reduce reflows
+    requestAnimationFrame(() => {
       refs.forEach((r, i) => {
         if (r.current) {
           placeNow(
@@ -284,38 +283,26 @@ const CardSwap: React.FC<CardSwapProps> = ({
           );
         }
       });
-    };
-
-    // Initial positioning
-    requestAnimationFrame(positionCards);
+    });
 
     const swap = () => {
-      if (order.current.length < 2) return;
+      if (!isInViewRef.current || order.current.length < 2) return;
 
       const [front, ...rest] = order.current;
       const elFront = refs[front].current;
       if (!elFront) return;
 
-      // Kill any existing timeline
-      if (tlRef.current) {
-        tlRef.current.kill();
-      }
+      // Use requestAnimationFrame to prevent forced reflows
+      requestAnimationFrame(() => {
+        const tl = gsap.timeline();
+        tlRef.current = tl;
 
-      const tl = gsap.timeline({
-        onComplete: () => {
-          order.current = [...rest, front];
-        }
-      });
-      tlRef.current = tl;
-
-      // Drop animation
       tl.to(elFront, {
         y: "+=500",
         duration: config.durDrop,
         ease: config.ease,
       });
 
-      // Promote other cards
       tl.addLabel("promote", `-=${config.durDrop * config.promoteOverlap}`);
       rest.forEach((idx, i) => {
         const el = refs[idx].current;
@@ -336,7 +323,6 @@ const CardSwap: React.FC<CardSwapProps> = ({
         );
       });
 
-      // Return front card to back
       const backSlot = makeSlot(
         refs.length - 1,
         cardDistance,
@@ -344,7 +330,13 @@ const CardSwap: React.FC<CardSwapProps> = ({
         refs.length
       );
       tl.addLabel("return", `promote+=${config.durMove * config.returnDelay}`);
-      tl.set(elFront, { zIndex: backSlot.zIndex }, "return");
+      tl.call(
+        () => {
+          gsap.set(elFront, { zIndex: backSlot.zIndex });
+        },
+        undefined,
+        "return"
+      );
       tl.set(elFront, { x: backSlot.x, z: backSlot.z }, "return");
       tl.to(
         elFront,
@@ -355,46 +347,47 @@ const CardSwap: React.FC<CardSwapProps> = ({
         },
         "return"
       );
+
+      tl.call(() => {
+        order.current = [...rest, front];
+      });
+    });
     };
 
-    // Use a more robust approach for starting animations
-    // Account for Framer Motion's 3.5s delay plus additional time for DOM stability
-    const startAnimations = () => {
-      // Verify all refs are still valid before starting
-      const allRefsValid = refs.every(ref => ref.current !== null);
-      if (!allRefsValid) {
-        // Retry after a short delay if refs aren't ready
-        setTimeout(startAnimations, 500);
-        return;
-      }
+    // Set up intersection observer for performance
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          isInViewRef.current = entry.isIntersecting;
+          if (entry.isIntersecting && !hasStartedRef.current) {
+            hasStartedRef.current = true;
+            // Start swapping only when in view
+            swap();
+            intervalRef.current = window.setInterval(swap, delay);
+          } else if (!entry.isIntersecting && intervalRef.current) {
+            // Stop animations when out of view
+            clearInterval(intervalRef.current);
+            intervalRef.current = undefined;
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
 
-      // Clear any existing interval
-      if (intervalRef.current) {
-        clearInterval(intervalRef.current);
-        intervalRef.current = undefined;
-      }
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
+    }
 
-      // Start the first swap
-      swap();
-      
-      // Set up the recurring interval
-      intervalRef.current = window.setInterval(swap, delay);
-    };
-
-    // Wait for Framer Motion animation to complete (3.5s) plus buffer
-    const animationDelay = setTimeout(startAnimations, 5000);
-
-    // Hover pause functionality
+    // Add pause on hover functionality
     const containerEl = containerRef.current;
     const handleMouseEnter = () => {
       if (pauseOnHover && intervalRef.current) {
         clearInterval(intervalRef.current);
-        intervalRef.current = undefined;
       }
     };
 
     const handleMouseLeave = () => {
-      if (pauseOnHover && !intervalRef.current) {
+      if (pauseOnHover && !intervalRef.current && isInViewRef.current) {
         intervalRef.current = window.setInterval(swap, delay);
       }
     };
@@ -407,20 +400,16 @@ const CardSwap: React.FC<CardSwapProps> = ({
     return () => {
       if (intervalRef.current) {
         clearInterval(intervalRef.current);
-        intervalRef.current = undefined;
       }
-      if (animationDelay) {
-        clearTimeout(animationDelay);
-      }
-      if (tlRef.current) {
-        tlRef.current.kill();
-      }
-      if (containerEl && pauseOnHover) {
-        containerEl.removeEventListener('mouseenter', handleMouseEnter);
-        containerEl.removeEventListener('mouseleave', handleMouseLeave);
+      if (containerEl) {
+        observer.unobserve(containerEl);
+        if (pauseOnHover) {
+          containerEl.removeEventListener('mouseenter', handleMouseEnter);
+          containerEl.removeEventListener('mouseleave', handleMouseLeave);
+        }
       }
     };
-  }, [cardDistance, verticalDistance, delay, skewAmount, pauseOnHover, refs.length]);
+  }, [cardDistance, verticalDistance, delay, skewAmount, easing, pauseOnHover, refs.length]);
 
   const rendered = childArr.map((child, i) =>
     isValidElement<CardProps>(child)

@@ -2,13 +2,11 @@ import { motion } from "framer-motion";
 import { Helmet } from "react-helmet-async";
 import { lazy, Suspense, useEffect } from "react";
 import Hero from "@/components/sections/Hero";
-import ShowcaseGallery from "@/components/sections/ShowcaseGallery";
 import WhatWeDoSection from "@/components/sections/WhatWeDoSection";
+import WebVitalsMonitor from "@/components/ui/WebVitalsMonitor";
 import { generateOrganizationStructuredData, generateWebsiteStructuredData, generateFAQStructuredData } from '@/lib/seo';
 import LocalSEO from '@/components/LocalSEO';
 import MobileOptimizations from '@/components/MobileOptimized';
-import CreativeWorkSection from '@/components/sections/CreativeWorkSection';
-import ProcessSection from '@/components/sections/ProcessSection';
 import ScrollFadeSection from '@/components/ui/scroll-fade-section';
 import SEOHead from '@/components/SEOHead';
 import StructuredData, { organizationSchema, localBusinessSchema, websiteSchema, faqSchema } from '@/components/StructuredData';
@@ -17,9 +15,12 @@ import { measurePerformance, initializeProductionOptimizations } from '@/lib/per
 import { analytics } from '@/lib/logger';
 
 // Lazy load non-critical components
-import ServiceCascadeSection from "@/components/sections/ServiceCascadeSection";
-import ContactSection from "@/components/sections/ContactSection";
+const ShowcaseGallery = lazy(() => import("@/components/sections/ShowcaseGallery"));
+const ServiceCascadeSection = lazy(() => import("@/components/sections/ServiceCascadeSection"));
+const ContactSection = lazy(() => import("@/components/sections/ContactSection"));
 const WhyChooseUsSection = lazy(() => import("@/components/sections/WhyChooseUsSection"));
+const CreativeWorkSection = lazy(() => import("@/components/sections/CreativeWorkSection"));
+const ProcessSection = lazy(() => import("@/components/sections/ProcessSection"));
 
 // Optimized fallback component
 const SectionFallback = ({ height = "h-64" }: { height?: string }) => (
@@ -59,6 +60,7 @@ export default function Home() {
 
       <div className="home-page-wrapper">
         <article>
+          <WebVitalsMonitor />
           <MobileOptimizations />
           {/* Main hero section - Critical above-fold content */}
           <Hero />
@@ -75,7 +77,9 @@ export default function Home() {
               minOpacity={0.1}
               useFallback={true} // Use original implementation for now
             >
-              <ShowcaseGallery />
+              <Suspense fallback={<SectionFallback height="h-96" />}>
+                <ShowcaseGallery />
+              </Suspense>
             </ScrollFadeSection>
           </LazySection>
 
@@ -98,7 +102,9 @@ export default function Home() {
               minOpacity={0.1}
               useFallback={true} // Use original implementation for now
             >
-              <ServiceCascadeSection />
+              <Suspense fallback={<SectionFallback />}>
+                <ServiceCascadeSection />
+              </Suspense>
             </ScrollFadeSection>
           </LazySection>
 
@@ -147,7 +153,9 @@ export default function Home() {
               minOpacity={0.1}
               useFallback={true} // Use original implementation for now
             >
-              <ContactSection />
+              <Suspense fallback={<SectionFallback />}>
+                <ContactSection />
+              </Suspense>
             </ScrollFadeSection>
           </LazySection>
         </article>

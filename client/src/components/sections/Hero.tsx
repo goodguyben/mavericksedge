@@ -5,7 +5,7 @@ import { scrollToSection } from "@/lib/scroll";
 import { Button } from "@/components/ui/custom-button";
 import { ShinyBorderButton } from "@/components/ui/ShinyBorderButton";
 import GradientText from "@/components/ui/GradientText";
-import SimpleCardSwap, { Card } from "@/components/ui/SimpleCardSwap";
+import CardSwap, { Card } from "@/components/ui/CardSwap";
 
 export default function Hero() {
   const [scrolled, setScrolled] = useState(false);
@@ -27,9 +27,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden bg-red-900">
-      {/* TEST: Temporary red background to verify visibility */}
-      <div className="absolute inset-0 bg-red-500 z-5" />
+    <section className="relative min-h-screen flex items-center overflow-hidden">
       {/* Background */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-10">
         {/* Background gradient */}
@@ -50,7 +48,7 @@ export default function Hero() {
           <motion.h1 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 1.0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
             className="flex items-center gap-2 text-base sm:text-lg md:text-xl lg:text-lg xl:text-xl 2xl:text-2xl font-heading font-medium mb-2 sm:mb-3 md:mb-4 lg:mb-4 xl:mb-5 2xl:mb-6 justify-start md:justify-start"
           >
             <MapPin className="h-3 w-3 sm:h-4 sm:w-4 md:h-5 md:w-5 lg:h-4 lg:w-4 xl:h-5 xl:h-5 2xl:h-6 2xl:w-6 text-maverick-orange/80 flex-shrink-0" />
@@ -69,7 +67,7 @@ export default function Hero() {
             <motion.div 
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.8, delay: 1.0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
               className="block"
             >
               <span className="text-maverick-cream block font-extrabold text-3xl sm:text-5xl md:text-5xl lg:text-5xl xl:text-[56px]">Building resilient online presence from</span>
@@ -88,7 +86,7 @@ export default function Hero() {
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 2.0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
             className="text-sm sm:text-base md:text-lg lg:text-lg xl:text-xl 2xl:text-2xl text-maverick-cream/80 sm:mt-4 md:mt-5 lg:mt-6 xl:mt-7 2xl:mt-8 sm:mb-6 md:mb-8 lg:mb-10 xl:mb-12 2xl:mb-14 font-sans leading-relaxed text-left mt-[16px] mb-[24px]"
           >
             We're Edmonton-based creators who design beautiful websites, improve your online visibility, and offer smart AI Integration so you can focus on growing your business
@@ -100,7 +98,7 @@ export default function Hero() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 2.8 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
             className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-start items-start"
           >
             <Button 
@@ -127,12 +125,16 @@ export default function Hero() {
           className="hidden lg:block absolute right-0 bottom-20 pointer-events-auto"
           initial={{ opacity: 0, x: 100 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1.0, delay: 3.5, ease: "easeOut" }}
+          transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
         >
-          <SimpleCardSwap
+          <CardSwap
             width={600}
             height={400}
+            cardDistance={60}
+            verticalDistance={70}
             delay={5000}
+            pauseOnHover={false}
+            easing="elastic"
           >
             <Card 
               title="Mobile Responsive"
@@ -146,7 +148,7 @@ export default function Hero() {
             <Card 
               title="Affordable"
             />
-          </SimpleCardSwap>
+          </CardSwap>
         </motion.div>
 
         {/* CardSwap Component - Mobile bottom right, larger */}
@@ -154,12 +156,16 @@ export default function Hero() {
           className="lg:hidden absolute bottom-4 right-4 pointer-events-auto"
           initial={{ opacity: 0, x: 100 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1.0, delay: 3.5, ease: "easeOut" }}
+          transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
         >
-          <SimpleCardSwap
+          <CardSwap
             width={500}
             height={340}
+            cardDistance={55}
+            verticalDistance={60}
             delay={5000}
+            pauseOnHover={false}
+            easing="elastic"
           >
             <Card 
               title="Mobile Responsive"
@@ -173,7 +179,7 @@ export default function Hero() {
             <Card 
               title="Affordable"
             />
-          </SimpleCardSwap>
+          </CardSwap>
         </motion.div>
       </div>
       {/* Scroll indicator */}

@@ -1,184 +1,87 @@
-# Performance Optimization Plan - Mobile Performance Issues
+# Performance Optimizations Summary
 
-## Critical Issues Identified
+## Target: Improve PageSpeed Score from 25 to 85+
 
-### 1. Enormous Network Payloads (4,956 KiB Total)
-- **Main Domain**: 4,112.4 KiB
-- **Video Assets**: 668.4 KiB + 599.4 KiB + 477.1 KiB + 384.1 KiB + 226.9 KiB
-- **Impact**: Blocking critical rendering, massive mobile bandwidth consumption
+### Critical Issues from PageSpeed Report:
+- **Performance Score**: 25/100
+- **Largest Contentful Paint (LCP)**: 14.5s (target: <2.5s)
+- **First Contentful Paint (FCP)**: 5.8s (target: <1.8s)
+- **Speed Index**: 12.1s (target: <3.4s)
+- **Time to Interactive (TTI)**: 24.3s (target: <3.8s)
+- **Total Blocking Time (TBT)**: 4,360ms (target: <200ms)
+- **Cumulative Layout Shift (CLS)**: 0.001 (good)
 
-### 2. Render Blocking Resources (1,380ms delay)
-- CSS blocking initial render
-- Google Fonts loading synchronously
-- Critical CSS not inlined
+### Major Problems Identified:
+1. **Oversized Images/Videos**: 3,045 KiB potential savings
+2. **Unused JavaScript**: 912 KiB
+3. **Unused CSS**: 237 KiB
+4. **Render-blocking resources**: CSS and JavaScript
 
-### 3. Critical Request Chains (965ms maximum latency)
-- Sequential JavaScript loading
-- No parallel optimization
-- Long dependency chains
+## Optimizations Implemented:
 
-### 4. Layout Shift Issues (CLS: 0.286)
-- Video elements without proper aspect ratios
-- Dynamic content loading
-- Font loading causing reflow
+### 1. Video Loading Strategy (✓ Completed)
+- Created `LazyVideo` component that loads videos only on user interaction
+- Replaced all `OptimizedVideo` instances with `LazyVideo` in ShowcaseGallery
+- Reduces initial payload by ~3MB
+- Videos now show a play button overlay until clicked
 
-### 5. Unused JavaScript (134 KiB wasted)
-- Large bundles with unused code
-- No mobile-specific code splitting
+### 2. Code Splitting (✓ Completed)
+- Lazy loaded heavy sections:
+  - ShowcaseGallery
+  - ServiceCascadeSection
+  - ContactSection  
+  - WhyChooseUsSection
+  - CreativeWorkSection
+  - ProcessSection
+- Each section loads only when needed with Suspense boundaries
+- Reduces initial JavaScript bundle significantly
 
-## Optimization Strategy
+### 3. Resource Hints (✓ Completed)
+- Added preconnect to mavericksedge.ca CDN
+- Added dns-prefetch for faster resolution
+- Improves connection speed for video assets
 
-### Phase 1: Critical Video Optimization (Immediate Impact)
+### 4. Performance Monitoring (✓ Completed)
+- Added WebVitalsMonitor component
+- Tracks FCP, LCP, CLS, and Speed Index
+- Provides real-time performance metrics in console
 
-#### 1.1 Implement Progressive Video Loading
-```typescript
-// Priority: CRITICAL
-// Impact: Reduce initial payload by 80%
-- Remove video preloading from HTML head
-- Implement lazy loading for all videos
-- Use intersection observer for video loading
-- Add loading="lazy" to all video elements
-```
+## Next Steps:
 
-#### 1.2 Video Compression and Format Optimization
-```bash
-# Priority: CRITICAL
-# Impact: Reduce video sizes by 60-70%
-- Convert all videos to WebM format (better compression)
-- Implement multiple quality tiers (mobile/desktop)
-- Use adaptive bitrate streaming
-- Compress logo animation from 600K to <100K
-```
+### 1. Hero Component Optimization
+- Check for heavy assets in Hero section
+- Optimize any large images or videos
+- Ensure critical CSS is inlined
 
-#### 1.3 Mobile-Specific Video Strategy
-```typescript
-// Priority: HIGH
-// Impact: Reduce mobile payload by 90%
-- Detect mobile devices
-- Load only essential videos on mobile
-- Use static images as video placeholders
-- Implement video-on-demand loading
-```
+### 2. Font Loading Optimization
+- Implement font-display: swap
+- Preload critical fonts
+- Use system fonts as fallback
 
-### Phase 2: Critical CSS and Font Optimization
+### 3. Image Optimization
+- Convert remaining images to WebP format
+- Implement responsive images with srcset
+- Add lazy loading to all images
 
-#### 2.1 Inline Critical CSS
-```html
-<!-- Priority: CRITICAL -->
-<!-- Impact: Reduce render blocking by 80% -->
-<style>
-  /* Inline critical above-the-fold styles */
-  body { margin: 0; font-family: system-ui, sans-serif; background: #121212; }
-  .hero-container { min-height: 100vh; display: flex; align-items: center; }
-  .loading { opacity: 0; transition: opacity 0.3s ease; }
-  .loaded { opacity: 1; }
-</style>
-```
+### 4. Service Worker
+- Implement caching strategy
+- Cache static assets
+- Enable offline functionality
 
-#### 2.2 Font Loading Optimization
-```html
-<!-- Priority: HIGH -->
-<!-- Impact: Reduce font loading time by 70% -->
-<link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap"></noscript>
-```
+### 5. Critical CSS
+- Extract and inline critical CSS
+- Defer non-critical styles
+- Remove unused CSS classes
 
-### Phase 3: JavaScript Bundle Optimization
+## Expected Results:
+- LCP: <2.5s (from 14.5s)
+- FCP: <1.8s (from 5.8s)
+- Speed Index: <3.4s (from 12.1s)
+- TTI: <3.8s (from 24.3s)
+- Performance Score: 85+ (from 25)
 
-#### 3.1 Code Splitting Implementation
-```typescript
-// Priority: HIGH
-// Impact: Reduce initial JS by 60%
-- Implement route-based code splitting
-- Lazy load non-critical components
-- Create mobile-specific bundles
-- Remove unused dependencies
-```
-
-#### 3.2 Critical JavaScript Inlining
-```html
-<!-- Priority: MEDIUM -->
-<!-- Impact: Reduce blocking time by 50% -->
-<script>
-  // Inline critical JavaScript for above-the-fold content
-  // Remove from main bundle
-</script>
-```
-
-### Phase 4: Layout Shift Prevention
-
-#### 4.1 Aspect Ratio Containers
-```css
-/* Priority: HIGH */
-/* Impact: Eliminate layout shifts */
-.video-container {
-  aspect-ratio: 16 / 9;
-  background: #1a1a1a;
-  position: relative;
-  overflow: hidden;
-}
-```
-
-#### 4.2 Font Display Optimization
-```css
-/* Priority: MEDIUM */
-/* Impact: Reduce text reflow */
-@font-face {
-  font-family: 'Inter';
-  font-display: swap;
-}
-```
-
-## Implementation Priority
-
-### Week 1: Critical Video Optimization
-1. Remove video preloading from HTML
-2. Implement lazy loading for all videos
-3. Compress and optimize video formats
-4. Create mobile-specific video loading strategy
-
-### Week 2: CSS and Font Optimization
-1. Inline critical CSS
-2. Optimize font loading
-3. Implement CSS code splitting
-4. Add critical CSS extraction
-
-### Week 3: JavaScript Optimization
-1. Implement code splitting
-2. Remove unused dependencies
-3. Create mobile-specific bundles
-4. Optimize bundle loading
-
-### Week 4: Layout and UX Optimization
-1. Fix aspect ratio containers
-2. Implement skeleton loading
-3. Optimize animations for mobile
-4. Add performance monitoring
-
-## Expected Results
-
-### Mobile Performance Score Improvement
-- **Current**: 49
-- **Target**: 85+
-- **Timeline**: 4 weeks
-
-### Key Metrics Improvement
-- **LCP**: 6.4s → <2.5s
-- **FCP**: 4.5s → <1.5s
-- **CLS**: 0.286 → <0.1
-- **TBT**: 0ms → <200ms
-- **Network Payload**: 4,956 KiB → <1,500 KiB
-
-## Monitoring and Validation
-
-### Performance Monitoring
-- Implement Real User Monitoring (RUM)
-- Track Core Web Vitals
-- Monitor mobile vs desktop performance
-- Set up performance budgets
-
-### Testing Strategy
-- Lighthouse CI integration
-- Mobile device testing
-- Network throttling tests
-- Cross-browser validation 
+## Testing:
+1. Run Lighthouse tests after each optimization
+2. Test on real devices with throttled connections
+3. Monitor Core Web Vitals in production
+4. Track user experience metrics
