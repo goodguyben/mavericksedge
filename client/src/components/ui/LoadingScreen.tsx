@@ -13,7 +13,7 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({
   onLoadingComplete,
   logoVideoSrc = 'https://mavericksedge.ca/videos/logo_animation.webm',
   companyName = 'Mavericks Edge',
-  loadingDuration = 4000
+  loadingDuration = 1000 // Changed from 4000 to 1000ms (1 second)
 }) => {
   const [loadingProgress, setLoadingProgress] = useState(0);
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
@@ -34,16 +34,16 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  // Simulate loading progress - faster on mobile
+  // Simulate loading progress - one second duration for all devices
   useEffect(() => {
     const startTime = Date.now();
-    const mobileDuration = isMobile ? Math.min(loadingDuration, 2000) : loadingDuration; // Max 2s on mobile
-    const endTime = startTime + mobileDuration;
+    const duration = 1000; // Fixed to 1 second for all devices
+    const endTime = startTime + duration;
 
     progressIntervalRef.current = setInterval(() => {
       const currentTime = Date.now();
       const elapsed = currentTime - startTime;
-      const progress = Math.min((elapsed / mobileDuration) * 100, 100);
+      const progress = Math.min((elapsed / duration) * 100, 100);
       
       setLoadingProgress(progress);
 
@@ -52,8 +52,8 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({
         // Add a small delay before hiding the loading screen
         setTimeout(() => {
           setIsVisible(false);
-          setTimeout(onLoadingComplete, 500); // Wait for fade out animation
-        }, 200);
+          setTimeout(onLoadingComplete, 300); // Reduced from 500ms to 300ms for faster transition
+        }, 100); // Reduced from 200ms to 100ms
       }
     }, 16); // Update every 16ms for 60fps smooth progress
 
@@ -62,7 +62,7 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({
         clearInterval(progressIntervalRef.current);
       }
     };
-  }, [loadingDuration, onLoadingComplete, isMobile]);
+  }, [onLoadingComplete]);
 
   // Handle video load
   const handleVideoLoad = () => {
@@ -84,7 +84,7 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({
           initial={{ opacity: 1 }}
           exit={{ 
             opacity: 0,
-            transition: { duration: 0.5, ease: "easeInOut" }
+            transition: { duration: 0.3, ease: "easeInOut" } // Reduced from 0.5s to 0.3s
           }}
         >
           {/* Animated background particles - reduced on mobile */}
@@ -126,9 +126,9 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ 
-                duration: 0.8, 
+                duration: 0.5, // Reduced from 0.8s to 0.5s
                 ease: "easeOut",
-                delay: 0.2 
+                delay: 0.1 // Reduced from 0.2s to 0.1s
               }}
             >
               {logoVideoSrc && (
@@ -164,12 +164,12 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ 
-                duration: 0.8, 
+                duration: 0.5, // Reduced from 0.8s to 0.5s
                 ease: "easeOut",
-                delay: 0.6 
+                delay: 0.3 // Reduced from 0.6s to 0.3s
               }}
             >
-              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-orange-500 mb-2">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-maverick-orange mb-2">
                 {companyName}
               </h1>
               <p className="text-sm sm:text-base md:text-lg text-gray-300 font-light">
@@ -183,9 +183,9 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({
               initial={{ scaleX: 0, opacity: 0 }}
               animate={{ scaleX: 1, opacity: 1 }}
               transition={{ 
-                duration: 0.8, 
+                duration: 0.5, // Reduced from 0.8s to 0.5s
                 ease: "easeOut",
-                delay: 0.2 
+                delay: 0.1 // Reduced from 0.2s to 0.1s
               }}
             >
               {/* Background bar */}
@@ -195,7 +195,7 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({
                   className="h-full bg-gradient-to-r from-orange-400 via-orange-500 to-orange-600 rounded-full relative"
                   initial={{ width: "0%" }}
                   animate={{ width: `${loadingProgress}%` }}
-                  transition={{ duration: 0.2, ease: "easeOut" }}
+                  transition={{ duration: 0.1, ease: "easeOut" }} // Reduced from 0.2s to 0.1s
                 >
                   {/* Shimmer effect */}
                   <motion.div
@@ -204,7 +204,7 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({
                       x: ["-100%", "100%"],
                     }}
                     transition={{
-                      duration: 2,
+                      duration: 1, // Reduced from 2s to 1s
                       repeat: Infinity,
                       ease: "linear"
                     }}
@@ -217,7 +217,7 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({
                 className="text-center mt-3"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ delay: 0.4 }}
+                transition={{ delay: 0.2 }} // Reduced from 0.4s to 0.2s
               >
                 <span className="text-sm sm:text-base text-gray-300 font-medium">
                   Loading...
@@ -230,7 +230,7 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({
               className="flex space-x-1"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 0.6 }}
+              transition={{ delay: 0.3 }} // Reduced from 0.6s to 0.3s
             >
               {[...Array(3)].map((_, i) => (
                 <motion.div
@@ -241,9 +241,9 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({
                     opacity: [0.5, 1, 0.5],
                   }}
                   transition={{
-                    duration: 1.5,
+                    duration: 1, // Reduced from 1.5s to 1s
                     repeat: Infinity,
-                    delay: i * 0.2,
+                    delay: i * 0.15, // Reduced from 0.2s to 0.15s
                     ease: "easeInOut"
                   }}
                 />
@@ -256,7 +256,7 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({
             className="absolute bottom-4 right-4 text-xs text-gray-500"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.8 }}
+            transition={{ delay: 0.4 }} // Reduced from 0.8s to 0.4s
           >
             Edmonton, Alberta
           </motion.div>
