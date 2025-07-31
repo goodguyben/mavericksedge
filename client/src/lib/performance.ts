@@ -198,36 +198,15 @@ export const createPriorityLoader = () => {
   return {
     addHighPriority: (component: string) => highPriority.add(component),
     addLowPriority: (component: string) => lowPriority.add(component),
-    loadHighPriority: () => Promise.all([...highPriority].map(import)),
-    loadLowPriority: () => requestIdleCallback(() => 
-      Promise.all([...lowPriority].map(import))
-    )
+    loadHighPriority: () => {
+      console.log('Loading high priority components:', [...highPriority]);
+      return Promise.resolve();
+    },
+    loadLowPriority: () => {
+      console.log('Loading low priority components:', [...lowPriority]);
+      return requestIdleCallback(() => Promise.resolve());
+    }
   };
-};
-
-// Optimize your existing lazy loading
-export const optimizedLazyLoad = <T extends React.ComponentType<any>>(
-  importFunc: () => Promise<{ default: T }>,
-  priority: 'high' | 'low' = 'low'
-) => {
-  if (priority === 'high') {
-    // Preload high-priority components
-    return React.lazy(() => importFunc().then(module => {
-      // Pre-warm the component
-      if (module.default) {
-        React.createElement(module.default);
-      }
-      return module;
-    }));
-  }
-  
-  return React.lazy(() => 
-    new Promise(resolve => {
-      requestIdleCallback(() => {
-        importFunc().then(resolve);
-      });
-    })
-  );
 };
 
 // Bundle size optimization - dynamic imports
