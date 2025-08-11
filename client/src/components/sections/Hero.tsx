@@ -41,7 +41,7 @@ export default function Hero() {
       <div className="container mx-auto px-0 sm:px-6 md:px-8 lg:px-10 xl:px-12 2xl:px-16 z-20 flex justify-start items-center w-full pointer-events-none relative">
         {/* Main Content - Left aligned and responsive */}
         <motion.div
-          className="max-w-full lg:max-w-[60%] xl:max-w-[55%] 2xl:max-w-[50%] text-left w-full pointer-events-auto relative sm:pt-4 md:pt-8 lg:pt-0 mt-[45px] sm:mt-[55px] md:mt-[65px] lg:mt-[84px] mb-[84px] pt-[20px] sm:pt-[25px] md:pt-[30px] pb-[30px]"
+          className="max-w-full lg:max-w-[60%] xl:max-w-[55%] 2xl:max-w-[50%] text-left w-full pointer-events-auto relative sm:pt-4 md:pt-8 lg:pt-0 mt-[25px] min-[480px]:mt-[15px] sm:mt-[25px] md:mt-[65px] lg:mt-[84px] mb-[84px] pt-[20px] sm:pt-[25px] md:pt-[30px] pb-[30px]"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: heroOpacity, y: 0 }}
           transition={{ duration: 0.1 }}
@@ -101,7 +101,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 2.8 }}
-            className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-start items-start"
+            className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-start items-start mt-[50px] mb-[50px]"
           >
             <Button 
               href="/services" 
@@ -123,11 +123,8 @@ export default function Hero() {
         </motion.div>
 
         {/* CardSwap Component - Right side for desktop/tablet, moved down */}
-        <motion.div 
+        <div 
           className="hidden lg:block absolute right-0 bottom-20 pointer-events-auto"
-          initial={{ opacity: 0, x: 100 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1.0, delay: 3.5, ease: "easeOut" }}
         >
           <CardSwap
             width={600}
@@ -151,14 +148,11 @@ export default function Hero() {
               title="Affordable"
             />
           </CardSwap>
-        </motion.div>
+        </div>
 
         {/* CardSwap Component - Mobile bottom right, larger */}
-        <motion.div 
+        <div 
           className="lg:hidden absolute bottom-4 right-4 pointer-events-auto"
-          initial={{ opacity: 0, x: 100 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1.0, delay: 3.5, ease: "easeOut" }}
         >
           <CardSwap
             width={500}
@@ -182,7 +176,7 @@ export default function Hero() {
               title="Affordable"
             />
           </CardSwap>
-        </motion.div>
+        </div>
       </div>
       {/* Scroll indicator */}
       <motion.div

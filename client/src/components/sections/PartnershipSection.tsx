@@ -4,6 +4,74 @@ import GradientText from "@/components/ui/GradientText";
 import { OptimizedVideo } from "@/components/blocks/optimized-video";
 import { createMemoryManager } from "@/lib/performance";
 import { useOptimizedScroll } from "@/hooks/useExecutionOptimization";
+import lottie, { AnimationItem } from "lottie-web";
+import { HeartHandshake } from "lucide-react";
+
+// Candidate handshake animations (public CDNs)
+const HANDSHAKE_SOURCES: string[] = [
+  // LottieFiles CDN candidates
+  "https://assets9.lottiefiles.com/packages/lf20_p5yomj0b.json",
+  "https://assets1.lottiefiles.com/packages/lf20_q5pk6p1k.json",
+  "https://assets2.lottiefiles.com/private_files/lf30_uj8a6nrx.json"
+];
+
+const HandshakeLottie = memo(({ size = 40 }: { size?: number }) => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const animationRef = useRef<AnimationItem | null>(null);
+  const [failed, setFailed] = useState(false);
+
+  useEffect(() => {
+    let isCancelled = false;
+
+    const loadFromSources = async () => {
+      for (const src of HANDSHAKE_SOURCES) {
+        try {
+          const response = await fetch(src, { cache: "force-cache" });
+          if (!response.ok) continue;
+          const json = await response.json();
+          if (isCancelled || !containerRef.current) return;
+          // Destroy any previous instance
+          if (animationRef.current) {
+            animationRef.current.destroy();
+            animationRef.current = null;
+          }
+          const anim = lottie.loadAnimation({
+            container: containerRef.current,
+            renderer: "svg",
+            loop: true,
+            autoplay: true,
+            animationData: json
+          });
+          animationRef.current = anim;
+          return; // success
+        } catch (_err) {
+          // try next
+        }
+      }
+      if (!isCancelled) setFailed(true);
+    };
+
+    loadFromSources();
+
+    return () => {
+      isCancelled = true;
+      if (animationRef.current) {
+        animationRef.current.destroy();
+        animationRef.current = null;
+      }
+    };
+  }, []);
+
+  if (failed) {
+    return (
+      <div className="flex items-center justify-center" style={{ width: size, height: size }}>
+        <HeartHandshake className="text-maverick-orange" style={{ width: size * 0.8, height: size * 0.8 }} />
+      </div>
+    );
+  }
+
+  return <div ref={containerRef} style={{ width: size, height: size }} />;
+});
 
 // Memoize the video array to prevent recreation on every render
 const BENTO_VIDEOS = [
@@ -79,6 +147,142 @@ const MetricCard = memo(({
       </div>
     )}
     {children}
+  </div>
+));
+
+// New storytelling metric component
+const StoryMetric = memo(({ 
+  value, 
+  story, 
+  icon, 
+  color = "orange",
+  delay = 0 
+}: {
+  value: string;
+  story: string;
+  icon?: React.ReactNode;
+  color?: "orange" | "blue" | "green" | "purple";
+  delay?: number;
+}) => {
+  const colorClasses = {
+    orange: "text-maverick-orange",
+    blue: "text-blue-400",
+    green: "text-green-400",
+    purple: "text-purple-400"
+  };
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6, delay }}
+      className="group relative"
+    >
+      <div className="flex items-start gap-6 p-6 hover:bg-white/5 rounded-2xl transition-all duration-500">
+        {icon && (
+          <div className="flex-shrink-0 mt-1">
+            {icon}
+          </div>
+        )}
+        
+        <div className="flex-1 space-y-2">
+          <div className="flex items-baseline gap-3">
+            <span className="text-4xl font-bold text-white group-hover:text-gray-100 transition-colors duration-300">
+              {value}
+            </span>
+            <div className={`w-3 h-3 rounded-full bg-gradient-to-r ${colorClasses[color]} opacity-60 group-hover:opacity-100 transition-opacity duration-300`}></div>
+          </div>
+          <p className="text-gray-300 leading-relaxed group-hover:text-gray-200 transition-colors duration-300">
+            {story}
+          </p>
+        </div>
+      </div>
+    </motion.div>
+  );
+});
+
+// New storytelling journey component
+const PartnershipJourney = memo(() => (
+  <div className="space-y-8">
+    {/* Journey Header */}
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5 }}
+      className="space-y-4"
+    >
+      <div className="flex items-center gap-3">
+        <div className="w-10 h-10 rounded-xl overflow-hidden flex items-center justify-center">
+          <HandshakeLottie size={40} />
+        </div>
+        <h3 className="text-2xl font-bold text-white">Our Journey</h3>
+      </div>
+      <p className="text-gray-400 text-lg leading-relaxed">
+        Every number tells a story of trust, collaboration, and shared success. Here's what we've built together.
+      </p>
+    </motion.div>
+
+    {/* Story Metrics */}
+    <div className="space-y-6">
+      <StoryMetric
+        value="5.0"
+        story="5.0, five stars from 37 Google reviews. Clients trust our work and service."
+        icon={
+          <svg className="w-10 h-10" viewBox="0 0 24 24">
+            <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+            <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+            <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+            <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+          </svg>
+        }
+        color="orange"
+        delay={0.1}
+      />
+      
+      <StoryMetric
+        value="10+"
+        story="Over 10 years, now powered by AI. Lower costs, faster turnarounds, and world-class design and engineering."
+        icon={
+          <div className="w-10 h-10 rounded-xl bg-gradient-to-r from-blue-400 to-blue-600 flex items-center justify-center">
+            <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+              <path fillRule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+            </svg>
+          </div>
+        }
+        color="blue"
+        delay={0.2}
+      />
+      
+      <StoryMetric
+        value="92%"
+        story="92% of clients stay with us. We build clear communication, steady results, and long-term relationships."
+        icon={
+          <div className="w-10 h-10 rounded-xl bg-gradient-to-r from-green-400 to-green-600 flex items-center justify-center">
+            <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+              <path fillRule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clipRule="evenodd" />
+            </svg>
+          </div>
+        }
+        color="green"
+        delay={0.3}
+      />
+      
+      <StoryMetric
+        value="150+"
+        story="150+ projects delivered. From small sites to complex apps, we solve problems and ship work that grows businesses."
+        icon={
+          <div className="w-10 h-10 rounded-xl bg-gradient-to-r from-purple-400 to-purple-600 flex items-center justify-center">
+            <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+        }
+        color="purple"
+        delay={0.4}
+      />
+    </div>
   </div>
 ));
 
@@ -264,7 +468,7 @@ function PartnershipSection() {
                       <p className="text-lg xs:text-xl text-[#CCCCCC] italic leading-relaxed">
                         "Partnership is not just a contract. It's a way of doing things together, where both parties give more than they take."
                       </p>
-                      <p className="text-sm text-[#AAAAAA] mt-2">— Henry Kimsey-House</p>
+                      <p className="text-sm text-[#AAAAAA] mt-2">Henry Kimsey-House</p>
                     </div>
 
                     <p className="text-lg xs:text-xl sm:text-2xl text-[#CCCCCC] leading-relaxed max-w-2xl">
@@ -284,98 +488,9 @@ function PartnershipSection() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.2 }}
               >
-                <div className="space-y-6">
-                  {/* Google Reviews Metric */}
-                  <MetricCard
-                    title="Google Reviews"
-                    value="5.0"
-                    subtitle="from 37 reviews"
-                    icon={
-                      <div className="flex items-center space-x-3">
-                        <svg width="24" height="24" viewBox="0 0 24 24" className="flex-shrink-0">
-                          <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
-                          <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
-                          <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
-                          <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
-                        </svg>
-                        <StarRating count={5} />
-                      </div>
-                    }
-                  />
-
-                  {/* Experience Metric */}
-                  <MetricCard
-                    title="Years of Excellence"
-                    value="10+"
-                    subtitle="years crafting digital experiences"
-                    icon={
-                      <div className="w-8 h-8 rounded-full bg-gradient-to-r from-maverick-orange to-yellow-400 flex items-center justify-center">
-                        <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
-                          <path fillRule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                        </svg>
-                      </div>
-                    }
-                  />
-
-                  {/* Partnership Success Metric */}
-                  <MetricCard
-                    title="Long-term Partnerships"
-                    value="92%"
-                    subtitle="clients continue working with us"
-                    progress={92}
-                    icon={
-                      <div className="w-8 h-8 rounded-full bg-gradient-to-r from-blue-400 to-purple-500 flex items-center justify-center">
-                        <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
-                          <path fillRule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clipRule="evenodd" />
-                        </svg>
-                      </div>
-                    }
-                  />
-
-                  {/* Collaborative Approach Metric */}
-                  <MetricCard
-                    title="Collaborative Success"
-                    value="100%"
-                    subtitle="transparent communication"
-                    icon={
-                      <div className="flex items-center space-x-1">
-                        <div className="w-3 h-3 bg-maverick-orange rounded-full animate-pulse"></div>
-                        <div className="w-1 h-1 bg-gray-400 rounded-full"></div>
-                        <div className="w-3 h-3 bg-blue-400 rounded-full animate-pulse" style={{animationDelay: '0.5s'}}></div>
-                      </div>
-                    }
-                  >
-                    <p className="text-sm text-gray-400 mt-2">Weekly check-ins, shared goals, mutual success</p>
-                  </MetricCard>
-
-                  {/* Partnership Values */}
-                  <MetricCard
-                    title="Partnership Values"
-                    value=""
-                    subtitle=""
-                    icon={
-                      <div className="w-8 h-8 rounded-full bg-gradient-to-r from-maverick-orange to-yellow-400 flex items-center justify-center">
-                        <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
-                          <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                      </div>
-                    }
-                  >
-                    <div className="space-y-3">
-                      <div className="flex items-center justify-between">
-                        <span className="text-white text-sm">Trust & Transparency</span>
-                        <div className="w-2 h-2 bg-green-400 rounded-full"></div>
-                      </div>
-                      <div className="flex items-center justify-between">
-                        <span className="text-white text-sm">Shared Accountability</span>
-                        <div className="w-2 h-2 bg-green-400 rounded-full"></div>
-                      </div>
-                      <div className="flex items-center justify-between">
-                        <span className="text-white text-sm">Mutual Growth</span>
-                        <div className="w-2 h-2 bg-green-400 rounded-full"></div>
-                      </div>
-                    </div>
-                  </MetricCard>
+                <div className="space-y-12">
+                  {/* Partnership Journey */}
+                  <PartnershipJourney />
                 </div>
               </motion.div>
             </div>
@@ -444,7 +559,7 @@ function PartnershipSection() {
           background: "linear-gradient(to right, #FF5630, #8B5CF6, #3B82F6)",
           filter: "blur(84px)",
           mixBlendMode: "screen",
-          top: "30%",
+          top: "35%",
           height: "50vh",
         }}
       />
@@ -454,7 +569,7 @@ function PartnershipSection() {
           background: "linear-gradient(to right, #FF5630, #8B5CF6, #3B82F6)",
           filter: "blur(84px)",
           mixBlendMode: "screen",
-          top: "50%",
+          top: "55%",
           height: "50vh",
         }}
       />

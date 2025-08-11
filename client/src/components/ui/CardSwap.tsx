@@ -231,30 +231,13 @@ const CardSwap: React.FC<CardSwapProps> = ({
   children,
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const tlRef = useRef<gsap.core.Timeline | null>(null);
-  const intervalRef = useRef<number>();
-  const isInViewRef = useRef(false);
-  const hasStartedRef = useRef(false);
+  // Removed animation-related refs
+  // const tlRef = useRef<gsap.core.Timeline | null>(null);
+  // const intervalRef = useRef<number>();
+  // const isInViewRef = useRef(false);
+  // const hasStartedRef = useRef(false);
   
-  // Performance optimization: Simpler easing for better performance
-  const config =
-    easing === "elastic"
-      ? {
-          ease: "power2.out", // Changed from elastic for better performance
-          durDrop: 1.5,
-          durMove: 1.5,
-          durReturn: 1.5,
-          promoteOverlap: 0.8,
-          returnDelay: 0.1,
-        }
-      : {
-          ease: "power1.inOut",
-          durDrop: 0.8,
-          durMove: 0.8,
-          durReturn: 0.8,
-          promoteOverlap: 0.45,
-          returnDelay: 0.2,
-        };
+  // Removed performance optimization config since no animation
 
   const childArr = useMemo(
     () => Children.toArray(children) as ReactElement<CardProps>[],
@@ -265,151 +248,29 @@ const CardSwap: React.FC<CardSwapProps> = ({
     [childArr]
   );
 
-  const order = useRef<number[]>(
-    Array.from({ length: childArr.length }, (_, i) => i)
-  );
+  // Removed order ref since no animation
 
   useEffect(() => {
     const total = refs.length;
     
-    // Use requestAnimationFrame to batch DOM updates and reduce reflows
-    requestAnimationFrame(() => {
-      refs.forEach((r, i) => {
-        if (r.current) {
-          placeNow(
-            r.current,
-            makeSlot(i, cardDistance, verticalDistance, total),
-            skewAmount
-          );
-        }
-      });
-    });
-
-    const swap = () => {
-      if (!isInViewRef.current || order.current.length < 2) return;
-
-      const [front, ...rest] = order.current;
-      const elFront = refs[front].current;
-      if (!elFront) return;
-
-      // Use requestAnimationFrame to prevent forced reflows
-      requestAnimationFrame(() => {
-        const tl = gsap.timeline();
-        tlRef.current = tl;
-
-      tl.to(elFront, {
-        y: "+=500",
-        duration: config.durDrop,
-        ease: config.ease,
-      });
-
-      tl.addLabel("promote", `-=${config.durDrop * config.promoteOverlap}`);
-      rest.forEach((idx, i) => {
-        const el = refs[idx].current;
-        if (!el) return;
-
-        const slot = makeSlot(i, cardDistance, verticalDistance, refs.length);
-        tl.set(el, { zIndex: slot.zIndex }, "promote");
-        tl.to(
-          el,
-          {
-            x: slot.x,
-            y: slot.y,
-            z: slot.z,
-            duration: config.durMove,
-            ease: config.ease,
-          },
-          `promote+=${i * 0.15}`
+    // Position cards statically without animation
+    refs.forEach((r, i) => {
+      if (r.current) {
+        placeNow(
+          r.current,
+          makeSlot(i, cardDistance, verticalDistance, total),
+          skewAmount
         );
-      });
-
-      const backSlot = makeSlot(
-        refs.length - 1,
-        cardDistance,
-        verticalDistance,
-        refs.length
-      );
-      tl.addLabel("return", `promote+=${config.durMove * config.returnDelay}`);
-      tl.call(
-        () => {
-          gsap.set(elFront, { zIndex: backSlot.zIndex });
-        },
-        undefined,
-        "return"
-      );
-      tl.set(elFront, { x: backSlot.x, z: backSlot.z }, "return");
-      tl.to(
-        elFront,
-        {
-          y: backSlot.y,
-          duration: config.durReturn,
-          ease: config.ease,
-        },
-        "return"
-      );
-
-      tl.call(() => {
-        order.current = [...rest, front];
-      });
+      }
     });
-    };
 
-    // Set up intersection observer for performance
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          isInViewRef.current = entry.isIntersecting;
-          if (entry.isIntersecting && !hasStartedRef.current) {
-            hasStartedRef.current = true;
-            // Start swapping only when in view
-            swap();
-            intervalRef.current = window.setInterval(swap, delay);
-          } else if (!entry.isIntersecting && intervalRef.current) {
-            // Stop animations when out of view
-            clearInterval(intervalRef.current);
-            intervalRef.current = undefined;
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
+    // Removed all animation logic including:
+    // - swap function
+    // - intersection observer
+    // - interval setup
+    // - pause on hover functionality
 
-    if (containerRef.current) {
-      observer.observe(containerRef.current);
-    }
-
-    // Add pause on hover functionality
-    const containerEl = containerRef.current;
-    const handleMouseEnter = () => {
-      if (pauseOnHover && intervalRef.current) {
-        clearInterval(intervalRef.current);
-      }
-    };
-
-    const handleMouseLeave = () => {
-      if (pauseOnHover && !intervalRef.current && isInViewRef.current) {
-        intervalRef.current = window.setInterval(swap, delay);
-      }
-    };
-
-    if (containerEl && pauseOnHover) {
-      containerEl.addEventListener('mouseenter', handleMouseEnter);
-      containerEl.addEventListener('mouseleave', handleMouseLeave);
-    }
-
-    return () => {
-      if (intervalRef.current) {
-        clearInterval(intervalRef.current);
-      }
-      if (containerEl) {
-        observer.unobserve(containerEl);
-        if (pauseOnHover) {
-          containerEl.removeEventListener('mouseenter', handleMouseEnter);
-          containerEl.removeEventListener('mouseleave', handleMouseLeave);
-        }
-      }
-    };
-  }, [cardDistance, verticalDistance, delay, skewAmount, easing, pauseOnHover, refs.length]);
+  }, [cardDistance, verticalDistance, skewAmount, refs.length]);
 
   const rendered = childArr.map((child, i) =>
     isValidElement<CardProps>(child)
