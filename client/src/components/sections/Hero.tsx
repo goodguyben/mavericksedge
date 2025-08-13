@@ -72,8 +72,8 @@ export default function Hero() {
               transition={{ duration: 0.8, delay: 1.0 }}
               className="block"
             >
-              <span className="text-maverick-cream block font-extrabold text-3xl sm:text-5xl md:text-5xl lg:text-5xl xl:text-[56px]">Building resilience from</span>
-              <span className="block text-3xl sm:text-5xl md:text-5xl lg:text-5xl xl:text-[58px]">
+              <span className="text-maverick-cream block font-extrabold text-3xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-[56px]">Building resilience from</span>
+              <span className="block text-3xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-[58px]">
                 <GradientText 
                   colors={["#FF5630", "#FF8A50", "#FFB899", "#FF5630"]}
                   animationSpeed={6}
@@ -101,7 +101,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 2.8 }}
-            className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-start items-start mt-[30px] mb-[30px]"
+            className="flex flex-col sm:flex-row gap-2 sm:gap-3 md:gap-4 justify-start items-start mt-[20px] sm:mt-[25px] md:mt-[30px] mb-[20px] sm:mb-[25px] md:mb-[30px]"
           >
             <Button 
               href="/services" 
@@ -152,7 +152,7 @@ export default function Hero() {
 
         {/* CardSwap Component - Mobile bottom right, larger */}
         <div 
-          className="lg:hidden absolute bottom-4 right-4 pointer-events-auto"
+          className="lg:hidden absolute bottom-4 right-16 pointer-events-auto"
         >
           <CardSwap
             width={500}

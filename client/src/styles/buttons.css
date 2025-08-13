@@ -13,9 +13,19 @@
   font-size: 0.875rem;
   min-width: fit-content;
   white-space: nowrap;
+  min-height: 44px; /* Ensure minimum touch target height for mobile */
 }
 
 /* Responsive button sizes */
+/* Mobile-first approach - smaller padding for very small screens */
+@media (max-width: 375px) {
+  .maverick-button {
+    padding: 0.625rem 0.875rem; /* Smaller padding for very small screens */
+    font-size: 0.75rem; /* Smaller font for very small screens */
+    min-height: 44px; /* Maintain touch target size */
+  }
+}
+
 @media (min-width: 640px) {
   .maverick-button {
     padding: 1rem 1.5rem;
@@ -119,4 +129,13 @@
   opacity: 0.5;
   cursor: not-allowed;
   pointer-events: none;
+}
+
+/* ShinyBorderButton responsive sizing for very small screens */
+@media (max-width: 375px) {
+  .group\/shiny-button {
+    padding: 0.625rem 0.875rem !important; /* Smaller padding for very small screens */
+    font-size: 0.75rem !important; /* Smaller font for very small screens */
+    min-height: 44px !important; /* Maintain touch target size */
+  }
 }
