@@ -17,7 +17,7 @@ export default function Contact() {
         title="Contact Mavericks Edge | Request a Free Consultation"
         description="Get in touch with Mavericks Edge to discuss your web design, digital marketing, or AI integration needs. Request a free consultation and take the first step toward transforming your online presence."
         keywords="contact digital agency, web design consultation, request quote, SMB digital solutions, affordable web services"
-        canonicalUrl="/contact"
+        canonicalUrl="https://mavericksedge.ca/contact"
         ogTitle="Contact Mavericks Edge | Request a Free Consultation"
         ogDescription="Reach out to our team for a free consultation on your web design, digital marketing, or AI integration project. We're here to answer your questions and help you succeed online."
         ogImage="https://mavericksedge.ca/images/logo-transparent-thumb4x.png"

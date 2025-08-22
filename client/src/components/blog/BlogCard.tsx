@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Calendar, User, BookOpen, Share2, Eye, Heart } from 'lucide-react';
+import { Calendar, User, BookOpen, Eye } from 'lucide-react';
 import { BlogPost } from '@/data/blogData';
 
 interface BlogCardProps {
@@ -9,26 +9,8 @@ interface BlogCardProps {
 }
 
 export const BlogCard: React.FC<BlogCardProps> = ({ post, index }) => {
-  const handleShare = async (platform: string) => {
-    const url = `https://mavericksedge.ca/blog/${post.slug}`;
-    const text = post.title;
-    
-    switch (platform) {
-      case 'twitter':
-        window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`);
-        break;
-      case 'linkedin':
-        window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`);
-        break;
-      case 'facebook':
-        window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`);
-        break;
-      case 'copy':
-        await navigator.clipboard.writeText(url);
-        // You could add a toast notification here
-        break;
-    }
-  };
+  const isTopCropImage = post.slug === 'most-affordable-website-design-companies-edmonton-2025';
+  const imageObjectPositionClass = isTopCropImage ? 'object-top' : 'object-bottom';
 
   // Format date function
   const formatDate = (dateString: string) => {
@@ -52,49 +34,39 @@ export const BlogCard: React.FC<BlogCardProps> = ({ post, index }) => {
         <img 
           src={post.featuredImage} 
           alt={post.title}
-          className="w-full h-48 object-cover"
+          className={`w-full h-40 sm:h-48 object-cover ${imageObjectPositionClass}`}
           loading="lazy"
         />
         {post.isPillar && (
-          <div className="absolute top-4 left-4">
-            <span className="bg-maverick-orange text-white px-3 py-1 rounded-full text-sm font-semibold">
+          <div className="absolute top-3 left-3 sm:top-4 sm:left-4">
+            <span className="bg-maverick-orange text-white px-2 py-1 sm:px-3 sm:py-1 rounded-full text-xs sm:text-sm font-semibold">
               Featured
             </span>
           </div>
         )}
-        <div className="absolute top-4 right-4">
-          <div className="flex gap-2">
-            <button
-              onClick={() => handleShare('twitter')}
-              className="bg-black/90 backdrop-blur-sm p-2 rounded-full hover:bg-black transition-colors"
-              aria-label="Share on Twitter"
-            >
-              <Share2 className="w-4 h-4 text-white" />
-            </button>
-          </div>
-        </div>
       </div>
 
       {/* Content */}
-      <div className="p-6">
+      <div className="p-4 sm:p-6">
         {/* Meta Information */}
-        <div className="flex items-center gap-4 text-sm text-[#AAAAAA] mb-4">
-          <div className="flex items-center gap-2">
-            <Calendar className="w-4 h-4" />
-            {formatDate(post.publishDate)}
+        <div className="flex items-center gap-2 sm:gap-4 text-xs sm:text-sm text-[#AAAAAA] mb-3 sm:mb-4">
+          <div className="flex items-center gap-1 sm:gap-2">
+            <Calendar className="w-3 h-3 sm:w-4 sm:h-4" />
+            <span className="hidden sm:inline">{formatDate(post.publishDate)}</span>
+            <span className="sm:hidden">{formatDate(post.publishDate).split(' ').slice(0, 2).join(' ')}</span>
           </div>
-          <div className="flex items-center gap-2">
-            <User className="w-4 h-4" />
+          <div className="flex items-center gap-1 sm:gap-2">
+            <User className="w-3 h-3 sm:w-4 sm:h-4" />
             Bezal Benny
           </div>
-          <div className="flex items-center gap-2">
-            <BookOpen className="w-4 h-4" />
+          <div className="flex items-center gap-1 sm:gap-2">
+            <BookOpen className="w-3 h-3 sm:w-4 sm:h-4" />
             {post.readTime} min read
           </div>
         </div>
 
         {/* Title */}
-        <h2 className="text-xl font-bold text-white mb-3 line-clamp-2 font-heading">
+        <h2 className="text-lg sm:text-xl font-bold text-white mb-3 line-clamp-2 font-heading">
           <a 
             href={`/blog/${post.slug}`}
             className="hover:text-maverick-orange transition-colors"
@@ -104,44 +76,24 @@ export const BlogCard: React.FC<BlogCardProps> = ({ post, index }) => {
         </h2>
 
         {/* Excerpt */}
-        <p className="text-[#AAAAAA] mb-4 line-clamp-3">
+        <p className="text-[#AAAAAA] mb-4 line-clamp-3 text-sm sm:text-base">
           {post.excerpt}
         </p>
 
-        {/* Tags */}
-        <div className="flex flex-wrap gap-2 mb-4">
-          {post.tags.slice(0, 3).map(tag => (
-            <span 
-              key={tag} 
-              className="bg-[#2A2A2A] text-[#AAAAAA] px-3 py-1 rounded-full text-sm"
-            >
-              {tag}
-            </span>
-          ))}
-          {post.tags.length > 3 && (
-            <span className="text-[#AAAAAA] text-sm">
-              +{post.tags.length - 3} more
-            </span>
-          )}
-        </div>
-
         {/* Engagement Stats */}
-        <div className="flex items-center justify-between text-sm text-[#AAAAAA]">
-          <div className="flex items-center gap-4">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-0 text-xs sm:text-sm text-[#AAAAAA]">
+          <div className="flex items-center gap-3 sm:gap-4">
             <div className="flex items-center gap-1">
-              <Eye className="w-4 h-4" />
-              {post.views.toLocaleString()}
-            </div>
-            <div className="flex items-center gap-1">
-              <Heart className="w-4 h-4" />
-              {post.socialShares.toLocaleString()}
+              <Eye className="w-3 h-3 sm:w-4 sm:h-4" />
+              <span className="hidden sm:inline">{post.views.toLocaleString()}</span>
+              <span className="sm:hidden">{post.views >= 1000 ? `${(post.views / 1000).toFixed(1)}k` : post.views}</span>
             </div>
           </div>
           
           {/* Read More Link */}
           <a 
             href={`/blog/${post.slug}`}
-            className="text-[#FF5630] hover:text-[#FF8A50] font-semibold text-sm"
+            className="text-[#FF5630] hover:text-[#FF8A50] font-semibold text-sm self-end sm:self-auto"
           >
             Read More →
           </a>

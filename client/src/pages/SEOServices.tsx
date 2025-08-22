@@ -172,7 +172,7 @@ export default function SEOServices() {
         title="Edmonton SEO Services | Local SEO Experts | #1 Rankings | Mavericks Edge"
         description="Professional SEO services in Edmonton. Dominate local search results, increase website traffic, and grow your business. Guaranteed results with transparent reporting."
         keywords="Edmonton SEO services, local SEO Edmonton, search engine optimization Alberta, SEO company Edmonton, Google rankings Edmonton, digital marketing SEO"
-        canonicalUrl="/seo-services-edmonton"
+        canonicalUrl="https://mavericksedge.ca/seo-services-edmonton"
         ogTitle="Edmonton SEO Services | Local SEO Experts | #1 Rankings | Mavericks Edge"
         ogDescription="Professional SEO services in Edmonton. Dominate local search results, increase website traffic, and grow your business."
         ogImage="https://mavericksedge.ca/images/logo-transparent-thumb4x.png"

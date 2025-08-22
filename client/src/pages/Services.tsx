@@ -67,7 +67,7 @@ export default function Services() {
         title="Services | Web Development, Marketing & AI Solutions | Mavericks Edge"
         description="Explore Mavericks Edge's comprehensive digital solutions including web development, marketing services, and AI integration for small businesses and nonprofits."
         keywords="web development services, digital marketing solutions, AI integration, SMB services, nonprofit digital solutions"
-        canonicalUrl="/services"
+        canonicalUrl="https://mavericksedge.ca/services"
         ogTitle="Services | Web Development, Marketing & AI Solutions | Mavericks Edge"
         ogDescription="Explore our comprehensive digital solutions including web development, marketing services, and AI integration for small businesses and nonprofits."
         ogImage="https://mavericksedge.ca/images/logo-transparent-thumb4x.png"

@@ -18,19 +18,15 @@
 
   <!-- About -->
   <url>
-    <loc>https://mavericksedge.ca/about-edmonton-web-design-company</loc>
+    <loc>https://mavericksedge.ca/about</loc>
     <lastmod>2025-07-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
-
-
-
-
   <!-- Work/Portfolio -->
   <url>
-    <loc>https://mavericksedge.ca/portfolio-edmonton-web-design</loc>
+    <loc>https://mavericksedge.ca/work</loc>
     <lastmod>2025-07-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -38,33 +34,13 @@
 
   <!-- Contact -->
   <url>
-    <loc>https://mavericksedge.ca/contact-edmonton-web-design</loc>
-    <lastmod>2025-07-20</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <!-- Simplified Routes -->
-  <url>
-    <loc>https://mavericksedge.ca/about</loc>
-    <lastmod>2025-07-20</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
     <loc>https://mavericksedge.ca/contact</loc>
     <lastmod>2025-07-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
-  <url>
-    <loc>https://mavericksedge.ca/work</loc>
-    <lastmod>2025-07-20</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
+  <!-- Simplified Routes removed to avoid duplicates -->
 
   <url>
     <loc>https://mavericksedge.ca/services</loc>
@@ -76,58 +52,23 @@
   <!-- Blog Pages -->
   <url>
     <loc>https://mavericksedge.ca/blog</loc>
-    <lastmod>2025-07-29</lastmod>
+    <lastmod>2025-08-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://mavericksedge.ca/blog/ai-automation-2025-guide</loc>
-    <lastmod>2025-07-29</lastmod>
+    <loc>https://mavericksedge.ca/blog/best-website-design-companies-edmonton-2025</loc>
+    <lastmod>2025-08-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <url>
-    <loc>https://mavericksedge.ca/blog/chatbot-implementation-guide</loc>
-    <lastmod>2025-07-29</lastmod>
+    <loc>https://mavericksedge.ca/blog/most-affordable-website-design-companies-edmonton-2025</loc>
+    <lastmod>2025-08-12</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <url>
-    <loc>https://mavericksedge.ca/blog/marketing-automation-strategies</loc>
-    <lastmod>2025-07-29</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <url>
-    <loc>https://mavericksedge.ca/blog/seo-automation-tools</loc>
-    <lastmod>2025-07-29</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <url>
-    <loc>https://mavericksedge.ca/blog/web-design-automation</loc>
-    <lastmod>2025-07-29</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <url>
-    <loc>https://mavericksedge.ca/blog/data-analytics-automation</loc>
-    <lastmod>2025-07-29</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <url>
-    <loc>https://mavericksedge.ca/blog/customer-service-automation</loc>
-    <lastmod>2025-07-29</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.9</priority>
   </url>
 
   <!-- Legal Pages -->
@@ -173,12 +114,6 @@
     <priority>0.3</priority>
   </url>
 
-  <!-- Payment Confirmation -->
-  <url>
-    <loc>https://mavericksedge.ca/payment-confirmed</loc>
-    <lastmod>2025-05-07</lastmod>
-    <changefreq>never</changefreq>
-    <priority>0.1</priority>
-  </url>
+  <!-- Payment Confirmation removed from sitemap -->
 
 </urlset>

@@ -1,10 +1,9 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { motion } from 'framer-motion';
-import { Search, Filter, Share2, Calendar, User, Tag, ArrowRight, BookOpen, TrendingUp } from 'lucide-react';
+import { Filter, Share2, Calendar, User, Tag, ArrowRight, BookOpen, TrendingUp } from 'lucide-react';
 import { Helmet } from 'react-helmet-async';
 import { blogData } from '@/data/blogData';
 import { BlogCard } from '@/components/blog/BlogCard';
-import { BlogSearch } from '@/components/blog/BlogSearch';
 import { BlogFilters } from '@/components/blog/BlogFilters';
 import { BlogPagination } from '@/components/blog/BlogPagination';
 import { BlogSchema } from '@/components/blog/BlogSchema';
@@ -19,7 +18,6 @@ interface BlogPost {
   publishDate: string;
   readTime: number;
   category: string;
-  tags: string[];
   featuredImage: string;
   isPillar: boolean;
   seoKeywords: string[];
@@ -30,57 +28,28 @@ interface BlogPost {
 }
 
 const Blog: React.FC = () => {
-  const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
-  const [selectedTags, setSelectedTags] = useState<string[]>([]);
-  const [sortBy, setSortBy] = useState<'date' | 'popularity' | 'relevance'>('date');
+  const [sortBy, setSortBy] = useState<'date' | 'popularity'>('date');
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(6);
 
-  // Get unique categories and tags
+  // Get unique categories
   const categories = useMemo(() => {
     const cats = [...new Set(blogData.map(post => post.category))];
     return ['all', ...cats];
   }, []);
 
-  const allTags = useMemo(() => {
-    const tags = blogData.flatMap(post => post.tags);
-    return [...new Set(tags)];
-  }, []);
-
   // Filter and sort posts
   const filteredPosts = useMemo(() => {
     let filtered = blogData.filter(post => {
-      const matchesSearch = post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                          post.excerpt.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                          post.content.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                          post.tags.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase()));
-      
       const matchesCategory = selectedCategory === 'all' || post.category === selectedCategory;
-      const matchesTags = selectedTags.length === 0 || 
-                         selectedTags.some(tag => post.tags.includes(tag));
-
-      return matchesSearch && matchesCategory && matchesTags;
+      return matchesCategory;
     });
 
     // Sort posts
     switch (sortBy) {
       case 'popularity':
         filtered.sort((a, b) => (b.views + b.socialShares) - (a.views + a.socialShares));
-        break;
-      case 'relevance':
-        // Sort by search relevance (simplified)
-        if (searchTerm) {
-          filtered.sort((a, b) => {
-            const aScore = (a.title.toLowerCase().includes(searchTerm.toLowerCase()) ? 3 : 0) +
-                          (a.excerpt.toLowerCase().includes(searchTerm.toLowerCase()) ? 2 : 0) +
-                          (a.tags.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase())) ? 1 : 0);
-            const bScore = (b.title.toLowerCase().includes(searchTerm.toLowerCase()) ? 3 : 0) +
-                          (b.excerpt.toLowerCase().includes(searchTerm.toLowerCase()) ? 2 : 0) +
-                          (b.tags.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase())) ? 1 : 0);
-            return bScore - aScore;
-          });
-        }
         break;
       case 'date':
       default:
@@ -89,7 +58,7 @@ const Blog: React.FC = () => {
     }
 
     return filtered;
-  }, [searchTerm, selectedCategory, selectedTags, sortBy]);
+  }, [selectedCategory, sortBy]);
 
   // Pagination
   const totalPages = Math.ceil(filteredPosts.length / postsPerPage);
@@ -121,7 +90,7 @@ const Blog: React.FC = () => {
         <meta property="og:description" content="Beyond the Edge exists to bridge the gap between complex digital trends and real business growth. We curate the most effective web strategies, SEO innovations, and AI applications." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://mavericksedge.ca/blog" />
-        <meta property="og:image" content="/attached_assets/blog-featured-image.jpg" />
+        <meta property="og:image" content="https://mavericksedge.ca/images/logo-transparent-thumb4x.png" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Beyond the Edge | Digital Marketing & Web Design Blog | Edmonton SEO Tips & Trends" />
         <meta name="twitter:description" content="Beyond the Edge exists to bridge the gap between complex digital trends and real business growth." />
@@ -147,13 +116,6 @@ const Blog: React.FC = () => {
               <p className="text-xl text-[#AAAAAA] max-w-4xl mx-auto mb-8">
                 Beyond the Edge exists to bridge the gap between complex digital trends and real business growth. We curate the most effective web strategies, SEO innovations, and AI applications, then present them as clear, implementable tactics for solopreneurs and small business owners. Your time is valuable, so we focus on delivering insights that create immediate impact and long-term success.
               </p>
-              
-              {/* Search Bar */}
-              <BlogSearch 
-                searchTerm={searchTerm}
-                onSearchChange={setSearchTerm}
-                placeholder="Search for web design, SEO, AI automation tips..."
-              />
             </motion.div>
           </div>
         </section>
@@ -202,13 +164,6 @@ const Blog: React.FC = () => {
                     {featuredPost.excerpt}
                   </p>
                   <div className="flex items-center justify-between">
-                    <div className="flex gap-2">
-                      {featuredPost.tags.map(tag => (
-                        <span key={tag} className="bg-[#2A2A2A] text-[#AAAAAA] px-3 py-1 rounded-full text-sm">
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
                     <a 
                       href={`/blog/${featuredPost.slug}`}
                       className="maverick-button maverick-button-primary"
@@ -228,12 +183,9 @@ const Blog: React.FC = () => {
           <div className="max-w-7xl mx-auto">
             <BlogFilters
               categories={categories}
-              tags={allTags}
               selectedCategory={selectedCategory}
-              selectedTags={selectedTags}
               sortBy={sortBy}
               onCategoryChange={setSelectedCategory}
-              onTagsChange={setSelectedTags}
               onSortChange={setSortBy}
               totalPosts={filteredPosts.length}
             />
@@ -245,7 +197,7 @@ const Blog: React.FC = () => {
           <div className="max-w-7xl mx-auto">
             {currentPosts.length > 0 ? (
               <motion.div 
-                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+                className="flex flex-col md:grid md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.6, delay: 0.4 }}
@@ -265,13 +217,13 @@ const Blog: React.FC = () => {
                 className="text-center py-16"
               >
                 <div className="text-[#AAAAAA] mb-4">
-                  <Search className="w-16 h-16 mx-auto" />
+                  <BookOpen className="w-16 h-16 mx-auto" />
                 </div>
                 <h3 className="text-xl font-semibold text-white mb-2">
                   No posts found
                 </h3>
                 <p className="text-[#AAAAAA]">
-                  Try adjusting your search terms or filters to find what you're looking for.
+                  Try adjusting your filters to find what you're looking for.
                 </p>
               </motion.div>
             )}

@@ -70,7 +70,7 @@ export default function MarketingServices() {
         title="Marketing Services | Brand & Digital Marketing Solutions | Mavericks Edge"
         description="Strategic marketing and creative solutions for SMBs and nonprofits. Boost brand visibility, engage your audience, and drive measurable growth with our tailored marketing services."
         keywords="digital marketing strategy, brand development, SEO services, PPC management, social media marketing, email campaigns, event planning, marketing analytics"
-        canonicalUrl="/services/marketing"
+        canonicalUrl="https://mavericksedge.ca/digital-marketing-services-edmonton"
         ogTitle="Marketing Services | Brand & Digital Marketing Solutions | Mavericks Edge"
         ogDescription="Strategic marketing solutions to boost your brand visibility, engage your audience, and drive business growth for small businesses and nonprofits."
         ogImage="https://mavericksedge.ca/images/logo-transparent-thumb4x.png"

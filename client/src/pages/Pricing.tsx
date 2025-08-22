@@ -1,10 +1,17 @@
 import { motion } from "framer-motion";
 import PricingSection from "@/components/sections/PricingSection";
 import ContactSection from "@/components/sections/ContactSection";
+import SEOHead from "@/components/SEOHead";
 
 export default function Pricing() {
   return (
-    <motion.div
+    <>
+      <SEOHead
+        title="Pricing | Affordable Web Design & Digital Services | Mavericks Edge"
+        description="Transparent pricing for web design, marketing, and AI integration. Flexible packages for small businesses with fast delivery and measurable results."
+        canonicalUrl="https://mavericksedge.ca/pricing-edmonton-web-design-marketing"
+      />
+      <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
@@ -23,5 +30,6 @@ export default function Pricing() {
       <PricingSection fullPage />
       <ContactSection />
     </motion.div>
+    </>
   );
 }

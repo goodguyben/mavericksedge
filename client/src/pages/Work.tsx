@@ -1,10 +1,17 @@
 import { motion } from "framer-motion";
 import WorkSection from "@/components/sections/WorkSection";
 import ContactSection from "@/components/sections/ContactSection";
+import SEOHead from "@/components/SEOHead";
 
 export default function Work() {
   return (
-    <motion.div
+    <>
+      <SEOHead
+        title="Our Work | Web Design Portfolio | Mavericks Edge"
+        description="Explore our web design and development portfolio. See case studies and examples of high-performing websites we built for Edmonton businesses."
+        canonicalUrl="https://mavericksedge.ca/work"
+      />
+      <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
@@ -23,5 +30,6 @@ export default function Work() {
       <WorkSection fullPage />
       <ContactSection />
     </motion.div>
+    </>
   );
 }

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useLocation } from 'wouter';
 import { motion } from 'framer-motion';
 import { Helmet } from 'react-helmet-async';
+import { marked } from 'marked';
 import { 
   Calendar, 
   User, 
@@ -10,7 +11,6 @@ import {
   Eye, 
   Heart, 
   ArrowLeft,
-  Twitter,
   Facebook,
   Linkedin,
   Link as LinkIcon
@@ -70,9 +70,39 @@ const BlogPost: React.FC = () => {
         window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`);
         break;
       case 'copy':
-        await navigator.clipboard.writeText(url);
-        setCopied(true);
-        setTimeout(() => setCopied(false), 2000);
+        try {
+          // Try modern clipboard API first
+          if (navigator.clipboard && window.isSecureContext) {
+            await navigator.clipboard.writeText(url);
+            setCopied(true);
+            setTimeout(() => setCopied(false), 2000);
+          } else {
+            // Fallback for older browsers or non-secure contexts
+            const textArea = document.createElement('textarea');
+            textArea.value = url;
+            textArea.style.position = 'fixed';
+            textArea.style.left = '-999999px';
+            textArea.style.top = '-999999px';
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+            
+            try {
+              document.execCommand('copy');
+              setCopied(true);
+              setTimeout(() => setCopied(false), 2000);
+            } catch (err) {
+              console.error('Fallback copy failed:', err);
+              alert('Copy failed. Please copy the URL manually: ' + url);
+            } finally {
+              document.body.removeChild(textArea);
+            }
+          }
+        } catch (err) {
+          console.error('Copy failed:', err);
+          // Fallback: show URL in alert for manual copy
+          alert('Copy failed. Please copy the URL manually: ' + url);
+        }
         break;
     }
   };
@@ -93,6 +123,8 @@ const BlogPost: React.FC = () => {
       </div>
     );
   }
+
+
 
   return (
     <>
@@ -116,12 +148,40 @@ const BlogPost: React.FC = () => {
           <meta key={index} property="article:tag" content={tag} />
         ))}
         <link rel="canonical" href={`https://mavericksedge.ca/blog/${post.slug}`} />
+        <style>
+          {`
+            /* Enforce brand colors within blog content */
+            .blog-container h1, .blog-container h2, .blog-container h3, .blog-container h4, .blog-container h5, .blog-container h6 { color: #FFFFFF; }
+            .blog-container p, .blog-container li, .blog-container blockquote, .blog-container td { color: #AAAAAA; }
+            .blog-container strong, .blog-container b { color: #FF5630; }
+            .blog-container a { color: #FF5630; }
+            .blog-container a:hover { color: #ffffff; }
+            .blog-container thead th { background-color: #1A1A1A; color: #FFFFFF; }
+            .blog-container table { border-color: #2A2A2A; }
+            .blog-container th, .blog-container td { border-color: #2A2A2A; }
+            
+            /* Force full width for content */
+            .blog-container { max-width: none !important; width: 100% !important; }
+            .blog-container > * { max-width: none !important; }
+            .blog-container p, .blog-container ul, .blog-container ol, .blog-container blockquote, .blog-container table { max-width: none !important; }
+            
+            /* Mobile: ensure tables fit within viewport */
+            @media (max-width: 640px) {
+              .blog-container table { width: 100% !important; table-layout: fixed; }
+              .blog-container thead th, .blog-container tbody td { padding: 6px 8px !important; }
+              .blog-container table, .blog-container th, .blog-container td { font-size: 0.85rem !important; }
+              .blog-container th, .blog-container td { word-break: break-word; white-space: normal; }
+              /* Hide tables entirely on mobile */
+              .blog-container table { display: none !important; }
+            }
+          `}
+        </style>
       </Helmet>
 
       <div className="min-h-screen bg-[#121212]">
         {/* Back Button */}
         <div className="pt-8 px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto">
+          <div className="max-w-6xl mx-auto">
             <button
               onClick={() => setLocation('/blog')}
               className="flex items-center gap-2 text-[#AAAAAA] hover:text-white transition-colors"
@@ -133,8 +193,8 @@ const BlogPost: React.FC = () => {
         </div>
 
         {/* Article Header */}
-        <article className="py-16 px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto">
+        <article className="pt-16 pb-8 px-4 sm:px-6 lg:px-8">
+          <div className="max-w-6xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -146,6 +206,7 @@ const BlogPost: React.FC = () => {
                   src={post.featuredImage} 
                   alt={post.title}
                   className="w-full h-64 md:h-96 object-cover rounded-xl shadow-lg"
+                  style={{ objectPosition: post.slug === 'most-affordable-website-design-companies-edmonton-2025' ? 'top center' : 'center 60%' }}
                 />
               </div>
 
@@ -157,7 +218,7 @@ const BlogPost: React.FC = () => {
                 </div>
                 <div className="flex items-center gap-2">
                   <User className="w-4 h-4" />
-                  Bezal Benny
+                  {post.author}
                 </div>
                 <div className="flex items-center gap-2">
                   <BookOpen className="w-4 h-4" />
@@ -197,21 +258,23 @@ const BlogPost: React.FC = () => {
                 <div className="flex gap-2">
                   <button
                     onClick={() => handleShare('twitter')}
-                    className="p-2 text-[#1DA1F2] hover:text-[#1DA1F2]/80 transition-colors"
-                    aria-label="Share on Twitter"
+                    className="p-2 text-[#AAAAAA] hover:text-white transition-colors"
+                    aria-label="Share on X"
                   >
-                    <Twitter className="w-5 h-5" />
+                    <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                    </svg>
                   </button>
                   <button
                     onClick={() => handleShare('facebook')}
-                    className="p-2 text-[#1877F2] hover:text-[#1877F2]/80 transition-colors"
+                    className="p-2 text-[#AAAAAA] hover:text-white transition-colors"
                     aria-label="Share on Facebook"
                   >
                     <Facebook className="w-5 h-5" />
                   </button>
                   <button
                     onClick={() => handleShare('linkedin')}
-                    className="p-2 text-[#0A66C2] hover:text-[#0A66C2]/80 transition-colors"
+                    className="p-2 text-[#AAAAAA] hover:text-white transition-colors"
                     aria-label="Share on LinkedIn"
                   >
                     <Linkedin className="w-5 h-5" />
@@ -219,7 +282,7 @@ const BlogPost: React.FC = () => {
                   <button
                     onClick={() => handleShare('copy')}
                     className={`p-2 transition-colors ${
-                      copied ? 'text-[#10B981]' : 'text-[#AAAAAA] hover:text-white'
+                      copied ? 'text-[#FF5630]' : 'text-[#AAAAAA] hover:text-white'
                     }`}
                     aria-label="Copy link"
                   >
@@ -227,7 +290,7 @@ const BlogPost: React.FC = () => {
                   </button>
                 </div>
                 {copied && (
-                  <span className="text-sm text-[#10B981]">Link copied!</span>
+                  <span className="text-sm text-[#FF5630]">Link copied!</span>
                 )}
               </div>
             </motion.div>
@@ -235,15 +298,15 @@ const BlogPost: React.FC = () => {
         </article>
 
         {/* Article Content */}
-        <article className="py-16 px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto">
+        <article className="pt-0 pb-4 px-4 sm:px-6 lg:px-8">
+          <div className="max-w-6xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="prose prose-lg max-w-none bg-[#1A1A1A] rounded-xl shadow-lg p-8 md:p-12 border border-[#2A2A2A] prose-headings:text-white prose-p:text-[#AAAAAA] prose-strong:text-[#FF5630] prose-a:text-[#FF5630] prose-a:no-underline hover:prose-a:underline prose-blockquote:border-l-[#FF5630] prose-blockquote:bg-[#2A2A2A] prose-blockquote:text-[#AAAAAA] prose-code:bg-[#2A2A2A] prose-code:text-[#FF5630] prose-pre:bg-[#2A2A2A] prose-pre:text-[#AAAAAA]"
+              className="blog-container prose prose-lg max-w-none bg-[#1A1A1A] rounded-xl shadow-lg border border-[#2A2A2A] px-4 py-2 prose-headings:text-white prose-p:text-[#AAAAAA] prose-strong:text-[#FF5630] prose-a:text-[#FF5630] prose-a:no-underline hover:prose-a:underline prose-blockquote:border-l-[#FF5630] prose-blockquote:bg-[#2A2A2A] prose-blockquote:text-[#AAAAAA] prose-code:bg-[#2A2A2A] prose-code:text-[#FF5630] prose-pre:bg-[#2A2A2A] prose-pre:text-[#AAAAAA] prose-ul:text-[#AAAAAA] prose-ol:text-[#AAAAAA] prose-li:text-[#AAAAAA] prose-table:text-[#AAAAAA] prose-th:text-white prose-td:text-[#AAAAAA]"
             >
-              <div dangerouslySetInnerHTML={{ __html: post.content }} />
+              <div dangerouslySetInnerHTML={{ __html: marked(post.content) }} />
             </motion.div>
           </div>
         </article>
@@ -276,7 +339,7 @@ const BlogPost: React.FC = () => {
 
         {/* CTA Section */}
         <section className="py-16 px-4 sm:px-6 lg:px-8 bg-[#1A1A1A]">
-          <div className="max-w-4xl mx-auto text-center">
+          <div className="max-w-6xl mx-auto text-center">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}

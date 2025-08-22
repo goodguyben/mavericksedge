@@ -83,7 +83,7 @@ export default function AIServices() {
         title="AI Integration Services | Artificial Intelligence Solutions | Mavericks Edge"
         description="Transform your business with cutting-edge AI integration services. Expert artificial intelligence solutions, machine learning implementation, and intelligent automation for businesses of all sizes in Alberta."
         keywords="AI integration services, artificial intelligence solutions, machine learning implementation, AI automation, ChatGPT integration, custom AI development, business AI solutions, AI consulting, machine learning consulting, AI transformation, intelligent automation, AI strategy, data science services, predictive analytics, natural language processing, computer vision, AI chatbots, business process automation, AI readiness assessment, AI implementation, enterprise AI solutions, small business AI, AI consulting services, machine learning models, deep learning, neural networks, AI platform integration, OpenAI integration, Google AI integration, AI data governance, AI compliance, PIPEDA compliance, AI training, change management, AI performance monitoring, ROI optimization, Alberta AI services"
-        canonicalUrl="/ai-automation-services-edmonton"
+        canonicalUrl="https://mavericksedge.ca/ai-automation-services-edmonton"
         ogTitle="AI Integration Services | Artificial Intelligence Solutions | Mavericks Edge"
         ogDescription="Transform your business with cutting-edge AI integration services. Expert artificial intelligence solutions, machine learning implementation, and AI automation."
         ogImage="https://mavericksedge.ca/images/logo-transparent-thumb4x.png"

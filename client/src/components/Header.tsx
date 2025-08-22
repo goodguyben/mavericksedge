@@ -288,23 +288,6 @@ export default function Header() {
               </AnimatePresence>
             </div>
 
-            {/* About Link */}
-            <motion.div
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                transition={{ duration: 0.2 }}
-              >
-                <Link 
-                  href={ROUTES.ABOUT} 
-                  className={`px-3 py-2 min-h-[44px] rounded-md text-base font-medium transition-colors duration-200 touch-manipulation flex items-center ${
-                    isCurrentPath(ROUTES.ABOUT) ? 'text-maverick-orange' : 'text-white hover:text-maverick-orange'
-                  }`} 
-                  aria-current={isCurrentPath(ROUTES.ABOUT) ? 'page' : undefined}
-                >
-                  About
-                </Link>
-              </motion.div>
-
             {/* Blog Link */}
             <motion.div
                 whileHover={{ scale: 1.05 }}
@@ -322,7 +305,24 @@ export default function Header() {
                 </Link>
               </motion.div>
 
-            {/* Contact Link */}
+            {/* About Link */}
+            <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ duration: 0.2 }}
+              >
+                <Link 
+                  href={ROUTES.ABOUT} 
+                  className={`px-3 py-2 min-h-[44px] rounded-md text-base font-medium transition-colors duration-200 touch-manipulation flex items-center ${
+                    isCurrentPath(ROUTES.ABOUT) ? 'text-maverick-orange' : 'text-white hover:text-maverick-orange'
+                  }`} 
+                  aria-current={isCurrentPath(ROUTES.ABOUT) ? 'page' : undefined}
+                >
+                  About
+                </Link>
+              </motion.div>
+
+            {/* Contact Link - Send Message Style Button */}
             <motion.div
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -330,10 +330,11 @@ export default function Header() {
               >
                 <Link 
                   href={ROUTES.CONTACT} 
-                  className={`px-3 py-2 min-h-[44px] rounded-md text-base font-medium transition-colors duration-200 touch-manipulation flex items-center ${
-                    isCurrentPath(ROUTES.CONTACT) ? 'text-maverick-orange' : 'text-white hover:text-maverick-orange'
+                  className={`px-6 py-3 min-h-[44px] rounded-lg text-base font-medium transition-all duration-300 touch-manipulation flex items-center bg-[#FF5630] text-[#FFFFFF] hover:bg-[#FF5630]/90 ${
+                    isCurrentPath(ROUTES.CONTACT) ? 'ring-2 ring-white/20' : ''
                   }`} 
                   aria-current={isCurrentPath(ROUTES.CONTACT) ? 'page' : undefined}
+                  style={{ color: '#FFFFFF' }}
                 >
                   Contact
                 </Link>
@@ -424,7 +425,7 @@ export default function Header() {
                   </button>
                 </div>
                 {/* Subtle gradient line */}
-                <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-maverick-orange/30 to-transparent"></div>
+                <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-maverick-orange to-transparent"></div>
               </div>
 
               {/* Navigation Items with improved spacing */}

@@ -13,7 +13,7 @@ export default function Terms() {
       <SEOHead 
         title="Terms of Service - Mavericks Edge"
         description="Our terms of service outline the rules and regulations for using our web development and digital marketing services."
-        canonicalUrl="/terms"
+        canonicalUrl="https://mavericksedge.ca/terms"
       />
       <div className="min-h-screen bg-[#0D0D0D] text-white">
         <motion.div 

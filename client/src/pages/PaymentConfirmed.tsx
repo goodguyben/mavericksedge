@@ -2,6 +2,7 @@
 import { motion } from "framer-motion";
 import { CheckCircle, Download, Mail, Calendar, Heart } from "lucide-react";
 import { useEffect, useState } from "react";
+import SEOHead from "@/components/SEOHead";
 
 export default function PaymentConfirmed() {
   const [orderNumber, setOrderNumber] = useState("");
@@ -22,7 +23,14 @@ export default function PaymentConfirmed() {
   }, []);
 
   return (
-    <motion.div
+    <>
+      <SEOHead
+        title="Payment Confirmed | Mavericks Edge"
+        description="Payment confirmation page."
+        canonicalUrl="https://mavericksedge.ca/payment-confirmed"
+        noindex={true}
+      />
+      <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
@@ -226,5 +234,6 @@ export default function PaymentConfirmed() {
         </motion.div>
       </div>
     </motion.div>
+    </>
   );
 }

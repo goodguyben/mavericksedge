@@ -274,6 +274,20 @@ export default function ContactSection({ fullPage = false }: ContactSectionProps
               </div>
             </div>
 
+            <h4 className="font-semibold mb-4">Location</h4>
+            <div className="w-full h-64 rounded-lg overflow-hidden border border-gray-700 mb-6">
+              <iframe
+                src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q=6908+100+Avenue+NW,+Edmonton,+AB+T6A+0G2,+Canada&zoom=16&maptype=roadmap"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Mavericks Edge Location - 6908 100 Avenue NW, Edmonton, AB"
+              ></iframe>
+            </div>
+
             <h4 className="font-semibold mb-4">Follow Us</h4>
             <div className="flex space-x-4">
               <a

@@ -151,7 +151,7 @@ export default function WhyChooseUsSection() {
             viewport={{ once: true }}
             transition={{ duration: 1, delay: 0.3 }}
           >
-            Why Choose{" "}
+            Why Edmonton Businesses Choose{" "}
             <GradientText 
               colors={["#FF5630", "#FF8A50", "#FFB899", "#FF5630"]}
               animationSpeed={5}
@@ -167,7 +167,7 @@ export default function WhyChooseUsSection() {
             viewport={{ once: true }}
             transition={{ duration: 1, delay: 0.5 }}
           >
-            We partner with passionate people building meaningful work — SMBs, nonprofits, and early-stage teams doing a lot with a little. We get it: every dollar matters. That's why our services are flexible, transparent, and built around long-term sustainability.
+            We partner with passionate people building meaningful work. Small to medium size businesses, nonprofits, solopreneurs, and early-stage teams doing a lot with a little. We get it: every dollar matters. That's why our services are flexible, transparent, and built around long-term sustainability.
           </motion.p>
         </motion.div>
 

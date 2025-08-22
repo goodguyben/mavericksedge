@@ -27,10 +27,10 @@ export const contactInfo = {
     line2: "Edmonton, Alberta, T6A 0G2, Canada"
   },
   social: {
-    facebook: "#",
-    twitter: "#",
-    instagram: "#",
-    linkedin: "#"
+    facebook: "https://www.facebook.com/mavericksedge",
+    twitter: "https://x.com/mavericksedge",
+    instagram: "https://www.instagram.com/mavericksedge",
+    linkedin: "https://www.linkedin.com/company/mavericks-edge/"
   }
 };
 

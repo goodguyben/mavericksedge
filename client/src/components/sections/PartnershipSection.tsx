@@ -93,6 +93,12 @@ const BENTO_VIDEOS = [
   "https://mavericksedge.ca/videos/Portfolio_Video_16.webm",
   "https://mavericksedge.ca/videos/Portfolio_Video_17.webm",
   "https://mavericksedge.ca/videos/Portfolio_Video_18.webm",
+  "https://mavericksedge.ca/videos/Portfolio_Video_19.webm",
+  "https://mavericksedge.ca/videos/Portfolio_Video_20.webm",
+  "https://mavericksedge.ca/videos/Portfolio_Video_21.webm",
+  "https://mavericksedge.ca/videos/Portfolio_Video_22.webm",
+  "https://mavericksedge.ca/videos/Portfolio_Video_23.webm",
+  "https://mavericksedge.ca/videos/Portfolio_Video_24.webm",
 ];
 
 // Memoized video chunks to prevent recalculation
@@ -100,6 +106,7 @@ const createVideoChunks = () => ({
   row1: BENTO_VIDEOS.slice(0, 6),
   row2: BENTO_VIDEOS.slice(6, 12),
   row3: BENTO_VIDEOS.slice(12, 18),
+  row4: BENTO_VIDEOS.slice(18, 24),
 });
 
 // Memoized star rating component
@@ -298,7 +305,7 @@ const VideoItem = memo(({
 }) => (
   <motion.div
     className="flex-shrink-0 relative group"
-    style={{ width: 'auto', minWidth: '400px', height: '300px' }}
+    style={{ width: 'auto', minWidth: '260px', height: '180px' }}
     whileHover={{ scale: 1.05 }}
     transition={{ duration: 0.3 }}
   >
@@ -381,7 +388,7 @@ function PartnershipSection() {
     direction?: 'left' | 'right';
   }) => (
     <motion.div 
-      className="flex gap-8 overflow-hidden pb-4"
+      className="flex gap-6 overflow-hidden pb-2"
       style={{
         scrollbarWidth: 'none',
         msOverflowStyle: 'none',
@@ -390,7 +397,7 @@ function PartnershipSection() {
       }}
     >
       {/* First set of videos */}
-      <div className="flex gap-8" style={{ 
+      <div className="flex gap-6" style={{ 
         animationDuration: `${duration}s`,
         animationName,
         animationTimingFunction: 'linear',
@@ -406,7 +413,7 @@ function PartnershipSection() {
         ))}
       </div>
       {/* Duplicate set for seamless loop */}
-      <div className="flex gap-8" style={{ 
+      <div className="flex gap-6" style={{ 
         animationDuration: `${duration}s`,
         animationName,
         animationTimingFunction: 'linear',
@@ -509,7 +516,7 @@ function PartnershipSection() {
           style={{ scale, opacity }}
         >
           {/* Horizontal Scrolling Bento Grid */}
-          <div className="space-y-8">
+          <div className="space-y-6">
             {/* Row 1: Left to Right - Videos 1-6 with auto-scroll */}
             <VideoRow 
               videos={videoChunks.row1}
@@ -533,25 +540,34 @@ function PartnershipSection() {
               duration={35}
               direction="left"
             />
+
+            {/* Row 4: Left to Right - Videos 19-24 with auto-scroll */}
+            <VideoRow 
+              videos={videoChunks.row4}
+              animationName="scrollRight"
+              duration={28}
+              direction="right"
+            />
           </div>
 
-          {/* Call to Action */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.9 }}
-            className="text-center mt-16"
-          >
-            <p className="text-lg text-gray-300 mb-6">
-              Ready to see your project come to life?
-            </p>
-            <button className="bg-gradient-to-r from-[#E04500] via-[#FF5630] to-[#FF8A50] text-white px-8 py-4 rounded-lg font-semibold hover:shadow-lg hover:shadow-orange-500/40 transition-all duration-300 transform hover:scale-105 shadow-lg">
-              Start Your Project
-            </button>
-          </motion.div>
         </motion.div>
       </div>
+
+      {/* Call to Action */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6, delay: 0.9 }}
+        className="text-center mt-16"
+      >
+        <p className="text-lg text-gray-300 mb-6">
+          Ready to see your project come to life?
+        </p>
+        <button className="bg-gradient-to-r from-[#E04500] via-[#FF5630] to-[#FF8A50] text-white px-8 py-4 rounded-lg font-semibold hover:shadow-lg hover:shadow-orange-500/40 transition-all duration-300 transform hover:scale-105 shadow-lg">
+          Start Your Project
+        </button>
+      </motion.div>
       
       {/* Background gradient effect - positioned below metrics with overlap */}
       <div className="pointer-events-none absolute z-10 w-full hidden md:block"

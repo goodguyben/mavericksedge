@@ -13,7 +13,7 @@ export default function GDPRCompliance() {
       <SEOHead 
         title="GDPR Compliance & Data Protection - Mavericks Edge"
         description="Learn about Mavericks Edge's commitment to GDPR compliance and data protection for our web development and digital marketing services."
-        canonicalUrl="/gdpr-compliance"
+        canonicalUrl="https://mavericksedge.ca/gdpr-compliance"
       />
       <div className="min-h-screen bg-[#0D0D0D] text-white">
         <motion.div 

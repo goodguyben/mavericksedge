@@ -10,6 +10,7 @@ import LocalSEO from '@/components/LocalSEO';
 import MobileOptimizations from '@/components/MobileOptimized';
 import CreativeWorkSection from '@/components/sections/CreativeWorkSection';
 import ProcessSection from '@/components/sections/ProcessSection';
+import FAQSection from '@/components/sections/FAQSection';
 import ScrollFadeSection from '@/components/ui/scroll-fade-section';
 import SEOHead from '@/components/SEOHead';
 import StructuredData, { organizationSchema, localBusinessSchema, websiteSchema, faqSchema } from '@/components/StructuredData';
@@ -145,6 +146,22 @@ export default function Home() {
               <Suspense fallback={<SectionFallback />}>
                 <ProcessSection />
               </Suspense>
+            </ScrollFadeSection>
+          </LazySection>
+
+          {/* FAQ Section */}
+          <LazySection threshold={0.1} rootMargin="50px">
+            <ScrollFadeSection
+              id="faq"
+              fadeInPoint={0.5}
+              fadeOutPoint={0.6}
+              fadeInDuration={0.9}
+              fadeOutDuration={1.8}
+              initialOpacity={0}
+              minOpacity={0.1}
+              useFallback={true}
+            >
+              <FAQSection />
             </ScrollFadeSection>
           </LazySection>
 

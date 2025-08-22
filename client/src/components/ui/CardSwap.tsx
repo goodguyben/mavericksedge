@@ -231,13 +231,17 @@ const CardSwap: React.FC<CardSwapProps> = ({
   children,
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
-  // Removed animation-related refs
-  // const tlRef = useRef<gsap.core.Timeline | null>(null);
-  // const intervalRef = useRef<number>();
-  // const isInViewRef = useRef(false);
-  // const hasStartedRef = useRef(false);
+  const tlRef = useRef<gsap.core.Timeline | null>(null);
+  const intervalRef = useRef<number>();
+  const isInViewRef = useRef(false);
+  const hasStartedRef = useRef(false);
   
-  // Removed performance optimization config since no animation
+  // Performance optimization config
+  const animationConfig = useMemo(() => ({
+    duration: easing === "elastic" ? 1.2 : 0.8,
+    ease: easing === "elastic" ? "elastic.out(1, 0.5)" : "power2.inOut",
+    stagger: 0.1,
+  }), [easing]);
 
   const childArr = useMemo(
     () => Children.toArray(children) as ReactElement<CardProps>[],
@@ -248,12 +252,13 @@ const CardSwap: React.FC<CardSwapProps> = ({
     [childArr]
   );
 
-  // Removed order ref since no animation
+  const orderRef = useRef<number[]>([]);
 
   useEffect(() => {
     const total = refs.length;
+    orderRef.current = Array.from({ length: total }, (_, i) => i);
     
-    // Position cards statically without animation
+    // Initial card positioning
     refs.forEach((r, i) => {
       if (r.current) {
         placeNow(
@@ -264,13 +269,99 @@ const CardSwap: React.FC<CardSwapProps> = ({
       }
     });
 
-    // Removed all animation logic including:
-    // - swap function
-    // - intersection observer
-    // - interval setup
-    // - pause on hover functionality
+    // Animation swap function
+    const swap = () => {
+      if (!isInViewRef.current || refs.length < 2) return;
+      
+      const newOrder = [...orderRef.current];
+      newOrder.push(newOrder.shift()!);
+      orderRef.current = newOrder;
 
-  }, [cardDistance, verticalDistance, skewAmount, refs.length]);
+      tlRef.current = gsap.timeline();
+      
+      newOrder.forEach((originalIdx, newPosition) => {
+        const el = refs[originalIdx].current;
+        if (el) {
+          const slot = makeSlot(newPosition, cardDistance, verticalDistance, total);
+          tlRef.current!.to(
+            el,
+            {
+              ...slot,
+              skewY: skewAmount,
+              ...animationConfig,
+            },
+            0
+          );
+        }
+      });
+    };
+
+    // Set up intersection observer for performance
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          isInViewRef.current = entry.isIntersecting;
+          if (entry.isIntersecting && !hasStartedRef.current) {
+            hasStartedRef.current = true;
+            // Start animation after a short delay
+            setTimeout(() => {
+              swap();
+              intervalRef.current = window.setInterval(swap, delay);
+            }, 500);
+          } else if (!entry.isIntersecting && intervalRef.current) {
+            clearInterval(intervalRef.current);
+            hasStartedRef.current = false;
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
+    }
+
+    // Pause on hover functionality
+    const container = containerRef.current;
+    if (container && pauseOnHover) {
+      const handleMouseEnter = () => {
+        if (intervalRef.current) {
+          clearInterval(intervalRef.current);
+        }
+        if (tlRef.current) {
+          tlRef.current.pause();
+        }
+      };
+
+      const handleMouseLeave = () => {
+        if (tlRef.current) {
+          tlRef.current.resume();
+        }
+        if (isInViewRef.current) {
+          intervalRef.current = window.setInterval(swap, delay);
+        }
+      };
+
+      container.addEventListener("mouseenter", handleMouseEnter);
+      container.addEventListener("mouseleave", handleMouseLeave);
+
+      return () => {
+        container.removeEventListener("mouseenter", handleMouseEnter);
+        container.removeEventListener("mouseleave", handleMouseLeave);
+        if (intervalRef.current) {
+          clearInterval(intervalRef.current);
+        }
+        observer.disconnect();
+      };
+    }
+
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
+      observer.disconnect();
+    };
+  }, [cardDistance, verticalDistance, skewAmount, refs.length, delay, pauseOnHover, animationConfig]);
 
   const rendered = childArr.map((child, i) =>
     isValidElement<CardProps>(child)

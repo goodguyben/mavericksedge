@@ -190,7 +190,7 @@ export default function WhatWeDoSection() {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.3 }}
             >
-              We offer a range of services, from building and optimizing websites and e-commerce platforms to developing strategic marketing campaigns and integrating AI solutions for automation. Our goal is to provide customized, impactful solutions that drive results.
+              We help passionate teams bring their ideas to life. From building and optimizing websites and e-commerce platforms to creating marketing strategies and integrating AI for smarter workflows, we focus on solutions that truly make a difference. Our goal is to empower your vision and drive results that matter.
             </motion.p>
           </motion.div>
         </header>
