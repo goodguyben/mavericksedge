@@ -1,4 +1,8 @@
 import { Resend } from 'resend';
+import * as dotenv from 'dotenv';
+
+// Load environment variables
+dotenv.config();
 
 // Initialize Resend with API key
 const resend = new Resend(process.env.RESEND_API_KEY);
@@ -18,6 +22,13 @@ export async function sendEmail(
   html?: string
 ) {
   try {
+    console.log('=== Email Service Debug ===');
+    console.log('Environment variables loaded:', {
+      NODE_ENV: process.env.NODE_ENV,
+      RESEND_API_KEY_PRESENT: !!process.env.RESEND_API_KEY,
+      RESEND_API_KEY_LENGTH: process.env.RESEND_API_KEY?.length || 0,
+      RESEND_API_KEY_START: process.env.RESEND_API_KEY?.substring(0, 10) + '...' || 'undefined'
+    });
     console.log('Attempting to send email with Resend API...');
     console.log('API Key present:', !!process.env.RESEND_API_KEY);
     console.log('Email details:', { 
