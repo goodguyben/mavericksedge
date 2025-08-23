@@ -369,40 +369,52 @@ What’s not included by default (can be added): custom illustration sets, copyw
 
 Below we compare entry tiers and typical scope to help you budget.
 
-| Provider | Entry Website | Growth Website | E‑commerce | Typical Timeline |
+| Provider | Entry Website | Growth Website | E-commerce | Typical Timeline |
 | :-- | :-- | :-- | :-- | :-- |
-| **Mavericks Edge** | **$1,000–$1,800** | **$2,400–$4,500** | **$3,900–$7,500** | 2–8 weeks |
-| Pixel Army | ~$4,500 | ~$6,500+ | ~$11,500+ | 6–12 weeks |
-| Snap SEO | $1,200+ | $2,500–$5,000+ | Custom | 3–8 weeks |
-| SiteWyze | ~$2,500–$3,500+ | $4,500–$7,500+ | $6,500–$12,000+ | 4–10 weeks |
-| Promark Business Solutions | $198 setup + $39.97/mo | + pages/features | + store add‑ons | 1–4 weeks |
+| **Mavericks Edge** | **$1,000-$1,800** | **$2,400-$4,500** | **$3,900-$7,500** | 2-8 weeks |
+| Pixel Army | ~$4,500 | ~$6,500+ | ~$11,500+ | 6-12 weeks |
+| Snap SEO | $1,200+ | $2,500-$5,000+ | Custom | 3-8 weeks |
+| SiteWyze | ~$2,500-$3,500+ | $4,500-$7,500+ | $6,500-$12,000+ | 4-10 weeks |
+| Promark Business Solutions | $198 setup + $39.97/mo | + pages/features | + store add-ons | 1-4 weeks |
 
-### Provider Snapshots
+### Competitor Profiles (Deep Dive)
 
-#### Pixel Army – Packaged tiers with clear delivery
-- Quick Launch (~$4,500), semi‑custom (~$6,500+), custom (~$11,500+)
-- In‑house CMS, strong process, managed support
-- Considerations: add‑ons/custom can raise TCO for small teams
+#### Pixel Army
+- Scope and approach: packaged delivery with a documented process, in-house Honeycomb CMS, and WordPress for custom builds. Strong account management and post-launch support.
+- Typical work: corporate sites, associations, and established SMBs that need reliable timelines, service breadth, and managed infrastructure.
+- Pricing and delivery: Quick Launch about $4,500; custom builds from about $11,500+. Timelines range from a few weeks (packaged) to 8-12+ weeks (custom). Training and content migration are commonly included.
+- Strengths: dependable process, single-vendor stack (design, build, hosting, support), CMS training, accessible templates.
+- Trade-offs: add-ons and custom features can increase total cost of ownership for small teams; packaged visuals can feel familiar.
+- What to ask: hosting inclusions, page count caps, revision limits, and what is considered custom vs. packaged.
 
-#### Snap SEO – WordPress with SEO built‑in
-- From $1,200+ with technical SEO and content support
-- Strong fit for local service businesses needing content + speed
-- Considerations: scope clarity for copy rounds/page count
+#### Snap SEO
+- Scope and approach: SEO-first WordPress builds where technical setup, content structure, and performance are treated as foundation, not extras.
+- Typical work: owner-led service brands that need rank-ready pages, clear internal linking, and ongoing SEO support.
+- Pricing and delivery: from about $1,200 for design with technical SEO, structured data, and performance tuning; best results when paired with a retainer. Delivery often 3-8 weeks depending on content readiness.
+- Strengths: technical SEO hygiene, structured data, content guidance, speed improvements.
+- Trade-offs: outcomes depend on content and consistency post-launch; clarify copy rounds and page counts.
+- What to ask: who writes core page copy, what schema is implemented, and how internal links are mapped.
 
-#### SiteWyze – All‑in‑one starters for small teams
-- Starter packages plus a ~$3,500 Business Starter option
-- Includes copy help, GBP setup; e‑commerce tiers available
-- Considerations: templated approach reduces visual differentiation
+#### SiteWyze
+- Scope and approach: starter packages that bundle design, copy help, and business essentials to go live quickly.
+- Typical work: new businesses that need a credible web presence with local support and predictable pricing.
+- Pricing and delivery: Business Starter around $3,500 with core pages and marketing basics; e-commerce tiers available. Typical delivery 4-10 weeks.
+- Strengths: fast path to launch, guided setup, and service bundling.
+- Trade-offs: templated visuals and limited deviation from standard layouts; confirm page counts and revision scope.
+- What to ask: what is included in copywriting, limits on page templates, and options to add features later without a rebuild.
 
-#### Promark Business Solutions – Low upfront, low monthly
-- $198 setup + $39.97/mo, bundled maintenance and hosting
-- Predictable ownership costs with fast content changes
-- Considerations: confirm portability and change coverage
+#### Promark Business Solutions
+- Scope and approach: low upfront, monthly model that wraps hosting, maintenance, SSL, and minor content edits.
+- Typical work: small teams that prefer a subscription over a project invoice and want predictable support.
+- Pricing and delivery: $198 setup + $39.97/month for a four-page site with maintenance and quick changes; common go-live in 1-4 weeks.
+- Strengths: predictable ownership cost, fast edits, and bundled care.
+- Trade-offs: portability and export details vary; confirm what “quick changes” cover and how ownership works if you cancel.
+- What to ask: export options, SLA for changes, and what upgrades require a separate project.
 
 ## Edmonton Market Snapshot: Pricing and Timing Trends (2025)
 
 - Mobile usage continues to dominate discovery; responsive and fast-loading pages remain non-negotiable for conversions
-- Owner-led teams favor shorter engagements (2–8 weeks) with tight scope, then iterate post-launch
+- Owner-led teams favor shorter engagements (2-8 weeks) with tight scope, then iterate post-launch
 - Transparent care plans are replacing ad‑hoc hourly support; common ranges are **$49–$199/month** for updates, security, and small edits
 - E‑commerce continues to converge on Shopify and WooCommerce due to ecosystem maturity and hiring availability
 
@@ -410,9 +422,9 @@ Below we compare entry tiers and typical scope to help you budget.
 
 To avoid sticker shock, compare the inclusions—not just the sticker price.
 
-### Under $2,000 – Launch‑Ready Basics
+### Under $2,000 - Launch-Ready Basics
 
-- 5–7 pages (Home, Services, About, Contact, 1–2 additional pages)
+- 5-7 pages (Home, Services, About, Contact, 1-2 additional pages)
 - Mobile-first design with a modern component library
 - Contact form with basic spam protection
 - On-page SEO fundamentals (title/meta/headers, alt text)
@@ -421,7 +433,7 @@ To avoid sticker shock, compare the inclusions—not just the sticker price.
 
 Best for: businesses that need to look credible, get found for branded searches, and start collecting inquiries fast.
 
-### $2,400–$4,500 – Growth Foundation
+### $2,400-$4,500 - Growth Foundation
 
 - 10–15 pages including blog/news
 - Information architecture and content guidance
@@ -431,7 +443,7 @@ Best for: businesses that need to look credible, get found for branded searches,
 
 Best for: service brands targeting multiple neighborhoods/keywords who want to rank and convert consistently.
 
-### $3,900–$7,500 – Commerce and Booking
+### $3,900-$7,500 - Commerce and Booking
 
 - Catalog setup, payment integration, tax/shipping rules
 - Email notifications, order statuses, and basic automation
@@ -449,13 +461,13 @@ Below is a common 6‑week plan for an entry or growth website when content is m
 - Week 3: build out pages, forms, schema basics, internal links
 - Week 4: content load, imagery, performance tuning, QA
 - Week 5: stakeholder review, revisions, accessibility checks
-- Week 6: launch prep, redirects if needed, analytics verification, go‑live
+- Week 6: launch prep, redirects if needed, analytics verification, go-live
 
-If content isn’t ready, add 1–2 weeks for copywriting and approvals.
+If content isn’t ready, add 1-2 weeks for copywriting and approvals.
 
-## One‑Year and Three‑Year TCO Examples (Mavericks Edge)
+## One-Year and Three-Year TCO Examples (Mavericks Edge)
 
-| Scenario | Build | Care Plan | Hosting/Domain | 1‑Year TCO | 3‑Year TCO |
+| Scenario | Build | Care Plan | Hosting/Domain | 1-Year TCO | 3-Year TCO |
 | :-- | :-- | :-- | :-- | :-- | :-- |
 | Launch Site + Basic Care | $1,400 | $49/mo | $30/mo | ~$2,438 | ~$4,756 |
 | Growth Site + Standard Care | $3,200 | $99/mo | $30/mo | ~$4,418 | ~$7,856 |
@@ -486,7 +498,7 @@ Mavericks Edge publishes these costs up front and keeps the ongoing plan optiona
 ## Frequently Asked Questions (FAQs)
 
 **Is a $1,000 website worth it in Edmonton?**
-Yes—if it includes mobile-first UX, on‑page SEO, analytics, and clean architecture. Expect a tight scope and 1 round of revisions. It should be upgradeable without a rebuild.
+Yes, if it includes mobile-first UX, on-page SEO, analytics, and clean architecture. Expect a tight scope and 1 round of revisions. It should be upgradeable without a rebuild.
 
 **What affects website cost the most?**
 Scope (page count, features), content readiness, integrations, and revision rounds. Timelines and team size also influence cost.
