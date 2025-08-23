@@ -192,38 +192,6 @@ const Blog: React.FC = () => {
           </div>
         </section>
 
-        {/* CTA Section */}
-        <section className="py-16 px-4 sm:px-6 lg:px-8 bg-[#1A1A1A]">
-          <div className="max-w-6xl mx-auto text-center">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-            >
-              <h2 className="text-3xl font-bold text-white mb-4 font-heading">
-                Ready to Transform Your Business?
-              </h2>
-              <p className="text-xl text-[#AAAAAA] mb-8">
-                Let our team help you implement the strategies discussed in these articles.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <a 
-                  href="/contact"
-                  className="bg-[#FF5630] text-white px-8 py-3 rounded-lg font-semibold hover:bg-[#FF8A50] transition-colors shadow-lg hover:shadow-xl"
-                >
-                  Get Started Today
-                </a>
-                <a 
-                  href="/services"
-                  className="border-2 border-[#FF5630] text-[#FF5630] px-8 py-3 rounded-lg font-semibold hover:bg-[#FF5630] hover:text-white transition-colors"
-                >
-                  View Our Services
-                </a>
-              </div>
-            </motion.div>
-          </div>
-        </section>
-
         {/* Blog Posts Grid */}
         <section className="py-16 px-4 sm:px-6 lg:px-8">
           <div className="max-w-7xl mx-auto">
@@ -262,14 +230,46 @@ const Blog: React.FC = () => {
           </div>
         </section>
 
+        {/* CTA Section */}
+        <section className="py-16 px-4 sm:px-6 lg:px-8 bg-[#1A1A1A]">
+          <div className="max-w-6xl mx-auto text-center">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.6 }}
+            >
+              <h2 className="text-3xl font-bold text-white mb-4 font-heading">
+                Ready to Transform Your Business?
+              </h2>
+              <p className="text-xl text-[#AAAAAA] mb-8">
+                Let our team help you implement the strategies discussed in our articles.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <a 
+                  href="/contact"
+                  className="bg-[#FF5630] text-white px-8 py-3 rounded-lg font-semibold hover:bg-[#FF8A50] transition-colors shadow-lg hover:shadow-xl"
+                >
+                  Get Started Today
+                </a>
+                <a 
+                  href="/services"
+                  className="border-2 border-[#FF5630] text-[#FF5630] px-8 py-3 rounded-lg font-semibold hover:bg-[#FF5630] hover:text-white transition-colors"
+                >
+                  View Our Services
+                </a>
+              </div>
+            </motion.div>
+          </div>
+        </section>
+
         {/* Pagination */}
         {totalPages > 1 && (
           <section className="py-8 px-4 sm:px-6 lg:px-8">
           <div className="max-w-7xl mx-auto">
             <BlogPagination
               currentPage={currentPage}
-              totalPages={totalPages}
               onPageChange={setCurrentPage}
+              totalPages={totalPages}
             />
           </div>
         </section>
