@@ -791,7 +791,17 @@ export default function WhatWeDoSection() {
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.8 }}
                           >
-                            <LearnMoreButton />
+                            <LearnMoreButton 
+                              href={
+                                service.id === "web-development" 
+                                  ? "/web-design-services-edmonton" 
+                                  : service.id === "creative-design" 
+                                  ? "/digital-marketing-services-edmonton" 
+                                  : service.id === "digital-strategy" 
+                                  ? "/ai-automation-services-edmonton" 
+                                  : "/services"
+                              } 
+                            />
                           </motion.div>
                         </motion.div>
                       </motion.div>
@@ -1000,7 +1010,17 @@ export default function WhatWeDoSection() {
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.8 }}
                           >
-                            <LearnMoreButton />
+                            <LearnMoreButton 
+                              href={
+                                service.id === "web-development" 
+                                  ? "/web-design-services-edmonton" 
+                                  : service.id === "creative-design" 
+                                  ? "/digital-marketing-services-edmonton" 
+                                  : service.id === "digital-strategy" 
+                                  ? "/ai-automation-services-edmonton" 
+                                  : "/services"
+                              } 
+                            />
                           </motion.div>
                         </motion.div>
 

@@ -3,19 +3,19 @@ export const services = [
     id: "web-development",
     name: "Web & Digital Solutions",
     description: "Custom websites, web applications, and digital platforms tailored to your business needs.",
-    link: "/services#web"
+    link: "/web-design-services-edmonton"
   },
   {
     id: "marketing",
     name: "Marketing & Creative Services",
     description: "Strategic marketing solutions to boost your brand visibility and drive engagement.",
-    link: "/services#marketing"
+    link: "/digital-marketing-services-edmonton"
   },
   {
     id: "ai-integration",
     name: "AI Integration & Automation",
     description: "Harness the power of AI to streamline operations and enhance customer experiences.",
-    link: "/services#ai"
+    link: "/ai-automation-services-edmonton"
   }
 ];
 

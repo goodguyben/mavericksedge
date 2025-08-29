@@ -21,7 +21,7 @@ const services = [
       "Website maintenance & support"
     ],
     linkText: "Learn more",
-    linkHref: "/services/web"
+    linkHref: "/web-design-services-edmonton"
   },
   {
     id: "marketing",
@@ -35,7 +35,7 @@ const services = [
       "Event planning & management"
     ],
     linkText: "Learn more",
-    linkHref: "/services/marketing"
+    linkHref: "/digital-marketing-services-edmonton"
   },
   {
     id: "ai",

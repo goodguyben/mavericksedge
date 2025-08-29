@@ -57,6 +57,14 @@
     <priority>0.8</priority>
   </url>
 
+  <!-- RSS Feed -->
+  <url>
+    <loc>https://mavericksedge.ca/rss.xml</loc>
+    <lastmod>2025-08-25</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+
   <url>
     <loc>https://mavericksedge.ca/blog/best-website-design-companies-edmonton-2025</loc>
     <lastmod>2025-08-05</lastmod>

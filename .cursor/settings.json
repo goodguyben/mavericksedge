@@ -1,0 +1,25 @@
+{
+  "mcpServers": {
+    "n8n": {
+      "command": "npx",
+      "args": ["n8n-mcp"],
+      "env": {
+        "N8N_API_KEY": "${N8N_API_KEY}",
+        "N8N_API_URL": "${N8N_API_URL:-http://localhost:5678}",
+        "N8N_WORKFLOW_ID": "${N8N_WORKFLOW_ID}"
+      }
+    }
+  },
+  "mcp": {
+    "defaultServers": ["n8n"],
+    "logLevel": "info",
+    "timeout": 30000
+  },
+  "cursor": {
+    "mcp": {
+      "enabled": true,
+      "autoStart": true,
+      "servers": ["n8n"]
+    }
+  }
+}

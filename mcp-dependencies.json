@@ -1,0 +1,15 @@
+{
+  "mcpDependencies": {
+    "servers": {
+      "n8n": "n8n-mcp"
+    },
+    "installCommands": {
+      "global": [
+        "npm install -g n8n-mcp"
+      ],
+      "local": [
+        "npm install n8n-mcp"
+      ]
+    }
+  }
+}

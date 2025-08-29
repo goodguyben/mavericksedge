@@ -324,7 +324,7 @@ export default function SEOServices() {
                       </li>
                     ))}
                   </ul>
-                  <LearnMoreButton />
+                  <LearnMoreButton href="/digital-marketing-services-edmonton" />
                 </motion.div>
               ))}
             </div>

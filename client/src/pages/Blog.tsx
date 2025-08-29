@@ -116,6 +116,20 @@ const Blog: React.FC = () => {
               <p className="text-xl text-[#AAAAAA] max-w-4xl mx-auto mb-8">
                 Beyond the Edge exists to bridge the gap between complex digital trends and real business growth. We curate the most effective web strategies, SEO innovations, and AI applications, then present them as clear, implementable tactics for solopreneurs and small business owners. Your time is valuable, so we focus on delivering insights that create immediate impact and long-term success.
               </p>
+              <div className="flex items-center justify-center">
+                <a 
+                  href="/rss.xml" 
+                  className="flex items-center gap-2 text-maverick-orange hover:text-white transition-colors px-4 py-2 rounded-lg border border-maverick-orange hover:border-white"
+                  title="Subscribe to RSS feed"
+                >
+                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M5 3a1 1 0 000 2c5.523 0 10 4.477 10 10a1 1 0 102 0C17 8.373 11.627 3 5 3z"/>
+                    <path d="M4 9a1 1 0 011-1 7 7 0 017 7 1 1 0 11-2 0 5 5 0 00-5-5 1 1 0 01-1-1z"/>
+                    <path d="M3 15a2 2 0 11-4 0 2 2 0 014 0z"/>
+                  </svg>
+                  Subscribe to RSS Feed
+                </a>
+              </div>
             </motion.div>
           </div>
         </section>
@@ -230,46 +244,14 @@ const Blog: React.FC = () => {
           </div>
         </section>
 
-        {/* CTA Section */}
-        <section className="py-16 px-4 sm:px-6 lg:px-8 bg-[#1A1A1A]">
-          <div className="max-w-6xl mx-auto text-center">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.6 }}
-            >
-              <h2 className="text-3xl font-bold text-white mb-4 font-heading">
-                Ready to Transform Your Business?
-              </h2>
-              <p className="text-xl text-[#AAAAAA] mb-8">
-                Let our team help you implement the strategies discussed in our articles.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <a 
-                  href="/contact"
-                  className="bg-[#FF5630] text-white px-8 py-3 rounded-lg font-semibold hover:bg-[#FF8A50] transition-colors shadow-lg hover:shadow-xl"
-                >
-                  Get Started Today
-                </a>
-                <a 
-                  href="/services"
-                  className="border-2 border-[#FF5630] text-[#FF5630] px-8 py-3 rounded-lg font-semibold hover:bg-[#FF5630] hover:text-white transition-colors"
-                >
-                  View Our Services
-                </a>
-              </div>
-            </motion.div>
-          </div>
-        </section>
-
         {/* Pagination */}
         {totalPages > 1 && (
           <section className="py-8 px-4 sm:px-6 lg:px-8">
           <div className="max-w-7xl mx-auto">
             <BlogPagination
               currentPage={currentPage}
-              onPageChange={setCurrentPage}
               totalPages={totalPages}
+              onPageChange={setCurrentPage}
             />
           </div>
         </section>

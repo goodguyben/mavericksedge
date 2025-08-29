@@ -1,16 +1,17 @@
 
 import { motion } from "framer-motion";
-import { Code, Monitor, Database, Layout as LayoutIcon, ShoppingCart, Globe, Shield, Gauge, Bookmark, Users, Smartphone, Search, Zap, Star, CheckCircle, ArrowRight, Play, MapPin, Clock, Award, TrendingUp, ChevronDown, ChevronUp } from "lucide-react";
+import { Code, Database, Layout as LayoutIcon, ShoppingCart, Globe, Shield, Smartphone, Search, Star, CheckCircle, ArrowRight, MapPin, ChevronDown, Gauge, Wand2 } from "lucide-react";
+import LogoLoop, { LogoItem } from "@/components/ui/LogoLoop";
+// Removed timeline import; replacing with creative web app tiles grid
+import { SiReact, SiNextdotjs, SiTypescript, SiTailwindcss, SiShopify, SiWordpress, SiVercel, SiNetlify, SiWoocommerce, SiFigma, SiGithub, SiPostgresql, SiStripe } from 'react-icons/si';
 import ContactSection from "@/components/sections/ContactSection";
 import { Link } from "wouter";
 import { useEffect, useState } from "react";
 import SEOHead from "@/components/SEOHead";
 import StructuredData, { webDevelopmentServiceSchema, generateBreadcrumbSchema } from "@/components/StructuredData";
-import Layout from "@/components/Layout";
-import { Helmet } from "react-helmet-async";
+import { ROUTES } from "@/lib/routes";
 
 export default function WebServices() {
-  const [activeTab, setActiveTab] = useState('custom');
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   // Track page view for analytics
@@ -31,57 +32,73 @@ export default function WebServices() {
   const coreServices = [
     {
       icon: <LayoutIcon className="h-10 w-10 text-maverick-orange" />,
-      title: "Custom Website Design & Development",
-      description: "Bespoke Edmonton web design solutions that capture your brand essence and drive conversions. From concept to launch, we create responsive, user-centric websites that perform.",
-      features: ["Mobile-First Design", "Performance Optimized", "SEO Foundation", "Conversion Focused"],
-      price: "Starting at $1,200"
+      title: "Custom Website Design",
+      description: "We start with your sales story and build the site around it. Clear paths, clean layouts, and fast pages that help people choose you.",
+      features: ["Mobile first", "Fast on real devices", "Accessible by default", "Built to convert"],
+      price: "From $1,200"
     },
     {
       icon: <ShoppingCart className="h-10 w-10 text-maverick-orange" />,
-      title: "E-commerce Development Edmonton",
-      description: "Complete online store solutions built for Alberta businesses. Shopify, WooCommerce, and custom e-commerce platforms that maximize sales and customer satisfaction.",
-      features: ["Secure Payment Processing", "Inventory Management", "Mobile Shopping Experience", "Local Delivery Integration"],
-      price: "Starting at $2,500"
+      title: "E‑commerce that sells",
+      description: "Shopify and WooCommerce stores tuned for speed and trust. Fewer clicks to checkout and a smoother mobile flow.",
+      features: ["Payments that just work", "Inventory and shipping", "Mobile checkout", "Local delivery options"],
+      price: "From $2,500"
     },
     {
       icon: <Code className="h-10 w-10 text-maverick-orange" />,
       title: "Web Application Development",
-      description: "Powerful web applications that streamline your Edmonton business operations. Custom dashboards, booking systems, and business automation tools.",
-      features: ["Custom Functionality", "Database Integration", "User Management", "API Integrations"],
-      price: "Starting at $3,500"
+      description: "Dashboards, booking systems, internal tools. We design for the job to be done and integrate with your stack.",
+      features: ["Custom features", "Database integration", "User roles", "API integrations"],
+      price: "From $3,500"
     },
     {
       icon: <Smartphone className="h-10 w-10 text-maverick-orange" />,
       title: "Mobile-Responsive Design",
-      description: "Websites that work flawlessly on all devices. With 60%+ of Edmonton web traffic coming from mobile, we ensure your site looks perfect everywhere.",
-      features: ["Touch-Friendly Interface", "Fast Mobile Loading", "Cross-Device Testing", "Progressive Web App Ready"],
+      description: "Most visitors are on their phones. We design touch-first interfaces and test on real devices.",
+      features: ["Touch friendly", "Fast on 4G", "Cross‑device testing", "PWA ready"],
       price: "Included in all packages"
     }
   ];
 
+  const techLogos: LogoItem[] = [
+    { node: <SiReact className="text-white transition-colors duration-300 group-hover/item:text-[#61DAFB]" />, title: "React", href: "https://react.dev" },
+    { node: <SiNextdotjs className="text-white transition-colors duration-300" />, title: "Next.js", href: "https://nextjs.org" },
+    { node: <SiTypescript className="text-white transition-colors duration-300 group-hover/item:text-[#3178C6]" />, title: "TypeScript", href: "https://www.typescriptlang.org" },
+    { node: <SiTailwindcss className="text-white transition-colors duration-300 group-hover/item:text-[#38BDF8]" />, title: "Tailwind CSS", href: "https://tailwindcss.com" },
+    { node: <SiShopify className="text-white transition-colors duration-300 group-hover/item:text-[#95BF47]" />, title: "Shopify", href: "https://www.shopify.com" },
+    { node: <SiWordpress className="text-white transition-colors duration-300 group-hover/item:text-[#21759B]" />, title: "WordPress", href: "https://wordpress.org" },
+    { node: <SiVercel className="text-white transition-colors duration-300" />, title: "Vercel", href: "https://vercel.com" },
+    { node: <SiNetlify className="text-white transition-colors duration-300 group-hover/item:text-[#00AD9F]" />, title: "Netlify", href: "https://www.netlify.com" },
+    { node: <SiWoocommerce className="text-white transition-colors duration-300 group-hover/item:text-[#96588A]" />, title: "WooCommerce", href: "https://woocommerce.com" },
+    { node: <SiFigma className="text-white transition-colors duration-300 group-hover/item:text-[#F24E1E]" />, title: "Figma", href: "https://www.figma.com" },
+    { node: <SiGithub className="text-white transition-colors duration-300" />, title: "GitHub", href: "https://github.com" },
+    { node: <SiPostgresql className="text-white transition-colors duration-300 group-hover/item:text-[#336791]" />, title: "PostgreSQL", href: "https://www.postgresql.org" },
+    { node: <SiStripe className="text-white transition-colors duration-300 group-hover/item:text-[#635BFF]" />, title: "Stripe", href: "https://stripe.com" },
+  ];
+
   const specializedServices = [
     {
-      icon: <Database className="h-10 w-10 text-maverick-orange" />,
-      title: "WordPress Development Edmonton",
-      description: "Custom WordPress solutions for Alberta businesses. From simple blogs to complex business websites with advanced functionality.",
-      technologies: ["WordPress", "WooCommerce", "Custom Themes", "Plugin Development"]
+      icon: <Code className="h-10 w-10 text-maverick-orange" />,
+      title: "Cursor & Replit builds",
+      description: "Plan, design, and ship in Cursor with Replit previews. Clean code, polished UI, fast iteration.",
+      technologies: ["Cursor", "Replit", "TypeScript", "Tailwind CSS"]
     },
     {
       icon: <Globe className="h-10 w-10 text-maverick-orange" />,
-      title: "Shopify Store Development",
-      description: "Complete Shopify solutions for Edmonton retailers. Custom themes, app integrations, and optimization for Canadian e-commerce.",
+      title: "Shopify stores",
+      description: "Theme customization and app integrations with a focus on speed and trust.",
       technologies: ["Shopify", "Liquid", "App Integration", "Payment Gateways"]
     },
     {
       icon: <Search className="h-10 w-10 text-maverick-orange" />,
-      title: "SEO-Optimized Web Design",
-      description: "Websites built for Edmonton search visibility. Technical SEO, local optimization, and Google-friendly architecture from day one.",
+      title: "SEO‑ready by design",
+      description: "Technical foundations, clean IA, and content guidance. Launch with the basics done right.",
       technologies: ["Technical SEO", "Local Schema", "Core Web Vitals", "Edmonton Keywords"]
     },
     {
       icon: <Shield className="h-10 w-10 text-maverick-orange" />,
-      title: "Secure Web Hosting & Maintenance",
-      description: "Canadian hosting with Edmonton support. SSL certificates, regular backups, security monitoring, and 24/7 uptime protection.",
+      title: "Hosting and care",
+      description: "Canadian hosting, SSL, backups, and updates. Your site stays healthy and secure.",
       technologies: ["Canadian Hosting", "SSL Security", "Daily Backups", "24/7 Monitoring"]
     }
   ];
@@ -89,72 +106,109 @@ export default function WebServices() {
   const processSteps = [
     {
       number: "01",
-      title: "Edmonton Business Discovery",
-      description: "We start with an in-depth consultation to understand your Edmonton market position, target audience, and business objectives. Our local expertise helps identify opportunities specific to Alberta's business landscape.",
+      title: "Discovery that matters",
+      description: "We learn how you win business today. What customers ask. Where deals stall. That shapes the plan.",
       deliverables: ["Market Analysis", "Competitor Research", "Technical Requirements", "Project Roadmap"]
     },
     {
       number: "02",
-      title: "Strategic Design & Prototyping",
-      description: "Our Edmonton design team creates wireframes and visual concepts that resonate with your local audience while maintaining modern design standards. We focus on user experience and conversion optimization.",
+      title: "Strategic design",
+      description: "Wireframes and flows first. Then the visuals. We keep the path to action short and obvious.",
       deliverables: ["Wireframes", "Visual Designs", "Interactive Prototype", "Brand Integration"]
     },
     {
       number: "03",
-      title: "Development & Programming",
-      description: "Using cutting-edge technologies and best practices, we bring your design to life with clean, efficient code. All websites are built mobile-first and optimized for Canadian hosting environments.",
+      title: "Development",
+      description: "Modern frameworks, type safety, and performance budgets. Built for real devices and real traffic.",
       deliverables: ["Responsive Website", "CMS Integration", "Performance Optimization", "Security Implementation"]
     },
     {
       number: "04",
-      title: "Edmonton SEO & Local Optimization",
-      description: "We implement comprehensive SEO strategies targeting Edmonton and Alberta keywords. Local business schema, Google My Business optimization, and technical SEO ensure maximum visibility.",
+      title: "Search basics",
+      description: "Clean HTML, fast loading, structured data, and content guidance. We set you up to earn rankings.",
       deliverables: ["On-Page SEO", "Local Schema", "Google Analytics", "Search Console Setup"]
     },
     {
       number: "05",
-      title: "Testing & Quality Assurance",
-      description: "Rigorous testing across all devices and browsers ensures your website performs flawlessly. We test for speed, accessibility, and user experience before launch.",
+      title: "Testing",
+      description: "Accessibility, browser, and device checks. We tune for speed and remove friction.",
       deliverables: ["Cross-Browser Testing", "Mobile Testing", "Performance Report", "Accessibility Audit"]
     },
     {
       number: "06",
-      title: "Launch & Ongoing Support",
-      description: "We handle the complete launch process and provide ongoing maintenance. Our Edmonton-based support team ensures your website stays secure, updated, and performing optimally.",
+      title: "Launch and support",
+      description: "We launch, measure, and keep improving. You get a clear handover and a friendly support channel.",
       deliverables: ["Website Launch", "Training Materials", "Maintenance Plan", "Support Access"]
     }
   ];
 
-  const portfolioProjects = [
+  // Creative grid content inspired by Home cascade (web applications)
+  const webAppTiles = [
     {
-      image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      title: "Edmonton Restaurant Website",
-      category: "Local Restaurant",
-      description: "Mobile-responsive website with online ordering and local SEO optimization",
-      results: "150% increase in online orders"
+      id: "custom-sites",
+      title: "Custom Website Design",
+      blurb:
+        "Clean, honest interfaces that make the next step obvious. Built for real visitors and real devices so your story lands and your pipeline grows.",
+      media: "https://mavericksedge.ca/videos/Portfolio_Video_3.webm",
+      points: [
+        "Clear paths to action on every page",
+        "Mobile‑first layouts tested on real devices",
+        "Accessible by default (WCAG‑minded)",
+        "Fast loads with image/video optimization",
+        "Easy edits with your preferred CMS",
+        "Built to scale as your content grows",
+      ],
+      icon: <Code className="w-5 h-5 text-maverick-orange" />,
     },
     {
-      image: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      title: "Alberta Home Services Portal",
-      category: "Service Business",
-      description: "Custom web application with booking system and customer management",
-      results: "300% improvement in lead conversion"
+      id: "web-apps",
+      title: "Custom Web Applications",
+      blurb:
+        "Dashboards, portals, and internal tools that replace spreadsheets and remove the busywork. Clarity for your team, momentum for your operations.",
+      media: "https://mavericksedge.ca/videos/Portfolio_Video_6.webm",
+      points: [
+        "Role‑based access and secure authentication",
+        "Clean data views with filters and exports",
+        "Workflow automation and approvals",
+        "API integrations with your stack (CRM/ERP)",
+        "Audit trails and activity history",
+        "Type‑safe code for long‑term maintainability",
+      ],
+      icon: <Wand2 className="w-5 h-5 text-maverick-orange" />,
     },
     {
-      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      title: "Edmonton Nonprofit Website",
-      category: "Nonprofit Organization",
-      description: "Donation-focused website with volunteer management system",
-      results: "200% increase in online donations"
+      id: "ecommerce",
+      title: "Next‑Gen E‑commerce",
+      blurb:
+        "Shopify and WooCommerce storefronts tuned for speed, trust, and a checkout that feels effortless—especially on mobile.",
+      media: "https://mavericksedge.ca/videos/Portfolio_Video_9.webm",
+      points: [
+        "Fast product pages with clean information design",
+        "Trust signals and social proof where it matters",
+        "Streamlined mobile checkout with fewer taps",
+        "Payment, tax, and shipping integrations",
+        "Inventory sync and order notifications",
+        "Built‑in analytics to track what’s working",
+      ],
+      icon: <ShoppingCart className="w-5 h-5 text-maverick-orange" />,
     },
     {
-      image: "https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      title: "Alberta E-commerce Store",
-      category: "Retail Business",
-      description: "Custom Shopify store with local delivery integration",
-      results: "180% growth in online sales"
-    }
-  ];
+      id: "seo-performance",
+      title: "SEO & Performance Foundations",
+      blurb:
+        "Search‑ready from day one. Technical SEO, structured data, and Core Web Vitals tuned for real‑world devices and Edmonton search intent.",
+      media: "https://mavericksedge.ca/videos/Portfolio_Video_27.webm",
+      points: [
+        "Edmonton‑relevant keyword mapping and titles",
+        "Structured data (schema) for rich results",
+        "Clean HTML and internal linking",
+        "Core Web Vitals performance budgets",
+        "Image/video compression and lazy loading",
+        "GA4 + Search Console wired for insights",
+      ],
+      icon: <Gauge className="w-5 h-5 text-maverick-orange" />,
+    },
+  ] as const;
 
   const testimonials = [
     {
@@ -220,7 +274,9 @@ export default function WebServices() {
     },
     "url": "https://mavericksedge.ca/web-design-services-edmonton",
     "sameAs": [
+      "https://x.com/mavericksedge",
       "https://www.facebook.com/mavericksedge",
+      "https://www.instagram.com/mavericksedge",
       "https://www.linkedin.com/company/mavericks-edge/"
     ],
     "openingHoursSpecification": [
@@ -241,15 +297,29 @@ export default function WebServices() {
     ]
   };
 
+  // Dynamic FAQ schema from on-page content
+  const faqSchemaDynamic = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqItems.map((f) => ({
+      "@type": "Question",
+      "name": f.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": f.answer
+      }
+    }))
+  } as const;
+
   return (
     <div>
       <SEOHead 
-        title="Edmonton Web Design & Development Services | Custom Websites Alberta | Mavericks Edge"
-        description="Professional web design and development services in Edmonton, Alberta. Custom websites, e-commerce solutions, WordPress development, and mobile-responsive design for local businesses. Free consultation!"
-        keywords="Edmonton web design, web development Edmonton, custom website design Edmonton, responsive web design Alberta, e-commerce development Edmonton, WordPress development Edmonton, Shopify development Alberta, web design company Edmonton, mobile website design Edmonton, SEO web design Alberta"
+        title="Mavericks Edge | Edmonton Website Design and Development"
+        description="Professional Edmonton website design. Build responsive, SEO-optimized websites that drive results and help your business grow. Free quote today!"
+        keywords="Edmonton website design, website design Edmonton, Edmonton web design, web development Edmonton, Edmonton websites"
         canonicalUrl="https://mavericksedge.ca/web-design-services-edmonton"
-        ogTitle="Edmonton Web Design & Development Services | Custom Websites Alberta"
-        ogDescription="Professional web design and development services in Edmonton, Alberta. Custom websites, e-commerce solutions, and mobile-responsive design for local businesses."
+        ogTitle="Mavericks Edge | Edmonton Website Design and Development"
+        ogDescription="Affordable Edmonton website design for businesses that want to stand out online. Fast, responsive, and SEO-optimized websites that convert visitors into customers."
         ogImage="https://mavericksedge.ca/images/logo-transparent-thumb4x.png"
         ogType="website"
       />
@@ -257,6 +327,7 @@ export default function WebServices() {
       <StructuredData data={webDevelopmentServiceSchema} />
       <StructuredData data={generateBreadcrumbSchema(breadcrumbs)} />
       <StructuredData data={localSchema} />
+      <StructuredData data={faqSchemaDynamic} />
       
       <motion.div
         initial={{ opacity: 0 }}
@@ -264,7 +335,7 @@ export default function WebServices() {
         exit={{ opacity: 0 }}
         transition={{ duration: 0.5 }}
       >
-        {/* Enhanced Hero Section */}
+        {/* Hero Section with clearer narrative */}
         <div className="pt-32 md:pt-40 pb-20 px-5 md:px-10 bg-gradient-to-br from-[#121212] via-[#1A1A1A] to-[#0F0F0F] relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-r from-maverick-orange/5 to-transparent"></div>
           <div className="container mx-auto relative z-10">
@@ -281,27 +352,28 @@ export default function WebServices() {
                   </div>
                   <h1 className="text-5xl md:text-7xl font-bold mb-6 font-heading">
                     <span className="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
-                      Web Design &
+                      Edmonton Website Design
                     </span>
                     <br />
-                    <span className="text-maverick-orange">Development</span>
+                    <span className="text-maverick-orange">built for results</span>
                   </h1>
-                  <p className="text-xl text-[#AAAAAA] max-w-2xl mb-8 leading-relaxed">
-                    Edmonton's premier web design agency creating custom websites that drive results. 
-                    From responsive design to e-commerce solutions, we build digital experiences that 
-                    help Alberta businesses thrive online.
+                  <p className="text-xl text-[#AAAAAA] max-w-2xl mb-6 leading-relaxed">
+                    Most websites look fine. Fewer move the business. We plan and build a site around your sales story so visitors know what to do and why it matters.
                   </p>
+                  <div className="mb-8 text-sm text-[#AAAAAA]">
+                    <Link href="/work">
+                      <a className="text-maverick-orange hover:text-white transition-colors">See recent work</a>
+                    </Link>
+                    <span className="mx-2">•</span>
+                    <Link href={ROUTES.PRICING.WEB_DESIGN}>
+                      <a className="text-maverick-orange hover:text-white transition-colors">View web design pricing</a>
+                    </Link>
+                  </div>
                   <div className="flex flex-col sm:flex-row gap-4 mb-8">
                     <Link href="/contact-edmonton-web-design">
                       <a className="maverick-button maverick-button-primary inline-flex items-center justify-center px-8 py-4 text-lg font-medium rounded-lg">
                         Get Free Consultation
                         <ArrowRight className="ml-2 h-5 w-5" />
-                      </a>
-                    </Link>
-                    <Link href="/portfolio-edmonton-web-design">
-                      <a className="maverick-button maverick-button-outline inline-flex items-center justify-center px-8 py-4 text-lg font-medium rounded-lg">
-                        <Play className="mr-2 h-5 w-5" />
-                        View Our Work
                       </a>
                     </Link>
                   </div>
@@ -345,6 +417,62 @@ export default function WebServices() {
           </div>
         </div>
 
+        {/* Edmonton Website Design: High-Impact Web Experiences */}
+        <section className="py-24 px-5 md:px-10 bg-[#121212]">
+          <div className="container mx-auto">
+            <motion.div 
+              className="text-center mb-12"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+            >
+              <h2 className="text-4xl md:text-5xl font-bold mb-4 font-heading">High‑Impact Web Experiences</h2>
+              <p className="text-[#AAAAAA] text-lg max-w-3xl mx-auto">Edmonton website design that blends clarity, speed, and modern storytelling—without the fluff.</p>
+            </motion.div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+              {webAppTiles.map((tile, idx) => (
+                <motion.div
+                  key={tile.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: idx * 0.05 }}
+                  className="group bg-[#1A1A1A] rounded-2xl border border-gray-800 overflow-hidden"
+                >
+                  <div className="relative aspect-video overflow-hidden">
+                    <video
+                      src={tile.media}
+                      className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500"
+                      muted
+                      autoPlay
+                      loop
+                      playsInline
+                    />
+                    <div className="absolute top-4 left-4 inline-flex items-center gap-2 bg-black/50 backdrop-blur px-3 py-1.5 rounded-full text-sm border border-white/10">
+                      {tile.icon}
+                      <span className="text-white/90">{tile.title}</span>
+                    </div>
+                  </div>
+                  <div className="p-6">
+                    <p className="text-[#CCCCCC] leading-relaxed mb-4">{tile.blurb}</p>
+                    {Array.isArray((tile as any).points) && (
+                      <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-[#BBBBBB] text-sm">
+                        {((tile as any).points as string[]).map((point, pIdx) => (
+                          <li key={pIdx} className="flex items-start gap-2">
+                            <CheckCircle className="h-4 w-4 text-green-400 mt-0.5 flex-shrink-0" />
+                            <span>{point}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* Core Services Section */}
         <section className="py-24 px-5 md:px-10 bg-[#1E1E1E]">
           <div className="container mx-auto">
@@ -356,7 +484,7 @@ export default function WebServices() {
               transition={{ duration: 0.5 }}
             >
               <h2 className="text-4xl md:text-5xl font-bold mb-4 font-heading">
-                Edmonton Web Design Services
+                Edmonton Website Design Services
               </h2>
               <p className="text-[#AAAAAA] text-xl max-w-3xl mx-auto">
                 Comprehensive web development solutions tailored for Alberta businesses. 
@@ -403,13 +531,14 @@ export default function WebServices() {
             </div>
 
             <div className="text-center">
-              <Link href="/pricing-edmonton-web-design">
+              <Link href={ROUTES.PRICING.WEB_DESIGN}>
                 <a className="maverick-button maverick-button-primary inline-flex items-center justify-center px-8 py-4 text-lg font-medium rounded-lg">
                   View All Pricing
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </a>
               </Link>
             </div>
+
           </div>
         </section>
 
@@ -424,7 +553,7 @@ export default function WebServices() {
               transition={{ duration: 0.5 }}
             >
               <h2 className="text-4xl md:text-5xl font-bold mb-4 font-heading">
-                Specialized Web Development
+                Specialized Website Development
               </h2>
               <p className="text-[#AAAAAA] text-xl max-w-2xl mx-auto">
                 Advanced solutions for specific business needs and platforms
@@ -456,6 +585,23 @@ export default function WebServices() {
                 </motion.div>
               ))}
             </div>
+
+            <div className="mt-20">
+              <LogoLoop
+                logos={techLogos}
+                speed={50}
+                direction="left"
+                logoHeight={48}
+                gap={48}
+                pauseOnHover
+                scaleOnHover
+                fadeOut
+                fadeOutColor="#121212"
+                ariaLabel="Featured partners and technologies"
+              />
+            </div>
+
+            
           </div>
         </section>
 
@@ -470,7 +616,7 @@ export default function WebServices() {
               transition={{ duration: 0.5 }}
             >
               <h2 className="text-4xl md:text-5xl font-bold mb-4 font-heading">
-                Our Edmonton Web Development Process
+                Our Website Design & Development Process
               </h2>
               <p className="text-[#AAAAAA] text-xl max-w-3xl mx-auto">
                 A proven methodology that delivers exceptional results for Alberta businesses. 
@@ -575,10 +721,10 @@ export default function WebServices() {
               transition={{ duration: 0.5 }}
             >
               <h2 className="text-4xl md:text-5xl font-bold mb-6 font-heading">
-                Edmonton Web Design FAQ
+                Edmonton Website Design FAQ
               </h2>
               <p className="text-[#AAAAAA] text-xl max-w-3xl mx-auto">
-                Get answers to common questions about our web design and development services for Edmonton businesses.
+                Answers to common questions about process, timing, and value.
               </p>
             </motion.div>
 
@@ -633,7 +779,7 @@ export default function WebServices() {
               transition={{ duration: 0.5, delay: 0.5 }}
             >
               <p className="text-[#AAAAAA] mb-6">
-                Still have questions? We're here to help Edmonton businesses succeed online.
+                Still have questions? We are happy to help you pick the right next step.
               </p>
               <div className="flex items-center justify-center gap-4 text-sm text-[#888888]">
                 <div className="flex items-center gap-2">
@@ -665,11 +811,10 @@ export default function WebServices() {
               transition={{ duration: 0.5 }}
             >
               <h2 className="text-4xl md:text-5xl font-bold mb-6 font-heading text-white">
-                Ready to Transform Your Edmonton Business Online?
+                Ready to turn traffic into customers?
               </h2>
               <p className="text-xl mb-8 text-white/90 max-w-3xl mx-auto">
-                Join 150+ Edmonton businesses that trust Mavericks Edge for their web design needs. 
-                Get your free consultation and custom quote today.
+                Join the Edmonton teams who ship fast, clear websites with us. Get a free consult and a clear plan.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
                 <Link href="/contact-edmonton-web-design">

@@ -311,13 +311,39 @@ const BlogPost: React.FC = () => {
           </div>
         </article>
 
+        {/* Related Posts */}
+        {relatedPosts.length > 0 && (
+          <section className="py-16 px-4 sm:px-6 lg:px-8">
+            <div className="max-w-7xl mx-auto">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+              >
+                <h2 className="text-3xl font-bold text-white mb-8 text-center font-heading">
+                  Related Articles
+                </h2>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                  {relatedPosts.map((relatedPost, index) => (
+                    <BlogCard 
+                      key={relatedPost.id} 
+                      post={relatedPost}
+                      index={index}
+                    />
+                  ))}
+                </div>
+              </motion.div>
+            </div>
+          </section>
+        )}
+
         {/* CTA Section */}
         <section className="py-16 px-4 sm:px-6 lg:px-8 bg-[#1A1A1A]">
           <div className="max-w-6xl mx-auto text-center">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
+              transition={{ duration: 0.6, delay: 0.6 }}
             >
               <h2 className="text-3xl font-bold text-white mb-4 font-heading">
                 Ready to Transform Your Business?
@@ -342,32 +368,6 @@ const BlogPost: React.FC = () => {
             </motion.div>
           </div>
         </section>
-
-        {/* Related Posts */}
-        {relatedPosts.length > 0 && (
-          <section className="py-16 px-4 sm:px-6 lg:px-8">
-            <div className="max-w-7xl mx-auto">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.6 }}
-              >
-                <h2 className="text-3xl font-bold text-white mb-8 text-center font-heading">
-                  Related Articles
-                </h2>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                  {relatedPosts.map((relatedPost, index) => (
-                    <BlogCard 
-                      key={relatedPost.id} 
-                      post={relatedPost}
-                      index={index}
-                    />
-                  ))}
-                </div>
-              </motion.div>
-            </div>
-          </section>
-        )}
       </div>
     </>
   );

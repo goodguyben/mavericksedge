@@ -5,6 +5,9 @@ Allow: /
 # Sitemap Index
 Sitemap: https://mavericksedge.ca/sitemap.xml
 
+# RSS Feed
+Allow: /rss.xml
+
 # Block access to admin areas and sensitive files
 Disallow: /admin/
 Disallow: /api/

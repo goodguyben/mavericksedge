@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:media="http://search.yahoo.com/mrss/">
+  <channel>
+    <title>Mavericks Edge | Beyond The Edge Blog</title>
+    <description>Expert insights on web design Edmonton, SEO services Edmonton, AI automation, and digital marketing. Stay ahead with our latest industry trends and actionable tips.</description>
+    <link>https://mavericksedge.ca/blog</link>
+    <atom:link href="https://mavericksedge.ca/rss.xml" rel="self" type="application/rss+xml" />
+    <language>en-ca</language>
+    <lastBuildDate>Fri, 29 Aug 2025 21:42:59 GMT</lastBuildDate>
+    <ttl>60</ttl>
+    <image>
+      <url>https://mavericksedge.ca/images/logo-transparent-thumb4x.png</url>
+      <title>Mavericks Edge | Beyond The Edge Blog</title>
+      <link>https://mavericksedge.ca/blog</link>
+    </image>
+    
+    <!-- Blog Posts -->
+    <item>
+      <title>The Best Website Design Companies in Edmonton (2025 Expert Guide)</title>
+      <description>Searching for the best website design in Edmonton? Our 2025 guide ranks the top 5 agencies on results, reviews, and local expertise. Find your perfect partner and grow your business.</description>
+      <link>https://mavericksedge.ca/blog/best-website-design-companies-edmonton-2025</link>
+      <guid>https://mavericksedge.ca/blog/best-website-design-companies-edmonton-2025</guid>
+      <pubDate>Tue, 05 Aug 2025 00:00:00 GMT</pubDate>
+      <category>Web Design</category>
+      <content:encoded><![CDATA[<p>Searching for the best website design in Edmonton? Our 2025 guide ranks the top 5 agencies on results, reviews, and local expertise. Find your perfect partner and grow your business.</p>]]></content:encoded>
+      <media:content url="https://mavericksedge.ca/videos/Edmonton_Skyline.jpg" medium="image" type="image/jpeg">
+        <media:title>The Best Website Design Companies in Edmonton (2025 Expert Guide)</media:title>
+        <media:description>Searching for the best website design in Edmonton? Our 2025 guide ranks the top 5 agencies on results, reviews, and local expertise. Find your perfect partner and grow your business.</media:description>
+        <media:thumbnail url="https://mavericksedge.ca/videos/Edmonton_Skyline.jpg" width="300" height="200" />
+      </media:content>
+    </item>
+    <item>
+      <title>Most Affordable Website Design Companies in Edmonton (2025 Pricing Comparison)</title>
+      <description>Which Edmonton web design companies deliver strong results without straining your budget? This 2025 affordability guide compares real package inclusions, transparent pricing, and total cost of ownership, showing why Mavericks Edge is Edmonton’s most affordable professional option.</description>
+      <link>https://mavericksedge.ca/blog/most-affordable-website-design-companies-edmonton-2025</link>
+      <guid>https://mavericksedge.ca/blog/most-affordable-website-design-companies-edmonton-2025</guid>
+      <pubDate>Tue, 12 Aug 2025 00:00:00 GMT</pubDate>
+      <category>Web Design</category>
+      <content:encoded><![CDATA[<p>Which Edmonton web design companies deliver strong results without straining your budget? This 2025 affordability guide compares real package inclusions, transparent pricing, and total cost of ownership, showing why Mavericks Edge is Edmonton’s most affordable professional option.</p>]]></content:encoded>
+      <media:content url="https://mavericksedge.ca/videos/edmonton_most_affordable_website_design.png" medium="image" type="image/jpeg">
+        <media:title>Most Affordable Website Design Companies in Edmonton (2025 Pricing Comparison)</media:title>
+        <media:description>Which Edmonton web design companies deliver strong results without straining your budget? This 2025 affordability guide compares real package inclusions, transparent pricing, and total cost of ownership, showing why Mavericks Edge is Edmonton’s most affordable professional option.</media:description>
+        <media:thumbnail url="https://mavericksedge.ca/videos/edmonton_most_affordable_website_design.png" width="300" height="200" />
+      </media:content>
+    </item>
+  </channel>
+</rss>

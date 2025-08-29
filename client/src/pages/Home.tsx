@@ -41,12 +41,12 @@ export default function Home() {
     <>
       {/* Enhanced SEO with Structured Data */}
       <SEOHead 
-        title="Mavericks Edge | Digital Marketing and Website Design Edmonton"
-        description="Affordable Digital marketing, SEO, and website design in Edmonton that businesses rely on to grow their brand and reach customers. Free consultation available."
+        title="Mavericks Edge | AI Integration, Digital Marketing and Website Design Edmonton"
+        description="Affordable SEO, AI integration, Digital marketing, and website design services Edmonton businesses trust to grow their brand and reach customers. Free consultation available."
         keywords="Edmonton web design, Edmonton digital marketing, web development Edmonton, SEO Edmonton, AI integration Edmonton, custom websites Edmonton, small business web design Alberta, nonprofit web design Edmonton, responsive web design Alberta, ecommerce development Edmonton"
         canonicalUrl="https://mavericksedge.ca/"
-        ogTitle="Mavericks Edge | Digital Marketing and Website Design Edmonton"
-        ogDescription="Affordable Digital marketing, SEO, and website design in Edmonton that businesses rely on to grow their brand and reach customers."
+        ogTitle="Mavericks Edge | AI Integration, Digital Marketing and Website Design Edmonton"
+        ogDescription="Affordable SEO, AI integration, digital marketing, and website design services trusted by Edmonton businesses to grow their brand and reach more customers. Free consultation!"
         ogImage="https://mavericksedge.ca/images/logo-transparent-thumb4x.png"
         ogType="website"
       />

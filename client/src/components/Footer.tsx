@@ -66,10 +66,30 @@ export default function Footer() {
                 </div>
               )}
             </div>
+
+            {/* Blog & RSS Section */}
+            <div className="border-b border-maverick-slate/20">
+              <button 
+                onClick={() => toggleSection('blog')}
+                className="w-full flex justify-between items-center py-3 text-left"
+              >
+                <h3 className="text-lg font-semibold">Blog & RSS</h3>
+                <ChevronDown 
+                  className={`transition-transform ${openSection === 'blog' ? 'rotate-180' : ''}`}
+                  size={18}
+                />
+              </button>
+              {openSection === 'blog' && (
+                <div className="py-3 pl-4 space-y-3">
+                  <div><Link href="/blog" className="text-[#AAAAAA] hover:text-maverick-orange transition-colors">Blog</Link></div>
+                  <div><a href="/rss.xml" className="text-[#AAAAAA] hover:text-maverick-orange transition-colors">RSS Feed</a></div>
+                </div>
+              )}
+            </div>
           </div>
         ) : (
           // Desktop Navigation & Legal Sections Wrapper
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-8 max-w-lg mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-x-10 gap-y-8 max-w-4xl mx-auto">
             {/* Navigation Section Column */}
             <div className="text-center md:text-left">
               <h3 className="text-xl font-semibold mb-2 inline-block">Navigation</h3>
@@ -92,6 +112,16 @@ export default function Footer() {
                   <li><Link href="/cookie-policy" className="text-[#AAAAAA] hover:text-maverick-orange transition-colors">Cookie Policy</Link></li>
                   <li><Link href="/gdpr-compliance" className="text-[#AAAAAA] hover:text-maverick-orange transition-colors">GDPR Compliance</Link></li>
                   <li><Link href="/accessibility" className="text-[#AAAAAA] hover:text-maverick-orange transition-colors">Accessibility</Link></li>
+              </ul>
+            </div>
+
+            {/* Blog & RSS Section Column */}
+            <div className="text-center md:text-left">
+              <h3 className="text-xl font-semibold mb-2 inline-block">Blog & RSS</h3>
+              <div className="h-0.5 w-12 bg-maverick-orange mb-4 mx-auto md:mx-0"></div>
+              <ul className="space-y-3">
+                <li><Link href="/blog" className="text-[#AAAAAA] hover:text-maverick-orange transition-colors">Blog</Link></li>
+                <li><a href="/rss.xml" className="text-[#AAAAAA] hover:text-maverick-orange transition-colors">RSS Feed</a></li>
               </ul>
             </div>
           </div>
