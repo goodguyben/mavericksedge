@@ -119,6 +119,7 @@ export default {
         "accordion-up": "accordion-up 0.2s ease-out",
         "gradient-slow": "gradient-shift 8s ease infinite",
         "gradient-x": "gradient-x 3s ease infinite",
+        "gradient": "gradient-x 3s ease infinite",
       },
       backgroundSize: {
         'gradient-animate': '400% 400%'

@@ -59,7 +59,7 @@ export default function Hero() {
                 colors={["#A0A0A0", "#D0D0D0", "#F0F0F0", "#FFFFFF", "#F8F8F8", "#E0E0E0", "#B0B0B0", "#A0A0A0"]}
                 animationSpeed={3}
               >
-                Website Design Edmonton
+                Edmonton Web Design & Development
               </GradientText>
             </span>
           </motion.h1>

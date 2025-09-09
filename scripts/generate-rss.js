@@ -21,7 +21,7 @@ function generateRSSContent(blogData) {
   let rssContent = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:media="http://search.yahoo.com/mrss/">
   <channel>
-    <title>Mavericks Edge | Beyond The Edge Blog</title>
+    <title>Beyond the Edge | Mavericks Edge Digital Marketing Blog</title>
     <description>Expert insights on web design Edmonton, SEO services Edmonton, AI automation, and digital marketing. Stay ahead with our latest industry trends and actionable tips.</description>
     <link>${currentDomain}/blog</link>
     <atom:link href="${currentDomain}/rss.xml" rel="self" type="application/rss+xml" />
@@ -30,7 +30,7 @@ function generateRSSContent(blogData) {
     <ttl>60</ttl>
     <image>
       <url>${currentDomain}/images/logo-transparent-thumb4x.png</url>
-      <title>Mavericks Edge | Beyond The Edge Blog</title>
+      <title>Beyond the Edge | Mavericks Edge Digital Marketing Blog</title>
       <link>${currentDomain}/blog</link>
     </image>
     

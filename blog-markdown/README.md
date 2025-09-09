@@ -41,6 +41,6 @@ These markdown files can be used for:
 
 ## Source
 
-Generated from the Mavericks Edge | Beyond The Edge Blog data on 2025-08-25.
+Generated from the Mavericks Edge blog data on 2025-08-25.
 
 For more information, visit [Mavericks Edge](https://mavericksedge.ca).

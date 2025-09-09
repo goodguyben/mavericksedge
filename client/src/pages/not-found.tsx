@@ -11,6 +11,7 @@ export default function NotFound() {
       <SEOHead
         title="Page Not Found - 404 | Mavericks Edge"
         description="The page you're looking for doesn't exist. Return to Mavericks Edge homepage or explore our web development, marketing, and AI services."
+        canonicalUrl="https://mavericksedge.ca/404"
         noindex={true}
       />
       <div className="min-h-screen flex items-center justify-center px-4 py-16">

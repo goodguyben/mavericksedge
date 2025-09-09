@@ -13,6 +13,7 @@ export default function Compliance() {
       <SEOHead
         title="Compliance & Standards | Mavericks Edge"
         description="Learn about Mavericks Edge's compliance standards, industry certifications, and commitment to maintaining the highest levels of security and quality in our web development, marketing, and AI services."
+        canonicalUrl="https://mavericksedge.ca/compliance"
       />
       <div className="min-h-screen bg-maverick-black text-maverick-cream">
         <div className="container mx-auto px-4 py-16 pt-32">

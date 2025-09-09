@@ -2,6 +2,138 @@
   "version": 2,
   "buildCommand": "npm run build",
   "outputDirectory": "dist/public",
+  "redirects": [
+    {
+      "source": "/pricing/web",
+      "destination": "/web-design-pricing-edmonton",
+      "statusCode": 301
+    },
+    {
+      "source": "/pricing/ai",
+      "destination": "/ai-automation-pricing-edmonton",
+      "statusCode": 301
+    },
+    {
+      "source": "/pricing/marketing",
+      "destination": "/digital-marketing-pricing-edmonton",
+      "statusCode": 301
+    },
+    {
+      "source": "/pricing-edmonton-web-design",
+      "destination": "/web-design-pricing-edmonton",
+      "statusCode": 301
+    },
+    {
+      "source": "/services/web",
+      "destination": "/web-design-services-edmonton",
+      "statusCode": 301
+    },
+    {
+      "source": "/services/marketing",
+      "destination": "/digital-marketing-services-edmonton",
+      "statusCode": 301
+    },
+    {
+      "source": "/services/ai",
+      "destination": "/ai-automation-services-edmonton",
+      "statusCode": 301
+    },
+    {
+      "source": "/services/digital-marketing-edmonton",
+      "destination": "/digital-marketing-services-edmonton",
+      "statusCode": 301
+    },
+    {
+      "source": "/services/ai-integration-automation-edmonton",
+      "destination": "/ai-automation-services-edmonton",
+      "statusCode": 301
+    },
+    {
+      "source": "/services/web-design-and-development-edmonton",
+      "destination": "/web-design-services-edmonton",
+      "statusCode": 301
+    },
+    {
+      "source": "/services/seo-optimization-edmonton",
+      "destination": "/seo-services-edmonton",
+      "statusCode": 301
+    },
+    {
+      "source": "/terms-of-service-web-design",
+      "destination": "/terms",
+      "statusCode": 301
+    },
+    {
+      "source": "/privacy-policy-mavericks-edge",
+      "destination": "/privacy",
+      "statusCode": 301
+    },
+    {
+      "source": "/cookie-policy-website-tracking",
+      "destination": "/cookie-policy",
+      "statusCode": 301
+    },
+    {
+      "source": "/website-accessibility-statement",
+      "destination": "/accessibility",
+      "statusCode": 301
+    },
+    {
+      "source": "/gdpr-compliance-data-protection",
+      "destination": "/gdpr-compliance",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog-digital-marketing-web-development",
+      "destination": "/blog",
+      "statusCode": 301
+    },
+    {
+      "source": "/case-studies-edmonton-clients",
+      "destination": "/portfolio-edmonton-web-design",
+      "statusCode": 301
+    },
+    {
+      "source": "/portfolio-edmonton-web-design",
+      "destination": "/work",
+      "statusCode": 301
+    },
+    {
+      "source": "/free-guides-digital-marketing-seo",
+      "destination": "/blog",
+      "statusCode": 301
+    },
+    {
+      "source": "/customer-support-edmonton",
+      "destination": "/contact",
+      "statusCode": 301
+    },
+    {
+      "source": "/frequently-asked-questions-web-design",
+      "destination": "/contact",
+      "statusCode": 301
+    },
+    {
+      "source": "/services-edmonton-alberta",
+      "destination": "/services",
+      "statusCode": 301
+    },
+    {
+      "source": "/contact-edmonton-web-design",
+      "destination": "/contact",
+      "statusCode": 301
+    },
+    {
+      "source": "/about-edmonton-web-design-company",
+      "destination": "/about",
+      "statusCode": 301
+    },
+    {
+      "source": "/search",
+      "destination": "/blog",
+      "statusCode": 301
+    }
+  ],
   "rewrites": [
     {
       "source": "/api/contact",

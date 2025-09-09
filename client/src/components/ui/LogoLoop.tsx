@@ -32,6 +32,8 @@ export interface LogoLoopProps {
   logoHeight?: number;
   gap?: number;
   pauseOnHover?: boolean;
+  forceMotion?: boolean;
+  useCssFallbackOnMobile?: boolean;
   fadeOut?: boolean;
   fadeOutColor?: string;
   scaleOnHover?: boolean;
@@ -124,8 +126,11 @@ const useAnimationLoop = (
   trackRef: React.RefObject<HTMLDivElement | null>,
   targetVelocity: number,
   seqWidth: number,
+  fallbackWidth: number,
   isHovered: boolean,
-  pauseOnHover: boolean
+  pauseOnHover: boolean,
+  forceMotion: boolean,
+  enabled: boolean
 ) => {
   const rafRef = useRef<number | null>(null);
   const lastTimestampRef = useRef<number | null>(null);
@@ -133,17 +138,28 @@ const useAnimationLoop = (
   const velocityRef = useRef(0);
 
   useEffect(() => {
+    if (!enabled) {
+      // Ensure any previous RAF is cancelled
+      if (rafRef.current !== null) {
+        cancelAnimationFrame(rafRef.current);
+        rafRef.current = null;
+      }
+      lastTimestampRef.current = null;
+      return;
+    }
     const track = trackRef.current;
     if (!track) return;
 
     const prefersReduced =
+      !forceMotion &&
       typeof window !== "undefined" &&
       window.matchMedia &&
       window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-    if (seqWidth > 0) {
+    const effectiveWidth = seqWidth > 0 ? seqWidth : fallbackWidth;
+    if (effectiveWidth > 0) {
       offsetRef.current =
-        ((offsetRef.current % seqWidth) + seqWidth) % seqWidth;
+        ((offsetRef.current % effectiveWidth) + effectiveWidth) % effectiveWidth;
       track.style.transform = `translate3d(${-offsetRef.current}px, 0, 0)`;
     }
 
@@ -169,9 +185,10 @@ const useAnimationLoop = (
         1 - Math.exp(-deltaTime / ANIMATION_CONFIG.SMOOTH_TAU);
       velocityRef.current += (target - velocityRef.current) * easingFactor;
 
-      if (seqWidth > 0) {
+      const widthForStep = effectiveWidth;
+      if (widthForStep > 0) {
         let nextOffset = offsetRef.current + velocityRef.current * deltaTime;
-        nextOffset = ((nextOffset % seqWidth) + seqWidth) % seqWidth;
+        nextOffset = ((nextOffset % widthForStep) + widthForStep) % widthForStep;
         offsetRef.current = nextOffset;
 
         const translateX = -offsetRef.current;
@@ -190,7 +207,7 @@ const useAnimationLoop = (
       }
       lastTimestampRef.current = null;
     };
-  }, [targetVelocity, seqWidth, isHovered, pauseOnHover]);
+  }, [targetVelocity, seqWidth, fallbackWidth, isHovered, pauseOnHover, forceMotion, enabled]);
 };
 
 export const LogoLoop = React.memo<LogoLoopProps>(
@@ -202,6 +219,8 @@ export const LogoLoop = React.memo<LogoLoopProps>(
     logoHeight = 28,
     gap = 32,
     pauseOnHover = true,
+    forceMotion = false,
+    useCssFallbackOnMobile = true,
     fadeOut = false,
     fadeOutColor,
     scaleOnHover = false,
@@ -214,6 +233,7 @@ export const LogoLoop = React.memo<LogoLoopProps>(
     const seqRef = useRef<HTMLUListElement>(null);
 
     const [seqWidth, setSeqWidth] = useState<number>(0);
+    const [containerWidth, setContainerWidth] = useState<number>(0);
     const [copyCount, setCopyCount] = useState<number>(
       ANIMATION_CONFIG.MIN_COPIES
     );
@@ -225,6 +245,15 @@ export const LogoLoop = React.memo<LogoLoopProps>(
       const speedMultiplier = speed < 0 ? -1 : 1;
       return magnitude * directionMultiplier * speedMultiplier;
     }, [speed, direction]);
+
+    const isMobileCoarse = useMemo(() => {
+      if (typeof window === "undefined" || !window.matchMedia) return false;
+      try {
+        return window.matchMedia("(pointer: coarse)").matches || window.innerWidth <= 768;
+      } catch {
+        return window.innerWidth <= 768;
+      }
+    }, []);
 
     const updateDimensions = useCallback(() => {
       const containerWidth = containerRef.current?.clientWidth ?? 0;
@@ -238,6 +267,9 @@ export const LogoLoop = React.memo<LogoLoopProps>(
           ANIMATION_CONFIG.COPY_HEADROOM;
         setCopyCount(Math.max(ANIMATION_CONFIG.MIN_COPIES, copiesNeeded));
       }
+      if (containerWidth > 0) {
+        setContainerWidth(Math.ceil(containerWidth));
+      }
     }, []);
 
     useResizeObserver(
@@ -248,13 +280,63 @@ export const LogoLoop = React.memo<LogoLoopProps>(
 
     useImageLoader(seqRef, updateDimensions, [logos, gap, logoHeight]);
 
+    const cssFallbackEnabled = forceMotion && useCssFallbackOnMobile && isMobileCoarse;
+
     useAnimationLoop(
       trackRef,
       targetVelocity,
       seqWidth,
+      containerWidth,
       isHovered,
-      pauseOnHover
+      pauseOnHover,
+      forceMotion,
+      !cssFallbackEnabled
     );
+
+    // Ensure re-measure on mount/orientation/visibility (mobile safety net)
+    useEffect(() => {
+      const remeasure = () => updateDimensions();
+      const t1 = setTimeout(remeasure, 50);
+      const t2 = setTimeout(remeasure, 250);
+      const t3 = setTimeout(remeasure, 1000);
+      window.addEventListener("orientationchange", remeasure);
+      document.addEventListener("visibilitychange", remeasure);
+      return () => {
+        clearTimeout(t1);
+        clearTimeout(t2);
+        clearTimeout(t3);
+        window.removeEventListener("orientationchange", remeasure);
+        document.removeEventListener("visibilitychange", remeasure);
+      };
+    }, [updateDimensions]);
+
+    // CSS marquee fallback for mobile devices when forced motion is requested
+    useEffect(() => {
+      if (!cssFallbackEnabled) return;
+      const track = trackRef.current;
+      if (!track) return;
+
+      const effectiveWidth = (seqWidth > 0 ? seqWidth : containerWidth);
+      const absVelocity = Math.max(1, Math.abs(targetVelocity));
+      if (!effectiveWidth || !absVelocity) return;
+
+      const animId = `logoloop-marquee-${Math.random().toString(36).slice(2)}`;
+      const distance = direction === "left" ? -effectiveWidth : effectiveWidth;
+      const durationSec = effectiveWidth / absVelocity; // px / (px/s) => s
+
+      const styleEl = document.createElement("style");
+      styleEl.setAttribute("data-logoloop-style", animId);
+      styleEl.textContent = `@keyframes ${animId} { from { transform: translate3d(0,0,0); } to { transform: translate3d(${distance}px,0,0); } }`;
+      document.head.appendChild(styleEl);
+
+      const previousAnimation = track.style.animation;
+      track.style.animation = `${animId} ${durationSec}s linear infinite`;
+
+      return () => {
+        track.style.animation = previousAnimation;
+        styleEl.parentNode?.removeChild(styleEl);
+      };
+    }, [cssFallbackEnabled, seqWidth, containerWidth, targetVelocity, direction]);
 
     const cssVariables = useMemo(
       () =>
@@ -438,7 +520,7 @@ export const LogoLoop = React.memo<LogoLoopProps>(
         <div
           className={cx(
             "flex w-max will-change-transform select-none",
-            "motion-reduce:transform-none"
+            !forceMotion && "motion-reduce:transform-none"
           )}
           ref={trackRef}
         >

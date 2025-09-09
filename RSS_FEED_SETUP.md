@@ -1,4 +1,4 @@
-# RSS Feed Setup for Mavericks Edge | Beyond The Edge Blog
+# RSS Feed Setup for Mavericks Edge Blog
 
 ## Overview
 Your blog now has a fully functional RSS feed that automatically includes all blog posts from your `blogData.ts` file.
@@ -57,7 +57,7 @@ npm run generate-rss
 - **Image Metadata**: Title, description, and thumbnail information for each image
 
 ### RSS Feed Structure
-- **Channel Title**: "Mavericks Edge | Beyond The Edge Blog"
+- **Channel Title**: "Beyond the Edge | Mavericks Edge Digital Marketing Blog"
 - **Description**: SEO-optimized description for your blog
 - **Language**: en-ca (English Canadian)
 - **TTL**: 60 minutes (update frequency)
