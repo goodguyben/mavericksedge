@@ -113,7 +113,7 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({
           </div>
 
           {/* Main content container */}
-          <div className="relative z-10 flex flex-col items-center justify-center space-y-8 px-4">
+          <div className="relative z-10 flex flex-col items-center justify-center space-y-8 px-4 transform -translate-y-8">
             
             {/* Logo Animation Video - optimized for mobile */}
             <motion.div
