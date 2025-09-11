@@ -74,17 +74,17 @@ function generateBlogSVG({ filename, title, subtitle, color }) {
   <rect width="${width}" height="${height}" fill="url(#dots)"/>
   
   <!-- Title -->
-  <text x="${width/2}" y="${height/2 - 40}" font-family="Arial, sans-serif" font-size="48" font-weight="bold" text-anchor="middle" fill="white">
+  <text x="${width/2}" y="${height/2 - 40}" font-family="Raleway, sans-serif" font-size="48" font-weight="bold" text-anchor="middle" fill="white">
     ${title}
   </text>
   
   <!-- Subtitle -->
-  <text x="${width/2}" y="${height/2 + 20}" font-family="Arial, sans-serif" font-size="24" text-anchor="middle" fill="rgba(255,255,255,0.8)">
+  <text x="${width/2}" y="${height/2 + 20}" font-family="Raleway, sans-serif" font-size="24" text-anchor="middle" fill="rgba(255,255,255,0.8)">
     ${subtitle}
   </text>
   
   <!-- Branding -->
-  <text x="${width/2}" y="${height - 30}" font-family="Arial, sans-serif" font-size="18" text-anchor="middle" fill="rgba(255,255,255,0.6)">
+  <text x="${width/2}" y="${height - 30}" font-family="Raleway, sans-serif" font-size="18" text-anchor="middle" fill="rgba(255,255,255,0.6)">
     Mavericks Edge
   </text>
 </svg>`;

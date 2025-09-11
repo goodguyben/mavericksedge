@@ -158,7 +158,7 @@ body {
 .footer-logo h2 { /* Added to display company name next to logo */
   display: inline-block;
   margin-left: 0.75rem; /* Added spacing between logo and name */
-  font-family: 'Outfit', sans-serif; /* Added font consistency */
+  font-family: 'Raleway', sans-serif; /* Added font consistency */
   font-weight: 700;
   font-size: 1.5rem; /* Increased base font size */
   color: #FF5630; /* Maverick orange */
@@ -180,7 +180,7 @@ body {
 
 
 .footer-heading {
-  font-family: 'Outfit', sans-serif;
+  font-family: 'Raleway', sans-serif;
   font-weight: 700;
   font-size: 1.125rem;
   margin-bottom: 1.25rem;
@@ -202,7 +202,7 @@ body {
   color: #F5F0EC;
   text-decoration: none;
   transition: color 0.3s ease;
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: 'Raleway', sans-serif;
   font-size: 0.925rem;
   position: relative;
   display: inline-block;
@@ -244,7 +244,7 @@ body {
   color: #F5F0EC;
   text-decoration: none;
   transition: color 0.3s ease;
-  font-family: 'Garamond', serif;
+  font-family: 'Raleway', sans-serif;
 }
 
 .footer-contact-info a:hover {
@@ -268,7 +268,7 @@ body {
 }
 
 .footer-copyright {
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: 'Raleway', sans-serif;
   font-size: 0.875rem;
   color: rgba(245, 240, 236, 0.7); /* Light cream with transparency */
   font-weight: 400;

@@ -205,8 +205,19 @@ const BlogPost: React.FC = () => {
                 <img 
                   src={post.featuredImage} 
                   alt={post.title}
-                  className="w-full h-64 md:h-96 object-cover rounded-xl shadow-lg"
-                  style={{ objectPosition: post.slug === 'most-affordable-website-design-companies-edmonton-2025' ? 'top center' : 'center 60%' }}
+                  className="w-full h-80 md:h-[28rem] object-cover rounded-xl shadow-lg"
+                  style={{
+                    objectPosition:
+                      post.slug === 'good-seo-is-good-geo'
+                        ? 'center 35%'
+                        : post.slug === 'best-ai-tools-for-building-a-website-on-a-tight-budget'
+                        ? 'center 45%'
+                        : post.slug === 'most-affordable-website-design-companies-edmonton-2025'
+                        ? 'top center'
+                        : post.slug === 'best-website-design-companies-edmonton-2025'
+                        ? 'center 70%'
+                        : 'center 60%'
+                  }}
                 />
               </div>
 

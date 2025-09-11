@@ -12,6 +12,8 @@
     "optimize-videos": "node scripts/optimize-videos.js",
     "generate-blog-images": "node scripts/generate-blog-images.js",
     "generate-rss": "node scripts/generate-rss.js",
+    "generate-sitemap-blog": "node scripts/generate-sitemap-blog.js",
+    "publish-blog": "npm run generate-rss && npm run generate-sitemap-blog && vite build",
     "analyze-bundle": "vite build --mode analyze",
     "lighthouse": "lighthouse https://mavericksedge.ca --output=json --output-path=./lighthouse-report.json"
   },

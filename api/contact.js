@@ -57,7 +57,7 @@ This message was sent from the Mavericks Edge website contact form.
 <html>
 <head>
   <style>
-    body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+    body { font-family: 'Raleway', sans-serif; line-height: 1.6; color: #333; }
     .container { max-width: 600px; margin: 0 auto; padding: 20px; }
     .header { background: #FF5630; color: white; padding: 20px; text-align: center; }
     .content { padding: 20px; background: #f9f9f9; }

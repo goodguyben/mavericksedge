@@ -17,6 +17,7 @@ import StructuredData, { organizationSchema, localBusinessSchema, websiteSchema,
 import { LazySection } from '@/components/performance/LazySection';
 import { measurePerformance, initializeProductionOptimizations } from '@/lib/performance';
 import { analytics } from '@/lib/logger';
+import GoogleReviews from '@/components/GoogleReviews';
 
 // Lazy load non-critical components
 import ServiceCascadeSection from "@/components/sections/ServiceCascadeSection";
@@ -129,6 +130,22 @@ export default function Home() {
               <Suspense fallback={<SectionFallback />}>
                 <WhyChooseUsSection />
               </Suspense>
+            </ScrollFadeSection>
+          </LazySection>
+
+          {/* Google Reviews Section - Social Proof */}
+          <LazySection threshold={0.1} rootMargin="50px">
+            <ScrollFadeSection
+              id="reviews"
+              fadeInPoint={0.5}
+              fadeOutPoint={0.6}
+              fadeInDuration={1}
+              fadeOutDuration={1.8}
+              initialOpacity={0}
+              minOpacity={0.1}
+              useFallback={true}
+            >
+              <GoogleReviews />
             </ScrollFadeSection>
           </LazySection>
 

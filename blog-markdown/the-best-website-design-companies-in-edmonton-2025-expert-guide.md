@@ -10,10 +10,30 @@ tags: ["website design", "Edmonton", "web design companies", "digital marketing"
 featuredImage: "https://mavericksedge.ca/videos/Edmonton_Skyline.jpg"
 isPillar: true
 seoKeywords: ["best website design Edmonton", "top web design companies Edmonton", "Edmonton web design agencies", "website design rankings Edmonton", "web design companies Alberta", "professional web design Edmonton"]
-internalLinks: ["/web-design-services-edmonton", "/contact"]
-externalLinks: []
-socialShares: 0
-views: 4589
+internalLinks: ["/web-design-services-edmonton", "/web-design-pricing-edmonton"]
+externalLinks: [
+  "https://icedistrict.com",
+  "https://southedmontoncommon.com",
+  "https://www.nngroup.com/articles/definition-user-experience/",
+  "https://www.statista.com/statistics/277125/mobile-share-of-organic-search-clicks-worldwide/",
+  "https://developers.google.com/search/docs",
+  "https://www.edmonton.ca/communities_neighbourhoods/terwillegar",
+  "https://www.edmonton.ca/communities_neighbourhoods/garneau",
+  "https://www.wordofmouth.org/",
+  "https://www.google.com/business/",
+  "https://clutch.co/",
+  "https://www.shopify.com/",
+  "https://woocommerce.com/",
+  "https://wordpress.org/",
+  "https://yegdigital.com",
+  "https://yegdigital.com/work/",
+  "https://www.web3.ca",
+  "https://web.dev/vitals/",
+  "https://ads.google.com/",
+  "https://developers.google.com/search/docs/advanced/structured-data/intro-structured-data"
+]
+socialShares: 66
+views: 7792
 ---
 
 For Edmonton businesses, a high-performing website is the most critical tool for growth, acting as a 24/7 digital storefront in a competitive market. Yet, selecting the right web design partner can be a challenge, with countless agencies making similar promises. This guide cuts through the noise with a data-driven ranking of Edmonton's top web design companies, evaluated on verified reviews, portfolio quality, local expertise, and proven results. It's designed to equip you with the essential knowledge to choose an agency that will deliver a true return on investment, helping your business thrive from the [ICE District](https://icedistrict.com) to [South Edmonton Common](https://southedmontoncommon.com).

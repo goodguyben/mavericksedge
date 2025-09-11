@@ -149,6 +149,7 @@ const Blog: React.FC = () => {
                     src={featuredPost.featuredImage} 
                     alt={featuredPost.title}
                     className="w-full h-64 md:h-96 object-cover"
+                    style={{ objectPosition: 'center 70%' }}
                   />
                   <div className="absolute top-4 left-4">
                     <span className="bg-maverick-orange text-white px-3 py-1 rounded-full text-sm font-semibold">

@@ -13,9 +13,9 @@ export default {
       '2xl': '1920px',  // Extra large desktop
     },
     fontFamily: {
-      sans: ['Space Grotesk', 'system-ui', 'sans-serif'],
-      heading: ['Outfit', 'system-ui', 'sans-serif'],
-      logo: ['Sansation', 'system-ui', 'sans-serif'],
+      sans: ['Raleway', 'system-ui', 'sans-serif'],
+      heading: ['Raleway', 'system-ui', 'sans-serif'],
+      logo: ['Raleway', 'system-ui', 'sans-serif'],
     },
     extend: {
       borderRadius: {

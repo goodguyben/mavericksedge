@@ -107,7 +107,7 @@ This message was sent from the Mavericks Edge website contact form.
 <html>
 <head>
   <style>
-    body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+    body { font-family: 'Raleway', sans-serif; line-height: 1.6; color: #333; }
     .container { max-width: 600px; margin: 0 auto; padding: 20px; }
     .header { background-color: #1A1A1A; color: #ff8a00; padding: 20px; border-radius: 5px 5px 0 0; }
     .content { background-color: #f8f8f8; padding: 20px; border-radius: 0 0 5px 5px; }

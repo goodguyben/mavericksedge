@@ -1,6 +1,6 @@
 
 import { motion } from "framer-motion";
-import { Code, Database, Layout as LayoutIcon, ShoppingCart, Globe, Shield, Smartphone, Search, Star, CheckCircle, ArrowRight, MapPin, ChevronDown, Gauge, Wand2, Eye, Lock } from "lucide-react";
+import { Code, Database, Layout as LayoutIcon, ShoppingCart, Globe, Shield, Smartphone, Search, CheckCircle, ArrowRight, MapPin, ChevronDown, Gauge, Wand2, Eye, Lock } from "lucide-react";
 import LogoLoop, { LogoItem } from "@/components/ui/LogoLoop";
 import GradientText from "@/components/ui/GradientText";
 // Removed timeline import; replacing with creative web app tiles grid
@@ -17,6 +17,7 @@ import { ROUTES } from "@/lib/routes";
 import WebServicesCascadeSection from "@/components/sections/WebServicesCascadeSection";
 import ScrollFadeSection from '@/components/ui/scroll-fade-section';
 import { LazySection } from '@/components/performance/LazySection';
+import GoogleReviews from '@/components/GoogleReviews';
 
 // Animated integrated-circuit overlay for cube faces
 function CircuitOverlay({ accent = "#61DAFB" }: { accent?: string }) {
@@ -963,20 +964,7 @@ export default function WebServices() {
     },
   ] as const;
 
-  const testimonials = [
-    {
-      quote: "Mavericks Edge transformed our online presence. Their understanding of the Edmonton market helped us reach more local customers than ever before.",
-      author: "Sarah Chen",
-      company: "Edmonton Wellness Center",
-      rating: 5
-    },
-    {
-      quote: "The website they built for our Alberta-based business has been instrumental in our growth. Professional, fast, and perfectly optimized for search.",
-      author: "Mike Rodriguez",
-      company: "Northern Alberta Construction",
-      rating: 5
-    }
-  ];
+  // testimonials replaced by live Google reviews
 
   const faqItems = [
     {
@@ -2293,7 +2281,7 @@ export default function WebServices() {
           </ScrollFadeSection>
         </LazySection>
 
-        {/* Client Testimonials */}
+        {/* Client Testimonials - Live Google Reviews */}
         <LazySection threshold={0.1} rootMargin="50px">
           <ScrollFadeSection
             id="testimonials"
@@ -2305,50 +2293,7 @@ export default function WebServices() {
             minOpacity={0.1}
             useFallback={true}
           >
-            <section className="py-24 px-5 md:px-10 bg-[#1E1E1E]">
-              <div className="container mx-auto">
-                <motion.div 
-                  className="text-center mb-16"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5 }}
-                >
-                  <h2 className="text-4xl md:text-5xl font-bold mb-4 font-heading">
-                    What Edmonton Businesses Say
-                  </h2>
-                  <p className="text-[#AAAAAA] text-xl max-w-2xl mx-auto">
-                    Don't just take our word for it. Hear from local businesses we've helped succeed online.
-                  </p>
-                </motion.div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                  {testimonials.map((testimonial, index) => (
-                    <motion.div
-                      key={index}
-                      initial={{ opacity: 0, y: 30 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.5, delay: index * 0.2 }}
-                      className="bg-[#121212] rounded-2xl p-8 border border-gray-800"
-                    >
-                      <div className="flex items-center mb-4">
-                        {[...Array(testimonial.rating)].map((_, i) => (
-                          <Star key={i} className="h-5 w-5 text-yellow-400 fill-current" />
-                        ))}
-                      </div>
-                      <blockquote className="text-lg mb-6 leading-relaxed">
-                        "{testimonial.quote}"
-                      </blockquote>
-                      <div>
-                        <div className="font-semibold">{testimonial.author}</div>
-                        <div className="text-maverick-orange text-sm">{testimonial.company}</div>
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
-              </div>
-            </section>
+            <GoogleReviews />
           </ScrollFadeSection>
         </LazySection>
 

@@ -101,6 +101,62 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Google Reviews proxy endpoint (development server)
+  app.get('/api/google-reviews', async (req, res) => {
+    try {
+      const placeId = process.env.GOOGLE_PLACE_ID;
+      const apiKey = process.env.GOOGLE_MAPS_API_KEY || process.env.GOOGLE_API_KEY;
+
+      if (!placeId || !apiKey) {
+        return res.status(500).json({
+          success: false,
+          message: 'Missing GOOGLE_PLACE_ID or GOOGLE_MAPS_API_KEY in environment.'
+        });
+      }
+
+      const fields = [
+        'rating',
+        'user_ratings_total',
+        'reviews',
+        'name',
+        'url'
+      ].join('%2C');
+
+      const url = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${encodeURIComponent(placeId)}&fields=${fields}&reviews_sort=newest&key=${apiKey}`;
+
+      const response = await fetch(url);
+      const data = await response.json();
+
+      if (!response.ok || data.status !== 'OK') {
+        return res.status(502).json({ success: false, message: 'Failed to fetch Google reviews', details: data });
+      }
+
+      // Normalize response for frontend
+      const result = data.result || {};
+      const reviews = Array.isArray(result.reviews) ? result.reviews.map((r: any) => ({
+        authorName: r.author_name,
+        profilePhotoUrl: r.profile_photo_url,
+        rating: r.rating,
+        text: r.text,
+        time: r.time,
+        relativeTimeDescription: r.relative_time_description,
+        authorUrl: r.author_url,
+      })) : [];
+
+      res.json({
+        success: true,
+        name: result.name,
+        url: result.url,
+        rating: result.rating,
+        userRatingsTotal: result.user_ratings_total,
+        reviews
+      });
+    } catch (error: any) {
+      console.error('Google reviews proxy error:', error);
+      res.status(500).json({ success: false, message: 'Internal error fetching Google reviews' });
+    }
+  });
+
   // 404 Error Handler for API routes only - Let Vite handle SPA routing in development
   app.use('/api/*', (req, res) => {
     res.status(404).json({ 

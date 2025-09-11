@@ -10,7 +10,14 @@ interface BlogCardProps {
 
 export const BlogCard: React.FC<BlogCardProps> = ({ post, index }) => {
   const isTopCropImage = post.slug === 'most-affordable-website-design-companies-edmonton-2025';
-  const imageObjectPositionClass = isTopCropImage ? 'object-top' : 'object-bottom';
+  const isBestCompaniesImage = post.slug === 'best-website-design-companies-edmonton-2025';
+  
+  let imageObjectPositionClass = 'object-center';
+  if (isTopCropImage) {
+    imageObjectPositionClass = 'object-top';
+  } else if (isBestCompaniesImage) {
+    imageObjectPositionClass = 'object-bottom';
+  }
 
   // Format date function
   const formatDate = (dateString: string) => {

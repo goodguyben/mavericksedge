@@ -10,10 +10,22 @@ tags: ["affordable web design", "Edmonton", "pricing", "packages", "small busine
 featuredImage: "https://mavericksedge.ca/videos/edmonton_most_affordable_website_design.png"
 isPillar: true
 seoKeywords: ["most affordable website design Edmonton", "affordable web design companies Edmonton", "budget web design Edmonton", "Edmonton web design pricing", "cheap website design Edmonton", "small business website Edmonton", "Edmonton web design comparison", "best value web design Edmonton", "Edmonton website design costs", "web design packages Edmonton"]
-internalLinks: ["/web-design-pricing-edmonton", "/web-design-services-edmonton", "/seo-services-edmonton", "/portfolio-edmonton-web-design", "/contact"]
-externalLinks: []
-socialShares: 0
-views: 3411
+internalLinks: ["/web-design-pricing-edmonton", "/web-design-services-edmonton", "/contact"]
+externalLinks: [
+  "https://www.shopify.com/",
+  "https://woocommerce.com/",
+  "https://www.google.com/business/",
+  "https://developer.mozilla.org/en-US/docs/Web/Performance/Lazy_loading",
+  "https://developers.google.com/search/docs/crawling-indexing/sitemaps/overview",
+  "https://developers.google.com/search/docs/crawling-indexing/robots/intro",
+  "https://support.google.com/analytics/answer/10089681?hl=en",
+  "https://developers.google.com/tag-platform/devguides/consent",
+  "https://web.dev/vitals/",
+  "https://pagespeed.web.dev/",
+  "https://letsencrypt.org/"
+]
+socialShares: 81
+views: 6614
 ---
 
 For many Edmonton small businesses, affordability is not about buying the cheapest template; it's about getting a clean, fast website that actually converts, without surprise costs or long timelines. After reviewing public pricing pages, service menus, and typical packages across the Edmonton market in 2024–2025, this guide focuses on transparent value for owner-led teams who need results now. We compare practical inclusions, realistic delivery timelines, and total cost of ownership so you can launch with confidence. If you want a fast overview, start with the [Mavericks Edge homepage](https://mavericksedge.ca/) to see their approach and recent work.
