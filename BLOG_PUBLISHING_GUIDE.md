@@ -118,6 +118,15 @@ When integrating content, ensure it follows these humanized writing principles:
 - **Array Position**: Add new posts at the beginning of the array (most recent first)
 - **Featured Image**: Use the URL path you provided for the featured image
 
+### 2.1 Mandatory Link Sync (New Rule)
+
+Whenever a blog Markdown file is updated, you must also update the corresponding entry in `client/src/data/blogData.ts` so that:
+
+- Every hyperlink present in the Markdown content also appears in the `content` string (or the `internalLinks`/`externalLinks` arrays) of `blogData.ts`.
+- Contextual “related reading” links added to Markdown must be replicated in `blogData.ts` in the same section.
+- Service/pricing/contact links must use the exact routes defined in `client/src/App.tsx` and `client/src/lib/routes.ts`.
+- Run the publishing commands after any sync: `npm run generate-rss`, `npm run generate-sitemap-blog`, or `npm run publish-blog`.
+
 ### 3. Update Feeds and Sitemaps
 
 Run these commands to update all distribution channels:
