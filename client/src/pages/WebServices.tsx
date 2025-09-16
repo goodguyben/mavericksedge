@@ -1087,12 +1087,12 @@ export default function WebServices() {
           minOpacity={0.1}
           useFallback={true}
         >
-          <div className="pt-28 sm:pt-32 md:pt-32 pb-24 sm:pb-28 md:pb-16 px-5 md:px-10 min-h-[100svh] md:min-h-0 bg-gradient-to-br from-[#121212] via-[#1A1A1A] to-[#0F0F0F] relative overflow-hidden">
+          <div className="pt-28 sm:pt-32 md:pt-32 pb-24 sm:pb-28 md:pb-16 px-0 min-h-[100svh] md:min-h-0 bg-gradient-to-br from-[#121212] via-[#1A1A1A] to-[#0F0F0F] relative overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-r from-maverick-orange/5 to-transparent"></div>
-            <div className="container mx-auto relative z-10">
+            <div className="container mx-auto px-0 sm:px-6 md:px-8 lg:px-10 xl:px-12 2xl:px-16 relative z-10">
               {/* Mobile layout - creative, stacked */}
               <div className="block lg:hidden relative min-h-[calc(100svh-7rem)] flex flex-col justify-start pt-8 pb-[360px] sm:pb-[440px] md:pb-[620px]">
-                <div className="relative z-10 px-1">
+                <div className="relative z-10 px-0">
                   <motion.h1 
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
