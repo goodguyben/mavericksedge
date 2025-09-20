@@ -41,7 +41,7 @@ export default function FooterWrapper() {
             {isVisible && <Newsletter />}
           </div>
 
-          {/* Navigation Links Container - wraps the three nav sections */}
+          {/* Navigation Links Container - wraps the four nav sections */}
           <div className="footer-nav-container">
             {/* Services Links */}
             <nav className="footer-nav" aria-label="Services Navigation">
@@ -76,6 +76,27 @@ export default function FooterWrapper() {
                 <li className="footer-link"><a href="/cookie-policy" title="Website Cookie Policy & Tracking Information">Cookie Policy</a></li>
                 <li className="footer-link"><a href="/gdpr-compliance" title="GDPR Compliance & Data Protection">GDPR Compliance</a></li>
                 <li className="footer-link"><a href="/accessibility" title="Website Accessibility Statement & Compliance">Accessibility</a></li>
+              </ul>
+            </nav>
+
+            {/* Areas Served Links - Now rightmost */}
+            <nav className="footer-nav" aria-label="Areas Served Navigation">
+              <h2 className="footer-heading">Areas Served</h2>
+              <ul className="footer-links">
+                <li className="footer-link"><a href="/web-design-services-edmonton" title="Edmonton Web Design Services">Edmonton</a></li>
+                <li className="footer-link"><a href="/web-design-services-sherwood-park" title="Sherwood Park Web Design Services">Sherwood Park</a></li>
+                <li className="footer-link"><a href="/web-design-services-leduc" title="Leduc Web Design Services">Leduc</a></li>
+                <li className="footer-link"><a href="/web-design-services-st-albert" title="St. Albert Web Design Services">St. Albert</a></li>
+                <li className="footer-link"><a href="/web-design-services-spruce-grove" title="Spruce Grove Web Design Services">Spruce Grove</a></li>
+                <li className="footer-link"><a href="/web-design-services-stony-plain" title="Stony Plain Web Design Services">Stony Plain</a></li>
+                <li className="footer-link"><a href="/web-design-services-fort-saskatchewan" title="Fort Saskatchewan Web Design Services">Fort Saskatchewan</a></li>
+                <li className="footer-link"><a href="/web-design-services-beaumont" title="Beaumont Web Design Services">Beaumont</a></li>
+                <li className="footer-link"><a href="/web-design-services-calgary" title="Calgary Web Design Services">Calgary</a></li>
+                <li className="footer-link"><a href="/web-design-services-airdrie" title="Airdrie Web Design Services">Airdrie</a></li>
+                <li className="footer-link"><a href="/web-design-services-lethbridge" title="Lethbridge Web Design Services">Lethbridge</a></li>
+                <li className="footer-link"><a href="/web-design-services-fort-mcmurray" title="Fort McMurray Web Design Services">Fort McMurray</a></li>
+                <li className="footer-link"><a href="/web-design-services-medicine-hat" title="Medicine Hat Web Design Services">Medicine Hat</a></li>
+                <li className="footer-link"><a href="/web-design-services-grande-prairie" title="Grande Prairie Web Design Services">Grande Prairie</a></li>
               </ul>
             </nav>
           </div>

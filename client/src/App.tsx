@@ -16,6 +16,19 @@ import { getDeviceCapabilities } from "@/lib/performance";
 const Home = lazy(() => import("@/pages/Home"));
 const Services = lazy(() => import("@/pages/Services"));
 const WebServices = lazy(() => import("@/pages/WebServices"));
+const WebServicesSherwoodPark = lazy(() => import("@/pages/WebServicesSherwoodPark"));
+const WebServicesLeduc = lazy(() => import("@/pages/WebServicesLeduc"));
+const WebServicesStAlbert = lazy(() => import("@/pages/WebServicesStAlbert"));
+const WebServicesSpruceGrove = lazy(() => import("@/pages/WebServicesSpruceGrove"));
+const WebServicesStonyPlain = lazy(() => import("@/pages/WebServicesStonyPlain"));
+const WebServicesFortSaskatchewan = lazy(() => import("@/pages/WebServicesFortSaskatchewan"));
+const WebServicesBeaumont = lazy(() => import("@/pages/WebServicesBeaumont"));
+const WebServicesCalgary = lazy(() => import("@/pages/WebServicesCalgary"));
+const WebServicesAirdrie = lazy(() => import("@/pages/WebServicesAirdrie"));
+const WebServicesLethbridge = lazy(() => import("@/pages/WebServicesLethbridge"));
+const WebServicesFortMcMurray = lazy(() => import("@/pages/WebServicesFortMcMurray"));
+const WebServicesMedicineHat = lazy(() => import("@/pages/WebServicesMedicineHat"));
+const WebServicesGrandePrairie = lazy(() => import("@/pages/WebServicesGrandePrairie"));
 const MarketingServices = lazy(() => import("@/pages/MarketingServices"));
 const AIServices = lazy(() => import("@/pages/AIServices"));
 const SEOServices = lazy(() => import("@/pages/SEOServices"));
@@ -114,6 +127,45 @@ export default function App() {
               </Route>
               <Route path="/web-design-services-edmonton">
                 <WebServices />
+              </Route>
+              <Route path="/web-design-services-sherwood-park">
+                <WebServicesSherwoodPark />
+              </Route>
+              <Route path="/web-design-services-leduc">
+                <WebServicesLeduc />
+              </Route>
+              <Route path="/web-design-services-st-albert">
+                <WebServicesStAlbert />
+              </Route>
+              <Route path="/web-design-services-spruce-grove">
+                <WebServicesSpruceGrove />
+              </Route>
+              <Route path="/web-design-services-stony-plain">
+                <WebServicesStonyPlain />
+              </Route>
+              <Route path="/web-design-services-fort-saskatchewan">
+                <WebServicesFortSaskatchewan />
+              </Route>
+              <Route path="/web-design-services-beaumont">
+                <WebServicesBeaumont />
+              </Route>
+              <Route path="/web-design-services-calgary">
+                <WebServicesCalgary />
+              </Route>
+              <Route path="/web-design-services-airdrie">
+                <WebServicesAirdrie />
+              </Route>
+              <Route path="/web-design-services-lethbridge">
+                <WebServicesLethbridge />
+              </Route>
+              <Route path="/web-design-services-fort-mcmurray">
+                <WebServicesFortMcMurray />
+              </Route>
+              <Route path="/web-design-services-medicine-hat">
+                <WebServicesMedicineHat />
+              </Route>
+              <Route path="/web-design-services-grande-prairie">
+                <WebServicesGrandePrairie />
               </Route>
               <Route path="/digital-marketing-services-edmonton">
                 <MarketingServices />

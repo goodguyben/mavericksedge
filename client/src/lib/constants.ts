@@ -19,6 +19,93 @@ export const services = [
   }
 ];
 
+export const locations = [
+  {
+    name: "Edmonton",
+    slug: "edmonton",
+    route: "/web-design-services-edmonton",
+    displayName: "Edmonton"
+  },
+  {
+    name: "Sherwood Park",
+    slug: "sherwood-park",
+    route: "/web-design-services-sherwood-park",
+    displayName: "Sherwood Park"
+  },
+  {
+    name: "Leduc",
+    slug: "leduc",
+    route: "/web-design-services-leduc",
+    displayName: "Leduc"
+  },
+  {
+    name: "St. Albert",
+    slug: "st-albert",
+    route: "/web-design-services-st-albert",
+    displayName: "St. Albert"
+  },
+  {
+    name: "Spruce Grove",
+    slug: "spruce-grove",
+    route: "/web-design-services-spruce-grove",
+    displayName: "Spruce Grove"
+  },
+  {
+    name: "Stony Plain",
+    slug: "stony-plain",
+    route: "/web-design-services-stony-plain",
+    displayName: "Stony Plain"
+  },
+  {
+    name: "Fort Saskatchewan",
+    slug: "fort-saskatchewan",
+    route: "/web-design-services-fort-saskatchewan",
+    displayName: "Fort Saskatchewan"
+  },
+  {
+    name: "Beaumont",
+    slug: "beaumont",
+    route: "/web-design-services-beaumont",
+    displayName: "Beaumont"
+  },
+  {
+    name: "Calgary",
+    slug: "calgary",
+    route: "/web-design-services-calgary",
+    displayName: "Calgary"
+  },
+  {
+    name: "Airdrie",
+    slug: "airdrie",
+    route: "/web-design-services-airdrie",
+    displayName: "Airdrie"
+  },
+  {
+    name: "Lethbridge",
+    slug: "lethbridge",
+    route: "/web-design-services-lethbridge",
+    displayName: "Lethbridge"
+  },
+  {
+    name: "Fort McMurray",
+    slug: "fort-mcmurray",
+    route: "/web-design-services-fort-mcmurray",
+    displayName: "Fort McMurray"
+  },
+  {
+    name: "Medicine Hat",
+    slug: "medicine-hat",
+    route: "/web-design-services-medicine-hat",
+    displayName: "Medicine Hat"
+  },
+  {
+    name: "Grande Prairie",
+    slug: "grande-prairie",
+    route: "/web-design-services-grande-prairie",
+    displayName: "Grande Prairie"
+  }
+];
+
 export const contactInfo = {
   phone: "+1 (250) 883-8849",
   email: "info@mavericksedge.ca",

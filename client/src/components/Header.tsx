@@ -114,7 +114,7 @@ export default function Header() {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center space-x-6 xl:space-x-8" role="navigation" aria-label="Main Navigation">
+          <nav className="hidden lg:flex items-center space-x-4 xl:space-x-6 2xl:space-x-8" role="navigation" aria-label="Main Navigation">
             {/* Home Link */}
             <motion.div
                 whileHover={{ scale: 1.05 }}

@@ -132,14 +132,14 @@ body {
 .footer-wrapper {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 1.5rem;
+  padding: 0 1rem 0 0.5rem; /* Reduced left padding to move content left */
   margin-bottom: 0;
 }
 
 .footer-top {
   display: grid;
-  grid-template-columns: minmax(300px, 2fr) minmax(200px, 1fr); /* First column wider for newsletter */
-  gap: 2rem; /* Increased gap for better separation */
+  grid-template-columns: minmax(300px, 2.5fr) minmax(350px, 2.5fr); /* Increased newsletter width, reduced nav width */
+  gap: 3rem; /* Increased gap to push columns right */
   margin-bottom: 2.5rem;
 }
 
@@ -196,6 +196,9 @@ body {
 
 .footer-link {
   margin-bottom: 0.75rem;
+  min-height: 1.5rem; /* Ensure consistent line height */
+  display: flex;
+  align-items: center; /* Vertically center the text */
 }
 
 .footer-link a {
@@ -207,6 +210,9 @@ body {
   position: relative;
   display: inline-block;
   font-weight: 450;
+  line-height: 1.5; /* Consistent line height */
+  white-space: nowrap; /* Prevent text wrapping */
+  min-width: fit-content; /* Ensure links don't wrap */
 }
 
 .footer-link a::after {
@@ -290,11 +296,80 @@ body {
   transform: translateY(-3px);
 }
 
-/* Responsive adjustments */
+/* Tablet responsive adjustments */
+@media screen and (max-width: 1024px) and (min-width: 769px) {
+  .footer-top {
+    grid-template-columns: 1.2fr 1fr; /* Adjusted ratio to move nav columns right */
+    gap: 2rem; /* Reduced gap to bring columns closer to center */
+  }
+
+  .footer-nav-container {
+    display: grid !important; /* Change to grid layout for tablet */
+    grid-template-columns: 1fr 1fr; /* Two columns grid */
+    grid-template-rows: auto auto; /* Auto rows to reduce spacing */
+    gap: 1rem; /* Reduced gap to bring sections closer */
+    padding-left: 1.5rem; /* Increased left padding to move columns right */
+    margin-top: -0.5rem; /* Negative margin to move columns up */
+    flex-wrap: unset !important; /* Remove flex-wrap for grid */
+    justify-content: unset !important; /* Remove justify-content for grid */
+  }
+
+  /* Explicit grid positioning for tablet */
+  .footer-nav:nth-child(1) { /* Services */
+    grid-column: 1;
+    grid-row: 1;
+    margin-left: 1.25rem; /* Move Services column even more to the right */
+  }
+
+  .footer-nav:nth-child(2) { /* Company */
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .footer-nav:nth-child(3) { /* Legal */
+    grid-column: 1;
+    grid-row: 2;
+    margin-left: 1.25rem; /* Move Legal column even more to the right */
+  }
+
+  .footer-nav:nth-child(4) { /* Areas Served */
+    grid-column: 2;
+    grid-row: 2;
+  }
+
+  .footer-nav {
+    min-width: auto; /* Remove min-width constraint for grid */
+    flex: none; /* Remove flex properties for grid */
+    display: flex; /* Keep flex for internal layout */
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .footer-wrapper {
+    padding: 0 0.5rem 0 1.5rem; /* Adjusted padding to move content right */
+  }
+
+  /* Adjust footer links for tablet readability */
+  .footer-link {
+    margin-bottom: 0.4rem; /* Reduced margin between links for tablet */
+  }
+
+  .footer-link a {
+    font-size: 0.9rem; /* Slightly smaller font for tablet */
+    line-height: 1.4;
+  }
+
+  .footer-heading {
+    font-size: 1rem; /* Slightly smaller heading for tablet */
+    margin-bottom: 0.75rem; /* Reduced margin to bring sections closer */
+  }
+}
+
+/* Mobile responsive adjustments */
 @media screen and (max-width: 768px) {
   .footer-top {
     grid-template-columns: 1fr; /* Stack in mobile view */
-    gap: 2rem;
+    gap: 2rem; /* Restored original gap */
   }
 
   .footer-bottom {
@@ -304,28 +379,76 @@ body {
   }
   
   .newsletter-container {
-    margin-bottom: 1rem;
+    margin-bottom: 1rem; /* Restored original margin */
     margin-top: 1rem;
   }
   
   .footer-logo-section {
     align-items: center;
     text-align: center;
-    padding: 1rem 0;
+    padding: 1rem 0; /* Restored original padding */
+  }
+
+  .footer-nav-container {
+    flex-direction: row; /* Keep side-by-side columns */
+    gap: 1rem; /* Reduced gap between columns for mobile */
+    padding-left: 0;
+    flex-wrap: wrap; /* Allow wrapping if needed */
+    justify-content: space-between; /* Distribute columns evenly */
+  }
+
+  .footer-nav {
+    align-items: flex-start;
+    flex: 1; /* Equal flex distribution */
+    min-width: 140px; /* Minimum width for each column */
+    margin-bottom: 0.5rem; /* Small bottom margin for wrapping */
+  }
+
+  .footer-heading {
+    font-size: 1.125rem; /* Restored original heading size */
+    margin-bottom: 1.5rem; /* Increased margin for better separation from links */
+  }
+
+  .footer-link {
+    margin-bottom: 0rem; /* Virtually zero margin between links for mobile */
+  }
+
+  .footer-link a {
+    font-size: 0.925rem; /* Restored original font size */
+    line-height: 1.5; /* Restored original line height */
+    white-space: normal; /* Allow wrapping on mobile */
   }
 }
 
 @media screen and (max-width: 480px) {
   .footer-container {
-    padding: 3rem 0 0;
+    padding: 3rem 0 0; /* Restored original padding */
   }
 
   .footer-logo {
-    margin-bottom: 1rem;
+    margin-bottom: 1rem; /* Restored original margin */
   }
 
   .footer-heading {
-    margin-bottom: 1rem;
+    margin-bottom: 1.25rem; /* Increased margin for better separation from links on small mobile */
+    font-size: 1.125rem; /* Restored original heading size */
+  }
+
+  .footer-nav-container {
+    gap: 0.75rem; /* Keep smaller gap for very small screens */
+  }
+
+  .footer-nav {
+    min-width: 120px; /* Keep smaller minimum width for very small screens */
+  }
+
+  .footer-link {
+    margin-bottom: 0rem; /* Zero margin between links for very small screens */
+  }
+
+  .footer-link a {
+    font-size: 0.925rem; /* Restored original font size */
+    line-height: 1.5; /* Restored original line height */
   }
 
   /* Center contact information on mobile */
@@ -333,7 +456,7 @@ body {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    gap: 1rem;
+    gap: 1rem; /* Restored original gap */
   }
 
   .footer-copyright .flex > div {
@@ -344,9 +467,10 @@ body {
 
 .footer-nav-container {
   display: flex;
-  justify-content: space-between;
-  gap: 1rem;
+  justify-content: flex-start; /* Changed from space-between to flex-start */
+  gap: 4rem; /* Keep the spacing between columns */
   flex: 1;
+  padding-left: 1rem; /* Reduced left padding to move columns left */
 }
 
 .footer-nav {
@@ -354,6 +478,9 @@ body {
   padding: 0;
   margin: 0;
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Align all nav sections to the left consistently */
 }
 
 /* Phone view centering for logo and company name */

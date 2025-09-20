@@ -133,6 +133,115 @@ export default function About() {
             </div>
           </section>
           
+          <section className="py-16 px-5 md:px-10 bg-[#121212]">
+            <div className="container mx-auto pl-0 md:pl-8">
+              <h2 className="text-4xl md:text-5xl font-bold mb-8 text-white">Areas We Serve</h2>
+              <p className="text-xl text-[#CCCCCC] mb-8 max-w-4xl">
+                Mavericks Edge proudly serves clients across Alberta and beyond, bringing our expertise in web design, digital marketing, and AI integration to communities throughout the region.
+              </p>
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+                <a 
+                  href="/web-design-services-edmonton" 
+                  className="group bg-[#1A1A1A] hover:bg-[#2A2A2A] border border-[#333333] hover:border-[#FF5630] rounded-lg p-4 transition-all duration-300 text-center"
+                  title="Edmonton Web Design Services"
+                >
+                  <h3 className="text-lg font-semibold text-white group-hover:text-[#FF5630] transition-colors duration-300">Edmonton</h3>
+                </a>
+                <a 
+                  href="/web-design-services-sherwood-park" 
+                  className="group bg-[#1A1A1A] hover:bg-[#2A2A2A] border border-[#333333] hover:border-[#FF5630] rounded-lg p-4 transition-all duration-300 text-center"
+                  title="Sherwood Park Web Design Services"
+                >
+                  <h3 className="text-lg font-semibold text-white group-hover:text-[#FF5630] transition-colors duration-300">Sherwood Park</h3>
+                </a>
+                <a 
+                  href="/web-design-services-leduc" 
+                  className="group bg-[#1A1A1A] hover:bg-[#2A2A2A] border border-[#333333] hover:border-[#FF5630] rounded-lg p-4 transition-all duration-300 text-center"
+                  title="Leduc Web Design Services"
+                >
+                  <h3 className="text-lg font-semibold text-white group-hover:text-[#FF5630] transition-colors duration-300">Leduc</h3>
+                </a>
+                <a 
+                  href="/web-design-services-st-albert" 
+                  className="group bg-[#1A1A1A] hover:bg-[#2A2A2A] border border-[#333333] hover:border-[#FF5630] rounded-lg p-4 transition-all duration-300 text-center"
+                  title="St. Albert Web Design Services"
+                >
+                  <h3 className="text-lg font-semibold text-white group-hover:text-[#FF5630] transition-colors duration-300">St. Albert</h3>
+                </a>
+                <a 
+                  href="/web-design-services-spruce-grove" 
+                  className="group bg-[#1A1A1A] hover:bg-[#2A2A2A] border border-[#333333] hover:border-[#FF5630] rounded-lg p-4 transition-all duration-300 text-center"
+                  title="Spruce Grove Web Design Services"
+                >
+                  <h3 className="text-lg font-semibold text-white group-hover:text-[#FF5630] transition-colors duration-300">Spruce Grove</h3>
+                </a>
+                <a 
+                  href="/web-design-services-stony-plain" 
+                  className="group bg-[#1A1A1A] hover:bg-[#2A2A2A] border border-[#333333] hover:border-[#FF5630] rounded-lg p-4 transition-all duration-300 text-center"
+                  title="Stony Plain Web Design Services"
+                >
+                  <h3 className="text-lg font-semibold text-white group-hover:text-[#FF5630] transition-colors duration-300">Stony Plain</h3>
+                </a>
+                <a 
+                  href="/web-design-services-fort-saskatchewan" 
+                  className="group bg-[#1A1A1A] hover:bg-[#2A2A2A] border border-[#333333] hover:border-[#FF5630] rounded-lg p-4 transition-all duration-300 text-center"
+                  title="Fort Saskatchewan Web Design Services"
+                >
+                  <h3 className="text-lg font-semibold text-white group-hover:text-[#FF5630] transition-colors duration-300">Fort Saskatchewan</h3>
+                </a>
+                <a 
+                  href="/web-design-services-beaumont" 
+                  className="group bg-[#1A1A1A] hover:bg-[#2A2A2A] border border-[#333333] hover:border-[#FF5630] rounded-lg p-4 transition-all duration-300 text-center"
+                  title="Beaumont Web Design Services"
+                >
+                  <h3 className="text-lg font-semibold text-white group-hover:text-[#FF5630] transition-colors duration-300">Beaumont</h3>
+                </a>
+                <a 
+                  href="/web-design-services-calgary" 
+                  className="group bg-[#1A1A1A] hover:bg-[#2A2A2A] border border-[#333333] hover:border-[#FF5630] rounded-lg p-4 transition-all duration-300 text-center"
+                  title="Calgary Web Design Services"
+                >
+                  <h3 className="text-lg font-semibold text-white group-hover:text-[#FF5630] transition-colors duration-300">Calgary</h3>
+                </a>
+                <a 
+                  href="/web-design-services-airdrie" 
+                  className="group bg-[#1A1A1A] hover:bg-[#2A2A2A] border border-[#333333] hover:border-[#FF5630] rounded-lg p-4 transition-all duration-300 text-center"
+                  title="Airdrie Web Design Services"
+                >
+                  <h3 className="text-lg font-semibold text-white group-hover:text-[#FF5630] transition-colors duration-300">Airdrie</h3>
+                </a>
+                <a 
+                  href="/web-design-services-lethbridge" 
+                  className="group bg-[#1A1A1A] hover:bg-[#2A2A2A] border border-[#333333] hover:border-[#FF5630] rounded-lg p-4 transition-all duration-300 text-center"
+                  title="Lethbridge Web Design Services"
+                >
+                  <h3 className="text-lg font-semibold text-white group-hover:text-[#FF5630] transition-colors duration-300">Lethbridge</h3>
+                </a>
+                <a 
+                  href="/web-design-services-fort-mcmurray" 
+                  className="group bg-[#1A1A1A] hover:bg-[#2A2A2A] border border-[#333333] hover:border-[#FF5630] rounded-lg p-4 transition-all duration-300 text-center"
+                  title="Fort McMurray Web Design Services"
+                >
+                  <h3 className="text-lg font-semibold text-white group-hover:text-[#FF5630] transition-colors duration-300">Fort McMurray</h3>
+                </a>
+                <a 
+                  href="/web-design-services-medicine-hat" 
+                  className="group bg-[#1A1A1A] hover:bg-[#2A2A2A] border border-[#333333] hover:border-[#FF5630] rounded-lg p-4 transition-all duration-300 text-center"
+                  title="Medicine Hat Web Design Services"
+                >
+                  <h3 className="text-lg font-semibold text-white group-hover:text-[#FF5630] transition-colors duration-300">Medicine Hat</h3>
+                </a>
+                <a 
+                  href="/web-design-services-grande-prairie" 
+                  className="group bg-[#1A1A1A] hover:bg-[#2A2A2A] border border-[#333333] hover:border-[#FF5630] rounded-lg p-4 transition-all duration-300 text-center"
+                  title="Grande Prairie Web Design Services"
+                >
+                  <h3 className="text-lg font-semibold text-white group-hover:text-[#FF5630] transition-colors duration-300">Grande Prairie</h3>
+                </a>
+              </div>
+            </div>
+          </section>
+          
           <ProcessSection />
           <ContactSection />
         </article>
