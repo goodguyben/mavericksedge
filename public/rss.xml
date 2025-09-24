@@ -6,7 +6,7 @@
     <link>https://mavericksedge.ca/blog</link>
     <atom:link href="https://mavericksedge.ca/rss.xml" rel="self" type="application/rss+xml" />
     <language>en-ca</language>
-    <lastBuildDate>Thu, 11 Sep 2025 20:13:41 GMT</lastBuildDate>
+    <lastBuildDate>Tue, 23 Sep 2025 05:40:30 GMT</lastBuildDate>
     <ttl>60</ttl>
     <image>
       <url>https://mavericksedge.ca/images/logo-transparent-thumb4x.png</url>
@@ -15,6 +15,104 @@
     </image>
     
     <!-- Blog Posts -->
+    <item>
+      <title>Edmonton Small Business Web Design: 7 Must-Have Features That Drive Sales</title>
+      <description>Essential web design features every Edmonton small business needs to convert visitors into customers: mobile optimization, local SEO, clear CTAs, and performance that drives real results.</description>
+      <link>https://mavericksedge.ca/blog/edmonton-small-business-web-design-7-must-have-features-drive-sales</link>
+      <guid>https://mavericksedge.ca/blog/edmonton-small-business-web-design-7-must-have-features-drive-sales</guid>
+      <pubDate>Thu, 14 Aug 2025 00:00:00 GMT</pubDate>
+      <category>Web Design</category>
+      <content:encoded><![CDATA[<p>Essential web design features every Edmonton small business needs to convert visitors into customers: mobile optimization, local SEO, clear CTAs, and performance that drives real results.</p>]]></content:encoded>
+      <media:content url="https://mavericksedge.ca/videos/edmonton-small-business-web-design-features.png" medium="image" type="image/jpeg">
+        <media:title>Edmonton Small Business Web Design: 7 Must-Have Features That Drive Sales</media:title>
+        <media:description>Essential web design features every Edmonton small business needs to convert visitors into customers: mobile optimization, local SEO, clear CTAs, and performance that drives real results.</media:description>
+        <media:thumbnail url="https://mavericksedge.ca/videos/edmonton-small-business-web-design-features.png" width="300" height="200" />
+      </media:content>
+    </item>
+    <item>
+      <title>Edmonton Restaurant Web Design: Menu Integration and Online Ordering That Actually Works</title>
+      <description>Essential web design strategies for Edmonton restaurants: seamless menu integration, online ordering systems, and mobile-first design that drives reservations and takeout orders.</description>
+      <link>https://mavericksedge.ca/blog/edmonton-restaurant-web-design-menu-integration-online-ordering</link>
+      <guid>https://mavericksedge.ca/blog/edmonton-restaurant-web-design-menu-integration-online-ordering</guid>
+      <pubDate>Wed, 03 Sep 2025 00:00:00 GMT</pubDate>
+      <category>Web Design</category>
+      <content:encoded><![CDATA[<p>Essential web design strategies for Edmonton restaurants: seamless menu integration, online ordering systems, and mobile-first design that drives reservations and takeout orders.</p>]]></content:encoded>
+      <media:content url="https://mavericksedge.ca/videos/edmonton-restaurant-web-design-menu-ordering.png" medium="image" type="image/jpeg">
+        <media:title>Edmonton Restaurant Web Design: Menu Integration and Online Ordering That Actually Works</media:title>
+        <media:description>Essential web design strategies for Edmonton restaurants: seamless menu integration, online ordering systems, and mobile-first design that drives reservations and takeout orders.</media:description>
+        <media:thumbnail url="https://mavericksedge.ca/videos/edmonton-restaurant-web-design-menu-ordering.png" width="300" height="200" />
+      </media:content>
+    </item>
+    <item>
+      <title>Healthcare Web Design Edmonton: PIPEDA Compliance and Patient-First UX</title>
+      <description>Essential healthcare web design for Edmonton medical practices: PIPEDA compliance, patient-centered UX, secure appointment booking, and accessibility that builds trust with Alberta patients.</description>
+      <link>https://mavericksedge.ca/blog/healthcare-web-design-edmonton-pipeda-compliance-patient-first-ux</link>
+      <guid>https://mavericksedge.ca/blog/healthcare-web-design-edmonton-pipeda-compliance-patient-first-ux</guid>
+      <pubDate>Wed, 27 Aug 2025 00:00:00 GMT</pubDate>
+      <category>Web Design</category>
+      <content:encoded><![CDATA[<p>Essential healthcare web design for Edmonton medical practices: PIPEDA compliance, patient-centered UX, secure appointment booking, and accessibility that builds trust with Alberta patients.</p>]]></content:encoded>
+      <media:content url="https://mavericksedge.ca/videos/healthcare-web-design-edmonton-pipeda-compliance.png" medium="image" type="image/jpeg">
+        <media:title>Healthcare Web Design Edmonton: PIPEDA Compliance and Patient-First UX</media:title>
+        <media:description>Essential healthcare web design for Edmonton medical practices: PIPEDA compliance, patient-centered UX, secure appointment booking, and accessibility that builds trust with Alberta patients.</media:description>
+        <media:thumbnail url="https://mavericksedge.ca/videos/healthcare-web-design-edmonton-pipeda-compliance.png" width="300" height="200" />
+      </media:content>
+    </item>
+    <item>
+      <title>Edmonton Law Firm Web Design: Attorney Websites That Convert Consultations</title>
+      <description>Strategic web design for Edmonton law firms: consultation-focused UX, legal compliance, trust-building elements, and conversion optimization that turns website visitors into clients.</description>
+      <link>https://mavericksedge.ca/blog/edmonton-law-firm-web-design-attorney-websites-convert-consultations</link>
+      <guid>https://mavericksedge.ca/blog/edmonton-law-firm-web-design-attorney-websites-convert-consultations</guid>
+      <pubDate>Mon, 15 Sep 2025 00:00:00 GMT</pubDate>
+      <category>Web Design</category>
+      <content:encoded><![CDATA[<p>Strategic web design for Edmonton law firms: consultation-focused UX, legal compliance, trust-building elements, and conversion optimization that turns website visitors into clients.</p>]]></content:encoded>
+      <media:content url="https://mavericksedge.ca/videos/edmonton-law-firm-web-design-consultations.png" medium="image" type="image/jpeg">
+        <media:title>Edmonton Law Firm Web Design: Attorney Websites That Convert Consultations</media:title>
+        <media:description>Strategic web design for Edmonton law firms: consultation-focused UX, legal compliance, trust-building elements, and conversion optimization that turns website visitors into clients.</media:description>
+        <media:thumbnail url="https://mavericksedge.ca/videos/edmonton-law-firm-web-design-consultations.png" width="300" height="200" />
+      </media:content>
+    </item>
+    <item>
+      <title>Multilingual Web Design Edmonton: Serving Alberta's Diverse Communities</title>
+      <description>Strategic multilingual web design for Edmonton businesses: language integration, cultural considerations, technical implementation, and UX optimization that serves Alberta's diverse communities effectively.</description>
+      <link>https://mavericksedge.ca/blog/multilingual-web-design-edmonton-serving-albertas-diverse-communities</link>
+      <guid>https://mavericksedge.ca/blog/multilingual-web-design-edmonton-serving-albertas-diverse-communities</guid>
+      <pubDate>Sat, 09 Aug 2025 00:00:00 GMT</pubDate>
+      <category>Web Design</category>
+      <content:encoded><![CDATA[<p>Strategic multilingual web design for Edmonton businesses: language integration, cultural considerations, technical implementation, and UX optimization that serves Alberta's diverse communities effectively.</p>]]></content:encoded>
+      <media:content url="https://mavericksedge.ca/videos/multilingual-web-design-edmonton-diverse-communities.png" medium="image" type="image/jpeg">
+        <media:title>Multilingual Web Design Edmonton: Serving Alberta's Diverse Communities</media:title>
+        <media:description>Strategic multilingual web design for Edmonton businesses: language integration, cultural considerations, technical implementation, and UX optimization that serves Alberta's diverse communities effectively.</media:description>
+        <media:thumbnail url="https://mavericksedge.ca/videos/multilingual-web-design-edmonton-diverse-communities.png" width="300" height="200" />
+      </media:content>
+    </item>
+    <item>
+      <title>Edmonton Nonprofit Web Design: Grant-Friendly Websites That Drive Donations</title>
+      <description>Strategic nonprofit web design for Edmonton organizations: grant compliance, donation optimization, volunteer engagement, and transparency features that build donor trust and community support.</description>
+      <link>https://mavericksedge.ca/blog/edmonton-nonprofit-web-design-grant-friendly-websites-drive-donations</link>
+      <guid>https://mavericksedge.ca/blog/edmonton-nonprofit-web-design-grant-friendly-websites-drive-donations</guid>
+      <pubDate>Sun, 07 Sep 2025 00:00:00 GMT</pubDate>
+      <category>Web Design</category>
+      <content:encoded><![CDATA[<p>Strategic nonprofit web design for Edmonton organizations: grant compliance, donation optimization, volunteer engagement, and transparency features that build donor trust and community support.</p>]]></content:encoded>
+      <media:content url="https://mavericksedge.ca/videos/edmonton-nonprofit-web-design-grant-donations.png" medium="image" type="image/jpeg">
+        <media:title>Edmonton Nonprofit Web Design: Grant-Friendly Websites That Drive Donations</media:title>
+        <media:description>Strategic nonprofit web design for Edmonton organizations: grant compliance, donation optimization, volunteer engagement, and transparency features that build donor trust and community support.</media:description>
+        <media:thumbnail url="https://mavericksedge.ca/videos/edmonton-nonprofit-web-design-grant-donations.png" width="300" height="200" />
+      </media:content>
+    </item>
+    <item>
+      <title>Why Developers Choose Vibe Coding AI Workflows Over n8n for Automation</title>
+      <description>Visual automation platforms like n8n hit a ceiling when workflows get complex. Discover why developers are switching to AI-powered scripting with Cursor, Kiro, and Claude CLI for unlimited flexibility and better DevOps integration.</description>
+      <link>https://mavericksedge.ca/blog/why-developers-choose-vibe-coding-ai-workflows-over-n8n-automation</link>
+      <guid>https://mavericksedge.ca/blog/why-developers-choose-vibe-coding-ai-workflows-over-n8n-automation</guid>
+      <pubDate>Sun, 21 Sep 2025 00:00:00 GMT</pubDate>
+      <category>AI</category>
+      <content:encoded><![CDATA[<p>Visual automation platforms like n8n hit a ceiling when workflows get complex. Discover why developers are switching to AI-powered scripting with Cursor, Kiro, and Claude CLI for unlimited flexibility and better DevOps integration.</p>]]></content:encoded>
+      <media:content url="https://mavericksedge.ca/videos/vibe-coding-vs-n8n.png" medium="image" type="image/jpeg">
+        <media:title>Why Developers Choose Vibe Coding AI Workflows Over n8n for Automation</media:title>
+        <media:description>Visual automation platforms like n8n hit a ceiling when workflows get complex. Discover why developers are switching to AI-powered scripting with Cursor, Kiro, and Claude CLI for unlimited flexibility and better DevOps integration.</media:description>
+        <media:thumbnail url="https://mavericksedge.ca/videos/vibe-coding-vs-n8n.png" width="300" height="200" />
+      </media:content>
+    </item>
     <item>
       <title>Best AI Tools for Building a Website on a Tight Budget</title>
       <description>Discover the best AI tools for website building under $50/month. Compare Wix ADI, Durable, Replit, Figma, Cursor, and more to find the right budget-friendly AI website builder for your business.</description>

@@ -1,6 +1,76 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
+    <loc>https://mavericksedge.ca/blog/edmonton-small-business-web-design-7-must-have-features-drive-sales</loc>
+    <lastmod>2025-08-14T00:00:00.000Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://mavericksedge.ca/videos/edmonton-small-business-web-design-features.png</image:loc>
+      <image:title>Edmonton Small Business Web Design: 7 Must-Have Features That Drive Sales</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://mavericksedge.ca/blog/edmonton-restaurant-web-design-menu-integration-online-ordering</loc>
+    <lastmod>2025-09-03T00:00:00.000Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://mavericksedge.ca/videos/edmonton-restaurant-web-design-menu-ordering.png</image:loc>
+      <image:title>Edmonton Restaurant Web Design: Menu Integration and Online Ordering That Actually Works</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://mavericksedge.ca/blog/healthcare-web-design-edmonton-pipeda-compliance-patient-first-ux</loc>
+    <lastmod>2025-08-27T00:00:00.000Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://mavericksedge.ca/videos/healthcare-web-design-edmonton-pipeda-compliance.png</image:loc>
+      <image:title>Healthcare Web Design Edmonton: PIPEDA Compliance and Patient-First UX</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://mavericksedge.ca/blog/edmonton-law-firm-web-design-attorney-websites-convert-consultations</loc>
+    <lastmod>2025-09-15T00:00:00.000Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://mavericksedge.ca/videos/edmonton-law-firm-web-design-consultations.png</image:loc>
+      <image:title>Edmonton Law Firm Web Design: Attorney Websites That Convert Consultations</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://mavericksedge.ca/blog/multilingual-web-design-edmonton-serving-albertas-diverse-communities</loc>
+    <lastmod>2025-08-09T00:00:00.000Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://mavericksedge.ca/videos/multilingual-web-design-edmonton-diverse-communities.png</image:loc>
+      <image:title>Multilingual Web Design Edmonton: Serving Alberta&apos;s Diverse Communities</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://mavericksedge.ca/blog/edmonton-nonprofit-web-design-grant-friendly-websites-drive-donations</loc>
+    <lastmod>2025-09-07T00:00:00.000Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://mavericksedge.ca/videos/edmonton-nonprofit-web-design-grant-donations.png</image:loc>
+      <image:title>Edmonton Nonprofit Web Design: Grant-Friendly Websites That Drive Donations</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://mavericksedge.ca/blog/why-developers-choose-vibe-coding-ai-workflows-over-n8n-automation</loc>
+    <lastmod>2025-09-21T00:00:00.000Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://mavericksedge.ca/videos/vibe-coding-vs-n8n.png</image:loc>
+      <image:title>Why Developers Choose Vibe Coding AI Workflows Over n8n for Automation</image:title>
+    </image:image>
+  </url>
+  <url>
     <loc>https://mavericksedge.ca/blog/best-ai-tools-for-building-a-website-on-a-tight-budget</loc>
     <lastmod>2025-07-22T00:00:00.000Z</lastmod>
     <changefreq>weekly</changefreq>
