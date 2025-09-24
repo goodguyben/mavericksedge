@@ -120,6 +120,123 @@ body {
   }
 }
 
+/* Override Tailwind negative margins for all tablet sizes */
+@media screen and (min-width: 641px) and (max-width: 1199px) {
+  .newsletter-content {
+    margin-top: -1rem !important;
+    margin-bottom: 0 !important;
+    padding-top: 1rem !important;
+    padding-bottom: 2rem !important;
+  }
+}
+
+/* Tablet responsive adjustments - preserve visibility while preventing overflow */
+@media screen and (min-width: 641px) and (max-width: 1024px) {
+  .newsletter-container {
+    max-width: 100%;
+    overflow: hidden;
+    padding: 0 1rem;
+    margin-bottom: 1rem !important;
+    margin-top: -1rem !important;
+  }
+  
+  .newsletter-content {
+    max-width: 100%;
+    box-sizing: border-box;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin-top: -1rem !important;
+    margin-bottom: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+  
+  .newsletter-form {
+    max-width: 100%;
+  }
+  
+  .newsletter-form .flex {
+    max-width: 100%;
+  }
+}
+
+/* Small tablets (641px - 768px) - navigation positioning */
+@media screen and (min-width: 641px) and (max-width: 768px) {
+  .footer-nav-container {
+    padding-left: 2rem !important; /* Move navigation right on small tablets */
+  }
+  
+  .footer-nav:nth-child(1), .footer-nav:nth-child(3) { /* Services and Legal */
+    margin-left: 1.5rem !important; /* Right margin for left column items */
+  }
+  
+  .footer-nav:nth-child(2), .footer-nav:nth-child(4) { /* Company and Areas Served */
+    margin-left: 0.75rem !important; /* Right margin for right column items */
+  }
+}
+
+/* Medium tablets (768px - 1024px) - ensure visibility */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .newsletter-content {
+    margin-top: -1.5rem !important;
+    margin-bottom: 0 !important;
+    margin-left: 0.5rem !important;
+    margin-right: 0 !important;
+    padding: 1rem;
+  }
+  
+  /* Additional right positioning for navigation on medium tablets */
+  .footer-nav-container {
+    padding-left: 3rem !important; /* Even more padding for medium tablets */
+  }
+  
+  .footer-nav:nth-child(1), .footer-nav:nth-child(3) { /* Services and Legal */
+    margin-left: 2rem !important; /* More right margin for left column items */
+  }
+  
+  .footer-nav:nth-child(2), .footer-nav:nth-child(4) { /* Company and Areas Served */
+    margin-left: 1rem !important; /* More right margin for right column items */
+  }
+}
+
+/* Larger tablets and small desktops */
+@media screen and (min-width: 1025px) and (max-width: 1280px) {
+  .newsletter-container {
+    max-width: 100%;
+    overflow: hidden;
+  }
+  
+  .newsletter-content {
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+}
+
+/* Specific adjustments for Galaxy Tab S4 landscape (1024px) */
+@media screen and (min-width: 1000px) and (max-width: 1024px) {
+  .footer-top {
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    padding: 0 0.5rem;
+  }
+  
+  .newsletter-container {
+    padding: 0.5rem;
+    max-width: 100%;
+    overflow: hidden;
+    margin-top: -1rem !important;
+  }
+  
+  .newsletter-content {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    margin-top: -1rem !important;
+    padding: 0 0.5rem;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+}
+
 .footer-container {
   background-color: #1E1A18; /* Dark charcoal background */
   color: #F5F0EC; /* Light cream text */
@@ -299,8 +416,9 @@ body {
 /* Tablet responsive adjustments */
 @media screen and (max-width: 1024px) and (min-width: 769px) {
   .footer-top {
-    grid-template-columns: 1.2fr 1fr; /* Adjusted ratio to move nav columns right */
-    gap: 2rem; /* Reduced gap to bring columns closer to center */
+    grid-template-columns: 1fr 1fr; /* Equal columns for better balance */
+    gap: 1.5rem; /* Reduced gap to prevent overflow */
+    padding: 0 1rem; /* Add padding to prevent edge overflow */
   }
 
   .footer-nav-container {
@@ -308,7 +426,7 @@ body {
     grid-template-columns: 1fr 1fr; /* Two columns grid */
     grid-template-rows: auto auto; /* Auto rows to reduce spacing */
     gap: 1rem; /* Reduced gap to bring sections closer */
-    padding-left: 1.5rem; /* Increased left padding to move columns right */
+    padding-left: 2.5rem; /* Increased left padding to move columns more to the right */
     margin-top: -0.5rem; /* Negative margin to move columns up */
     flex-wrap: unset !important; /* Remove flex-wrap for grid */
     justify-content: unset !important; /* Remove justify-content for grid */
@@ -318,23 +436,25 @@ body {
   .footer-nav:nth-child(1) { /* Services */
     grid-column: 1;
     grid-row: 1;
-    margin-left: 1.25rem; /* Move Services column even more to the right */
+    margin-left: 1.75rem; /* Move Services column further to the right */
   }
 
   .footer-nav:nth-child(2) { /* Company */
     grid-column: 2;
     grid-row: 1;
+    margin-left: 0.5rem; /* Add slight right margin to Company */
   }
 
   .footer-nav:nth-child(3) { /* Legal */
     grid-column: 1;
     grid-row: 2;
-    margin-left: 1.25rem; /* Move Legal column even more to the right */
+    margin-left: 1.75rem; /* Move Legal column further to the right */
   }
 
   .footer-nav:nth-child(4) { /* Areas Served */
     grid-column: 2;
     grid-row: 2;
+    margin-left: 0.5rem; /* Add slight right margin to Areas Served */
   }
 
   .footer-nav {
@@ -346,7 +466,9 @@ body {
   }
 
   .footer-wrapper {
-    padding: 0 0.5rem 0 1.5rem; /* Adjusted padding to move content right */
+    padding: 0 1rem; /* Balanced padding to prevent overflow */
+    max-width: 100%;
+    box-sizing: border-box;
   }
 
   /* Adjust footer links for tablet readability */
