@@ -108,13 +108,13 @@ export default function Header() {
             aria-label="Mavericks Edge Home"
           >
             <Logo size="medium" noLink={true} showText={false} />
-            <span className="font-heading font-bold text-maverick-orange whitespace-nowrap text-[26px] sm:text-3xl md:text-4xl lg:text-2xl xl:text-3xl ml-[0px] mr-[0px] mt-[11px] mb-[11px] pt-[0px] pb-[0px]" style={{ letterSpacing: '-0.02em' }}>
+            <span className="font-heading font-bold text-maverick-orange whitespace-nowrap text-[26px] sm:text-3xl md:text-4xl lg:text-2xl lgxl:text-2xl xl:text-3xl xl2:text-3xl 2xl:text-3xl ml-[0px] mr-[0px] mt-[11px] mb-[11px] pt-[0px] pb-[0px]" style={{ letterSpacing: '-0.02em' }}>
               Mavericks Edge
             </span>
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center space-x-4 xl:space-x-6 2xl:space-x-8" role="navigation" aria-label="Main Navigation">
+          <nav className="hidden lg:flex items-center space-x-4 lgxl:space-x-6 xl:space-x-6 xl2:space-x-8 2xl:space-x-8" role="navigation" aria-label="Main Navigation">
             {/* Home Link */}
             <motion.div
                 whileHover={{ scale: 1.05 }}

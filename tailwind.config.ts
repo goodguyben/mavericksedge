@@ -5,12 +5,19 @@ export default {
   content: ["./client/index.html", "./client/src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     screens: {
-      'xs': '375px',    // Small mobile
-      'sm': '640px',    // Tablet portrait
-      'md': '768px',    // Tablet landscape
-      'lg': '1024px',   // Desktop
-      'xl': '1440px',   // Large desktop
-      '2xl': '1920px',  // Extra large desktop
+      'xxs': '320px',   // Very small phones (iPhone SE)
+      'xs': '375px',    // Small phones (iPhone 6/7/8)
+      'sm': '480px',    // Medium phones (iPhone 12/13 mini)
+      'phone': '640px', // Large phones (iPhone 12/13 Pro Max)
+      'mini': '768px',  // iPad Mini (7.9")
+      'pad': '810px',   // Regular iPad (9.7-10.2")
+      'air': '834px',   // iPad Air (10.5-10.9")
+      'pro': '1024px',  // iPad Pro and large tablets (11"+)
+      'lg': '1280px',   // Desktop (1280px-1359px)
+      'lgxl': '1360px', // Large desktop (1360px-1439px)
+      'xl': '1440px',   // Large desktop (1440px-1679px)
+      'xl2': '1680px',  // Extra large desktop (1680px-1919px)
+      '2xl': '1920px',  // Ultra-wide desktop (1920px+)
     },
     fontFamily: {
       sans: ['Raleway', 'system-ui', 'sans-serif'],
