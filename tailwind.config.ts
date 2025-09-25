@@ -15,8 +15,10 @@ export default {
       'pro': '1024px',  // iPad Pro and large tablets (11"+)
       'lg': '1280px',   // Desktop (1280px-1359px)
       'lgxl': '1360px', // Large desktop (1360px-1439px)
-      'xl': '1440px',   // Large desktop (1440px-1679px)
-      'xl2': '1680px',  // Extra large desktop (1680px-1919px)
+      'xl': '1440px',   // 14" laptops (1440px-1519px)
+      'xl14': '1520px', // 14" high-res laptops (1520px-1599px)
+      'xl14h': '1600px', // 14" ultra-high-res laptops (1600px-1679px)
+      'xl15': '1680px', // 15" laptops (1680px-1919px)
       '2xl': '1920px',  // Ultra-wide desktop (1920px+)
     },
     fontFamily: {

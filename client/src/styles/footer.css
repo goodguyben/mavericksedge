@@ -201,14 +201,38 @@ body {
 
 /* Larger tablets and small desktops */
 @media screen and (min-width: 1025px) and (max-width: 1280px) {
+  .footer-wrapper {
+    overflow: visible; /* Prevent clipping of content */
+    padding-left: 4rem; /* Add left padding to accommodate negative margin */
+  }
+  
   .newsletter-container {
     max-width: 100%;
-    overflow: hidden;
+    overflow: visible; /* Allow content to extend beyond container */
+    margin-top: -6rem; /* Move newsletter component even further up */
+    margin-left: 2rem; /* Move newsletter component slightly to the right */
   }
   
   .newsletter-content {
     max-width: 100%;
     box-sizing: border-box;
+    margin-top: -3rem; /* Further increased upward movement for newsletter content */
+  }
+  
+  .footer-nav-container {
+    padding-left: 0; /* Move navigation links further left */
+    margin-left: -4rem; /* Increased negative margin to move links further left */
+  }
+}
+
+/* Large desktops - move newsletter component even higher */
+@media screen and (min-width: 1281px) {
+  .newsletter-container {
+    margin-top: -8rem; /* Move newsletter component even further up for large desktops */
+  }
+  
+  .newsletter-content {
+    margin-top: -4rem; /* Further increased upward movement for newsletter content */
   }
 }
 

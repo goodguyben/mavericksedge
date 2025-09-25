@@ -124,7 +124,7 @@ export default function Hero() {
 
         {/* CardSwap Component - Right side for desktop, moved down */}
         <div
-          className="hidden lg:block absolute lg:right-[-80px] lgxl:right-[-100px] bottom-20 pointer-events-auto"
+          className="hidden lg:block absolute lg:right-[-80px] lgxl:right-[50px] bottom-20 pointer-events-auto"
         >
           <CardSwap
             width={500}
