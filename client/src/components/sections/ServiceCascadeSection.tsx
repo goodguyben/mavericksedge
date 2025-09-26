@@ -283,6 +283,7 @@ function SingleServiceSection({
                     <LearnMoreButton
                       href={`/services/${service.id === "web-applications" ? "web-design-and-development-edmonton" : service.id === "marketing-solutions" ? "digital-marketing-edmonton" : "ai-integration-automation-edmonton"}`}
                       size="small-medium"
+                      className="learn-more-button-xxs"
                     />
                   </motion.div>
                 </motion.div>
@@ -528,12 +529,13 @@ export default function ServiceCascadeSection() {
         const sectionHeight = service.items.length * 100;
 
         return (
-          <SingleServiceSection
-            key={service.id}
-            service={service}
-            sectionHeight={`${sectionHeight}vh`}
-            sectionStart={sectionStart}
-          />
+          <div key={service.id} className={serviceIndex > 0 ? "service-cascade-section-xxs" : ""}>
+            <SingleServiceSection
+              service={service}
+              sectionHeight={`${sectionHeight}vh`}
+              sectionStart={sectionStart}
+            />
+          </div>
         );
       })}
     </div>

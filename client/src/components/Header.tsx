@@ -81,7 +81,7 @@ export default function Header() {
   return (
     <>
       <motion.header 
-        className={`sticky top-0 left-0 w-full py-3 px-4 sm:px-6 lg:px-8 z-50 transition-all duration-500 backdrop-blur-xl border-b border-white/5 mt-[-44px] mb-[-44px] ${
+        className={`sticky top-0 left-0 w-full py-2 xxs:py-2 px-4 sm:px-6 lg:px-8 z-50 transition-all duration-500 backdrop-blur-xl border-b border-white/5 mt-[-44px] mb-[-44px] xxs:mt-[-36px] xxs:mb-[-36px] ${
           isScrolled 
             ? 'bg-[#121212]/70 shadow-lg shadow-black/20' 
             : 'bg-[#121212]/20'
@@ -104,11 +104,11 @@ export default function Header() {
           {/* Logo */}
           <Link 
             href="/" 
-            className="flex items-center justify-start min-h-[44px] touch-manipulation pl-[0px] pr-[0px] ml-[-18px] mr-[-18px]" 
+            className="flex items-center justify-start min-h-[44px] xxs:min-h-[36px] touch-manipulation pl-[0px] pr-[0px] ml-[-18px] mr-[-18px]" 
             aria-label="Mavericks Edge Home"
           >
             <Logo size="medium" noLink={true} showText={false} />
-            <span className="font-heading font-bold text-maverick-orange whitespace-nowrap text-[26px] sm:text-3xl md:text-4xl lg:text-2xl lgxl:text-2xl xl:text-3xl xl2:text-3xl 2xl:text-3xl ml-[0px] mr-[0px] mt-[11px] mb-[11px] pt-[0px] pb-[0px]" style={{ letterSpacing: '-0.02em' }}>
+            <span className="font-heading font-bold text-maverick-orange whitespace-nowrap text-[22px] xxs:text-[22px] sm:text-3xl md:text-4xl lg:text-2xl lgxl:text-2xl xl:text-3xl xl2:text-3xl 2xl:text-3xl ml-[0px] mr-[0px] mt-[11px] mb-[11px] pt-[0px] pb-[0px]" style={{ letterSpacing: '-0.02em' }}>
               Mavericks Edge
             </span>
           </Link>
@@ -344,7 +344,7 @@ export default function Header() {
           {/* Mobile Menu Button */}
           <button
             onClick={toggleMobileMenu}
-            className="block lg:hidden p-3 rounded-full transition-colors duration-200 min-h-[44px] min-w-[44px] touch-manipulation pl-[12px] pr-[12px] ml-[-12px] mr-[-12px]"
+            className="block lg:hidden p-3 xxs:p-2 rounded-full transition-colors duration-200 min-h-[44px] xxs:min-h-[36px] min-w-[44px] xxs:min-w-[36px] touch-manipulation pl-[12px] pr-[12px] ml-[-12px] mr-[-12px]"
             aria-label="Toggle mobile navigation menu"
             aria-expanded={isMobileMenuOpen}
           >

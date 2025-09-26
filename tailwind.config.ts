@@ -6,13 +6,18 @@ export default {
   theme: {
     screens: {
       'xxs': '320px',   // Very small phones (iPhone SE)
+      'xxs-plus': '350px', // Very small+ phones (small Android phones)
       'xs': '375px',    // Small phones (iPhone 6/7/8)
+      'xs-plus': '390px', // Small+ phones (iPhone 12/13 mini, iPhone 14)
       'sm': '480px',    // Medium phones (iPhone 12/13 mini)
+      'sm-plus': '540px', // Medium+ phones (larger Android phones)
       'phone': '640px', // Large phones (iPhone 12/13 Pro Max)
       'mini': '768px',  // iPad Mini (7.9")
+      'galaxy-tab': '800px', // Galaxy Tab S7 (800x1280)
       'pad': '810px',   // Regular iPad (9.7-10.2")
       'air': '834px',   // iPad Air (10.5-10.9")
       'pro': '1024px',  // iPad Pro and large tablets (11"+)
+      'tab-large': '1100px', // Large tablets and small laptops (1100px-1279px)
       'lg': '1280px',   // Desktop (1280px-1359px)
       'lgxl': '1360px', // Large desktop (1360px-1439px)
       'xl': '1440px',   // 14" laptops (1440px-1519px)

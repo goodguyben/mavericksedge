@@ -67,7 +67,7 @@ export default function WhyChooseUsSection() {
   ];
 
   return (
-    <section ref={containerRef} className="relative py-40 px-5 md:px-10 bg-black overflow-hidden min-h-screen">
+    <section ref={containerRef} className="relative py-40 px-5 md:px-10 bg-black overflow-hidden min-h-screen why-choose-us-xxs">
       {/* Dynamic Floating Background Elements */}
       <motion.div 
         className="absolute inset-0 opacity-30"
@@ -145,7 +145,7 @@ export default function WhyChooseUsSection() {
           </motion.div>
 
           <motion.h2 
-            className="text-4xl md:text-5xl font-bold mb-8 leading-tight"
+            className="section-heading-xxs font-bold mb-8 leading-tight"
             initial={{ opacity: 0, scale: 0.8 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}

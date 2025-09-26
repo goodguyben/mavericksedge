@@ -120,7 +120,7 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({
               className={`relative bg-black ${
                 isMobile 
                   ? 'w-64 h-64 sm:w-80 sm:h-80' 
-                  : 'w-96 h-96 sm:w-[30rem] sm:h-[30rem] md:w-[36rem] md:h-[36rem] lg:w-[42rem] lg:h-[42rem]'
+                  : 'w-96 h-96 sm:w-[22.5rem] sm:h-[22.5rem] md:w-[27rem] md:h-[27rem] lg:w-[31.5rem] lg:h-[31.5rem]'
               }`}
               style={{ backgroundColor: 'black' }}
               initial={{ scale: 0.8, opacity: 0 }}

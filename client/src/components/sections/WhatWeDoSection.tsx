@@ -165,7 +165,7 @@ export default function WhatWeDoSection() {
             </motion.div>
 
             <motion.h2
-              className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6"
+              className="section-heading-xxs font-bold mb-6"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}

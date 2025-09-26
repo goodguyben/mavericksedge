@@ -87,7 +87,7 @@ export default function ProcessSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 font-heading">
+          <h2 className="section-heading-xxs font-bold mb-4 font-heading">
             Our <GradientText 
               colors={["#FF5630", "#FF8A50", "#FFB899", "#FF5630"]}
               animationSpeed={5}
