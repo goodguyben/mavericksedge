@@ -4,8 +4,8 @@ import * as dotenv from 'dotenv';
 // Load environment variables
 dotenv.config();
 
-// Initialize Resend with API key
-const resend = new Resend(process.env.RESEND_API_KEY);
+// Initialize Resend with API key (fallback to placeholder if not set)
+const resend = new Resend(process.env.RESEND_API_KEY || 're_placeholder_key');
 
 /**
  * Sends an email using the Resend service

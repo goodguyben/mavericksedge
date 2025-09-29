@@ -48,6 +48,8 @@ const Compliance = lazy(() => import("@/pages/Compliance"));
 const Accessibility = lazy(() => import("@/pages/Accessibility"));
 const Blog = lazy(() => import("@/pages/Blog"));
 const BlogPost = lazy(() => import("@/pages/BlogPost"));
+const N8nWorkflowCollection = lazy(() => import("@/pages/N8nWorkflowCollection"));
+const N8nWorkflowPage = lazy(() => import("@/pages/N8nWorkflowPage"));
 const NotFound = lazy(() => import("@/pages/not-found"));
 
 export default function App() {
@@ -236,6 +238,12 @@ export default function App() {
               </Route>
               <Route path="/blog/:slug">
                 <BlogPost />
+              </Route>
+              <Route path="/largest-n8n-workflow-collection">
+                <N8nWorkflowCollection />
+              </Route>
+              <Route path="/largest-n8n-workflow-collection/:slug">
+                <N8nWorkflowPage />
               </Route>
               <Route>
                 <NotFound />

@@ -13,9 +13,12 @@
     "generate-blog-images": "node scripts/generate-blog-images.js",
     "generate-rss": "node scripts/generate-rss.js",
     "generate-sitemap-blog": "node scripts/generate-sitemap-blog.js",
+    "generate-sitemap-workflows": "node scripts/generate-sitemap-workflows.js",
     "publish-blog": "npm run generate-rss && npm run generate-sitemap-blog && vite build",
     "analyze-bundle": "vite build --mode analyze",
-    "lighthouse": "lighthouse https://mavericksedge.ca --output=json --output-path=./lighthouse-report.json"
+    "lighthouse": "lighthouse https://mavericksedge.ca --output=json --output-path=./lighthouse-report.json",
+    "test-supabase": "node scripts/test-supabase-connection.js",
+    "import-workflows": "node scripts/import-workflows.js"
   },
   "dependencies": {
     "@ffmpeg-installer/ffmpeg": "^1.1.0",
@@ -50,6 +53,7 @@
     "@radix-ui/react-toggle-group": "^1.1.3",
     "@radix-ui/react-tooltip": "^1.2.0",
     "@sendgrid/mail": "^8.1.5",
+    "@supabase/supabase-js": "^2.58.0",
     "@tailwindcss/vite": "^4.1.3",
     "@tanstack/react-query": "^5.60.5",
     "@types/nodemailer": "^6.4.17",
@@ -63,7 +67,7 @@
     "cmdk": "^1.1.1",
     "connect-pg-simple": "^10.0.0",
     "date-fns": "^3.6.0",
-    "dotenv": "^17.2.1",
+    "dotenv": "^17.2.2",
     "drizzle-orm": "^0.39.1",
     "drizzle-zod": "^0.7.0",
     "embla-carousel-react": "^8.6.0",
