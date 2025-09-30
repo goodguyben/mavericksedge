@@ -316,7 +316,7 @@ const N8nWorkflowCollection: React.FC = () => {
         </section>
 
         {/* Search Bar Section */}
-        <section id="search" className="py-16 px-4 sm:px-6 lg:px-8 relative">
+        <section id="search" className="py-16 px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-4xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -339,7 +339,7 @@ const N8nWorkflowCollection: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
               viewport={{ once: true }}
-              className="relative max-w-2xl mx-auto mb-8 z-50"
+              className="relative max-w-2xl mx-auto mb-8 z-[9999]"
             >
               <div className={`relative flex items-center bg-[#1A1A1A] rounded-full shadow-lg border-2 transition-all duration-200 ${
                 isFocused ? 'border-maverick-orange shadow-xl shadow-maverick-orange/20' : 'border-[#2A2A2A]'
@@ -381,7 +381,7 @@ const N8nWorkflowCollection: React.FC = () => {
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -10 }}
-                  className="absolute top-full left-0 right-0 mt-2 bg-[#1A1A1A] border border-[#2A2A2A] rounded-2xl shadow-2xl z-[9999] max-h-96 overflow-y-auto"
+                  className="absolute top-full left-0 right-0 mt-2 bg-[#1A1A1A] border border-[#2A2A2A] rounded-2xl shadow-2xl z-[10000] max-h-96 overflow-y-auto"
                 >
                   {/* Search Suggestions */}
                   {searchSuggestions.length > 0 && (
