@@ -9,6 +9,7 @@ export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false);
   const [pricingDropdownOpen, setPricingDropdownOpen] = useState(false);
+  const [resourcesDropdownOpen, setResourcesDropdownOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [location] = useLocation();
   const isHomePage = location === '/';
@@ -28,6 +29,7 @@ export default function Header() {
     setIsMobileMenuOpen(false);
     setServicesDropdownOpen(false);
     setPricingDropdownOpen(false);
+    setResourcesDropdownOpen(false);
   }, [location]);
 
   // Prevent body scroll when mobile menu is open
@@ -288,22 +290,63 @@ export default function Header() {
               </AnimatePresence>
             </div>
 
-            {/* Blog Link */}
-            <motion.div
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                transition={{ duration: 0.2 }}
+            {/* Resources Dropdown */}
+            <div className="relative dropdown-container">
+              <button 
+                type="button"
+                aria-expanded={resourcesDropdownOpen}
+                aria-haspopup="true"
+                onMouseEnter={() => setResourcesDropdownOpen(true)}
+                onMouseLeave={() => setResourcesDropdownOpen(false)}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setResourcesDropdownOpen(!resourcesDropdownOpen);
+                }}
+                className="px-3 py-2 min-h-[44px] rounded-md text-base font-medium transition-colors duration-200 inline-flex items-center touch-manipulation text-maverick-orange hover:text-maverick-orange"
               >
-                <Link 
-                  href={ROUTES.BLOG} 
-                  className={`px-3 py-2 min-h-[44px] rounded-md text-base font-medium transition-colors duration-200 touch-manipulation flex items-center ${
-                    isCurrentPath(ROUTES.BLOG) ? 'text-maverick-orange' : 'text-white hover:text-maverick-orange'
-                  }`} 
-                  aria-current={isCurrentPath(ROUTES.BLOG) ? 'page' : undefined}
-                >
-                  Blog
-                </Link>
-              </motion.div>
+                <span>Resources</span>
+                <ChevronDown className={`ml-2 h-4 w-4 transition-transform duration-200 ${
+                  resourcesDropdownOpen ? 'rotate-180' : ''
+                }`} />
+              </button>
+
+              <AnimatePresence>
+                {resourcesDropdownOpen && (
+                  <motion.div 
+                    initial={{ opacity: 0, y: -8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -8 }}
+                    transition={{ duration: 0.2 }}
+                    className="absolute left-0 mt-2 w-64 z-50"
+                    onMouseEnter={() => setResourcesDropdownOpen(true)}
+                    onMouseLeave={() => setResourcesDropdownOpen(false)}
+                  >
+                    <div className="py-2 bg-[#1A1A1A]/95 backdrop-blur-md border border-gray-800/50 rounded-lg shadow-xl" role="menu">
+                      <Link 
+                        href={ROUTES.BLOG} 
+                        className={`block px-4 py-3 min-h-[44px] text-base touch-manipulation ${
+                          isCurrentPath(ROUTES.BLOG) ? 'text-maverick-orange bg-maverick-orange/10' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'
+                        }`} 
+                        role="menuitem"
+                        onClick={() => setResourcesDropdownOpen(false)}
+                      >
+                        Blog
+                      </Link>
+                      <Link 
+                        href={ROUTES.N8N_WORKFLOWS} 
+                        className={`block px-4 py-3 min-h-[44px] text-base touch-manipulation ${
+                          isCurrentPath(ROUTES.N8N_WORKFLOWS) ? 'text-maverick-orange bg-maverick-orange/10' : 'text-white hover:bg-maverick-orange/10 hover:text-maverick-orange'
+                        }`} 
+                        role="menuitem"
+                        onClick={() => setResourcesDropdownOpen(false)}
+                      >
+                        n8n Workflow Collection
+                      </Link>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
 
             {/* About Link */}
             <motion.div
@@ -411,10 +454,10 @@ export default function Header() {
             >
               {/* Header with improved design */}
               <div className="relative">
-                <div className="flex items-center justify-between p-6 border-b border-white/10">
-                  <div className="flex items-center gap-3 mt-[16px] mb-[16px]">
-                    <div className="w-2 h-8 bg-gradient-to-b from-maverick-orange to-yellow-500 rounded-full"></div>
-                    <h2 className="text-xl text-white font-bold tracking-wide mt-[8px] mb-[8px]">Navigation</h2>
+                <div className="flex items-center justify-between p-2 xxs:p-3 sm:p-6 border-b border-white/10">
+                  <div className="flex items-center gap-1 xxs:gap-1.5 sm:gap-3 mt-[4px] xxs:mt-[6px] sm:mt-[16px] mb-[4px] xxs:mb-[6px] sm:mb-[16px]">
+                    <div className="w-0.5 xxs:w-1 sm:w-2 h-3 xxs:h-4 sm:h-8 bg-gradient-to-b from-maverick-orange to-yellow-500 rounded-full"></div>
+                    <h2 className="text-xs xxs:text-sm sm:text-xl text-white font-bold tracking-wide mt-[2px] xxs:mt-[3px] sm:mt-[8px] mb-[2px] xxs:mb-[3px] sm:mb-[8px]">Navigation</h2>
                   </div>
                   <button
                     onClick={closeMobileMenu}
@@ -429,11 +472,11 @@ export default function Header() {
               </div>
 
               {/* Navigation Items with improved spacing */}
-              <div className="flex-1 overflow-y-auto py-8 px-6">
-                <nav className="space-y-2 mt-[23px] mb-[23px]">
+              <div className="flex-1 overflow-y-auto py-1 xxs:py-2 sm:py-8 px-2 xxs:px-3 sm:px-6">
+                <nav className="space-y-0.5 xxs:space-y-1 sm:space-y-2 mt-[6px] xxs:mt-[10px] sm:mt-[23px] mb-[6px] xxs:mb-[10px] sm:mb-[23px]">
                   <Link 
                     href={ROUTES.HOME} 
-                    className={`group flex items-center px-4 py-4 rounded-xl min-h-[56px] touch-manipulation transition-all duration-300 relative overflow-hidden ${
+                    className={`group flex items-center px-1.5 xxs:px-2 sm:px-4 py-1.5 xxs:py-2 sm:py-4 rounded-sm xxs:rounded-md sm:rounded-xl min-h-[32px] xxs:min-h-[36px] sm:min-h-[56px] touch-manipulation transition-all duration-300 relative overflow-hidden ${
                       isCurrentPath(ROUTES.HOME) 
                         ? 'text-maverick-orange bg-gradient-to-r from-maverick-orange/15 to-yellow-500/10 border border-maverick-orange/20' 
                         : 'text-white hover:bg-white/8 hover:text-maverick-orange border border-transparent hover:border-white/10'
@@ -443,18 +486,18 @@ export default function Header() {
                     {isCurrentPath(ROUTES.HOME) && (
                       <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-maverick-orange to-yellow-500 rounded-r-full"></div>
                     )}
-                    <span className="text-lg font-semibold relative z-10">Home</span>
-                    <ChevronRight className="w-5 h-5 ml-auto opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
+                    <span className="text-xs xxs:text-sm sm:text-lg font-semibold relative z-10">Home</span>
+                    <ChevronRight className="w-3 xxs:w-3.5 sm:w-5 h-3 xxs:h-3.5 sm:h-5 ml-auto opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
                   </Link>
 
                   {/* Services Dropdown with enhanced design */}
                   <div className="space-y-2">
                     <button 
                       onClick={() => setServicesDropdownOpen(!servicesDropdownOpen)}
-                      className="group flex items-center justify-between w-full px-4 py-4 rounded-xl min-h-[56px] touch-manipulation transition-all duration-300 text-maverick-orange hover:bg-white/8 border border-transparent hover:border-white/10"
+                      className="group flex items-center justify-between w-full px-1.5 xxs:px-2 sm:px-4 py-1.5 xxs:py-2 sm:py-4 rounded-sm xxs:rounded-md sm:rounded-xl min-h-[32px] xxs:min-h-[36px] sm:min-h-[56px] touch-manipulation transition-all duration-300 text-maverick-orange hover:bg-white/8 border border-transparent hover:border-white/10"
                     >
-                      <span className="text-lg font-semibold">Services</span>
-                      <ChevronDown className={`w-5 h-5 transition-all duration-300 ${
+                      <span className="text-xs xxs:text-sm sm:text-lg font-semibold">Services</span>
+                      <ChevronDown className={`w-3 xxs:w-3.5 sm:w-5 h-3 xxs:h-3.5 sm:h-5 transition-all duration-300 ${
                         servicesDropdownOpen ? 'rotate-180 text-maverick-orange' : 'text-maverick-orange'
                       }`} />
                     </button>
@@ -470,7 +513,7 @@ export default function Header() {
                         >
                           <Link 
                             href={ROUTES.SERVICES.ALL} 
-                            className={`block px-4 py-3 rounded-lg min-h-[44px] touch-manipulation transition-all duration-200 ${
+                            className={`block px-1.5 xxs:px-2 sm:px-4 py-1.5 xxs:py-2 sm:py-3 rounded-none xxs:rounded-sm sm:rounded-lg min-h-[28px] xxs:min-h-[32px] sm:min-h-[44px] touch-manipulation transition-all duration-200 ${
                               isCurrentPath(ROUTES.SERVICES.ALL) 
                                 ? 'text-maverick-orange bg-maverick-orange/10 border border-maverick-orange/20' 
                                 : 'text-gray-300 hover:bg-white/5 hover:text-white border border-transparent'
@@ -481,7 +524,7 @@ export default function Header() {
                           </Link>
                           <Link 
                             href={ROUTES.SERVICES.WEB_DESIGN} 
-                            className={`block px-4 py-3 rounded-lg min-h-[44px] touch-manipulation transition-all duration-200 ${
+                            className={`block px-1.5 xxs:px-2 sm:px-4 py-1.5 xxs:py-2 sm:py-3 rounded-none xxs:rounded-sm sm:rounded-lg min-h-[28px] xxs:min-h-[32px] sm:min-h-[44px] touch-manipulation transition-all duration-200 ${
                               isCurrentPath(ROUTES.SERVICES.WEB_DESIGN) 
                                 ? 'text-maverick-orange bg-maverick-orange/10 border border-maverick-orange/20' 
                                 : 'text-gray-300 hover:bg-white/5 hover:text-white border border-transparent'
@@ -492,7 +535,7 @@ export default function Header() {
                           </Link>
                           <Link 
                             href={ROUTES.SERVICES.MARKETING} 
-                            className={`block px-4 py-3 rounded-lg min-h-[44px] touch-manipulation transition-all duration-200 ${
+                            className={`block px-1.5 xxs:px-2 sm:px-4 py-1.5 xxs:py-2 sm:py-3 rounded-none xxs:rounded-sm sm:rounded-lg min-h-[28px] xxs:min-h-[32px] sm:min-h-[44px] touch-manipulation transition-all duration-200 ${
                               isCurrentPath(ROUTES.SERVICES.MARKETING) 
                                 ? 'text-maverick-orange bg-maverick-orange/10 border border-maverick-orange/20' 
                                 : 'text-gray-300 hover:bg-white/5 hover:text-white border border-transparent'
@@ -503,7 +546,7 @@ export default function Header() {
                           </Link>
                           <Link 
                             href={ROUTES.SERVICES.AI_AUTOMATION} 
-                            className={`block px-4 py-3 rounded-lg min-h-[44px] touch-manipulation transition-all duration-200 ${
+                            className={`block px-1.5 xxs:px-2 sm:px-4 py-1.5 xxs:py-2 sm:py-3 rounded-none xxs:rounded-sm sm:rounded-lg min-h-[28px] xxs:min-h-[32px] sm:min-h-[44px] touch-manipulation transition-all duration-200 ${
                               isCurrentPath(ROUTES.SERVICES.AI_AUTOMATION) 
                                 ? 'text-maverick-orange bg-maverick-orange/10 border border-maverick-orange/20' 
                                 : 'text-gray-300 hover:bg-white/5 hover:text-white border border-transparent'
@@ -521,10 +564,10 @@ export default function Header() {
                   <div className="space-y-2">
                     <button 
                       onClick={() => setPricingDropdownOpen(!pricingDropdownOpen)}
-                      className="group flex items-center justify-between w-full px-4 py-4 rounded-xl min-h-[56px] touch-manipulation transition-all duration-300 text-maverick-orange hover:bg-white/8 border border-transparent hover:border-white/10"
+                      className="group flex items-center justify-between w-full px-1.5 xxs:px-2 sm:px-4 py-1.5 xxs:py-2 sm:py-4 rounded-sm xxs:rounded-md sm:rounded-xl min-h-[32px] xxs:min-h-[36px] sm:min-h-[56px] touch-manipulation transition-all duration-300 text-maverick-orange hover:bg-white/8 border border-transparent hover:border-white/10"
                     >
-                      <span className="text-lg font-semibold">Pricing</span>
-                      <ChevronDown className={`w-5 h-5 transition-all duration-300 ${
+                      <span className="text-xs xxs:text-sm sm:text-lg font-semibold">Pricing</span>
+                      <ChevronDown className={`w-3 xxs:w-3.5 sm:w-5 h-3 xxs:h-3.5 sm:h-5 transition-all duration-300 ${
                         pricingDropdownOpen ? 'rotate-180 text-maverick-orange' : 'text-maverick-orange'
                       }`} />
                     </button>
@@ -540,7 +583,7 @@ export default function Header() {
                         >
                           <Link 
                             href={ROUTES.PRICING.ALL} 
-                            className={`block px-4 py-3 rounded-lg min-h-[44px] touch-manipulation transition-all duration-200 ${
+                            className={`block px-1.5 xxs:px-2 sm:px-4 py-1.5 xxs:py-2 sm:py-3 rounded-none xxs:rounded-sm sm:rounded-lg min-h-[28px] xxs:min-h-[32px] sm:min-h-[44px] touch-manipulation transition-all duration-200 ${
                               isCurrentPath(ROUTES.PRICING.ALL) 
                                 ? 'text-maverick-orange bg-maverick-orange/10 border border-maverick-orange/20' 
                                 : 'text-gray-300 hover:bg-white/5 hover:text-white border border-transparent'
@@ -551,7 +594,7 @@ export default function Header() {
                           </Link>
                           <Link 
                             href={ROUTES.PRICING.WEB_DESIGN} 
-                            className={`block px-4 py-3 rounded-lg min-h-[44px] touch-manipulation transition-all duration-200 ${
+                            className={`block px-1.5 xxs:px-2 sm:px-4 py-1.5 xxs:py-2 sm:py-3 rounded-none xxs:rounded-sm sm:rounded-lg min-h-[28px] xxs:min-h-[32px] sm:min-h-[44px] touch-manipulation transition-all duration-200 ${
                               isCurrentPath(ROUTES.PRICING.WEB_DESIGN) 
                                 ? 'text-maverick-orange bg-maverick-orange/10 border border-maverick-orange/20' 
                                 : 'text-gray-300 hover:bg-white/5 hover:text-white border border-transparent'
@@ -562,7 +605,7 @@ export default function Header() {
                           </Link>
                           <Link 
                             href={ROUTES.PRICING.MARKETING} 
-                            className={`block px-4 py-3 rounded-lg min-h-[44px] touch-manipulation transition-all duration-200 ${
+                            className={`block px-1.5 xxs:px-2 sm:px-4 py-1.5 xxs:py-2 sm:py-3 rounded-none xxs:rounded-sm sm:rounded-lg min-h-[28px] xxs:min-h-[32px] sm:min-h-[44px] touch-manipulation transition-all duration-200 ${
                               isCurrentPath(ROUTES.PRICING.MARKETING) 
                                 ? 'text-maverick-orange bg-maverick-orange/10 border border-maverick-orange/20' 
                                 : 'text-gray-300 hover:bg-white/5 hover:text-white border border-transparent'
@@ -573,7 +616,7 @@ export default function Header() {
                           </Link>
                           <Link 
                             href={ROUTES.PRICING.AI_AUTOMATION} 
-                            className={`block px-4 py-3 rounded-lg min-h-[44px] touch-manipulation transition-all duration-200 ${
+                            className={`block px-1.5 xxs:px-2 sm:px-4 py-1.5 xxs:py-2 sm:py-3 rounded-none xxs:rounded-sm sm:rounded-lg min-h-[28px] xxs:min-h-[32px] sm:min-h-[44px] touch-manipulation transition-all duration-200 ${
                               isCurrentPath(ROUTES.PRICING.AI_AUTOMATION) 
                                 ? 'text-maverick-orange bg-maverick-orange/10 border border-maverick-orange/20' 
                                 : 'text-gray-300 hover:bg-white/5 hover:text-white border border-transparent'
@@ -587,9 +630,57 @@ export default function Header() {
                     </AnimatePresence>
                   </div>
 
+                  {/* Resources Dropdown with enhanced design */}
+                  <div className="space-y-2">
+                    <button 
+                      onClick={() => setResourcesDropdownOpen(!resourcesDropdownOpen)}
+                      className="group flex items-center justify-between w-full px-1.5 xxs:px-2 sm:px-4 py-1.5 xxs:py-2 sm:py-4 rounded-sm xxs:rounded-md sm:rounded-xl min-h-[32px] xxs:min-h-[36px] sm:min-h-[56px] touch-manipulation transition-all duration-300 text-maverick-orange hover:bg-white/8 border border-transparent hover:border-white/10"
+                    >
+                      <span className="text-xs xxs:text-sm sm:text-lg font-semibold">Resources</span>
+                      <ChevronDown className={`w-3 xxs:w-3.5 sm:w-5 h-3 xxs:h-3.5 sm:h-5 transition-all duration-300 ${
+                        resourcesDropdownOpen ? 'rotate-180 text-maverick-orange' : 'text-maverick-orange'
+                      }`} />
+                    </button>
+
+                    <AnimatePresence>
+                      {resourcesDropdownOpen && (
+                        <motion.div
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: "auto" }}
+                          exit={{ opacity: 0, height: 0 }}
+                          transition={{ duration: 0.3, ease: "easeInOut" }}
+                          className="ml-6 space-y-1 overflow-hidden border-l border-white/10 pl-4"
+                        >
+                          <Link 
+                            href={ROUTES.BLOG} 
+                            className={`block px-1.5 xxs:px-2 sm:px-4 py-1.5 xxs:py-2 sm:py-3 rounded-none xxs:rounded-sm sm:rounded-lg min-h-[28px] xxs:min-h-[32px] sm:min-h-[44px] touch-manipulation transition-all duration-200 ${
+                              isCurrentPath(ROUTES.BLOG) 
+                                ? 'text-maverick-orange bg-maverick-orange/10 border border-maverick-orange/20' 
+                                : 'text-gray-300 hover:bg-white/5 hover:text-white border border-transparent'
+                            }`}
+                            onClick={closeMobileMenu}
+                          >
+                            Blog
+                          </Link>
+                          <Link 
+                            href={ROUTES.N8N_WORKFLOWS} 
+                            className={`block px-1.5 xxs:px-2 sm:px-4 py-1.5 xxs:py-2 sm:py-3 rounded-none xxs:rounded-sm sm:rounded-lg min-h-[28px] xxs:min-h-[32px] sm:min-h-[44px] touch-manipulation transition-all duration-200 ${
+                              isCurrentPath(ROUTES.N8N_WORKFLOWS) 
+                                ? 'text-maverick-orange bg-maverick-orange/10 border border-maverick-orange/20' 
+                                : 'text-gray-300 hover:bg-white/5 hover:text-white border border-transparent'
+                            }`}
+                            onClick={closeMobileMenu}
+                          >
+                            n8n Workflow Collection
+                          </Link>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+
                   <Link 
                     href={ROUTES.ABOUT} 
-                    className={`group flex items-center px-4 py-4 rounded-xl min-h-[56px] touch-manipulation transition-all duration-300 relative overflow-hidden ${
+                    className={`group flex items-center px-1.5 xxs:px-2 sm:px-4 py-1.5 xxs:py-2 sm:py-4 rounded-sm xxs:rounded-md sm:rounded-xl min-h-[32px] xxs:min-h-[36px] sm:min-h-[56px] touch-manipulation transition-all duration-300 relative overflow-hidden ${
                       isCurrentPath(ROUTES.ABOUT) 
                         ? 'text-maverick-orange bg-gradient-to-r from-maverick-orange/15 to-yellow-500/10 border border-maverick-orange/20' 
                         : 'text-white hover:bg-white/8 hover:text-maverick-orange border border-transparent hover:border-white/10'
@@ -599,29 +690,13 @@ export default function Header() {
                     {isCurrentPath(ROUTES.ABOUT) && (
                       <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-maverick-orange to-yellow-500 rounded-r-full"></div>
                     )}
-                    <span className="text-lg font-semibold relative z-10">About</span>
-                    <ChevronRight className="w-5 h-5 ml-auto opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
-                  </Link>
-
-                  <Link 
-                    href={ROUTES.BLOG} 
-                    className={`group flex items-center px-4 py-4 rounded-xl min-h-[56px] touch-manipulation transition-all duration-300 relative overflow-hidden ${
-                      isCurrentPath(ROUTES.BLOG) 
-                        ? 'text-maverick-orange bg-gradient-to-r from-maverick-orange/15 to-yellow-500/10 border border-maverick-orange/20' 
-                        : 'text-white hover:bg-white/8 hover:text-maverick-orange border border-transparent hover:border-white/10'
-                    }`}
-                    onClick={closeMobileMenu}
-                  >
-                    {isCurrentPath(ROUTES.BLOG) && (
-                      <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-maverick-orange to-yellow-500 rounded-r-full"></div>
-                    )}
-                    <span className="text-lg font-semibold relative z-10">Blog</span>
-                    <ChevronRight className="w-5 h-5 ml-auto opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
+                    <span className="text-xs xxs:text-sm sm:text-lg font-semibold relative z-10">About</span>
+                    <ChevronRight className="w-3 xxs:w-3.5 sm:w-5 h-3 xxs:h-3.5 sm:h-5 ml-auto opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
                   </Link>
 
                   <Link 
                     href={ROUTES.CONTACT} 
-                    className={`group flex items-center px-4 py-4 rounded-xl min-h-[56px] touch-manipulation transition-all duration-300 relative overflow-hidden ${
+                    className={`group flex items-center px-1.5 xxs:px-2 sm:px-4 py-1.5 xxs:py-2 sm:py-4 rounded-sm xxs:rounded-md sm:rounded-xl min-h-[32px] xxs:min-h-[36px] sm:min-h-[56px] touch-manipulation transition-all duration-300 relative overflow-hidden ${
                       isCurrentPath(ROUTES.CONTACT) 
                         ? 'text-maverick-orange bg-gradient-to-r from-maverick-orange/15 to-yellow-500/10 border border-maverick-orange/20' 
                         : 'text-white hover:bg-white/8 hover:text-maverick-orange border border-transparent hover:border-white/10'
@@ -631,8 +706,8 @@ export default function Header() {
                     {isCurrentPath(ROUTES.CONTACT) && (
                       <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-maverick-orange to-yellow-500 rounded-r-full"></div>
                     )}
-                    <span className="text-lg font-semibold relative z-10">Contact</span>
-                    <ChevronRight className="w-5 h-5 ml-auto opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
+                    <span className="text-xs xxs:text-sm sm:text-lg font-semibold relative z-10">Contact</span>
+                    <ChevronRight className="w-3 xxs:w-3.5 sm:w-5 h-3 xxs:h-3.5 sm:h-5 ml-auto opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
                   </Link>
                 </nav>
               </div>

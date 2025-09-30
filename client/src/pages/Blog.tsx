@@ -7,6 +7,7 @@ import { BlogCard } from '@/components/blog/BlogCard';
 import { BlogFilters } from '@/components/blog/BlogFilters';
 import { BlogPagination } from '@/components/blog/BlogPagination';
 import { BlogSchema } from '@/components/blog/BlogSchema';
+import GradientText from '@/components/ui/GradientText';
 
 interface BlogPost {
   id: string;
@@ -101,7 +102,7 @@ const Blog: React.FC = () => {
 
       <div className="min-h-screen bg-[#121212]">
         {/* Hero Section */}
-        <section className="relative py-20 px-4 sm:px-6 lg:px-8">
+        <section className="relative pt-8 xxs:pt-12 xs:pt-16 sm:pt-20 md:pt-24 lg:pt-28 pb-16 px-4 sm:px-6 lg:px-8">
           <div className="max-w-7xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -109,9 +110,17 @@ const Blog: React.FC = () => {
               transition={{ duration: 0.6 }}
               className="text-center"
             >
-              <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 font-heading">
-                Beyond the Edge
-                <span className="block text-maverick-orange">Insights & Trends</span>
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 leading-tight mt-8 xxs:mt-12 xs:mt-16 sm:mt-0">
+                <span className="text-white block mb-2 text-4xl sm:text-5xl lg:text-6xl">
+                  Beyond the Edge
+                </span>
+                <GradientText
+                  colors={["#FF5630", "#FF8A50", "#FFB899", "#FF5630"]}
+                  animationSpeed={6}
+                  className="text-4xl sm:text-5xl lg:text-6xl"
+                >
+                  Insights & Trends
+                </GradientText>
               </h1>
               <p className="text-xl text-[#AAAAAA] max-w-4xl mx-auto mb-8">
                 Beyond the Edge exists to bridge the gap between complex digital trends and real business growth. We curate the most effective web strategies, SEO innovations, and AI applications, then present them as clear, implementable tactics for solopreneurs and small business owners. Your time is valuable, so we focus on delivering insights that create immediate impact and long-term success.
@@ -212,7 +221,7 @@ const Blog: React.FC = () => {
           <div className="max-w-7xl mx-auto">
             {currentPosts.length > 0 ? (
               <motion.div 
-                className="flex flex-col md:grid md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8"
+                className="blog-grid"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.6, delay: 0.4 }}

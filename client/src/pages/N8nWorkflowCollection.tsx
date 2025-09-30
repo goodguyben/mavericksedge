@@ -223,7 +223,7 @@ const N8nWorkflowCollection: React.FC = () => {
 
       <div className="min-h-screen bg-[#121212]">
         {/* Hero Section */}
-        <section className="relative pt-28 pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden">
+        <section className="relative pt-8 xxs:pt-12 xs:pt-16 sm:pt-20 md:pt-24 lg:pt-28 pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden">
           {/* Background gradient */}
           <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-800" />
           <div className="absolute inset-0 bg-black/60" />
@@ -239,7 +239,7 @@ const N8nWorkflowCollection: React.FC = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 leading-tight"
+                className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 leading-tight mt-8 xxs:mt-12 xs:mt-16 sm:mt-0"
               >
                 <span className="text-maverick-cream block mb-2">
                   The World's Largest
@@ -316,7 +316,7 @@ const N8nWorkflowCollection: React.FC = () => {
         </section>
 
         {/* Search Bar Section */}
-        <section id="search" className="py-16 px-4 sm:px-6 lg:px-8 relative z-50">
+        <section id="search" className="py-16 px-4 sm:px-6 lg:px-8 relative">
           <div className="max-w-4xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -426,17 +426,19 @@ const N8nWorkflowCollection: React.FC = () => {
               )}
 
               {/* Example queries */}
-              <div className="mt-4 flex flex-wrap justify-center gap-2">
-                <span className="text-sm text-[#AAAAAA] mr-2">Try:</span>
-                {exampleQueries.map((query, index) => (
-                  <button
-                    key={index}
-                    onClick={() => handlePopularSearchClick(query)}
-                    className="text-sm text-maverick-orange hover:text-maverick-light-orange transition-colors cursor-pointer"
-                  >
-                    "{query}"
-                  </button>
-                ))}
+              <div className="mt-4 px-4">
+                <div className="flex flex-wrap justify-center gap-1 sm:gap-2 items-center">
+                  <span className="text-xs sm:text-sm text-[#AAAAAA] mr-1 sm:mr-2 mb-1 sm:mb-0">Try:</span>
+                  {exampleQueries.map((query, index) => (
+                    <button
+                      key={index}
+                      onClick={() => handlePopularSearchClick(query)}
+                      className="text-xs sm:text-sm text-maverick-orange hover:text-maverick-light-orange transition-colors cursor-pointer mb-1 sm:mb-0"
+                    >
+                      "{query}"
+                    </button>
+                  ))}
+                </div>
               </div>
             </motion.div>
 
@@ -446,7 +448,7 @@ const N8nWorkflowCollection: React.FC = () => {
               whileInView={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.3 }}
               viewport={{ once: true }}
-              className="text-center mb-8"
+              className="text-center mb-8 px-4"
             >
               <p className="text-maverick-cream/70 mb-4">
                 {isLoading ? 'Loading...' : (
@@ -484,7 +486,7 @@ const N8nWorkflowCollection: React.FC = () => {
               </p>
             </motion.div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="flex flex-col mini:grid mini:grid-cols-2 lg:grid-cols-3 gap-8">
               {workflows.map((workflow, index) => (
                 <motion.div
                   key={workflow.id}

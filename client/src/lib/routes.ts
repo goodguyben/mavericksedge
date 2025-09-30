@@ -4,6 +4,7 @@ export const ROUTES = {
   ABOUT: '/about',
   CONTACT: '/contact',
   BLOG: '/blog',
+  N8N_WORKFLOWS: '/largest-n8n-workflow-collection',
   SERVICES: {
     ALL: '/services',
     WEB_DESIGN: '/web-design-services-edmonton',
