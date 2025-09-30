@@ -370,6 +370,7 @@ const N8nWorkflowCollection: React.FC = () => {
                   }}
                   placeholder="Search workflows... (e.g., 'Slack automation', 'Google Sheets')"
                   className="w-full pl-16 pr-6 py-6 text-lg text-white placeholder-[#AAAAAA] focus:outline-none bg-transparent"
+                  style={{ outline: 'none', boxShadow: 'none' }}
                 />
               </div>
 
