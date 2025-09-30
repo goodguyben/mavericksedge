@@ -21,6 +21,15 @@ This directory contains full markdown versions of all blog posts from Mavericks 
 
 ---
 
+### 15. [Mavericks Edge Launches World's Largest n8n Workflow Collection](./mavericks-edge-launches-largest-n8n-workflow-collection.md)
+
+**Published**: September 30, 2025  
+**Category**: Automation  
+**Read Time**: 8 minutes  
+**Excerpt**: Edmonton's leading digital agency launches the world's largest n8n workflow collection with ready-to-use automation templates. Discover how businesses can accelerate their automation journey with professionally crafted workflows covering everything from CRM integration to social media automation.
+
+---
+
 ## About These Files
 
 Each markdown file contains:
