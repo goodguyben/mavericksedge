@@ -131,7 +131,7 @@ export default function PortfolioSection() {
         </div>
         
         <div className="text-center">
-          <Link href="/portfolio-edmonton-web-design">
+          <Link href="/work">
             <div className="maverick-button maverick-button-outline inline-flex items-center justify-center px-8 py-3 text-base font-medium rounded-md md:py-4 md:text-lg md:px-10 cursor-pointer">
               View Complete Portfolio
               <ArrowRight className="ml-2 h-5 w-5" />

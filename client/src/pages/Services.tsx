@@ -87,7 +87,7 @@ export default function Services() {
                   "@type": "Organization",
                   "name": "Mavericks Edge"
                 },
-                "url": "https://mavericksedge.ca/services/web"
+                "url": "https://mavericksedge.ca/web-design-services-edmonton"
               }
             },
             {
@@ -101,7 +101,7 @@ export default function Services() {
                   "@type": "Organization",
                   "name": "Mavericks Edge"
                 },
-                "url": "https://mavericksedge.ca/services/marketing"
+                "url": "https://mavericksedge.ca/digital-marketing-services-edmonton"
               }
             },
             {

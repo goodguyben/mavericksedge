@@ -2464,7 +2464,7 @@ Your website should start paying for itself within the first few months. That's 
       "/web-design-pricing-edmonton",
       "/web-design-services-edmonton",
       "/seo-services-edmonton",
-      "/portfolio-edmonton-web-design",
+      "/work",
       "/contact"
     ],
     externalLinks: [
@@ -2658,7 +2658,7 @@ A well‑built site should start paying for itself within the first few months. 
     internalLinks: [
       "/web-design-pricing-edmonton",
       "/web-design-services-edmonton",
-      "/portfolio-edmonton-web-design",
+      "/work",
       "/contact"
     ],
     externalLinks: [],

@@ -124,9 +124,6 @@ export default function App() {
               <Route path="/services">
                 <Services />
               </Route>
-              <Route path="/services-edmonton-alberta">
-                <Services />
-              </Route>
               <Route path="/web-design-services-edmonton">
                 <WebServices />
               </Route>
@@ -193,19 +190,10 @@ export default function App() {
               <Route path="/work">
                 <Work />
               </Route>
-              <Route path="/portfolio-edmonton-web-design">
-                <Work />
-              </Route>
               <Route path="/about">
                 <About />
               </Route>
-              <Route path="/about-edmonton-web-design-company">
-                <About />
-              </Route>
               <Route path="/contact">
-                <Contact />
-              </Route>
-              <Route path="/contact-edmonton-web-design">
                 <Contact />
               </Route>
               {/* Private route without header/footer */}

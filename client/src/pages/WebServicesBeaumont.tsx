@@ -760,7 +760,7 @@ export default function WebServicesBeaumont() {
 
   const breadcrumbs = [
     { name: "Home", url: "https://mavericksedge.ca/" },
-    { name: "Services", url: "https://mavericksedge.ca/services-edmonton-alberta" },
+    { name: "Services", url: "https://mavericksedge.ca/services" },
     { name: "Web Development", url: "https://mavericksedge.ca/web-design-services-beaumont" }
   ];
 
@@ -1141,7 +1141,7 @@ export default function WebServicesBeaumont() {
                     transition={{ duration: 0.6, delay: 0.4 }}
                     className="flex flex-col gap-3 items-start pr-16"
                   >
-                    <Link href="/contact-edmonton-web-design">
+                    <Link href="/contact">
                       <a className="maverick-button maverick-button-primary inline-flex items-center justify-center rounded-full px-6 py-4 text-base font-medium self-start mr-16">
                         Get Free Consultation
                       </a>
@@ -1208,7 +1208,7 @@ export default function WebServicesBeaumont() {
                       transition={{ duration: 0.6, delay: 0.4 }}
                       className="flex flex-col sm:flex-row gap-2 sm:gap-3 md:gap-4 justify-start items-start mb-6 sm:mb-8"
                     >
-                       <Link href="/contact-edmonton-web-design">
+                       <Link href="/contact">
                          <a className="maverick-button maverick-button-primary inline-flex items-center justify-center rounded-full px-5 py-3 text-base sm:px-7 sm:py-3.5 sm:text-base md:px-8 md:py-4 md:text-lg font-medium">
                            Get Free Consultation
                          </a>
@@ -2444,7 +2444,7 @@ export default function WebServicesBeaumont() {
                     Join the Beaumont teams who ship fast, clear websites with us. Get a free consult and a clear plan.
                   </p>
                   <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                    <Link href="/contact-edmonton-web-design">
+                    <Link href="/contact">
                       <a className="bg-white text-maverick-orange px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gray-100 transition-colors duration-300 inline-flex items-center">
                         Start Your Project Today
                         <ArrowRight className="ml-2 h-5 w-5" />

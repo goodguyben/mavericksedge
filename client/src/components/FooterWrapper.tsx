@@ -60,7 +60,7 @@ export default function FooterWrapper() {
               <h2 className="footer-heading">Company</h2>
               <ul className="footer-links">
                 <li className="footer-link"><a href="/about" title="About Mavericks Edge">About Us</a></li>
-                <li className="footer-link"><a href="/portfolio-edmonton-web-design" title="Our Work & Portfolio">Our Work</a></li>
+                <li className="footer-link"><a href="/work" title="Our Work & Portfolio">Our Work</a></li>
                 <li className="footer-link"><a href="/contact" title="Contact Mavericks Edge">Contact</a></li>
                 <li className="footer-link"><a href="/pricing-edmonton-web-design-marketing" title="Service Pricing">Pricing</a></li>
                 <li className="footer-link"><a href="/compliance" title="Compliance & Standards">Compliance</a></li>
