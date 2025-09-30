@@ -145,33 +145,33 @@ const N8nWorkflowPage: React.FC = () => {
               </button>
 
               {/* Workflow Header */}
-              <div className="bg-gradient-to-br from-[#252525] to-[#1f1f1f] rounded-2xl p-8 border border-[#333] mb-8">
-                <div className="flex items-start justify-between mb-6">
+              <div className="bg-gradient-to-br from-[#252525] to-[#1f1f1f] rounded-2xl p-4 sm:p-8 border border-[#333] mb-8">
+                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-6 gap-4">
                   <div className="flex-1">
-                    <h1 className="text-3xl sm:text-4xl font-bold text-maverick-cream mb-4 leading-tight">
+                    <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-maverick-cream mb-4 leading-tight">
                       {workflow.title}
                     </h1>
-                    <div className="flex items-center gap-4 text-sm text-[#AAAAAA]">
+                    <div className="flex flex-wrap items-center gap-2 sm:gap-4 text-sm text-[#AAAAAA]">
                       <span>ID: {workflow.id}</span>
-                      <span>•</span>
+                      <span className="hidden sm:inline">•</span>
                       <span>n8n Workflow</span>
-                      <span>•</span>
+                      <span className="hidden sm:inline">•</span>
                       <span>Created: {new Date(workflow.created_at).toLocaleDateString()}</span>
                     </div>
                   </div>
                   
                   {/* Action Buttons */}
-                  <div className="flex gap-3">
+                  <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 w-full sm:w-auto">
                     <button
                       onClick={handleShare}
-                      className="flex items-center gap-2 px-4 py-2 bg-[#333] text-[#AAAAAA] rounded-lg hover:bg-[#444] transition-colors"
+                      className="flex items-center justify-center gap-2 px-4 py-2 bg-[#333] text-[#AAAAAA] rounded-lg hover:bg-[#444] transition-colors text-sm sm:text-base"
                     >
                       <Share2 className="w-4 h-4" />
-                      Share
+                      <span className="hidden sm:inline">Share</span>
                     </button>
                     <button
                       onClick={handleCopyJson}
-                      className={`flex items-center gap-2 px-6 py-2 rounded-lg font-medium transition-all duration-200 ${
+                      className={`flex items-center justify-center gap-2 px-4 sm:px-6 py-2 rounded-lg font-medium transition-all duration-200 text-sm sm:text-base ${
                         copied
                           ? 'bg-green-600 text-white'
                           : 'bg-maverick-orange text-white hover:bg-maverick-light-orange hover:scale-105'
@@ -180,12 +180,12 @@ const N8nWorkflowPage: React.FC = () => {
                       {copied ? (
                         <>
                           <CheckCircle className="w-4 h-4" />
-                          Copied!
+                          <span>Copied!</span>
                         </>
                       ) : (
                         <>
                           <Copy className="w-4 h-4" />
-                          Copy JSON
+                          <span>Copy JSON</span>
                         </>
                       )}
                     </button>
@@ -193,7 +193,7 @@ const N8nWorkflowPage: React.FC = () => {
                 </div>
 
                 {/* Instructions */}
-                <div className="bg-[#1A1A1A] rounded-lg p-6 border border-[#333]">
+                <div className="bg-[#1A1A1A] rounded-lg p-4 sm:p-6 border border-[#333]">
                   <h3 className="text-lg font-semibold text-maverick-cream mb-3">How to Import</h3>
                   <ol className="text-sm text-maverick-cream/70 space-y-2">
                     <li>1. Click "Copy JSON" above to copy the workflow</li>
@@ -217,7 +217,7 @@ const N8nWorkflowPage: React.FC = () => {
               transition={{ duration: 0.6, delay: 0.2 }}
             >
               <div className="bg-[#1A1A1A] rounded-2xl border border-[#333] overflow-hidden">
-                <div className="flex items-center justify-between px-6 py-4 border-b border-[#333]">
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between px-4 sm:px-6 py-4 border-b border-[#333] gap-2 sm:gap-0">
                   <h3 className="text-lg font-semibold text-maverick-cream">Workflow JSON</h3>
                   <div className="flex items-center gap-2">
                     <span className="text-xs text-[#AAAAAA]">
@@ -232,8 +232,8 @@ const N8nWorkflowPage: React.FC = () => {
                     </button>
                   </div>
                 </div>
-                <div className="p-6">
-                  <pre className="text-sm text-[#CCCCCC] overflow-x-auto whitespace-pre-wrap font-mono leading-relaxed">
+                <div className="p-4 sm:p-6">
+                  <pre className="text-xs sm:text-sm text-[#CCCCCC] overflow-x-auto whitespace-pre-wrap font-mono leading-relaxed">
                     {jsonString}
                   </pre>
                 </div>

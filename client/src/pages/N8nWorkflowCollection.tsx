@@ -102,8 +102,8 @@ const N8nWorkflowCollection: React.FC = () => {
         
         // Get total workflow count
         const total = await searchWorkflows('', 1);
-        // We'll get the actual count from the test script result (4859)
-        setTotalWorkflows(4859);
+        // We'll get the actual count from the test script result (6260)
+        setTotalWorkflows(6260);
       } catch (error) {
         console.error('Error loading initial data:', error);
         setSearchError('Failed to load workflows. Please try again.');
@@ -219,6 +219,42 @@ const N8nWorkflowCollection: React.FC = () => {
         description="Explore the largest n8n workflow collection and repository of templates and automation examples. Search, copy JSON, and import directly into n8n to start automating instantly."
         canonicalUrl="https://mavericksedge.ca/largest-n8n-workflow-collection"
         keywords="n8n workflow collection, n8n workflow repository, free n8n templates, n8n automation examples, download n8n workflows, import n8n JSON, n8n templates, workflow automation"
+        structuredData={{
+          "@context": "https://schema.org",
+          "@type": "Collection",
+          "name": "Largest n8n Workflow Collection",
+          "description": "Explore the largest n8n workflow collection and repository of templates and automation examples. Search, copy JSON, and import directly into n8n to start automating instantly.",
+          "url": "https://mavericksedge.ca/largest-n8n-workflow-collection",
+          "mainEntity": {
+            "@type": "ItemList",
+            "numberOfItems": 6260,
+            "itemListElement": workflows.slice(0, 10).map((workflow, index) => ({
+              "@type": "CreativeWork",
+              "position": index + 1,
+              "name": workflow.title,
+              "description": `Free n8n automation workflow template: ${workflow.title}`,
+              "url": `https://mavericksedge.ca/largest-n8n-workflow-collection/${workflow.slug}`,
+              "genre": "Workflow Automation",
+              "inLanguage": "en",
+              "isAccessibleForFree": true,
+              "offers": {
+                "@type": "Offer",
+                "price": "0",
+                "priceCurrency": "USD",
+                "availability": "https://schema.org/InStock"
+              }
+            }))
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": "Mavericks Edge",
+            "url": "https://mavericksedge.ca",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://mavericksedge.ca/images/logo-transparent-thumb4x.png"
+            }
+          }
+        }}
       />
 
       <div className="min-h-screen bg-[#121212]">
@@ -259,7 +295,7 @@ const N8nWorkflowCollection: React.FC = () => {
                 transition={{ duration: 0.8, delay: 0.4 }}
                 className="text-xl sm:text-2xl text-maverick-cream/80 mb-8 max-w-4xl mx-auto leading-relaxed"
               >
-                Stop spending weeks building automations from scratch when thousands of ready-to-use workflows are just one click away. Our repository contains 5,000+ professionally crafted n8n templates that can transform your business operations in minutes. From lead generation to customer support, discover workflows that scale your business while you sleep.
+                Stop spending weeks building automations from scratch when thousands of ready-to-use workflows are just one click away. Our repository contains 6,000+ professionally crafted n8n templates that can transform your business operations in minutes. From lead generation to customer support, discover workflows that scale your business while you sleep.
                 <br />
                 <span className="text-lg text-maverick-orange/90 font-medium">
                   Search → Copy JSON → Import to n8n
@@ -496,7 +532,37 @@ const N8nWorkflowCollection: React.FC = () => {
                   transition={{ duration: 0.8, delay: index * 0.1 }}
                   viewport={{ once: true }}
                   className="group bg-gradient-to-br from-[#252525] to-[#1f1f1f] rounded-2xl p-8 border border-[#333] hover:border-maverick-orange/60 transition-all duration-500 hover:shadow-2xl hover:shadow-maverick-orange/20 hover:-translate-y-2"
+                  itemScope
+                  itemType="https://schema.org/CreativeWork"
                 >
+                  {/* Schema.org structured data for individual workflow */}
+                  <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{
+                      __html: JSON.stringify({
+                        "@context": "https://schema.org",
+                        "@type": "CreativeWork",
+                        "name": workflow.title,
+                        "description": `Free n8n automation workflow template: ${workflow.title}`,
+                        "url": `https://mavericksedge.ca/largest-n8n-workflow-collection/${workflow.slug}`,
+                        "genre": "Workflow Automation",
+                        "inLanguage": "en",
+                        "isAccessibleForFree": true,
+                        "dateCreated": workflow.created_at,
+                        "offers": {
+                          "@type": "Offer",
+                          "price": "0",
+                          "priceCurrency": "USD",
+                          "availability": "https://schema.org/InStock"
+                        },
+                        "publisher": {
+                          "@type": "Organization",
+                          "name": "Mavericks Edge",
+                          "url": "https://mavericksedge.ca"
+                        }
+                      })
+                    }}
+                  />
                   {/* Content */}
                   <div className="mb-8">
                     <a 
