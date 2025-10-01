@@ -6,7 +6,7 @@
     <link>https://mavericksedge.ca/blog</link>
     <atom:link href="https://mavericksedge.ca/rss.xml" rel="self" type="application/rss+xml" />
     <language>en-ca</language>
-    <lastBuildDate>Wed, 01 Oct 2025 03:34:05 GMT</lastBuildDate>
+    <lastBuildDate>Wed, 01 Oct 2025 03:38:34 GMT</lastBuildDate>
     <ttl>60</ttl>
     <image>
       <url>https://mavericksedge.ca/images/logo-transparent-thumb4x.png</url>
@@ -195,6 +195,20 @@
         <media:title>Why You Don't Need GEO: How Strong SEO Already Delivers Generative Engine Optimization Results</media:title>
         <media:description>Worried about GEO and AI Overviews? You don't need a new playbook. Modern, user‑first SEO already earns citations in generative answers. Here's the technical proof and a simple checklist to stay ahead.</media:description>
         <media:thumbnail url="https://mavericksedge.ca/videos/good-seo-is-good-geo.png" width="300" height="200" />
+      </media:content>
+    </item>
+    <item>
+      <title>Mavericks Edge Launches World's Largest n8n Workflow Collection</title>
+      <description>Discover the largest n8n workflow collection to streamline your automation tasks. Mavericks Edge launches comprehensive library of n8n templates for businesses and developers.</description>
+      <link>https://mavericksedge.ca/blog/mavericks-edge-launches-largest-n8n-workflow-collection</link>
+      <guid>https://mavericksedge.ca/blog/mavericks-edge-launches-largest-n8n-workflow-collection</guid>
+      <pubDate>Tue, 30 Sep 2025 00:00:00 GMT</pubDate>
+      <category>Automation</category>
+      <content:encoded><![CDATA[<p>Discover the largest n8n workflow collection to streamline your automation tasks. Mavericks Edge launches comprehensive library of n8n templates for businesses and developers.</p>]]></content:encoded>
+      <media:content url="https://mavericksedge.ca/videos/n8n-workflow-collection-hero.png" medium="image" type="image/jpeg">
+        <media:title>Mavericks Edge Launches World's Largest n8n Workflow Collection</media:title>
+        <media:description>Discover the largest n8n workflow collection to streamline your automation tasks. Mavericks Edge launches comprehensive library of n8n templates for businesses and developers.</media:description>
+        <media:thumbnail url="https://mavericksedge.ca/videos/n8n-workflow-collection-hero.png" width="300" height="200" />
       </media:content>
     </item>
   </channel>
