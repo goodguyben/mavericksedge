@@ -227,7 +227,7 @@ const N8nWorkflowCollection: React.FC = () => {
           "url": "https://mavericksedge.ca/largest-n8n-workflow-collection",
           "mainEntity": {
             "@type": "ItemList",
-            "numberOfItems": 6260,
+            "numberOfItems": 6251,
             "itemListElement": workflows.slice(0, 10).map((workflow, index) => ({
               "@type": "CreativeWork",
               "position": index + 1,
