@@ -19,38 +19,7 @@ export const BlogSchema: React.FC = () => {
     },
     "mainEntity": {
       "@type": "ItemList",
-      "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "item": {
-            "@type": "BlogPosting",
-            "headline": "The Complete 2025 Guide to AI Automation: How Edmonton Businesses Are Transforming Operations",
-            "description": "Discover how AI automation is revolutionizing business operations in Edmonton. From customer service to marketing automation, learn the strategies that are driving real results for local businesses.",
-            "author": {
-              "@type": "Organization",
-              "name": "Mavericks Edge Team"
-            },
-            "datePublished": "2025-07-15",
-            "dateModified": "2025-07-15",
-            "publisher": {
-              "@type": "Organization",
-              "name": "Mavericks Edge"
-            },
-            "mainEntityOfPage": {
-              "@type": "WebPage",
-              "@id": "https://mavericksedge.ca/blog/ai-automation-2025-guide"
-            },
-            "image": {
-              "@type": "ImageObject",
-              "url": "https://mavericksedge.ca/attached_assets/ai-automation-guide.jpg"
-            },
-            "keywords": "AI automation services, business automation Edmonton, AI automation Edmonton, digital transformation, process automation",
-            "articleSection": "AI Automation",
-            "wordCount": 2500
-          }
-        }
-      ]
+      "itemListElement": []
     },
     "potentialAction": {
       "@type": "SearchAction",

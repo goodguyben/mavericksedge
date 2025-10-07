@@ -18,6 +18,7 @@ import WebServicesCascadeSection from "@/components/sections/WebServicesCascadeS
 import ScrollFadeSection from '@/components/ui/scroll-fade-section';
 import { LazySection } from '@/components/performance/LazySection';
 import GoogleReviews from '@/components/GoogleReviews';
+import { PortfolioSection } from '@/components/sections/PortfolioSection';
 
 // Animated integrated-circuit overlay for cube faces
 function CircuitOverlay({ accent = "#61DAFB" }: { accent?: string }) {
@@ -2278,6 +2279,22 @@ export default function WebServices() {
                 </div>
               </div>
             </section>
+          </ScrollFadeSection>
+        </LazySection>
+
+        {/* Portfolio Section */}
+        <LazySection threshold={0.1} rootMargin="50px">
+          <ScrollFadeSection
+            id="portfolio"
+            fadeInPoint={0.5}
+            fadeOutPoint={0.6}
+            fadeInDuration={1}
+            fadeOutDuration={1.8}
+            initialOpacity={0}
+            minOpacity={0.1}
+            useFallback={true}
+          >
+            <PortfolioSection />
           </ScrollFadeSection>
         </LazySection>
 

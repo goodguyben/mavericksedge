@@ -4,12 +4,15 @@ import { useLocation } from 'wouter';
 import { Copy, CheckCircle, ArrowLeft, Download, Share2, ExternalLink } from 'lucide-react';
 import SEOHead from '@/components/SEOHead';
 import { Button } from '@/components/ui/custom-button';
-import { getWorkflowBySlug, type Workflow } from '@/lib/supabase';
+import { getWorkflowBySlug, getRelatedWorkflows, generateWorkflowDescription, type Workflow, type WorkflowDescription } from '@/lib/supabase';
 
 const N8nWorkflowPage: React.FC = () => {
   const [, setLocation] = useLocation();
   const [workflow, setWorkflow] = useState<Workflow | null>(null);
+  const [relatedWorkflows, setRelatedWorkflows] = useState<Workflow[]>([]);
+  const [workflowDescription, setWorkflowDescription] = useState<WorkflowDescription | null>(null);
   const [loading, setLoading] = useState(true);
+  const [relatedLoading, setRelatedLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
 
@@ -34,6 +37,21 @@ const N8nWorkflowPage: React.FC = () => {
 
         const data = await getWorkflowBySlug(slug);
         setWorkflow(data);
+        
+        // Generate workflow description
+        const description = generateWorkflowDescription(data);
+        setWorkflowDescription(description);
+        
+        // Load related workflows
+        setRelatedLoading(true);
+        try {
+          const related = await getRelatedWorkflows(data, 6);
+          setRelatedWorkflows(related);
+        } catch (err) {
+          console.error('Error loading related workflows:', err);
+        } finally {
+          setRelatedLoading(false);
+        }
       } catch (err) {
         console.error('Error loading workflow:', err);
         setError('Failed to load workflow');
@@ -117,13 +135,49 @@ const N8nWorkflowPage: React.FC = () => {
     ? workflow.json_data 
     : JSON.stringify(workflow.json_data, null, 2);
 
+  const canonicalUrl = `https://mavericksedge.ca/largest-n8n-workflow-collection/${workflow.slug}`;
+
   return (
     <>
       <SEOHead
         title={`${workflow.title} | n8n Workflow Collection`}
-        description={`Download and import this n8n workflow: ${workflow.title}. Copy the JSON and import directly into your n8n instance.`}
-        canonicalUrl={`https://mavericksedge.ca/largest-n8n-workflow-collection/${workflow.slug}`}
+        description={workflowDescription ? 
+          `${workflowDescription.description.substring(0, 150)}... Download and import this n8n workflow: ${workflow.title}.` :
+          `Download and import this n8n workflow: ${workflow.title}. Copy the JSON and import directly into your n8n instance.`
+        }
+        canonicalUrl={canonicalUrl}
         keywords={`n8n workflow, ${workflow.title}, automation, workflow template, n8n import`}
+        structuredData={{
+          "@context": "https://schema.org",
+          "@type": "CreativeWork",
+          "name": workflow.title,
+          "description": `Download and import this n8n workflow: ${workflow.title}. Copy the JSON and import directly into your n8n instance.`,
+          "url": canonicalUrl,
+          "identifier": workflow.id.toString(),
+          "genre": "Workflow Automation",
+          "inLanguage": "en",
+          "isAccessibleForFree": true,
+          "dateCreated": workflow.created_at,
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD",
+            "availability": "https://schema.org/InStock"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": "Mavericks Edge",
+            "url": "https://mavericksedge.ca",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://mavericksedge.ca/images/logo-transparent-thumb4x.png"
+            }
+          },
+          "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": canonicalUrl
+          }
+        }}
       />
 
       <div className="min-h-screen bg-[#121212]">
@@ -208,6 +262,65 @@ const N8nWorkflowPage: React.FC = () => {
           </div>
         </div>
 
+        {/* Workflow Description & Use Cases */}
+        {workflowDescription && (
+          <div className="px-4 sm:px-6 lg:px-8 py-16">
+            <div className="max-w-4xl mx-auto">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+              >
+                <div className="bg-gradient-to-br from-[#252525] to-[#1f1f1f] rounded-2xl p-6 sm:p-8 border border-[#333]">
+                  {/* Main Description */}
+                  <div className="mb-8">
+                    <h2 className="text-2xl sm:text-3xl font-bold text-maverick-cream mb-4">
+                      What This Workflow Does
+                    </h2>
+                    <p className="text-lg text-maverick-cream/80 leading-relaxed">
+                      {workflowDescription.description}
+                    </p>
+                  </div>
+
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    {/* Use Cases */}
+                    <div>
+                      <h3 className="text-xl font-semibold text-maverick-cream mb-4 flex items-center gap-2">
+                        <div className="w-2 h-2 bg-maverick-orange rounded-full"></div>
+                        Common Use Cases
+                      </h3>
+                      <ul className="space-y-3">
+                        {workflowDescription.useCases.map((useCase, index) => (
+                          <li key={index} className="flex items-start gap-3">
+                            <div className="w-1.5 h-1.5 bg-maverick-orange rounded-full mt-2 flex-shrink-0"></div>
+                            <span className="text-maverick-cream/80">{useCase}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    {/* Benefits */}
+                    <div>
+                      <h3 className="text-xl font-semibold text-maverick-cream mb-4 flex items-center gap-2">
+                        <div className="w-2 h-2 bg-maverick-orange rounded-full"></div>
+                        Key Benefits
+                      </h3>
+                      <ul className="space-y-3">
+                        {workflowDescription.benefits.map((benefit, index) => (
+                          <li key={index} className="flex items-start gap-3">
+                            <div className="w-1.5 h-1.5 bg-maverick-orange rounded-full mt-2 flex-shrink-0"></div>
+                            <span className="text-maverick-cream/80">{benefit}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        )}
+
         {/* JSON Code Block */}
         <div className="px-4 sm:px-6 lg:px-8 pb-16">
           <div className="max-w-4xl mx-auto">
@@ -244,22 +357,150 @@ const N8nWorkflowPage: React.FC = () => {
 
         {/* Related Workflows */}
         <div className="px-4 sm:px-6 lg:px-8 pb-16">
-          <div className="max-w-4xl mx-auto">
+          <div className="max-w-6xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
             >
-              <div className="text-center">
-                <h3 className="text-2xl font-bold text-maverick-cream mb-4">
-                  Explore More Workflows
+              <div className="text-center mb-12">
+                <h3 className="text-2xl sm:text-3xl font-bold text-maverick-cream mb-4">
+                  Related Workflows
                 </h3>
-                <p className="text-maverick-cream/70 mb-8">
-                  Discover thousands of other n8n workflows in our collection
+                <p className="text-lg text-maverick-cream/80 mb-8">
+                  Discover similar workflows that might interest you
                 </p>
+              </div>
+
+              {relatedLoading ? (
+                <div className="text-center py-12">
+                  <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-maverick-orange mx-auto mb-4"></div>
+                  <p className="text-maverick-cream/70">Loading related workflows...</p>
+                </div>
+              ) : relatedWorkflows.length > 0 ? (
+                <div className="grid grid-cols-1 mini:grid-cols-2 pro:grid-cols-3 gap-4 phone:gap-6 mb-12">
+                  {relatedWorkflows.map((relatedWorkflow, index) => (
+                    <motion.div
+                      key={relatedWorkflow.id}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.6, delay: 0.1 * index }}
+                      className="group bg-gradient-to-br from-[#252525] to-[#1f1f1f] rounded-xl p-4 phone:p-6 border border-[#333] hover:border-maverick-orange/60 transition-all duration-300 hover:shadow-lg hover:shadow-maverick-orange/10 hover:-translate-y-1 min-w-0"
+                    >
+                      <div className="mb-4 min-w-0">
+                        <a 
+                          href={`/largest-n8n-workflow-collection/${relatedWorkflow.slug}`}
+                          className="block group-hover:text-white transition-colors duration-300 min-w-0"
+                        >
+                          <h4 className="text-base phone:text-lg font-semibold text-maverick-cream mb-2 leading-tight group-hover:text-white transition-colors duration-300 break-words overflow-wrap-anywhere">
+                            {relatedWorkflow.title}
+                          </h4>
+                        </a>
+                        <div className="flex items-center gap-2 text-xs text-[#AAAAAA] flex-wrap">
+                          <span className="whitespace-nowrap">n8n Workflow</span>
+                          <span>•</span>
+                          <span className="whitespace-nowrap">ID: {relatedWorkflow.id}</span>
+                        </div>
+                      </div>
+
+                      <div className="flex gap-2 min-w-0">
+                        <a
+                          href={`/largest-n8n-workflow-collection/${relatedWorkflow.slug}`}
+                          className="flex-1 flex items-center justify-center gap-1.5 phone:gap-2 px-3 phone:px-4 py-2 bg-[#333] text-[#AAAAAA] rounded-lg hover:bg-[#444] hover:text-white transition-colors text-sm min-w-0"
+                        >
+                          <ExternalLink className="w-4 h-4 flex-shrink-0" />
+                          <span className="truncate">View</span>
+                        </a>
+                        <button
+                          onClick={() => {
+                            const jsonString = typeof relatedWorkflow.json_data === 'string' 
+                              ? relatedWorkflow.json_data 
+                              : JSON.stringify(relatedWorkflow.json_data, null, 2);
+                            navigator.clipboard.writeText(jsonString);
+                          }}
+                          className="flex items-center justify-center gap-1.5 phone:gap-2 px-3 phone:px-4 py-2 bg-maverick-orange text-white rounded-lg hover:bg-maverick-light-orange transition-colors text-sm flex-shrink-0"
+                        >
+                          <Copy className="w-4 h-4 flex-shrink-0" />
+                          <span className="hidden xs:inline">Copy</span>
+                          <span className="xs:hidden">Copy</span>
+                        </button>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              ) : (
+                <div className="text-center py-12">
+                  <p className="text-maverick-cream/70 mb-6">No related workflows found.</p>
+                </div>
+              )}
+
+              <div className="text-center">
                 <Button href="/largest-n8n-workflow-collection" variant="primary" className="text-lg px-8 py-4">
                   Browse All Workflows
                 </Button>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+
+        {/* What is n8n? Section */}
+        <div className="px-4 sm:px-6 lg:px-8 py-16 bg-[#1A1A1A]">
+          <div className="max-w-4xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+            >
+              <h2 className="text-2xl sm:text-3xl font-bold text-maverick-cream mb-6">
+                What is n8n?
+              </h2>
+              <div className="text-maverick-cream/80 space-y-4 leading-relaxed">
+                <p>
+                  n8n is an open-source workflow automation tool that connects your business applications without writing code. Think of it as the plumbing between all your software: when something happens in one app, n8n automatically triggers actions in another.
+                </p>
+                <p>
+                  Unlike subscription-based automation platforms that charge per task, n8n runs on your own infrastructure. You download it, install it on your server, and you're done. No monthly fees that scale with usage. No restrictions on how many workflows you can run or how much data you can process.
+                </p>
+                <p>
+                  The platform uses a visual workflow editor where you drag nodes onto a canvas and connect them. Each node represents an action: fetch data from an API, send a Slack message, update a spreadsheet, process webhook data. String enough nodes together and you've built an automation that handles tasks you used to do manually.
+                </p>
+                <p>
+                  Since n8n is open source, developers can extend it with custom nodes, modify the source code, or integrate it deeply into existing systems. For businesses, this means you're never locked into someone else's roadmap. If you need a specific integration or feature, you can build it yourself or hire someone who can.
+                </p>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+
+        {/* Why Use n8n Workflow Automations? Section */}
+        <div className="px-4 sm:px-6 lg:px-8 py-16">
+          <div className="max-w-4xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+            >
+              <h2 className="text-2xl sm:text-3xl font-bold text-maverick-cream mb-6">
+                Why Use n8n Workflow Automations?
+              </h2>
+              <div className="text-maverick-cream/80 space-y-4 leading-relaxed">
+                <p>
+                  Your team wastes hours every week on repetitive tasks. Copy data from emails into spreadsheets. Check one system and update another. Send the same notification to five different places. These aren't strategic activities, but someone has to do them.
+                </p>
+                <p>
+                  n8n workflows handle that grunt work automatically. Set up a workflow once, and it runs forever. Your CRM gets a new lead? The workflow scores it, adds it to your spreadsheet, notifies your sales team in Slack, and creates a follow-up task in your project management tool. All of this happens in seconds, without human intervention.
+                </p>
+                <p>
+                  The business case is straightforward. If your team spends 10 hours a week on manual data entry and coordination, that's 520 hours a year. At $50 per hour, you're burning $26,000 annually on work a computer should handle. Most businesses can automate these tasks with n8n workflows in a few days.
+                </p>
+                <p>
+                  Beyond cost savings, automation means consistency. Humans forget steps, make typos, or skip processes when they're busy. Workflows execute the same way every single time. Your data stays clean, your notifications go out on schedule, and nothing falls through the cracks because someone was out sick or dealing with an emergency.
+                </p>
+                <p>
+                  The workflows in this collection give you a head start. Instead of building automations from scratch, copy the JSON, import it into n8n, and customize it for your specific tools and processes. What might take days to build takes minutes to deploy.
+                </p>
               </div>
             </motion.div>
           </div>

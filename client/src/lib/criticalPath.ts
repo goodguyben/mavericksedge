@@ -24,7 +24,7 @@ export const CriticalPathLoader = {
     const preloadMap: Record<string, () => Promise<any>> = {
       '/': () => import('@/pages/Services'),
       '/services': () => import('@/pages/Pricing'),
-      '/pricing': () => import('@/pages/Contact'),
+      '/pricing-edmonton-web-design-marketing': () => import('@/pages/Contact'),
       '/work': () => import('@/pages/About'),
       '/about': () => import('@/pages/Contact'),
     };

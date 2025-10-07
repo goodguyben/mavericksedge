@@ -4,48 +4,9 @@ import { writeFileSync, mkdirSync } from 'fs';
 import { join } from 'path';
 
 const blogImages = [
-  {
-    filename: 'ai-automation-guide.jpg',
-    title: 'AI Automation Guide',
-    subtitle: 'Complete 2025 Guide',
-    color: '#3B82F6'
-  },
-  {
-    filename: 'chatbot-implementation.jpg',
-    title: 'Chatbot Implementation',
-    subtitle: 'Step-by-Step Guide',
-    color: '#10B981'
-  },
-  {
-    filename: 'marketing-automation.jpg',
-    title: 'Marketing Automation',
-    subtitle: 'Proven Strategies',
-    color: '#F59E0B'
-  },
-  {
-    filename: 'seo-automation-tools.jpg',
-    title: 'SEO Automation Tools',
-    subtitle: 'Top Tools for 2025',
-    color: '#8B5CF6'
-  },
-  {
-    filename: 'web-design-automation.jpg',
-    title: 'Web Design Automation',
-    subtitle: 'AI-Powered Design',
-    color: '#EF4444'
-  },
-  {
-    filename: 'data-analytics-automation.jpg',
-    title: 'Data Analytics Automation',
-    subtitle: 'Smart Business Decisions',
-    color: '#06B6D4'
-  },
-  {
-    filename: 'customer-service-automation.jpg',
-    title: 'Customer Service Automation',
-    subtitle: '24/7 Support Solutions',
-    color: '#84CC16'
-  }
+  // This script is currently not generating images for any blog posts
+  // as all the previous entries were for non-existent posts
+  // Add new blog post image configurations here when needed
 ];
 
 function generateBlogSVG({ filename, title, subtitle, color }) {

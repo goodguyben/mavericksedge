@@ -1,144 +1,268 @@
-import { motion } from "framer-motion";
-import { ExternalLink, ArrowRight } from "lucide-react";
-import { Link } from "wouter";
+import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
+import { Link } from 'wouter';
+import { ExternalLink, Maximize2 } from 'lucide-react';
+import {
+  SliderBtnGroup,
+  ProgressSlider,
+  SliderBtn,
+  SliderContent,
+  SliderWrapper,
+  useProgressSliderContext,
+} from '@/components/ui/progressive-carousel';
 
 const portfolioItems = [
   {
-    id: 1,
-    title: "Edmonton Healthcare Clinic",
-    category: "Healthcare & Medical",
-    description: "Modern, patient-focused website with online booking and telehealth integration",
-    image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    technologies: ["WordPress", "Custom Booking System", "HIPAA Compliance"],
-    results: "65% increase in online appointments"
+    img: "https://images.unsplash.com/photo-1505664194779-8beaceb93744?q=80&w=1170&auto=format&fit=crop",
+    title: 'Deville Coffee',
+    desc: 'Multi-location coffee chain website with online ordering, location finder, and direct trade coffee showcase.',
+    sliderName: 'deville-coffee',
+    category: 'Food & Beverage',
+    technologies: ['Custom CMS', 'E-commerce', 'Responsive Design'],
+    liveUrl: 'https://www.devillecoffee.ca/',
   },
   {
-    id: 2,
-    title: "Local Edmonton Restaurant",
-    category: "Food & Beverage",
-    description: "Appetizing website design with online ordering and reservation system",
-    image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    technologies: ["E-commerce", "POS Integration", "Mobile Ordering"],
-    results: "200% increase in online orders"
+    img: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=1170&auto=format&fit=crop",
+    title: 'Next Architecture',
+    desc: '87-year legacy architecture firm with modern portfolio showcase, project galleries, and career portal.',
+    sliderName: 'next-architecture',
+    category: 'Architecture',
+    technologies: ['React', 'Portfolio System', 'Modern Design'],
+    liveUrl: 'https://www.nextarchitecture.ca/',
   },
   {
-    id: 3,
-    title: "Edmonton Law Firm",
-    category: "Professional Services",
-    description: "Professional, trustworthy website showcasing legal expertise and client testimonials",
-    image: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    technologies: ["Custom CMS", "SEO Optimization", "Lead Generation"],
-    results: "180% increase in consultation requests"
+    img: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1170&auto=format&fit=crop",
+    title: 'Pixel Blue College',
+    desc: 'Edmonton\'s leading digital arts post-secondary institution with program showcases, admissions portal, and student resources.',
+    sliderName: 'pixel-blue',
+    category: 'Education',
+    technologies: ['Custom CMS', 'Student Portal', 'Responsive Design'],
+    liveUrl: 'https://www.pixelblue.ca/',
   },
   {
-    id: 4,
-    title: "Edmonton Nonprofit Organization",
-    category: "Community & Nonprofit",
-    description: "Impact-driven website with donation platform and volunteer management",
-    image: "https://images.unsplash.com/photo-1559027615-cd4628902d4a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    technologies: ["Donation Integration", "Volunteer Portal", "Event Management"],
-    results: "300% increase in online donations"
+    img: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=1170&auto=format&fit=crop",
+    title: 'Tailored Interior',
+    desc: 'Award-winning interior design firm with project showcase, e-design services, and online shop integration.',
+    sliderName: 'tailored-interior',
+    category: 'Interior Design',
+    technologies: ['Wix Custom', 'E-commerce', 'Portfolio Gallery'],
+    liveUrl: 'https://www.tailoredinterior.ca/',
   },
-  {
-    id: 5,
-    title: "Edmonton Real Estate Agency",
-    category: "Real Estate",
-    description: "Dynamic property showcase with advanced search and virtual tours",
-    image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    technologies: ["Property Management", "Virtual Tours", "MLS Integration"],
-    results: "120% increase in property inquiries"
-  },
-  {
-    id: 6,
-    title: "Edmonton Fitness Studio",
-    category: "Health & Wellness",
-    description: "Energetic design with class scheduling and membership management",
-    image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    technologies: ["Booking System", "Payment Processing", "Member Portal"],
-    results: "150% increase in memberships"
-  }
 ];
 
-export default function PortfolioSection() {
+// Mobile Component - Shows only active progress bar with animation
+const MobileProgressBar: React.FC = () => {
+  const { active } = useProgressSliderContext();
+  const activeItem = portfolioItems.find(item => item.sliderName === active);
+  
+  if (!activeItem) return null;
+
   return (
-    <section id="portfolio" className="py-24 px-5 md:px-10 bg-[#1E1E1E]">
+    <div className="absolute bottom-0 left-0 right-0 h-fit text-white bg-black/40 backdrop-blur-md overflow-hidden rounded-b-xl">
+      <SliderBtn
+        value={activeItem.sliderName}
+        className="text-left cursor-pointer p-3 w-full"
+        progressBarClass="bg-maverick-orange h-full"
+      >
+        <h4 className="relative text-sm font-semibold mb-1 line-clamp-1 text-white">
+          {activeItem.title}
+        </h4>
+        <p className="text-xs text-[#AAAAAA] line-clamp-2 leading-tight mb-2">
+          {activeItem.desc}
+        </p>
+        <Link
+          href={
+            activeItem.sliderName === 'deville-coffee' ? '/case-studies/deville-coffee'
+            : activeItem.sliderName === 'next-architecture' ? '/case-studies/next-architecture'
+            : activeItem.sliderName === 'pixel-blue' ? '/case-studies/pixel-blue-college'
+            : activeItem.sliderName === 'tailored-interior' ? '/case-studies/tailored-interior'
+            : '#'
+          }
+        >
+          <span
+            className="inline-flex items-center gap-1 text-xs !text-white hover:!text-gray-300 transition-colors duration-200 font-medium"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <ExternalLink className="h-3 w-3" />
+            View Case Study
+          </span>
+        </Link>
+      </SliderBtn>
+    </div>
+  );
+};
+
+// Desktop Component - Shows all 4 progress bars
+const DesktopProgressBars: React.FC = () => {
+  return (
+    <SliderBtnGroup className="absolute bottom-0 left-0 right-0 h-fit text-white bg-black/40 backdrop-blur-md overflow-hidden grid grid-cols-4 rounded-b-xl">
+      {portfolioItems.map((item, index) => (
+        <SliderBtn
+          key={index}
+          value={item.sliderName}
+          className="text-left cursor-pointer p-3 border-r border-gray-700 hover:bg-black/20 transition-colors duration-200"
+          progressBarClass="bg-maverick-orange h-full"
+        >
+          <h4 className="relative text-sm font-semibold mb-1 line-clamp-1 text-white">
+            {item.title}
+          </h4>
+          <p className="text-xs text-[#AAAAAA] line-clamp-2 leading-tight mb-2">
+            {item.desc}
+          </p>
+          <Link
+            href={
+              item.sliderName === 'deville-coffee' ? '/case-studies/deville-coffee'
+              : item.sliderName === 'next-architecture' ? '/case-studies/next-architecture'
+              : item.sliderName === 'pixel-blue' ? '/case-studies/pixel-blue-college'
+              : item.sliderName === 'tailored-interior' ? '/case-studies/tailored-interior'
+              : '#'
+            }
+          >
+            <span
+              className="inline-flex items-center gap-1 text-xs !text-white hover:!text-gray-300 transition-colors duration-200 font-medium"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <ExternalLink className="h-3 w-3" />
+              View Case Study
+            </span>
+          </Link>
+        </SliderBtn>
+      ))}
+    </SliderBtnGroup>
+  );
+};
+
+export const PortfolioSection: React.FC = () => {
+  return (
+    <section className="py-24 px-5 md:px-10 bg-[#1E1E1E]">
       <div className="container mx-auto">
         <motion.div 
           className="text-center mb-16"
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.5 }}
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 font-heading">Edmonton Web Design Portfolio</h2>
-          <p className="text-xl text-[#CCCCCC] max-w-3xl mx-auto">
-            Real results for real Edmonton businesses. See how our custom web design solutions have helped local companies grow their online presence.
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 font-heading text-white">
+            Edmonton Web Design Portfolio
+          </h2>
+          <p className="text-[#AAAAAA] text-xl max-w-3xl mx-auto">
+            See Our Success Stories – Interact with live websites we've built for Edmonton businesses. 
+            Click, scroll, and explore real client projects.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+        <div className="max-w-6xl mx-auto">
+          <ProgressSlider vertical={false} activeSlider='deville-coffee' duration={10000}>
+            <SliderContent>
           {portfolioItems.map((item, index) => (
-            <motion.div
-              key={item.id}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="group"
-            >
-              <div className="bg-[#121212] rounded-xl overflow-hidden border border-gray-800 hover:border-maverick-orange/50 transition-all duration-300">
-                <div className="relative aspect-video overflow-hidden">
-                  <img 
-                    src={item.image} 
-                    alt={item.title} 
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" 
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
-                  <div className="absolute top-4 right-4 bg-maverick-orange text-white px-3 py-1 rounded-full text-sm font-medium">
-                    {item.category}
-                  </div>
+                <SliderWrapper key={index} value={item.sliderName}>
+                  <div className="relative group">
+                    {/* Interactive Live Mode */}
+                    <div className="relative rounded-xl overflow-hidden shadow-2xl bg-white">
+                      {/* Browser Chrome */}
+                      <div className="bg-[#E8E8E8] px-4 py-3 flex items-center gap-2 border-b border-gray-300">
+                        <div className="flex gap-2">
+                          <div className="w-3 h-3 rounded-full bg-[#FF5F56]"></div>
+                          <div className="w-3 h-3 rounded-full bg-[#FFBD2E]"></div>
+                          <div className="w-3 h-3 rounded-full bg-[#27C93F]"></div>
+                        </div>
+                        <div className="flex-1 mx-4 bg-white rounded-md px-3 py-1 text-xs text-gray-600 flex items-center gap-2">
+                          <ExternalLink className="h-3 w-3" />
+                          {item.liveUrl}
+                        </div>
+                        <a
+                          href={item.liveUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-gray-600 hover:text-gray-900"
+                          title="Open in new tab"
+                        >
+                          <Maximize2 className="h-4 w-4" />
+                        </a>
                 </div>
                 
-                <div className="p-6">
-                  <h3 className="text-xl font-bold mb-2 font-heading group-hover:text-maverick-orange transition-colors duration-300">
-                    {item.title}
-                  </h3>
-                  <p className="text-[#AAAAAA] mb-4 text-sm leading-relaxed">
-                    {item.description}
-                  </p>
-                  
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {item.technologies.map((tech, idx) => (
-                      <span key={idx} className="bg-maverick-orange/10 text-maverick-orange px-2 py-1 rounded text-xs">
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                  
-                  <div className="flex items-center justify-between">
-                    <div className="text-sm">
-                      <span className="text-green-500 font-semibold">{item.results}</span>
-                    </div>
-                    <div className="flex items-center gap-2 text-maverick-orange text-sm group-hover:gap-3 transition-all duration-300">
-                      <span>View Details</span>
-                      <ArrowRight className="h-4 w-4" />
-                    </div>
+                      {/* Live Website Iframe */}
+                      <div className="relative w-full 2xl:h-[700px] h-[650px] bg-white">
+                        <iframe
+                          src={item.liveUrl}
+                          className="w-full h-full border-0"
+                          title={item.title}
+                          loading="lazy"
+                          sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
+                        />
                   </div>
                 </div>
               </div>
-            </motion.div>
+                </SliderWrapper>
           ))}
+            </SliderContent>
+
+            {/* Mobile: Show only active progress bar with animation */}
+            <div className="block lg:hidden">
+              <MobileProgressBar />
         </div>
         
-        <div className="text-center">
-          <Link href="/work">
-            <div className="maverick-button maverick-button-outline inline-flex items-center justify-center px-8 py-3 text-base font-medium rounded-md md:py-4 md:text-lg md:px-10 cursor-pointer">
-              View Complete Portfolio
-              <ArrowRight className="ml-2 h-5 w-5" />
+            {/* Desktop: Show all 4 progress bars */}
+            <div className="hidden lg:block">
+              <DesktopProgressBars />
             </div>
-          </Link>
+          </ProgressSlider>
         </div>
+
+        {/* Info Notice */}
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="max-w-lg mx-auto mt-8"
+        >
+          <div className="relative bg-gradient-to-r from-maverick-orange/5 to-maverick-orange/10 border border-maverick-orange/20 rounded-lg px-3 py-1.5 text-center backdrop-blur-sm">
+            <div className="flex items-center justify-center gap-2 pt-2">
+              <motion.span 
+                className="text-lg -mt-2"
+                animate={{ 
+                  filter: [
+                    "drop-shadow(0 0 0px rgba(255, 86, 48, 0))",
+                    "drop-shadow(0 0 6px rgba(255, 86, 48, 0.4))",
+                    "drop-shadow(0 0 0px rgba(255, 86, 48, 0))"
+                  ]
+                }}
+                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+              >
+                💡
+              </motion.span>
+              <p className="text-[#CCCCCC] text-sm font-medium">
+                <span className="text-maverick-orange font-semibold">Interactive Portfolio:</span> Live websites you can click, scroll, and explore
+              </p>
+            </div>
+          </div>
+        </motion.div>
+
+        <motion.div 
+          className="text-center mt-12"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+        >
+          <p className="text-[#AAAAAA] mb-6">
+            Ready to join our success stories? Let's discuss your project.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link href="/contact">
+              <a className="maverick-button maverick-button-primary inline-flex items-center justify-center rounded-full px-8 py-3 text-base font-medium">
+                Start Your Project
+              </a>
+            </Link>
+            <Link href="/services">
+              <a className="maverick-button maverick-button-outline inline-flex items-center justify-center rounded-full px-8 py-3 text-base font-medium">
+                View All Services
+              </a>
+            </Link>
+          </div>
+        </motion.div>
       </div>
     </section>
   );
-}
+};

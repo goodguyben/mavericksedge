@@ -50,6 +50,10 @@ const Blog = lazy(() => import("@/pages/Blog"));
 const BlogPost = lazy(() => import("@/pages/BlogPost"));
 const N8nWorkflowCollection = lazy(() => import("@/pages/N8nWorkflowCollection"));
 const N8nWorkflowPage = lazy(() => import("@/pages/N8nWorkflowPage"));
+const CaseStudyDevilleCoffee = lazy(() => import("@/pages/CaseStudyDevilleCoffee"));
+const CaseStudyNextArchitecture = lazy(() => import("@/pages/CaseStudyNextArchitecture"));
+const CaseStudyPixelBlueCollege = lazy(() => import("@/pages/CaseStudyPixelBlueCollege"));
+const CaseStudyTailoredInterior = lazy(() => import("@/pages/CaseStudyTailoredInterior"));
 const NotFound = lazy(() => import("@/pages/not-found"));
 
 export default function App() {
@@ -232,6 +236,18 @@ export default function App() {
               </Route>
               <Route path="/largest-n8n-workflow-collection/:slug">
                 <N8nWorkflowPage />
+              </Route>
+              <Route path="/case-studies/deville-coffee">
+                <CaseStudyDevilleCoffee />
+              </Route>
+              <Route path="/case-studies/next-architecture">
+                <CaseStudyNextArchitecture />
+              </Route>
+              <Route path="/case-studies/pixel-blue-college">
+                <CaseStudyPixelBlueCollege />
+              </Route>
+              <Route path="/case-studies/tailored-interior">
+                <CaseStudyTailoredInterior />
               </Route>
               <Route>
                 <NotFound />

@@ -4,6 +4,21 @@
   "outputDirectory": "dist/public",
   "redirects": [
     {
+      "source": "/largest-n8n-workflow-collection/",
+      "destination": "/largest-n8n-workflow-collection",
+      "statusCode": 301
+    },
+    {
+      "source": "/largest-n8n-workflow-collection/:slug/",
+      "destination": "/largest-n8n-workflow-collection/:slug",
+      "statusCode": 301
+    },
+    {
+      "source": "/pricing",
+      "destination": "/pricing-edmonton-web-design-marketing",
+      "statusCode": 301
+    },
+    {
       "source": "/pricing/web",
       "destination": "/web-design-pricing-edmonton",
       "statusCode": 301
@@ -41,6 +56,51 @@
     {
       "source": "/search",
       "destination": "/blog",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/web-design-automation",
+      "destination": "/blog",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/chatbot-implementation-guide",
+      "destination": "/blog",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/data-analytics-automation",
+      "destination": "/blog",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/customer-service-automation",
+      "destination": "/blog",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/ai-automation-2025-guide",
+      "destination": "/blog",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/seo-automation-tools",
+      "destination": "/blog",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/good-seo-is-good-ge",
+      "destination": "/blog/good-seo-is-good-geo",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/marketing-automation-strategies",
+      "destination": "/blog",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/good-seo-is-good",
+      "destination": "/blog/good-seo-is-good-geo",
       "statusCode": 301
     }
   ],
