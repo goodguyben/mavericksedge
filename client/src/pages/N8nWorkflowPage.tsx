@@ -505,6 +505,53 @@ const N8nWorkflowPage: React.FC = () => {
             </motion.div>
           </div>
         </div>
+
+        {/* About Mavericks Edge Section */}
+        <div className="px-4 sm:px-6 lg:px-8 py-16 bg-[#1A1A1A] border-t border-[#333]">
+          <div className="max-w-4xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+            >
+              <h2 className="text-2xl sm:text-3xl font-bold text-maverick-cream mb-6">
+                Need Help Implementing Automation?
+              </h2>
+              <div className="text-maverick-cream/80 space-y-4 leading-relaxed">
+                <p>
+                  At Mavericks Edge, we help Edmonton businesses automate workflows and build web solutions that work together seamlessly. Our{' '}
+                  <a 
+                    href="https://mavericksedge.ca/ai-automation-services-edmonton" 
+                    className="text-maverick-orange hover:text-maverick-light-orange transition-colors underline decoration-1 underline-offset-2"
+                  >
+                    AI Services
+                  </a>
+                  {' '}team specializes in custom n8n integrations, API development, and complete digital infrastructure that connects the pieces to make your business run smoother.
+                </p>
+                <p>
+                  Looking to complement your automation with a professional web presence? Our{' '}
+                  <a 
+                    href="https://mavericksedge.ca/web-design-services-edmonton" 
+                    className="text-maverick-orange hover:text-maverick-light-orange transition-colors underline decoration-1 underline-offset-2"
+                  >
+                    Edmonton Web Design
+                  </a>
+                  {' '}services create websites that integrate directly with your automated workflows. From custom dashboards to client portals, we build digital experiences that leverage the power of automation.
+                </p>
+                <div className="pt-4">
+                  <a
+                    href="/contact"
+                    className="inline-flex items-center px-6 py-3 min-h-[44px] rounded-lg text-base font-medium transition-all duration-300 touch-manipulation bg-[#FF5630] text-[#FFFFFF] hover:bg-[#FF5630]/90"
+                    style={{ color: '#FFFFFF' }}
+                  >
+                    Contact
+                  </a>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
       </div>
     </>
   );

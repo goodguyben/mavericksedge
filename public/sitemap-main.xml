@@ -5,7 +5,7 @@
   <!-- Homepage -->
   <url>
     <loc>https://mavericksedge.ca/</loc>
-    <lastmod>2025-07-20</lastmod>
+    <lastmod>2025-10-07T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <image:image>
@@ -18,7 +18,7 @@
   <!-- About -->
   <url>
     <loc>https://mavericksedge.ca/about</loc>
-    <lastmod>2025-07-20</lastmod>
+    <lastmod>2025-10-07T00:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -26,7 +26,7 @@
   <!-- Work/Portfolio -->
   <url>
     <loc>https://mavericksedge.ca/work</loc>
-    <lastmod>2025-07-20</lastmod>
+    <lastmod>2025-10-07T00:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -34,7 +34,7 @@
   <!-- Contact -->
   <url>
     <loc>https://mavericksedge.ca/contact</loc>
-    <lastmod>2025-07-20</lastmod>
+    <lastmod>2025-10-07T00:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -43,7 +43,7 @@
 
   <url>
     <loc>https://mavericksedge.ca/services</loc>
-    <lastmod>2025-07-20</lastmod>
+    <lastmod>2025-10-07T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -51,7 +51,7 @@
   <!-- Blog Pages -->
   <url>
     <loc>https://mavericksedge.ca/blog</loc>
-    <lastmod>2025-08-12</lastmod>
+    <lastmod>2025-09-30T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -59,7 +59,7 @@
   <!-- n8n Workflow Collection -->
   <url>
     <loc>https://mavericksedge.ca/largest-n8n-workflow-collection</loc>
-    <lastmod>2025-09-29</lastmod>
+    <lastmod>2025-10-06T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -67,7 +67,7 @@
   <!-- RSS Feed -->
   <url>
     <loc>https://mavericksedge.ca/rss.xml</loc>
-    <lastmod>2025-08-25</lastmod>
+    <lastmod>2025-09-30T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
   </url>
@@ -76,42 +76,42 @@
   <!-- Legal Pages -->
   <url>
     <loc>https://mavericksedge.ca/privacy</loc>
-    <lastmod>2025-05-09</lastmod>
+    <lastmod>2025-05-09T00:00:00+00:00</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
 
   <url>
     <loc>https://mavericksedge.ca/terms</loc>
-    <lastmod>2025-05-21</lastmod>
+    <lastmod>2025-05-21T00:00:00+00:00</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
 
   <url>
     <loc>https://mavericksedge.ca/cookie-policy</loc>
-    <lastmod>2025-05-20</lastmod>
+    <lastmod>2025-05-20T00:00:00+00:00</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
 
   <url>
     <loc>https://mavericksedge.ca/gdpr-compliance</loc>
-    <lastmod>2025-05-19</lastmod>
+    <lastmod>2025-05-19T00:00:00+00:00</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
 
   <url>
     <loc>https://mavericksedge.ca/accessibility</loc>
-    <lastmod>2025-05-19</lastmod>
+    <lastmod>2025-05-19T00:00:00+00:00</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
 
   <url>
     <loc>https://mavericksedge.ca/compliance</loc>
-    <lastmod>2025-05-19</lastmod>
+    <lastmod>2025-05-19T00:00:00+00:00</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>

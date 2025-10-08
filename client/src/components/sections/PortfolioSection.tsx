@@ -144,7 +144,7 @@ export const PortfolioSection: React.FC = () => {
           transition={{ duration: 0.5 }}
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-4 font-heading text-white">
-            Edmonton Web Design Portfolio
+            Web Design Portfolio of Edmonton Businesses
           </h2>
           <p className="text-[#AAAAAA] text-xl max-w-3xl mx-auto">
             See Our Success Stories – Interact with live websites we've built for Edmonton businesses. 

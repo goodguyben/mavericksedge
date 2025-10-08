@@ -1175,7 +1175,7 @@ export default function WebServicesLeduc() {
 
               {/* Desktop layout */}
               <div className="hidden lg:grid grid-cols-2 gap-12 items-center">
-                <div className="pr-20 sm:pr-24 md:pr-0">
+                <div>
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
