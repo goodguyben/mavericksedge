@@ -22,6 +22,7 @@ import GoogleReviews from '@/components/GoogleReviews';
 // Lazy load non-critical components
 import ServiceCascadeSection from "@/components/sections/ServiceCascadeSection";
 import ContactSection from "@/components/sections/ContactSection";
+import PartnersSection from "@/components/sections/PartnersSection";
 const WhyChooseUsSection = lazy(() => import("@/components/sections/WhyChooseUsSection"));
 
 // Optimized fallback component
@@ -194,6 +195,22 @@ export default function Home() {
               useFallback={true} // Use original implementation for now
             >
               <ContactSection />
+            </ScrollFadeSection>
+          </LazySection>
+
+          {/* Partners Section */}
+          <LazySection threshold={0.1} rootMargin="50px">
+            <ScrollFadeSection
+              id="partners"
+              fadeInPoint={0.5}
+              fadeOutPoint={0.6}
+              fadeInDuration={0.9}
+              fadeOutDuration={1.6}
+              initialOpacity={0}
+              minOpacity={0.1}
+              useFallback={true}
+            >
+              <PartnersSection />
             </ScrollFadeSection>
           </LazySection>
         </article>
