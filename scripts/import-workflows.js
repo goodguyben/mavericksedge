@@ -23,8 +23,17 @@ function extractWorkflowTitle(workflowJson) {
   try {
     const data = typeof workflowJson === 'string' ? JSON.parse(workflowJson) : workflowJson;
     
-    // Extract title from metadata or use a default
-    const title = data.metadata?.title || 'Untitled Workflow';
+    // Extract title from name field first, then metadata
+    let title = data.name || data.metadata?.title || 'Untitled Workflow';
+    
+    // If title is still "Untitled Workflow", try to generate from filename or nodes
+    if (title === 'Untitled Workflow' && data.nodes && data.nodes.length > 0) {
+      // Try to get title from first node name
+      const firstNode = data.nodes[0];
+      if (firstNode.name && firstNode.name !== 'Start' && firstNode.name !== 'On Workflow Execution') {
+        title = firstNode.name + ' Workflow';
+      }
+    }
     
     return title;
   } catch (error) {
@@ -45,10 +54,36 @@ function generateSlug(title) {
     .replace(/^-|-$/g, ''); // Remove leading/trailing hyphens
 }
 
+// Function to get the current max ID from database
+async function getMaxId() {
+  try {
+    const { data, error } = await supabase
+      .from('workflows')
+      .select('id')
+      .order('id', { ascending: false })
+      .limit(1)
+      .single();
+    
+    if (error && error.code !== 'PGRST116') { // PGRST116 is "no rows returned"
+      throw error;
+    }
+    
+    return data ? data.id : 0;
+  } catch (error) {
+    console.error('Error getting max ID:', error);
+    return 0;
+  }
+}
+
 // Function to import workflows from a directory
 async function importWorkflowsFromDirectory(directoryPath) {
   try {
     console.log(`Reading workflows from: ${directoryPath}`);
+    
+    // Get current max ID from database
+    const maxId = await getMaxId();
+    console.log(`Current max ID in database: ${maxId}`);
+    console.log(`New workflows will start from ID: ${maxId + 1}`);
     
     // Read all JSON files from the directory
     const files = fs.readdirSync(directoryPath).filter(file => file.endsWith('.json'));
@@ -78,20 +113,26 @@ async function importWorkflowsFromDirectory(directoryPath) {
     
     console.log(`\nPrepared ${workflows.length} workflows for import`);
     
-    // Insert workflows with sequential IDs starting from 1
+    // Insert workflows with sequential IDs starting from maxId + 1
     const batchSize = 100;
     let inserted = 0;
     
     for (let i = 0; i < workflows.length; i += batchSize) {
       const batch = workflows.slice(i, i + batchSize);
       
-      // Add sequential IDs starting from 1
-      const batchWithIds = batch.map((workflow, index) => ({
-        id: inserted + index + 1,
-        title: workflow.title,
-        slug: workflow.slug,
-        json_data: workflow.json_data
-      }));
+      // Add sequential IDs starting from maxId + 1
+      const batchWithIds = batch.map((workflow, index) => {
+        const currentId = maxId + inserted + index + 1;
+        // Make slug unique by appending ID
+        const uniqueSlug = `${workflow.slug}-${currentId}`;
+        
+        return {
+          id: currentId,
+          title: workflow.title,
+          slug: uniqueSlug,
+          json_data: workflow.json_data
+        };
+      });
       
       console.log(`Inserting batch ${Math.floor(i / batchSize) + 1} (${batch.length} workflows)...`);
       
@@ -119,6 +160,11 @@ async function importWorkflowsFromFile(filePath) {
   try {
     console.log(`Reading workflows from: ${filePath}`);
     
+    // Get current max ID from database
+    const maxId = await getMaxId();
+    console.log(`Current max ID in database: ${maxId}`);
+    console.log(`New workflows will start from ID: ${maxId + 1}`);
+    
     const fileContent = fs.readFileSync(filePath, 'utf8');
     const workflowsData = JSON.parse(fileContent);
     
@@ -139,20 +185,26 @@ async function importWorkflowsFromFile(filePath) {
     
     console.log(`\nPrepared ${workflows.length} workflows for import`);
     
-    // Insert workflows with sequential IDs starting from 1
+    // Insert workflows with sequential IDs starting from maxId + 1
     const batchSize = 100;
     let inserted = 0;
     
     for (let i = 0; i < workflows.length; i += batchSize) {
       const batch = workflows.slice(i, i + batchSize);
       
-      // Add sequential IDs starting from 1
-      const batchWithIds = batch.map((workflow, index) => ({
-        id: inserted + index + 1,
-        title: workflow.title,
-        slug: workflow.slug,
-        json_data: workflow.json_data
-      }));
+      // Add sequential IDs starting from maxId + 1
+      const batchWithIds = batch.map((workflow, index) => {
+        const currentId = maxId + inserted + index + 1;
+        // Make slug unique by appending ID
+        const uniqueSlug = `${workflow.slug}-${currentId}`;
+        
+        return {
+          id: currentId,
+          title: workflow.title,
+          slug: uniqueSlug,
+          json_data: workflow.json_data
+        };
+      });
       
       console.log(`Inserting batch ${Math.floor(i / batchSize) + 1} (${batch.length} workflows)...`);
       

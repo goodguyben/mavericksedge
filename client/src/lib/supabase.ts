@@ -14,6 +14,7 @@ export interface Workflow {
   slug: string;
   json_data: any;
   created_at: string;
+  description?: string;
 }
 
 // Workflow description interface

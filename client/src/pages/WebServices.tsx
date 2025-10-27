@@ -2242,8 +2242,8 @@ export default function WebServices() {
 
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-16 gap-y-12">
                   {processSteps.map((step, index) => (
-                    <motion.div
-                      key={index}
+                        <motion.div
+                          key={index}
                       initial={{ opacity: 0, y: 30 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}

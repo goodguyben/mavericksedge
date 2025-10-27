@@ -137,21 +137,34 @@ const N8nWorkflowPage: React.FC = () => {
 
   const canonicalUrl = `https://mavericksedge.ca/largest-n8n-workflow-collection/${workflow.slug}`;
 
+  // Build meta description - use stored description if available
+  const metaDescription = workflow.description 
+    ? workflow.description.substring(0, 155)
+    : workflowDescription?.description?.substring(0, 155) || 
+      `Download and import this n8n workflow: ${workflow.title}. Copy the JSON and import directly into your n8n instance.`;
+
+  // Extract keywords from title for richer keyword tags
+  const titleKeywords = workflow.title.toLowerCase()
+    .replace(/[^\w\s]/g, ' ')
+    .split(/\s+/)
+    .filter(w => w.length > 2)
+    .slice(0, 5)
+    .join(', ');
+
+  const keywords = `n8n workflow, ${workflow.title}, automation, workflow template, AI automation, business process automation, workflow import, free n8n template, ${titleKeywords}, automation workflow, n8n templates`;
+
   return (
     <>
       <SEOHead
         title={`${workflow.title} | n8n Workflow Collection`}
-        description={workflowDescription ? 
-          `${workflowDescription.description.substring(0, 150)}... Download and import this n8n workflow: ${workflow.title}.` :
-          `Download and import this n8n workflow: ${workflow.title}. Copy the JSON and import directly into your n8n instance.`
-        }
+        description={metaDescription}
         canonicalUrl={canonicalUrl}
-        keywords={`n8n workflow, ${workflow.title}, automation, workflow template, n8n import`}
+        keywords={keywords}
         structuredData={{
           "@context": "https://schema.org",
           "@type": "CreativeWork",
           "name": workflow.title,
-          "description": `Download and import this n8n workflow: ${workflow.title}. Copy the JSON and import directly into your n8n instance.`,
+          "description": metaDescription,
           "url": canonicalUrl,
           "identifier": workflow.id.toString(),
           "genre": "Workflow Automation",
@@ -176,6 +189,66 @@ const N8nWorkflowPage: React.FC = () => {
           "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": canonicalUrl
+          },
+          "breadcrumb": {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://mavericksedge.ca"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "n8n Workflow Collection",
+                "item": "https://mavericksedge.ca/largest-n8n-workflow-collection"
+              },
+              {
+                "@type": "ListItem",
+                "position": 3,
+                "name": workflow.title,
+                "item": canonicalUrl
+              }
+            ]
+          },
+          "howTo": {
+            "@type": "HowTo",
+            "name": `How to Import ${workflow.title}`,
+            "description": "Learn how to import and use this n8n workflow template",
+            "step": [
+              {
+                "@type": "HowToStep",
+                "position": 1,
+                "name": "Copy the Workflow JSON",
+                "text": "Click the 'Copy JSON' button to copy the workflow code to your clipboard."
+              },
+              {
+                "@type": "HowToStep",
+                "position": 2,
+                "name": "Open Your n8n Instance",
+                "text": "Log into your n8n instance and navigate to the Workflows section."
+              },
+              {
+                "@type": "HowToStep",
+                "position": 3,
+                "name": "Import the Workflow",
+                "text": "Click 'Import from JSON', paste the copied code, and click 'Import'."
+              },
+              {
+                "@type": "HowToStep",
+                "position": 4,
+                "name": "Configure Credentials",
+                "text": "Set up any required credentials for the services used in the workflow."
+              },
+              {
+                "@type": "HowToStep",
+                "position": 5,
+                "name": "Activate and Test",
+                "text": "Save and activate the workflow, then test it to ensure everything works correctly."
+              }
+            ]
           }
         }}
       />

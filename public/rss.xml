@@ -6,7 +6,7 @@
     <link>https://mavericksedge.ca/blog</link>
     <atom:link href="https://mavericksedge.ca/rss.xml" rel="self" type="application/rss+xml" />
     <language>en-ca</language>
-    <lastBuildDate>Tue, 07 Oct 2025 22:26:44 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 16 Oct 2025 22:34:39 GMT</lastBuildDate>
     <ttl>60</ttl>
     <image>
       <url>https://mavericksedge.ca/images/logo-transparent-thumb4x.png</url>
@@ -15,6 +15,20 @@
     </image>
     
     <!-- Blog Posts -->
+    <item>
+      <title>How to Get Featured in AI Overviews: 60-Minute SEO Checklist (2025)</title>
+      <description>Transform one page into an AI-ready asset in 60 minutes. This actionable checklist shows small businesses how to get quoted in Google AI Overviews, ChatGPT, and Perplexity without expensive agency fees.</description>
+      <link>https://mavericksedge.ca/blog/get-featured-ai-overviews-seo-checklist-2025</link>
+      <guid>https://mavericksedge.ca/blog/get-featured-ai-overviews-seo-checklist-2025</guid>
+      <pubDate>Fri, 17 Oct 2025 00:00:00 GMT</pubDate>
+      <category>SEO</category>
+      <content:encoded><![CDATA[<p>Transform one page into an AI-ready asset in 60 minutes. This actionable checklist shows small businesses how to get quoted in Google AI Overviews, ChatGPT, and Perplexity without expensive agency fees.</p>]]></content:encoded>
+      <media:content url="https://mavericksedge.ca/videos/win-ai-overviews-checklist.png" medium="image" type="image/jpeg">
+        <media:title>How to Get Featured in AI Overviews: 60-Minute SEO Checklist (2025)</media:title>
+        <media:description>Transform one page into an AI-ready asset in 60 minutes. This actionable checklist shows small businesses how to get quoted in Google AI Overviews, ChatGPT, and Perplexity without expensive agency fees.</media:description>
+        <media:thumbnail url="https://mavericksedge.ca/videos/win-ai-overviews-checklist.png" width="300" height="200" />
+      </media:content>
+    </item>
     <item>
       <title>Edmonton Small Business Web Design: 7 Must-Have Features That Drive Sales</title>
       <description>Essential web design features every Edmonton small business needs to convert visitors into customers: mobile optimization, local SEO, clear CTAs, and performance that drives real results.</description>

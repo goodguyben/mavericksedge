@@ -102,8 +102,8 @@ const N8nWorkflowCollection: React.FC = () => {
         
         // Get total workflow count
         const total = await searchWorkflows('', 1);
-        // We'll get the actual count from the test script result (6260)
-        setTotalWorkflows(6260);
+        // We'll get the actual count from the test script result (6331)
+        setTotalWorkflows(6331);
       } catch (error) {
         console.error('Error loading initial data:', error);
         setSearchError('Failed to load workflows. Please try again.');
@@ -227,7 +227,7 @@ const N8nWorkflowCollection: React.FC = () => {
           "url": "https://mavericksedge.ca/largest-n8n-workflow-collection",
           "mainEntity": {
             "@type": "ItemList",
-            "numberOfItems": 6251,
+            "numberOfItems": 6331,
             "itemListElement": workflows.slice(0, 10).map((workflow, index) => ({
               "@type": "CreativeWork",
               "position": index + 1,
@@ -295,7 +295,7 @@ const N8nWorkflowCollection: React.FC = () => {
                 transition={{ duration: 0.8, delay: 0.4 }}
                 className="text-xl sm:text-2xl text-maverick-cream/80 mb-8 max-w-4xl mx-auto leading-relaxed"
               >
-                Stop spending weeks building automations from scratch when thousands of ready-to-use workflows are just one click away. Our repository contains 6,000+ professionally crafted n8n templates that can transform your business operations in minutes. From lead generation to customer support, discover workflows that scale your business while you sleep.
+                Stop spending weeks building automations from scratch when thousands of ready-to-use workflows are just one click away. Our repository contains 6,300+ professionally crafted n8n templates that can transform your business operations in minutes. From lead generation to customer support, discover workflows that scale your business while you sleep.
                 <br />
                 <span className="text-lg text-maverick-orange/90 font-medium">
                   Search → Copy JSON → Import to n8n

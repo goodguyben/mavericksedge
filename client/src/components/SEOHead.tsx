@@ -38,6 +38,9 @@ export default function SEOHead({
   const finalTwitterTitle = twitterTitle || title;
   const finalTwitterDescription = twitterDescription || description;
   const finalTwitterImage = twitterImage || ogImage;
+  
+  // Ensure absolute URL for ogImage
+  const finalOgImage = ogImage.startsWith('http') ? ogImage : `https://mavericksedge.ca${ogImage.startsWith('/') ? '' : '/'}${ogImage}`;
 
   return (
     <Helmet>
@@ -54,7 +57,7 @@ export default function SEOHead({
       <meta property="og:description" content={finalOgDescription} />
       <meta property="og:type" content={ogType} />
       <meta property="og:url" content={canonicalUrl} />
-      <meta property="og:image" content={ogImage} />
+      <meta property="og:image" content={finalOgImage} />
       <meta property="og:site_name" content="Mavericks Edge" />
       <meta property="og:locale" content="en_CA" />
       
@@ -62,7 +65,7 @@ export default function SEOHead({
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={finalTwitterTitle} />
       <meta name="twitter:description" content={finalTwitterDescription} />
-      <meta name="twitter:image" content={finalTwitterImage} />
+      <meta name="twitter:image" content={finalOgImage} />
       <meta name="twitter:site" content="@mavericksedge" />
       <meta name="twitter:creator" content="@mavericksedge" />
       
