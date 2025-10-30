@@ -4,6 +4,12 @@
   "outputDirectory": "dist/public",
   "redirects": [
     {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "www.mavericksedge.ca" }],
+      "destination": "https://mavericksedge.ca/:splat",
+      "statusCode": 308
+    },
+    {
       "source": "/largest-n8n-workflow-collection/",
       "destination": "/largest-n8n-workflow-collection",
       "statusCode": 301
