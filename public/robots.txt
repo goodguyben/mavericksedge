@@ -12,3 +12,14 @@ Allow: /rss.xml
 Disallow: /admin/
 Disallow: /api/
 Disallow: /*.json$
+
+# Block bad URLs that should never have existed (Soft 404 prevention)
+Disallow: /about-edmonton-web-design-company
+Disallow: /gdpr-compliance-data-protection
+Disallow: /case-studies-edmonton-clients
+Disallow: /services-edmonton-alberta
+Disallow: /services/web
+Disallow: /free-guides-digital-marketing-seo
+Disallow: /blog-digital-marketing-web-development
+Disallow: /services/ai
+Disallow: /services/content-creation-strategy-edmonton

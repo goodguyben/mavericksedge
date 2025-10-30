@@ -18,7 +18,25 @@
     <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
     <meta name="bingbot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
 
-    <!-- Canonical URL removed - handled by SEOHead component per page -->
+    <!-- Canonical URL bootstrap: ensure a canonical exists before JS frameworks render -->
+    <script>
+      (function() {
+        try {
+          var existing = document.querySelector('link[rel="canonical"]');
+          var href = location.origin + location.pathname;
+          if (existing) {
+            existing.setAttribute('href', href);
+          } else {
+            var link = document.createElement('link');
+            link.setAttribute('rel', 'canonical');
+            link.setAttribute('href', href);
+            document.head.appendChild(link);
+          }
+        } catch (e) {
+          // no-op
+        }
+      })();
+    </script>
 
     <!-- RSS Feed -->
     <link rel="alternate" type="application/rss+xml" title="Beyond the Edge RSS Feed" href="https://mavericksedge.ca/rss.xml" />

@@ -4,6 +4,12 @@
   "outputDirectory": "dist/public",
   "redirects": [
     {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "www.mavericksedge.ca" }],
+      "destination": "https://mavericksedge.ca/$1",
+      "statusCode": 308
+    },
+    {
       "source": "/largest-n8n-workflow-collection/",
       "destination": "/largest-n8n-workflow-collection",
       "statusCode": 301
@@ -102,6 +108,51 @@
       "source": "/blog/good-seo-is-good",
       "destination": "/blog/good-seo-is-good-geo",
       "statusCode": 301
+    },
+    {
+      "source": "/about-edmonton-web-design-company",
+      "destination": "/about",
+      "statusCode": 301
+    },
+    {
+      "source": "/gdpr-compliance-data-protection",
+      "destination": "/gdpr-compliance",
+      "statusCode": 301
+    },
+    {
+      "source": "/case-studies-edmonton-clients",
+      "destination": "/work",
+      "statusCode": 301
+    },
+    {
+      "source": "/services-edmonton-alberta",
+      "destination": "/services",
+      "statusCode": 301
+    },
+    {
+      "source": "/services/web",
+      "destination": "/web-design-services-edmonton",
+      "statusCode": 301
+    },
+    {
+      "source": "/free-guides-digital-marketing-seo",
+      "destination": "/blog",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog-digital-marketing-web-development",
+      "destination": "/blog",
+      "statusCode": 301
+    },
+    {
+      "source": "/services/ai",
+      "destination": "/ai-automation-services-edmonton",
+      "statusCode": 301
+    },
+    {
+      "source": "/services/content-creation-strategy-edmonton",
+      "destination": "/digital-marketing-services-edmonton",
+      "statusCode": 301
     }
   ],
   "rewrites": [
@@ -120,6 +171,29 @@
     {
       "source": "/(.*)",
       "destination": "/index.html"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "X-XSS-Protection",
+          "value": "1; mode=block"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        }
+      ]
     }
   ],
   "env": {
