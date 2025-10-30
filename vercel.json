@@ -6,7 +6,7 @@
     {
       "source": "/(.*)",
       "has": [{ "type": "host", "value": "www.mavericksedge.ca" }],
-      "destination": "https://mavericksedge.ca/:splat",
+      "destination": "https://mavericksedge.ca/$1",
       "statusCode": 308
     },
     {
