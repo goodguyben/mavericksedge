@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import type { ColorPalette } from '@/features/ideation/types';
 
 // --- Data for the image accordion ---
 const accordionItems = [
@@ -71,7 +72,11 @@ const AccordionItem = ({ item, isActive, onMouseEnter }) => {
 };
 
 // --- Main App Component ---
-export function LandingAccordionItem() {
+interface LandingAccordionItemPaletteProps {
+  palette: ColorPalette;
+}
+
+export function LandingAccordionItemPalette({ palette }: LandingAccordionItemPaletteProps) {
   const [activeIndex, setActiveIndex] = useState(4);
 
   const handleItemHover = (index) => {
@@ -79,23 +84,41 @@ export function LandingAccordionItem() {
   };
 
   return (
-    <div className="bg-white font-sans">
+    <div
+      className="font-sans"
+      style={{ backgroundColor: palette.background }}
+    >
       <section className="container mx-auto px-4 py-12 md:py-24">
         <div className="flex flex-col md:flex-row items-center justify-between gap-12">
-          
+
           {/* Left Side: Text Content */}
           <div className="w-full md:w-1/2 text-center md:text-left">
-            <h1 className="text-5xl md:text-7xl font-bold text-gray-900 leading-tight tracking-tighter">
+            <h1
+              className="text-5xl md:text-7xl font-bold leading-tight tracking-tighter"
+              style={{ color: palette.neutral }}
+            >
               Accelerate Gen-AI Tasks on Any Device
             </h1>
-            <p className="mt-6 text-lg text-gray-600 max-w-xl mx-auto md:mx-0">
+            <p
+              className="mt-6 text-lg max-w-xl mx-auto md:mx-0"
+              style={{ color: palette.secondary }}
+            >
               Build high-performance AI apps on-device without the hassle of model compression or edge deployment.
             </p>
             <div className="mt-8">
               <a
                 href="#contact"
-                className="inline-block bg-gray-900 text-white font-semibold px-8 py-3 rounded-lg shadow-lg hover:bg-gray-800 transition-colors duration-300"
-                style={{ color: '#ffffff' }}
+                className="inline-block font-semibold px-8 py-3 rounded-lg shadow-lg transition-all duration-300 hover:scale-105"
+                style={{
+                  backgroundColor: palette.primary,
+                  color: '#ffffff'
+                }}
+                onMouseEnter={(e) => {
+                  e.target.style.backgroundColor = palette.accent;
+                }}
+                onMouseLeave={(e) => {
+                  e.target.style.backgroundColor = palette.primary;
+                }}
               >
                 Contact Us
               </a>
@@ -121,4 +144,3 @@ export function LandingAccordionItem() {
     </div>
   );
 }
-

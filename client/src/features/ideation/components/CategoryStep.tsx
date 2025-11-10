@@ -34,7 +34,7 @@ import CircularTextDemo from "./previews/CircularTextDemo";
 import TextTypeDemo from "./previews/TextTypeDemo";
 import ScrollRevealDemo from "./previews/ScrollRevealDemo";
 import ScrollFloatDemo from "./previews/ScrollFloatDemo";
-import ColorPaletteDemo from "./previews/ColorPaletteDemo";
+import ColorPalettesDemo from "./previews/ColorPalettesDemo";
 
 type CategoryStepProps = {
   category: Category;
@@ -116,7 +116,6 @@ export default function CategoryStep({
                   const isNeuralHero = item.previewComponent === "NeuralNetworkHeroDemo";
                   const isShaderShowcase = item.previewComponent === "ShaderShowcaseDemo";
                   const isInteractiveAccordion = item.previewComponent === "InteractiveImageAccordionDemo";
-                  const isColorPaletteItem = category === "Color Palettes";
                   const isVideoHero = item.previewComponent === "VideoHeroDemo";
                   const isModernVideoHero = item.previewComponent === "ModernVideoHeroDemo";
                   const isRoundedBentoVideoHero = item.previewComponent === "RoundedBentoVideoHeroDemo";
@@ -141,7 +140,7 @@ export default function CategoryStep({
                   const isTextType = item.previewComponent === "TextTypeDemo";
                   const isScrollReveal = item.previewComponent === "ScrollRevealDemo";
                   const isScrollFloat = item.previewComponent === "ScrollFloatDemo";
-                  const isColorPalette = item.previewComponent === "ColorPaletteDemo";
+                  const isColorPalettes = item.previewComponent === "ColorPalettesDemo";
                   return (
                     <div
                       key={item.id}
@@ -149,9 +148,9 @@ export default function CategoryStep({
                         selected 
                           ? "border-white bg-neutral-800 shadow-lg shadow-white/10" 
                           : "border-neutral-700 bg-neutral-900 hover:border-neutral-600"
-                      } overflow-hidden ${isPreview && !isSubscribeButton && !isExploreButton && !isLearnMoreButton && !isInteractiveHoverButton && !isRippleButton && !isShinyButton && !isSubscribeButtonV2 && !isNeumorphicButton && !isFeatureSteps && !isCircularTestimonials && !isCircularGallery && !isPortfolioCarousel && !isTestimonialSlider && !isLogoCarousel && !isStaggerTestimonials && !isSplitText && !isBlurText && !isCircularText && !isTextType && !isScrollReveal && !isScrollFloat && !isColorPalette ? 'sm:col-span-2 lg:col-span-3' : isFeatureSteps || isCircularTestimonials || isCircularGallery || isPortfolioCarousel || isTestimonialSlider || isLogoCarousel || isStaggerTestimonials || isColorPalette ? 'sm:col-span-2 lg:col-span-3' : ''}`}
+                      } overflow-hidden ${isPreview && !isSubscribeButton && !isExploreButton && !isLearnMoreButton && !isInteractiveHoverButton && !isRippleButton && !isShinyButton && !isSubscribeButtonV2 && !isNeumorphicButton && !isFeatureSteps && !isCircularTestimonials && !isCircularGallery && !isPortfolioCarousel && !isTestimonialSlider && !isLogoCarousel && !isStaggerTestimonials && !isSplitText && !isBlurText && !isCircularText && !isTextType && !isScrollReveal && !isScrollFloat && !isColorPalettes ? 'sm:col-span-2 lg:col-span-3' : isFeatureSteps || isCircularTestimonials || isCircularGallery || isPortfolioCarousel || isTestimonialSlider || isLogoCarousel || isStaggerTestimonials || isColorPalettes ? 'sm:col-span-2 lg:col-span-3' : ''}`}
                     >
-                      <div className={`${isPreview ? (isNavHeader ? 'h-[240px]' : isStaggeredMenu ? 'h-[640px]' : isCardNav ? 'h-[400px]' : isHero ? 'h-[700px]' : isNeuralHero ? 'h-[800px]' : isShaderShowcase ? 'h-[800px]' : isInteractiveAccordion ? 'h-[900px]' : isVideoHero ? 'h-auto min-h-[600px]' : isModernVideoHero ? 'h-auto min-h-[600px]' : isRoundedBentoVideoHero ? 'h-auto min-h-[600px]' : isLogoCarousel ? 'h-auto min-h-[600px]' : isSubscribeButton ? 'h-[200px]' : isExploreButton ? 'h-[200px]' : isLearnMoreButton ? 'h-[200px]' : isInteractiveHoverButton ? 'h-[200px]' : isRippleButton ? 'h-[200px]' : isShinyButton ? 'h-[200px]' : isSubscribeButtonV2 ? 'h-[200px]' : isNeumorphicButton ? 'h-[200px]' : isFeatureSteps ? 'h-[900px]' : isCircularTestimonials ? 'h-[600px]' : isCircularGallery ? 'h-[600px]' : isPortfolioCarousel ? 'h-[700px]' : isTestimonialSlider ? 'h-auto min-h-[400px]' : isStaggerTestimonials ? 'h-[700px]' : isSplitText ? 'h-[360px]' : isBlurText ? 'h-[360px]' : isCircularText ? 'h-[360px]' : isTextType ? 'h-[360px]' : isScrollReveal ? 'h-[360px]' : isScrollFloat ? 'h-[360px]' : isColorPalette ? 'h-[400px]' : 'h-[480px]') : 'aspect-[4/3]'} ${isPreview ? 'bg-background' : 'bg-neutral-800'} relative overflow-hidden`}>
+                      <div className={`${isPreview ? (isNavHeader ? 'h-[240px]' : isStaggeredMenu ? 'h-[640px]' : isCardNav ? 'h-[400px]' : isHero ? 'h-[700px]' : isNeuralHero ? 'h-[800px]' : isShaderShowcase ? 'h-[800px]' : isInteractiveAccordion ? 'h-[900px]' : isVideoHero ? 'h-auto min-h-[600px]' : isModernVideoHero ? 'h-auto min-h-[600px]' : isRoundedBentoVideoHero ? 'h-auto min-h-[600px]' : isLogoCarousel ? 'h-auto min-h-[600px]' : isSubscribeButton ? 'h-[200px]' : isExploreButton ? 'h-[200px]' : isLearnMoreButton ? 'h-[200px]' : isInteractiveHoverButton ? 'h-[200px]' : isRippleButton ? 'h-[200px]' : isShinyButton ? 'h-[200px]' : isSubscribeButtonV2 ? 'h-[200px]' : isNeumorphicButton ? 'h-[200px]' : isFeatureSteps ? 'h-[900px]' : isCircularTestimonials ? 'h-[600px]' : isCircularGallery ? 'h-[600px]' : isPortfolioCarousel ? 'h-[700px]' : isTestimonialSlider ? 'h-auto min-h-[400px]' : isStaggerTestimonials ? 'h-[700px]' : isSplitText ? 'h-[360px]' : isBlurText ? 'h-[360px]' : isCircularText ? 'h-[360px]' : isTextType ? 'h-[360px]' : isScrollReveal ? 'h-[360px]' : isScrollFloat ? 'h-[360px]' : isColorPalettes ? 'h-[1000px]' : 'h-[480px]') : 'aspect-[4/3]'} ${isPreview ? 'bg-background' : 'bg-neutral-800'} relative overflow-hidden`}>
                   {isPreview && item.previewComponent === "TubelightNavbarDemo" ? (
                     <div className="w-full h-full">
                       <TubelightNavbarDemo />
@@ -194,7 +193,7 @@ export default function CategoryStep({
                     </div>
                   ) : isPreview && item.previewComponent === "InteractiveImageAccordionDemo" ? (
                     <div className="w-full h-full">
-                      <InteractiveImageAccordionDemo colors={isColorPaletteItem ? item.colors : undefined} />
+                      <InteractiveImageAccordionDemo />
                     </div>
                   ) : isPreview && item.previewComponent === "VideoHeroDemo" ? (
                     <div className="w-full h-full">
@@ -292,9 +291,9 @@ export default function CategoryStep({
                     <div className="w-full h-full">
                       <ScrollFloatDemo />
                     </div>
-                  ) : isPreview && item.previewComponent === "ColorPaletteDemo" ? (
+                  ) : isPreview && item.previewComponent === "ColorPalettesDemo" ? (
                     <div className="w-full h-full">
-                      <ColorPaletteDemo colors={item.colors!} />
+                      <ColorPalettesDemo />
                     </div>
                   ) : item.image ? (
                     // eslint-disable-next-line @next/next/no-img-element

@@ -1,14 +1,17 @@
 export type Category = "Navigation Menu" | "Hero" | "Buttons" | "Carousel" | "Text Animations" | "Color Palettes";
 
-export type Provider = "21st.dev" | "uiverse.io" | "reactbits.dev" | "custom";
-
 export type ColorPalette = {
-  primary: string; // Main brand color
-  secondary: string[]; // Supporting colors
-  accent: string[]; // Highlight colors
-  neutral: string[]; // Background and text colors
-  surface: string[]; // Card and panel colors
+  id: string;
+  name: string;
+  primary: string; // #f68634 (fixed)
+  secondary: string;
+  accent: string;
+  neutral: string;
+  background: string;
+  description: string;
 };
+
+export type Provider = "21st.dev" | "uiverse.io" | "reactbits.dev" | "custom";
 
 export type CatalogItem = {
   id: string;
@@ -24,7 +27,6 @@ export type CatalogItem = {
   a11yNotes?: string;
   version?: string;
   badges?: ("popular" | "new" | "accessible")[];
-  colors?: ColorPalette; // For color palette items
 };
 
 export type CategoryGuidance = {
