@@ -45,7 +45,7 @@ export const colorPalettes: ColorPalette[] = [
     id: "mono-glow",
     name: "Monochrome Glow",
     primary: "#f68634",
-    secondary: "#cd853f", // Much darker sandy brown for readability
+    secondary: "#8b4513", // Even darker brown for maximum contrast
     accent: "#ffa463", // Soft highlight within the same hue
     neutral: "#000000", // Black for balance
     background: "#fff5ec", // Gentle glowing wash
@@ -60,5 +60,35 @@ export const colorPalettes: ColorPalette[] = [
     neutral: "#000000", // Black to anchor the palette
     background: "#fde7d6", // Earthy monochrome base
     description: "Grounded monochrome shades that explore the deeper side of the brand orange"
+  },
+  {
+    id: "analogous-warm-earth",
+    name: "Analogous Warm Earth",
+    primary: "#f68634",
+    secondary: "#a0522d", // Dark sienna for strong contrast
+    accent: "#daa520", // Goldenrod accent
+    neutral: "#000000", // Black for headings
+    background: "#f4e4bc", // Warm beige background
+    description: "Earthy browns and tans that create a grounded, natural feel"
+  },
+  {
+    id: "monochrome-sunset",
+    name: "Monochrome Sunset",
+    primary: "#f68634",
+    secondary: "#a0522d", // Deep terracotta for contrast
+    accent: "#cd853f", // Peru accent
+    neutral: "#000000", // Black typography
+    background: "#ffe4b5", // Moccasin background
+    description: "Layered sunset oranges that deepen the brand hue"
+  },
+  {
+    id: "analogous-golden-hour",
+    name: "Analogous Golden Hour",
+    primary: "#f68634",
+    secondary: "#b8860b", // Dark goldenrod for readability
+    accent: "#ffd700", // Gold accent
+    neutral: "#000000", // Black text
+    background: "#fff8dc", // Cornsilk background
+    description: "Golden hour glow with yellows and oranges for a luminous feel"
   }
 ];
