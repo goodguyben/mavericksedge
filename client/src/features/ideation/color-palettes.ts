@@ -2,63 +2,63 @@ import type { ColorPalette } from "./types";
 
 export const colorPalettes: ColorPalette[] = [
   {
-    id: "analogous-warm",
-    name: "Analogous Warm",
+    id: "modern-blue",
+    name: "Modern Blue",
     primary: "#f68634", // Orange
-    secondary: "#d4a574", // Warm beige for text
-    accent: "#f4c542", // Golden yellow (analogous)
-    neutral: "#8b4513", // Saddle brown for headings
+    secondary: "#2563eb", // Modern blue (complementary)
+    accent: "#3b82f6", // Bright blue accent
+    neutral: "#1e293b", // Modern dark gray
+    background: "#ffffff", // Clean white
+    description: "Trendy blue complement creates energetic, professional contrast with orange"
+  },
+  {
+    id: "vibrant-teal",
+    name: "Vibrant Teal",
+    primary: "#f68634", // Orange
+    secondary: "#0891b2", // Vibrant teal (split complementary)
+    accent: "#06b6d4", // Modern teal accent
+    neutral: "#0f172a", // Deep navy
+    background: "#ffffff", // Clean white
+    description: "Fresh teal-orange combination that's hugely popular in modern design"
+  },
+  {
+    id: "rich-purple",
+    name: "Rich Purple",
+    primary: "#f68634", // Orange
+    secondary: "#7c3aed", // Rich purple (triadic)
+    accent: "#a855f7", // Light purple accent
+    neutral: "#1e1b4b", // Deep purple-gray
+    background: "#fafafa", // Warm white
+    description: "Sophisticated purple triad creates luxurious, contemporary harmony"
+  },
+  {
+    id: "sunset-glow",
+    name: "Sunset Glow",
+    primary: "#f68634", // Orange
+    secondary: "#f59e0b", // Amber yellow (analogous)
+    accent: "#f97316", // Bright orange accent
+    neutral: "#9a3412", // Deep orange-brown
     background: "#fefefe", // Warm white
-    description: "Warm color family using yellows, oranges, and browns for cohesive harmony"
+    description: "Warm sunset colors with golden accents for energetic, inviting design"
   },
   {
-    id: "analogous-cool",
-    name: "Analogous Cool",
+    id: "minimal-slate",
+    name: "Minimal Slate",
     primary: "#f68634", // Orange
-    secondary: "#8b7355", // Taupe gray for text
-    accent: "#cd853f", // Peru orange (analogous)
-    neutral: "#654321", // Dark brown for headings
-    background: "#f5f5f0", // Warm off-white
-    description: "Cooler earth tones with browns and muted oranges for sophisticated warmth"
+    secondary: "#64748b", // Trendy gray
+    accent: "#94a3b8", // Light gray accent
+    neutral: "#334155", // Modern dark gray
+    background: "#f8fafc", // Off-white
+    description: "Clean minimal palette with sophisticated grays and orange accents"
   },
   {
-    id: "complementary-ocean",
-    name: "Complementary Ocean",
+    id: "electric-gradient",
+    name: "Electric Gradient",
     primary: "#f68634", // Orange
-    secondary: "#4682b4", // Steel blue (complementary)
-    accent: "#1e90ff", // Dodger blue (complementary)
-    neutral: "#2f4f4f", // Dark slate gray for headings
-    background: "#ffffff", // Clean white
-    description: "Orange paired with its complementary blue for energetic contrast"
-  },
-  {
-    id: "complementary-modern",
-    name: "Complementary Modern",
-    primary: "#f68634", // Orange
-    secondary: "#3498db", // Bright blue (complementary)
-    accent: "#2980b9", // Medium blue (complementary)
-    neutral: "#2c3e50", // Dark blue-gray for headings
-    background: "#ffffff", // Clean white
-    description: "Modern blue complement creates fresh, contemporary contrast with orange"
-  },
-  {
-    id: "triadic-harmony",
-    name: "Triadic Harmony",
-    primary: "#f68634", // Orange
-    secondary: "#27ae60", // Emerald green (triadic)
-    accent: "#9b59b6", // Purple (triadic)
-    neutral: "#34495e", // Dark gray for headings
-    background: "#f8f9fa", // Light gray
-    description: "Balanced triad of orange, green, and purple for vibrant yet harmonious design"
-  },
-  {
-    id: "monochromatic",
-    name: "Monochromatic",
-    primary: "#f68634", // Orange
-    secondary: "#d2691e", // Chocolate (darker orange)
-    accent: "#daa520", // Goldenrod (lighter orange)
-    neutral: "#8b4513", // Saddle brown (darkest)
-    background: "#fff8f0", // Very light orange tint
-    description: "Single color family using various shades of orange for unified harmony"
+    secondary: "#0ea5e9", // Electric blue
+    accent: "#06b6d4", // Cyan accent
+    neutral: "#1e293b", // Dark slate
+    background: "#ffffff", // Pure white
+    description: "Electric blue-orange combination perfect for modern gradients and tech brands"
   }
 ];
