@@ -5,7 +5,7 @@ export const colorPalettes: ColorPalette[] = [
     id: "analogous-sunrise",
     name: "Analogous Sunrise",
     primary: "#f68634",
-    secondary: "#ff9a3c", // Neighboring yellow-orange
+    secondary: "#8b4513", // Much darker brown for WCAG AA compliance
     accent: "#ff7033", // Rich red-orange accent
     neutral: "#000000", // Black for sharp contrast
     background: "#fff4e6", // Soft sunrise tint
@@ -15,7 +15,7 @@ export const colorPalettes: ColorPalette[] = [
     id: "analogous-citrus",
     name: "Analogous Citrus",
     primary: "#f68634",
-    secondary: "#ffc04d", // Golden citrus hue
+    secondary: "#b8860b", // Much darker goldenrod for proper contrast
     accent: "#ffda79", // Pale citrus highlight
     neutral: "#000000", // Black typography for clarity
     background: "#fff9ed", // Light citrus wash
@@ -25,7 +25,7 @@ export const colorPalettes: ColorPalette[] = [
     id: "analogous-ember",
     name: "Analogous Ember",
     primary: "#f68634",
-    secondary: "#e9652d", // Deeper ember shade
+    secondary: "#654321", // Much darker sienna for strong contrast
     accent: "#c04c1d", // Smoldering ember accent
     neutral: "#000000", // Black grounding element
     background: "#ffe9dd", // Smoky warm backdrop
@@ -35,7 +35,7 @@ export const colorPalettes: ColorPalette[] = [
     id: "mono-amber",
     name: "Monochrome Amber",
     primary: "#f68634",
-    secondary: "#d46f2c", // Darker amber tone
+    secondary: "#a0522d", // Much darker amber brown for contrast
     accent: "#ad551f", // Deep molten accent
     neutral: "#000000", // Black for bold typography
     background: "#fff2e6", // Light amber tint
@@ -45,7 +45,7 @@ export const colorPalettes: ColorPalette[] = [
     id: "mono-glow",
     name: "Monochrome Glow",
     primary: "#f68634",
-    secondary: "#ff8b42", // Lighter glowing tint
+    secondary: "#cd853f", // Much darker sandy brown for readability
     accent: "#ffa463", // Soft highlight within the same hue
     neutral: "#000000", // Black for balance
     background: "#fff5ec", // Gentle glowing wash
@@ -55,7 +55,7 @@ export const colorPalettes: ColorPalette[] = [
     id: "mono-deep",
     name: "Monochrome Deep",
     primary: "#f68634",
-    secondary: "#c75a20", // Muted deep shade
+    secondary: "#8b4513", // Dark brown for contrast on earthy background
     accent: "#8f4118", // Rich shadow accent
     neutral: "#000000", // Black to anchor the palette
     background: "#fde7d6", // Earthy monochrome base
