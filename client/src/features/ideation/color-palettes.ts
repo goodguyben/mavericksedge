@@ -62,14 +62,14 @@ export const colorPalettes: ColorPalette[] = [
     description: "Grounded monochrome shades that explore the deeper side of the brand orange"
   },
   {
-    id: "amber-waves",
-    name: "Amber Waves",
+    id: "velvet-ember",
+    name: "Velvet Ember",
     primary: "#f68634",
-    secondary: "#8b4513", // Deep walnut brown
-    accent: "#daa520", // Antique gold
+    secondary: "#722f37", // Deep plum burgundy
+    accent: "#b22222", // Rich firebrick
     neutral: "#000000", // Black anchor
-    background: "#fef7e6", // Soft parchment
-    description: "Flowing amber gradients that evoke rippling waves of warm light"
+    background: "#faf0e6", // Linen (warm off-white)
+    description: "Luxurious velvet depths with smoldering ember warmth and rich texture"
   },
   {
     id: "crimson-dawn",
