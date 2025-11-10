@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import type { ColorPalette } from '@/features/ideation/types';
 
 // --- Data for the image accordion ---
 const accordionItems = [
@@ -30,7 +31,7 @@ const accordionItems = [
 ];
 
 // --- Accordion Item Component ---
-const AccordionItem = ({ item, isActive, onMouseEnter }) => {
+const AccordionItem = ({ item, isActive, onMouseEnter, colors }) => {
   return (
     <div
       className={`
@@ -54,7 +55,7 @@ const AccordionItem = ({ item, isActive, onMouseEnter }) => {
       {/* Caption Text */}
       <span
         className={`
-          absolute text-white text-lg font-semibold whitespace-nowrap
+          absolute text-lg font-semibold whitespace-nowrap
           transition-all duration-300 ease-in-out
           ${
             isActive
@@ -63,6 +64,7 @@ const AccordionItem = ({ item, isActive, onMouseEnter }) => {
               : 'w-auto text-left bottom-24 left-1/2 -translate-x-1/2 rotate-90'
           }
         `}
+        style={{ color: colors?.surface?.[0] || '#ffffff' }}
       >
         {item.title}
       </span>
@@ -71,31 +73,42 @@ const AccordionItem = ({ item, isActive, onMouseEnter }) => {
 };
 
 // --- Main App Component ---
-export function LandingAccordionItem() {
+export function LandingAccordionItem({ colors }: { colors?: ColorPalette }) {
   const [activeIndex, setActiveIndex] = useState(4);
 
   const handleItemHover = (index) => {
     setActiveIndex(index);
   };
 
+  // Apply colors from palette or use defaults
+  const primaryColor = colors?.primary || '#f68634';
+  const secondaryColor = colors?.secondary?.[0] || '#e67e22';
+  const accentColor = colors?.accent?.[0] || '#3498db';
+  const surfaceColor = colors?.surface?.[0] || '#ffffff';
+  const neutralColor = colors?.neutral?.[0] || '#2c3e50';
+
   return (
-    <div className="bg-white font-sans">
+    <div className="font-sans" style={{ backgroundColor: surfaceColor }}>
       <section className="container mx-auto px-4 py-12 md:py-24">
         <div className="flex flex-col md:flex-row items-center justify-between gap-12">
-          
+
           {/* Left Side: Text Content */}
           <div className="w-full md:w-1/2 text-center md:text-left">
-            <h1 className="text-5xl md:text-7xl font-bold text-gray-900 leading-tight tracking-tighter">
+            <h1 className="text-5xl md:text-7xl font-bold leading-tight tracking-tighter" style={{ color: neutralColor }}>
               Accelerate Gen-AI Tasks on Any Device
             </h1>
-            <p className="mt-6 text-lg text-gray-600 max-w-xl mx-auto md:mx-0">
+            <p className="mt-6 text-lg max-w-xl mx-auto md:mx-0" style={{ color: colors?.neutral?.[3] || '#7f8c8d' }}>
               Build high-performance AI apps on-device without the hassle of model compression or edge deployment.
             </p>
             <div className="mt-8">
               <a
                 href="#contact"
-                className="inline-block bg-gray-900 text-white font-semibold px-8 py-3 rounded-lg shadow-lg hover:bg-gray-800 transition-colors duration-300"
-                style={{ color: '#ffffff' }}
+                className="inline-block font-semibold px-8 py-3 rounded-lg shadow-lg hover:opacity-90 transition-all duration-300"
+                style={{
+                  backgroundColor: primaryColor,
+                  color: surfaceColor,
+                  border: `2px solid ${secondaryColor}`
+                }}
               >
                 Contact Us
               </a>
@@ -112,6 +125,7 @@ export function LandingAccordionItem() {
                   item={item}
                   isActive={index === activeIndex}
                   onMouseEnter={() => handleItemHover(index)}
+                  colors={colors}
                 />
               ))}
             </div>

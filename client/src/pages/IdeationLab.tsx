@@ -30,7 +30,7 @@ export default function IdeationLab() {
 
   // All hooks must be called before any conditional returns
   const categories: Category[] = useMemo(
-    () => ["Navigation Menu", "Hero", "Buttons", "Carousel", "Text Animations"],
+    () => ["Navigation Menu", "Hero", "Buttons", "Carousel", "Text Animations", "Color Palettes"],
     []
   );
   const steps = useMemo(() => ["Design Inspiration", ...categories] as const, [categories]);

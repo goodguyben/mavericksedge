@@ -1,9 +1,14 @@
 import { LandingAccordionItem } from "@/components/ui/interactive-image-accordion";
+import type { ColorPalette } from "../../types";
 
-export default function InteractiveImageAccordionDemo() {
+interface InteractiveImageAccordionDemoProps {
+  colors?: ColorPalette;
+}
+
+export default function InteractiveImageAccordionDemo({ colors }: InteractiveImageAccordionDemoProps) {
   return (
     <div className="w-full">
-      <LandingAccordionItem />
+      <LandingAccordionItem colors={colors} />
     </div>
   );
 }

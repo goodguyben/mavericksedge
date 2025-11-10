@@ -423,6 +423,120 @@ export const catalog: Catalog = {
       version: "1.0.0",
       badges: ["new"],
     },
+    {
+      id: "palette-warm-modern",
+      title: "Warm Modern",
+      category: "Color Palettes",
+      provider: "custom",
+      previewComponent: "ColorPaletteDemo",
+      sourceUrl: "#",
+      tags: ["colors", "warm", "modern", "neutral", "professional"],
+      license: "MIT",
+      version: "1.0.0",
+      badges: ["new"],
+      colors: {
+        primary: "#f68634",
+        secondary: ["#e67e22", "#d35400"],
+        accent: ["#3498db", "#2980b9"],
+        neutral: ["#2c3e50", "#34495e", "#7f8c8d", "#95a5a6", "#bdc3c7", "#ecf0f1"],
+        surface: ["#ffffff", "#f8f9fa", "#e9ecef", "#dee2e6"]
+      }
+    },
+    {
+      id: "palette-cool-contrast",
+      title: "Cool Contrast",
+      category: "Color Palettes",
+      provider: "custom",
+      previewComponent: "ColorPaletteDemo",
+      sourceUrl: "#",
+      tags: ["colors", "cool", "contrast", "fresh", "vibrant"],
+      license: "MIT",
+      version: "1.0.0",
+      badges: ["new"],
+      colors: {
+        primary: "#f68634",
+        secondary: ["#e67e22", "#d35400"],
+        accent: ["#27ae60", "#2ecc71", "#16a085", "#1abc9c"],
+        neutral: ["#2c3e50", "#34495e", "#7f8c8d", "#95a5a6", "#bdc3c7", "#ecf0f1"],
+        surface: ["#ffffff", "#f8f9fa", "#e9ecef", "#dee2e6"]
+      }
+    },
+    {
+      id: "palette-earth-tones",
+      title: "Earth Tones",
+      category: "Color Palettes",
+      provider: "custom",
+      previewComponent: "ColorPaletteDemo",
+      sourceUrl: "#",
+      tags: ["colors", "earth", "natural", "warm", "organic"],
+      license: "MIT",
+      version: "1.0.0",
+      badges: ["new"],
+      colors: {
+        primary: "#f68634",
+        secondary: ["#e67e22", "#d35400"],
+        accent: ["#8b4513", "#a0522d", "#daa520", "#cd853f"],
+        neutral: ["#2f4f2f", "#556b2f", "#696969", "#808080", "#a9a9a9", "#d3d3d3"],
+        surface: ["#f5f5dc", "#faf0e6", "#fff8dc", "#f0e68c"]
+      }
+    },
+    {
+      id: "palette-minimal-clean",
+      title: "Minimal Clean",
+      category: "Color Palettes",
+      provider: "custom",
+      previewComponent: "ColorPaletteDemo",
+      sourceUrl: "#",
+      tags: ["colors", "minimal", "clean", "modern", "simple"],
+      license: "MIT",
+      version: "1.0.0",
+      badges: ["new"],
+      colors: {
+        primary: "#f68634",
+        secondary: ["#e67e22", "#d35400"],
+        accent: ["#000000", "#333333"],
+        neutral: ["#666666", "#999999", "#cccccc", "#e5e5e5", "#f5f5f5", "#ffffff"],
+        surface: ["#ffffff", "#fafafa", "#f5f5f5", "#eeeeee"]
+      }
+    },
+    {
+      id: "palette-vibrant-energy",
+      title: "Vibrant Energy",
+      category: "Color Palettes",
+      provider: "custom",
+      previewComponent: "ColorPaletteDemo",
+      sourceUrl: "#",
+      tags: ["colors", "vibrant", "energy", "bold", "dynamic"],
+      license: "MIT",
+      version: "1.0.0",
+      badges: ["new"],
+      colors: {
+        primary: "#f68634",
+        secondary: ["#e67e22", "#d35400"],
+        accent: ["#9b59b6", "#8e44ad", "#3498db", "#e74c3c", "#2ecc71"],
+        neutral: ["#2c3e50", "#34495e", "#7f8c8d", "#95a5a6", "#bdc3c7", "#ecf0f1"],
+        surface: ["#ffffff", "#f8f9fa", "#e9ecef", "#dee2e6"]
+      }
+    },
+    {
+      id: "palette-monochrome-warm",
+      title: "Monochrome Warm",
+      category: "Color Palettes",
+      provider: "custom",
+      previewComponent: "ColorPaletteDemo",
+      sourceUrl: "#",
+      tags: ["colors", "monochrome", "warm", "cohesive", "elegant"],
+      license: "MIT",
+      version: "1.0.0",
+      badges: ["new"],
+      colors: {
+        primary: "#f68634",
+        secondary: ["#f39c12", "#e67e22", "#d35400", "#a04000"],
+        accent: ["#8b4513", "#daa520"],
+        neutral: ["#4a4a4a", "#6b6b6b", "#8c8c8c", "#adadad", "#cecece", "#efefef"],
+        surface: ["#ffffff", "#f9f9f9", "#f2f2f2", "#ebebeb"]
+      }
+    },
   ],
   guidance: [
     {
@@ -454,6 +568,12 @@ export const catalog: Catalog = {
       guidance:
         "Text Animations add visual interest and emphasis to headings, paragraphs, or key messages. They can reveal content on scroll, split and animate letters, or create eye-catching effects. Consider animation timing, readability, performance impact, and how the animation enhances (not distracts from) your message.",
       estTimeMins: 2,
+    },
+    {
+      category: "Color Palettes",
+      guidance:
+        "Color Palettes define the visual identity of your website through carefully selected color combinations. Each palette includes primary brand colors, supporting secondary colors, accent highlights, neutral backgrounds, and surface colors for cards and panels. Choose a palette that reflects your brand personality and ensures good contrast for accessibility.",
+      estTimeMins: 3,
     },
   ],
 };
