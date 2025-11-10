@@ -268,7 +268,7 @@ export default function GoogleReviewsBeaumont({ limit = 12 }: GoogleReviewsProps
                   <div className="flex items-center gap-2 mt-1">
                     <div className="flex items-center gap-1">
                       {Array.from({ length: 5 }).map((_, i) => (
-                        <Star key={i} className={`h-3 w-3 ${i < Math.floor(data.rating) ? 'text-yellow-400 fill-current' : 'text-gray-600'}`} />
+                        <Star key={i} className={`h-3 w-3 ${i < Math.floor(data.rating ?? 0) ? 'text-yellow-400 fill-current' : 'text-gray-600'}`} />
                       ))}
                     </div>
                     <span className="text-xs text-[#CCCCCC] font-medium">{data.rating.toFixed(1)} · {data.userRatingsTotal} reviews</span>

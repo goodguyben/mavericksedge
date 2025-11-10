@@ -127,6 +127,15 @@ export default {
             "background-position": "right center",
           },
         },
+        "rippling": {
+          "0%": {
+            opacity: "1",
+          },
+          "100%": {
+            transform: "scale(2)",
+            opacity: "0",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -134,6 +143,7 @@ export default {
         "gradient-slow": "gradient-shift 8s ease infinite",
         "gradient-x": "gradient-x 3s ease infinite",
         "gradient": "gradient-x 3s ease infinite",
+        "rippling": "rippling 1s ease-out",
       },
       backgroundSize: {
         'gradient-animate': '400% 400%'

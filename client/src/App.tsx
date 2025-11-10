@@ -55,6 +55,7 @@ const CaseStudyNextArchitecture = lazy(() => import("@/pages/CaseStudyNextArchit
 const CaseStudyPixelBlueCollege = lazy(() => import("@/pages/CaseStudyPixelBlueCollege"));
 const CaseStudyTailoredInterior = lazy(() => import("@/pages/CaseStudyTailoredInterior"));
 const NotFound = lazy(() => import("@/pages/not-found"));
+const IdeationLab = lazy(() => import("@/pages/IdeationLab"));
 
 export default function App() {
   const [location] = useLocation();
@@ -124,6 +125,9 @@ export default function App() {
             <Switch>
               <Route path="/">
                 <Home />
+              </Route>
+              <Route path="/ideation">
+                <IdeationLab />
               </Route>
               <Route path="/services">
                 <Services />

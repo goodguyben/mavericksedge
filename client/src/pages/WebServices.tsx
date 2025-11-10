@@ -1,4 +1,3 @@
-
 import { motion } from "framer-motion";
 import { Code, Database, Layout as LayoutIcon, ShoppingCart, Globe, Shield, Smartphone, Search, CheckCircle, ArrowRight, MapPin, ChevronDown, Gauge, Wand2, Eye, Lock } from "lucide-react";
 import LogoLoop, { LogoItem } from "@/components/ui/LogoLoop";

@@ -157,6 +157,143 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Ideation Lab API endpoints
+  app.post("/api/ideation/boards/upsert", async (req, res) => {
+    try {
+      const { boardId, selectedByCategory, skipByCategory, inspirationNotes, timestamp, url } = req.body;
+      
+      if (!boardId) {
+        return res.status(400).json({ 
+          success: false, 
+          message: 'boardId is required' 
+        });
+      }
+
+      const WEBHOOK = process.env.GOOGLE_SHEETS_WEBHOOK_URL;
+      const SECRET = process.env.IDEATION_SHARED_SECRET;
+
+      // Log the data we're receiving
+      console.log('Ideation Lab Submission:', {
+        boardId,
+        timestamp,
+        url,
+        selectedCategories: Object.keys(selectedByCategory || {}),
+        totalSelections: Object.values(selectedByCategory || {}).flat().length
+      });
+
+      // If webhook is configured, send to Google Sheets
+      if (WEBHOOK && SECRET) {
+        try {
+          const payload = { 
+            boardId,
+            timestamp,
+            url,
+            selectedByCategory: JSON.stringify(selectedByCategory),
+            skipByCategory: JSON.stringify(skipByCategory),
+            inspirationNotes: JSON.stringify(inspirationNotes),
+            secret: SECRET 
+          };
+          
+          const response = await fetch(`${WEBHOOK}/boards/upsert`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+          });
+          
+          if (!response.ok) {
+            const errorText = await response.text();
+            console.error('Google Sheets webhook error:', errorText);
+          } else {
+            console.log('Successfully saved to Google Sheets');
+          }
+        } catch (error) {
+          console.error('Error sending to Google Sheets:', error);
+          // Continue anyway - don't fail the request
+        }
+      } else {
+        console.log('Google Sheets webhook not configured - data logged to console only');
+      }
+
+      res.json({ 
+        success: true, 
+        boardId 
+      });
+    } catch (error) {
+      console.error('Error upserting board:', error);
+      res.status(500).json({ 
+        success: false, 
+        message: 'Failed to save board' 
+      });
+    }
+  });
+
+  app.post("/api/ideation/boards/items/bulk", async (req, res) => {
+    try {
+      const { boardId, items } = req.body;
+      
+      if (!boardId || !items) {
+        return res.status(400).json({ 
+          success: false, 
+          message: 'boardId and items are required' 
+        });
+      }
+
+      const WEBHOOK = process.env.GOOGLE_SHEETS_WEBHOOK_URL;
+      const SECRET = process.env.IDEATION_SHARED_SECRET;
+
+      // If webhook is configured, send to Google Sheets
+      if (WEBHOOK && SECRET) {
+        try {
+          const payload = { ...req.body, secret: SECRET };
+          const response = await fetch(`${WEBHOOK}/boards/items/bulk`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+          });
+          
+          if (!response.ok) {
+            console.error('Google Sheets webhook error:', await response.text());
+          }
+        } catch (error) {
+          console.error('Error sending to Google Sheets:', error);
+          // Continue anyway - don't fail the request
+        }
+      }
+
+      res.json({ 
+        success: true, 
+        boardId,
+        itemCount: items.length
+      });
+    } catch (error) {
+      console.error('Error saving items:', error);
+      res.status(500).json({ 
+        success: false, 
+        message: 'Failed to save items' 
+      });
+    }
+  });
+
+  app.get("/api/ideation/boards/:boardId", async (req, res) => {
+    try {
+      const { boardId } = req.params;
+      
+      // For now, return empty data
+      // In the future, this could fetch from a database
+      res.json({ 
+        success: true, 
+        boardId,
+        selections: {}
+      });
+    } catch (error) {
+      console.error('Error fetching board:', error);
+      res.status(500).json({ 
+        success: false, 
+        message: 'Failed to fetch board' 
+      });
+    }
+  });
+
   // 404 Error Handler for API routes only - Let Vite handle SPA routing in development
   app.use('/api/*', (req, res) => {
     res.status(404).json({ 
