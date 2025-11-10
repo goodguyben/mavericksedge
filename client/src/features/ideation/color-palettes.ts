@@ -2,63 +2,63 @@ import type { ColorPalette } from "./types";
 
 export const colorPalettes: ColorPalette[] = [
   {
-    id: "warm-professional",
-    name: "Warm Professional",
-    primary: "#f68634",
-    secondary: "#2c3e50", // Dark blue-gray for excellent contrast
-    accent: "#e67e22", // Slightly darker orange for hover
-    neutral: "#34495e", // Darker gray for headings
-    background: "#ffffff", // Pure white for maximum contrast
-    description: "Clean and approachable with strong contrast and professional warmth"
+    id: "analogous-warm",
+    name: "Analogous Warm",
+    primary: "#f68634", // Orange
+    secondary: "#d4a574", // Warm beige for text
+    accent: "#f4c542", // Golden yellow (analogous)
+    neutral: "#8b4513", // Saddle brown for headings
+    background: "#fefefe", // Warm white
+    description: "Warm color family using yellows, oranges, and browns for cohesive harmony"
   },
   {
-    id: "modern-slate",
-    name: "Modern Slate",
-    primary: "#f68634",
-    secondary: "#7f8c8d", // Medium gray for good contrast
-    accent: "#3498db", // Professional blue accent
-    neutral: "#2c3e50", // Dark slate for headings
-    background: "#ecf0f1", // Light gray background
-    description: "Contemporary and balanced with sophisticated gray tones"
+    id: "analogous-cool",
+    name: "Analogous Cool",
+    primary: "#f68634", // Orange
+    secondary: "#8b7355", // Taupe gray for text
+    accent: "#cd853f", // Peru orange (analogous)
+    neutral: "#654321", // Dark brown for headings
+    background: "#f5f5f0", // Warm off-white
+    description: "Cooler earth tones with browns and muted oranges for sophisticated warmth"
   },
   {
-    id: "deep-elegant",
-    name: "Deep Elegant",
-    primary: "#f68634",
-    secondary: "#bdc3c7", // Light gray for contrast on dark background
-    accent: "#9b59b6", // Sophisticated purple
-    neutral: "#ecf0f1", // Light gray for headings on dark background
-    background: "#2c3e50", // Dark blue-gray background
-    description: "Luxurious and refined with deep tones and elegant accents"
+    id: "complementary-ocean",
+    name: "Complementary Ocean",
+    primary: "#f68634", // Orange
+    secondary: "#4682b4", // Steel blue (complementary)
+    accent: "#1e90ff", // Dodger blue (complementary)
+    neutral: "#2f4f4f", // Dark slate gray for headings
+    background: "#ffffff", // Clean white
+    description: "Orange paired with its complementary blue for energetic contrast"
   },
   {
-    id: "fresh-vibrant",
-    name: "Fresh Vibrant",
-    primary: "#f68634",
-    secondary: "#27ae60", // Rich green that complements orange
-    accent: "#e74c3c", // Professional red accent
-    neutral: "#2c3e50", // Dark gray for headings
-    background: "#ffffff", // White background
-    description: "Energetic yet professional with complementary green and red accents"
+    id: "complementary-deep",
+    name: "Complementary Deep",
+    primary: "#f68634", // Orange
+    secondary: "#4169e1", // Royal blue (complementary)
+    accent: "#000080", // Navy blue (complementary)
+    neutral: "#191970", // Midnight blue for headings
+    background: "#f8f9fa", // Light gray
+    description: "Deep blue complement creates dramatic contrast with vibrant orange"
   },
   {
-    id: "minimalist-clean",
-    name: "Minimalist Clean",
-    primary: "#f68634",
-    secondary: "#95a5a6", // Medium gray for text
-    accent: "#34495e", // Dark blue-gray for hover
-    neutral: "#2c3e50", // Dark gray for headings
-    background: "#f8f9fa", // Off-white background
-    description: "Ultra-clean and simple with subtle gray variations"
+    id: "split-complementary",
+    name: "Split Complementary",
+    primary: "#f68634", // Orange
+    secondary: "#20b2aa", // Light sea green (split complementary)
+    accent: "#40e0d0", // Turquoise (split complementary)
+    neutral: "#2f4f4f", // Dark slate gray for headings
+    background: "#ffffff", // White
+    description: "Orange with blue-green split complements for balanced energy"
   },
   {
-    id: "corporate-blue",
-    name: "Corporate Blue",
-    primary: "#f68634",
-    secondary: "#2980b9", // Professional blue
-    accent: "#34495e", // Dark blue-gray
-    neutral: "#2c3e50", // Darker blue-gray for headings
-    background: "#ffffff", // White background
-    description: "Trustworthy corporate aesthetic with blue and orange balance"
+    id: "monochromatic",
+    name: "Monochromatic",
+    primary: "#f68634", // Orange
+    secondary: "#d2691e", // Chocolate (darker orange)
+    accent: "#daa520", // Goldenrod (lighter orange)
+    neutral: "#8b4513", // Saddle brown (darkest)
+    background: "#fff8f0", // Very light orange tint
+    description: "Single color family using various shades of orange for unified harmony"
   }
 ];
