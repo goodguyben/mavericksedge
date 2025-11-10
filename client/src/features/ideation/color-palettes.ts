@@ -32,24 +32,24 @@ export const colorPalettes: ColorPalette[] = [
     description: "Orange paired with its complementary blue for energetic contrast"
   },
   {
-    id: "complementary-deep",
-    name: "Complementary Deep",
+    id: "complementary-modern",
+    name: "Complementary Modern",
     primary: "#f68634", // Orange
-    secondary: "#4169e1", // Royal blue (complementary)
-    accent: "#000080", // Navy blue (complementary)
-    neutral: "#191970", // Midnight blue for headings
-    background: "#f8f9fa", // Light gray
-    description: "Deep blue complement creates dramatic contrast with vibrant orange"
+    secondary: "#3498db", // Bright blue (complementary)
+    accent: "#2980b9", // Medium blue (complementary)
+    neutral: "#2c3e50", // Dark blue-gray for headings
+    background: "#ffffff", // Clean white
+    description: "Modern blue complement creates fresh, contemporary contrast with orange"
   },
   {
-    id: "split-complementary",
-    name: "Split Complementary",
+    id: "triadic-harmony",
+    name: "Triadic Harmony",
     primary: "#f68634", // Orange
-    secondary: "#20b2aa", // Light sea green (split complementary)
-    accent: "#40e0d0", // Turquoise (split complementary)
-    neutral: "#2f4f4f", // Dark slate gray for headings
-    background: "#ffffff", // White
-    description: "Orange with blue-green split complements for balanced energy"
+    secondary: "#27ae60", // Emerald green (triadic)
+    accent: "#9b59b6", // Purple (triadic)
+    neutral: "#34495e", // Dark gray for headings
+    background: "#f8f9fa", // Light gray
+    description: "Balanced triad of orange, green, and purple for vibrant yet harmonious design"
   },
   {
     id: "monochromatic",
