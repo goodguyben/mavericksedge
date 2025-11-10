@@ -293,7 +293,13 @@ export default function CategoryStep({
                     </div>
                   ) : isPreview && item.previewComponent === "ColorPalettesDemo" ? (
                     <div className="w-full h-full">
-                      <ColorPalettesDemo />
+                      <ColorPalettesDemo
+                        selectedIds={selectedIds}
+                        onToggle={onToggle}
+                        onSkipChange={onSkipChange}
+                        skip={skip}
+                        max={max}
+                      />
                     </div>
                   ) : item.image ? (
                     // eslint-disable-next-line @next/next/no-img-element
