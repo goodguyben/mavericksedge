@@ -2,63 +2,63 @@ import type { ColorPalette } from "./types";
 
 export const colorPalettes: ColorPalette[] = [
   {
-    id: "modern-blue",
-    name: "Modern Blue",
-    primary: "#f68634", // Orange
-    secondary: "#2563eb", // Modern blue (complementary)
-    accent: "#3b82f6", // Bright blue accent
-    neutral: "#1e293b", // Modern dark gray
-    background: "#ffffff", // Clean white
-    description: "Trendy blue complement creates energetic, professional contrast with orange"
+    id: "analogous-sunrise",
+    name: "Analogous Sunrise",
+    primary: "#f68634",
+    secondary: "#ff9a3c", // Neighboring yellow-orange
+    accent: "#ff7033", // Rich red-orange accent
+    neutral: "#000000", // Black for sharp contrast
+    background: "#fff4e6", // Soft sunrise tint
+    description: "Analogous range of warm sunrise oranges with crisp black contrast"
   },
   {
-    id: "vibrant-teal",
-    name: "Vibrant Teal",
-    primary: "#f68634", // Orange
-    secondary: "#0891b2", // Vibrant teal (split complementary)
-    accent: "#06b6d4", // Modern teal accent
-    neutral: "#0f172a", // Deep navy
-    background: "#ffffff", // Clean white
-    description: "Fresh teal-orange combination that's hugely popular in modern design"
+    id: "analogous-citrus",
+    name: "Analogous Citrus",
+    primary: "#f68634",
+    secondary: "#ffc04d", // Golden citrus hue
+    accent: "#ffda79", // Pale citrus highlight
+    neutral: "#000000", // Black typography for clarity
+    background: "#fff9ed", // Light citrus wash
+    description: "Golden citrus tones hugging the orange hue for a bright, inviting feel"
   },
   {
-    id: "rich-purple",
-    name: "Rich Purple",
-    primary: "#f68634", // Orange
-    secondary: "#7c3aed", // Rich purple (triadic)
-    accent: "#a855f7", // Light purple accent
-    neutral: "#1e1b4b", // Deep purple-gray
-    background: "#fafafa", // Warm white
-    description: "Sophisticated purple triad creates luxurious, contemporary harmony"
+    id: "analogous-ember",
+    name: "Analogous Ember",
+    primary: "#f68634",
+    secondary: "#e9652d", // Deeper ember shade
+    accent: "#c04c1d", // Smoldering ember accent
+    neutral: "#000000", // Black grounding element
+    background: "#ffe9dd", // Smoky warm backdrop
+    description: "Deeper ember-inspired oranges that stay within the warm spectrum"
   },
   {
-    id: "sunset-glow",
-    name: "Sunset Glow",
-    primary: "#f68634", // Orange
-    secondary: "#f59e0b", // Amber yellow (analogous)
-    accent: "#f97316", // Bright orange accent
-    neutral: "#9a3412", // Deep orange-brown
-    background: "#fefefe", // Warm white
-    description: "Warm sunset colors with golden accents for energetic, inviting design"
+    id: "mono-amber",
+    name: "Monochrome Amber",
+    primary: "#f68634",
+    secondary: "#d46f2c", // Darker amber tone
+    accent: "#ad551f", // Deep molten accent
+    neutral: "#000000", // Black for bold typography
+    background: "#fff2e6", // Light amber tint
+    description: "Monochromatic amber shades that layer depth without leaving the hue"
   },
   {
-    id: "minimal-slate",
-    name: "Minimal Slate",
-    primary: "#f68634", // Orange
-    secondary: "#64748b", // Trendy gray
-    accent: "#94a3b8", // Light gray accent
-    neutral: "#334155", // Modern dark gray
-    background: "#f8fafc", // Off-white
-    description: "Clean minimal palette with sophisticated grays and orange accents"
+    id: "mono-glow",
+    name: "Monochrome Glow",
+    primary: "#f68634",
+    secondary: "#ff8b42", // Lighter glowing tint
+    accent: "#ffa463", // Soft highlight within the same hue
+    neutral: "#000000", // Black for balance
+    background: "#fff5ec", // Gentle glowing wash
+    description: "Glowing tints of the brand orange for a soft yet cohesive presentation"
   },
   {
-    id: "electric-gradient",
-    name: "Electric Gradient",
-    primary: "#f68634", // Orange
-    secondary: "#0ea5e9", // Electric blue
-    accent: "#06b6d4", // Cyan accent
-    neutral: "#1e293b", // Dark slate
-    background: "#ffffff", // Pure white
-    description: "Electric blue-orange combination perfect for modern gradients and tech brands"
+    id: "mono-deep",
+    name: "Monochrome Deep",
+    primary: "#f68634",
+    secondary: "#c75a20", // Muted deep shade
+    accent: "#8f4118", // Rich shadow accent
+    neutral: "#000000", // Black to anchor the palette
+    background: "#fde7d6", // Earthy monochrome base
+    description: "Grounded monochrome shades that explore the deeper side of the brand orange"
   }
 ];
