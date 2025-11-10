@@ -62,33 +62,33 @@ export const colorPalettes: ColorPalette[] = [
     description: "Grounded monochrome shades that explore the deeper side of the brand orange"
   },
   {
-    id: "analogous-warm-earth",
-    name: "Analogous Warm Earth",
+    id: "amber-waves",
+    name: "Amber Waves",
     primary: "#f68634",
-    secondary: "#a0522d", // Dark sienna for strong contrast
-    accent: "#daa520", // Goldenrod accent
-    neutral: "#000000", // Black for headings
-    background: "#f4e4bc", // Warm beige background
-    description: "Earthy browns and tans that create a grounded, natural feel"
+    secondary: "#8b4513", // Deep walnut brown
+    accent: "#daa520", // Antique gold
+    neutral: "#000000", // Black anchor
+    background: "#fef7e6", // Soft parchment
+    description: "Flowing amber gradients that evoke rippling waves of warm light"
   },
   {
-    id: "monochrome-sunset",
-    name: "Monochrome Sunset",
+    id: "crimson-dawn",
+    name: "Crimson Dawn",
     primary: "#f68634",
-    secondary: "#a0522d", // Deep terracotta for contrast
-    accent: "#cd853f", // Peru accent
-    neutral: "#000000", // Black typography
-    background: "#ffe4b5", // Moccasin background
-    description: "Layered sunset oranges that deepen the brand hue"
-  },
-  {
-    id: "analogous-golden-hour",
-    name: "Analogous Golden Hour",
-    primary: "#f68634",
-    secondary: "#b8860b", // Dark goldenrod for readability
-    accent: "#ffd700", // Gold accent
+    secondary: "#722f37", // Deep burgundy for drama
+    accent: "#dc143c", // Crimson accent
     neutral: "#000000", // Black text
-    background: "#fff8dc", // Cornsilk background
-    description: "Golden hour glow with yellows and oranges for a luminous feel"
+    background: "#fff0f5", // Lavender blush
+    description: "Bold crimson depths that capture the mystery of early morning light"
+  },
+  {
+    id: "solar-flare",
+    name: "Solar Flare",
+    primary: "#f68634",
+    secondary: "#b22222", // Firebrick red
+    accent: "#ff4500", // Orange red
+    neutral: "#000000", // Black contrast
+    background: "#fff5ee", // Seashell
+    description: "Explosive energy of solar flares captured in vivid orange bursts"
   }
 ];
