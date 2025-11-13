@@ -72,7 +72,7 @@ export default function ProgressIndicator({
           <div className="flex items-center gap-2">
             <div className="w-2 h-2 rounded-full bg-green-500"></div>
             <span className="text-neutral-400">
-              {completedCategories} of {totalCategories} categories
+              {completedCategories} of {totalCategories} steps
             </span>
           </div>
           <div className="flex items-center gap-1 text-neutral-500">

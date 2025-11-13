@@ -30,7 +30,15 @@ export default function IdeationLab() {
 
   // All hooks must be called before any conditional returns
   const categories: Category[] = useMemo(
-    () => ["Navigation Menu", "Hero", "Buttons", "Carousel", "Text Animations", "Color Palettes"],
+    () => [
+      "Navigation Menu",
+      "Hero",
+      "Buttons",
+      "Carousel",
+      "Text Animations",
+      "Color Palettes",
+      "Typography",
+    ],
     []
   );
   const steps = useMemo(() => ["Design Inspiration", ...categories] as const, [categories]);
@@ -220,7 +228,8 @@ export default function IdeationLab() {
     return <PasswordGate onAuthenticated={handleAuthed} />;
   }
 
-  const completedCategories = Object.values(selectedByCategory).filter((ids) => ids.length > 0).length;
+  const totalStepCount = steps.length + 1; // includes Review step
+  const completedStepsCount = Math.min(totalStepCount, stepIndex + 1);
 
   return (
     <>
@@ -257,15 +266,15 @@ export default function IdeationLab() {
 
         <ProgressIndicator
           currentStep={stepIndex + 1}
-          totalSteps={steps.length + 1}
-          completedCategories={completedCategories}
-          totalCategories={categories.length}
+          totalSteps={totalStepCount}
+          completedCategories={completedStepsCount}
+          totalCategories={totalStepCount}
         />
 
         <div className="mt-8">
           <StepHeader
             stepIndex={stepIndex}
-            totalSteps={steps.length + 1}
+            totalSteps={totalStepCount}
             category={stepIndex === steps.length ? "Review" : currentStep}
             estTimeMins={stepIndex === steps.length ? undefined : g?.estTimeMins}
             guidance={

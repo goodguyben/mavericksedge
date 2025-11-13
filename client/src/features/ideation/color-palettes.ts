@@ -7,19 +7,19 @@ export const colorPalettes: ColorPalette[] = [
     primary: "#f68634",
     secondary: "#8b4513", // Much darker brown for WCAG AA compliance
     accent: "#ff7033", // Rich red-orange accent
-    neutral: "#000000", // Black for sharp contrast
+    neutral: "#1e1b16", // Deep espresso for softer typography contrast
     background: "#fff4e6", // Soft sunrise tint
     description: "Analogous range of warm sunrise oranges with crisp black contrast"
   },
   {
-    id: "analogous-citrus",
-    name: "Analogous Citrus",
+    id: "analogous-emberglow",
+    name: "Analogous Emberglow",
     primary: "#f68634",
-    secondary: "#b8860b", // Much darker goldenrod for proper contrast
-    accent: "#ffda79", // Pale citrus highlight
-    neutral: "#000000", // Black typography for clarity
-    background: "#fff9ed", // Light citrus wash
-    description: "Golden citrus tones hugging the orange hue for a bright, inviting feel"
+    secondary: "#bf661a", // Smoked amber for connective warmth
+    accent: "#8f2e14", // Dark ember accent for dramatic contrast
+    neutral: "#2b1a13", // Rich kiln-baked brown for typography
+    background: "#ffebd9", // Soft emberglow wash
+    description: "Smoldering ember hues blending dark spice accents with a warm ambient glow"
   },
   {
     id: "analogous-ember",
@@ -27,19 +27,19 @@ export const colorPalettes: ColorPalette[] = [
     primary: "#f68634",
     secondary: "#654321", // Much darker sienna for strong contrast
     accent: "#c04c1d", // Smoldering ember accent
-    neutral: "#000000", // Black grounding element
+    neutral: "#24160f", // Smoky umber for balanced text contrast
     background: "#ffe9dd", // Smoky warm backdrop
     description: "Deeper ember-inspired oranges that stay within the warm spectrum"
   },
   {
-    id: "mono-amber",
-    name: "Monochrome Amber",
+    id: "terracotta-muse",
+    name: "Terracotta Muse",
     primary: "#f68634",
-    secondary: "#a0522d", // Much darker amber brown for contrast
-    accent: "#ad551f", // Deep molten accent
-    neutral: "#000000", // Black for bold typography
-    background: "#fff2e6", // Light amber tint
-    description: "Monochromatic amber shades that layer depth without leaving the hue"
+    secondary: "#7f3f1a", // Kiln-fired terracotta shadow
+    accent: "#f5b48a", // Sunlit clay highlight
+    neutral: "#43362c", // Weathered adobe for body copy
+    background: "#fef2e3", // Clay courtyard stucco
+    description: "Modern terracotta tones inspired by sculpted pottery and warm galleries"
   },
   {
     id: "mono-glow",
@@ -47,19 +47,19 @@ export const colorPalettes: ColorPalette[] = [
     primary: "#f68634",
     secondary: "#8b4513", // Even darker brown for maximum contrast
     accent: "#ffa463", // Soft highlight within the same hue
-    neutral: "#000000", // Black for balance
+    neutral: "#1f1f22", // Charcoal slate for gentle contrast
     background: "#fff5ec", // Gentle glowing wash
     description: "Glowing tints of the brand orange for a soft yet cohesive presentation"
   },
   {
-    id: "mono-deep",
-    name: "Monochrome Deep",
+    id: "ember-nocturne",
+    name: "Ember Nocturne",
     primary: "#f68634",
-    secondary: "#8b4513", // Dark brown for contrast on earthy background
-    accent: "#8f4118", // Rich shadow accent
-    neutral: "#000000", // Black to anchor the palette
-    background: "#fde7d6", // Earthy monochrome base
-    description: "Grounded monochrome shades that explore the deeper side of the brand orange"
+    secondary: "#3a3d5b", // Indigo midnight shadow
+    accent: "#ff7c6b", // Neon ember flare
+    neutral: "#222136", // Deep twilight charcoal
+    background: "#f3f2ff", // Moonlit lavender haze
+    description: "Nightfall embers against indigo skies with neon accents for a futuristic edge"
   },
   {
     id: "velvet-ember",
@@ -67,7 +67,7 @@ export const colorPalettes: ColorPalette[] = [
     primary: "#f68634",
     secondary: "#722f37", // Deep plum burgundy
     accent: "#b22222", // Rich firebrick
-    neutral: "#000000", // Black anchor
+    neutral: "#1b1418", // Inky plum-black for luxurious depth
     background: "#faf0e6", // Linen (warm off-white)
     description: "Luxurious velvet depths with smoldering ember warmth and rich texture"
   },
@@ -77,7 +77,7 @@ export const colorPalettes: ColorPalette[] = [
     primary: "#f68634",
     secondary: "#722f37", // Deep burgundy for drama
     accent: "#dc143c", // Crimson accent
-    neutral: "#000000", // Black text
+    neutral: "#23151d", // Blackberry charcoal for refined copy
     background: "#fff0f5", // Lavender blush
     description: "Bold crimson depths that capture the mystery of early morning light"
   },

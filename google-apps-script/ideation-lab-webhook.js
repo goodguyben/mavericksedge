@@ -118,10 +118,12 @@ function handleBoardUpsert(data) {
         "Hero",
         "Buttons",
         "Carousel",
-        "Text Animations"
+        "Text Animations",
+        "Color Palettes",
+        "Typography"
       ]);
       // Format header row
-      sheet.getRange(1, 1, 1, 10).setFontWeight("bold").setBackground("#f3f4f6");
+      sheet.getRange(1, 1, 1, 12).setFontWeight("bold").setBackground("#f3f4f6");
     }
     
     // Parse the JSON data
@@ -141,6 +143,8 @@ function handleBoardUpsert(data) {
     const buttons = (selectedByCategory["Buttons"] || []).join(", ");
     const carousel = (selectedByCategory["Carousel"] || []).join(", ");
     const textAnimations = (selectedByCategory["Text Animations"] || []).join(", ");
+    const colorPalettes = (selectedByCategory["Color Palettes"] || []).join(", ");
+    const typography = (selectedByCategory["Typography"] || []).join(", ");
     
     // Append row
     sheet.appendRow([
@@ -153,7 +157,9 @@ function handleBoardUpsert(data) {
       hero,
       buttons,
       carousel,
-      textAnimations
+      textAnimations,
+      colorPalettes,
+      typography
     ]);
     
     Logger.log('Successfully saved board: ' + data.boardId);

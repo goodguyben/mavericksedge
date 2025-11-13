@@ -92,7 +92,7 @@ export function LandingAccordionItemPalette({ palette }: LandingAccordionItemPal
         <div className="flex flex-col md:flex-row items-center justify-between gap-12">
 
           {/* Left Side: Text Content */}
-          <div className="w-full md:w-1/2 text-center md:text-left">
+          <div className="w-full md:w-1/2 text-center md:text-left pt-14 md:pt-20">
             <h1
               className="text-5xl md:text-7xl font-bold leading-tight tracking-tighter"
               style={{ color: palette.neutral }}

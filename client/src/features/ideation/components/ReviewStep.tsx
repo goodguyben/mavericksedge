@@ -9,7 +9,15 @@ export default function ReviewStep({
   selectedByCategory,
   onSubmit,
 }: ReviewStepProps) {
-  const categories: Category[] = ["Navigation Menu", "Hero", "Buttons", "Carousel", "Text Animations"];
+  const categories: Category[] = [
+    "Navigation Menu",
+    "Hero",
+    "Buttons",
+    "Carousel",
+    "Text Animations",
+    "Color Palettes",
+    "Typography",
+  ];
 
   const totalSelections = categories.reduce((sum, cat) => {
     return sum + (selectedByCategory[cat]?.length || 0);
@@ -21,9 +29,37 @@ export default function ReviewStep({
     <div className="flex flex-col items-center justify-center min-h-[500px] space-y-8 text-center">
       <div className="max-w-2xl">
         <div className="mb-8">
-          <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-green-500/10 border-2 border-green-500/20 mb-6">
-            <svg className="w-10 h-10 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+          <div className="inline-flex items-center justify-center w-24 h-24 rounded-full bg-green-500/10 border-2 border-green-500/20 mb-6">
+            <svg className="w-20 h-20 text-green-400" viewBox="0 0 64 64" fill="none">
+              <circle
+                className="animate-[dash_0.6s_ease-out_forwards]"
+                cx="32"
+                cy="32"
+                r="28"
+                stroke="currentColor"
+                strokeWidth="4"
+                strokeLinecap="round"
+                strokeDasharray="175"
+                strokeDashoffset="175"
+              />
+              <path
+                className="animate-[check_0.4s_0.45s_ease-out_both]"
+                d="M20 33.5L28.5 42L44 24"
+                stroke="currentColor"
+                strokeWidth="4"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeDasharray="40"
+                strokeDashoffset="40"
+              />
+              <style>{`
+                @keyframes dash {
+                  to { stroke-dashoffset: 0; }
+                }
+                @keyframes check {
+                  to { stroke-dashoffset: 0; }
+                }
+              `}</style>
             </svg>
           </div>
 

@@ -1,4 +1,4 @@
-export type Category = "Navigation Menu" | "Hero" | "Buttons" | "Carousel" | "Text Animations" | "Color Palettes";
+export type Category = "Navigation Menu" | "Hero" | "Buttons" | "Carousel" | "Text Animations" | "Color Palettes" | "Typography";
 
 export type ColorPalette = {
   id: string;
@@ -27,6 +27,10 @@ export type CatalogItem = {
   a11yNotes?: string;
   version?: string;
   badges?: ("popular" | "new" | "accessible")[];
+  fontFamily?: string;
+  fontImport?: string;
+  sampleText?: string;
+  usage?: string[];
 };
 
 export type CategoryGuidance = {

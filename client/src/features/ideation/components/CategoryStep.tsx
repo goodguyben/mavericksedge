@@ -60,17 +60,53 @@ export default function CategoryStep({
   max = 5,
 }: CategoryStepProps) {
   const isColorPaletteCategory = category === "Color Palettes";
-  const initialPaletteId =
-    items[0]?.id ?? colorPalettes[0]?.id ?? "";
+  const isTypographyCategory = category === "Typography";
+
+  const getPaletteId = (itemId?: string) => {
+    if (!itemId) return "";
+    return itemId.replace(/^color-palette-/, "");
+  };
+
+  const initialPaletteId = isColorPaletteCategory
+    ? getPaletteId(items[0]?.id) || colorPalettes[0]?.id || ""
+    : items[0]?.id ?? "";
   const [appliedPaletteId, setAppliedPaletteId] = useState(initialPaletteId);
 
   useEffect(() => {
     if (!isColorPaletteCategory) return;
     if (items.length === 0) return;
-    if (!items.some((item) => item.id === appliedPaletteId)) {
-      setAppliedPaletteId(items[0].id);
+
+    const paletteIds = items
+      .map((item) => getPaletteId(item.id))
+      .filter(Boolean);
+
+    if (!paletteIds.includes(appliedPaletteId) && paletteIds[0]) {
+      setAppliedPaletteId(paletteIds[0]);
     }
   }, [items, appliedPaletteId, isColorPaletteCategory]);
+
+  useEffect(() => {
+    if (!isTypographyCategory) return;
+    if (typeof document === "undefined") return;
+
+    const fontsToLoad = new Map<string, string>();
+    items.forEach((item) => {
+      if (item.fontFamily && item.fontImport) {
+        fontsToLoad.set(item.fontFamily, item.fontImport);
+      }
+    });
+
+    fontsToLoad.forEach((href, fontKey) => {
+      const existing = document.querySelector(`link[data-typography-font="${fontKey}"]`);
+      if (existing) return;
+
+      const link = document.createElement("link");
+      link.rel = "stylesheet";
+      link.href = href;
+      link.setAttribute("data-typography-font", fontKey);
+      document.head.appendChild(link);
+    });
+  }, [items, isTypographyCategory]);
 
   const appliedPalette = useMemo(
     () =>
@@ -128,153 +164,244 @@ export default function CategoryStep({
         </div>
       ) : (
         <>
-          {isColorPaletteCategory && appliedPalette && (
-            <div className="mb-6 rounded-xl border border-neutral-700 bg-neutral-900">
-              <div className="border-b border-neutral-800 px-5 py-3">
-                <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
-                  <div>
-                    <p className="text-sm font-semibold text-white">
-                      Live preview
-                    </p>
-                    <p className="text-xs text-neutral-400">
-                      Apply a palette to see it on the hero component before selecting.
-                    </p>
-                  </div>
-                  <div className="text-xs text-neutral-500">
-                    {appliedPalette.name}
-                  </div>
-                </div>
-              </div>
-              <ColorPaletteHeroPreview paletteId={appliedPalette.id} />
-            </div>
-          )}
-          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {isColorPaletteCategory ? (
+            <>
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
                 {items.map((item) => {
                   const selected = selectedIds.includes(item.id);
-                  const isPreview = !!item.previewComponent;
-                  const isNavHeader = item.previewComponent === "NavHeaderDemo";
-                  const isStaggeredMenu = item.previewComponent === "StaggeredMenuDemo";
-                  const isCardNav = item.previewComponent === "CardNavDemo";
-                  const isHero = item.previewComponent === "HeroDemo";
-                  const isNeuralHero = item.previewComponent === "NeuralNetworkHeroDemo";
-                  const isShaderShowcase = item.previewComponent === "ShaderShowcaseDemo";
-                  const isInteractiveAccordion = item.previewComponent === "InteractiveImageAccordionDemo";
-                  const isVideoHero = item.previewComponent === "VideoHeroDemo";
-                  const isModernVideoHero = item.previewComponent === "ModernVideoHeroDemo";
-                  const isRoundedBentoVideoHero = item.previewComponent === "RoundedBentoVideoHeroDemo";
-                  const isLogoCarousel = item.previewComponent === "LogoCarouselVideoHeroDemo";
-                  const isSubscribeButton = item.previewComponent === "SubscribeButtonDemo";
-                  const isExploreButton = item.previewComponent === "ExploreButtonDemo";
-                  const isLearnMoreButton = item.previewComponent === "LearnMoreButtonDemo";
-                  const isInteractiveHoverButton = item.previewComponent === "InteractiveHoverButtonDemo";
-                  const isRippleButton = item.previewComponent === "RippleButtonDemo";
-                  const isShinyButton = item.previewComponent === "ShinyTextDemo";
-                  const isSubscribeButtonV2 = item.previewComponent === "SubscribeButtonV2Demo";
-                  const isNeumorphicButton = item.previewComponent === "NeumorphicButtonDemo";
-                  const isFeatureSteps = item.previewComponent === "FeatureStepsDemo";
-                  const isCircularTestimonials = item.previewComponent === "CircularTestimonialsDemo";
-                  const isCircularGallery = item.previewComponent === "CircularGalleryDemo";
-                  const isPortfolioCarousel = item.previewComponent === "PortfolioCarouselDemo";
-                  const isTestimonialSlider = item.previewComponent === "TestimonialSliderVideoHeroDemo";
-                  const isStaggerTestimonials = item.previewComponent === "StaggerTestimonialsDemo";
-                  const isSplitText = item.previewComponent === "SplitTextDemo";
-                  const isBlurText = item.previewComponent === "BlurTextDemo";
-                  const isCircularText = item.previewComponent === "CircularTextDemo";
-                  const isTextType = item.previewComponent === "TextTypeDemo";
-                  const isScrollReveal = item.previewComponent === "ScrollRevealDemo";
-                  const isScrollFloat = item.previewComponent === "ScrollFloatDemo";
-                  const paletteData = isColorPaletteCategory
-                    ? colorPalettes.find((palette) => palette.id === item.id)
-                    : undefined;
-                  const isAppliedPalette =
-                    isColorPaletteCategory && appliedPaletteId === item.id;
-
-                  if (isColorPaletteCategory) {
-                    return (
-                      <div
-                        key={item.id}
-                        className={`group rounded-xl border transition-all ${
-                          selected
-                            ? "border-white bg-neutral-800 shadow-lg shadow-white/10"
-                            : "border-neutral-700 bg-neutral-900 hover:border-neutral-600"
-                        }`}
-                      >
-                        <div className="p-5">
-                          <div className="flex items-start justify-between gap-3">
-                            <div>
-                              <div className="text-sm font-semibold text-white">
-                                {paletteData?.name ?? item.title}
-                              </div>
-                              <p className="mt-2 text-xs text-neutral-400">
-                                {paletteData?.description ??
-                                  "Apply this palette to preview it on the hero above."}
-                              </p>
-                            </div>
-                            {isAppliedPalette && (
-                              <span className="rounded-full bg-orange-500/20 px-2 py-1 text-[10px] font-semibold uppercase tracking-wide text-orange-300">
-                                Applied
-                              </span>
-                            )}
-                          </div>
-                          {paletteData && (
-                            <div className="mt-4 flex flex-wrap gap-2">
-                              {[
-                                { label: "Primary", color: paletteData.primary },
-                                { label: "Secondary", color: paletteData.secondary },
-                                { label: "Accent", color: paletteData.accent },
-                                { label: "Neutral", color: paletteData.neutral },
-                                { label: "Background", color: paletteData.background },
-                              ].map((swatch) => (
-                                <div key={swatch.label} className="flex items-center gap-2">
-                                  <div
-                                    className="h-6 w-6 rounded-full border border-white/40 shadow-inner"
-                                    style={{ backgroundColor: swatch.color }}
-                                    title={`${swatch.label}: ${swatch.color}`}
-                                  />
-                                  <span className="text-[11px] uppercase tracking-wide text-neutral-400">
-                                    {swatch.label}
-                                  </span>
-                                </div>
-                              ))}
-                            </div>
-                          )}
-                        </div>
-                        <div className="flex gap-2 border-t border-neutral-700/70 bg-neutral-900 px-5 py-4">
-                          <button
-                            onClick={() => setAppliedPaletteId(item.id)}
-                            className={`flex-1 rounded-lg px-3 py-2 text-sm font-medium transition-all ${
-                              isAppliedPalette
-                                ? "bg-orange-500 text-black hover:bg-orange-400"
-                                : "border border-orange-500/60 text-orange-100 hover:bg-orange-500/10"
-                            }`}
-                          >
-                            {isAppliedPalette ? "Palette Applied" : "Apply Palette"}
-                          </button>
-                          <button
-                            onClick={() => onToggle(item.id)}
-                            className={`flex-1 rounded-lg px-3 py-2 text-sm font-medium transition-all ${
-                              selected
-                                ? "bg-white text-black hover:bg-neutral-100"
-                                : "border border-neutral-600 bg-neutral-800 text-white hover:bg-neutral-700 hover:border-neutral-500"
-                            }`}
-                          >
-                            {selected ? "✓ Selected" : "Select"}
-                          </button>
-                        </div>
-                      </div>
-                    );
-                  }
+                  const paletteIdForItem = getPaletteId(item.id);
+                  const paletteData = colorPalettes.find(
+                    (palette) => palette.id === paletteIdForItem
+                  );
+                  const isAppliedPalette = appliedPaletteId === paletteIdForItem;
 
                   return (
                     <div
                       key={item.id}
-                      className={`group rounded-xl border transition-all ${
-                        selected 
-                          ? "border-white bg-neutral-800 shadow-lg shadow-white/10" 
+                      className={`rounded-xl border overflow-hidden transition-all ${
+                        selected
+                          ? "border-white bg-neutral-800 shadow-lg shadow-white/10"
                           : "border-neutral-700 bg-neutral-900 hover:border-neutral-600"
-                      } overflow-hidden ${isPreview && !isSubscribeButton && !isExploreButton && !isLearnMoreButton && !isInteractiveHoverButton && !isRippleButton && !isShinyButton && !isSubscribeButtonV2 && !isNeumorphicButton && !isFeatureSteps && !isCircularTestimonials && !isCircularGallery && !isPortfolioCarousel && !isTestimonialSlider && !isLogoCarousel && !isStaggerTestimonials && !isSplitText && !isBlurText && !isCircularText && !isTextType && !isScrollReveal && !isScrollFloat ? 'sm:col-span-2 lg:col-span-3' : isFeatureSteps || isCircularTestimonials || isCircularGallery || isPortfolioCarousel || isTestimonialSlider || isLogoCarousel || isStaggerTestimonials ? 'sm:col-span-2 lg:col-span-3' : ''}`}
+                      }`}
                     >
-                      <div className={`${isPreview ? (isNavHeader ? 'h-[240px]' : isStaggeredMenu ? 'h-[640px]' : isCardNav ? 'h-[400px]' : isHero ? 'h-[700px]' : isNeuralHero ? 'h-[800px]' : isShaderShowcase ? 'h-[800px]' : isInteractiveAccordion ? 'h-[900px]' : isVideoHero ? 'h-auto min-h-[600px]' : isModernVideoHero ? 'h-auto min-h-[600px]' : isRoundedBentoVideoHero ? 'h-auto min-h-[600px]' : isLogoCarousel ? 'h-auto min-h-[600px]' : isSubscribeButton ? 'h-[200px]' : isExploreButton ? 'h-[200px]' : isLearnMoreButton ? 'h-[200px]' : isInteractiveHoverButton ? 'h-[200px]' : isRippleButton ? 'h-[200px]' : isShinyButton ? 'h-[200px]' : isSubscribeButtonV2 ? 'h-[200px]' : isNeumorphicButton ? 'h-[200px]' : isFeatureSteps ? 'h-[900px]' : isCircularTestimonials ? 'h-[600px]' : isCircularGallery ? 'h-[600px]' : isPortfolioCarousel ? 'h-[700px]' : isTestimonialSlider ? 'h-auto min-h-[400px]' : isStaggerTestimonials ? 'h-[700px]' : isSplitText ? 'h-[360px]' : isBlurText ? 'h-[360px]' : isCircularText ? 'h-[360px]' : isTextType ? 'h-[360px]' : isScrollReveal ? 'h-[360px]' : isScrollFloat ? 'h-[360px]' : isColorPalettes ? 'h-[1000px]' : 'h-[480px]') : 'aspect-[4/3]'} ${isPreview ? 'bg-background' : 'bg-neutral-800'} relative overflow-hidden`}>
+                      <div className="p-4">
+                        <div className="flex items-center justify-between">
+                          <div className="text-sm font-semibold text-white">
+                            {paletteData?.name ?? item.title}
+                          </div>
+                          {isAppliedPalette && (
+                            <span className="rounded-full bg-orange-500/20 px-2 py-1 text-[10px] font-semibold uppercase tracking-wide text-orange-300">
+                              Applied
+                            </span>
+                          )}
+                        </div>
+                        {paletteData && (
+                          <div className="mt-3 flex flex-wrap justify-center gap-2.5">
+                            {[
+                              { label: "Primary", color: paletteData.primary },
+                              { label: "Secondary", color: paletteData.secondary },
+                              { label: "Accent", color: paletteData.accent },
+                              { label: "Neutral", color: paletteData.neutral },
+                              { label: "Background", color: paletteData.background },
+                            ].map((swatch) => (
+                              <div
+                                key={swatch.label}
+                                className="flex h-6 w-6 items-center justify-center"
+                              >
+                                <div
+                                  className="h-5 w-5 rounded-full border border-white/40 shadow-inner"
+                                  style={{ backgroundColor: swatch.color }}
+                                  title={`${swatch.label}: ${swatch.color}`}
+                                />
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                      <div className="flex gap-2 border-t border-neutral-700/60 bg-neutral-900/90 px-4 py-3">
+                        <button
+                          onClick={() =>
+                            setAppliedPaletteId(
+                              paletteIdForItem ?? getPaletteId(item.id)
+                            )
+                          }
+                          className={`flex-1 rounded-lg px-3 py-1.5 text-sm font-medium transition-all ${
+                            isAppliedPalette
+                              ? "bg-orange-500 text-black hover:bg-orange-400"
+                              : "border border-orange-500/60 text-orange-100 hover:bg-orange-500/10"
+                          }`}
+                        >
+                          {isAppliedPalette ? "Palette Applied" : "Apply Palette"}
+                        </button>
+                        <button
+                          onClick={() => onToggle(item.id)}
+                          className={`flex-1 rounded-lg px-3 py-1.5 text-sm font-medium transition-all ${
+                            selected
+                              ? "bg-white text-black hover:bg-neutral-100"
+                              : "border border-neutral-600 bg-neutral-800 text-white hover:bg-neutral-700 hover:border-neutral-500"
+                          }`}
+                        >
+                          {selected ? "✓ Selected" : "Select"}
+                        </button>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+              {appliedPalette && (
+                <div className="mt-6 rounded-xl border border-neutral-700 bg-neutral-900">
+                  <div className="border-b border-neutral-800 px-5 py-3">
+                    <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
+                      <div>
+                        <p className="text-sm font-semibold text-white">
+                          Live preview
+                        </p>
+                        <p className="text-xs text-neutral-400">
+                          Apply a palette to see it on the hero component before selecting.
+                        </p>
+                      </div>
+                      <div className="text-xs font-semibold uppercase tracking-wide text-neutral-300">
+                        {appliedPalette.name}
+                      </div>
+                    </div>
+                  </div>
+                  <ColorPaletteHeroPreview paletteId={appliedPalette.id} />
+                </div>
+              )}
+            </>
+          ) : (
+            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+              {items.map((item) => {
+                const selected = selectedIds.includes(item.id);
+                if (isTypographyCategory) {
+                  const sampleText =
+                    item.sampleText ??
+                    "The quick brown fox jumps over the lazy dog. Numbers 0123456789.";
+                  const classification = item.tags?.find((tag) =>
+                    ["sans-serif", "serif", "monospace", "handwritten", "display"].includes(tag)
+                  );
+
+                  return (
+                    <div
+                      key={item.id}
+                      className={`rounded-xl border overflow-hidden transition-all ${
+                        selected
+                          ? "border-white bg-neutral-800 shadow-lg shadow-white/10"
+                          : "border-neutral-700 bg-neutral-900 hover:border-neutral-600"
+                      }`}
+                    >
+                      <div className="flex flex-col gap-5 p-5">
+                        <div className="flex items-start justify-between gap-3">
+                          <div>
+                            <div className="text-sm font-semibold text-white flex items-center gap-2">
+                              <span>{item.title}</span>
+                              {classification && (
+                                <span className="text-[11px] uppercase tracking-wide text-neutral-500">
+                                  {classification}
+                                </span>
+                              )}
+                            </div>
+                          </div>
+                          {selected && (
+                            <span className="rounded-full bg-white text-black px-2 py-1 text-[10px] font-semibold uppercase tracking-wide shadow-sm">
+                              Selected
+                            </span>
+                          )}
+                        </div>
+                        <div className="rounded-xl border border-neutral-700/60 bg-neutral-900/80 px-5 py-6">
+                          <div className="flex flex-col gap-4">
+                            <div className="flex items-end gap-4">
+                              <span
+                                className="text-5xl font-bold text-white/90"
+                                style={{ fontFamily: item.fontFamily || undefined }}
+                              >
+                                Aa
+                              </span>
+                              <span
+                                className="text-base text-neutral-300 tracking-wide"
+                                style={{ fontFamily: item.fontFamily || undefined }}
+                              >
+                                0123456789 • !?&%
+                              </span>
+                            </div>
+                            <p
+                              className="text-sm leading-relaxed text-neutral-300"
+                              style={{ fontFamily: item.fontFamily || undefined }}
+                            >
+                              {sampleText}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="flex gap-2 border-t border-neutral-700/60 bg-neutral-900/90 px-5 py-3">
+                        <button
+                          onClick={() => onToggle(item.id)}
+                          className={`flex-1 rounded-lg px-3 py-1.5 text-sm font-medium transition-all ${
+                            selected
+                              ? "bg-white text-black hover:bg-neutral-100"
+                              : "border border-neutral-600 bg-neutral-800 text-white hover:bg-neutral-700 hover:border-neutral-500"
+                          }`}
+                        >
+                          {selected ? "✓ Selected" : "Select"}
+                        </button>
+                        <a
+                          href={item.sourceUrl}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="rounded-lg border border-neutral-600 bg-neutral-800 px-3 py-1.5 text-sm text-white transition-all hover:border-neutral-500 hover:bg-neutral-700"
+                          title="View source"
+                        >
+                          <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                        </a>
+                      </div>
+                    </div>
+                  );
+                }
+                const isPreview = !!item.previewComponent;
+                const isNavHeader = item.previewComponent === "NavHeaderDemo";
+                const isStaggeredMenu = item.previewComponent === "StaggeredMenuDemo";
+                const isCardNav = item.previewComponent === "CardNavDemo";
+                const isHero = item.previewComponent === "HeroDemo";
+                const isNeuralHero = item.previewComponent === "NeuralNetworkHeroDemo";
+                const isShaderShowcase = item.previewComponent === "ShaderShowcaseDemo";
+                const isInteractiveAccordion = item.previewComponent === "InteractiveImageAccordionDemo";
+                const isVideoHero = item.previewComponent === "VideoHeroDemo";
+                const isModernVideoHero = item.previewComponent === "ModernVideoHeroDemo";
+                const isRoundedBentoVideoHero = item.previewComponent === "RoundedBentoVideoHeroDemo";
+                const isLogoCarousel = item.previewComponent === "LogoCarouselVideoHeroDemo";
+                const isSubscribeButton = item.previewComponent === "SubscribeButtonDemo";
+                const isExploreButton = item.previewComponent === "ExploreButtonDemo";
+                const isLearnMoreButton = item.previewComponent === "LearnMoreButtonDemo";
+                const isInteractiveHoverButton = item.previewComponent === "InteractiveHoverButtonDemo";
+                const isRippleButton = item.previewComponent === "RippleButtonDemo";
+                const isShinyButton = item.previewComponent === "ShinyTextDemo";
+                const isSubscribeButtonV2 = item.previewComponent === "SubscribeButtonV2Demo";
+                const isNeumorphicButton = item.previewComponent === "NeumorphicButtonDemo";
+                const isFeatureSteps = item.previewComponent === "FeatureStepsDemo";
+                const isCircularTestimonials = item.previewComponent === "CircularTestimonialsDemo";
+                const isCircularGallery = item.previewComponent === "CircularGalleryDemo";
+                const isPortfolioCarousel = item.previewComponent === "PortfolioCarouselDemo";
+                const isTestimonialSlider = item.previewComponent === "TestimonialSliderVideoHeroDemo";
+                const isStaggerTestimonials = item.previewComponent === "StaggerTestimonialsDemo";
+                const isSplitText = item.previewComponent === "SplitTextDemo";
+                const isBlurText = item.previewComponent === "BlurTextDemo";
+                const isCircularText = item.previewComponent === "CircularTextDemo";
+                const isTextType = item.previewComponent === "TextTypeDemo";
+                const isScrollReveal = item.previewComponent === "ScrollRevealDemo";
+                const isScrollFloat = item.previewComponent === "ScrollFloatDemo";
+
+                return (
+                  <div
+                    key={item.id}
+                    className={`group rounded-xl border transition-all ${
+                      selected 
+                        ? "border-white bg-neutral-800 shadow-lg shadow-white/10" 
+                        : "border-neutral-700 bg-neutral-900 hover:border-neutral-600"
+                    } overflow-hidden ${isPreview && !isSubscribeButton && !isExploreButton && !isLearnMoreButton && !isInteractiveHoverButton && !isRippleButton && !isShinyButton && !isSubscribeButtonV2 && !isNeumorphicButton && !isFeatureSteps && !isCircularTestimonials && !isCircularGallery && !isPortfolioCarousel && !isTestimonialSlider && !isLogoCarousel && !isStaggerTestimonials && !isSplitText && !isBlurText && !isCircularText && !isTextType && !isScrollReveal && !isScrollFloat ? 'sm:col-span-2 lg:col-span-3' : isFeatureSteps || isCircularTestimonials || isCircularGallery || isPortfolioCarousel || isTestimonialSlider || isLogoCarousel || isStaggerTestimonials ? 'sm:col-span-2 lg:col-span-3' : ''}`}
+                  >
+                    <div className={`${isPreview ? (isNavHeader ? 'h-[240px]' : isStaggeredMenu ? 'h-[640px]' : isCardNav ? 'h-[400px]' : isHero ? 'h-[700px]' : isNeuralHero ? 'h-[800px]' : isShaderShowcase ? 'h-[800px]' : isInteractiveAccordion ? 'h-[900px]' : isVideoHero ? 'h-auto min-h-[600px]' : isModernVideoHero ? 'h-auto min-h-[600px]' : isRoundedBentoVideoHero ? 'h-auto min-h-[600px]' : isLogoCarousel ? 'h-auto min-h-[600px]' : isSubscribeButton ? 'h-[200px]' : isExploreButton ? 'h-[200px]' : isLearnMoreButton ? 'h-[200px]' : isInteractiveHoverButton ? 'h-[200px]' : isRippleButton ? 'h-[200px]' : isShinyButton ? 'h-[200px]' : isSubscribeButtonV2 ? 'h-[200px]' : isNeumorphicButton ? 'h-[200px]' : isFeatureSteps ? 'h-[900px]' : isCircularTestimonials ? 'h-[600px]' : isCircularGallery ? 'h-[600px]' : isPortfolioCarousel ? 'h-[700px]' : isTestimonialSlider ? 'h-auto min-h-[400px]' : isStaggerTestimonials ? 'h-[700px]' : isSplitText ? 'h-[360px]' : isBlurText ? 'h-[360px]' : isCircularText ? 'h-[360px]' : isTextType ? 'h-[360px]' : isScrollReveal ? 'h-[360px]' : isScrollFloat ? 'h-[360px]' : 'h-[480px]') : 'aspect-[4/3]'} ${isPreview ? 'bg-background' : 'bg-neutral-800'} relative overflow-hidden`}>
                   {isPreview && item.previewComponent === "TubelightNavbarDemo" ? (
                     <div className="w-full h-full">
                       <TubelightNavbarDemo />
@@ -415,10 +542,6 @@ export default function CategoryStep({
                     <div className="w-full h-full">
                       <ScrollFloatDemo />
                     </div>
-                  ) : isPreview && item.previewComponent === "ColorPalettesDemo" ? (
-                    <div className="w-full h-full">
-                      <ColorPalettesDemo />
-                    </div>
                   ) : item.image ? (
                     // eslint-disable-next-line @next/next/no-img-element
                     <img src={item.image} alt={item.title} className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-300" />
@@ -490,6 +613,8 @@ export default function CategoryStep({
             );
           })}
         </div>
+          )}
+        </>
       )}
 
       {!skip && !withinLimits && (
