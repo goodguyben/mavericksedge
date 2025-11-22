@@ -62,11 +62,24 @@ export default function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [hasSeenLoading, setHasSeenLoading] = useState(false);
 
-  // Show loading screen every time (removed localStorage check)
+  // Show loading screen only on first visit
   useEffect(() => {
-    // Always show loading screen on page load
-    setIsLoading(true);
-    setHasSeenLoading(false);
+    // Skip loading screen for bots/crawlers
+    const isBot = /bot|googlebot|crawler|spider|robot|crawling/i.test(navigator.userAgent);
+    if (isBot) {
+      setHasSeenLoading(true);
+      setIsLoading(false);
+      return;
+    }
+
+    const hasSeen = localStorage.getItem("hasSeenLoading");
+    if (hasSeen) {
+      setHasSeenLoading(true);
+      setIsLoading(false);
+    } else {
+      setIsLoading(true);
+      setHasSeenLoading(false);
+    }
   }, []);
 
   // Initialize Google Analytics on app mount
@@ -101,7 +114,7 @@ export default function App() {
   const handleLoadingComplete = () => {
     setIsLoading(false);
     setHasSeenLoading(true);
-    // Removed localStorage setting since we want it to show every time
+    localStorage.setItem("hasSeenLoading", "true");
   };
 
   return (

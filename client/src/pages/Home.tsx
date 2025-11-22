@@ -68,38 +68,14 @@ export default function Home() {
           <Hero />
 
           {/* Partnership Section - Your trusted partner in growth */}
-          <LazySection threshold={0.2} rootMargin="100px" className="relative">
-            <ScrollFadeSection
-              id="partnership"
-              fadeInPoint={0.4}
-              fadeOutPoint={0.6}
-              fadeInDuration={1.2}
-              fadeOutDuration={1.6}
-              initialOpacity={0}
-              minOpacity={0.1}
-              useFallback={true}
-            >
-              <PartnershipSection />
-            </ScrollFadeSection>
-          </LazySection>
-
-
+          <div className="relative">
+             <PartnershipSection />
+          </div>
 
           {/* Progressive loading for below-fold sections */}
-          <LazySection threshold={0.1} rootMargin="50px">
-            <ScrollFadeSection
-              id="what-we-do"
-              fadeInPoint={0.5}
-              fadeOutPoint={0.6}
-              fadeInDuration={1}
-              fadeOutDuration={1.8}
-              initialOpacity={0}
-              minOpacity={0.1}
-              useFallback={true}
-            >
-              <WhatWeDoSection />
-            </ScrollFadeSection>
-          </LazySection>
+          <div className="relative">
+             <WhatWeDoSection />
+          </div>
 
           {/* Service Cascade Section */}
           <LazySection threshold={0.1} rootMargin="50px">
