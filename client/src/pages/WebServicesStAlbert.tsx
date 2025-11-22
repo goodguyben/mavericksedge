@@ -155,7 +155,7 @@ function TechCube3D() {
       color: "text-blue-400"
     },
     {
-      label: "Core Web Vitals", 
+      label: "Core Web Vitals",
       content: "90+ Scores",
       color: "text-green-400"
     },
@@ -345,7 +345,7 @@ function TechCube3D() {
             return (
               <>
                 <CircuitOverlay accent={color} />
-                <motion.div 
+                <motion.div
                   className="absolute inset-0"
                   style={{ background: `radial-gradient(circle at 50% 50%, ${color}33, transparent 60%)` }}
                   animate={{ opacity: [0.25, 0.6, 0.25] }}
@@ -361,7 +361,7 @@ function TechCube3D() {
                   transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
                   aria-hidden="true"
                 />
-                <motion.div 
+                <motion.div
                   className="absolute left-0 right-0 h-16"
                   style={{ background: "linear-gradient(to bottom, transparent, rgba(255,255,255,0.08), transparent)" }}
                   animate={{ y: ["-30%", "130%"] }}
@@ -392,14 +392,14 @@ function TechCube3D() {
             return (
               <>
                 <CircuitOverlay accent={color} />
-                <motion.div 
+                <motion.div
                   className="absolute inset-0"
                   style={{ background: `radial-gradient(circle at 50% 50%, ${color}2E, transparent 60%)` }}
                   animate={{ opacity: [0.2, 0.5, 0.2] }}
                   transition={{ duration: 4.8, repeat: Infinity, ease: "easeInOut" }}
                   aria-hidden="true"
                 />
-                <motion.div 
+                <motion.div
                   className="absolute left-0 right-0 h-16"
                   style={{ background: "linear-gradient(to bottom, transparent, rgba(255,255,255,0.08), transparent)" }}
                   animate={{ y: ["130%", "-30%"] }}
@@ -439,14 +439,14 @@ function TechCube3D() {
             return (
               <>
                 <CircuitOverlay accent={color} />
-                <motion.div 
+                <motion.div
                   className="absolute inset-0"
                   style={{ background: `radial-gradient(circle at 50% 50%, ${color}38, transparent 60%)` }}
                   animate={{ opacity: [0.25, 0.55, 0.25] }}
                   transition={{ duration: 5.4, repeat: Infinity, ease: "easeInOut" }}
                   aria-hidden="true"
                 />
-                <motion.div 
+                <motion.div
                   className="absolute left-0 right-0 h-16"
                   style={{ background: "linear-gradient(to bottom, transparent, rgba(255,255,255,0.08), transparent)" }}
                   animate={{ y: ["-30%", "130%"] }}
@@ -486,14 +486,14 @@ function TechCube3D() {
             return (
               <>
                 <CircuitOverlay accent={color} />
-                <motion.div 
+                <motion.div
                   className="absolute inset-0"
                   style={{ background: `radial-gradient(circle at 50% 50%, ${color}38, transparent 60%)` }}
                   animate={{ opacity: [0.25, 0.55, 0.25] }}
                   transition={{ duration: 4.2, repeat: Infinity, ease: "easeInOut" }}
                   aria-hidden="true"
                 />
-                <motion.div 
+                <motion.div
                   className="absolute left-0 right-0 h-16"
                   style={{ background: "linear-gradient(to bottom, transparent, rgba(255,255,255,0.08), transparent)" }}
                   animate={{ y: ["130%", "-30%"] }}
@@ -533,14 +533,14 @@ function TechCube3D() {
             return (
               <>
                 <CircuitOverlay accent={color} />
-                <motion.div 
+                <motion.div
                   className="absolute inset-0"
                   style={{ background: `radial-gradient(circle at 50% 50%, ${color}38, transparent 60%)` }}
                   animate={{ opacity: [0.25, 0.55, 0.25] }}
                   transition={{ duration: 5.8, repeat: Infinity, ease: "easeInOut" }}
                   aria-hidden="true"
                 />
-                <motion.div 
+                <motion.div
                   className="absolute left-0 right-0 h-16"
                   style={{ background: "linear-gradient(to bottom, transparent, rgba(255,255,255,0.08), transparent)" }}
                   animate={{ y: ["-30%", "130%"] }}
@@ -580,14 +580,14 @@ function TechCube3D() {
             return (
               <>
                 <CircuitOverlay accent={color} />
-                <motion.div 
+                <motion.div
                   className="absolute inset-0"
                   style={{ background: `radial-gradient(circle at 50% 50%, ${color}38, transparent 60%)` }}
                   animate={{ opacity: [0.25, 0.55, 0.25] }}
                   transition={{ duration: 6.2, repeat: Infinity, ease: "easeInOut" }}
                   aria-hidden="true"
                 />
-                <motion.div 
+                <motion.div
                   className="absolute left-0 right-0 h-16"
                   style={{ background: "linear-gradient(to bottom, transparent, rgba(255,255,255,0.08), transparent)" }}
                   animate={{ y: ["130%", "-30%"] }}
@@ -629,14 +629,14 @@ function TechCube3D() {
         initial={{ y: -15, opacity: 0, scale: 0.9 }}
         animate={{ y: 0, opacity: 1, scale: 1 }}
         transition={{ delay: 0.4, type: "spring", stiffness: 100 }}
-        whileHover={{ 
-          scale: 1.02, 
+        whileHover={{
+          scale: 1.02,
           y: -2,
           transition: { duration: 0.2 }
         }}
       >
         {/* Animated background glow */}
-        <motion.div 
+        <motion.div
           className="absolute inset-0 rounded-2xl opacity-30"
           style={{
             background: `radial-gradient(circle at 50% 50%, ${cardOptions[cardIndex].color.replace('text-', '').replace('-400', '')}20, transparent 70%)`
@@ -646,22 +646,22 @@ function TechCube3D() {
           animate={{ opacity: 0.3 }}
           transition={{ duration: 0.8 }}
         />
-        
+
         {/* Subtle scan line effect */}
-        <motion.div 
+        <motion.div
           className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent"
-          animate={{ 
+          animate={{
             y: [0, 60, 0],
             opacity: [0, 1, 0]
           }}
-          transition={{ 
+          transition={{
             duration: 3,
             repeat: Infinity,
             ease: "easeInOut"
           }}
         />
-        
-        <motion.div 
+
+        <motion.div
           className="text-xs text-gray-400 font-medium tracking-wide uppercase relative z-10"
           key={`label-${cardIndex}`}
           initial={{ opacity: 0, y: 8, rotateX: -90 }}
@@ -671,8 +671,8 @@ function TechCube3D() {
         >
           {cardOptions[cardIndex].label}
         </motion.div>
-        
-        <motion.div 
+
+        <motion.div
           className={`font-bold text-sm sm:text-base md:text-lg mt-1 sm:mt-2 relative z-10 ${cardOptions[cardIndex].color}`}
           key={`content-${cardIndex}`}
           initial={{ opacity: 0, y: 15, scale: 0.95, rotateY: -15 }}
@@ -686,9 +686,9 @@ function TechCube3D() {
         >
           {cardOptions[cardIndex].content}
         </motion.div>
-        
+
         {/* Animated accent line */}
-        <motion.div 
+        <motion.div
           className="absolute bottom-0 left-0 h-0.5 rounded-full"
           style={{
             background: `linear-gradient(90deg, ${cardOptions[cardIndex].color.replace('text-', '').replace('-400', '')}60, ${cardOptions[cardIndex].color.replace('text-', '').replace('-400', '')}20)`
@@ -698,28 +698,28 @@ function TechCube3D() {
           animate={{ width: "100%" }}
           transition={{ duration: 1, delay: 0.3 }}
         />
-        
+
         {/* Corner accent dots */}
-        <motion.div 
+        <motion.div
           className="absolute top-2 right-2 w-1.5 h-1.5 rounded-full"
           style={{ backgroundColor: cardOptions[cardIndex].color.replace('text-', '').replace('-400', '') }}
-          animate={{ 
+          animate={{
             opacity: [0.3, 1, 0.3],
             scale: [0.8, 1.2, 0.8]
           }}
-          transition={{ 
+          transition={{
             duration: 2,
             repeat: Infinity,
             ease: "easeInOut"
           }}
         />
-        
+
         {/* Floating particles */}
         {Array.from({ length: 3 }).map((_, i) => (
           <motion.div
             key={i}
             className="absolute w-0.5 h-0.5 rounded-full opacity-40"
-            style={{ 
+            style={{
               backgroundColor: cardOptions[cardIndex].color.replace('text-', '').replace('-400', ''),
               left: `${20 + i * 30}%`,
               top: `${30 + i * 20}%`
@@ -768,21 +768,21 @@ export default function WebServicesStAlbert() {
     {
       icon: <LayoutIcon className="h-10 w-10 text-maverick-orange" />,
       title: "Custom Website Design",
-      description: "We start with your sales story and build the site around it. Clear paths, clean layouts, and fast pages that help people choose you.",
+      description: "St. Albert sets a high bar. We build websites that meet it—elegant, professional, and designed to impress the most discerning clients.",
       features: ["Mobile first", "Fast on real devices", "Accessible by default", "Built to convert"],
       price: "From $1,200"
     },
     {
       icon: <ShoppingCart className="h-10 w-10 text-maverick-orange" />,
       title: "E‑commerce that sells",
-      description: "Shopify and WooCommerce stores tuned for speed and trust. Fewer clicks to checkout and a smoother mobile flow.",
+      description: "From boutique shops to large catalogs, we build Shopify stores that reflect the quality of your brand and drive real sales.",
       features: ["Payments that just work", "Inventory and shipping", "Mobile checkout", "Local delivery options"],
       price: "From $2,500"
     },
     {
       icon: <Code className="h-10 w-10 text-maverick-orange" />,
       title: "Web Application Development",
-      description: "Dashboards, booking systems, internal tools. We design for the job to be done and integrate with your stack.",
+      description: "Streamline your business. We build custom software that automates your workflows and gives you back your time.",
       features: ["Custom features", "Database integration", "User roles", "API integrations"],
       price: "From $3,500"
     },
@@ -846,7 +846,7 @@ export default function WebServicesStAlbert() {
     {
       icon: <Search className="h-10 w-10 text-maverick-orange" />,
       title: "SEO‑ready by design",
-      description: "Technical foundations, clean IA, and content guidance. Launch with the basics done right.",
+      description: "Be seen by the right people. We map your site to the keywords St. Albert locals use when looking for quality services.",
       technologies: ["Technical SEO", "Local Schema", "Core Web Vitals", "St. Albert Keywords"]
     },
     {
@@ -969,27 +969,27 @@ export default function WebServicesStAlbert() {
   const faqItems = [
     {
       question: "How much does web design cost in St. Albert?",
-      answer: "Our St. Albert web design services start at $850 for basic business websites and range up to $10,000+ for complex e-commerce and custom applications. We provide transparent pricing and free consultations to discuss your specific needs and budget."
+      answer: "We offer premium quality at a fair price. Professional sites start at $1,200. We believe in transparent pricing for honest work."
     },
     {
-      question: "How long does it take to build a website in St. Albert?",
-      answer: "Most St. Albert business websites take 4-8 weeks from start to finish. Simple brochure sites can be completed in 2-3 weeks, while complex e-commerce or custom applications may take 8-12 weeks. We provide detailed timelines during our discovery phase."
+      question: "Do you understand the local market?",
+      answer: "Yes. St. Albert is unique. It values community, quality, and sustainability. We build sites that resonate with those values."
     },
     {
-      question: "Do you provide website hosting for St. Albert businesses?",
-      answer: "Yes, we offer Canadian web hosting specifically optimized for Alberta businesses. Our hosting includes SSL certificates, daily backups, security monitoring, and 24/7 St. Albert-based support. Plans start at $25/month."
+      question: "Why shouldn't I just use Wix or Squarespace?",
+      answer: "Because your brand deserves better. Templates are generic. We build custom sites that elevate your business above the competition."
     },
     {
-      question: "Can you help with SEO for my St. Albert business website?",
-      answer: "Absolutely! All our websites include basic SEO optimization with St. Albert and Alberta keyword targeting. We also offer comprehensive SEO services including local optimization, Google My Business management, and ongoing search marketing."
+      question: "How do I rank higher than my competitors?",
+      answer: "By being specific. We use local schema to tell Google you serve St. Albert and the Sturgeon Valley. We help you dominate your local market."
     },
     {
-      question: "Do you redesign existing websites for St. Albert businesses?",
-      answer: "Yes, we specialize in website redesigns that improve user experience, search rankings, and conversion rates. We can work with your existing content and branding or create a completely fresh approach."
+      question: "Can you fix my existing slow website?",
+      answer: "Yes. A slow site damages your brand. We'll audit it and optimize it to load instantly, ensuring a premium user experience."
     },
     {
-      question: "What makes your St. Albert web design different from competitors?",
-      answer: "Our deep understanding of the St. Albert and Alberta business landscape, combined with cutting-edge design and development practices, sets us apart. We focus on local SEO, mobile optimization, and conversion-driven design that gets results."
+      question: "What's your support like after launch?",
+      answer: "We're your long-term partners. We offer monthly care plans to keep your site secure, updated, and performing flawlessly."
     }
   ];
 
@@ -1070,22 +1070,22 @@ export default function WebServicesStAlbert() {
 
   return (
     <div>
-      <SEOHead 
-        title="Mavericks Edge | St. Albert Web Design and Development"
-        description="Professional St. Albert web design and development. Build responsive, SEO-optimized websites that drive results and help your business grow. Free quote today!"
+      <SEOHead
+        title="St. Albert Web Design | Excellence Is The Standard"
+        description="Websites that match the quality of the Botanical Arts City. We build custom, high-performance sites for St. Albert businesses. Get a free quote."
         keywords="St. Albert website design, website design St. Albert, St. Albert web design, web development St. Albert, St. Albert websites"
         canonicalUrl="https://mavericksedge.ca/web-design-services-st-albert"
-        ogTitle="Mavericks Edge | St. Albert Web Design and Development"
-        ogDescription="Affordable St. Albert web design and development for businesses that want to stand out online. Fast, responsive, and SEO-optimized websites that convert visitors into customers."
+        ogTitle="St. Albert Web Design | Excellence Is The Standard"
+        ogDescription="Websites that match the quality of the Botanical Arts City. We build custom, high-performance sites for St. Albert businesses. Get a free quote."
         ogImage="https://mavericksedge.ca/images/logo-transparent-thumb4x.png"
         ogType="website"
       />
-      
+
       <StructuredData data={webDevelopmentServiceSchema} />
       <StructuredData data={generateBreadcrumbSchema(breadcrumbs)} />
       <StructuredData data={localSchema} />
       <StructuredData data={faqSchemaDynamic} />
-      
+
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -1109,7 +1109,7 @@ export default function WebServicesStAlbert() {
               {/* Mobile layout - creative, stacked */}
               <div className="block lg:hidden relative min-h-[calc(100svh-7rem)] flex flex-col justify-start pt-8 pb-[360px] sm:pb-[440px] md:pb-[620px]">
                 <div className="relative z-10 px-0">
-                  <motion.h1 
+                  <motion.h1
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6 }}
@@ -1119,7 +1119,7 @@ export default function WebServicesStAlbert() {
                       St. Albert Web Design & Development
                     </span>
                     <span className="block text-3xl sm:text-4xl md:text-5xl">
-                      <GradientText 
+                      <GradientText
                         colors={["#FF5630", "#FF8A50", "#FFB899", "#FF5630"]}
                         animationSpeed={6}
                       >
@@ -1127,15 +1127,15 @@ export default function WebServicesStAlbert() {
                       </GradientText>
                     </span>
                   </motion.h1>
-                  <motion.p 
+                  <motion.p
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: 0.2 }}
                     className="text-[15px] text-[#AAAAAA] leading-relaxed mb-5 pr-16"
                   >
-                    Most websites look fine. Fewer move the business. We plan and build a site around your sales story so visitors know what to do and why it matters.
+                    St. Albert expects the best. Your website should deliver it. We build digital tools that elevate your brand and drive growth.
                   </motion.p>
-                  <motion.div 
+                  <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: 0.4 }}
@@ -1146,7 +1146,7 @@ export default function WebServicesStAlbert() {
                         Get Free Consultation
                       </a>
                     </Link>
-                    <ShinyBorderButton 
+                    <ShinyBorderButton
                       href={ROUTES.PRICING.WEB_DESIGN}
                       lightColor="#F15A29"
                       duration={6}
@@ -1159,7 +1159,7 @@ export default function WebServicesStAlbert() {
                   </motion.div>
                 </div>
 
-                <motion.div 
+                <motion.div
                   className="absolute bottom-6 sm:bottom-24 md:bottom-16 left-0 right-0 flex justify-center pointer-events-none"
                   initial={{ opacity: 0, scale: 0.85 }}
                   animate={{ opacity: 1, scale: 1 }}
@@ -1182,38 +1182,38 @@ export default function WebServicesStAlbert() {
                     transition={{ duration: 0.6 }}
                   >
                     <h1 className="font-heading font-extrabold tracking-wide leading-tight text-left mb-4 mt-16 sm:mt-0">
-                       <span className="block text-3xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-[56px] bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
-                         St. Albert Web Design & Development
-                       </span>
-                       <span className="block text-3xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-[58px]">
-                         <GradientText 
-                           colors={["#FF5630", "#FF8A50", "#FFB899", "#FF5630"]}
-                           animationSpeed={6}
-                         >
-                           that converts Visitors Into Clients
-                         </GradientText>
-                       </span>
-                     </h1>
-                    <motion.p 
+                      <span className="block text-3xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-[56px] bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+                        St. Albert Web Design & Development
+                      </span>
+                      <span className="block text-3xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-[58px]">
+                        <GradientText
+                          colors={["#FF5630", "#FF8A50", "#FFB899", "#FF5630"]}
+                          animationSpeed={6}
+                        >
+                          that converts Visitors Into Clients
+                        </GradientText>
+                      </span>
+                    </h1>
+                    <motion.p
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.6, delay: 0.2 }}
                       className="text-sm sm:text-base md:text-lg lg:text-lg xl:text-xl 2xl:text-2xl text-[#AAAAAA] max-w-2xl leading-relaxed sm:mt-4 md:mt-5 lg:mt-6 xl:mt-7 2xl:mt-8 sm:mb-6 md:mb-8"
                     >
-                      Most websites look fine. Fewer move the business. We plan and build a site around your sales story so visitors know what to do and why it matters.
+                      St. Albert expects the best. Your website should deliver it. We build digital tools that elevate your brand and drive growth.
                     </motion.p>
-                    <motion.div 
+                    <motion.div
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.6, delay: 0.4 }}
                       className="flex flex-col sm:flex-row gap-2 sm:gap-3 md:gap-4 justify-start items-start mb-6 sm:mb-8"
                     >
-                       <Link href="/contact">
-                         <a className="maverick-button maverick-button-primary inline-flex items-center justify-center rounded-full px-5 py-3 text-base sm:px-7 sm:py-3.5 sm:text-base md:px-8 md:py-4 md:text-lg font-medium">
-                           Get Free Consultation
-                         </a>
-                       </Link>
-                      <ShinyBorderButton 
+                      <Link href="/contact">
+                        <a className="maverick-button maverick-button-primary inline-flex items-center justify-center rounded-full px-5 py-3 text-base sm:px-7 sm:py-3.5 sm:text-base md:px-8 md:py-4 md:text-lg font-medium">
+                          Get Free Consultation
+                        </a>
+                      </Link>
+                      <ShinyBorderButton
                         href={ROUTES.PRICING.WEB_DESIGN}
                         lightColor="#F15A29"
                         duration={6}
@@ -1240,9 +1240,9 @@ export default function WebServicesStAlbert() {
                     </div>
                   </motion.div>
                 </div>
-                
+
                 {/* Desktop cube - positioned in grid */}
-                <motion.div 
+                <motion.div
                   className="hidden lg:block relative"
                   initial={{ opacity: 0, x: 50 }}
                   animate={{ opacity: 1, x: 0 }}
@@ -1278,7 +1278,7 @@ export default function WebServicesStAlbert() {
         {/* Specialized Services */}
         <section className="py-24 px-5 md:px-10 bg-[#121212]">
           <div className="container mx-auto">
-            <motion.div 
+            <motion.div
               className="text-center mb-16"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -1314,11 +1314,11 @@ export default function WebServicesStAlbert() {
                         <div className="w-24 h-1 bg-gradient-to-r from-maverick-orange to-orange-600 rounded-full mt-2"></div>
                       </div>
                     </div>
-                    
+
                     <p className="text-xl text-[#AAAAAA] leading-relaxed">
                       We build secure, scalable platforms for organizations that need to serve multiple user groups or communities.
                     </p>
-                    
+
                     <div className="space-y-4">
                       {[
                         "Member portals with role-based access and secure authentication (perfect for associations, nonprofits, and educational institutions)",
@@ -1341,11 +1341,11 @@ export default function WebServicesStAlbert() {
                       ))}
                     </div>
                   </div>
-                  
+
                   <div className="relative">
                     {/* Enhanced background effects */}
                     <div className="absolute inset-0 bg-gradient-to-br from-maverick-orange/20 to-orange-600/20 rounded-3xl blur-3xl"></div>
-                    <motion.div 
+                    <motion.div
                       className="absolute inset-0 rounded-3xl"
                       style={{
                         background: "radial-gradient(circle at 30% 20%, rgba(255, 86, 48, 0.15) 0%, transparent 50%), radial-gradient(circle at 70% 80%, rgba(255, 138, 80, 0.1) 0%, transparent 50%)"
@@ -1360,30 +1360,30 @@ export default function WebServicesStAlbert() {
                         ease: "easeInOut"
                       }}
                     />
-                    
+
                     <div className="relative bg-gradient-to-br from-[#1A1A1A] to-[#0F0F0F] rounded-3xl p-8 border border-gray-800 overflow-hidden">
                       {/* Animated circuit pattern overlay */}
                       <svg className="absolute inset-0 w-full h-full opacity-10" viewBox="0 0 400 300" preserveAspectRatio="none">
                         <defs>
                           <pattern id="circuitPattern" x="0" y="0" width="40" height="30" patternUnits="userSpaceOnUse">
-                            <path d="M0,15 L10,15 L10,10 L20,10 L20,20 L30,20 L30,15 L40,15" stroke="currentColor" strokeWidth="1" fill="none" className="text-maverick-orange"/>
-                            <path d="M5,0 L5,30 M15,0 L15,30 M25,0 L25,30 M35,0 L35,30" stroke="currentColor" strokeWidth="0.5" fill="none" className="text-maverick-orange"/>
+                            <path d="M0,15 L10,15 L10,10 L20,10 L20,20 L30,20 L30,15 L40,15" stroke="currentColor" strokeWidth="1" fill="none" className="text-maverick-orange" />
+                            <path d="M5,0 L5,30 M15,0 L15,30 M25,0 L25,30 M35,0 L35,30" stroke="currentColor" strokeWidth="0.5" fill="none" className="text-maverick-orange" />
                           </pattern>
                         </defs>
                         <rect width="100%" height="100%" fill="url(#circuitPattern)" />
                       </svg>
-                      
+
                       <div className="space-y-6 relative z-10">
                         {/* Enhanced header with pulsing status */}
                         <div className="flex items-center justify-between">
                           <div className="flex items-center gap-3">
-                            <motion.div 
+                            <motion.div
                               className="relative"
                               animate={{ scale: [1, 1.1, 1] }}
                               transition={{ duration: 2, repeat: Infinity }}
                             >
                               <div className="w-3 h-3 bg-green-400 rounded-full"></div>
-                              <motion.div 
+                              <motion.div
                                 className="absolute inset-0 w-3 h-3 bg-green-400 rounded-full"
                                 animate={{ scale: [1, 2, 1], opacity: [0.5, 0, 0.5] }}
                                 transition={{ duration: 2, repeat: Infinity }}
@@ -1391,7 +1391,7 @@ export default function WebServicesStAlbert() {
                             </motion.div>
                             <span className="text-sm text-gray-400">Secure Portal</span>
                           </div>
-                          <motion.div 
+                          <motion.div
                             className="text-xs text-gray-500 px-2 py-1 bg-gray-800/50 rounded-full"
                             animate={{ opacity: [0.5, 1, 0.5] }}
                             transition={{ duration: 3, repeat: Infinity }}
@@ -1399,7 +1399,7 @@ export default function WebServicesStAlbert() {
                             Multi-tenant
                           </motion.div>
                         </div>
-                        
+
                         {/* User Authentication Mockup */}
                         <motion.div
                           initial={{ opacity: 0, y: 20 }}
@@ -1421,7 +1421,7 @@ export default function WebServicesStAlbert() {
                               <h4 className="text-lg font-semibold text-white">Member Portal Access</h4>
                               <p className="text-xs text-gray-400">Secure authentication required</p>
                             </div>
-                            
+
                             {/* Login Form */}
                             <div className="space-y-3">
                               <div>
@@ -1430,23 +1430,23 @@ export default function WebServicesStAlbert() {
                                   className="bg-gray-800/50 rounded-lg px-3 py-2 border border-gray-600/50"
                                   whileFocus={{ borderColor: "#FF5630" }}
                                 >
-                                  <input 
-                                    type="email" 
+                                  <input
+                                    type="email"
                                     placeholder="member@organization.com"
                                     className="w-full bg-transparent text-sm text-white placeholder-gray-500 outline-none"
                                     disabled
                                   />
                                 </motion.div>
                               </div>
-                              
+
                               <div>
                                 <label className="text-xs text-gray-400 mb-1 block">Password</label>
                                 <motion.div
                                   className="bg-gray-800/50 rounded-lg px-3 py-2 border border-gray-600/50 flex items-center"
                                   whileFocus={{ borderColor: "#FF5630" }}
                                 >
-                                  <input 
-                                    type="password" 
+                                  <input
+                                    type="password"
                                     placeholder="••••••••"
                                     className="w-full bg-transparent text-sm text-white placeholder-gray-500 outline-none"
                                     disabled
@@ -1459,7 +1459,7 @@ export default function WebServicesStAlbert() {
                                   </motion.div>
                                 </motion.div>
                               </div>
-                              
+
                               {/* Role Selection */}
                               <div>
                                 <label className="text-xs text-gray-400 mb-1 block">Access Level</label>
@@ -1475,7 +1475,7 @@ export default function WebServicesStAlbert() {
                                 </motion.div>
                               </div>
                             </div>
-                            
+
                             {/* Login Button */}
                             <motion.button
                               className="w-full bg-gradient-to-r from-maverick-orange to-orange-600 text-white py-3 rounded-lg font-medium text-sm relative overflow-hidden"
@@ -1490,7 +1490,7 @@ export default function WebServicesStAlbert() {
                               />
                               <span className="relative z-10">Authenticate</span>
                             </motion.button>
-                            
+
                             {/* Security Features */}
                             <div className="flex items-center justify-between text-xs text-gray-500 pt-2">
                               <div className="flex items-center gap-1">
@@ -1514,17 +1514,17 @@ export default function WebServicesStAlbert() {
                             </div>
                           </div>
                         </motion.div>
-                        
+
                         {/* Enhanced metrics with animated counters */}
                         <div className="grid grid-cols-2 gap-4">
-                          <motion.div 
+                          <motion.div
                             className="bg-gray-800/50 rounded-lg p-3 relative overflow-hidden"
                             whileHover={{ scale: 1.02 }}
                             transition={{ duration: 0.2 }}
                           >
                             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-maverick-orange/10 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
                             <div className="text-xs text-gray-400 mb-1">Active Users</div>
-                            <motion.div 
+                            <motion.div
                               className="text-lg font-bold text-white"
                               initial={{ opacity: 0 }}
                               whileInView={{ opacity: 1 }}
@@ -1540,7 +1540,7 @@ export default function WebServicesStAlbert() {
                                 2,847
                               </motion.span>
                             </motion.div>
-                            <motion.div 
+                            <motion.div
                               className="text-xs text-green-400 mt-1"
                               animate={{ opacity: [0.5, 1, 0.5] }}
                               transition={{ duration: 2, repeat: Infinity }}
@@ -1548,15 +1548,15 @@ export default function WebServicesStAlbert() {
                               +12% this month
                             </motion.div>
                           </motion.div>
-                          
-                          <motion.div 
+
+                          <motion.div
                             className="bg-gray-800/50 rounded-lg p-3 relative overflow-hidden"
                             whileHover={{ scale: 1.02 }}
                             transition={{ duration: 0.2 }}
                           >
                             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-green-400/10 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
                             <div className="text-xs text-gray-400 mb-1">Revenue</div>
-                            <motion.div 
+                            <motion.div
                               className="text-lg font-bold text-green-400"
                               initial={{ opacity: 0 }}
                               whileInView={{ opacity: 1 }}
@@ -1572,7 +1572,7 @@ export default function WebServicesStAlbert() {
                                 $47.2K
                               </motion.span>
                             </motion.div>
-                            <motion.div 
+                            <motion.div
                               className="text-xs text-green-400 mt-1"
                               animate={{ opacity: [0.5, 1, 0.5] }}
                               transition={{ duration: 2, repeat: Infinity, delay: 0.5 }}
@@ -1581,7 +1581,7 @@ export default function WebServicesStAlbert() {
                             </motion.div>
                           </motion.div>
                         </div>
-                        
+
                         {/* Enhanced service modules with staggered animations */}
                         <div className="space-y-2">
                           {["Admin Dashboard", "Member Portal", "Billing System", "Analytics Hub"].map((item, i) => (
@@ -1590,45 +1590,45 @@ export default function WebServicesStAlbert() {
                               initial={{ opacity: 0, x: -20, scale: 0.95 }}
                               whileInView={{ opacity: 1, x: 0, scale: 1 }}
                               viewport={{ once: true }}
-                              transition={{ 
-                                duration: 0.5, 
+                              transition={{
+                                duration: 0.5,
                                 delay: 1.5 + i * 0.15,
                                 type: "spring",
                                 stiffness: 100
                               }}
                               className="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-800/30 transition-colors duration-200 group"
                             >
-                              <motion.div 
+                              <motion.div
                                 className="w-2 h-2 bg-maverick-orange rounded-full relative"
-                                animate={{ 
+                                animate={{
                                   scale: [1, 1.2, 1],
                                   opacity: [0.7, 1, 0.7]
                                 }}
-                                transition={{ 
-                                  duration: 2, 
+                                transition={{
+                                  duration: 2,
                                   repeat: Infinity,
                                   delay: i * 0.3
                                 }}
                               >
-                                <motion.div 
+                                <motion.div
                                   className="absolute inset-0 w-2 h-2 bg-maverick-orange rounded-full"
-                                  animate={{ 
-                                    scale: [1, 2, 1], 
-                                    opacity: [0.3, 0, 0.3] 
+                                  animate={{
+                                    scale: [1, 2, 1],
+                                    opacity: [0.3, 0, 0.3]
                                   }}
-                                  transition={{ 
-                                    duration: 2, 
+                                  transition={{
+                                    duration: 2,
                                     repeat: Infinity,
                                     delay: i * 0.3
                                   }}
                                 />
                               </motion.div>
                               <span className="text-sm text-gray-300 group-hover:text-white transition-colors duration-200">{item}</span>
-                              <motion.div 
+                              <motion.div
                                 className="ml-auto text-xs text-gray-500"
                                 animate={{ opacity: [0.5, 1, 0.5] }}
-                                transition={{ 
-                                  duration: 3, 
+                                transition={{
+                                  duration: 3,
                                   repeat: Infinity,
                                   delay: i * 0.5
                                 }}
@@ -1638,7 +1638,7 @@ export default function WebServicesStAlbert() {
                             </motion.div>
                           ))}
                         </div>
-                        
+
                       </div>
                     </div>
                   </div>
@@ -1657,7 +1657,7 @@ export default function WebServicesStAlbert() {
                   <div className="relative order-2 lg:order-1">
                     {/* Enhanced AI background effects */}
                     <div className="absolute inset-0 bg-gradient-to-br from-maverick-orange/20 to-orange-600/20 rounded-3xl blur-3xl"></div>
-                    <motion.div 
+                    <motion.div
                       className="absolute inset-0 rounded-3xl"
                       style={{
                         background: "radial-gradient(circle at 20% 30%, rgba(255, 86, 48, 0.2) 0%, transparent 50%), radial-gradient(circle at 80% 70%, rgba(255, 138, 80, 0.15) 0%, transparent 50%)"
@@ -1672,46 +1672,46 @@ export default function WebServicesStAlbert() {
                         ease: "easeInOut"
                       }}
                     />
-                    
+
                     <div className="relative bg-gradient-to-br from-[#1A1A1A] to-[#0F0F0F] rounded-3xl p-8 border border-gray-800 overflow-hidden">
                       {/* AI Neural Network Pattern */}
                       <svg className="absolute inset-0 w-full h-full opacity-5" viewBox="0 0 400 300" preserveAspectRatio="none">
                         <defs>
                           <pattern id="neuralPattern" x="0" y="0" width="50" height="40" patternUnits="userSpaceOnUse">
-                            <circle cx="10" cy="10" r="2" fill="currentColor" className="text-maverick-orange"/>
-                            <circle cx="30" cy="15" r="2" fill="currentColor" className="text-maverick-orange"/>
-                            <circle cx="20" cy="30" r="2" fill="currentColor" className="text-maverick-orange"/>
-                            <path d="M10,10 L30,15 L20,30 L10,10" stroke="currentColor" strokeWidth="0.5" fill="none" className="text-maverick-orange"/>
+                            <circle cx="10" cy="10" r="2" fill="currentColor" className="text-maverick-orange" />
+                            <circle cx="30" cy="15" r="2" fill="currentColor" className="text-maverick-orange" />
+                            <circle cx="20" cy="30" r="2" fill="currentColor" className="text-maverick-orange" />
+                            <path d="M10,10 L30,15 L20,30 L10,10" stroke="currentColor" strokeWidth="0.5" fill="none" className="text-maverick-orange" />
                           </pattern>
                         </defs>
                         <rect width="100%" height="100%" fill="url(#neuralPattern)" />
                       </svg>
-                      
+
                       <div className="space-y-6 relative z-10">
                         {/* Enhanced AI Header */}
                         <div className="flex items-center justify-between">
                           <div className="flex items-center gap-3">
-                            <motion.div 
+                            <motion.div
                               className="relative"
-                              animate={{ 
+                              animate={{
                                 scale: [1, 1.2, 1],
                                 rotate: [0, 10, -10, 0]
                               }}
                               transition={{ duration: 3, repeat: Infinity }}
                             >
                               <div className="w-3 h-3 bg-maverick-orange rounded-full"></div>
-                              <motion.div 
+                              <motion.div
                                 className="absolute inset-0 w-3 h-3 bg-maverick-orange rounded-full"
-                                animate={{ 
-                                  scale: [1, 3, 1], 
-                                  opacity: [0.6, 0, 0.6] 
+                                animate={{
+                                  scale: [1, 3, 1],
+                                  opacity: [0.6, 0, 0.6]
                                 }}
                                 transition={{ duration: 2, repeat: Infinity }}
                               />
                             </motion.div>
                             <span className="text-sm text-gray-400">AI Assistant</span>
                           </div>
-                          <motion.div 
+                          <motion.div
                             className="text-xs text-gray-500 px-2 py-1 bg-gray-800/50 rounded-full"
                             animate={{ opacity: [0.3, 1, 0.3] }}
                             transition={{ duration: 2, repeat: Infinity }}
@@ -1719,7 +1719,7 @@ export default function WebServicesStAlbert() {
                             Processing
                           </motion.div>
                         </div>
-                        
+
                         {/* AI Chat Interface Mockup */}
                         <motion.div
                           initial={{ opacity: 0, y: 20 }}
@@ -1751,7 +1751,7 @@ export default function WebServicesStAlbert() {
                                 <span className="text-xs text-gray-400">Online</span>
                               </motion.div>
                             </div>
-                            
+
                             {/* Chat Messages */}
                             <div className="space-y-3">
                               {/* Customer Message */}
@@ -1770,7 +1770,7 @@ export default function WebServicesStAlbert() {
                                   <span className="text-xs text-gray-500">2:34 PM</span>
                                 </div>
                               </motion.div>
-                              
+
                               {/* AI Response */}
                               <motion.div
                                 initial={{ opacity: 0, x: 20 }}
@@ -1788,7 +1788,7 @@ export default function WebServicesStAlbert() {
                                 </div>
                               </motion.div>
                             </div>
-                            
+
                             {/* AI Analysis Panel */}
                             <motion.div
                               initial={{ opacity: 0, y: 10 }}
@@ -1798,7 +1798,7 @@ export default function WebServicesStAlbert() {
                               className="bg-gray-800/30 rounded-lg p-4 space-y-3"
                             >
                               <div className="text-xs text-gray-400 mb-2">AI Analysis</div>
-                              
+
                               {/* Sentiment Analysis */}
                               <div className="space-y-2">
                                 <div className="flex justify-between text-xs">
@@ -1806,7 +1806,7 @@ export default function WebServicesStAlbert() {
                                   <span className="text-green-400">Positive (94%)</span>
                                 </div>
                                 <div className="h-1.5 bg-gray-700 rounded-full overflow-hidden">
-                                  <motion.div 
+                                  <motion.div
                                     className="h-full bg-gradient-to-r from-green-500 to-green-400 rounded-full"
                                     initial={{ width: 0 }}
                                     whileInView={{ width: "94%" }}
@@ -1815,7 +1815,7 @@ export default function WebServicesStAlbert() {
                                   />
                                 </div>
                               </div>
-                              
+
                               {/* Intent Classification */}
                               <div className="grid grid-cols-2 gap-2 text-xs">
                                 <div className="flex items-center gap-1">
@@ -1830,7 +1830,7 @@ export default function WebServicesStAlbert() {
                                 </div>
                               </div>
                             </motion.div>
-                            
+
                             {/* Action Items */}
                             <div className="space-y-2">
                               <div className="text-xs text-gray-400 mb-2">Automated Actions</div>
@@ -1855,11 +1855,11 @@ export default function WebServicesStAlbert() {
                             </div>
                           </div>
                         </motion.div>
-                        
+
                       </div>
                     </div>
                   </div>
-                  
+
                   <div className="space-y-8 order-1 lg:order-2">
                     <div className="flex items-center gap-4">
                       <div className="w-16 h-16 bg-gradient-to-br from-maverick-orange to-orange-600 rounded-2xl flex items-center justify-center">
@@ -1870,11 +1870,11 @@ export default function WebServicesStAlbert() {
                         <div className="w-24 h-1 bg-gradient-to-r from-maverick-orange to-orange-600 rounded-full mt-2"></div>
                       </div>
                     </div>
-                    
+
                     <p className="text-xl text-[#AAAAAA] leading-relaxed">
                       Intelligent systems that handle routine tasks, qualify leads, and provide instant customer support while you focus on growth.
                     </p>
-                    
+
                     <div className="space-y-4">
                       {[
                         "Smart chatbots that understand context and escalate complex queries to human agents seamlessly",
@@ -1919,11 +1919,11 @@ export default function WebServicesStAlbert() {
                         <div className="w-24 h-1 bg-gradient-to-r from-maverick-orange to-orange-600 rounded-full mt-2"></div>
                       </div>
                     </div>
-                    
+
                     <p className="text-xl text-[#AAAAAA] leading-relaxed">
                       Connect physical devices, sensors, and data streams to create intelligent systems that respond instantly to real-world conditions.
                     </p>
-                    
+
                     <div className="space-y-4">
                       {[
                         "Live dashboards that visualize sensor data, equipment status, and environmental conditions in real-time",
@@ -1946,11 +1946,11 @@ export default function WebServicesStAlbert() {
                       ))}
                     </div>
                   </div>
-                  
+
                   <div className="relative">
                     {/* Enhanced IoT background effects */}
                     <div className="absolute inset-0 bg-gradient-to-br from-maverick-orange/20 to-orange-600/20 rounded-3xl blur-3xl"></div>
-                    <motion.div 
+                    <motion.div
                       className="absolute inset-0 rounded-3xl"
                       style={{
                         background: "radial-gradient(circle at 40% 20%, rgba(255, 86, 48, 0.18) 0%, transparent 50%), radial-gradient(circle at 60% 80%, rgba(255, 138, 80, 0.12) 0%, transparent 50%)"
@@ -1965,34 +1965,34 @@ export default function WebServicesStAlbert() {
                         ease: "easeInOut"
                       }}
                     />
-                    
+
                     <div className="relative bg-gradient-to-br from-[#1A1A1A] to-[#0F0F0F] rounded-3xl p-8 border border-gray-800 overflow-hidden">
-                      
+
                       <div className="space-y-6 relative z-10">
                         {/* Enhanced IoT Header */}
                         <div className="flex items-center justify-between">
                           <div className="flex items-center gap-3">
-                            <motion.div 
+                            <motion.div
                               className="relative"
-                              animate={{ 
+                              animate={{
                                 scale: [1, 1.3, 1],
                                 opacity: [0.8, 1, 0.8]
                               }}
                               transition={{ duration: 2.5, repeat: Infinity }}
                             >
                               <div className="w-3 h-3 bg-maverick-orange rounded-full"></div>
-                              <motion.div 
+                              <motion.div
                                 className="absolute inset-0 w-3 h-3 bg-maverick-orange rounded-full"
-                                animate={{ 
-                                  scale: [1, 2.5, 1], 
-                                  opacity: [0.4, 0, 0.4] 
+                                animate={{
+                                  scale: [1, 2.5, 1],
+                                  opacity: [0.4, 0, 0.4]
                                 }}
                                 transition={{ duration: 2.5, repeat: Infinity }}
                               />
                             </motion.div>
                             <span className="text-sm text-gray-400">Live Data Stream</span>
                           </div>
-                          <motion.div 
+                          <motion.div
                             className="text-xs text-gray-500 px-2 py-1 bg-gray-800/50 rounded-full"
                             animate={{ opacity: [0.4, 1, 0.4] }}
                             transition={{ duration: 2.5, repeat: Infinity }}
@@ -2000,7 +2000,7 @@ export default function WebServicesStAlbert() {
                             2.3ms latency
                           </motion.div>
                         </div>
-                        
+
                         {/* IoT Dashboard Mockup */}
                         <motion.div
                           initial={{ opacity: 0, y: 20 }}
@@ -2034,7 +2034,7 @@ export default function WebServicesStAlbert() {
                                 <span className="text-xs text-gray-400">All Systems Online</span>
                               </motion.div>
                             </div>
-                            
+
                             {/* Sensor Data Grid */}
                             <div className="grid grid-cols-2 gap-3">
                               <motion.div
@@ -2046,9 +2046,9 @@ export default function WebServicesStAlbert() {
                               >
                                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-maverick-orange/10 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
                                 <div className="text-xs text-gray-400 mb-1">Temperature</div>
-                                <motion.div 
+                                <motion.div
                                   className="text-lg font-bold text-maverick-orange"
-                                  animate={{ 
+                                  animate={{
                                     textShadow: ["0 0 0px #FF5630", "0 0 10px #FF5630", "0 0 0px #FF5630"]
                                   }}
                                   transition={{ duration: 2, repeat: Infinity }}
@@ -2057,7 +2057,7 @@ export default function WebServicesStAlbert() {
                                 </motion.div>
                                 <div className="text-xs text-green-400 mt-1">Normal Range</div>
                               </motion.div>
-                              
+
                               <motion.div
                                 initial={{ opacity: 0, scale: 0.9 }}
                                 whileInView={{ opacity: 1, scale: 1 }}
@@ -2067,9 +2067,9 @@ export default function WebServicesStAlbert() {
                               >
                                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-400/10 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
                                 <div className="text-xs text-gray-400 mb-1">Humidity</div>
-                                <motion.div 
+                                <motion.div
                                   className="text-lg font-bold text-blue-400"
-                                  animate={{ 
+                                  animate={{
                                     textShadow: ["0 0 0px #60A5FA", "0 0 10px #60A5FA", "0 0 0px #60A5FA"]
                                   }}
                                   transition={{ duration: 2, repeat: Infinity, delay: 0.5 }}
@@ -2079,7 +2079,7 @@ export default function WebServicesStAlbert() {
                                 <div className="text-xs text-green-400 mt-1">Optimal</div>
                               </motion.div>
                             </div>
-                            
+
                             {/* Device Network Map */}
                             <motion.div
                               initial={{ opacity: 0, y: 10 }}
@@ -2107,12 +2107,12 @@ export default function WebServicesStAlbert() {
                                     <div className="flex items-center gap-2">
                                       <motion.div
                                         className="w-1.5 h-1.5 bg-maverick-orange rounded-full"
-                                        animate={{ 
+                                        animate={{
                                           scale: [1, 1.3, 1],
                                           opacity: [0.7, 1, 0.7]
                                         }}
-                                        transition={{ 
-                                          duration: 2, 
+                                        transition={{
+                                          duration: 2,
                                           repeat: Infinity,
                                           delay: i * 0.3
                                         }}
@@ -2127,7 +2127,7 @@ export default function WebServicesStAlbert() {
                                 ))}
                               </div>
                             </motion.div>
-                            
+
                             {/* Real-time Data Visualization */}
                             <motion.div
                               initial={{ opacity: 0, y: 10 }}
@@ -2144,7 +2144,7 @@ export default function WebServicesStAlbert() {
                                   <span>10s</span>
                                 </div>
                                 <div className="h-2 bg-gray-700 rounded-full overflow-hidden relative">
-                                  <motion.div 
+                                  <motion.div
                                     className="h-full bg-gradient-to-r from-maverick-orange to-orange-600 rounded-full"
                                     initial={{ width: 0 }}
                                     whileInView={{ width: "100%" }}
@@ -2163,7 +2163,7 @@ export default function WebServicesStAlbert() {
                                 </div>
                               </div>
                             </motion.div>
-                            
+
                             {/* Alert System */}
                             <motion.div
                               initial={{ opacity: 0, y: 10 }}
@@ -2186,9 +2186,8 @@ export default function WebServicesStAlbert() {
                                     transition={{ duration: 0.3, delay: 2.2 + i * 0.1 }}
                                     className="flex items-center gap-2 text-xs"
                                   >
-                                    <div className={`w-1.5 h-1.5 rounded-full ${
-                                      alert.type === 'success' ? 'bg-green-400' : 'bg-blue-400'
-                                    }`}></div>
+                                    <div className={`w-1.5 h-1.5 rounded-full ${alert.type === 'success' ? 'bg-green-400' : 'bg-blue-400'
+                                      }`}></div>
                                     <span className="text-gray-300 flex-1">{alert.message}</span>
                                     <span className="text-gray-500">{alert.time}</span>
                                   </motion.div>
@@ -2221,7 +2220,7 @@ export default function WebServicesStAlbert() {
               />
             </div>
 
-            
+
           </div>
         </section>
 
@@ -2239,7 +2238,7 @@ export default function WebServicesStAlbert() {
           >
             <section className="py-24 px-5 md:px-10 bg-[#1E1E1E]">
               <div className="container mx-auto">
-                <motion.div 
+                <motion.div
                   className="text-center mb-16"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -2250,7 +2249,7 @@ export default function WebServicesStAlbert() {
                     Our Website Design & Development Process
                   </h2>
                   <p className="text-[#AAAAAA] text-xl max-w-3xl mx-auto">
-                    A proven methodology that delivers exceptional results for Alberta businesses. 
+                    A proven methodology that delivers exceptional results for Alberta businesses.
                     From discovery to launch and beyond.
                   </p>
                 </motion.div>
@@ -2327,7 +2326,7 @@ export default function WebServicesStAlbert() {
           >
             <section className="py-24 px-5 md:px-10 bg-[#121212]">
               <div className="container mx-auto">
-                <motion.div 
+                <motion.div
                   className="text-center mb-16"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -2359,9 +2358,8 @@ export default function WebServicesStAlbert() {
                         <h3 className="text-xl font-semibold text-white pr-8">
                           {faq.question}
                         </h3>
-                        <div className={`transition-transform duration-300 flex-shrink-0 ${
-                          openFaq === index ? 'rotate-180' : ''
-                        }`}>
+                        <div className={`transition-transform duration-300 flex-shrink-0 ${openFaq === index ? 'rotate-180' : ''
+                          }`}>
                           <ChevronDown className="h-6 w-6 text-maverick-orange" />
                         </div>
                       </button>
@@ -2385,7 +2383,7 @@ export default function WebServicesStAlbert() {
                   ))}
                 </div>
 
-                <motion.div 
+                <motion.div
                   className="text-center mt-12"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -2430,7 +2428,7 @@ export default function WebServicesStAlbert() {
             <section className="py-24 px-5 md:px-10 bg-gradient-to-r from-maverick-orange to-orange-600 relative overflow-hidden">
               <div className="absolute inset-0 bg-black/20"></div>
               <div className="container mx-auto relative z-10">
-                <motion.div 
+                <motion.div
                   className="text-center"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -2452,7 +2450,7 @@ export default function WebServicesStAlbert() {
                     </Link>
                     <div className="flex items-center">
                       <span className="mr-2 text-white">📞</span>
-                      <a href="tel:+12508838849" className="font-medium text-white hover:text-white/80 transition-colors" style={{color: 'white'}}>
+                      <a href="tel:+12508838849" className="font-medium text-white hover:text-white/80 transition-colors" style={{ color: 'white' }}>
                         (250) 883-8849
                       </a>
                     </div>

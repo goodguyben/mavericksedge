@@ -768,21 +768,21 @@ export default function WebServicesAirdrie() {
     {
       icon: <LayoutIcon className="h-10 w-10 text-maverick-orange" />,
       title: "Custom Website Design",
-      description: "We start with your sales story and build the site around it. Clear paths, clean layouts, and fast pages that help people choose you.",
+      description: "Your digital storefront needs to work harder than a billboard on Queen Elizabeth II Highway. We build sites that grab attention and don't let go.",
       features: ["Mobile first", "Fast on real devices", "Accessible by default", "Built to convert"],
       price: "From $1,200"
     },
     {
       icon: <ShoppingCart className="h-10 w-10 text-maverick-orange" />,
       title: "E‑commerce that sells",
-      description: "Shopify and WooCommerce stores tuned for speed and trust. Fewer clicks to checkout and a smoother mobile flow.",
+      description: "For Airdrie boutiques facing off against Amazon: we build Shopify stores that make buying local easier than shipping from a warehouse.",
       features: ["Payments that just work", "Inventory and shipping", "Mobile checkout", "Local delivery options"],
       price: "From $2,500"
     },
     {
       icon: <Code className="h-10 w-10 text-maverick-orange" />,
       title: "Web Application Development",
-      description: "Dashboards, booking systems, internal tools. We design for the job to be done and integrate with your stack.",
+      description: "Stop running your business on spreadsheets. We build custom tools—booking systems, portals, dashboards—that give you your time back.",
       features: ["Custom features", "Database integration", "User roles", "API integrations"],
       price: "From $3,500"
     },
@@ -846,7 +846,7 @@ export default function WebServicesAirdrie() {
     {
       icon: <Search className="h-10 w-10 text-maverick-orange" />,
       title: "SEO‑ready by design",
-      description: "Technical foundations, clean IA, and content guidance. Launch with the basics done right.",
+      description: "Get found by customers in Yankee Valley and Kings Heights. We map your site to how Airdrie actually searches.",
       technologies: ["Technical SEO", "Local Schema", "Core Web Vitals", "Airdrie Keywords"]
     },
     {
@@ -968,28 +968,28 @@ export default function WebServicesAirdrie() {
 
   const faqItems = [
     {
-      question: "How much does web design cost in Airdrie?",
-      answer: "Our Airdrie web design services start at $850 for basic business websites and range up to $10,000+ for complex e-commerce and custom applications. We provide transparent pricing and free consultations to discuss your specific needs and budget."
+      question: "How much does a website cost in Airdrie?",
+      answer: "We don't hide our pricing. A professional, mobile-first brochure site starts at $1,200. Full e-commerce builds start at $2,500. We build for Airdrie budgets, not Silicon Valley venture capital."
     },
     {
-      question: "How long does it take to build a website in Airdrie?",
-      answer: "Most Airdrie business websites take 4-8 weeks from start to finish. Simple brochure sites can be completed in 2-3 weeks, while complex e-commerce or custom applications may take 8-12 weeks. We provide detailed timelines during our discovery phase."
+      question: "Do you meet with clients in Airdrie?",
+      answer: "Yes. We're happy to meet at Sorso, Good Earth, or your office. Real face time matters when you're building something this important."
     },
     {
-      question: "Do you provide website hosting for Airdrie businesses?",
-      answer: "Yes, we offer Canadian web hosting specifically optimized for Alberta businesses. Our hosting includes SSL certificates, daily backups, security monitoring, and 24/7 Airdrie-based support. Plans start at $25/month."
+      question: "Why shouldn't I just use Wix or Squarespace?",
+      answer: "You can. But those platforms own your data, and their 'easy' templates often load slowly on mobile. We build assets you own, that load instantly, and that you can actually scale."
     },
     {
-      question: "Can you help with SEO for my Airdrie business website?",
-      answer: "Absolutely! All our websites include basic SEO optimization with Airdrie and Alberta keyword targeting. We also offer comprehensive SEO services including local optimization, Google My Business management, and ongoing search marketing."
+      question: "How do I rank higher than my Calgary competitors?",
+      answer: "By being hyper-local. We use Airdrie-specific schema markup and content strategies that tell Google exactly where you are and who you serve. Most Calgary agencies miss this."
     },
     {
-      question: "Do you redesign existing websites for Airdrie businesses?",
-      answer: "Yes, we specialize in website redesigns that improve user experience, search rankings, and conversion rates. We can work with your existing content and branding or create a completely fresh approach."
+      question: "Can you fix my existing slow website?",
+      answer: "Usually, yes. We can audit your current build. If it's salvageable, we'll optimize it. If the foundation is rotten, we'll tell you the truth and propose a rebuild."
     },
     {
-      question: "What makes your Airdrie web design different from competitors?",
-      answer: "Our deep understanding of the Airdrie and Alberta business landscape, combined with cutting-edge design and development practices, sets us apart. We focus on local SEO, mobile optimization, and conversion-driven design that gets results."
+      question: "What's your support like after launch?",
+      answer: "We don't ghost you. You get a direct line to a developer, not a support ticket system. We offer monthly care plans to keep your site secure and updated."
     }
   ];
 
@@ -1071,12 +1071,12 @@ export default function WebServicesAirdrie() {
   return (
     <div>
       <SEOHead 
-        title="Mavericks Edge | Airdrie Web Design and Development"
-        description="Professional Airdrie web design and development. Build responsive, SEO-optimized websites that drive results and help your business grow. Free quote today!"
+        title="Airdrie Web Design | High-Performance Sites for Local Growth"
+        description="Stop losing customers to Calgary. We build fast, mobile-first websites specifically for Airdrie businesses. Get a free consultation today."
         keywords="Airdrie website design, website design Airdrie, Airdrie web design, web development Airdrie, Airdrie websites"
         canonicalUrl="https://mavericksedge.ca/web-design-services-airdrie"
-        ogTitle="Mavericks Edge | Airdrie Web Design and Development"
-        ogDescription="Affordable Airdrie web design and development for businesses that want to stand out online. Fast, responsive, and SEO-optimized websites that convert visitors into customers."
+        ogTitle="Airdrie Web Design | High-Performance Sites for Local Growth"
+        ogDescription="Stop losing customers to Calgary. We build fast, mobile-first websites specifically for Airdrie businesses. Get a free consultation today."
         ogImage="https://mavericksedge.ca/images/logo-transparent-thumb4x.png"
         ogType="website"
       />
@@ -1133,7 +1133,7 @@ export default function WebServicesAirdrie() {
                     transition={{ duration: 0.6, delay: 0.2 }}
                     className="text-[15px] text-[#AAAAAA] leading-relaxed mb-5 pr-16"
                   >
-                    Most websites look fine. Fewer move the business. We plan and build a site around your sales story so visitors know what to do and why it matters.
+                    We know Airdrie businesses struggle with the 'commuter drain' to Calgary. We build sites that capture those customers before they leave town.
                   </motion.p>
                   <motion.div 
                     initial={{ opacity: 0, y: 20 }}
@@ -1200,7 +1200,7 @@ export default function WebServicesAirdrie() {
                       transition={{ duration: 0.6, delay: 0.2 }}
                       className="text-sm sm:text-base md:text-lg lg:text-lg xl:text-xl 2xl:text-2xl text-[#AAAAAA] max-w-2xl leading-relaxed sm:mt-4 md:mt-5 lg:mt-6 xl:mt-7 2xl:mt-8 sm:mb-6 md:mb-8"
                     >
-                      Most websites look fine. Fewer move the business. We plan and build a site around your sales story so visitors know what to do and why it matters.
+                      We know Airdrie businesses struggle with the 'commuter drain' to Calgary. We build sites that capture those customers before they leave town.
                     </motion.p>
                     <motion.div 
                       initial={{ opacity: 0, y: 20 }}
