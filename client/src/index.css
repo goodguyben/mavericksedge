@@ -129,32 +129,33 @@
     margin-left: 1.25rem !important;
     font-size: 0.75rem !important; /* Larger text for xxs phones */
   }
+}
 
-  @media (min-width: 375px) {
-    .learn-more-button-xxs .learn-more {
-      width: 10rem !important; /* Reset to small-medium size */
-    }
+/* Reset Learn More button styles for screens 375px and above */
+@media (min-width: 375px) {
+  .learn-more-button-xxs .learn-more {
+    width: 10rem !important; /* Reset to small-medium size */
+  }
 
-    .learn-more-button-xxs .learn-more .circle {
-      width: 2.5rem !important;
-      height: 2.5rem !important;
-    }
+  .learn-more-button-xxs .learn-more .circle {
+    width: 2.5rem !important;
+    height: 2.5rem !important;
+  }
 
-    .learn-more-button-xxs .learn-more .circle .icon.arrow {
-      left: 0.5rem !important;
-      width: 0.875rem !important;
-    }
+  .learn-more-button-xxs .learn-more .circle .icon.arrow {
+    left: 0.5rem !important;
+    width: 0.875rem !important;
+  }
 
-    .learn-more-button-xxs .learn-more .circle .icon.arrow::before {
-      top: -0.25rem !important;
-      width: 0.5rem !important;
-      height: 0.5rem !important;
-    }
+  .learn-more-button-xxs .learn-more .circle .icon.arrow::before {
+    top: -0.25rem !important;
+    width: 0.5rem !important;
+    height: 0.5rem !important;
+  }
 
-    .learn-more-button-xxs .learn-more .button-text {
-      margin-left: 1.55rem !important;
-      font-size: 0.8125rem !important;
-    }
+  .learn-more-button-xxs .learn-more .button-text {
+    margin-left: 1.55rem !important;
+    font-size: 0.8125rem !important;
   }
 }
 

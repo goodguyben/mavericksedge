@@ -3,7 +3,6 @@ import { Route, Switch, useLocation } from "wouter";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { queryClient } from "@/lib/queryClient";
-import Layout from "@/components/Layout";
 import PageTransition from "@/components/PageTransition";
 import { PerformanceMonitor } from "@/components/performance";
 import { WebVitalsMonitor } from "@/components/performance/WebVitalsMonitor";
@@ -13,6 +12,7 @@ import { CriticalPathLoader } from "@/lib/criticalPath";
 import { getDeviceCapabilities } from "@/lib/performance";
 
 // Regular lazy loading for now to fix crash
+const Layout = lazy(() => import("@/components/Layout"));
 const Home = lazy(() => import("@/pages/Home"));
 const Services = lazy(() => import("@/pages/Services"));
 const WebServices = lazy(() => import("@/pages/WebServices"));
@@ -103,7 +103,7 @@ export default function App() {
     if (!isLoading) {
       const capabilities = getDeviceCapabilities();
       CriticalPathLoader.preloadBasedOnRoute(location);
-      
+
       // Load non-critical components based on device capabilities
       if (!capabilities.isLowEnd) {
         CriticalPathLoader.loadNonCritical();
@@ -121,7 +121,7 @@ export default function App() {
     <div className="min-h-screen">
       <QueryClientProvider client={queryClient}>
         <WebVitalsMonitor />
-        
+
         {/* Loading Screen - only show on first visit */}
         {isLoading && !hasSeenLoading && (
           <LoadingScreen
@@ -131,7 +131,7 @@ export default function App() {
             loadingDuration={4000}
           />
         )}
-        
+
         <PageTransition />
         <Layout>
           <Suspense fallback={<div />}>
